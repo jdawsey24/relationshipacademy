@@ -21,6 +21,9 @@ const config: Config = {
         "light-sage": "#B7C4B5",
         "slate-blue": "#6B7C97",
         "light-gray": "#E5E5E5",
+        // Results-page status accents
+        "amber-warm": "#C9A96E", // "Some Risk Indicators"
+        "deep-red": "#9E3B38", // "High Risk"
       },
       fontFamily: {
         // Display / Headings

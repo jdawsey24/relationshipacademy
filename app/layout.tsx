@@ -26,8 +26,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Relationship Life Cycle™",
-  description: "Assessment platform coming soon.",
+  title: "Relationship Snapshot™ | Relationship Life Cycle™",
+  description:
+    "A free developmental assessment based on the Relationship Life Cycle™ Framework. Understand where your relationship really is.",
+  icons: { icon: "/RLC_favicon.png" },
 };
 
 export default function RootLayout({

@@ -117,6 +117,74 @@ export interface AlignmentResult {
 
 // --- API response ------------------------------------------------------------
 
+// --- Questions API (GET /api/questions?domain=) -----------------------------
+
+export interface QuizQuestion {
+  id: string;
+  question_text: string;
+}
+
+export interface QuestionsResponse {
+  domain: { slug: string; name: string };
+  questions: QuizQuestion[];
+}
+
+// --- Results API (GET /api/results?session_id=) -----------------------------
+
+export interface DomainResult {
+  slug: string;
+  name: string;
+  average_score: number;
+  level: string | null; // e.g. "Strength"
+  title: string | null;
+  interpretation: string | null;
+  recommendation: string | null;
+  cta: string | null;
+}
+
+export interface CompetencyResult {
+  slug: string;
+  consumer_name: string;
+  average_score: number;
+  level: string | null;
+  title: string | null;
+}
+
+export interface ExpirationRiskResultView {
+  average_score: number;
+  risk_level: string | null;
+  title: string | null;
+  interpretation: string | null;
+}
+
+export interface AlignmentResultView {
+  status: AlignmentStatus;
+  interpretation_text: string | null;
+}
+
+export interface RecommendationView {
+  domain: string;
+  recommendation_text: string;
+  next_step: string;
+}
+
+export interface ResultsResponse {
+  session_id: string;
+  name: string;
+  structural_phase: {
+    slug: string;
+    name: string;
+    consumer_name: string | null;
+    defining_feature: string | null;
+  };
+  is_expiration: boolean;
+  alignment: AlignmentResultView | null;
+  expiration_risk: ExpirationRiskResultView | null;
+  domains: DomainResult[];
+  competency_phases: CompetencyResult[];
+  recommendations: RecommendationView[];
+}
+
 export interface ScoreResponse {
   session_id: string;
   domain_scores: DomainScore[];
