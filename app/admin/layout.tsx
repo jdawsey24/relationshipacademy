@@ -8,14 +8,13 @@ import { getSupabaseBrowserClient } from "@/lib/supabaseBrowser";
 // Sidebar is organized as an "operating system" for the RLC ecosystem. Sections
 // not yet built are shown as "Soon" so the structure is visible.
 
-type NavItem = { label: string; href?: string; soon?: boolean };
+type NavItem = { label: string; href?: string; soon?: boolean; match?: string[] };
 const NAV_GROUPS: NavItem[][] = [
   [{ label: "Dashboard", href: "/admin" }],
   [
     { label: "Website", soon: true },
     { label: "Framework", soon: true },
-    { label: "Assessment", href: "/admin/questions" },
-    { label: "Result Copy", href: "/admin/copy" },
+    { label: "Assessment", href: "/admin/assessment", match: ["/admin/questions", "/admin/copy", "/admin/assessment"] },
     { label: "Knowledge Center", soon: true },
   ],
   [
@@ -43,9 +42,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     router.refresh();
   }
 
-  function isActive(href: string) {
+  function isActive(item: NavItem) {
+    const href = item.href!;
     if (href === "/admin") return pathname === "/admin";
-    return pathname === href || pathname.startsWith(href + "/");
+    const prefixes = item.match ?? [href];
+    return prefixes.some((p) => pathname === p || pathname.startsWith(p + "/"));
   }
 
   return (
@@ -73,7 +74,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     key={item.label}
                     href={item.href!}
                     className={`block whitespace-nowrap rounded-md px-3 py-2 text-sm transition-colors ${
-                      isActive(item.href!)
+                      isActive(item)
                         ? "bg-white/15 font-semibold text-white md:border-l-2 md:border-white"
                         : "text-white/75 hover:bg-white/10 hover:text-white"
                     }`}

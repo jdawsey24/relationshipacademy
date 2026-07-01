@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import AssessmentTabs from "@/components/admin/AssessmentTabs";
 
 interface QRow {
   id: string;
@@ -65,8 +66,10 @@ export default function QuestionsPage() {
 
   return (
     <div>
+      <h1 className="mb-4 text-2xl font-semibold text-midnight-navy">Assessment</h1>
+      <AssessmentTabs />
       <div className="mb-1 flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold text-midnight-navy">Questions</h1>
+        <h2 className="text-lg font-semibold text-midnight-navy">Questions</h2>
       </div>
       {rows && (
         <p className="mb-5 text-sm text-charcoal/60">
