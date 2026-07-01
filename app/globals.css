@@ -12,3 +12,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-source-sans), sans-serif;
 }
+
+@layer components {
+  /* Admin form inputs (white background tool, Inter, navy focus). */
+  .admin-input {
+    @apply w-full rounded-md border border-light-gray px-3 py-2 text-sm text-charcoal outline-none focus:border-midnight-navy;
+    font-family: var(--font-inter), sans-serif;
+  }
+}
