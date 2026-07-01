@@ -2,11 +2,14 @@ import SectionLabel from "@/components/site/SectionLabel";
 
 export const metadata = { title: "About | Relationship Life Cycle™" };
 
-function HeadshotPlaceholder() {
+function Headshot() {
   return (
-    <div className="flex aspect-square w-full max-w-[200px] items-center justify-center rounded-2xl border border-dashed border-midnight-navy/25 bg-white text-center">
-      <span className="font-ui text-xs uppercase tracking-wide text-charcoal/40">Photo coming</span>
-    </div>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/janelle-about.jpg"
+      alt="Janelle Dawsey, LMFT"
+      className="w-full max-w-[220px] rounded-2xl object-cover shadow-sm"
+    />
   );
 }
 
@@ -51,7 +54,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy">About Janelle Dawsey, LMFT</h2>
           <div className="mt-6 flex flex-col gap-8 sm:flex-row sm:items-start">
-            <HeadshotPlaceholder />
+            <Headshot />
             <div className="flex-1">
               <p className="font-body text-base leading-relaxed text-charcoal">
                 Janelle Dawsey is a Licensed Marriage and Family Therapist (License No. MFT001614), author, certified matchmaker, and the founder and CEO of Symmetricly — a multi-clinician relationship wellness firm based in Smyrna, Georgia. She holds a Master of Science in Marriage and Family Therapy from Mercer University and is the author of <em>The Real Mommy Makeover</em> and <em>Healing After Heartbreak</em>. The Relationship Life Cycle™ is her original framework, developed through years of clinical practice and a deep belief that every person deserves a map for their relationships.

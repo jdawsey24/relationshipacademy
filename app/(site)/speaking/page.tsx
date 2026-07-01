@@ -9,11 +9,14 @@ const TOPICS = [
   { title: "Where Are You? A Framework for Relational Self-Awareness", body: "For general audiences — a practical map for understanding your own relationships." },
 ];
 
-function HeadshotPlaceholder() {
+function Headshot() {
   return (
-    <div className="flex aspect-square w-full max-w-[220px] items-center justify-center rounded-2xl border border-dashed border-midnight-navy/25 bg-white text-center">
-      <span className="font-ui text-xs uppercase tracking-wide text-charcoal/40">Photo coming</span>
-    </div>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/janelle-speaking.jpg"
+      alt="Janelle Dawsey, LMFT"
+      className="w-full max-w-[240px] rounded-2xl object-cover shadow-sm"
+    />
   );
 }
 
@@ -34,7 +37,7 @@ export default function SpeakingPage() {
 
       <section className="px-6 py-12">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 sm:flex-row sm:items-start">
-          <HeadshotPlaceholder />
+          <Headshot />
           <div className="flex-1">
             <h2 className="font-display text-2xl font-semibold text-midnight-navy">Janelle Dawsey, LMFT</h2>
             <p className="mt-3 font-body text-base leading-relaxed text-charcoal">
