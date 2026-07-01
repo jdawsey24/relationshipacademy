@@ -12,8 +12,28 @@ const NAV = [
   { label: "Contact", href: "/contact" },
 ];
 
-// Social placeholders — admin will fill real URLs later.
-const SOCIALS = ["Instagram", "Facebook", "LinkedIn"];
+const SOCIALS = [
+  {
+    label: "Instagram",
+    href: "https://instagram.com/theejanellexoxo",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    label: "TikTok",
+    href: "https://tiktok.com/@theejanellexoxo",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M16.5 3c.3 2.1 1.6 3.6 3.5 3.9v2.4c-1.3.1-2.5-.3-3.6-.9v5.9c0 3-2.2 5.2-5 5.2-2.7 0-4.9-2-4.9-4.7 0-2.8 2.4-4.9 5.4-4.5v2.5c-.4-.1-.8-.2-1.2-.1-1.1.1-1.9 1-1.8 2.2.1 1.1 1 1.9 2.1 1.8 1.2 0 2-1 2-2.3V3h3.5z" />
+      </svg>
+    ),
+  },
+];
 
 export default function SiteFooter() {
   const year = 2026;
@@ -36,16 +56,17 @@ export default function SiteFooter() {
 
         <div className="mt-6 flex gap-4">
           {SOCIALS.map((s) => (
-            <span
-              key={s}
-              aria-label={s}
-              title={`${s} (coming soon)`}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-midnight-navy/30 text-midnight-navy/60"
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.label}
+              title={s.label}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-midnight-navy/30 text-midnight-navy/70 transition-colors hover:border-midnight-navy hover:text-midnight-navy"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <circle cx="12" cy="12" r="4" />
-              </svg>
-            </span>
+              {s.icon}
+            </a>
           ))}
         </div>
 
