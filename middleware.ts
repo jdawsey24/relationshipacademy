@@ -51,7 +51,7 @@ export async function middleware(request: NextRequest) {
   // Authenticated but on the login page: send to the dashboard.
   if (user && isLoginPage) {
     const url = request.nextUrl.clone();
-    url.pathname = "/admin/leads";
+    url.pathname = "/admin";
     return NextResponse.redirect(url);
   }
 

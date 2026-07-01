@@ -26,7 +26,7 @@ export default function AdminLoginPage() {
       return;
     }
     // Session cookie is set; go to the dashboard.
-    router.push("/admin/leads");
+    router.push("/admin");
     router.refresh();
   }
 
