@@ -76,7 +76,7 @@ function ResultsInner() {
     <main className="mx-auto max-w-4xl px-6 py-10">
       {/* Header */}
       <header className="flex flex-col items-center text-center">
-        <Logo variant="full" href="/" className="text-xl" />
+        <Logo variant="full" href="/" className="h-12" />
         <h1 className="mt-8 font-display text-4xl font-semibold text-midnight-navy sm:text-5xl">
           {data.name ? `${data.name}'s ` : ""}Relationship Snapshot&trade;
         </h1>
@@ -192,7 +192,7 @@ function ResultsInner() {
 
       {/* Footer */}
       <footer className="mt-12 flex flex-col items-center gap-2 border-t border-light-gray pt-8 text-center">
-        <Logo variant="monogram" className="text-xl" />
+        <Logo variant="monogram" className="h-10" />
         <p className="font-body text-sm text-charcoal/70">
           © Relationship Life Cycle&trade; | A Symmetricly Framework
         </p>

@@ -12,7 +12,7 @@ export default function ProgressBar({ current, label }: ProgressBarProps) {
   const pct = Math.round((current / TOTAL_DOMAINS) * 100);
   return (
     <div className="flex items-center gap-3">
-      <Logo variant="mark" className="text-xl" />
+      <Logo variant="mark" className="h-7" />
       <div className="flex-1">
         <div className="mb-1 flex items-baseline justify-between font-ui text-xs text-charcoal/70">
           <span>

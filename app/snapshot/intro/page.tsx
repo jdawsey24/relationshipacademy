@@ -11,7 +11,7 @@ const POINTS = [
 export default function IntroPage() {
   return (
     <main className="mx-auto flex min-h-screen max-w-2xl flex-col px-6 py-10">
-      <Logo variant="full" href="/" className="text-lg" />
+      <Logo variant="full" href="/" className="h-9" />
 
       <div className="mt-16 flex flex-1 flex-col">
         <h1 className="font-display text-4xl font-semibold text-midnight-navy sm:text-5xl">

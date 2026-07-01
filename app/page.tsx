@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-warm-ivory px-6 py-16 text-center">
       <div className="flex w-full max-w-2xl flex-col items-center">
-        <Logo variant="full" className="mb-10 text-2xl sm:text-3xl" />
+        <Logo variant="full" className="mb-10 h-14 sm:h-16" />
 
         <h1 className="font-display text-4xl font-semibold leading-tight text-midnight-navy sm:text-6xl">
           Understand where your relationship really is.

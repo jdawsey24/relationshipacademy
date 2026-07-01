@@ -20,7 +20,7 @@ export default function PhaseSelectPage() {
 
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col px-6 py-10">
-      <Logo variant="full" href="/" className="text-lg" />
+      <Logo variant="full" href="/" className="h-9" />
 
       <div className="mt-12">
         <h1 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">

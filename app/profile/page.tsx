@@ -8,7 +8,7 @@ export const metadata = {
 export default function ProfilePage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-warm-ivory px-6 text-center">
-      <Logo variant="full" href="/" className="mb-10 text-xl" />
+      <Logo variant="full" href="/" className="mb-10 h-12" />
       <h1 className="font-display text-4xl font-semibold text-midnight-navy sm:text-5xl">
         Relationship Profile&trade;
       </h1>

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   title: "Relationship Snapshot™ | Relationship Life Cycle™",
   description:
     "A free developmental assessment based on the Relationship Life Cycle™ Framework. Understand where your relationship really is.",
-  icons: { icon: "/RLC_favicon.png" },
+  icons: { icon: "/favicon.png" },
 };
 
 export default function RootLayout({
