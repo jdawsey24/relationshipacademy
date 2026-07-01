@@ -2,34 +2,48 @@
 
 import { useState } from "react";
 
-export type LeadField = "name" | "email" | "organization" | "event_type" | "message";
+export type LeadField = "name" | "email" | "organization" | "message";
+
+export interface ExtraField {
+  key: string;
+  label: string;
+}
 
 interface LeadFormProps {
   source: string;
   fields: LeadField[];
+  /** renders inquiry_type as a select */
   inquiryTypeOptions?: string[];
+  /** renders event_type as a select (else omitted) */
+  eventTypeOptions?: string[];
+  /** freeform extra inputs appended into the message on submit */
+  extraFields?: ExtraField[];
   submitLabel?: string;
   successMessage?: string;
-  compact?: boolean; // single-row-ish for waitlist
 }
 
 const LABELS: Record<LeadField, string> = {
   name: "Name",
   email: "Email",
   organization: "Organization",
-  event_type: "Event type",
   message: "Message",
 };
+
+const inputCls =
+  "min-h-[48px] w-full rounded-lg border border-light-gray bg-white px-4 font-ui text-base text-charcoal outline-none focus:border-midnight-navy";
 
 export default function LeadForm({
   source,
   fields,
   inquiryTypeOptions,
+  eventTypeOptions,
+  extraFields,
   submitLabel = "Submit",
   successMessage = "Thank you — we'll be in touch.",
 }: LeadFormProps) {
   const [values, setValues] = useState<Record<string, string>>({});
   const [inquiryType, setInquiryType] = useState(inquiryTypeOptions?.[0] ?? "");
+  const [eventType, setEventType] = useState(eventTypeOptions?.[0] ?? "");
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -53,15 +67,27 @@ export default function LeadForm({
       setError("Please enter a message.");
       return;
     }
+
+    // Fold any extra freeform fields into the message so nothing is lost
+    // (site_leads has no dedicated columns for them).
+    const extras = (extraFields ?? [])
+      .map((f) => (values[f.key] ? `${f.label}: ${values[f.key]}` : ""))
+      .filter(Boolean);
+    const composedMessage = [values.message ?? "", ...extras].filter(Boolean).join("\n");
+
     setStatus("submitting");
     try {
       const res = await fetch("/api/site-leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...values,
+          name: values.name,
+          email,
+          organization: values.organization,
           source,
           ...(inquiryTypeOptions ? { inquiry_type: inquiryType } : {}),
+          ...(eventTypeOptions ? { event_type: eventType } : {}),
+          ...(composedMessage ? { message: composedMessage } : {}),
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
@@ -80,9 +106,6 @@ export default function LeadForm({
     );
   }
 
-  const inputCls =
-    "min-h-[48px] w-full rounded-lg border border-light-gray bg-white px-4 font-ui text-base text-charcoal outline-none focus:border-midnight-navy";
-
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       {fields.includes("name") && (
@@ -94,14 +117,19 @@ export default function LeadForm({
       {fields.includes("organization") && (
         <input type="text" placeholder={LABELS.organization} value={values.organization ?? ""} onChange={(e) => set("organization", e.target.value)} className={inputCls} />
       )}
-      {fields.includes("event_type") && (
-        <input type="text" placeholder={LABELS.event_type} value={values.event_type ?? ""} onChange={(e) => set("event_type", e.target.value)} className={inputCls} />
-      )}
       {inquiryTypeOptions && (
-        <select value={inquiryType} onChange={(e) => setInquiryType(e.target.value)} className={inputCls}>
+        <select value={inquiryType} onChange={(e) => setInquiryType(e.target.value)} className={inputCls} aria-label="Inquiry type">
           {inquiryTypeOptions.map((o) => <option key={o} value={o}>{o}</option>)}
         </select>
       )}
+      {eventTypeOptions && (
+        <select value={eventType} onChange={(e) => setEventType(e.target.value)} className={inputCls} aria-label="Event type">
+          {eventTypeOptions.map((o) => <option key={o} value={o}>{o}</option>)}
+        </select>
+      )}
+      {(extraFields ?? []).map((f) => (
+        <input key={f.key} type="text" placeholder={f.label} value={values[f.key] ?? ""} onChange={(e) => set(f.key, e.target.value)} className={inputCls} />
+      ))}
       {fields.includes("message") && (
         <textarea rows={4} placeholder={LABELS.message} value={values.message ?? ""} onChange={(e) => set("message", e.target.value)} className="w-full rounded-lg border border-light-gray bg-white px-4 py-3 font-ui text-base text-charcoal outline-none focus:border-midnight-navy" />
       )}

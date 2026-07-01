@@ -17,8 +17,9 @@ export interface FrameworkPhase {
   number: number;
   name: string;
   color: ColorToken;
-  task: string; // developmental task (manual)
-  cardDescription: string; // one-sentence (spec)
+  task: string; // developmental task (framework language)
+  primaryFocus: string; // plain-language focus (consumer-facing)
+  cardDescription: string; // one-sentence (consumer-facing)
   intro: string; // hero paragraph (manual)
   sections: PhaseSection[];
   fullyPopulated: boolean;
@@ -31,8 +32,9 @@ export const PHASES: FrameworkPhase[] = [
     name: "Exploration",
     color: "coral-rose",
     task: "Discernment",
+    primaryFocus: "Getting to know each other",
     cardDescription:
-      "The phase of discovery — gathering information to determine whether a deeper investment in the relationship is warranted.",
+      "The phase of discovery — learning who someone is before deciding to invest further.",
     intro:
       "Exploration is the first phase of the Relationship Life Cycle. It is the phase in which individuals gather information, observe patterns, evaluate compatibility, and determine whether a deeper investment in the relationship is appropriate. Regardless of attraction, chemistry, or initial impressions, every new relationship begins with incomplete information.",
     fullyPopulated: true,
@@ -80,8 +82,9 @@ export const PHASES: FrameworkPhase[] = [
     name: "Exclusivity",
     color: "plum",
     task: "Intentional Investment",
+    primaryFocus: "Choosing each other intentionally",
     cardDescription:
-      "The phase of focused commitment — determining whether compatibility can withstand deeper emotional and relational investment.",
+      "The phase of commitment — building on attraction with trust, compatibility, and growing emotional investment.",
     intro:
       "If Exploration is the phase of discovery, Exclusivity is the phase of intentional investment. It is the phase in which two individuals intentionally shift from assessment to investment and begin exploring the potential of the relationship through focused relational commitment. It is the phase where two people stop asking whether a relationship should continue and begin discovering what happens when they actively participate in building it.",
     fullyPopulated: true,
@@ -129,8 +132,9 @@ export const PHASES: FrameworkPhase[] = [
     name: "Expansion",
     color: "sage-green",
     task: "Integration",
+    primaryFocus: "Building a shared life",
     cardDescription:
-      "The phase of shared life building — integrating two lives into a functional, interdependent partnership.",
+      "The phase of integration — two lives becoming one, with all the complexity that brings.",
     intro:
       "If Exploration is the phase of discovery and Exclusivity is the phase of intentional investment, Expansion is the phase of integration. By the time a relationship reaches Expansion, compatibility has been assessed, trust has been developed, vulnerability has increased, attachment has deepened, and investment has been sustained. The relationship has demonstrated enough strength to justify deeper growth. Now a new question emerges: Can we build a life together?",
     fullyPopulated: true,
@@ -177,8 +181,9 @@ export const PHASES: FrameworkPhase[] = [
     name: "Expiration",
     color: "slate-blue",
     task: "Acceptance",
+    primaryFocus: "Facing hard truths",
     cardDescription:
-      "The phase of honest reckoning — acknowledging relational realities and making informed decisions about the future.",
+      "The phase of honest reckoning — when a relationship reaches a crossroads and decisions must be made.",
     intro:
       "Every relationship eventually reaches a point of transition. For some, that transition leads to deeper commitment. For others, it marks the end of the relationship's current form. This is the phase of Expiration. Most relationships do not end in a moment — they end through a process. Expiration is not simply about relationships ending; it is about individuals confronting the reality that a relationship's current form can no longer continue.",
     fullyPopulated: true,
@@ -225,8 +230,9 @@ export const PHASES: FrameworkPhase[] = [
     name: "Recovery",
     color: "dusty-plum",
     task: "Healing",
+    primaryFocus: "Healing after loss",
     cardDescription:
-      "The phase of restoration — processing loss and rebuilding emotional functioning after relational dissolution.",
+      "The phase of restoration — processing the end of a relationship and rebuilding emotional wellbeing.",
     intro:
       "If Expiration is the phase of accepting that a relationship's current form is ending, Recovery is the phase of healing from that ending. It is the process through which individuals adapt, rebuild, integrate, and move forward following relational loss. Healthy recovery is about learning how to carry the experience without allowing the experience to carry you.",
     fullyPopulated: true,
@@ -273,8 +279,9 @@ export const PHASES: FrameworkPhase[] = [
     name: "Renewal",
     color: "light-sage",
     task: "Reengagement",
+    primaryFocus: "Starting again",
     cardDescription:
-      "The phase of re-emergence — developing a renewed sense of identity, purpose, and readiness for future connection.",
+      "The phase of re-emergence — stepping back into connection with greater clarity and self-awareness.",
     intro:
       "By the time individuals reach Renewal, they have explored possibilities, made commitments, built partnerships, experienced endings, processed losses, and engaged in the work of healing. Yet Recovery is not the final destination. Healing was never meant to become a permanent residence — it was meant to prepare us for reengagement. Renewal is the phase in which individuals begin turning their attention toward life again.",
     fullyPopulated: true,
@@ -347,11 +354,11 @@ export interface Principle {
 }
 
 export const PRINCIPLES: Principle[] = [
-  { title: "Relationships are developmental systems.", body: "They evolve through predictable phases, each with its own purpose and demands.", color: "coral-rose" },
-  { title: "Every phase has a developmental task.", body: "Success isn't measured by whether the relationship continues — it's measured by whether the task of the current phase is completed.", color: "plum" },
-  { title: "Developmental mismatch creates distress.", body: "Most relationship problems aren't caused by bad people. They're caused by expecting one phase to perform the work of another.", color: "sage-green" },
-  { title: "The framework is a map, not a judgment.", body: "It doesn't determine where you should be — it helps you understand where you are.", color: "slate-blue" },
-  { title: "All six phases serve a purpose.", body: "Even Expiration, Recovery, and Renewal are not failures. They are necessary parts of the developmental journey.", color: "dusty-plum" },
+  { title: "Relationships develop over time.", body: "Every relationship moves through recognizable phases, each with its own purpose, focus, and opportunities for growth.", color: "coral-rose" },
+  { title: "Every phase has a primary focus.", body: "The work of one phase is not the same as the work of another. Understanding the difference is where growth begins.", color: "plum" },
+  { title: "Context changes everything.", body: "Good advice applied at the wrong stage can create more confusion than clarity. The framework helps you apply the right tools at the right time.", color: "sage-green" },
+  { title: "The framework is a map, not a judgment.", body: "It doesn't tell you where you should be — it helps you understand where you are.", color: "slate-blue" },
+  { title: "Every phase serves a purpose.", body: "Even the hardest phases — expiration, recovery, renewal — are not failures. They are part of the developmental journey.", color: "dusty-plum" },
 ];
 
 // --- Framework overview prose (verbatim, manual Ch.1) -----------------------

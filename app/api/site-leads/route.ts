@@ -12,6 +12,7 @@ const VALID_SOURCES = new Set([
   "speaking_inquiry",
   "learn_waitlist",
   "professional_interest",
+  "newsletter",
 ]);
 
 const FIELDS = [
