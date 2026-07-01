@@ -28,7 +28,9 @@ export type ColorToken =
   | "soft-coral"
   | "amber-warm"
   | "deep-red"
-  | "midnight-navy";
+  | "midnight-navy"
+  | "dusty-plum"
+  | "light-sage";
 
 export interface ColorClasses {
   solidBg: string; // strong fill (badges, selected cards)
@@ -48,6 +50,8 @@ export const COLOR_CLASSES: Record<ColorToken, ColorClasses> = {
   "amber-warm": { solidBg: "bg-amber-warm", solidText: "text-white", tintBg: "bg-amber-warm/15", border: "border-amber-warm", text: "text-amber-warm", barFill: "bg-amber-warm" },
   "deep-red": { solidBg: "bg-deep-red", solidText: "text-white", tintBg: "bg-deep-red/10", border: "border-deep-red", text: "text-deep-red", barFill: "bg-deep-red" },
   "midnight-navy": { solidBg: "bg-midnight-navy", solidText: "text-white", tintBg: "bg-midnight-navy/10", border: "border-midnight-navy", text: "text-midnight-navy", barFill: "bg-midnight-navy" },
+  "dusty-plum": { solidBg: "bg-dusty-plum", solidText: "text-white", tintBg: "bg-dusty-plum/10", border: "border-dusty-plum", text: "text-dusty-plum", barFill: "bg-dusty-plum" },
+  "light-sage": { solidBg: "bg-light-sage", solidText: "text-midnight-navy", tintBg: "bg-light-sage/20", border: "border-light-sage", text: "text-sage-green", barFill: "bg-light-sage" },
 };
 
 export function classesFor(token: ColorToken): ColorClasses {
