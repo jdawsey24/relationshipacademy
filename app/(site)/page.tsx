@@ -4,6 +4,11 @@ import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import PhaseCard from "@/components/site/PhaseCard";
 import { PHASES } from "@/lib/frameworkContent";
+import { getSiteContentMap, get } from "@/lib/siteContent";
+
+// ISR: page is cached and regenerated periodically so CMS edits appear within
+// ~a minute without making every request hit the database.
+export const revalidate = 60;
 
 const FEATURES = [
   { title: "Six relationship phases", body: "From the earliest stages of connection to rebuilding after loss.", icon: "phases" },
@@ -18,18 +23,21 @@ function FeatureIcon({ kind }: { kind: string }) {
   return (<svg {...common}><path d="M4 19V5M4 19h16M8 15l3-4 3 3 4-6" /></svg>);
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const content = await getSiteContentMap();
   return (
     <main>
       {/* Hero */}
       <section className="flex min-h-screen flex-col items-center justify-center bg-warm-ivory px-6 pt-24 text-center">
         <Logo variant="full" className="mb-10 h-16 sm:h-20" />
-        <SectionLabel tone="sage" className="mb-4">The Relationship Life Cycle&trade;</SectionLabel>
+        <SectionLabel tone="sage" className="mb-4">
+          {get(content, "home.hero.eyebrow", "The Relationship Life Cycle™")}
+        </SectionLabel>
         <h1 className="font-display text-[40px] font-semibold leading-[1.05] text-midnight-navy sm:text-6xl">
-          Every relationship has a season.
+          {get(content, "home.hero.headline", "Every relationship has a season.")}
         </h1>
         <p className="mt-6 max-w-[580px] font-body text-lg leading-relaxed text-charcoal sm:text-xl">
-          Every relationship has different needs at different points in its journey. The first step is understanding where you are.
+          {get(content, "home.hero.subhead", "Every relationship has different needs at different points in its journey. The first step is understanding where you are.")}
         </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <CtaButton href="/framework" variant="primary">Explore the Framework</CtaButton>

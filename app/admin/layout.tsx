@@ -12,7 +12,7 @@ type NavItem = { label: string; href?: string; soon?: boolean; match?: string[] 
 const NAV_GROUPS: NavItem[][] = [
   [{ label: "Dashboard", href: "/admin" }],
   [
-    { label: "Website", soon: true },
+    { label: "Website", href: "/admin/website" },
     { label: "Framework", soon: true },
     { label: "Assessment", href: "/admin/assessment", match: ["/admin/questions", "/admin/copy", "/admin/assessment"] },
     { label: "Knowledge Center", soon: true },
