@@ -16,7 +16,9 @@
     "next": "^15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "recharts": "^3.9.1"
+    "react-markdown": "^10.1.0",
+    "recharts": "^3.9.1",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.9.4",

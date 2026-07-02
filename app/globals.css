@@ -19,4 +19,36 @@ body {
     @apply w-full rounded-md border border-light-gray px-3 py-2 text-sm text-charcoal outline-none focus:border-midnight-navy;
     font-family: var(--font-inter), sans-serif;
   }
+
+  /* Article prose (Learn) — brand-styled markdown output. */
+  .article-prose {
+    @apply font-body text-[17px] leading-relaxed text-charcoal;
+  }
+  .article-prose h2 {
+    @apply mt-10 mb-3 font-display text-3xl font-semibold text-midnight-navy;
+  }
+  .article-prose h3 {
+    @apply mt-8 mb-2 font-display text-2xl font-semibold text-midnight-navy;
+  }
+  .article-prose p {
+    @apply my-4;
+  }
+  .article-prose a {
+    @apply text-midnight-navy underline underline-offset-2;
+  }
+  .article-prose ul {
+    @apply my-4 list-disc space-y-1 pl-6;
+  }
+  .article-prose ol {
+    @apply my-4 list-decimal space-y-1 pl-6;
+  }
+  .article-prose blockquote {
+    @apply my-6 border-l-4 border-coral-rose pl-4 italic text-charcoal/80;
+  }
+  .article-prose strong {
+    @apply font-semibold text-midnight-navy;
+  }
+  .article-prose img {
+    @apply my-6 rounded-lg;
+  }
 }
