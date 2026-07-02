@@ -1,6 +1,9 @@
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import LeadForm from "@/components/site/LeadForm";
+import { getSiteContentMap, get } from "@/lib/siteContent";
+
+export const revalidate = 60;
 
 export const metadata = {
   title: "Speaking | Relationship Life Cycle™",
@@ -31,18 +34,19 @@ const AUDIENCES = [
   { name: "Education & Community Organizations", body: "Relationship literacy for students and community members." },
 ];
 
-export default function SpeakingPage() {
+export default async function SpeakingPage() {
+  const content = await getSiteContentMap();
   return (
     <main className="bg-warm-ivory">
       {/* Hero */}
       <section className="px-6 pt-36 pb-14 text-center">
         <div className="mx-auto max-w-3xl">
-          <SectionLabel className="mb-4">Speaking &amp; Keynotes</SectionLabel>
+          <SectionLabel className="mb-4">{get(content, "speaking.hero.eyebrow", "Speaking & Keynotes")}</SectionLabel>
           <h1 className="font-display text-[36px] font-semibold leading-[1.08] text-midnight-navy sm:text-5xl">
-            Your audience will leave thinking about relationships differently.
+            {get(content, "speaking.hero.headline", "Your audience will leave thinking about relationships differently.")}
           </h1>
           <p className="mx-auto mt-6 max-w-[560px] font-body text-lg leading-relaxed text-charcoal">
-            Janelle Dawsey brings the Relationship Life Cycle™ Framework to conferences, organizations, healthcare systems, legal professionals, and faith communities — creating experiences that are educational, transformative, and immediately applicable.
+            {get(content, "speaking.hero.subhead", "Janelle Dawsey brings the Relationship Life Cycle™ Framework to conferences, organizations, healthcare systems, legal professionals, and faith communities — creating experiences that are educational, transformative, and immediately applicable.")}
           </p>
           <div className="mt-8"><CtaButton href="#inquiry">Inquire About Speaking</CtaButton></div>
         </div>

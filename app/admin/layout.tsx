@@ -13,7 +13,7 @@ const NAV_GROUPS: NavItem[][] = [
   [{ label: "Dashboard", href: "/admin" }],
   [
     { label: "Website", href: "/admin/website" },
-    { label: "Framework", soon: true },
+    { label: "Framework", href: "/admin/framework" },
     { label: "Assessment", href: "/admin/assessment", match: ["/admin/questions", "/admin/copy", "/admin/assessment"] },
     { label: "Knowledge Center", soon: true },
   ],

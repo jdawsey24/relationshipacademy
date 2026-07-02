@@ -3,8 +3,7 @@ import Logo from "@/components/Logo";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import PhaseCard from "@/components/site/PhaseCard";
-import { PHASES } from "@/lib/frameworkContent";
-import { getSiteContentMap, get } from "@/lib/siteContent";
+import { getSiteContentMap, get, applyPhaseOverrides } from "@/lib/siteContent";
 
 // ISR: page is cached and regenerated periodically so CMS edits appear within
 // ~a minute without making every request hit the database.
@@ -25,6 +24,7 @@ function FeatureIcon({ kind }: { kind: string }) {
 
 export default async function HomePage() {
   const content = await getSiteContentMap();
+  const phases = applyPhaseOverrides(content);
   return (
     <main>
       {/* Hero */}
@@ -107,7 +107,7 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {PHASES.map((p) => (
+            {phases.map((p) => (
               <PhaseCard key={p.slug} number={p.number} name={p.name} primaryFocus={p.primaryFocus} description={p.cardDescription} color={p.color} href={`/framework/phases/${p.slug}`} />
             ))}
           </div>

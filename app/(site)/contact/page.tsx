@@ -1,19 +1,23 @@
 import ContactForm from "@/components/site/ContactForm";
 import LeadForm from "@/components/site/LeadForm";
+import { getSiteContentMap, get } from "@/lib/siteContent";
 
 export const metadata = { title: "Contact | Relationship Life Cycle™" };
 
-export default function ContactPage() {
+export const revalidate = 60;
+
+export default async function ContactPage() {
+  const content = await getSiteContentMap();
   return (
     <main className="bg-warm-ivory">
       {/* Hero */}
       <section className="px-6 pt-36 pb-12 text-center">
         <div className="mx-auto max-w-2xl">
           <h1 className="font-display text-[36px] font-semibold leading-[1.08] text-midnight-navy sm:text-[44px]">
-            How can we help?
+            {get(content, "contact.hero.heading", "How can we help?")}
           </h1>
           <p className="mx-auto mt-5 max-w-[600px] font-body text-[17px] leading-relaxed text-charcoal">
-            Whether you have a question, want to explore the framework, or are ready to work together — you&apos;re in the right place.
+            {get(content, "contact.hero.subhead", "Whether you have a question, want to explore the framework, or are ready to work together — you're in the right place.")}
           </p>
         </div>
       </section>

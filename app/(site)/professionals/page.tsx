@@ -1,5 +1,8 @@
 import SectionLabel from "@/components/site/SectionLabel";
 import LeadForm from "@/components/site/LeadForm";
+import { getSiteContentMap, get } from "@/lib/siteContent";
+
+export const revalidate = 60;
 
 export const metadata = {
   title: "For Professionals | Relationship Life Cycle™",
@@ -39,18 +42,19 @@ const AUTHORITY = [
   "Designed for professional application and future research validation",
 ];
 
-export default function ProfessionalsPage() {
+export default async function ProfessionalsPage() {
+  const content = await getSiteContentMap();
   return (
     <main className="bg-warm-ivory">
       {/* Hero */}
       <section className="px-6 pt-36 pb-14 text-center">
         <div className="mx-auto max-w-3xl">
-          <SectionLabel className="mb-4">For Professionals</SectionLabel>
+          <SectionLabel className="mb-4">{get(content, "professionals.hero.eyebrow", "For Professionals")}</SectionLabel>
           <h1 className="font-display text-[36px] font-semibold leading-[1.08] text-midnight-navy sm:text-5xl">
-            A developmental framework that gives relationship work a clearer foundation.
+            {get(content, "professionals.hero.headline", "A developmental framework that gives relationship work a clearer foundation.")}
           </h1>
           <p className="mx-auto mt-6 max-w-[580px] font-body text-lg leading-relaxed text-charcoal">
-            The Relationship Life Cycle™ doesn&apos;t replace the models you already use. It provides the developmental context that helps you understand where a relationship is — and what it needs — at every stage.
+            {get(content, "professionals.hero.subhead", "The Relationship Life Cycle™ doesn't replace the models you already use. It provides the developmental context that helps you understand where a relationship is — and what it needs — at every stage.")}
           </p>
         </div>
       </section>

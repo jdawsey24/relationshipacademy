@@ -1,6 +1,9 @@
 import Link from "next/link";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
+import { getSiteContentMap, get } from "@/lib/siteContent";
+
+export const revalidate = 60;
 
 export const metadata = {
   title: "The Assessment | Relationship Life Cycle™",
@@ -46,18 +49,19 @@ const SAMPLE_DOMAINS = [
   { name: "Conflict", score: 2.3, level: "Needs Attention", color: "bg-coral-rose" },
 ];
 
-export default function AssessmentPage() {
+export default async function AssessmentPage() {
+  const content = await getSiteContentMap();
   return (
     <main className="bg-warm-ivory">
       {/* Hero */}
       <section className="px-6 pt-36 pb-16 text-center">
         <div className="mx-auto max-w-3xl">
-          <SectionLabel className="mb-4">The Relationship Snapshot™</SectionLabel>
+          <SectionLabel className="mb-4">{get(content, "assessment.hero.eyebrow", "The Relationship Snapshot™")}</SectionLabel>
           <h1 className="font-display text-[40px] font-semibold leading-[1.05] text-midnight-navy sm:text-5xl">
-            Understand where your relationship is — and what it needs next.
+            {get(content, "assessment.hero.headline", "Understand where your relationship is — and what it needs next.")}
           </h1>
           <p className="mx-auto mt-6 max-w-[600px] font-body text-lg leading-relaxed text-charcoal">
-            The Relationship Snapshot™ is a free assessment designed to help you better understand your relationship, recognize what&apos;s going well, and identify opportunities for growth.
+            {get(content, "assessment.hero.subhead", "The Relationship Snapshot™ is a free assessment designed to help you better understand your relationship, recognize what's going well, and identify opportunities for growth.")}
           </p>
           <div className="mt-8"><CtaButton href="/snapshot/intro">Take the Free Assessment</CtaButton></div>
         </div>

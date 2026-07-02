@@ -332,17 +332,18 @@ export function getPhase(slug: string): FrameworkPhase | undefined {
 // --- Six Universal Domains (descriptions per Phase 4 spec) ------------------
 
 export interface FrameworkDomain {
+  slug: string;
   name: string;
   description: string;
 }
 
 export const DOMAINS_CONTENT: FrameworkDomain[] = [
-  { name: "Communication", description: "The primary mechanism through which partners exchange information, construct shared meaning, and navigate each developmental phase." },
-  { name: "Trust", description: "The degree to which partners demonstrate reliability, honesty, accountability, and emotional safety over time." },
-  { name: "Emotional Intimacy", description: "The depth of emotional connection, vulnerability, and mutual understanding between partners." },
-  { name: "Conflict Management", description: "The ability to navigate disagreement constructively, repair relational ruptures, and use conflict as a source of growth." },
-  { name: "Relational Functioning", description: "How well partners coordinate shared responsibilities, expectations, and roles within the relationship." },
-  { name: "Physical Intimacy", description: "The presence, quality, and communication surrounding physical connection and affection." },
+  { slug: "communication", name: "Communication", description: "The primary mechanism through which partners exchange information, construct shared meaning, and navigate each developmental phase." },
+  { slug: "trust", name: "Trust", description: "The degree to which partners demonstrate reliability, honesty, accountability, and emotional safety over time." },
+  { slug: "emotional-intimacy", name: "Emotional Intimacy", description: "The depth of emotional connection, vulnerability, and mutual understanding between partners." },
+  { slug: "conflict-management", name: "Conflict Management", description: "The ability to navigate disagreement constructively, repair relational ruptures, and use conflict as a source of growth." },
+  { slug: "relational-functioning", name: "Relational Functioning", description: "How well partners coordinate shared responsibilities, expectations, and roles within the relationship." },
+  { slug: "physical-intimacy", name: "Physical Intimacy", description: "The presence, quality, and communication surrounding physical connection and affection." },
 ];
 
 // --- Core principles (Framework page, per spec) -----------------------------

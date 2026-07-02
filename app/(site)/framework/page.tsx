@@ -3,8 +3,9 @@ import CtaButton from "@/components/site/CtaButton";
 import PhaseCard from "@/components/site/PhaseCard";
 import DomainCard from "@/components/site/DomainCard";
 import PhaseCycle from "@/components/site/PhaseCycle";
-import { PHASES, DOMAINS_CONTENT, PRINCIPLES } from "@/lib/frameworkContent";
+import { PRINCIPLES } from "@/lib/frameworkContent";
 import { classesFor } from "@/lib/phases";
+import { getSiteContentMap, get, applyPhaseOverrides, applyDomainOverrides } from "@/lib/siteContent";
 
 export const metadata = {
   title: "The Framework | Relationship Life Cycle™",
@@ -12,18 +13,23 @@ export const metadata = {
     "Every relationship has different needs at different points in its journey. The Relationship Life Cycle™ gives you the context to understand where you are.",
 };
 
-export default function FrameworkPage() {
+export const revalidate = 60;
+
+export default async function FrameworkPage() {
+  const content = await getSiteContentMap();
+  const phases = applyPhaseOverrides(content);
+  const domains = applyDomainOverrides(content);
   return (
     <main className="bg-warm-ivory">
       {/* Hero */}
       <section className="px-6 pt-36 pb-16 text-center">
         <div className="mx-auto max-w-3xl">
-          <SectionLabel className="mb-4">The Relationship Life Cycle™ Framework</SectionLabel>
+          <SectionLabel className="mb-4">{get(content, "framework.hero.eyebrow", "The Relationship Life Cycle™ Framework")}</SectionLabel>
           <h1 className="font-display text-[44px] font-semibold leading-[1.05] text-midnight-navy sm:text-6xl">
-            Relationships have seasons. This is the map.
+            {get(content, "framework.hero.headline", "Relationships have seasons. This is the map.")}
           </h1>
           <p className="mx-auto mt-6 max-w-[560px] font-body text-lg leading-relaxed text-charcoal">
-            Every relationship has different needs at different points in its journey. The Relationship Life Cycle™ gives you the context to understand where you are — and what comes next.
+            {get(content, "framework.hero.subhead", "Every relationship has different needs at different points in its journey. The Relationship Life Cycle™ gives you the context to understand where you are — and what comes next.")}
           </p>
         </div>
       </section>
@@ -110,7 +116,7 @@ export default function FrameworkPage() {
             <PhaseCycle />
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {PHASES.map((p) => (
+            {phases.map((p) => (
               <PhaseCard key={p.slug} number={p.number} name={p.name} primaryFocus={p.primaryFocus} task={p.task} description={p.cardDescription} color={p.color} href={`/framework/phases/${p.slug}`} />
             ))}
           </div>
@@ -127,8 +133,8 @@ export default function FrameworkPage() {
             </p>
           </div>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {DOMAINS_CONTENT.map((d) => (
-              <DomainCard key={d.name} name={d.name} description={d.description} />
+            {domains.map((d) => (
+              <DomainCard key={d.slug} name={d.name} description={d.description} />
             ))}
           </div>
         </div>

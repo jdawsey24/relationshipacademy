@@ -1,7 +1,11 @@
+import { getSiteContentMap, get } from "@/lib/siteContent";
+
 export const metadata = {
   title: "About | Relationship Life Cycle™",
   description: "The clinical origin story behind the Relationship Life Cycle™ Framework.",
 };
+
+export const revalidate = 60;
 
 const ROADMAP = [
   { name: "Assessment", status: "Live" },
@@ -14,14 +18,15 @@ const ROADMAP = [
   { name: "Organizational Consulting", status: "In development" },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const content = await getSiteContentMap();
   return (
     <main className="bg-warm-ivory">
       {/* The Story */}
       <section className="px-6 pt-40 pb-16">
         <div className="mx-auto max-w-2xl">
           <p className="font-display text-3xl font-semibold leading-snug text-midnight-navy sm:text-[32px]">
-            After years of sitting with couples in therapy, a pattern became impossible to ignore.
+            {get(content, "about.story.opening", "After years of sitting with couples in therapy, a pattern became impossible to ignore.")}
           </p>
           <div className="mt-6 space-y-4 font-body text-[17px] leading-relaxed text-charcoal">
             <p>The resentment. The distance. The feeling that they&apos;d somehow failed each other. It rarely started where they thought it did.</p>
