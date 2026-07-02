@@ -6,7 +6,7 @@ import type { Article } from "@/lib/articleConstants";
 export * from "@/lib/articleConstants";
 
 const LIST_COLS =
-  "id, title, slug, category, summary, featured_image_url, author, publish_date, status, related_phase";
+  "id, title, slug, category, summary, featured_image_url, author, publish_date, status, related_phase_slug";
 
 /** Published articles, newest first. Resilient: returns [] if table absent. */
 export async function getPublishedArticles(): Promise<Article[]> {

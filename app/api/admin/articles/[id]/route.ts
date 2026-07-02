@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 const WRITABLE = [
   "title", "slug", "category", "summary", "content", "featured_image_url",
-  "author", "publish_date", "status", "tags", "related_phase",
+  "author", "publish_date", "status", "tags", "related_phase_slug",
   "cta_text", "cta_url", "seo_title", "seo_description",
 ] as const;
 

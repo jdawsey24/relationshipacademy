@@ -92,7 +92,7 @@ export default function ArticleEditor({ id }: { id?: string }) {
           </label>
           <label className="block">
             <span className="mb-1 block text-xs uppercase text-charcoal/50">Related phase</span>
-            <select value={v.related_phase ?? ""} onChange={(e) => set("related_phase", e.target.value)} className="admin-input">
+            <select value={v.related_phase_slug ?? ""} onChange={(e) => set("related_phase_slug", e.target.value)} className="admin-input">
               {RELATED_PHASE_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
           </label>

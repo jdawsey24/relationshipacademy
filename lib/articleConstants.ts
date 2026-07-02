@@ -14,7 +14,7 @@ export interface Article {
   publish_date: string | null;
   status: string;
   tags: string | null;
-  related_phase: string | null;
+  related_phase_slug: string | null;
   cta_text: string | null;
   cta_url: string | null;
   seo_title: string | null;

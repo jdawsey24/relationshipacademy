@@ -28,7 +28,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const a = await getPublishedArticleBySlug(slug);
   if (!a) notFound();
 
-  const phase = a.related_phase ? getPhase(a.related_phase) : undefined;
+  const phase = a.related_phase_slug ? getPhase(a.related_phase_slug) : undefined;
   const date = fmtDate(a.publish_date);
 
   return (

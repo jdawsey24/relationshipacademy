@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 const WRITABLE = [
   "title", "slug", "category", "summary", "content", "featured_image_url",
-  "author", "publish_date", "status", "tags", "related_phase",
+  "author", "publish_date", "status", "tags", "related_phase_slug",
   "cta_text", "cta_url", "seo_title", "seo_description",
 ] as const;
 
@@ -21,7 +21,7 @@ export async function GET() {
   const supabase = getSupabaseAdminClient();
   const { data, error } = await supabase
     .from("articles")
-    .select("id, title, slug, category, author, status, publish_date, related_phase, updated_at")
+    .select("id, title, slug, category, author, status, publish_date, related_phase_slug, updated_at")
     .order("updated_at", { ascending: false });
   if (error) {
     return NextResponse.json({ error: "Failed to load articles.", details: error.message }, { status: 502 });

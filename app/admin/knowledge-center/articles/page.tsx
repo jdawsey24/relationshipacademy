@@ -6,7 +6,7 @@ import KcTabs from "@/components/admin/KcTabs";
 
 interface Row {
   id: string; title: string; slug: string; category: string | null;
-  author: string | null; status: string; publish_date: string | null; related_phase: string | null;
+  author: string | null; status: string; publish_date: string | null; related_phase_slug: string | null;
 }
 
 function fmt(iso: string | null) {

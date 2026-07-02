@@ -14,7 +14,7 @@ create table if not exists public.articles (
   publish_date date,
   status text not null default 'draft',   -- draft | published
   tags text,                  -- comma-separated
-  related_phase text,         -- phase slug
+  related_phase_slug text,    -- phase slug (matches the pre-existing column name)
   cta_text text,
   cta_url text,
   seo_title text,
