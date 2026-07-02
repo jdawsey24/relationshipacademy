@@ -7,7 +7,7 @@ import type { ContentField } from "@/lib/siteContent";
 // overrides, shows defaults where none exist, saves via the admin API.
 type Toast = { kind: "success" | "error"; msg: string } | null;
 
-export default function ContentEditor({ fields }: { fields: ContentField[] }) {
+export default function ContentEditor({ fields, apiPath = "/api/admin/site-content" }: { fields: ContentField[]; apiPath?: string }) {
   const [values, setValues] = useState<Record<string, string>>({});
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
@@ -15,7 +15,7 @@ export default function ContentEditor({ fields }: { fields: ContentField[] }) {
   const [toast, setToast] = useState<Toast>(null);
 
   useEffect(() => {
-    fetch("/api/admin/site-content")
+    fetch(apiPath)
       .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
       .then((d) => {
         const map: Record<string, string> = {};
@@ -36,7 +36,7 @@ export default function ContentEditor({ fields }: { fields: ContentField[] }) {
     try {
       const updates: Record<string, string> = {};
       for (const f of fields) updates[f.key] = values[f.key] ?? "";
-      const res = await fetch("/api/admin/site-content", {
+      const res = await fetch(apiPath, {
         method: "PATCH", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ updates }),
       });

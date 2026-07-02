@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { getSupabaseBrowserClient } from "@/lib/supabaseBrowser";
@@ -8,7 +9,7 @@ import { getSupabaseBrowserClient } from "@/lib/supabaseBrowser";
 // Sidebar is organized as an "operating system" for the RLC ecosystem. Sections
 // not yet built are shown as "Soon" so the structure is visible.
 
-type NavItem = { label: string; href?: string; soon?: boolean; match?: string[] };
+type NavItem = { label: string; href?: string; soon?: boolean; match?: string[]; ownerOnly?: boolean };
 const NAV_GROUPS: NavItem[][] = [
   [{ label: "Dashboard", href: "/admin" }],
   [
@@ -20,21 +21,32 @@ const NAV_GROUPS: NavItem[][] = [
   [
     { label: "CRM", href: "/admin/crm" },
     { label: "Analytics", href: "/admin/analytics" },
-    { label: "Media Library", soon: true },
+    { label: "Media Library", href: "/admin/media" },
   ],
   [
-    { label: "Users & Permissions", soon: true },
-    { label: "Settings", href: "/admin/settings" },
+    { label: "Users & Permissions", href: "/admin/users", ownerOnly: true },
+    { label: "Settings", href: "/admin/settings", ownerOnly: true },
   ],
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [role, setRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (pathname === "/admin/login") return;
+    fetch("/api/admin/me").then((r) => r.json()).then((d) => setRole(d.role)).catch(() => {});
+  }, [pathname]);
 
   if (pathname === "/admin/login") {
     return <div className="min-h-screen bg-white font-ui text-charcoal">{children}</div>;
   }
+
+  const isOwner = role === "owner";
+  const groups = NAV_GROUPS
+    .map((g) => g.filter((it) => !it.ownerOnly || isOwner))
+    .filter((g) => g.length > 0);
 
   async function signOut() {
     await getSupabaseBrowserClient().auth.signOut();
@@ -56,7 +68,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <span className="font-ui text-sm font-semibold uppercase tracking-wide">RLC Admin</span>
         </div>
         <div className="flex gap-4 overflow-x-auto px-3 py-2 md:flex-1 md:flex-col md:gap-0 md:overflow-visible md:px-3 md:py-4">
-          {NAV_GROUPS.map((group, gi) => (
+          {groups.map((group, gi) => (
             <div key={gi} className="flex gap-1 md:flex-col md:gap-0.5">
               {gi > 0 && <div className="hidden md:my-2 md:block md:h-px md:bg-white/10" />}
               {group.map((item) =>

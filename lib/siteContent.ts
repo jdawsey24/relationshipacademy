@@ -58,6 +58,17 @@ export const CONTACT_FIELDS: ContentField[] = [
   { key: "contact.hero.subhead", label: "Subhead", type: "textarea", default: "Whether you have a question, want to explore the framework, or are ready to work together — you're in the right place." },
 ];
 
+export const SETTINGS_FIELDS: ContentField[] = [
+  { key: "settings.contact_email", label: "Contact email", type: "text", default: "info@symmetricly.co" },
+  { key: "settings.social.instagram", label: "Instagram URL", type: "text", default: "https://instagram.com/theejanellexoxo" },
+  { key: "settings.social.tiktok", label: "TikTok URL", type: "text", default: "https://tiktok.com/@theejanellexoxo" },
+  { key: "settings.social.facebook", label: "Facebook URL", type: "text", default: "" },
+  { key: "settings.social.linkedin", label: "LinkedIn URL", type: "text", default: "" },
+  { key: "settings.footer_note", label: "Footer copyright note", type: "text", default: "© 2026 Relationship Life Cycle™ | A Symmetricly Framework" },
+  { key: "settings.ga_id", label: "Google Analytics ID", type: "text", default: "" },
+  { key: "settings.meta_pixel_id", label: "Meta Pixel ID", type: "text", default: "" },
+];
+
 export const PAGE_MANIFESTS: Record<string, { label: string; fields: ContentField[] }> = {
   home: { label: "Home", fields: HOME_FIELDS },
   framework: { label: "Framework", fields: FRAMEWORK_FIELDS },
