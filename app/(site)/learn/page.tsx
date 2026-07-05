@@ -2,6 +2,7 @@ import Link from "next/link";
 import SectionLabel from "@/components/site/SectionLabel";
 import LeadForm from "@/components/site/LeadForm";
 import { getPublishedArticles } from "@/lib/articles";
+import { getPublishedResources } from "@/lib/resources";
 
 export const metadata = { title: "Learning Center | Relationship Life Cycle™" };
 export const revalidate = 60;
@@ -13,7 +14,7 @@ const CATEGORIES = [
 ];
 
 export default async function LearnPage() {
-  const articles = await getPublishedArticles();
+  const [articles, resources] = await Promise.all([getPublishedArticles(), getPublishedResources()]);
 
   return (
     <main className="bg-warm-ivory">
@@ -75,6 +76,36 @@ export default async function LearnPage() {
                   <h3 className="font-display text-xl font-semibold text-midnight-navy">{a.title}</h3>
                   <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal">{a.body}</p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {resources.length > 0 && (
+        <section className="px-6 py-12">
+          <div className="mx-auto max-w-5xl">
+            <SectionLabel className="mb-4">Downloadable Resources</SectionLabel>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {resources.map((r) => (
+                <a
+                  key={r.id}
+                  href={r.file_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col rounded-xl border border-light-gray bg-white p-6 transition-shadow hover:shadow-md"
+                >
+                  <div className="mb-3 flex items-center gap-2">
+                    {r.file_type && <span className="rounded bg-light-gray px-2 py-0.5 font-ui text-[11px] uppercase tracking-wide text-charcoal/60">{r.file_type}</span>}
+                    {r.category && <span className="font-ui text-[11px] uppercase tracking-wide text-coral-rose">{r.category}</span>}
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-midnight-navy">{r.title}</h3>
+                  {r.description && <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal">{r.description}</p>}
+                  <span className="mt-4 inline-flex items-center gap-1 font-ui text-sm font-medium text-midnight-navy group-hover:underline">
+                    Download
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" /></svg>
+                  </span>
+                </a>
               ))}
             </div>
           </div>
