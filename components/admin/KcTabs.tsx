@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 const TABS = [
   { label: "Articles", href: "/admin/knowledge-center/articles" },
+  { label: "Categories", href: "/admin/knowledge-center/categories" },
   { label: "Resources", href: "/admin/knowledge-center/resources" },
 ];
 
@@ -21,7 +22,6 @@ export default function KcTabs() {
           </Link>
         );
       })}
-      <span className="-mb-px cursor-default border-b-2 border-transparent px-4 py-2 text-sm text-charcoal/30" title="Coming soon">Categories</span>
     </div>
   );
 }

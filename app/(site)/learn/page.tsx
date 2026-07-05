@@ -3,18 +3,17 @@ import SectionLabel from "@/components/site/SectionLabel";
 import LeadForm from "@/components/site/LeadForm";
 import { getPublishedArticles } from "@/lib/articles";
 import { getPublishedResources } from "@/lib/resources";
+import { getArticleCategoryNames } from "@/lib/articleCategories";
 
 export const metadata = { title: "Learning Center | Relationship Life Cycle™" };
 export const revalidate = 60;
 
-const CATEGORIES = [
-  "Exploration & Dating", "Commitment & Exclusivity", "Building a Shared Life",
-  "Conflict & Repair", "Breakups & Endings", "Healing & Recovery",
-  "Relationship Development", "For Professionals",
-];
-
 export default async function LearnPage() {
-  const [articles, resources] = await Promise.all([getPublishedArticles(), getPublishedResources()]);
+  const [articles, resources, categories] = await Promise.all([
+    getPublishedArticles(),
+    getPublishedResources(),
+    getArticleCategoryNames(),
+  ]);
 
   return (
     <main className="bg-warm-ivory">
@@ -33,7 +32,7 @@ export default async function LearnPage() {
         <div className="mx-auto max-w-5xl">
           <SectionLabel className="mb-4">Explore by Topic</SectionLabel>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {CATEGORIES.map((c) => (
+            {categories.map((c) => (
               <div key={c} className="rounded-xl border border-light-gray bg-white p-5 font-display text-lg font-semibold text-midnight-navy">{c}</div>
             ))}
           </div>

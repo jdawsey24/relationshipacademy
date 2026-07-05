@@ -15,6 +15,7 @@ export default function ArticleEditor({ id }: { id?: string }) {
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
   const [confirmDel, setConfirmDel] = useState(false);
+  const [categories, setCategories] = useState<string[]>(ARTICLE_CATEGORIES);
   const canWrite = useCanWrite();
 
   useEffect(() => {
@@ -24,6 +25,13 @@ export default function ArticleEditor({ id }: { id?: string }) {
       .then((d) => { setV(d.article); setLoaded(true); })
       .catch(() => setMsg({ kind: "err", text: "Failed to load article." }));
   }, [id]);
+
+  useEffect(() => {
+    fetch("/api/admin/article-categories")
+      .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
+      .then((d) => { const names = (d.rows as { name: string }[]).map((r) => r.name); if (names.length) setCategories(names); })
+      .catch(() => {}); // keep the built-in fallback
+  }, []);
 
   function set(k: keyof Article, val: string) { setV((p) => ({ ...p, [k]: val })); }
   function flash(m: { kind: "ok" | "err"; text: string }) { setMsg(m); if (m.kind === "ok") setTimeout(() => setMsg(null), 3000); }
@@ -89,7 +97,8 @@ export default function ArticleEditor({ id }: { id?: string }) {
             <span className="mb-1 block text-xs uppercase text-charcoal/50">Category</span>
             <select value={v.category ?? ""} onChange={(e) => set("category", e.target.value)} className="admin-input">
               <option value="">— select —</option>
-              {ARTICLE_CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+              {/* Include the article's current category even if it's no longer in the managed list, so saving doesn't silently drop it. */}
+              {(v.category && !categories.includes(v.category) ? [v.category, ...categories] : categories).map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
           </label>
           <label className="block">
