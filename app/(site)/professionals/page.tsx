@@ -1,14 +1,12 @@
 import SectionLabel from "@/components/site/SectionLabel";
 import LeadForm from "@/components/site/LeadForm";
-import { getSiteContentMap, get } from "@/lib/siteContent";
+import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "For Professionals | Relationship Life Cycle™",
-  description:
-    "A developmental framework that gives relationship work a clearer foundation — a complement to the models you already use.",
-};
+export async function generateMetadata() {
+  return buildPageMetadata(await getSiteContentMap(), "professionals");
+}
 
 const AUDIENCES = [
   { name: "Therapists & Counselors", challenge: "Clients often present with relationship distress that is hard to contextualize within a single session or complaint.", help: "The framework provides a developmental structure for understanding where the relationship is and what competencies may be underdeveloped — giving clinicians a clearer picture of what to address and when." },

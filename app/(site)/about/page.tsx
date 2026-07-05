@@ -1,11 +1,10 @@
-import { getSiteContentMap, get } from "@/lib/siteContent";
-
-export const metadata = {
-  title: "About | Relationship Life Cycle™",
-  description: "The clinical origin story behind the Relationship Life Cycle™ Framework.",
-};
+import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
+
+export async function generateMetadata() {
+  return buildPageMetadata(await getSiteContentMap(), "about");
+}
 
 const ROADMAP = [
   { name: "Assessment", status: "Live" },

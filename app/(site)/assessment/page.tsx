@@ -1,15 +1,13 @@
 import Link from "next/link";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
-import { getSiteContentMap, get } from "@/lib/siteContent";
+import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "The Assessment | Relationship Life Cycle™",
-  description:
-    "The Relationship Snapshot™ is a free assessment that helps you understand where your relationship is and what it needs next.",
-};
+export async function generateMetadata() {
+  return buildPageMetadata(await getSiteContentMap(), "assessment");
+}
 
 const STEPS = [
   { n: "1", title: "Tell us where your relationship is today", body: "A simple question about your current relationship situation." },

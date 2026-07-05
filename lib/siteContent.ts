@@ -1,3 +1,5 @@
+import { cache } from "react";
+import type { Metadata } from "next";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { PHASES, DOMAINS_CONTENT, type FrameworkPhase, type FrameworkDomain } from "@/lib/frameworkContent";
 
@@ -69,19 +71,88 @@ export const SETTINGS_FIELDS: ContentField[] = [
   { key: "settings.meta_pixel_id", label: "Meta Pixel ID", type: "text", default: "" },
 ];
 
+// --- Per-page SEO (title / meta description / social share image) ----------
+// Defaults mirror the copy that used to live in each page's static `metadata`.
+export const PAGE_SEO: Record<string, { title: string; description: string }> = {
+  home: {
+    title: "Relationship Snapshot™ | Relationship Life Cycle™",
+    description: "A free developmental assessment based on the Relationship Life Cycle™ Framework. Understand where your relationship really is.",
+  },
+  framework: {
+    title: "The Framework | Relationship Life Cycle™",
+    description: "Every relationship has different needs at different points in its journey. The Relationship Life Cycle™ gives you the context to understand where you are.",
+  },
+  assessment: {
+    title: "The Assessment | Relationship Life Cycle™",
+    description: "The Relationship Snapshot™ is a free assessment that helps you understand where your relationship is and what it needs next.",
+  },
+  professionals: {
+    title: "For Professionals | Relationship Life Cycle™",
+    description: "A developmental framework that gives relationship work a clearer foundation — a complement to the models you already use.",
+  },
+  speaking: {
+    title: "Speaking | Relationship Life Cycle™",
+    description: "Janelle Dawsey brings the Relationship Life Cycle™ Framework to conferences, organizations, and communities.",
+  },
+  about: {
+    title: "About | Relationship Life Cycle™",
+    description: "The clinical origin story behind the Relationship Life Cycle™ Framework.",
+  },
+  contact: {
+    title: "Contact | Relationship Life Cycle™",
+    description: "Questions, framework inquiries, speaking requests, or professional partnerships — reach the Relationship Life Cycle™ team.",
+  },
+};
+
+/** The editable SEO fields for a page, defaulting to that page's PAGE_SEO. */
+function seoFields(page: string): ContentField[] {
+  const d = PAGE_SEO[page];
+  return [
+    { key: `seo.${page}.title`, label: "SEO — Browser/tab title", type: "text", default: d.title },
+    { key: `seo.${page}.description`, label: "SEO — Meta description", type: "textarea", default: d.description },
+    { key: `seo.${page}.og_image`, label: "SEO — Social share image URL (optional)", type: "text", default: "" },
+  ];
+}
+
+/** Build a Next.js Metadata object for a page from overrides + defaults. */
+export function buildPageMetadata(map: Map<string, string>, page: string): Metadata {
+  const d = PAGE_SEO[page];
+  const title = get(map, `seo.${page}.title`, d.title);
+  const description = get(map, `seo.${page}.description`, d.description);
+  const ogImage = get(map, `seo.${page}.og_image`, "");
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
+    },
+    twitter: {
+      card: ogImage ? "summary_large_image" : "summary",
+      title,
+      description,
+      ...(ogImage ? { images: [ogImage] } : {}),
+    },
+  };
+}
+
 export const PAGE_MANIFESTS: Record<string, { label: string; fields: ContentField[] }> = {
-  home: { label: "Home", fields: HOME_FIELDS },
-  framework: { label: "Framework", fields: FRAMEWORK_FIELDS },
-  assessment: { label: "Assessment", fields: ASSESSMENT_FIELDS },
-  professionals: { label: "Professionals", fields: PROFESSIONALS_FIELDS },
-  speaking: { label: "Speaking", fields: SPEAKING_FIELDS },
-  about: { label: "About", fields: ABOUT_FIELDS },
-  contact: { label: "Contact", fields: CONTACT_FIELDS },
+  home: { label: "Home", fields: [...HOME_FIELDS, ...seoFields("home")] },
+  framework: { label: "Framework", fields: [...FRAMEWORK_FIELDS, ...seoFields("framework")] },
+  assessment: { label: "Assessment", fields: [...ASSESSMENT_FIELDS, ...seoFields("assessment")] },
+  professionals: { label: "Professionals", fields: [...PROFESSIONALS_FIELDS, ...seoFields("professionals")] },
+  speaking: { label: "Speaking", fields: [...SPEAKING_FIELDS, ...seoFields("speaking")] },
+  about: { label: "About", fields: [...ABOUT_FIELDS, ...seoFields("about")] },
+  contact: { label: "Contact", fields: [...CONTACT_FIELDS, ...seoFields("contact")] },
 };
 
 /** Read all content overrides into a Map. Resilient: returns an empty Map if
- * the table doesn't exist yet or the read fails, so callers use defaults. */
-export async function getSiteContentMap(): Promise<Map<string, string>> {
+ * the table doesn't exist yet or the read fails, so callers use defaults.
+ * Wrapped in React cache() so generateMetadata() + the page body in the same
+ * request share a single DB read. */
+export const getSiteContentMap = cache(async (): Promise<Map<string, string>> => {
   try {
     const supabase = getSupabaseAdminClient();
     const { data, error } = await supabase.from("site_content").select("key, value");
@@ -90,7 +161,7 @@ export async function getSiteContentMap(): Promise<Map<string, string>> {
   } catch {
     return new Map();
   }
-}
+});
 
 /** Override value if present and non-empty, else the provided default. */
 export function get(map: Map<string, string>, key: string, fallback: string): string {

@@ -18,7 +18,7 @@ export default async function WebsitePageEditor({ params }: { params: Promise<{ 
       <WebsiteTabs />
       <h2 className="mb-1 text-lg font-semibold text-midnight-navy">{manifest.label} page</h2>
       <p className="mb-5 max-w-2xl text-sm text-charcoal/60">
-        Edit this page&apos;s headline copy. Leave a field blank to fall back to the built-in default. Changes appear on the site within about a minute.
+        Edit this page&apos;s headline copy and its SEO (browser title, meta description, and social share image). Leave a field blank to fall back to the built-in default. Changes appear on the site within about a minute.
       </p>
       <ContentEditor fields={manifest.fields} />
     </div>

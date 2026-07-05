@@ -1,10 +1,12 @@
 import ContactForm from "@/components/site/ContactForm";
 import LeadForm from "@/components/site/LeadForm";
-import { getSiteContentMap, get } from "@/lib/siteContent";
-
-export const metadata = { title: "Contact | Relationship Life Cycle™" };
+import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
+
+export async function generateMetadata() {
+  return buildPageMetadata(await getSiteContentMap(), "contact");
+}
 
 export default async function ContactPage() {
   const content = await getSiteContentMap();

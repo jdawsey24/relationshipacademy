@@ -5,15 +5,13 @@ import DomainCard from "@/components/site/DomainCard";
 import PhaseCycle from "@/components/site/PhaseCycle";
 import { PRINCIPLES } from "@/lib/frameworkContent";
 import { classesFor } from "@/lib/phases";
-import { getSiteContentMap, get, applyPhaseOverrides, applyDomainOverrides } from "@/lib/siteContent";
-
-export const metadata = {
-  title: "The Framework | Relationship Life Cycle™",
-  description:
-    "Every relationship has different needs at different points in its journey. The Relationship Life Cycle™ gives you the context to understand where you are.",
-};
+import { getSiteContentMap, get, applyPhaseOverrides, applyDomainOverrides, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
+
+export async function generateMetadata() {
+  return buildPageMetadata(await getSiteContentMap(), "framework");
+}
 
 export default async function FrameworkPage() {
   const content = await getSiteContentMap();

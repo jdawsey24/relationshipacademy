@@ -1,15 +1,13 @@
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import LeadForm from "@/components/site/LeadForm";
-import { getSiteContentMap, get } from "@/lib/siteContent";
+import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "Speaking | Relationship Life Cycle™",
-  description:
-    "Janelle Dawsey brings the Relationship Life Cycle™ Framework to conferences, organizations, and communities.",
-};
+export async function generateMetadata() {
+  return buildPageMetadata(await getSiteContentMap(), "speaking");
+}
 
 const EXPERIENCE = [
   "A new way of understanding how relationships develop over time",

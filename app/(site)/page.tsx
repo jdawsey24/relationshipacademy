@@ -3,11 +3,15 @@ import Logo from "@/components/Logo";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import PhaseCard from "@/components/site/PhaseCard";
-import { getSiteContentMap, get, applyPhaseOverrides } from "@/lib/siteContent";
+import { getSiteContentMap, get, applyPhaseOverrides, buildPageMetadata } from "@/lib/siteContent";
 
 // ISR: page is cached and regenerated periodically so CMS edits appear within
 // ~a minute without making every request hit the database.
 export const revalidate = 60;
+
+export async function generateMetadata() {
+  return buildPageMetadata(await getSiteContentMap(), "home");
+}
 
 const FEATURES = [
   { title: "Six relationship phases", body: "From the earliest stages of connection to rebuilding after loss.", icon: "phases" },
