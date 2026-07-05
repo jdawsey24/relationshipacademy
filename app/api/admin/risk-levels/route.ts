@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { requireAdmin } from "@/lib/adminApi";
+import { requireAdmin, requireEditor } from "@/lib/adminApi";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -23,7 +23,7 @@ export async function GET() {
 const EDITABLE = ["title", "interpretation", "recommendation", "cta", "score_min", "score_max"] as const;
 
 export async function PATCH(request: Request) {
-  const unauth = await requireAdmin();
+  const unauth = await requireEditor();
   if (unauth) return unauth;
 
   let body: Record<string, unknown>;

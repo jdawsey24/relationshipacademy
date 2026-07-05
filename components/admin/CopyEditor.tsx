@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useCanWrite } from "@/components/admin/RoleContext";
 
 export interface CopyRow {
   id: string;
@@ -30,6 +31,7 @@ export default function CopyEditor({ apiPath, identityField, identityLabel, grou
   const [loadError, setLoadError] = useState(false);
   const [savingId, setSavingId] = useState<string | null>(null);
   const [toast, setToast] = useState<Toast>(null);
+  const canWrite = useCanWrite();
 
   useEffect(() => {
     fetch(apiPath)
@@ -184,7 +186,8 @@ export default function CopyEditor({ apiPath, identityField, identityLabel, grou
                     <button
                       type="button"
                       onClick={() => save(row)}
-                      disabled={savingId === row.id}
+                      disabled={savingId === row.id || !canWrite}
+                      title={!canWrite ? "Read-only access" : undefined}
                       className="rounded-md bg-midnight-navy px-4 py-1.5 text-sm font-medium text-white hover:bg-midnight-navy/90 disabled:opacity-50"
                     >
                       {savingId === row.id ? "Saving…" : "Save"}

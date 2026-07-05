@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { requireAdmin } from "@/lib/adminApi";
+import { requireAdmin, requireEditor } from "@/lib/adminApi";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -46,7 +46,7 @@ export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const unauth = await requireAdmin();
+  const unauth = await requireEditor();
   if (unauth) return unauth;
 
   const { id } = await params;

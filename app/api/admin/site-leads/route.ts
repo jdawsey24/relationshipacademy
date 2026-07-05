@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { requireAdmin } from "@/lib/adminApi";
+import { requireAdmin, requireEditor } from "@/lib/adminApi";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,7 +32,7 @@ const VALID_STATUS = new Set(["new", "contacted", "converted", "archived"]);
 
 // PATCH { id, status?, notes? } — update a lead's status / notes.
 export async function PATCH(request: Request) {
-  const unauth = await requireAdmin();
+  const unauth = await requireEditor();
   if (unauth) return unauth;
 
   let body: Record<string, unknown>;

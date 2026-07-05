@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { requireAdmin } from "@/lib/adminApi";
+import { requireAdmin, requireEditor } from "@/lib/adminApi";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -34,7 +34,7 @@ export async function GET() {
 
 // POST { filename } -> signed upload URL (client uploads directly to Storage).
 export async function POST(request: Request) {
-  const unauth = await requireAdmin();
+  const unauth = await requireEditor();
   if (unauth) return unauth;
 
   let body: Record<string, unknown>;
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
 
 // DELETE ?path=
 export async function DELETE(request: Request) {
-  const unauth = await requireAdmin();
+  const unauth = await requireEditor();
   if (unauth) return unauth;
   const { searchParams } = new URL(request.url);
   const path = searchParams.get("path");

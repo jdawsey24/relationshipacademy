@@ -3,6 +3,7 @@
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useCanWrite } from "@/components/admin/RoleContext";
 
 interface Question {
   id: string;
@@ -24,6 +25,7 @@ export default function EditQuestionPage({ params }: { params: Promise<{ id: str
   const [error, setError] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const canWrite = useCanWrite();
 
   useEffect(() => {
     fetch(`/api/admin/questions/${id}`)
@@ -121,7 +123,7 @@ export default function EditQuestionPage({ params }: { params: Promise<{ id: str
         {saveError && <p className="text-sm text-coral-rose">{saveError}</p>}
 
         <div className="flex items-center gap-3">
-          <button type="button" onClick={save} disabled={saving} className="rounded-md bg-midnight-navy px-5 py-2 text-sm font-medium text-white hover:bg-midnight-navy/90 disabled:opacity-50">
+          <button type="button" onClick={save} disabled={saving || !canWrite} title={!canWrite ? "Read-only access" : undefined} className="rounded-md bg-midnight-navy px-5 py-2 text-sm font-medium text-white hover:bg-midnight-navy/90 disabled:opacity-50">
             {saving ? "Saving…" : "Save"}
           </button>
           <Link href="/admin/questions" className="text-sm text-charcoal/70 hover:text-charcoal">Cancel</Link>

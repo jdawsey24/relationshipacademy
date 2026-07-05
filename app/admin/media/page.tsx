@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabaseBrowser";
+import { useCanWrite } from "@/components/admin/RoleContext";
 
 interface MediaFile {
   name: string;
@@ -29,6 +30,7 @@ export default function MediaPage() {
   const [copied, setCopied] = useState<string | null>(null);
   const [confirmDel, setConfirmDel] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const canWrite = useCanWrite();
 
   function load() {
     fetch("/api/admin/media").then((r) => { if (!r.ok) throw new Error(); return r.json(); })
@@ -72,10 +74,12 @@ export default function MediaPage() {
     <div>
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-semibold text-midnight-navy">Media Library</h1>
-        <label className="cursor-pointer rounded-md bg-midnight-navy px-4 py-2 text-sm font-medium text-white hover:bg-midnight-navy/90">
-          {uploading ? "Uploading…" : "Upload file"}
-          <input ref={fileRef} type="file" onChange={onFile} disabled={uploading} className="hidden" />
-        </label>
+        {canWrite && (
+          <label className="cursor-pointer rounded-md bg-midnight-navy px-4 py-2 text-sm font-medium text-white hover:bg-midnight-navy/90">
+            {uploading ? "Uploading…" : "Upload file"}
+            <input ref={fileRef} type="file" onChange={onFile} disabled={uploading} className="hidden" />
+          </label>
+        )}
       </div>
 
       <div className="mb-4 flex gap-3">
@@ -110,7 +114,9 @@ export default function MediaPage() {
                   <button type="button" onClick={() => copy(f.url)} className="font-ui text-[12px] text-midnight-navy hover:underline">
                     {copied === f.url ? "Copied!" : "Copy URL"}
                   </button>
-                  <button type="button" onClick={() => setConfirmDel(f.name)} className="ml-auto font-ui text-[12px] text-coral-rose hover:underline">Delete</button>
+                  {canWrite && (
+                    <button type="button" onClick={() => setConfirmDel(f.name)} className="ml-auto font-ui text-[12px] text-coral-rose hover:underline">Delete</button>
+                  )}
                 </div>
               </div>
             </div>

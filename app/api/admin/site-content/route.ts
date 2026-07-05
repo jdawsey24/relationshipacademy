@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { requireAdmin } from "@/lib/adminApi";
+import { requireAdmin, requireEditor } from "@/lib/adminApi";
 import { getAdminUser } from "@/lib/supabaseServer";
 
 export const runtime = "nodejs";
@@ -21,7 +21,7 @@ export async function GET() {
 
 // PATCH { updates: { key: value, ... } } — upsert content overrides.
 export async function PATCH(request: Request) {
-  const unauth = await requireAdmin();
+  const unauth = await requireEditor();
   if (unauth) return unauth;
   const user = await getAdminUser();
 

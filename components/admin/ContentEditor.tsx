@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { ContentField } from "@/lib/siteContent";
+import { useCanWrite } from "@/components/admin/RoleContext";
 
 // Reusable admin editor for a set of site_content fields. Loads current
 // overrides, shows defaults where none exist, saves via the admin API.
@@ -13,6 +14,7 @@ export default function ContentEditor({ fields, apiPath = "/api/admin/site-conte
   const [error, setError] = useState(false);
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<Toast>(null);
+  const canWrite = useCanWrite();
 
   useEffect(() => {
     fetch(apiPath)
@@ -80,7 +82,7 @@ export default function ContentEditor({ fields, apiPath = "/api/admin/site-conte
           </div>
         ))}
       </div>
-      <button type="button" onClick={save} disabled={saving} className="mt-5 rounded-md bg-midnight-navy px-5 py-2 text-sm font-medium text-white hover:bg-midnight-navy/90 disabled:opacity-50">
+      <button type="button" onClick={save} disabled={saving || !canWrite} title={!canWrite ? "Read-only access" : undefined} className="mt-5 rounded-md bg-midnight-navy px-5 py-2 text-sm font-medium text-white hover:bg-midnight-navy/90 disabled:opacity-50">
         {saving ? "Saving…" : "Save"}
       </button>
     </div>

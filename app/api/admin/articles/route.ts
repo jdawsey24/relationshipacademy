@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { requireAdmin } from "@/lib/adminApi";
+import { requireAdmin, requireEditor } from "@/lib/adminApi";
 import { getAdminUser } from "@/lib/supabaseServer";
 import { slugify } from "@/lib/articles";
 
@@ -31,7 +31,7 @@ export async function GET() {
 
 // POST: create a new article (draft by default).
 export async function POST(request: Request) {
-  const unauth = await requireAdmin();
+  const unauth = await requireEditor();
   if (unauth) return unauth;
   const user = await getAdminUser();
 

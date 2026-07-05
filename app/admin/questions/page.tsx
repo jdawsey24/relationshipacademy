@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import AssessmentTabs from "@/components/admin/AssessmentTabs";
+import { useCanWrite } from "@/components/admin/RoleContext";
 
 interface QRow {
   id: string;
@@ -24,6 +25,7 @@ export default function QuestionsPage() {
   const [phaseFilter, setPhaseFilter] = useState("");
   const [activeFilter, setActiveFilter] = useState("");
   const [expanded, setExpanded] = useState<string | null>(null);
+  const canWrite = useCanWrite();
 
   useEffect(() => {
     fetch("/api/admin/questions")
@@ -138,9 +140,9 @@ export default function QuestionsPage() {
                   </td>
                   <td className="px-3 py-2 whitespace-nowrap">{r.item_type}</td>
                   <td className="px-3 py-2 whitespace-nowrap">{r.score_direction}</td>
-                  <td className="px-3 py-2 text-center"><input type="checkbox" checked={r.in_snapshot} onChange={(e) => toggle(r.id, "in_snapshot", e.target.checked)} className="accent-midnight-navy" /></td>
-                  <td className="px-3 py-2 text-center"><input type="checkbox" checked={r.in_profile} onChange={(e) => toggle(r.id, "in_profile", e.target.checked)} className="accent-midnight-navy" /></td>
-                  <td className="px-3 py-2 text-center"><input type="checkbox" checked={r.active} onChange={(e) => toggle(r.id, "active", e.target.checked)} className="accent-midnight-navy" /></td>
+                  <td className="px-3 py-2 text-center"><input type="checkbox" checked={r.in_snapshot} disabled={!canWrite} onChange={(e) => toggle(r.id, "in_snapshot", e.target.checked)} className="accent-midnight-navy disabled:opacity-50" /></td>
+                  <td className="px-3 py-2 text-center"><input type="checkbox" checked={r.in_profile} disabled={!canWrite} onChange={(e) => toggle(r.id, "in_profile", e.target.checked)} className="accent-midnight-navy disabled:opacity-50" /></td>
+                  <td className="px-3 py-2 text-center"><input type="checkbox" checked={r.active} disabled={!canWrite} onChange={(e) => toggle(r.id, "active", e.target.checked)} className="accent-midnight-navy disabled:opacity-50" /></td>
                   <td className="px-3 py-2"><Link href={`/admin/questions/${r.id}`} className="font-medium text-midnight-navy hover:underline">Edit</Link></td>
                 </tr>
               ))}

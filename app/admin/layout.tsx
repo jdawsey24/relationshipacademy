@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { getSupabaseBrowserClient } from "@/lib/supabaseBrowser";
+import { RoleProvider, type AdminRole } from "@/components/admin/RoleContext";
 
 // Admin is a plain working tool: white background, Inter throughout, navy nav.
 // Sidebar is organized as an "operating system" for the RLC ecosystem. Sections
@@ -32,7 +33,7 @@ const NAV_GROUPS: NavItem[][] = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const [role, setRole] = useState<string | null>(null);
+  const [role, setRole] = useState<AdminRole>(null);
 
   useEffect(() => {
     if (pathname === "/admin/login") return;
@@ -44,6 +45,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   const isOwner = role === "owner";
+  const isViewer = role === "viewer";
   const groups = NAV_GROUPS
     .map((g) => g.filter((it) => !it.ownerOnly || isOwner))
     .filter((g) => g.length > 0);
@@ -107,7 +109,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </nav>
 
-      <main className="flex-1 overflow-x-auto px-5 py-6 md:px-8 md:py-8">{children}</main>
+      <main className="flex-1 overflow-x-auto px-5 py-6 md:px-8 md:py-8">
+        {isViewer && (
+          <div className="mb-6 rounded-md border border-amber-300 bg-amber-50 px-4 py-2.5 text-sm text-amber-800">
+            <span className="font-semibold">Read-only access.</span> You can view everything here, but saving, uploading, and deleting are disabled for your role.
+          </div>
+        )}
+        <RoleProvider value={role}>{children}</RoleProvider>
+      </main>
     </div>
   );
 }

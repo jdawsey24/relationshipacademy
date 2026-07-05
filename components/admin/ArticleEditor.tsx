@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ARTICLE_CATEGORIES, ARTICLE_STATUSES, RELATED_PHASE_OPTIONS, type Article } from "@/lib/articleConstants";
+import { useCanWrite } from "@/components/admin/RoleContext";
 
 type Vals = Partial<Article>;
 
@@ -14,6 +15,7 @@ export default function ArticleEditor({ id }: { id?: string }) {
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
   const [confirmDel, setConfirmDel] = useState(false);
+  const canWrite = useCanWrite();
 
   useEffect(() => {
     if (!id) return;
@@ -124,13 +126,13 @@ export default function ArticleEditor({ id }: { id?: string }) {
       </div>
 
       <div className="mt-6 flex items-center gap-3">
-        <button type="button" onClick={save} disabled={saving} className="rounded-md bg-midnight-navy px-5 py-2 text-sm font-medium text-white hover:bg-midnight-navy/90 disabled:opacity-50">
+        <button type="button" onClick={save} disabled={saving || !canWrite} title={!canWrite ? "Read-only access" : undefined} className="rounded-md bg-midnight-navy px-5 py-2 text-sm font-medium text-white hover:bg-midnight-navy/90 disabled:opacity-50">
           {saving ? "Saving…" : id ? "Save" : "Create article"}
         </button>
         {id && v.status === "published" && v.slug && (
           <Link href={`/learn/${v.slug}`} target="_blank" className="text-sm text-midnight-navy hover:underline">View live →</Link>
         )}
-        {id && (
+        {id && canWrite && (
           <button type="button" onClick={() => setConfirmDel(true)} className="ml-auto text-sm text-coral-rose hover:underline">Delete</button>
         )}
         <Link href="/admin/knowledge-center/articles" className="text-sm text-charcoal/60 hover:text-charcoal">Cancel</Link>

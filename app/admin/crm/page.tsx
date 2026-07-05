@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCanWrite } from "@/components/admin/RoleContext";
 import Link from "next/link";
 
 type TabKind = "assessment" | "site";
@@ -53,6 +54,7 @@ export default function CrmPage() {
   const [error, setError] = useState(false);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
+  const canWrite = useCanWrite();
 
   const load = useCallback((tab: Tab) => {
     setError(false);
@@ -189,15 +191,15 @@ export default function CrmPage() {
                   {!active.inquiryFilter && active.source === "contact_form" && <td className="px-3 py-2">{r.inquiry_type || "—"}</td>}
                   <td className="px-3 py-2 whitespace-nowrap">{fmt(r.created_at)}</td>
                   <td className="px-3 py-2">
-                    <select value={r.status ?? "new"} onChange={(e) => updateLead(r.id, { status: e.target.value })}
-                      className="rounded border border-light-gray px-2 py-1 text-xs outline-none focus:border-midnight-navy">
+                    <select value={r.status ?? "new"} disabled={!canWrite} onChange={(e) => updateLead(r.id, { status: e.target.value })}
+                      className="rounded border border-light-gray px-2 py-1 text-xs outline-none focus:border-midnight-navy disabled:opacity-60">
                       {STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
                     </select>
                   </td>
                   <td className="px-3 py-2">
-                    <input type="text" defaultValue={r.notes ?? ""} placeholder="Add note…"
+                    <input type="text" defaultValue={r.notes ?? ""} placeholder="Add note…" disabled={!canWrite}
                       onBlur={(e) => { if (e.target.value !== (r.notes ?? "")) updateLead(r.id, { notes: e.target.value }); }}
-                      className="w-40 rounded border border-light-gray px-2 py-1 text-xs outline-none focus:border-midnight-navy" />
+                      className="w-40 rounded border border-light-gray px-2 py-1 text-xs outline-none focus:border-midnight-navy disabled:opacity-60" />
                   </td>
                 </tr>
               ))}

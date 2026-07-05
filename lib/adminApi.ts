@@ -22,6 +22,20 @@ export async function requireAdmin(): Promise<NextResponse | null> {
   return null;
 }
 
+/**
+ * Guard for write actions (create/update/delete of content, questions, media,
+ * leads, etc.). Owners and editors pass; viewers are read-only and get 403.
+ * Read (GET) routes keep using requireAdmin so viewers can still see the data.
+ */
+export async function requireEditor(): Promise<NextResponse | null> {
+  const user = await getAdminUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (getAdminRole(user) === "viewer") {
+    return NextResponse.json({ error: "Editor access required." }, { status: 403 });
+  }
+  return null;
+}
+
 /** Guard for owner-only actions (Users & Settings). */
 export async function requireOwner(): Promise<NextResponse | null> {
   const user = await getAdminUser();
