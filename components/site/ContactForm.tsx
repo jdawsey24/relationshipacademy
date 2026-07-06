@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Turnstile, { turnstileEnabled } from "@/components/site/Turnstile";
 
 const CATEGORIES = [
   { title: "General Questions", body: "Questions about the framework, the assessment, or the website.", type: "General Question" },
@@ -25,6 +26,7 @@ export default function ContactForm() {
   const [inquiryType, setInquiryType] = useState(INQUIRY_TYPES[0]);
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState("");
 
   function set(k: string, v: string) {
     setValues((prev) => ({ ...prev, [k]: v }));
@@ -42,6 +44,7 @@ export default function ContactForm() {
     if (!(values.name ?? "").trim()) return setError("Please enter your name.");
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setError("Please enter a valid email.");
     if (!(values.message ?? "").trim()) return setError("Please enter a message.");
+    if (turnstileEnabled && !captchaToken) return setError("Please complete the verification.");
     setStatus("submitting");
     try {
       const res = await fetch("/api/site-leads", {
@@ -54,6 +57,7 @@ export default function ContactForm() {
           message: values.message,
           inquiry_type: inquiryType,
           source: "contact_form",
+          turnstile_token: captchaToken,
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
@@ -98,6 +102,7 @@ export default function ContactForm() {
             </select>
             <input type="text" placeholder="Organization (optional)" value={values.organization ?? ""} onChange={(e) => set("organization", e.target.value)} className={inputCls} />
             <textarea rows={4} placeholder="Message" value={values.message ?? ""} onChange={(e) => set("message", e.target.value)} className="w-full rounded-lg border border-light-gray bg-white px-4 py-3 font-ui text-base text-charcoal outline-none focus:border-midnight-navy" />
+            <Turnstile onToken={setCaptchaToken} />
             {error && <p className="font-body text-sm text-coral-rose">{error}</p>}
             <button type="submit" disabled={status === "submitting"} className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-midnight-navy px-8 font-ui text-base font-medium text-white transition-colors hover:bg-midnight-navy/90 disabled:opacity-50">
               {status === "submitting" ? "Sending…" : "Send Message"}

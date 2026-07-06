@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Turnstile, { turnstileEnabled } from "@/components/site/Turnstile";
 
 export type LeadField = "name" | "email" | "organization" | "message";
 
@@ -46,6 +47,7 @@ export default function LeadForm({
   const [eventType, setEventType] = useState(eventTypeOptions?.[0] ?? "");
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState("");
 
   function set(field: string, value: string) {
     setValues((v) => ({ ...v, [field]: value }));
@@ -65,6 +67,10 @@ export default function LeadForm({
     }
     if (fields.includes("message") && !(values.message ?? "").trim()) {
       setError("Please enter a message.");
+      return;
+    }
+    if (turnstileEnabled && !captchaToken) {
+      setError("Please complete the verification.");
       return;
     }
 
@@ -88,6 +94,7 @@ export default function LeadForm({
           ...(inquiryTypeOptions ? { inquiry_type: inquiryType } : {}),
           ...(eventTypeOptions ? { event_type: eventType } : {}),
           ...(composedMessage ? { message: composedMessage } : {}),
+          turnstile_token: captchaToken,
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
@@ -133,6 +140,8 @@ export default function LeadForm({
       {fields.includes("message") && (
         <textarea rows={4} placeholder={LABELS.message} value={values.message ?? ""} onChange={(e) => set("message", e.target.value)} className="w-full rounded-lg border border-light-gray bg-white px-4 py-3 font-ui text-base text-charcoal outline-none focus:border-midnight-navy" />
       )}
+
+      <Turnstile onToken={setCaptchaToken} />
 
       {error && <p className="font-body text-sm text-coral-rose">{error}</p>}
 

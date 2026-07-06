@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { readJsonBody } from "@/lib/apiSecurity";
+import { readJsonBody, isUuid } from "@/lib/apiSecurity";
 import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
 import {
   computeAlignment,
@@ -39,8 +39,8 @@ function parseRequest(body: unknown): { ok: true; data: ScoreRequest } | { ok: f
   }
   const b = body as Record<string, unknown>;
 
-  if (typeof b.session_id !== "string" || b.session_id.length === 0) {
-    return { ok: false, message: "session_id is required." };
+  if (!isUuid(b.session_id)) {
+    return { ok: false, message: "session_id must be a valid UUID." };
   }
   if (typeof b.quiz_type !== "string" || !VALID_QUIZ_TYPES.has(b.quiz_type)) {
     return { ok: false, message: "quiz_type must be 'snapshot' or 'profile'." };

@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { readJsonBody } from "@/lib/apiSecurity";
-import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
+import { rateLimit, tooManyRequests, clientIp } from "@/lib/rateLimit";
+import { verifyTurnstile } from "@/lib/turnstile";
 
 // Public endpoint (no auth) for site lead-capture forms. Writes to site_leads
 // via the service role. RLS on the table allows public insert; reads are
@@ -55,6 +56,12 @@ export async function POST(request: Request) {
   }
   if (!VALID_SOURCES.has(source)) {
     return NextResponse.json({ error: "Invalid source." }, { status: 400 });
+  }
+
+  // CAPTCHA (no-op until TURNSTILE_SECRET_KEY is configured).
+  const token = typeof body.turnstile_token === "string" ? body.turnstile_token : null;
+  if (!(await verifyTurnstile(token, clientIp(request)))) {
+    return NextResponse.json({ error: "Verification failed. Please try again." }, { status: 400 });
   }
 
   const row: Record<string, unknown> = { status: "new" };

@@ -16,9 +16,9 @@ const csp = [
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net",
-  "connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://connect.facebook.net https://www.facebook.com",
-  "frame-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://challenges.cloudflare.com",
+  "connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://connect.facebook.net https://www.facebook.com https://challenges.cloudflare.com",
+  "frame-src 'self' https://challenges.cloudflare.com",
 ].join("; ");
 
 // Security headers applied to every response. The non-CSP headers are safe to

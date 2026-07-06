@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
+import { isUuid } from "@/lib/apiSecurity";
 import { DOMAINS } from "@/lib/domains";
 import type {
   AlignmentStatus,
@@ -39,6 +40,9 @@ export async function GET(request: Request) {
   const sessionId = searchParams.get("session_id");
   if (!sessionId) {
     return NextResponse.json({ error: "Missing 'session_id'." }, { status: 400 });
+  }
+  if (!isUuid(sessionId)) {
+    return NextResponse.json({ error: "Invalid session id." }, { status: 400 });
   }
 
   let supabase;
