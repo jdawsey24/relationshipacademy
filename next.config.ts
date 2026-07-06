@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
 
-// Content-Security-Policy. Shipped as REPORT-ONLY first so it cannot break the
-// live site — violations are reported (browser console) but not blocked. After
-// monitoring for false positives, switch the header key below from
-// "Content-Security-Policy-Report-Only" to "Content-Security-Policy" to enforce.
-// Allowances: GA (googletagmanager/google-analytics), Meta Pixel
-// (connect.facebook.net/facebook.com), Supabase (*.supabase.co), and inline
-// script/style which Next.js + the analytics snippets currently require.
+// Content-Security-Policy — ENFORCING. Violations are blocked. If a legit
+// resource ever breaks, add its origin to the relevant directive below (or
+// temporarily append "-Report-Only" to the header key on line ~33 to downgrade
+// to report-only). Allowances: GA (googletagmanager/google-analytics), Meta
+// Pixel (connect.facebook.net/facebook.com), Supabase (*.supabase.co),
+// Cloudflare Turnstile, and inline script/style which Next.js + the analytics
+// snippets currently require.
 const csp = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -30,7 +30,7 @@ const securityHeaders = [
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
   { key: "X-DNS-Prefetch-Control", value: "off" },
-  { key: "Content-Security-Policy-Report-Only", value: csp },
+  { key: "Content-Security-Policy", value: csp },
 ];
 
 const nextConfig: NextConfig = {
