@@ -54,7 +54,11 @@ export default function SecurityPage() {
     if (chErr || !challenge) { setError("Verification failed to start. Try again."); setBusy(false); return; }
     const { error: vErr } = await supabase.auth.mfa.verify({ factorId: enroll.factorId, challengeId: challenge.id, code: code.trim() });
     setBusy(false);
-    if (vErr) { setError("That code didn't match. Try the current code from your app."); return; }
+    if (vErr) {
+      setError(`${vErr.message} — enter the code showing right now in your app (it changes every 30s). If it keeps failing, set your phone's clock to automatic.`);
+      setCode("");
+      return;
+    }
     setEnroll(null); setCode("");
     flash("Two-factor authentication is on.");
     refresh();

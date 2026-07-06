@@ -79,7 +79,8 @@ export default function AdminLoginPage() {
     }
     const { error: vErr } = await supabase.auth.mfa.verify({ factorId, challengeId: challenge.id, code: code.trim() });
     if (vErr) {
-      setError("Invalid code. Please try again.");
+      setError(`${vErr.message} — enter the current code from your app.`);
+      setCode("");
       setSubmitting(false);
       return;
     }
