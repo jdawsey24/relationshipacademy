@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireAdmin, requireEditor } from "@/lib/adminApi";
 import { getAdminUser } from "@/lib/supabaseServer";
+import { audit } from "@/lib/audit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -64,5 +65,6 @@ export async function PATCH(request: Request) {
   if (error) {
     return NextResponse.json({ error: "Failed to save." }, { status: 502 });
   }
+  await audit({ actor: user?.email ?? null, action: isDraft ? "content.draft" : "content.publish", metadata: { keys: Object.keys(map) } });
   return NextResponse.json({ ok: true });
 }

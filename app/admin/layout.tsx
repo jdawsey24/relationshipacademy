@@ -26,6 +26,7 @@ const NAV_GROUPS: NavItem[][] = [
   ],
   [
     { label: "Users & Permissions", href: "/admin/users", ownerOnly: true },
+    { label: "Audit Log", href: "/admin/audit", ownerOnly: true },
     { label: "Settings", href: "/admin/settings", ownerOnly: true },
   ],
 ];

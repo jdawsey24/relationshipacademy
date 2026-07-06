@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireAdmin, requireEditor } from "@/lib/adminApi";
+import { getAdminUser } from "@/lib/supabaseServer";
+import { audit } from "@/lib/audit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -51,5 +53,7 @@ export async function POST(request: Request) {
     const msg = error.message.includes("duplicate") ? "That category already exists." : "Failed to save.";
     return NextResponse.json({ error: msg }, { status: 502 });
   }
+  const user = await getAdminUser();
+  await audit({ actor: user?.email ?? null, action: "category.create", target: name });
   return NextResponse.json({ ok: true });
 }

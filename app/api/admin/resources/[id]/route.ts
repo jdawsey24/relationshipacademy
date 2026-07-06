@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireEditor } from "@/lib/adminApi";
 import { getAdminUser } from "@/lib/supabaseServer";
+import { audit } from "@/lib/audit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -37,15 +38,18 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   if (error) {
     return NextResponse.json({ error: "Failed to save." }, { status: 502 });
   }
+  await audit({ actor: user?.email ?? null, action: "resource.update", target: id });
   return NextResponse.json({ ok: true });
 }
 
 export async function DELETE(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const unauth = await requireEditor();
   if (unauth) return unauth;
+  const user = await getAdminUser();
   const { id } = await params;
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("resources").delete().eq("id", id);
   if (error) return NextResponse.json({ error: "Failed to delete." }, { status: 502 });
+  await audit({ actor: user?.email ?? null, action: "resource.delete", target: id });
   return NextResponse.json({ ok: true });
 }

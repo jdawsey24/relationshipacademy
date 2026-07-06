@@ -2,7 +2,9 @@ import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireAdmin, requireEditor } from "@/lib/adminApi";
+import { getAdminUser } from "@/lib/supabaseServer";
 import { readJsonBody } from "@/lib/apiSecurity";
+import { audit } from "@/lib/audit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -105,5 +107,7 @@ export async function DELETE(request: Request) {
   if (error) {
     return NextResponse.json({ error: "Failed to delete." }, { status: 502 });
   }
+  const user = await getAdminUser();
+  await audit({ actor: user?.email ?? null, action: "media.delete", target: path });
   return NextResponse.json({ ok: true });
 }

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireOwner } from "@/lib/adminApi";
 import { getAdminUser } from "@/lib/supabaseServer";
+import { audit } from "@/lib/audit";
 
 // Owner-only. Global settings live in the site_content key/value table, so this
 // mirrors the site-content API but gated to owners (Editors can edit page copy
@@ -39,5 +40,6 @@ export async function PATCH(request: Request) {
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("site_content").upsert(rows, { onConflict: "key" });
   if (error) return NextResponse.json({ error: "Failed to save." }, { status: 502 });
+  await audit({ actor: user?.email ?? null, action: "settings.update", metadata: { keys: rows.map((r) => r.key) } });
   return NextResponse.json({ ok: true });
 }

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireAdmin, requireEditor } from "@/lib/adminApi";
 import { getAdminUser } from "@/lib/supabaseServer";
+import { audit } from "@/lib/audit";
 import { slugify } from "@/lib/articles";
 
 export const runtime = "nodejs";
@@ -59,5 +60,6 @@ export async function POST(request: Request) {
     const msg = error.message.includes("duplicate") ? "That slug is already in use." : "Failed to create.";
     return NextResponse.json({ error: msg }, { status: 502 });
   }
+  await audit({ actor: user?.email ?? null, action: "article.create", target: data?.id ?? row.slug as string, metadata: { title: row.title } });
   return NextResponse.json({ id: data?.id });
 }

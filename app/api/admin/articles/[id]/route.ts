@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireAdmin, requireEditor } from "@/lib/adminApi";
 import { getAdminUser } from "@/lib/supabaseServer";
+import { audit } from "@/lib/audit";
 import { slugify } from "@/lib/articles";
 
 export const runtime = "nodejs";
@@ -56,15 +57,18 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     const msg = error.message.includes("duplicate") ? "That slug is already in use." : "Failed to save.";
     return NextResponse.json({ error: msg }, { status: 502 });
   }
+  await audit({ actor: user?.email ?? null, action: "article.update", target: id });
   return NextResponse.json({ ok: true });
 }
 
 export async function DELETE(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const unauth = await requireEditor();
   if (unauth) return unauth;
+  const user = await getAdminUser();
   const { id } = await params;
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("articles").delete().eq("id", id);
   if (error) return NextResponse.json({ error: "Failed to delete." }, { status: 502 });
+  await audit({ actor: user?.email ?? null, action: "article.delete", target: id });
   return NextResponse.json({ ok: true });
 }
