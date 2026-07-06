@@ -27,14 +27,25 @@ export async function GET() {
   const supabase = getSupabaseAdminClient();
   const { data, error } = await supabase.auth.admin.listUsers();
   if (error) return NextResponse.json({ error: "Failed to load users." }, { status: 502 });
-  const rows = data.users.map((u) => ({
-    id: u.id,
-    email: u.email ?? "",
-    role: getAdminRole(u),
-    last_sign_in_at: u.last_sign_in_at ?? null,
-    deactivated: !!(u as { banned_until?: string }).banned_until,
-    mfa: (u.factors ?? []).some((f) => f.status === "verified"),
-  }));
+  // listUsers() doesn't hydrate MFA factors, so fetch each user's factors
+  // explicitly for an accurate 2FA status (admin set is small).
+  const rows = await Promise.all(
+    data.users.map(async (u) => {
+      let mfa = false;
+      try {
+        const { data: f } = await supabase.auth.admin.mfa.listFactors({ userId: u.id });
+        mfa = (f?.factors ?? []).some((x) => x.status === "verified");
+      } catch { mfa = false; }
+      return {
+        id: u.id,
+        email: u.email ?? "",
+        role: getAdminRole(u),
+        last_sign_in_at: u.last_sign_in_at ?? null,
+        deactivated: !!(u as { banned_until?: string }).banned_until,
+        mfa,
+      };
+    })
+  );
   return NextResponse.json({ rows });
 }
 
