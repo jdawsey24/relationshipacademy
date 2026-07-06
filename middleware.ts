@@ -1,9 +1,21 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-// Gates every /admin and /api/admin route on a valid Supabase Auth session.
-// Runs on all matched routes (see config.matcher). Also refreshes the session
-// cookie on each request so sessions stay alive.
+// Gates two SEPARATE protected areas on a valid Supabase Auth session:
+//   • /admin + /api/admin   — STAFF. MFA-enforced, own login at /admin/login.
+//   • /academy + /api/academy — MEMBERS (students). No MFA, own login at
+//     /academy/login. Membership tier is checked per-page/route, not here.
+// It also refreshes the session cookie on each request so sessions stay alive.
+
+// Academy paths that must stay reachable without a session.
+const ACADEMY_PUBLIC = new Set([
+  "/academy",
+  "/academy/login",
+  "/academy/signup",
+  "/academy/reset-password",
+]);
+const ACADEMY_AUTH_PAGES = new Set(["/academy/login", "/academy/signup"]);
+
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
 
@@ -33,6 +45,40 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   const { pathname } = request.nextUrl;
+
+  // -------------------------------------------------------------------------
+  // MEMBER branch: /academy + /api/academy (no MFA)
+  // -------------------------------------------------------------------------
+  if (pathname.startsWith("/academy") || pathname.startsWith("/api/academy")) {
+    const isAcademyApi = pathname.startsWith("/api/academy");
+    // Public academy APIs reachable without a session (e.g. self-serve signup).
+    const isPublicAcademyApi = pathname === "/api/academy/signup";
+
+    if (!user) {
+      if (isAcademyApi && !isPublicAcademyApi) {
+        return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+      }
+      if (isPublicAcademyApi) return response;
+      if (!ACADEMY_PUBLIC.has(pathname)) {
+        const url = request.nextUrl.clone();
+        url.pathname = "/academy/login";
+        return NextResponse.redirect(url);
+      }
+      return response;
+    }
+
+    // Signed in but sitting on the login/signup page: send to the dashboard.
+    if (ACADEMY_AUTH_PAGES.has(pathname)) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/academy/dashboard";
+      return NextResponse.redirect(url);
+    }
+    return response;
+  }
+
+  // -------------------------------------------------------------------------
+  // STAFF branch: /admin + /api/admin (unchanged behavior)
+  // -------------------------------------------------------------------------
   const isLoginPage = pathname === "/admin/login";
   const isAdminApi = pathname.startsWith("/api/admin");
 
@@ -80,5 +126,10 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
+  matcher: [
+    "/admin/:path*",
+    "/api/admin/:path*",
+    "/academy/:path*",
+    "/api/academy/:path*",
+  ],
 };

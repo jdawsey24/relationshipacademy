@@ -77,6 +77,16 @@ export default function SiteHeader() {
               </Link>
             );
           })}
+          <Link
+            href="/academy"
+            className={`rounded-full border px-4 py-1.5 font-ui text-sm transition-colors ${
+              transparent
+                ? "border-midnight-navy/30 text-midnight-navy hover:bg-midnight-navy/5"
+                : "border-white/40 text-white hover:bg-white/10"
+            }`}
+          >
+            Academy
+          </Link>
         </nav>
 
         {/* Mobile hamburger */}
@@ -123,6 +133,9 @@ export default function SiteHeader() {
                 </Link>
               );
             })}
+            <Link href="/academy" className="mt-2 inline-block rounded-full border border-coral-rose px-5 py-2 font-display text-2xl text-coral-rose">
+              Academy
+            </Link>
           </nav>
         </div>
       )}

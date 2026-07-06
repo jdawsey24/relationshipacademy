@@ -180,6 +180,7 @@ export const SETTINGS_FIELDS: ContentField[] = [
   { key: "settings.footer_note", label: "Footer copyright note", type: "text", default: "© 2026 Relationship Life Cycle™ | A Symmetricly Framework" },
   { key: "settings.ga_id", label: "Google Analytics ID", type: "text", default: "" },
   { key: "settings.meta_pixel_id", label: "Meta Pixel ID", type: "text", default: "" },
+  { key: "settings.skool_url", label: "Skool community URL (Academy)", type: "text", default: "" },
 ];
 
 // --- Per-page SEO (title / meta description / social share image) ----------
