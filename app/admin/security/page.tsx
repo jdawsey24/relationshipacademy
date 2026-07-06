@@ -14,11 +14,16 @@ export default function SecurityPage() {
   const [toast, setToast] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
-    const supabase = getSupabaseBrowserClient();
-    const { data, error: e } = await supabase.auth.mfa.listFactors();
-    if (e) { setStatus("error"); return; }
-    const verified = (data?.totp ?? []).some((f) => f.status === "verified");
-    setStatus(verified ? "enabled" : "none");
+    try {
+      const supabase = getSupabaseBrowserClient();
+      const { data, error: e } = await supabase.auth.mfa.listFactors();
+      if (e) { setError(e.message); setStatus("error"); return; }
+      const verified = (data?.totp ?? []).some((f) => f.status === "verified");
+      setStatus(verified ? "enabled" : "none");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unknown error");
+      setStatus("error");
+    }
   }, []);
 
   useEffect(() => { refresh(); }, [refresh]);
@@ -35,7 +40,7 @@ export default function SecurityPage() {
     }
     const { data, error: e } = await supabase.auth.mfa.enroll({ factorType: "totp" });
     setBusy(false);
-    if (e || !data) { setError("Couldn't start setup. Please try again."); return; }
+    if (e || !data) { setError(e?.message || "Couldn't start setup. Please try again."); return; }
     setEnroll({ factorId: data.id, qr: data.totp.qr_code, secret: data.totp.secret });
     setStatus("enrolling");
   }
@@ -73,7 +78,13 @@ export default function SecurityPage() {
       <p className="mb-6 text-sm text-charcoal/60">Protect your admin account with two-factor authentication (2FA) using an authenticator app.</p>
 
       {status === "loading" && <p className="text-sm text-charcoal/60">Loading…</p>}
-      {status === "error" && <p className="text-sm text-coral-rose">Couldn&apos;t load your security settings.</p>}
+      {status === "error" && (
+        <div className="rounded-md border border-coral-rose/30 bg-coral-rose/5 p-4">
+          <p className="text-sm text-coral-rose">Couldn&apos;t load your security settings.</p>
+          {error && <p className="mt-1 font-mono text-xs text-charcoal/60">{error}</p>}
+          <button type="button" onClick={() => { setStatus("loading"); setError(null); refresh(); }} className="mt-3 rounded-md border border-light-gray px-3 py-1.5 text-xs hover:border-midnight-navy">Retry</button>
+        </div>
+      )}
 
       {status === "enabled" && (
         <div className="rounded-lg border border-light-gray bg-white p-6">
