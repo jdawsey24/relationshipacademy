@@ -21,9 +21,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/contact`, changeFrequency: "yearly", priority: 0.5 },
   ];
 
-  // The six framework phase pages (SSG).
+  // The six framework phase pages (top-level, SSG).
   const phaseRoutes: MetadataRoute.Sitemap = PHASES.map((p) => ({
-    url: `${BASE}/framework/phases/${p.slug}`,
+    url: `${BASE}/${p.slug}`,
     changeFrequency: "monthly",
     priority: 0.7,
   }));

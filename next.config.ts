@@ -45,6 +45,12 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  async redirects() {
+    return [
+      // Phase pages moved from /framework/phases/:slug to top-level /:slug.
+      { source: "/framework/phases/:slug", destination: "/:slug", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

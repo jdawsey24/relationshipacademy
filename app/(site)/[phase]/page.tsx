@@ -6,17 +6,21 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { PHASES, getPhase } from "@/lib/frameworkContent";
 import { classesFor } from "@/lib/phases";
 
+// Top-level, short, keyword-focused phase URLs (e.g. /exploration). Only the six
+// phase slugs are valid — any other single-segment path 404s (dynamicParams=false).
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return PHASES.map((p) => ({ slug: p.slug }));
+  return PHASES.map((p) => ({ phase: p.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ phase: string }> }) {
+  const { phase: slug } = await params;
   const phase = getPhase(slug);
   if (!phase) return { title: "Phase | Relationship Life Cycle™" };
   const title = `${phase.name} | The Relationship Life Cycle™`;
   const description = phase.cardDescription || phase.intro;
-  const url = `/framework/phases/${phase.slug}`;
+  const url = `/${phase.slug}`;
   return {
     title,
     description,
@@ -26,8 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function PhaseDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function PhaseDetailPage({ params }: { params: Promise<{ phase: string }> }) {
+  const { phase: slug } = await params;
   const phase = getPhase(slug);
   if (!phase) notFound();
 
@@ -41,7 +45,7 @@ export default async function PhaseDetailPage({ params }: { params: Promise<{ sl
       <JsonLd data={breadcrumbSchema([
         { name: "Home", path: "/" },
         { name: "The Framework", path: "/framework" },
-        { name: phase.name, path: `/framework/phases/${phase.slug}` },
+        { name: phase.name, path: `/${phase.slug}` },
       ])} />
       {/* Hero */}
       <section className={`${c.solidBg} ${c.solidText} px-6 pt-36 pb-16`}>
@@ -59,7 +63,7 @@ export default async function PhaseDetailPage({ params }: { params: Promise<{ sl
 
       {/* Breadcrumb */}
       <div className="mx-auto max-w-3xl px-6 pt-6">
-        <nav className="font-ui text-sm text-charcoal/60">
+        <nav className="font-ui text-sm text-charcoal/60" aria-label="Breadcrumb">
           <Link href="/" className="hover:text-midnight-navy">Home</Link>
           <span className="mx-2">→</span>
           <Link href="/framework" className="hover:text-midnight-navy">The Framework</Link>
@@ -97,15 +101,24 @@ export default async function PhaseDetailPage({ params }: { params: Promise<{ sl
         {/* Phase navigation */}
         <div className="mt-16 flex items-center justify-between border-t border-light-gray pt-6 font-ui text-sm">
           {prev ? (
-            <Link href={`/framework/phases/${prev.slug}`} className="text-midnight-navy hover:underline">
+            <Link href={`/${prev.slug}`} className="text-midnight-navy hover:underline">
               ← {prev.name}
             </Link>
           ) : <span />}
           {next ? (
-            <Link href={`/framework/phases/${next.slug}`} className="text-midnight-navy hover:underline">
+            <Link href={`/${next.slug}`} className="text-midnight-navy hover:underline">
               {next.name} →
             </Link>
           ) : <span />}
+        </div>
+
+        {/* Explore more — internal links */}
+        <div className="mt-10 rounded-lg border border-light-gray bg-white p-5 font-body text-sm text-charcoal">
+          Keep exploring: read the{" "}
+          <Link href="/framework" className="font-semibold text-midnight-navy underline underline-offset-2">full framework overview</Link>,{" "}
+          browse the{" "}
+          <Link href="/learn" className="font-semibold text-midnight-navy underline underline-offset-2">Learning Center</Link>, or{" "}
+          <Link href="/assessment" className="font-semibold text-midnight-navy underline underline-offset-2">learn about the assessment</Link>.
         </div>
       </div>
 

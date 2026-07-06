@@ -23,7 +23,7 @@ export default function PhaseCycle() {
           return (
             <Link
               key={p.slug}
-              href={`/framework/phases/${p.slug}`}
+              href={`/${p.slug}`}
               className="group flex items-center gap-3 rounded-lg border border-light-gray bg-white px-4 py-3 transition-shadow hover:shadow-sm"
             >
               <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full ${c.solidBg} ${c.solidText} font-ui text-xs font-semibold`}>

@@ -112,7 +112,7 @@ export default async function HomePage() {
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {phases.map((p) => (
-              <PhaseCard key={p.slug} number={p.number} name={p.name} primaryFocus={p.primaryFocus} description={p.cardDescription} color={p.color} href={`/framework/phases/${p.slug}`} />
+              <PhaseCard key={p.slug} number={p.number} name={p.name} primaryFocus={p.primaryFocus} description={p.cardDescription} color={p.color} href={`/${p.slug}`} />
             ))}
           </div>
           <div className="mt-12 text-center">

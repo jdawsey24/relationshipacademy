@@ -88,11 +88,21 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         {phase && (
           <p className="mt-10 rounded-lg border border-light-gray bg-white p-4 font-body text-sm text-charcoal">
             Related phase:{" "}
-            <Link href={`/framework/phases/${phase.slug}`} className="font-semibold text-midnight-navy underline underline-offset-2">
+            <Link href={`/${phase.slug}`} className="font-semibold text-midnight-navy underline underline-offset-2">
               {phase.name}
             </Link>
           </p>
         )}
+
+        {/* Internal links */}
+        <p className="mt-6 font-body text-sm text-charcoal/70">
+          Explore the{" "}
+          <Link href="/framework" className="text-midnight-navy underline underline-offset-2">Relationship Life Cycle™ Framework</Link>,{" "}
+          take the{" "}
+          <Link href="/assessment" className="text-midnight-navy underline underline-offset-2">free assessment</Link>, or{" "}
+          read more in the{" "}
+          <Link href="/learn" className="text-midnight-navy underline underline-offset-2">Learning Center</Link>.
+        </p>
 
         {a.cta_text && a.cta_url && (
           <div className="mt-10 text-center">
