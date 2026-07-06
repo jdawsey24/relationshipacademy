@@ -35,7 +35,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("resources").update(update).eq("id", id);
   if (error) {
-    return NextResponse.json({ error: "Failed to save.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to save." }, { status: 502 });
   }
   return NextResponse.json({ ok: true });
 }
@@ -46,6 +46,6 @@ export async function DELETE(_req: Request, { params }: { params: Promise<{ id: 
   const { id } = await params;
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("resources").delete().eq("id", id);
-  if (error) return NextResponse.json({ error: "Failed to delete.", details: error.message }, { status: 502 });
+  if (error) return NextResponse.json({ error: "Failed to delete." }, { status: 502 });
   return NextResponse.json({ ok: true });
 }

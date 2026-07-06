@@ -19,7 +19,7 @@ export async function GET() {
     ({ data, error } = await supabase.from("site_content").select("key, value, updated_at, updated_by"));
   }
   if (error) {
-    return NextResponse.json({ error: "Failed to load content.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load content." }, { status: 502 });
   }
   return NextResponse.json({ rows: data ?? [] });
 }
@@ -62,7 +62,7 @@ export async function PATCH(request: Request) {
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("site_content").upsert(rows, { onConflict: "key" });
   if (error) {
-    return NextResponse.json({ error: "Failed to save.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to save." }, { status: 502 });
   }
   return NextResponse.json({ ok: true });
 }

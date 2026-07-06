@@ -36,7 +36,7 @@ export async function GET() {
     riskLevelsRes.error;
   if (err) {
     return NextResponse.json(
-      { error: "Failed to load leads.", details: err.message },
+      { error: "Failed to load leads." },
       { status: 502 }
     );
   }

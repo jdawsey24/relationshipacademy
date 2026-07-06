@@ -1,7 +1,44 @@
 import type { NextConfig } from "next";
 
+// Content-Security-Policy. Shipped as REPORT-ONLY first so it cannot break the
+// live site — violations are reported (browser console) but not blocked. After
+// monitoring for false positives, switch the header key below from
+// "Content-Security-Policy-Report-Only" to "Content-Security-Policy" to enforce.
+// Allowances: GA (googletagmanager/google-analytics), Meta Pixel
+// (connect.facebook.net/facebook.com), Supabase (*.supabase.co), and inline
+// script/style which Next.js + the analytics snippets currently require.
+const csp = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+  "object-src 'none'",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data:",
+  "style-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net",
+  "connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://connect.facebook.net https://www.facebook.com",
+  "frame-src 'self'",
+].join("; ");
+
+// Security headers applied to every response. The non-CSP headers are safe to
+// enforce immediately; CSP is report-only (see above).
+const securityHeaders = [
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+  { key: "X-DNS-Prefetch-Control", value: "off" },
+  { key: "Content-Security-Policy-Report-Only", value: csp },
+];
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false, // don't advertise the Next.js version
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
+  },
 };
 
 export default nextConfig;

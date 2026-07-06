@@ -19,7 +19,7 @@ export async function GET() {
     supabase.from("competency_phases").select("id, name"),
   ]);
   if (qRes.error) {
-    return NextResponse.json({ error: "Failed to load questions.", details: qRes.error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load questions." }, { status: 502 });
   }
   const domainName = new Map((domainsRes.data ?? []).map((d) => [d.id, d.name]));
   const phaseName = new Map((phasesRes.data ?? []).map((p) => [p.id, p.name]));

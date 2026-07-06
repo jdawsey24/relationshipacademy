@@ -14,7 +14,7 @@ export async function GET() {
   if (unauth) return unauth;
   const supabase = getSupabaseAdminClient();
   const { data, error } = await supabase.from("site_content").select("key, value");
-  if (error) return NextResponse.json({ error: "Failed to load settings.", details: error.message }, { status: 502 });
+  if (error) return NextResponse.json({ error: "Failed to load settings." }, { status: 502 });
   return NextResponse.json({ rows: data ?? [] });
 }
 
@@ -38,6 +38,6 @@ export async function PATCH(request: Request) {
 
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("site_content").upsert(rows, { onConflict: "key" });
-  if (error) return NextResponse.json({ error: "Failed to save.", details: error.message }, { status: 502 });
+  if (error) return NextResponse.json({ error: "Failed to save." }, { status: 502 });
   return NextResponse.json({ ok: true });
 }

@@ -16,7 +16,7 @@ export async function GET() {
     .select("id, version_label, description, active_from, active_to, created_at")
     .order("active_from", { ascending: false });
   if (error) {
-    return NextResponse.json({ error: "Failed to load versions.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load versions." }, { status: 502 });
   }
   return NextResponse.json({ rows: data ?? [] });
 }

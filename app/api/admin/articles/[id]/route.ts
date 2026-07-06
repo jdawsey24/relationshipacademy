@@ -19,7 +19,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
   const { id } = await params;
   const supabase = getSupabaseAdminClient();
   const { data, error } = await supabase.from("articles").select("*").eq("id", id).maybeSingle();
-  if (error) return NextResponse.json({ error: "Failed to load.", details: error.message }, { status: 502 });
+  if (error) return NextResponse.json({ error: "Failed to load." }, { status: 502 });
   if (!data) return NextResponse.json({ error: "Not found." }, { status: 404 });
   return NextResponse.json({ article: data });
 }
@@ -52,8 +52,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("articles").update(update).eq("id", id);
   if (error) {
-    const msg = error.message.includes("duplicate") ? "That slug is already in use." : error.message;
-    return NextResponse.json({ error: "Failed to save.", details: msg }, { status: 502 });
+    console.error("[articles] save failed:", error.message);
+    const msg = error.message.includes("duplicate") ? "That slug is already in use." : "Failed to save.";
+    return NextResponse.json({ error: msg }, { status: 502 });
   }
   return NextResponse.json({ ok: true });
 }
@@ -64,6 +65,6 @@ export async function DELETE(_req: Request, { params }: { params: Promise<{ id: 
   const { id } = await params;
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("articles").delete().eq("id", id);
-  if (error) return NextResponse.json({ error: "Failed to delete.", details: error.message }, { status: 502 });
+  if (error) return NextResponse.json({ error: "Failed to delete." }, { status: 502 });
   return NextResponse.json({ ok: true });
 }

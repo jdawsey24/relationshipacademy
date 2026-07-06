@@ -25,7 +25,7 @@ export async function GET() {
 
   const err = sessionsRes.error || domainScoresRes.error;
   if (err) {
-    return NextResponse.json({ error: "Failed to load analytics.", details: err.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load analytics." }, { status: 502 });
   }
 
   const sessions = sessionsRes.data ?? [];

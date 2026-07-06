@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { readJsonBody } from "@/lib/apiSecurity";
 import {
   computeAlignment,
   computeCompetencyPhaseScores,
@@ -96,7 +97,7 @@ function parseRequest(body: unknown): { ok: true; data: ScoreRequest } | { ok: f
 export async function POST(request: Request) {
   let body: unknown;
   try {
-    body = await request.json();
+    body = await readJsonBody(request); // 100 KB cap — blocks oversized payloads
   } catch {
     return badRequest("Invalid JSON body.");
   }
@@ -150,7 +151,7 @@ export async function POST(request: Request) {
     assessmentVersionsRes.error;
   if (refError) {
     return NextResponse.json(
-      { error: "Failed to load reference data.", details: refError.message },
+      { error: "Failed to load reference data." },
       { status: 502 }
     );
   }
@@ -237,7 +238,7 @@ export async function POST(request: Request) {
     );
   if (sessionError) {
     return NextResponse.json(
-      { error: "Failed to write quiz_sessions.", details: sessionError.message },
+      { error: "Failed to write quiz_sessions." },
       { status: 502 }
     );
   }
@@ -260,7 +261,6 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: "Failed to write structural_phase_selection.",
-        details: structuralSelError.message,
       },
       { status: 502 }
     );
@@ -294,7 +294,6 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error: "Failed to write quiz_responses.",
-          details: responsesError.message,
         },
         { status: 502 }
       );
@@ -316,7 +315,7 @@ export async function POST(request: Request) {
     );
     if (error) {
       return NextResponse.json(
-        { error: "Failed to write domain_scores.", details: error.message },
+        { error: "Failed to write domain_scores." },
         { status: 502 }
       );
     }
@@ -342,7 +341,6 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error: "Failed to write competency_phase_scores.",
-          details: error.message,
         },
         { status: 502 }
       );
@@ -366,7 +364,6 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error: "Failed to write expiration_risk_results.",
-          details: error.message,
         },
         { status: 502 }
       );
@@ -390,7 +387,7 @@ export async function POST(request: Request) {
     });
     if (error) {
       return NextResponse.json(
-        { error: "Failed to write alignment_results.", details: error.message },
+        { error: "Failed to write alignment_results." },
         { status: 502 }
       );
     }

@@ -24,7 +24,7 @@ export async function GET() {
     .select("id, title, slug, category, author, status, publish_date, related_phase_slug, updated_at")
     .order("updated_at", { ascending: false });
   if (error) {
-    return NextResponse.json({ error: "Failed to load articles.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load articles." }, { status: 502 });
   }
   return NextResponse.json({ rows: data ?? [] });
 }
@@ -55,8 +55,9 @@ export async function POST(request: Request) {
   const supabase = getSupabaseAdminClient();
   const { data, error } = await supabase.from("articles").insert(row).select("id").maybeSingle();
   if (error) {
-    const msg = error.message.includes("duplicate") ? "That slug is already in use." : error.message;
-    return NextResponse.json({ error: "Failed to create.", details: msg }, { status: 502 });
+    console.error("[articles] create failed:", error.message);
+    const msg = error.message.includes("duplicate") ? "That slug is already in use." : "Failed to create.";
+    return NextResponse.json({ error: msg }, { status: 502 });
   }
   return NextResponse.json({ id: data?.id });
 }

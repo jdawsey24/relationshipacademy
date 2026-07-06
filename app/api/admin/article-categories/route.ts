@@ -17,7 +17,7 @@ export async function GET() {
     .order("sort_order", { ascending: true })
     .order("name", { ascending: true });
   if (error) {
-    return NextResponse.json({ error: "Failed to load categories.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load categories." }, { status: 502 });
   }
   return NextResponse.json({ rows: data ?? [] });
 }
@@ -47,8 +47,9 @@ export async function POST(request: Request) {
 
   const { error } = await supabase.from("article_categories").insert({ name, sort_order });
   if (error) {
-    const msg = error.message.includes("duplicate") ? "That category already exists." : error.message;
-    return NextResponse.json({ error: "Failed to save.", details: msg }, { status: 502 });
+    console.error("[article-categories] create failed:", error.message);
+    const msg = error.message.includes("duplicate") ? "That category already exists." : "Failed to save.";
+    return NextResponse.json({ error: msg }, { status: 502 });
   }
   return NextResponse.json({ ok: true });
 }
