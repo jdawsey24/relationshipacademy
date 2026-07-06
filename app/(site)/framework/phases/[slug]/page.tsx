@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CtaButton from "@/components/site/CtaButton";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import { PHASES, getPhase } from "@/lib/frameworkContent";
 import { classesFor } from "@/lib/phases";
 
@@ -11,8 +13,16 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const phase = getPhase(slug);
+  if (!phase) return { title: "Phase | Relationship Life Cycle™" };
+  const title = `${phase.name} | The Relationship Life Cycle™`;
+  const description = phase.cardDescription || phase.intro;
+  const url = `/framework/phases/${phase.slug}`;
   return {
-    title: phase ? `${phase.name} | The Relationship Life Cycle™` : "Phase | Relationship Life Cycle™",
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title, description, url, type: "article", siteName: "Relationship Life Cycle™", images: [{ url: "/og-default.png" }] },
+    twitter: { card: "summary_large_image", title, description, images: ["/og-default.png"] },
   };
 }
 
@@ -28,6 +38,11 @@ export default async function PhaseDetailPage({ params }: { params: Promise<{ sl
 
   return (
     <main className="bg-warm-ivory">
+      <JsonLd data={breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "The Framework", path: "/framework" },
+        { name: phase.name, path: `/framework/phases/${phase.slug}` },
+      ])} />
       {/* Hero */}
       <section className={`${c.solidBg} ${c.solidText} px-6 pt-36 pb-16`}>
         <div className="mx-auto max-w-3xl">

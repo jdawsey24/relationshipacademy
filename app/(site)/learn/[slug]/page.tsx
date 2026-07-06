@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Markdown from "@/components/site/Markdown";
 import CtaButton from "@/components/site/CtaButton";
+import JsonLd from "@/components/JsonLd";
+import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { getPublishedArticleBySlug } from "@/lib/articles";
 import { getPhase } from "@/lib/frameworkContent";
 
@@ -11,9 +13,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const a = await getPublishedArticleBySlug(slug);
   if (!a) return { title: "Article | Relationship Life Cycle™" };
+  const title = `${a.seo_title || a.title} | Relationship Life Cycle™`;
+  const description = a.seo_description || a.summary || undefined;
+  const url = `/learn/${a.slug}`;
+  const image = a.featured_image_url || "/og-default.png";
   return {
-    title: `${a.seo_title || a.title} | Relationship Life Cycle™`,
-    description: a.seo_description || a.summary || undefined,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title, description, url, type: "article", siteName: "Relationship Life Cycle™",
+      images: [{ url: image }],
+      ...(a.publish_date ? { publishedTime: a.publish_date } : {}),
+      ...(a.author ? { authors: [a.author] } : {}),
+    },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
   };
 }
 
@@ -33,6 +47,22 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <main className="bg-warm-ivory">
+      <JsonLd data={[
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Learning Center", path: "/learn" },
+          { name: a.title, path: `/learn/${a.slug}` },
+        ]),
+        articleSchema({
+          title: a.title,
+          description: a.seo_description || a.summary,
+          slug: a.slug,
+          image: a.featured_image_url,
+          author: a.author,
+          publishDate: a.publish_date,
+          updatedAt: a.updated_at,
+        }),
+      ]} />
       <article className="mx-auto max-w-2xl px-6 pt-36 pb-16">
         <Link href="/learn" className="font-ui text-sm text-midnight-navy hover:underline">← Learning Center</Link>
 
@@ -46,7 +76,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         {a.featured_image_url && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={a.featured_image_url} alt="" className="mt-8 w-full rounded-xl object-cover" />
+          <img src={a.featured_image_url} alt={a.title} className="mt-8 w-full rounded-xl object-cover" />
         )}
 
         {a.summary && <p className="mt-8 font-body text-xl leading-relaxed text-charcoal/90">{a.summary}</p>}

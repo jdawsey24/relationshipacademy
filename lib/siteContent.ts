@@ -213,7 +213,21 @@ export const PAGE_SEO: Record<string, { title: string; description: string }> = 
     title: "Contact | Relationship Life Cycle™",
     description: "Questions, framework inquiries, speaking requests, or professional partnerships — reach the Relationship Life Cycle™ team.",
   },
+  learn: {
+    title: "Learning Center | Relationship Life Cycle™",
+    description: "Articles, guides, and downloadable resources for understanding relationship development through the Relationship Life Cycle™ Framework.",
+  },
 };
+
+// Canonical path for each page key (used for <link rel=canonical> + og:url).
+export const PAGE_PATH: Record<string, string> = {
+  home: "/", framework: "/framework", assessment: "/assessment",
+  professionals: "/professionals", speaking: "/speaking", about: "/about",
+  contact: "/contact", learn: "/learn",
+};
+
+// Site-wide default social share image (1200×630).
+export const DEFAULT_OG_IMAGE = "/og-default.png";
 
 /** The editable SEO fields for a page, defaulting to that page's PAGE_SEO. */
 function seoFields(page: string): ContentField[] {
@@ -225,26 +239,32 @@ function seoFields(page: string): ContentField[] {
   ];
 }
 
-/** Build a Next.js Metadata object for a page from overrides + defaults. */
+/** Build a Next.js Metadata object for a page from overrides + defaults.
+ * Includes a canonical URL, og:url, and a social image (custom or the site
+ * default) so every page has complete, non-duplicated metadata. */
 export function buildPageMetadata(map: Map<string, string>, page: string): Metadata {
   const d = PAGE_SEO[page];
   const title = get(map, `seo.${page}.title`, d.title);
   const description = get(map, `seo.${page}.description`, d.description);
-  const ogImage = get(map, `seo.${page}.og_image`, "");
+  const path = PAGE_PATH[page];
+  const image = get(map, `seo.${page}.og_image`, "") || DEFAULT_OG_IMAGE;
   return {
     title,
     description,
+    alternates: path ? { canonical: path } : undefined,
     openGraph: {
       title,
       description,
       type: "website",
-      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
+      url: path,
+      siteName: "Relationship Life Cycle™",
+      images: [{ url: image }],
     },
     twitter: {
-      card: ogImage ? "summary_large_image" : "summary",
+      card: "summary_large_image",
       title,
       description,
-      ...(ogImage ? { images: [ogImage] } : {}),
+      images: [image],
     },
   };
 }

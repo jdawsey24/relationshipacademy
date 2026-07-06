@@ -4,9 +4,13 @@ import LeadForm from "@/components/site/LeadForm";
 import { getPublishedArticles } from "@/lib/articles";
 import { getPublishedResources } from "@/lib/resources";
 import { getArticleCategoryNames } from "@/lib/articleCategories";
+import { getSiteContentMap, buildPageMetadata } from "@/lib/siteContent";
 
-export const metadata = { title: "Learning Center | Relationship Life Cycle™" };
 export const revalidate = 60;
+
+export async function generateMetadata() {
+  return buildPageMetadata(await getSiteContentMap(), "learn");
+}
 
 export default async function LearnPage() {
   const [articles, resources, categories] = await Promise.all([

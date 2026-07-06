@@ -2,6 +2,8 @@ import Link from "next/link";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
+import JsonLd from "@/components/JsonLd";
+import { faqSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const revalidate = 60;
 
@@ -51,6 +53,10 @@ export default async function AssessmentPage() {
   const content = await getSiteContentMap();
   return (
     <main className="bg-warm-ivory">
+      <JsonLd data={[
+        breadcrumbSchema([{ name: "Home", path: "/" }, { name: "The Assessment", path: "/assessment" }]),
+        faqSchema(FAQ),
+      ]} />
       {/* Hero */}
       <section className="px-6 pt-36 pb-16 text-center">
         <div className="mx-auto max-w-3xl">

@@ -1,4 +1,7 @@
+import Image from "next/image";
 import RichText from "@/components/site/RichText";
+import JsonLd from "@/components/JsonLd";
+import { personSchema, breadcrumbSchema } from "@/lib/schema";
 import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
@@ -22,6 +25,10 @@ export default async function AboutPage() {
   const content = await getSiteContentMap();
   return (
     <main className="bg-warm-ivory">
+      <JsonLd data={[
+        breadcrumbSchema([{ name: "Home", path: "/" }, { name: "About", path: "/about" }]),
+        personSchema(),
+      ]} />
       {/* The Story */}
       <section className="px-6 pt-40 pb-16">
         <div className="mx-auto max-w-2xl">
@@ -67,8 +74,7 @@ export default async function AboutPage() {
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "about.janelle.heading", "About Janelle Dawsey, LMFT")}</h2>
           <div className="mt-6 flex flex-col gap-8 sm:flex-row sm:items-start">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/janelle-about.jpg" alt="Janelle Dawsey, LMFT" className="w-full max-w-[220px] rounded-2xl object-cover shadow-sm" />
+            <Image src="/janelle-about.jpg" alt="Portrait of Janelle Dawsey, LMFT, creator of the Relationship Life Cycle™ Framework" width={220} height={330} sizes="220px" className="h-auto w-full max-w-[220px] rounded-2xl object-cover shadow-sm" />
             <div className="flex-1 space-y-4 font-body text-[16px] leading-relaxed text-charcoal">
               <p>Janelle Dawsey became a therapist because she believed relationships could change people&apos;s lives — and that the right support at the right moment could make all the difference. What she didn&apos;t expect was how clearly clinical practice would reveal the gap: not in the quality of people&apos;s intentions, but in their access to a developmental map for the journey they were on.</p>
               <p>The Relationship Life Cycle™ is her attempt to close that gap.</p>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PHASES } from "@/lib/frameworkContent";
 import { classesFor } from "@/lib/phases";
@@ -7,10 +8,12 @@ import { classesFor } from "@/lib/phases";
 export default function PhaseCycle() {
   return (
     <div className="flex flex-col items-center">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src="/cycle-diagram.png"
         alt="The Relationship Life Cycle — six phases arranged in a cycle: Exploration, Exclusivity, Expansion, Expiration, Recovery, Renewal."
+        width={576}
+        height={576}
+        sizes="(max-width: 640px) 100vw, 576px"
         className="h-auto w-full max-w-xl"
       />
 

@@ -36,6 +36,12 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false, // don't advertise the Next.js version
+  images: {
+    // Serve modern formats automatically via next/image.
+    formats: ["image/avif", "image/webp"],
+    // Allow optimizing article/resource images stored in Supabase Storage.
+    remotePatterns: [{ protocol: "https", hostname: "hxfclagqmynyolyimxnm.supabase.co" }],
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

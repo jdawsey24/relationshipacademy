@@ -1,7 +1,10 @@
+import Image from "next/image";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import LeadForm from "@/components/site/LeadForm";
 import RichText from "@/components/site/RichText";
+import JsonLd from "@/components/JsonLd";
+import { personSchema, breadcrumbSchema } from "@/lib/schema";
 import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
@@ -37,6 +40,10 @@ export default async function SpeakingPage() {
   const content = await getSiteContentMap();
   return (
     <main className="bg-warm-ivory">
+      <JsonLd data={[
+        breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Speaking", path: "/speaking" }]),
+        personSchema(),
+      ]} />
       {/* Hero */}
       <section className="px-6 pt-36 pb-14 text-center">
         <div className="mx-auto max-w-3xl">
@@ -69,8 +76,7 @@ export default async function SpeakingPage() {
       {/* Speaker Bio */}
       <section className="bg-[#FBF9F5] px-6 py-16">
         <div className="mx-auto flex max-w-4xl flex-col gap-8 sm:flex-row sm:items-start">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/janelle-speaking.jpg" alt="Janelle Dawsey, LMFT" className="w-full max-w-[240px] rounded-2xl object-cover shadow-sm" />
+          <Image src="/janelle-speaking.jpg" alt="Janelle Dawsey, LMFT, speaking on the Relationship Life Cycle™ Framework" width={240} height={360} sizes="240px" className="h-auto w-full max-w-[240px] rounded-2xl object-cover shadow-sm" />
           <div className="flex-1">
             <h2 className="font-display text-2xl font-semibold text-midnight-navy">{get(content, "speaking.bio.heading", "About Janelle Dawsey")}</h2>
             <div className="mt-3 space-y-3 font-body text-base leading-relaxed text-charcoal">
