@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 interface UserRow {
-  id: string; email: string; role: string; last_sign_in_at: string | null; deactivated: boolean;
+  id: string; email: string; role: string; last_sign_in_at: string | null; deactivated: boolean; mfa: boolean;
 }
 const ROLES = ["owner", "editor", "viewer"];
 
@@ -45,6 +45,13 @@ export default function UsersPage() {
     load();
   }
 
+  async function resetMfa(id: string, email: string) {
+    if (!confirm(`Reset two-factor authentication for ${email}? They'll sign in with just their password until they set it up again.`)) return;
+    const res = await fetch("/api/admin/users", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, resetMfa: true }) });
+    if (!res.ok) { const d = await res.json(); setMsg(d.error || "Failed."); return; }
+    setMsg(null); load();
+  }
+
   if (status === "forbidden") return (
     <div><h1 className="text-2xl font-semibold text-midnight-navy">Users &amp; Permissions</h1>
       <p className="mt-4 text-sm text-charcoal/70">Only owners can manage users.</p></div>
@@ -82,7 +89,7 @@ export default function UsersPage() {
           <table className="w-full border-collapse text-sm">
             <thead><tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
               <th className="px-3 py-2 font-semibold">Email</th><th className="px-3 py-2 font-semibold">Role</th>
-              <th className="px-3 py-2 font-semibold">Last login</th><th className="px-3 py-2 font-semibold">Status</th>
+              <th className="px-3 py-2 font-semibold">Last login</th><th className="px-3 py-2 font-semibold">2FA</th><th className="px-3 py-2 font-semibold">Status</th>
               <th className="px-3 py-2 font-semibold">Actions</th>
             </tr></thead>
             <tbody>
@@ -95,11 +102,19 @@ export default function UsersPage() {
                     </select>
                   </td>
                   <td className="px-3 py-2 whitespace-nowrap">{fmt(u.last_sign_in_at)}</td>
+                  <td className="px-3 py-2">{u.mfa ? <span className="text-sage-green">On</span> : <span className="text-charcoal/40">Off</span>}</td>
                   <td className="px-3 py-2">{u.deactivated ? <span className="text-coral-rose">Deactivated</span> : <span className="text-sage-green">Active</span>}</td>
                   <td className="px-3 py-2">
-                    <button type="button" onClick={() => update(u.id, { deactivated: !u.deactivated })} className="font-medium text-midnight-navy hover:underline">
-                      {u.deactivated ? "Reactivate" : "Deactivate"}
-                    </button>
+                    <div className="flex items-center gap-3 whitespace-nowrap">
+                      <button type="button" onClick={() => update(u.id, { deactivated: !u.deactivated })} className="font-medium text-midnight-navy hover:underline">
+                        {u.deactivated ? "Reactivate" : "Deactivate"}
+                      </button>
+                      {u.mfa && (
+                        <button type="button" onClick={() => resetMfa(u.id, u.email)} className="font-medium text-coral-rose hover:underline">
+                          Reset 2FA
+                        </button>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ))}

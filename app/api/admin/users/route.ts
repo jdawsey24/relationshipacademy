@@ -33,6 +33,7 @@ export async function GET() {
     role: getAdminRole(u),
     last_sign_in_at: u.last_sign_in_at ?? null,
     deactivated: !!(u as { banned_until?: string }).banned_until,
+    mfa: (u.factors ?? []).some((f) => f.status === "verified"),
   }));
   return NextResponse.json({ rows });
 }
@@ -75,6 +76,20 @@ export async function PATCH(request: Request) {
 
   const id = typeof body.id === "string" ? body.id : "";
   if (!id) return NextResponse.json({ error: "id required." }, { status: 400 });
+
+  // Reset (remove) a user's MFA factors — recovery for a locked-out admin.
+  // Allowed for any user, including self.
+  if (body.resetMfa === true) {
+    const supabase = getSupabaseAdminClient();
+    const { data: fData, error: listErr } = await supabase.auth.admin.mfa.listFactors({ userId: id });
+    if (listErr) return NextResponse.json({ error: "Failed to reset two-factor." }, { status: 502 });
+    for (const f of fData?.factors ?? []) {
+      await supabase.auth.admin.mfa.deleteFactor({ id: f.id, userId: id });
+    }
+    await audit({ actor: me?.email ?? null, action: "user.mfa_reset", target: id, metadata: { removed: fData?.factors?.length ?? 0 } });
+    return NextResponse.json({ ok: true });
+  }
+
   if (id === me?.id) return NextResponse.json({ error: "You can't change your own role or status." }, { status: 400 });
 
   const supabase = getSupabaseAdminClient();
