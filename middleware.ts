@@ -46,10 +46,31 @@ export async function middleware(request: NextRequest) {
       url.pathname = "/admin/login";
       return NextResponse.redirect(url);
     }
+    return response;
   }
 
-  // Authenticated but on the login page: send to the dashboard.
-  if (user && isLoginPage) {
+  // MFA enforcement: a password-only (AAL1) session for an account that has an
+  // enrolled factor still owes its 2FA step. Send it back to the login page to
+  // finish. Fails OPEN on any error so it can never cause a lockout.
+  let needsMfa = false;
+  try {
+    const { data: aal } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+    needsMfa = !!aal && aal.currentLevel === "aal1" && aal.nextLevel === "aal2";
+  } catch {
+    needsMfa = false;
+  }
+
+  if (needsMfa && !isLoginPage) {
+    if (isAdminApi) {
+      return NextResponse.json({ error: "Multi-factor authentication required." }, { status: 401 });
+    }
+    const url = request.nextUrl.clone();
+    url.pathname = "/admin/login";
+    return NextResponse.redirect(url);
+  }
+
+  // Fully authenticated on the login page: send to the dashboard.
+  if (isLoginPage && !needsMfa) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin";
     return NextResponse.redirect(url);
