@@ -68,7 +68,7 @@ export default async function AssessmentPage() {
       {/* How It Works */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-center font-display text-3xl font-semibold text-midnight-navy">How it works</h2>
+          <h2 className="text-center font-display text-3xl font-semibold text-midnight-navy">{get(content, "assessment.how.heading", "How it works")}</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {STEPS.map((s) => (
               <div key={s.n} className="rounded-xl border border-light-gray bg-white p-6">
@@ -84,7 +84,7 @@ export default async function AssessmentPage() {
       {/* What You'll Learn */}
       <section className="bg-[#FBF9F5] px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-center font-display text-3xl font-semibold text-midnight-navy">What you&apos;ll walk away with</h2>
+          <h2 className="text-center font-display text-3xl font-semibold text-midnight-navy">{get(content, "assessment.learn.heading", "What you'll walk away with")}</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {OUTCOMES.map((o) => (
               <div key={o} className="flex items-start gap-3 rounded-xl border border-light-gray bg-white p-5">
@@ -99,9 +99,9 @@ export default async function AssessmentPage() {
       {/* Framework Credibility */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">Built on something real.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "assessment.cred.heading", "Built on something real.")}</h2>
           <p className="mx-auto mt-4 max-w-[600px] font-body text-[16px] leading-relaxed text-charcoal">
-            The Relationship Snapshot™ is built on the Relationship Life Cycle™ Framework — a developmental model that views relationships as growing and changing over time rather than simply being healthy or unhealthy. It was developed by Janelle Dawsey, LMFT, and is designed to provide developmental insight, not a diagnosis or a score.
+            {get(content, "assessment.cred.body", "The Relationship Snapshot™ is built on the Relationship Life Cycle™ Framework — a developmental model that views relationships as growing and changing over time rather than simply being healthy or unhealthy. It was developed by Janelle Dawsey, LMFT, and is designed to provide developmental insight, not a diagnosis or a score.")}
           </p>
           <Link href="/framework" className="mt-6 inline-flex items-center gap-1 font-ui text-sm font-medium text-midnight-navy transition-all hover:gap-2">
             Learn more about the framework <span aria-hidden="true">→</span>
@@ -122,7 +122,7 @@ export default async function AssessmentPage() {
       <section className="px-6 py-16">
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
-            <h2 className="font-display text-3xl font-semibold text-midnight-navy">Here&apos;s what your results look like.</h2>
+            <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "assessment.sample.heading", "Here's what your results look like.")}</h2>
             <p className="mt-2 font-ui text-xs uppercase tracking-wide text-charcoal/50">Example — for illustration only. Your results will reflect your actual responses.</p>
           </div>
           <div className="mt-8 rounded-2xl border border-light-gray bg-white p-6 shadow-sm">
@@ -162,7 +162,7 @@ export default async function AssessmentPage() {
       {/* FAQ */}
       <section className="bg-[#FBF9F5] px-6 py-16">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">Common questions</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "assessment.faq.heading", "Common questions")}</h2>
           <div className="mt-6 divide-y divide-light-gray">
             {FAQ.map((f) => (
               <div key={f.q} className="py-5">
@@ -177,9 +177,9 @@ export default async function AssessmentPage() {
       {/* Begin CTA */}
       <section className="px-6 py-20 text-center">
         <div className="mx-auto max-w-xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">Ready to get started?</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "assessment.cta.heading", "Ready to get started?")}</h2>
           <div className="mt-6"><CtaButton href="/snapshot/intro" variant="primary">Take the Free Snapshot</CtaButton></div>
-          <p className="mt-3 font-body text-sm text-charcoal/60">Free. Confidential. Takes about 10 minutes.</p>
+          <p className="mt-3 font-body text-sm text-charcoal/60">{get(content, "assessment.cta.note", "Free. Confidential. Takes about 10 minutes.")}</p>
         </div>
       </section>
     </main>

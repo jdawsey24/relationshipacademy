@@ -1,6 +1,7 @@
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import LeadForm from "@/components/site/LeadForm";
+import RichText from "@/components/site/RichText";
 import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
@@ -53,7 +54,7 @@ export default async function SpeakingPage() {
       {/* What Audiences Experience */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">What your audience walks away with.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "speaking.experience.heading", "What your audience walks away with.")}</h2>
           <ul className="mt-6 flex flex-col gap-3">
             {EXPERIENCE.map((e) => (
               <li key={e} className="flex items-start gap-3 font-body text-charcoal">
@@ -71,11 +72,9 @@ export default async function SpeakingPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/janelle-speaking.jpg" alt="Janelle Dawsey, LMFT" className="w-full max-w-[240px] rounded-2xl object-cover shadow-sm" />
           <div className="flex-1">
-            <h2 className="font-display text-2xl font-semibold text-midnight-navy">About Janelle Dawsey</h2>
+            <h2 className="font-display text-2xl font-semibold text-midnight-navy">{get(content, "speaking.bio.heading", "About Janelle Dawsey")}</h2>
             <div className="mt-3 space-y-3 font-body text-base leading-relaxed text-charcoal">
-              <p>Janelle Dawsey is a Licensed Marriage and Family Therapist, author, certified matchmaker, and the creator of the Relationship Life Cycle™ Framework. After years of clinical practice — sitting with couples, individuals, and families navigating some of the most complex moments of their relational lives — she recognized a pattern that kept appearing: relationships weren&apos;t failing because people were bad at relationships. They were failing because no one had ever given them a developmental map.</p>
-              <p>That recognition became the Relationship Life Cycle™.</p>
-              <p>Janelle speaks from a place of clinical depth and genuine warmth. Her sessions don&apos;t feel like lectures. They feel like someone finally putting language to something audiences already knew was true — but had never heard said out loud.</p>
+              <RichText text={get(content, "speaking.bio.body", "Janelle Dawsey is a Licensed Marriage and Family Therapist, author, certified matchmaker, and the creator of the Relationship Life Cycle™ Framework. After years of clinical practice — sitting with couples, individuals, and families navigating some of the most complex moments of their relational lives — she recognized a pattern that kept appearing: relationships weren't failing because people were bad at relationships. They were failing because no one had ever given them a developmental map.\n\nThat recognition became the Relationship Life Cycle™.\n\nJanelle speaks from a place of clinical depth and genuine warmth. Her sessions don't feel like lectures. They feel like someone finally putting language to something audiences already knew was true — but had never heard said out loud.")} />
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
               {["LMFT", "Author", "Certified Matchmaker", "Founder, Symmetricly"].map((t) => (
@@ -89,7 +88,7 @@ export default async function SpeakingPage() {
       {/* Topics */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">Keynotes &amp; Sessions</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "speaking.topics.heading", "Keynotes & Sessions")}</h2>
           <div className="mt-8 grid gap-5 lg:grid-cols-3">
             {TOPICS.map((t) => (
               <div key={t.title} className="rounded-xl border border-light-gray bg-white p-6">
@@ -105,7 +104,7 @@ export default async function SpeakingPage() {
       {/* Audiences */}
       <section className="bg-[#FBF9F5] px-6 py-16">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">Who Janelle speaks to</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "speaking.audiences.heading", "Who Janelle speaks to")}</h2>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {AUDIENCES.map((a) => (
               <div key={a.name} className="rounded-xl border border-light-gray bg-white p-6">
@@ -120,10 +119,9 @@ export default async function SpeakingPage() {
       {/* Workplace Applications */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">Relational development in the workplace.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "speaking.workplace.heading", "Relational development in the workplace.")}</h2>
           <div className="mt-6 space-y-4 font-body text-[17px] leading-relaxed text-charcoal">
-            <p>The principles of the Relationship Life Cycle™ extend naturally into organizational settings. The way trust is built between a leader and a team, the way a new professional partnership develops, the way organizations navigate change — these are all relational experiences with developmental patterns.</p>
-            <p>Janelle&apos;s organizational sessions apply the framework&apos;s developmental lens to the professional relationships that shape workplace culture, retention, and performance.</p>
+            <RichText text={get(content, "speaking.workplace.body", "The principles of the Relationship Life Cycle™ extend naturally into organizational settings. The way trust is built between a leader and a team, the way a new professional partnership develops, the way organizations navigate change — these are all relational experiences with developmental patterns.\n\nJanelle's organizational sessions apply the framework's developmental lens to the professional relationships that shape workplace culture, retention, and performance.")} />
           </div>
         </div>
       </section>
@@ -131,7 +129,7 @@ export default async function SpeakingPage() {
       {/* Social Proof (placeholder) */}
       <section className="bg-[#F2F5F2] px-6 py-16">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-center font-display text-2xl font-semibold text-midnight-navy">Organizations &amp; Events</h2>
+          <h2 className="text-center font-display text-2xl font-semibold text-midnight-navy">{get(content, "speaking.proof.heading", "Organizations & Events")}</h2>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="flex h-16 items-center justify-center rounded-lg bg-white font-ui text-[11px] uppercase tracking-wide text-charcoal/30">
@@ -148,7 +146,7 @@ export default async function SpeakingPage() {
       {/* Inquiry */}
       <section id="inquiry" className="px-6 py-16">
         <div className="mx-auto max-w-xl">
-          <h2 className="text-center font-display text-3xl font-semibold text-midnight-navy">Bring Janelle to your event</h2>
+          <h2 className="text-center font-display text-3xl font-semibold text-midnight-navy">{get(content, "speaking.inquiry.heading", "Bring Janelle to your event")}</h2>
           <div className="mt-8">
             <LeadForm
               source="speaking_inquiry"

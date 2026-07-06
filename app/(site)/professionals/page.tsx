@@ -1,5 +1,6 @@
 import SectionLabel from "@/components/site/SectionLabel";
 import LeadForm from "@/components/site/LeadForm";
+import RichText from "@/components/site/RichText";
 import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
@@ -60,11 +61,9 @@ export default async function ProfessionalsPage() {
       {/* The Problem Professionals Face */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">The gap most professionals recognize.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "professionals.gap.heading", "The gap most professionals recognize.")}</h2>
           <div className="mt-6 space-y-4 font-body text-[17px] leading-relaxed text-charcoal">
-            <p>Most professionals who work with relationships encounter the same pattern. Clients arrive with good intentions, clear struggles, and years of accumulated damage from needs that were never properly understood or addressed at the right time.</p>
-            <p>The Relationship Life Cycle™ Framework was created from that clinical observation: most relationship challenges aren&apos;t caused by bad people. They&apos;re caused by relationships that outpaced their own foundation — moving forward without building the skills each phase required.</p>
-            <p>This framework gives professionals a shared developmental language for understanding that gap.</p>
+            <RichText text={get(content, "professionals.gap.body", "Most professionals who work with relationships encounter the same pattern. Clients arrive with good intentions, clear struggles, and years of accumulated damage from needs that were never properly understood or addressed at the right time.\n\nThe Relationship Life Cycle™ Framework was created from that clinical observation: most relationship challenges aren't caused by bad people. They're caused by relationships that outpaced their own foundation — moving forward without building the skills each phase required.\n\nThis framework gives professionals a shared developmental language for understanding that gap.")} />
           </div>
         </div>
       </section>
@@ -72,10 +71,9 @@ export default async function ProfessionalsPage() {
       {/* Positioning */}
       <section className="bg-[#F2F5F2] px-6 py-16">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">A complement, not a competitor.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "professionals.position.heading", "A complement, not a competitor.")}</h2>
           <div className="mt-6 space-y-4 font-body text-[17px] leading-relaxed text-charcoal">
-            <p>The Relationship Life Cycle™ is not designed to replace attachment theory, Gottman Method, EFT, or any existing therapeutic model. It provides the developmental framework that organizes when and why different relationship needs, challenges, and skills become most relevant.</p>
-            <p>Think of it as the map that helps your existing tools make more sense — to you and to the people you serve.</p>
+            <RichText text={get(content, "professionals.position.body", "The Relationship Life Cycle™ is not designed to replace attachment theory, Gottman Method, EFT, or any existing therapeutic model. It provides the developmental framework that organizes when and why different relationship needs, challenges, and skills become most relevant.\n\nThink of it as the map that helps your existing tools make more sense — to you and to the people you serve.")} />
           </div>
         </div>
       </section>
@@ -83,7 +81,7 @@ export default async function ProfessionalsPage() {
       {/* Who This Is For */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">Who this is for</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "professionals.audiences.heading", "Who this is for")}</h2>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             {AUDIENCES.map((a) => (
               <div key={a.name} className="rounded-xl border border-light-gray bg-white p-6">
@@ -99,11 +97,9 @@ export default async function ProfessionalsPage() {
       {/* Beyond Romantic */}
       <section className="bg-[#FBF9F5] px-6 py-16">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">Beyond romantic relationships.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "professionals.beyond.heading", "Beyond romantic relationships.")}</h2>
           <div className="mt-6 space-y-4 font-body text-[17px] leading-relaxed text-charcoal">
-            <p>The Relationship Life Cycle™ Framework is fundamentally about relational development — which means its principles extend beyond romantic partnerships.</p>
-            <p>Relationships between parents and children, colleagues and teams, mentors and mentees, friends and communities — all of these develop over time. All of them have phases, tasks, and opportunities for growth.</p>
-            <p>The framework&apos;s application to non-romantic relationships is an active area of development. What exists today in the context of romantic partnerships is the foundation for a much broader body of work.</p>
+            <RichText text={get(content, "professionals.beyond.body", "The Relationship Life Cycle™ Framework is fundamentally about relational development — which means its principles extend beyond romantic partnerships.\n\nRelationships between parents and children, colleagues and teams, mentors and mentees, friends and communities — all of these develop over time. All of them have phases, tasks, and opportunities for growth.\n\nThe framework's application to non-romantic relationships is an active area of development. What exists today in the context of romantic partnerships is the foundation for a much broader body of work.")} />
           </div>
         </div>
       </section>
@@ -111,7 +107,7 @@ export default async function ProfessionalsPage() {
       {/* Applications */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">How professionals are using the framework.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "professionals.apps.heading", "How professionals are using the framework.")}</h2>
           <div className="mt-6 flex flex-wrap gap-3">
             {APPLICATIONS.map((a) => (
               <span key={a} className="rounded-full border border-midnight-navy/20 bg-white px-4 py-2 font-ui text-sm text-charcoal">{a}</span>
@@ -123,9 +119,9 @@ export default async function ProfessionalsPage() {
       {/* Ecosystem */}
       <section className="bg-[#FBF9F5] px-6 py-16">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">A growing professional ecosystem.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "professionals.ecosystem.heading", "A growing professional ecosystem.")}</h2>
           <p className="mt-3 max-w-[680px] font-body text-[17px] leading-relaxed text-charcoal">
-            The Relationship Life Cycle™ is being developed into a comprehensive professional ecosystem. What exists today is the beginning.
+            {get(content, "professionals.ecosystem.body", "The Relationship Life Cycle™ is being developed into a comprehensive professional ecosystem. What exists today is the beginning.")}
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {ECOSYSTEM.map((e) => (
@@ -145,7 +141,7 @@ export default async function ProfessionalsPage() {
       {/* Authority */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">Built with clinical rigor.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "professionals.authority.heading", "Built with clinical rigor.")}</h2>
           <ul className="mt-6 flex flex-col gap-3">
             {AUTHORITY.map((a) => (
               <li key={a} className="flex items-start gap-3 font-body text-charcoal">
@@ -160,9 +156,9 @@ export default async function ProfessionalsPage() {
       {/* CTA form */}
       <section className="bg-midnight-navy px-6 py-16">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="font-display text-3xl font-semibold text-white">Join the framework as it grows.</h2>
+          <h2 className="font-display text-3xl font-semibold text-white">{get(content, "professionals.cta.heading", "Join the framework as it grows.")}</h2>
           <p className="mx-auto mt-4 max-w-md font-body text-white/85">
-            Professional resources, manuals, CE courses, and certification are in development. Register your interest to be notified as new professional tools become available — and to be part of shaping the framework&apos;s professional ecosystem.
+            {get(content, "professionals.cta.body", "Professional resources, manuals, CE courses, and certification are in development. Register your interest to be notified as new professional tools become available — and to be part of shaping the framework's professional ecosystem.")}
           </p>
           <div className="mt-8 rounded-2xl bg-white p-6 text-left">
             <LeadForm

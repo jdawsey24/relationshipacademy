@@ -14,9 +14,9 @@ export async function generateMetadata() {
 }
 
 const FEATURES = [
-  { title: "Six relationship phases", body: "From the earliest stages of connection to rebuilding after loss.", icon: "phases" },
-  { title: "Six areas of focus", body: "Every relationship expresses itself through six key areas, measured throughout every phase.", icon: "domains" },
-  { title: "A free developmental assessment", body: "See exactly where your relationship is functioning right now.", icon: "assessment" },
+  { n: 1, icon: "phases", title: "Six relationship phases", body: "From the earliest stages of connection to rebuilding after loss." },
+  { n: 2, icon: "domains", title: "Six areas of focus", body: "Every relationship expresses itself through six key areas, measured throughout every phase." },
+  { n: 3, icon: "assessment", title: "A free developmental assessment", body: "See exactly where your relationship is functioning right now." },
 ] as const;
 
 function FeatureIcon({ kind }: { kind: string }) {
@@ -56,10 +56,10 @@ export default async function HomePage() {
       <section className="bg-warm-ivory px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">
-            Wherever you are in your relationship journey, this is for you.
+            {get(content, "home.connect.heading", "Wherever you are in your relationship journey, this is for you.")}
           </h2>
           <p className="mx-auto mt-6 max-w-[640px] font-body text-[17px] leading-relaxed text-charcoal">
-            Whether you&apos;re figuring out if someone is right for you, navigating a committed relationship, rebuilding after something hard, or healing on your own — relationships look different at every stage. The Relationship Life Cycle™ gives you a way to understand where you are and what your relationship actually needs right now.
+            {get(content, "home.connect.body", "Whether you're figuring out if someone is right for you, navigating a committed relationship, rebuilding after something hard, or healing on your own — relationships look different at every stage. The Relationship Life Cycle™ gives you a way to understand where you are and what your relationship actually needs right now.")}
           </p>
         </div>
       </section>
@@ -68,13 +68,13 @@ export default async function HomePage() {
       <section className="bg-[#FBF9F5] px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">
-            Sometimes the challenge isn&apos;t your relationship.
+            {get(content, "home.problem.heading", "Sometimes the challenge isn't your relationship.")}
           </h2>
           <p className="mt-3 font-body text-lg text-charcoal/90">
-            It&apos;s trying to solve today&apos;s problems with yesterday&apos;s expectations.
+            {get(content, "home.problem.subhead", "It's trying to solve today's problems with yesterday's expectations.")}
           </p>
           <p className="mx-auto mt-6 max-w-[640px] font-body text-[16px] leading-relaxed text-charcoal">
-            We&apos;re surrounded by relationship advice. Communication tips. Attachment styles. Conflict strategies. Love languages. Most of it is good. But good advice applied at the wrong moment — or the wrong stage — can make things harder, not easier. The Relationship Life Cycle™ doesn&apos;t replace what you already know about relationships. It gives it context.
+            {get(content, "home.problem.body", "We're surrounded by relationship advice. Communication tips. Attachment styles. Conflict strategies. Love languages. Most of it is good. But good advice applied at the wrong moment — or the wrong stage — can make things harder, not easier. The Relationship Life Cycle™ doesn't replace what you already know about relationships. It gives it context.")}
           </p>
         </div>
       </section>
@@ -82,16 +82,16 @@ export default async function HomePage() {
       {/* Framework Introduction */}
       <section className="bg-warm-ivory px-6 py-24">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">A map for where you are.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.mapintro.heading", "A map for where you are.")}</h2>
           <p className="mx-auto mt-6 max-w-[640px] font-body text-[17px] leading-relaxed text-charcoal">
-            The Relationship Life Cycle™ is a developmental framework that organizes relationship growth into six distinct phases — each with its own purpose, focus, and opportunities. It&apos;s not about whether your relationship is healthy or unhealthy. It&apos;s about understanding where it is and what it needs next.
+            {get(content, "home.mapintro.body", "The Relationship Life Cycle™ is a developmental framework that organizes relationship growth into six distinct phases — each with its own purpose, focus, and opportunities. It's not about whether your relationship is healthy or unhealthy. It's about understanding where it is and what it needs next.")}
           </p>
           <div className="mt-14 grid gap-10 sm:grid-cols-3">
             {FEATURES.map((f) => (
-              <div key={f.title} className="flex flex-col items-center text-center">
+              <div key={f.n} className="flex flex-col items-center text-center">
                 <span className="text-midnight-navy"><FeatureIcon kind={f.icon} /></span>
-                <h3 className="mt-4 font-display text-xl font-semibold text-midnight-navy">{f.title}</h3>
-                <p className="mt-2 max-w-[240px] font-body text-[15px] leading-relaxed text-charcoal">{f.body}</p>
+                <h3 className="mt-4 font-display text-xl font-semibold text-midnight-navy">{get(content, `home.feature${f.n}.title`, f.title)}</h3>
+                <p className="mt-2 max-w-[240px] font-body text-[15px] leading-relaxed text-charcoal">{get(content, `home.feature${f.n}.body`, f.body)}</p>
               </div>
             ))}
           </div>
@@ -105,9 +105,9 @@ export default async function HomePage() {
       <section id="phases" className="bg-[#FBF9F5] px-6 py-24">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">Every relationship has a season.</h2>
+            <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.phases.heading", "Every relationship has a season.")}</h2>
             <p className="mx-auto mt-4 max-w-[680px] font-body text-[17px] leading-relaxed text-charcoal">
-              The Relationship Life Cycle™ identifies six phases of relationship development — each one serving a distinct purpose in the larger journey.
+              {get(content, "home.phases.body", "The Relationship Life Cycle™ identifies six phases of relationship development — each one serving a distinct purpose in the larger journey.")}
             </p>
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -124,9 +124,9 @@ export default async function HomePage() {
       {/* Assessment */}
       <section className="bg-warm-ivory px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">See where your relationship is right now.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.assess.heading", "See where your relationship is right now.")}</h2>
           <p className="mx-auto mt-4 max-w-[680px] font-body text-[17px] leading-relaxed text-charcoal">
-            The Relationship Snapshot™ is a free assessment that shows you how your relationship is functioning today — and what it might need next.
+            {get(content, "home.assess.body", "The Relationship Snapshot™ is a free assessment that shows you how your relationship is functioning today — and what it might need next.")}
           </p>
           <ul className="mx-auto mt-8 flex max-w-md flex-col gap-3 text-left">
             {["Understand where your relationship is", "Discover what's already going well", "See what to focus on next"].map((b) => (
@@ -146,9 +146,9 @@ export default async function HomePage() {
       {/* For Professionals */}
       <section className="bg-[#F2F5F2] px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy">A framework built for clinical practice.</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "home.pros.heading", "A framework built for clinical practice.")}</h2>
           <p className="mx-auto mt-4 max-w-[680px] font-body text-[16px] leading-relaxed text-charcoal">
-            Therapists, coaches, attorneys, healthcare providers, and organizations are using the Relationship Life Cycle™ Framework to bring developmental clarity to the relationships they support. Professional resources, CE courses, and certification are in development.
+            {get(content, "home.pros.body", "Therapists, coaches, attorneys, healthcare providers, and organizations are using the Relationship Life Cycle™ Framework to bring developmental clarity to the relationships they support. Professional resources, CE courses, and certification are in development.")}
           </p>
           <div className="mt-8"><CtaButton href="/professionals" variant="secondary">Explore Professional Resources</CtaButton></div>
         </div>
@@ -157,9 +157,9 @@ export default async function HomePage() {
       {/* Community */}
       <section className="bg-midnight-navy px-6 py-24 text-center text-white">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl font-semibold sm:text-4xl">The Relationship Academy</h2>
+          <h2 className="font-display text-3xl font-semibold sm:text-4xl">{get(content, "home.academy.heading", "The Relationship Academy")}</h2>
           <p className="mx-auto mt-4 max-w-[600px] font-body text-[17px] leading-relaxed text-white/85">
-            A community for people who want to go deeper — guided conversations, live sessions, and ongoing learning built around the Relationship Life Cycle™ Framework.
+            {get(content, "home.academy.body", "A community for people who want to go deeper — guided conversations, live sessions, and ongoing learning built around the Relationship Life Cycle™ Framework.")}
           </p>
           <div className="mt-8"><CtaButton href="https://skool.com/relationship-academy" variant="accent" external>Join The Relationship Academy</CtaButton></div>
         </div>

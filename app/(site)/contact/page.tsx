@@ -32,9 +32,9 @@ export default async function ContactPage() {
       {/* Stay Connected */}
       <section className="bg-midnight-navy px-6 py-16">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="font-display text-3xl font-semibold text-white">Stay connected.</h2>
+          <h2 className="font-display text-3xl font-semibold text-white">{get(content, "contact.connect.heading", "Stay connected.")}</h2>
           <p className="mx-auto mt-3 max-w-md font-body text-white/85">
-            Subscribe for framework updates, new resources, assessment improvements, and professional announcements.
+            {get(content, "contact.connect.body", "Subscribe for framework updates, new resources, assessment improvements, and professional announcements.")}
           </p>
           <div className="mx-auto mt-8 max-w-md rounded-2xl bg-white p-6 text-left">
             <LeadForm source="newsletter" fields={["name", "email"]} submitLabel="Subscribe" successMessage="You're subscribed — thank you." />
@@ -49,7 +49,7 @@ export default async function ContactPage() {
             Email: <a href="mailto:info@symmetricly.co" className="text-midnight-navy underline underline-offset-4">info@symmetricly.co</a>
           </p>
           <p className="mt-3 font-body text-sm text-charcoal/60">
-            For assessment support, please include your session ID if applicable.
+            {get(content, "contact.support.note", "For assessment support, please include your session ID if applicable.")}
           </p>
         </div>
       </section>
