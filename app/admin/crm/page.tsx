@@ -5,27 +5,36 @@ import { useCanWrite } from "@/components/admin/RoleContext";
 import Link from "next/link";
 
 type TabKind = "assessment" | "site";
+// Match on lead shape so a category selected on the CONTACT form (source=
+// contact_form, inquiry_type set) lands in the same tab as the dedicated-page
+// form (its own source). Each lead matches exactly one site tab.
+type LeadLike = { source: string | null; inquiry_type: string | null };
 interface Tab {
   key: string;
   label: string;
   kind: TabKind;
-  source?: string;
-  inquiryFilter?: string;
+  match?: (l: LeadLike) => boolean;
+  showType?: boolean; // show the inquiry_type column (mixed-type tab)
 }
+
+// Contact-form categories that have their own dedicated tab, so the catch-all
+// Contact Forms tab can exclude them.
+const SPECIALIZED_TYPES = ["Speaking Inquiry", "Professional Partnership", "Media Request"];
 
 const TABS: Tab[] = [
   { key: "assessment", label: "Assessment Leads", kind: "assessment" },
-  { key: "speaking", label: "Speaking", kind: "site", source: "speaking_inquiry" },
-  { key: "professional", label: "Professional Interest", kind: "site", source: "professional_interest" },
-  { key: "media", label: "Media Requests", kind: "site", source: "contact_form", inquiryFilter: "Media Request" },
-  { key: "contact", label: "Contact Forms", kind: "site", source: "contact_form" },
-  { key: "newsletter", label: "Newsletter", kind: "site", source: "newsletter" },
+  { key: "speaking", label: "Speaking", kind: "site", match: (l) => l.source === "speaking_inquiry" || l.inquiry_type === "Speaking Inquiry" },
+  { key: "professional", label: "Professional Interest", kind: "site", match: (l) => l.source === "professional_interest" || l.inquiry_type === "Professional Partnership" },
+  { key: "media", label: "Media Requests", kind: "site", match: (l) => l.inquiry_type === "Media Request" },
+  { key: "contact", label: "Contact Forms", kind: "site", showType: true, match: (l) => l.source === "contact_form" && !SPECIALIZED_TYPES.includes(l.inquiry_type ?? "") },
+  { key: "newsletter", label: "Newsletter", kind: "site", match: (l) => l.source === "newsletter" },
 ];
 
 const STATUSES = ["new", "contacted", "converted", "archived"];
 
 interface SiteLead {
   id: string; name: string; email: string; organization: string | null;
+  source: string | null;
   inquiry_type: string | null; message: string | null; status: string | null;
   notes: string | null; created_at: string | null;
 }
@@ -64,7 +73,9 @@ export default function CrmPage() {
         .then((d) => setAssessment(d.rows)).catch(() => setError(true));
     } else {
       setSiteLeads(null);
-      fetch(`/api/admin/site-leads?source=${tab.source}`).then((r) => { if (!r.ok) throw new Error(); return r.json(); })
+      // Fetch all site leads and filter per-tab client-side, so a lead matches
+      // the right tab regardless of which form it came from.
+      fetch(`/api/admin/site-leads`).then((r) => { if (!r.ok) throw new Error(); return r.json(); })
         .then((d) => setSiteLeads(d.rows)).catch(() => setError(true));
     }
   }, []);
@@ -81,7 +92,7 @@ export default function CrmPage() {
 
   const siteFiltered = useMemo(() => {
     let rows = siteLeads ?? [];
-    if (active.inquiryFilter) rows = rows.filter((r) => r.inquiry_type === active.inquiryFilter);
+    if (active.match) rows = rows.filter(active.match);
     const q = search.trim().toLowerCase();
     if (q) rows = rows.filter((r) => (r.name ?? "").toLowerCase().includes(q) || (r.email ?? "").toLowerCase().includes(q));
     if (statusFilter) rows = rows.filter((r) => (r.status ?? "new") === statusFilter);
@@ -178,7 +189,7 @@ export default function CrmPage() {
             <thead><tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
               <th className="px-3 py-2 font-semibold">Name</th><th className="px-3 py-2 font-semibold">Email</th>
               <th className="px-3 py-2 font-semibold">Org</th>
-              {!active.inquiryFilter && active.source === "contact_form" && <th className="px-3 py-2 font-semibold">Type</th>}
+              {active.showType && <th className="px-3 py-2 font-semibold">Type</th>}
               <th className="px-3 py-2 font-semibold">Date</th><th className="px-3 py-2 font-semibold">Status</th>
               <th className="px-3 py-2 font-semibold">Notes</th>
             </tr></thead>
@@ -188,7 +199,7 @@ export default function CrmPage() {
                   <td className="px-3 py-2">{r.name || "—"}</td>
                   <td className="px-3 py-2">{r.email || "—"}</td>
                   <td className="px-3 py-2">{r.organization || "—"}</td>
-                  {!active.inquiryFilter && active.source === "contact_form" && <td className="px-3 py-2">{r.inquiry_type || "—"}</td>}
+                  {active.showType && <td className="px-3 py-2">{r.inquiry_type || "—"}</td>}
                   <td className="px-3 py-2 whitespace-nowrap">{fmt(r.created_at)}</td>
                   <td className="px-3 py-2">
                     <select value={r.status ?? "new"} disabled={!canWrite} onChange={(e) => updateLead(r.id, { status: e.target.value })}
