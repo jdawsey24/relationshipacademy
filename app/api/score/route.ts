@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { readJsonBody } from "@/lib/apiSecurity";
+import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
 import {
   computeAlignment,
   computeCompetencyPhaseScores,
@@ -95,6 +96,11 @@ function parseRequest(body: unknown): { ok: true; data: ScoreRequest } | { ok: f
 }
 
 export async function POST(request: Request) {
+  // Throttle scoring floods: 10 submissions per minute per IP.
+  if (!(await rateLimit(request, { bucket: "score", limit: 10, windowSeconds: 60 }))) {
+    return tooManyRequests();
+  }
+
   let body: unknown;
   try {
     body = await readJsonBody(request); // 100 KB cap — blocks oversized payloads

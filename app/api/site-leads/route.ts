@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { readJsonBody } from "@/lib/apiSecurity";
+import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
 
 // Public endpoint (no auth) for site lead-capture forms. Writes to site_leads
 // via the service role. RLS on the table allows public insert; reads are
@@ -33,6 +34,11 @@ const FIELDS = [
 ] as const;
 
 export async function POST(request: Request) {
+  // Throttle form spam: 5 submissions per minute per IP.
+  if (!(await rateLimit(request, { bucket: "site-leads", limit: 5, windowSeconds: 60 }))) {
+    return tooManyRequests();
+  }
+
   let body: Record<string, unknown>;
   try {
     const parsed = await readJsonBody(request, 20_000); // 20 KB cap for a form

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
 import { DOMAINS } from "@/lib/domains";
 import type {
   AlignmentStatus,
@@ -27,6 +28,13 @@ type LevelRow = {
 };
 
 export async function GET(request: Request) {
+  // Throttle result lookups: 30/min per IP. Also slows any session_id
+  // enumeration against this unauthenticated PII endpoint (defense-in-depth
+  // until the signed-token/auth redesign lands).
+  if (!(await rateLimit(request, { bucket: "results", limit: 30, windowSeconds: 60 }))) {
+    return tooManyRequests();
+  }
+
   const { searchParams } = new URL(request.url);
   const sessionId = searchParams.get("session_id");
   if (!sessionId) {
