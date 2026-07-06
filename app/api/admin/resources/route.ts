@@ -23,7 +23,7 @@ export async function GET() {
     .order("sort_order", { ascending: true })
     .order("created_at", { ascending: false });
   if (error) {
-    return NextResponse.json({ error: "Failed to load resources.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load resources." }, { status: 502 });
   }
   return NextResponse.json({ rows: data ?? [] });
 }
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
   const supabase = getSupabaseAdminClient();
   const { data, error } = await supabase.from("resources").insert(insert).select("id").single();
   if (error) {
-    return NextResponse.json({ error: "Failed to save.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to save." }, { status: 502 });
   }
   return NextResponse.json({ ok: true, id: data.id });
 }

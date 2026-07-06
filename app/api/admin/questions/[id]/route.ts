@@ -34,7 +34,7 @@ export async function GET(
     .eq("id", id)
     .maybeSingle();
   if (error) {
-    return NextResponse.json({ error: "Failed to load question.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load question." }, { status: 502 });
   }
   if (!data) {
     return NextResponse.json({ error: "Question not found." }, { status: 404 });
@@ -73,7 +73,7 @@ export async function PATCH(
     .select("id, domain_id, competency_phase_id, question_text, item_type, score_direction, construct, subconstruct, observable_behavior, active, in_snapshot, in_profile")
     .maybeSingle();
   if (error) {
-    return NextResponse.json({ error: "Failed to save.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to save." }, { status: 502 });
   }
   return NextResponse.json({ question: data });
 }

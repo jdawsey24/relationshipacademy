@@ -39,7 +39,7 @@ export async function GET(request: Request) {
     .single();
   if (domainErr || !domainRow) {
     return NextResponse.json(
-      { error: "Failed to load domain.", details: domainErr?.message },
+      { error: "Failed to load domain." },
       { status: 502 }
     );
   }
@@ -52,7 +52,7 @@ export async function GET(request: Request) {
     .order("id", { ascending: true });
   if (qErr) {
     return NextResponse.json(
-      { error: "Failed to load questions.", details: qErr.message },
+      { error: "Failed to load questions." },
       { status: 502 }
     );
   }

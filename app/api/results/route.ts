@@ -88,7 +88,7 @@ export async function GET(request: Request) {
 
   if (sessionRes.error) {
     return NextResponse.json(
-      { error: "Failed to load session.", details: sessionRes.error.message },
+      { error: "Failed to load session." },
       { status: 502 }
     );
   }
@@ -107,7 +107,7 @@ export async function GET(request: Request) {
     competencyScoresRes.error;
   if (anyRefError) {
     return NextResponse.json(
-      { error: "Failed to load result data.", details: anyRefError.message },
+      { error: "Failed to load result data." },
       { status: 502 }
     );
   }

@@ -4,11 +4,13 @@ import type { User } from "@supabase/supabase-js";
 
 export type AdminRole = "owner" | "editor" | "viewer";
 
-// Role is stored in Supabase Auth app_metadata. A user with no role set is
-// treated as "owner" so the original/legacy admin account is never locked out.
+// Role is stored in Supabase Auth app_metadata. Fail CLOSED: a user with a
+// missing or unrecognized role gets the least-privilege "viewer" (read-only),
+// never elevated access. Owners must have app_metadata.role = "owner" set
+// explicitly (done for admin@relationshiplc.com).
 export function getAdminRole(user: User | null): AdminRole {
-  const r = (user?.app_metadata?.role ?? "owner") as AdminRole;
-  return r === "editor" || r === "viewer" ? r : "owner";
+  const r = user?.app_metadata?.role;
+  return r === "owner" || r === "editor" || r === "viewer" ? r : "viewer";
 }
 
 // Defense-in-depth auth guard for admin API routes. Middleware already blocks

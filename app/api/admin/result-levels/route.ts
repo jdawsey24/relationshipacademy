@@ -18,7 +18,7 @@ export async function GET() {
     supabase.from("domains").select("id, name"),
   ]);
   if (levelsRes.error) {
-    return NextResponse.json({ error: "Failed to load result levels.", details: levelsRes.error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load result levels." }, { status: 502 });
   }
   const domainName = new Map((domainsRes.data ?? []).map((d) => [d.id, d.name]));
   const rows = (levelsRes.data ?? []).map((r) => ({
@@ -60,7 +60,7 @@ export async function PATCH(request: Request) {
     .select()
     .maybeSingle();
   if (error) {
-    return NextResponse.json({ error: "Failed to save.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to save." }, { status: 502 });
   }
   return NextResponse.json({ row: data });
 }

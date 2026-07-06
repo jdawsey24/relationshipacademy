@@ -15,7 +15,7 @@ export async function GET() {
     .select("id, risk_level, title, interpretation, recommendation, cta, score_min, score_max")
     .order("score_min", { ascending: false });
   if (error) {
-    return NextResponse.json({ error: "Failed to load risk levels.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load risk levels." }, { status: 502 });
   }
   return NextResponse.json({ rows: data ?? [] });
 }
@@ -52,7 +52,7 @@ export async function PATCH(request: Request) {
     .select()
     .maybeSingle();
   if (error) {
-    return NextResponse.json({ error: "Failed to save.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to save." }, { status: 502 });
   }
   return NextResponse.json({ row: data });
 }

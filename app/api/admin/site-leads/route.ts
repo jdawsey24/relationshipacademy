@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
   const { data, error } = await query;
   if (error) {
-    return NextResponse.json({ error: "Failed to load leads.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load leads." }, { status: 502 });
   }
   return NextResponse.json({ rows: data ?? [] });
 }
@@ -59,7 +59,7 @@ export async function PATCH(request: Request) {
   const supabase = getSupabaseAdminClient();
   const { data, error } = await supabase.from("site_leads").update(update).eq("id", body.id).select().maybeSingle();
   if (error) {
-    return NextResponse.json({ error: "Failed to save.", details: error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to save." }, { status: 502 });
   }
   return NextResponse.json({ row: data });
 }

@@ -32,8 +32,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("article_categories").update(update).eq("id", id);
   if (error) {
-    const msg = error.message.includes("duplicate") ? "That category already exists." : error.message;
-    return NextResponse.json({ error: "Failed to save.", details: msg }, { status: 502 });
+    console.error("[article-categories] save failed:", error.message);
+    const msg = error.message.includes("duplicate") ? "That category already exists." : "Failed to save.";
+    return NextResponse.json({ error: msg }, { status: 502 });
   }
   return NextResponse.json({ ok: true });
 }
@@ -44,6 +45,6 @@ export async function DELETE(_req: Request, { params }: { params: Promise<{ id: 
   const { id } = await params;
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("article_categories").delete().eq("id", id);
-  if (error) return NextResponse.json({ error: "Failed to delete.", details: error.message }, { status: 502 });
+  if (error) return NextResponse.json({ error: "Failed to delete." }, { status: 502 });
   return NextResponse.json({ ok: true });
 }

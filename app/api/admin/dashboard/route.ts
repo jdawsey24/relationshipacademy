@@ -34,7 +34,7 @@ export async function GET() {
 
   const err = sessionsRes.error || siteLeadsRes.error;
   if (err) {
-    return NextResponse.json({ error: "Failed to load dashboard.", details: err.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load dashboard." }, { status: 502 });
   }
 
   const sessions = sessionsRes.data ?? [];

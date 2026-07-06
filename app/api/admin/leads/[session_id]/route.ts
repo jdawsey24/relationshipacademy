@@ -46,7 +46,7 @@ export async function GET(
   ]);
 
   if (sessionRes.error) {
-    return NextResponse.json({ error: "Failed to load session.", details: sessionRes.error.message }, { status: 502 });
+    return NextResponse.json({ error: "Failed to load session." }, { status: 502 });
   }
   if (!sessionRes.data) {
     return NextResponse.json({ error: "Session not found." }, { status: 404 });
