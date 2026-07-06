@@ -7,6 +7,16 @@ import type { NextConfig } from "next";
 // Pixel (connect.facebook.net/facebook.com), Supabase (*.supabase.co),
 // Cloudflare Turnstile, and inline script/style which Next.js + the analytics
 // snippets currently require.
+// In development, Next.js's client runtime (HMR + eval source-maps) requires
+// 'unsafe-eval', so we add it ONLY in dev. A production build never uses eval,
+// so the deployed CSP stays strict. Without this, dev-mode scripts are blocked
+// by CSP and pages never hydrate (forms fall back to a plain reload).
+const isDev = process.env.NODE_ENV !== "production";
+const scriptSrc =
+  "script-src 'self' 'unsafe-inline'" +
+  (isDev ? " 'unsafe-eval'" : "") +
+  " https://www.googletagmanager.com https://connect.facebook.net https://challenges.cloudflare.com";
+
 const csp = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -16,7 +26,7 @@ const csp = [
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://challenges.cloudflare.com",
+  scriptSrc,
   "connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://connect.facebook.net https://www.facebook.com https://challenges.cloudflare.com",
   "frame-src 'self' https://challenges.cloudflare.com",
 ].join("; ");
