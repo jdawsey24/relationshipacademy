@@ -38,6 +38,10 @@ export interface Profile {
   skool_joined: boolean;
   created_at: string;
   updated_at: string;
+  // Stripe billing (migration 0012). Optional so code works pre-migration.
+  stripe_customer_id?: string | null;
+  stripe_subscription_id?: string | null;
+  subscription_status?: string | null;
 }
 
 export interface Course {
