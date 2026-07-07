@@ -21,6 +21,7 @@ const NAV = [
   { label: "Courses", href: "/academy/courses" },
   { label: "Journal", href: "/academy/journal" },
   { label: "Workbooks", href: "/academy/workbooks" },
+  { label: "Certificates", href: "/academy/certificates" },
   { label: "Community", href: "/academy/community" },
 ];
 
@@ -62,7 +63,7 @@ export default function AcademyChrome({ children }: { children: React.ReactNode 
 
   return (
     <div className="min-h-screen bg-warm-ivory font-body text-charcoal">
-      <header className="sticky top-0 z-40 border-b border-midnight-navy/10 bg-warm-ivory/85 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-midnight-navy/10 bg-warm-ivory/85 backdrop-blur print:hidden">
         <div className="mx-auto flex max-w-6xl items-center gap-6 px-5 py-3 md:px-8">
           <Logo variant="mark" href="/academy/dashboard" className="h-8 shrink-0" />
           <nav className="flex flex-1 items-center gap-1 overflow-x-auto">
@@ -101,7 +102,7 @@ export default function AcademyChrome({ children }: { children: React.ReactNode 
         </div>
       </header>
 
-      <main className="mx-auto max-w-6xl px-5 py-8 md:px-8 md:py-12">{children}</main>
+      <main className="mx-auto max-w-6xl px-5 py-8 md:px-8 md:py-12 print:max-w-none print:p-0">{children}</main>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
   getJournalEntries,
   getAnnouncements,
 } from "@/lib/academyData";
+import { getCertificates } from "@/lib/certificates";
 import { getSiteContentMap, get } from "@/lib/siteContent";
 import { coursePercent, courseLessons, type CourseWithContent } from "@/lib/academy";
 import { ProgressBar, TierBadge, Panel } from "@/components/academy/ui";
@@ -18,12 +19,13 @@ export default async function DashboardPage() {
   const member = await getMember();
   if (!member) redirect("/academy/login");
 
-  const [courses, progress, journal, announcements, settings] = await Promise.all([
+  const [courses, progress, journal, announcements, settings, certificates] = await Promise.all([
     getPublishedCourses(),
     getProgress(member.user.id),
     getJournalEntries(member.user.id),
     getAnnouncements(member.tier),
     getSiteContentMap(),
+    getCertificates(member.user.id),
   ]);
 
   // Assemble full content for each published course to compute progress + next.
@@ -211,6 +213,11 @@ export default async function DashboardPage() {
             <ul className="space-y-2 font-body text-sm">
               <li><Link href="/academy/workbooks" className="text-midnight-navy hover:underline">Workbook library →</Link></li>
               <li><Link href="/academy/journal" className="text-midnight-navy hover:underline">Your journal →</Link></li>
+              <li>
+                <Link href="/academy/certificates" className="text-midnight-navy hover:underline">
+                  Certificates{certificates.length > 0 ? ` (${certificates.length})` : ""} →
+                </Link>
+              </li>
               <li><Link href="/academy/account" className="text-midnight-navy hover:underline">Account &amp; membership →</Link></li>
             </ul>
           </Panel>

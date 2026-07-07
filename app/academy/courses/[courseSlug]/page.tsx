@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { getMember, memberCanAccess } from "@/lib/academyAuth";
 import { getCourseWithContent, getProgress } from "@/lib/academyData";
+import { issueCertificateIfComplete } from "@/lib/certificates";
 import { coursePercent, courseLessons } from "@/lib/academy";
 import { ProgressBar, TierBadge, LockPill, PreviewPill, Panel } from "@/components/academy/ui";
 
@@ -26,6 +27,11 @@ export default async function CoursePage({
   const percent = coursePercent(course, progress);
   const lessons = courseLessons(course);
   const courseUnlocked = memberCanAccess(member, course.min_tier);
+
+  // Course finished? Ensure a certificate exists (backfills anyone who completed
+  // before certificates shipped) and surface it.
+  const certResult = percent === 100 ? await issueCertificateIfComplete(member, course.id) : null;
+  const certificate = certResult?.certificate ?? null;
 
   // First not-completed accessible lesson → the primary CTA target.
   const nextLesson =
@@ -72,6 +78,23 @@ export default async function CoursePage({
           >
             {percent > 0 ? "Continue course" : "Start course"}
           </Link>
+        )}
+
+        {percent === 100 && (
+          <div className="mt-7 flex flex-wrap items-center gap-3 rounded-xl bg-sage-green/15 px-5 py-4">
+            <span className="text-2xl">🏆</span>
+            <p className="flex-1 font-body text-sm text-midnight-navy">
+              You&apos;ve completed this course.
+            </p>
+            {certificate && (
+              <Link
+                href={`/academy/certificates/${certificate.id}`}
+                className="rounded-full bg-midnight-navy px-5 py-2 font-ui text-sm font-medium text-white hover:bg-midnight-navy/90"
+              >
+                View certificate
+              </Link>
+            )}
+          </div>
         )}
       </header>
 
