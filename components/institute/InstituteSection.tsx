@@ -1,13 +1,9 @@
 import Link from "next/link";
+import type { InstituteOffering } from "@/lib/institute";
 
 // Shared template for the Institute's section pages. Keeps them consistent:
 // a masthead-style hero, an intro, a list of (current or planned) offerings, and
 // a call to register interest (the interest form lives on the Institute landing).
-export interface Offering {
-  title: string;
-  description: string;
-  status?: "available" | "coming"; // defaults to "coming" in Phase 1
-}
 
 export default function InstituteSection({
   eyebrow,
@@ -19,7 +15,7 @@ export default function InstituteSection({
   eyebrow: string;
   title: string;
   intro: string;
-  offerings: Offering[];
+  offerings: InstituteOffering[];
   note?: string;
 }) {
   return (
@@ -39,7 +35,7 @@ export default function InstituteSection({
       <section className="mx-auto max-w-6xl px-5 py-14 md:px-8">
         <div className="grid gap-5 md:grid-cols-2">
           {offerings.map((o) => (
-            <div key={o.title} className="rounded-2xl border border-midnight-navy/10 bg-white p-6">
+            <div key={o.id ?? o.title} className="rounded-2xl border border-midnight-navy/10 bg-white p-6">
               <div className="mb-2 flex items-center gap-2">
                 <h2 className="font-display text-xl font-semibold text-midnight-navy">{o.title}</h2>
                 <span
@@ -52,7 +48,15 @@ export default function InstituteSection({
                   {o.status === "available" ? "Available" : "In development"}
                 </span>
               </div>
-              <p className="font-body text-sm text-charcoal/75">{o.description}</p>
+              {o.description && <p className="font-body text-sm text-charcoal/75">{o.description}</p>}
+              {o.cta_url && (
+                <a
+                  href={o.cta_url}
+                  className="mt-3 inline-block font-ui text-sm text-midnight-navy underline underline-offset-4 hover:text-slate-blue"
+                >
+                  {o.cta_label || "Learn more"} →
+                </a>
+              )}
             </div>
           ))}
         </div>
