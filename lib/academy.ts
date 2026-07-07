@@ -116,6 +116,16 @@ export interface Workbook {
   status: string;
 }
 
+export interface Certificate {
+  id: string;
+  user_id: string;
+  course_id: string;
+  serial: string;
+  recipient_name: string | null;
+  course_title: string | null;
+  issued_at: string;
+}
+
 export interface Announcement {
   id: string;
   title: string;

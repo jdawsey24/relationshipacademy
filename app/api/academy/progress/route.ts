@@ -3,6 +3,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireMember } from "@/lib/academyAuth";
 import { readJsonBody } from "@/lib/apiSecurity";
 import { isUuid } from "@/lib/apiSecurity";
+import { issueCertificateIfComplete } from "@/lib/certificates";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -70,5 +71,17 @@ export async function POST(request: Request) {
     console.error("[academy/progress]", error.message);
     return NextResponse.json({ error: "Could not save progress." }, { status: 502 });
   }
-  return NextResponse.json({ ok: true, status: row.status });
+
+  // Completing a lesson may finish the course → issue a certificate (idempotent).
+  let certificate = null;
+  let certificateNew = false;
+  if (action === "complete") {
+    const result = await issueCertificateIfComplete(member, courseId);
+    if (result) {
+      certificate = result.certificate;
+      certificateNew = result.newlyIssued;
+    }
+  }
+
+  return NextResponse.json({ ok: true, status: row.status, certificate, certificateNew });
 }
