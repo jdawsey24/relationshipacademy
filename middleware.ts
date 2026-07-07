@@ -13,7 +13,6 @@ const ACADEMY_PUBLIC = new Set([
   "/academy/login",
   "/academy/signup",
   "/academy/reset-password",
-  "/academy/professional", // practitioner landing — viewable logged-out (linked from the public site)
 ]);
 const ACADEMY_AUTH_PAGES = new Set(["/academy/login", "/academy/signup"]);
 
