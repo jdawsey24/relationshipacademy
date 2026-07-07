@@ -1,0 +1,65 @@
+// Client-safe plan catalog for the Academy. NO server imports — the account page
+// (client) imports this to render plan cards. Prices/lookup_keys mirror what was
+// created in Stripe (setup script); tier names mirror lib/academy TIERS.
+
+export type PaidTier = "academy" | "academy_plus" | "professional";
+export type Interval = "month" | "year";
+
+export interface PlanPrice {
+  lookupKey: string; // stable Stripe price lookup_key
+  amount: number; // in cents (USD)
+}
+
+export interface Plan {
+  tier: PaidTier;
+  name: string;
+  tagline: string;
+  features: string[];
+  month: PlanPrice;
+  year: PlanPrice;
+}
+
+export const PLANS: Plan[] = [
+  {
+    tier: "academy",
+    name: "Academy",
+    tagline: "The full course library",
+    features: ["All Academy courses", "Journal & workbooks", "Course certificates"],
+    month: { lookupKey: "academy_month", amount: 9700 },
+    year: { lookupKey: "academy_year", amount: 99700 },
+  },
+  {
+    tier: "academy_plus",
+    name: "Academy Plus",
+    tagline: "Courses + community & live resources",
+    features: ["Everything in Academy", "Skool community access", "Live session resources"],
+    month: { lookupKey: "academy_plus_month", amount: 19700 },
+    year: { lookupKey: "academy_plus_year", amount: 199700 },
+  },
+  {
+    tier: "professional",
+    name: "Professional",
+    tagline: "Clinician & professional training",
+    features: ["Everything in Academy Plus", "Professional training track", "Priority support"],
+    month: { lookupKey: "professional_month", amount: 49700 },
+    year: { lookupKey: "professional_year", amount: 499700 },
+  },
+];
+
+// All valid checkout lookup keys — the checkout API validates against this.
+export const VALID_LOOKUP_KEYS = new Set(
+  PLANS.flatMap((p) => [p.month.lookupKey, p.year.lookupKey])
+);
+
+export function planByLookupKey(lookupKey: string): { plan: Plan; interval: Interval } | null {
+  for (const plan of PLANS) {
+    if (plan.month.lookupKey === lookupKey) return { plan, interval: "month" };
+    if (plan.year.lookupKey === lookupKey) return { plan, interval: "year" };
+  }
+  return null;
+}
+
+/** Format cents as a whole-dollar USD string (prices are whole dollars). */
+export function formatPrice(cents: number): string {
+  return `$${Math.round(cents / 100).toLocaleString("en-US")}`;
+}

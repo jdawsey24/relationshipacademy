@@ -1,8 +1,10 @@
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getMember } from "@/lib/academyAuth";
 import { tierLabel, TIERS } from "@/lib/academy";
 import { TierBadge } from "@/components/academy/ui";
 import AccountForm from "@/components/academy/AccountForm";
+import BillingPanel from "@/components/academy/BillingPanel";
 
 export const dynamic = "force-dynamic";
 
@@ -36,21 +38,23 @@ export default async function AccountPage() {
             <p>{member.user.email}</p>
           </div>
         </div>
-        {member.profile.membership_tier === "free" && (
-          <div className="mt-5 rounded-xl bg-warm-ivory/70 p-4">
-            <p className="font-body text-sm text-charcoal/75">
-              You&apos;re on the <strong>Free</strong> plan — sample lessons and previews. Paid tiers
-              unlock the full course library. Upgrading with card payment is coming soon; in the
-              meantime, contact us to be enrolled.
-            </p>
-          </div>
-        )}
         {member.isStaff && (
           <p className="mt-4 font-ui text-xs text-charcoal/50">
             Staff account — you have full-access preview of all Academy content.
           </p>
         )}
       </div>
+
+      {/* Plans / billing (members only — staff get access via role) */}
+      {!member.isStaff && (
+        <Suspense fallback={null}>
+          <BillingPanel
+            currentTier={member.profile.membership_tier}
+            hasBilling={!!member.profile.stripe_customer_id}
+            status={member.profile.subscription_status ?? null}
+          />
+        </Suspense>
+      )}
 
       <AccountForm
         initialName={member.profile.full_name ?? ""}
