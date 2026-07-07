@@ -2,17 +2,21 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { PLANS, formatPrice, type Interval } from "@/lib/stripePlans";
+import { CONSUMER_PLANS, formatPrice, type Interval, type Plan } from "@/lib/stripePlans";
 import { tierRank } from "@/lib/academy";
 
 export default function BillingPanel({
   currentTier,
   hasBilling,
   status,
+  plans = CONSUMER_PLANS,
+  columns = 3,
 }: {
   currentTier: string;
   hasBilling: boolean;
   status: string | null;
+  plans?: Plan[];
+  columns?: 1 | 2 | 3;
 }) {
   const params = useSearchParams();
   const [interval, setInterval] = useState<Interval>("year");
@@ -88,8 +92,8 @@ export default function BillingPanel({
       )}
       {error && <p className="mt-4 rounded-lg bg-coral-rose/10 px-3 py-2 font-body text-sm text-coral-rose">{error}</p>}
 
-      <div className="mt-5 grid gap-4 md:grid-cols-3">
-        {PLANS.map((plan) => {
+      <div className={`mt-5 grid gap-4 ${columns === 1 ? "md:grid-cols-1" : columns === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
+        {plans.map((plan) => {
           const price = plan[interval];
           const isCurrent = plan.tier === currentTier;
           const isDowngrade = tierRank(plan.tier) < tierRank(currentTier);

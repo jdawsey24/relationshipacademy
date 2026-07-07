@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SectionLabel from "@/components/site/SectionLabel";
 import LeadForm from "@/components/site/LeadForm";
 import RichText from "@/components/site/RichText";
@@ -55,6 +56,14 @@ export default async function ProfessionalsPage() {
           <p className="mx-auto mt-6 max-w-[580px] font-body text-lg leading-relaxed text-charcoal">
             {get(content, "professionals.hero.subhead", "The Relationship Life Cycle™ doesn't replace the models you already use. It provides the developmental context that helps you understand where a relationship is — and what it needs — at every stage.")}
           </p>
+          <div className="mt-8">
+            <Link
+              href="/academy/professional"
+              className="inline-block rounded-full bg-midnight-navy px-7 py-3 font-ui text-sm font-medium text-white transition-colors hover:bg-midnight-navy/90"
+            >
+              Explore Professional Training →
+            </Link>
+          </div>
         </div>
       </section>
 
