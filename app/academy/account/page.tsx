@@ -63,8 +63,8 @@ export default async function AccountPage() {
 
       <p className="text-center font-ui text-sm text-charcoal/60">
         Are you a therapist, coach, or practitioner?{" "}
-        <a href="/academy/professional" className="text-midnight-navy underline underline-offset-4 hover:text-plum">
-          Explore Professional training →
+        <a href="/institute" className="text-midnight-navy underline underline-offset-4 hover:text-plum">
+          Visit the Professional Institute →
         </a>
       </p>
     </div>

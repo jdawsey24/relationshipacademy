@@ -47,29 +47,16 @@ export const PLANS: Plan[] = [
     month: { lookupKey: "academy_plus_month", amount: 19700 },
     year: { lookupKey: "academy_plus_year", amount: 199700 },
   },
-  {
-    tier: "professional",
-    name: "Professional",
-    tagline: "For therapists, coaches & practitioners",
-    features: [
-      "Professional training in the Relationship Life Cycle™ framework",
-      "Tools and language to apply the model with clients",
-      "Practitioner resources, updates, and new modules",
-      "Priority support",
-    ],
-    month: { lookupKey: "professional_month", amount: 49700 },
-    year: { lookupKey: "professional_year", amount: 499700 },
-  },
+  // NOTE: Professional is NOT a consumer plan. Practitioner training lives in the
+  // separate Relationship Life Cycle™ Professional Institute (/institute), which
+  // has its own à-la-carte commerce (a later phase) — no membership tier here.
 ];
 
-// Consumer plans shown on the member account page. Professional is a separate
-// practitioner track surfaced on its own page (/academy/professional), so it is
-// intentionally excluded here.
-export const CONSUMER_PLANS: Plan[] = PLANS.filter((p) => p.tier !== "professional");
-export const PROFESSIONAL_PLAN: Plan = PLANS.find((p) => p.tier === "professional")!;
+// Consumer plans shown on the member account page. (Professional practitioner
+// training is a separate offering — the Professional Institute at /institute.)
+export const CONSUMER_PLANS: Plan[] = PLANS;
 
-// All valid checkout lookup keys — the checkout API validates against this
-// (still includes Professional so its checkout works from its own page).
+// All valid checkout lookup keys — the checkout API validates against this.
 export const VALID_LOOKUP_KEYS = new Set(
   PLANS.flatMap((p) => [p.month.lookupKey, p.year.lookupKey])
 );

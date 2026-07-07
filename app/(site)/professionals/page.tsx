@@ -58,10 +58,10 @@ export default async function ProfessionalsPage() {
           </p>
           <div className="mt-8">
             <Link
-              href="/academy/professional"
+              href="/institute"
               className="inline-block rounded-full bg-midnight-navy px-7 py-3 font-ui text-sm font-medium text-white transition-colors hover:bg-midnight-navy/90"
             >
-              Explore Professional Training →
+              Visit the Professional Institute →
             </Link>
           </div>
         </div>
