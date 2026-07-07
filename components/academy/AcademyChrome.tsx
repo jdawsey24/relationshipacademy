@@ -14,6 +14,7 @@ const BARE_PATHS = new Set([
   "/academy/login",
   "/academy/signup",
   "/academy/reset-password",
+  "/academy/professional", // standalone landing (works logged-out and logged-in)
 ]);
 
 const NAV = [

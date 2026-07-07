@@ -50,14 +50,26 @@ export const PLANS: Plan[] = [
   {
     tier: "professional",
     name: "Professional",
-    tagline: "Clinician & professional training",
-    features: ["Everything in Academy Plus", "Professional training track", "Priority support"],
+    tagline: "For therapists, coaches & practitioners",
+    features: [
+      "Professional training in the Relationship Life Cycle™ framework",
+      "Tools and language to apply the model with clients",
+      "Practitioner resources, updates, and new modules",
+      "Priority support",
+    ],
     month: { lookupKey: "professional_month", amount: 49700 },
     year: { lookupKey: "professional_year", amount: 499700 },
   },
 ];
 
-// All valid checkout lookup keys — the checkout API validates against this.
+// Consumer plans shown on the member account page. Professional is a separate
+// practitioner track surfaced on its own page (/academy/professional), so it is
+// intentionally excluded here.
+export const CONSUMER_PLANS: Plan[] = PLANS.filter((p) => p.tier !== "professional");
+export const PROFESSIONAL_PLAN: Plan = PLANS.find((p) => p.tier === "professional")!;
+
+// All valid checkout lookup keys — the checkout API validates against this
+// (still includes Professional so its checkout works from its own page).
 export const VALID_LOOKUP_KEYS = new Set(
   PLANS.flatMap((p) => [p.month.lookupKey, p.year.lookupKey])
 );
