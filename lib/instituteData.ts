@@ -1,6 +1,8 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { getSiteContentMap, get } from "@/lib/siteContent";
 import {
   DEFAULT_OFFERINGS,
+  SECTION_COPY,
   type InstituteOffering,
   type InstituteSectionKey,
 } from "@/lib/institute";
@@ -25,4 +27,18 @@ export async function getSectionOfferings(
   } catch {
     return DEFAULT_OFFERINGS[section];
   }
+}
+
+// Full props for a section page: editable copy (site_content overrides →
+// defaults) plus its offerings. Feeds directly into <InstituteSection {...} />.
+export async function getSectionContent(section: InstituteSectionKey) {
+  const [offerings, map] = await Promise.all([getSectionOfferings(section), getSiteContentMap()]);
+  const c = SECTION_COPY[section];
+  return {
+    eyebrow: get(map, `institute.${section}.eyebrow`, c.eyebrow),
+    title: get(map, `institute.${section}.title`, c.title),
+    intro: get(map, `institute.${section}.intro`, c.intro),
+    note: get(map, `institute.${section}.note`, c.note),
+    offerings,
+  };
 }

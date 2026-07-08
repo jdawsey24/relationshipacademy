@@ -1,5 +1,9 @@
 import Link from "next/link";
 import LeadForm from "@/components/site/LeadForm";
+import { getSiteContentMap, get } from "@/lib/siteContent";
+import { LANDING_COPY } from "@/lib/institute";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Relationship Life Cycle™ Professional Institute",
@@ -25,22 +29,21 @@ const AUDIENCE = [
   "Other helping professionals",
 ];
 
-export default function InstituteLandingPage() {
+export default async function InstituteLandingPage() {
+  const map = await getSiteContentMap();
   return (
     <div>
       {/* Hero */}
       <section className="border-b border-midnight-navy/10 bg-warm-ivory/50">
         <div className="mx-auto max-w-6xl px-5 py-16 text-center md:px-8 md:py-24">
           <p className="font-ui text-xs uppercase tracking-[0.25em] text-slate-blue">
-            The Professional Education Division
+            {get(map, "institute.landing.eyebrow", LANDING_COPY.eyebrow)}
           </p>
           <h1 className="mx-auto mt-4 max-w-4xl font-display text-4xl font-semibold leading-[1.08] text-midnight-navy sm:text-5xl md:text-6xl">
-            Train in the Relationship Life Cycle™ Framework
+            {get(map, "institute.landing.headline", LANDING_COPY.headline)}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl font-body text-lg text-charcoal/80">
-            The Professional Institute equips therapists, coaches, educators, clergy, and other
-            helping professionals to apply the Relationship Life Cycle™ Framework in their work —
-            through professional training, certification, and implementation resources.
+            {get(map, "institute.landing.subhead", LANDING_COPY.subhead)}
           </p>
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="#interest" className="rounded-full bg-midnight-navy px-7 py-3 font-ui text-sm font-medium text-white hover:bg-midnight-navy/90">
