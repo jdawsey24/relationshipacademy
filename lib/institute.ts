@@ -1,5 +1,7 @@
 // Client-safe Professional Institute constants, types, and built-in defaults.
-// NO server imports (admin client components import this).
+// NO server imports (admin client components import this). ContentField is a
+// type-only import (erased at build) so no server code is pulled in.
+import type { ContentField } from "@/lib/siteContent";
 
 export type InstituteSectionKey =
   | "ce_courses"
@@ -82,3 +84,74 @@ export const DEFAULT_OFFERINGS: Record<InstituteSectionKey, InstituteOffering[]>
     ["Community networking", "Connect with a growing network of certified professionals."],
   ]),
 };
+
+// --- Editable section + landing copy (defaults; overridable via site_content) ---
+export interface SectionCopy {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  note: string;
+}
+
+export const SECTION_COPY: Record<InstituteSectionKey, SectionCopy> = {
+  ce_courses: {
+    eyebrow: "Continuing Education",
+    title: "CE Courses",
+    intro: "Continuing education for licensed professionals — workshops and on-demand courses grounded in the Relationship Life Cycle™ Framework, designed to count toward your professional development.",
+    note: "CE accreditation details and credit hours will be published as each course is finalized.",
+  },
+  workshops: {
+    eyebrow: "Live Training",
+    title: "Professional Workshops",
+    intro: "Live, interactive workshops where helping professionals learn to use the Relationship Life Cycle™ Framework in real practice — with room for questions, discussion, and case examples.",
+    note: "Workshop dates and registration will open here as they are scheduled.",
+  },
+  certifications: {
+    eyebrow: "Credentialing",
+    title: "Certification Programs",
+    intro: "Formal certification in the Relationship Life Cycle™ Framework for professionals who want to demonstrate proficiency and integrate the model deeply into their practice.",
+    note: "Certification requirements, curricula, and pricing will be published as each program launches.",
+  },
+  professional_resources: {
+    eyebrow: "Toolkits & Tools",
+    title: "Professional Resources",
+    intro: "Practical implementation resources that help professionals put the Relationship Life Cycle™ Framework to work — toolkits, assessment instruments, and ready-to-use materials.",
+    note: "Resources and case consultation groups will be made available to enrolled and certified professionals.",
+  },
+  research: {
+    eyebrow: "Scholarship",
+    title: "Research & Publications",
+    intro: "The scholarly foundation of the Relationship Life Cycle™ Framework — research, white papers, and publications that inform professional practice and advance the model.",
+    note: "Publications and research participation opportunities will be posted here as they become available.",
+  },
+  events: {
+    eyebrow: "Community & Gatherings",
+    title: "Conferences & Events",
+    intro: "Opportunities to gather, learn, and connect with the professional community around the Relationship Life Cycle™ Framework — conferences, summits, and special events.",
+    note: "Events are planned for a future phase of the Institute. Register your interest to be notified first.",
+  },
+};
+
+export const LANDING_COPY = {
+  eyebrow: "The Professional Education Division",
+  headline: "Train in the Relationship Life Cycle™ Framework",
+  subhead:
+    "The Professional Institute equips therapists, coaches, educators, clergy, and other helping professionals to apply the Relationship Life Cycle™ Framework in their work — through professional training, certification, and implementation resources.",
+};
+
+// Admin field manifests (ContentEditor + site_content, draft/publish aware).
+export function sectionCopyFields(section: InstituteSectionKey): ContentField[] {
+  const c = SECTION_COPY[section];
+  return [
+    { key: `institute.${section}.eyebrow`, label: "Eyebrow", type: "text", default: c.eyebrow },
+    { key: `institute.${section}.title`, label: "Title", type: "text", default: c.title },
+    { key: `institute.${section}.intro`, label: "Intro", type: "textarea", default: c.intro },
+    { key: `institute.${section}.note`, label: "Footnote", type: "textarea", default: c.note },
+  ];
+}
+
+export const INSTITUTE_LANDING_FIELDS: ContentField[] = [
+  { key: "institute.landing.eyebrow", label: "Hero eyebrow", type: "text", default: LANDING_COPY.eyebrow },
+  { key: "institute.landing.headline", label: "Hero headline", type: "textarea", default: LANDING_COPY.headline },
+  { key: "institute.landing.subhead", label: "Hero subhead", type: "textarea", default: LANDING_COPY.subhead },
+];
