@@ -1,10 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { getSupabaseBrowserClient } from "@/lib/supabaseBrowser";
 
 // The Professional Institute has its own chrome — deliberately more formal and
-// institutional than the warm consumer Academy: a navy masthead, structured nav.
+// institutional than the warm consumer Academy: a navy masthead, structured nav,
+// and an auth-aware control (Professional login vs. account).
 const NAV = [
   { label: "CE Courses", href: "/institute/ce-courses" },
   { label: "Workshops", href: "/institute/workshops" },
@@ -14,9 +17,34 @@ const NAV = [
   { label: "Events", href: "/institute/events" },
 ];
 
+// Auth pages render bare (no masthead) like the Academy's.
+const BARE_PATHS = new Set(["/institute/login", "/institute/signup", "/institute/reset-password"]);
+
+interface Me { authenticated: boolean; name: string | null; email: string; isProfessional: boolean }
+
 export default function InstituteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const [me, setMe] = useState<Me | null>(null);
+  const bare = BARE_PATHS.has(pathname);
+
+  useEffect(() => {
+    if (bare) return;
+    fetch("/api/institute/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => d?.authenticated && setMe(d))
+      .catch(() => {});
+  }, [bare, pathname]);
+
+  if (bare) return <div className="min-h-screen bg-warm-ivory">{children}</div>;
+
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+
+  async function signOut() {
+    await getSupabaseBrowserClient().auth.signOut();
+    router.push("/institute");
+    router.refresh();
+  }
 
   return (
     <div className="min-h-screen bg-white font-body text-charcoal">
@@ -33,25 +61,27 @@ export default function InstituteChrome({ children }: { children: React.ReactNod
                 </span>
               </span>
             </Link>
-            <Link
-              href="/"
-              className="hidden shrink-0 font-ui text-sm text-white/70 transition-colors hover:text-white sm:block"
-            >
-              relationshiplc.com →
-            </Link>
+
+            {/* Auth control */}
+            {me?.authenticated && me.isProfessional ? (
+              <div className="flex shrink-0 items-center gap-4 font-ui text-sm">
+                <Link href="/institute/dashboard" className="text-white/80 hover:text-white">Dashboard</Link>
+                <Link href="/institute/account" className="text-white/80 hover:text-white">Account</Link>
+                <button type="button" onClick={signOut} className="text-white/60 hover:text-white">Sign out</button>
+              </div>
+            ) : (
+              <Link href="/institute/login" className="shrink-0 rounded-full border border-white/40 px-4 py-1.5 font-ui text-sm text-white transition-colors hover:bg-white/10">
+                Professional Login
+              </Link>
+            )}
           </div>
 
           <nav className="-mx-1 flex items-center gap-1 overflow-x-auto">
             {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
+              <Link key={item.href} href={item.href}
                 className={`whitespace-nowrap rounded-full px-3.5 py-1.5 font-ui text-sm transition-colors ${
-                  isActive(item.href)
-                    ? "bg-white text-midnight-navy"
-                    : "text-white/75 hover:bg-white/10 hover:text-white"
-                }`}
-              >
+                  isActive(item.href) ? "bg-white text-midnight-navy" : "text-white/75 hover:bg-white/10 hover:text-white"
+                }`}>
                 {item.label}
               </Link>
             ))}

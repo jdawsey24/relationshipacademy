@@ -77,6 +77,36 @@ export async function middleware(request: NextRequest) {
   }
 
   // -------------------------------------------------------------------------
+  // INSTITUTE branch: gated professional area + /api/institute (no MFA).
+  // Only the gated paths, auth pages, and API are matched (see config) — the
+  // public Institute marketing pages are NOT matched and stay open + fast.
+  // -------------------------------------------------------------------------
+  if (pathname.startsWith("/institute") || pathname.startsWith("/api/institute")) {
+    const isInstituteApi = pathname.startsWith("/api/institute");
+    const isPublicInstituteApi = pathname === "/api/institute/signup";
+    const isAuthPage = pathname === "/institute/login" || pathname === "/institute/signup";
+
+    if (!user) {
+      if (isInstituteApi && !isPublicInstituteApi) {
+        return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+      }
+      if (isPublicInstituteApi || isAuthPage) return response;
+      // Gated page (dashboard/account/live) — send to the professional login.
+      const url = request.nextUrl.clone();
+      url.pathname = "/institute/login";
+      return NextResponse.redirect(url);
+    }
+
+    // Signed in on an auth page → go to the professional dashboard.
+    if (isAuthPage) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/institute/dashboard";
+      return NextResponse.redirect(url);
+    }
+    return response;
+  }
+
+  // -------------------------------------------------------------------------
   // STAFF branch: /admin + /api/admin (unchanged behavior)
   // -------------------------------------------------------------------------
   const isLoginPage = pathname === "/admin/login";
@@ -131,5 +161,12 @@ export const config = {
     "/api/admin/:path*",
     "/academy/:path*",
     "/api/academy/:path*",
+    // Institute: only the gated paths + auth pages + API (marketing stays public).
+    "/institute/dashboard/:path*",
+    "/institute/account/:path*",
+    "/institute/live/:path*",
+    "/institute/login",
+    "/institute/signup",
+    "/api/institute/:path*",
   ],
 };
