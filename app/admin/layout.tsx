@@ -20,6 +20,7 @@ const NAV_GROUPS: NavItem[][] = [
     { label: "Knowledge Center", href: "/admin/knowledge-center" },
     { label: "Academy", href: "/admin/academy" },
     { label: "Institute", href: "/admin/institute" },
+    { label: "Live Sessions", href: "/admin/live" },
   ],
   [
     { label: "CRM", href: "/admin/crm" },

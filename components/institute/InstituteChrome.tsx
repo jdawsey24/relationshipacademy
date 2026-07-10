@@ -66,6 +66,7 @@ export default function InstituteChrome({ children }: { children: React.ReactNod
             {me?.authenticated && me.isProfessional ? (
               <div className="flex shrink-0 items-center gap-4 font-ui text-sm">
                 <Link href="/institute/dashboard" className="text-white/80 hover:text-white">Dashboard</Link>
+                <Link href="/institute/live" className="text-white/80 hover:text-white">Live</Link>
                 <Link href="/institute/account" className="text-white/80 hover:text-white">Account</Link>
                 <button type="button" onClick={signOut} className="text-white/60 hover:text-white">Sign out</button>
               </div>
