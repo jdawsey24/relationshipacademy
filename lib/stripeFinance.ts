@@ -99,39 +99,40 @@ export async function resolveBalanceTransaction(bt: Ref): Promise<Stripe.Balance
   try { return await getStripe().balanceTransactions.retrieve(bt); } catch { return null; }
 }
 
-/** Tier/product for a recurring charge, resolved from our synced subscriptions. */
-async function tierForSubscription(subId: string | null): Promise<{ tier: string | null; product_id: string | null; price_id: string | null }> {
-  if (!subId) return { tier: null, product_id: null, price_id: null };
-  const { data } = await getSupabaseAdminClient().from("stripe_subscriptions").select("tier, product_id, price_id").eq("id", subId).maybeSingle();
-  return { tier: data?.tier ?? null, product_id: data?.product_id ?? null, price_id: data?.price_id ?? null };
+/** Most-recent subscription for a customer, from our synced table. */
+async function subForCustomer(customerId: string | null): Promise<{ id: string; tier: string | null; product_id: string | null; price_id: string | null } | null> {
+  if (!customerId) return null;
+  const { data } = await getSupabaseAdminClient()
+    .from("stripe_subscriptions").select("id, tier, product_id, price_id, status, created_at")
+    .eq("customer_id", customerId).order("created_at", { ascending: false }).limit(1).maybeSingle();
+  return data ? { id: data.id, tier: data.tier ?? null, product_id: data.product_id ?? null, price_id: data.price_id ?? null } : null;
+}
+
+/**
+ * Classify a charge (recurring vs one-time) + resolve tier/product. Stripe's
+ * 2025 API dropped charge↔invoice on the charge, so recurring charges are
+ * matched to the customer's synced subscription. One-time purchases (future
+ * Institute commerce) mark charge.metadata.billing_type = "one_time".
+ */
+export async function chargeEnrichment(chargeIn: Stripe.Charge): Promise<LedgerEnrichment> {
+  const charge = chargeIn as unknown as LooseCharge;
+  const customer_id = refId(charge.customer);
+  const email = charge.billing_details?.email ?? charge.receipt_email ?? null;
+  const base: LedgerEnrichment = { charge_id: charge.id, payment_intent_id: refId(charge.payment_intent), customer_id, email };
+  const explicitOneTime = charge.metadata?.billing_type === "one_time";
+  if (customer_id && !explicitOneTime) {
+    const sub = await subForCustomer(customer_id);
+    if (sub) return { ...base, billing_type: "recurring", subscription_id: sub.id, tier: sub.tier, product_id: sub.product_id, price_id: sub.price_id };
+  }
+  return { ...base, billing_type: "one_time", tier: charge.metadata?.tier ?? null, product_id: charge.metadata?.product_id ?? null };
 }
 
 export async function recordCharge(chargeIn: Stripe.Charge, eventId: string, _livemode: boolean) {
   const charge = chargeIn as unknown as LooseCharge;
   const bt = await resolveBalanceTransaction(charge.balance_transaction);
   if (!bt) return;
-  const invoiceId = refId(charge.invoice);
-  const billing_type = invoiceId ? "recurring" : "one_time";
-  let subscription_id: string | null = null;
-  let tier: string | null = null, product_id: string | null = null, price_id: string | null = null;
-
-  if (invoiceId) {
-    try {
-      const inv = (await getStripe().invoices.retrieve(invoiceId)) as unknown as LooseInvoice;
-      subscription_id = invoiceSubId(inv);
-      const info = await tierForSubscription(subscription_id);
-      tier = info.tier; product_id = info.product_id; price_id = info.price_id;
-    } catch { /* best-effort */ }
-  } else {
-    tier = charge.metadata?.tier ?? null;
-    product_id = charge.metadata?.product_id ?? null;
-  }
-
-  await upsertBalanceTransaction(bt, {
-    event_id: eventId, charge_id: charge.id, payment_intent_id: refId(charge.payment_intent), invoice_id: invoiceId,
-    subscription_id, billing_type, product_id, price_id, tier, customer_id: refId(charge.customer),
-    email: charge.billing_details?.email ?? charge.receipt_email ?? null,
-  });
+  const enrich = await chargeEnrichment(chargeIn);
+  await upsertBalanceTransaction(bt, { ...enrich, event_id: eventId });
 }
 
 export async function recordRefund(chargeIn: Stripe.Charge, eventId: string) {

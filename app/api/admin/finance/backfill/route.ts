@@ -5,7 +5,7 @@ import { requireOwnerFinance } from "@/lib/adminApi";
 import { getStripe, stripeConfigured } from "@/lib/stripe";
 import { audit } from "@/lib/audit";
 import {
-  upsertBalanceTransaction, upsertSubscription, upsertPayout, upsertDispute, type LedgerEnrichment,
+  upsertBalanceTransaction, upsertSubscription, upsertPayout, upsertDispute, chargeEnrichment, type LedgerEnrichment,
 } from "@/lib/stripeFinance";
 
 export const runtime = "nodejs";
@@ -86,7 +86,13 @@ export async function POST(request: Request) {
     if (resource === "balance_transactions") {
       const list = await stripe.balanceTransactions.list({ ...params, expand: ["data.source"] });
       items = list.data; hasMore = list.has_more;
-      if (!dryRun) for (const bt of list.data) await upsertBalanceTransaction(bt, { ...enrichFromSource(bt.source), event_id: null });
+      if (!dryRun) for (const bt of list.data) {
+        const src = bt.source as { object?: string } | string | null;
+        const enrich = src && typeof src === "object" && src.object === "charge"
+          ? await chargeEnrichment(src as unknown as Stripe.Charge)
+          : enrichFromSource(bt.source);
+        await upsertBalanceTransaction(bt, { ...enrich, event_id: null });
+      }
     } else if (resource === "subscriptions") {
       const list = await stripe.subscriptions.list({ ...params, status: "all", expand: ["data.items.data.price"] });
       items = list.data; hasMore = list.has_more;
