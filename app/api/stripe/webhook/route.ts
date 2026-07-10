@@ -5,7 +5,7 @@ import { getStripe, stripeConfigured } from "@/lib/stripe";
 import {
   claimEvent, markEventProcessed, markEventFailed,
   recordCharge, recordRefund, upsertSubscription, upsertPayout, upsertDispute,
-  upsertFailedPayment, recordSubscriptionChange, getStoredSubscription,
+  upsertFailedPayment, recordSubscriptionChange, getStoredSubscription, reclassifyCustomerCharges,
 } from "@/lib/stripeFinance";
 
 export const runtime = "nodejs";
@@ -81,14 +81,18 @@ async function handleFinanceEvent(event: Stripe.Event) {
     }
     case "customer.subscription.created": {
       const sub = event.data.object as Stripe.Subscription;
+      const customerId = typeof sub.customer === "string" ? sub.customer : sub.customer.id;
       const { tier, mrr } = await upsertSubscription(sub);
+      await reclassifyCustomerCharges(customerId, sub.id);
       await recordSubscriptionChange({ subscription_id: sub.id, change_type: "new", to_tier: tier, from_mrr: 0, to_mrr: mrr, livemode: sub.livemode, event_id: event.id });
       break;
     }
     case "customer.subscription.updated": {
       const sub = event.data.object as Stripe.Subscription;
+      const customerId = typeof sub.customer === "string" ? sub.customer : sub.customer.id;
       const prev = await getStoredSubscription(sub.id);
       const { tier, mrr } = await upsertSubscription(sub);
+      await reclassifyCustomerCharges(customerId, sub.id);
       if (sub.status === "canceled") {
         await recordSubscriptionChange({ subscription_id: sub.id, change_type: "canceled", from_tier: prev?.tier, to_tier: tier, from_mrr: prev?.mrr_amount ?? 0, to_mrr: 0, livemode: sub.livemode, event_id: event.id });
       } else if (prev) {

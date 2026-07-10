@@ -191,6 +191,22 @@ export async function upsertSubscription(subIn: Stripe.Subscription): Promise<{ 
   return { tier, mrr };
 }
 
+/**
+ * Fix charges that were recorded before their subscription was synced (webhook
+ * POSTs for charge.succeeded and subscription.created race). Relabels a
+ * customer's UNCLASSIFIED charges (no subscription, no tier) as recurring.
+ * Genuine one-time charges carry a tier from metadata, so they're left alone.
+ */
+export async function reclassifyCustomerCharges(customerId: string | null, subscriptionId: string) {
+  if (!customerId) return;
+  const s = getSupabaseAdminClient();
+  const { data: sub } = await s.from("stripe_subscriptions").select("id, tier, product_id, price_id").eq("id", subscriptionId).maybeSingle();
+  if (!sub) return;
+  await s.from("stripe_transactions")
+    .update({ billing_type: "recurring", subscription_id: sub.id, tier: sub.tier, product_id: sub.product_id, price_id: sub.price_id, synced_at: now() })
+    .eq("customer_id", customerId).eq("type", "charge").is("subscription_id", null).is("tier", null);
+}
+
 export async function recordSubscriptionChange(entry: { subscription_id: string; change_type: string; from_tier?: string | null; to_tier?: string | null; from_mrr?: number | null; to_mrr?: number | null; livemode: boolean; event_id?: string | null }) {
   await getSupabaseAdminClient().from("subscription_changes").insert({
     subscription_id: entry.subscription_id, change_type: entry.change_type, from_tier: entry.from_tier ?? null, to_tier: entry.to_tier ?? null,
