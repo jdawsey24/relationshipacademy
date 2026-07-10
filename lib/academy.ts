@@ -42,6 +42,8 @@ export interface Profile {
   stripe_customer_id?: string | null;
   stripe_subscription_id?: string | null;
   subscription_status?: string | null;
+  // Institute professional access (migration 0014).
+  is_professional?: boolean | null;
 }
 
 export interface Course {
