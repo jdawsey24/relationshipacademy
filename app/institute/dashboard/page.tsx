@@ -45,6 +45,17 @@ export default async function InstituteDashboardPage() {
         </p>
       </header>
 
+      {/* Live workshops */}
+      <section className="mt-8">
+        <Link href="/institute/live" className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-midnight-navy px-6 py-5 text-white transition-colors hover:bg-midnight-navy/90">
+          <div>
+            <p className="font-display text-lg font-semibold">Live Workshops</p>
+            <p className="font-body text-sm text-white/75">Join live professional sessions and watch replays.</p>
+          </div>
+          <span className="font-ui text-sm">Open →</span>
+        </Link>
+      </section>
+
       {/* Explore offerings */}
       <section className="mt-10">
         <h2 className="font-display text-xl font-semibold text-midnight-navy">Explore the Institute</h2>
