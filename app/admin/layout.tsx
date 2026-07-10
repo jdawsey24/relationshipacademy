@@ -28,6 +28,7 @@ const NAV_GROUPS: NavItem[][] = [
     { label: "Media Library", href: "/admin/media" },
   ],
   [
+    { label: "Finance", href: "/admin/finance", ownerOnly: true },
     { label: "Security", href: "/admin/security" },
     { label: "Users & Permissions", href: "/admin/users", ownerOnly: true },
     { label: "Audit Log", href: "/admin/audit", ownerOnly: true },
