@@ -88,6 +88,8 @@ export interface FinanceSummary {
   disputes: { count: number; amount: Cents };
   // Revenue by product (in range)
   byProduct: { tier: string; label: string; amount: Cents; billing_type: string }[];
+  // Revenue over time (bucketed across the range)
+  timeseries: { date: string; label: string; gross: Cents; net: Cents }[];
   // Recent activity
   recentTransactions: TransactionRow[];
   // Sync/reconciliation status
