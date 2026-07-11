@@ -85,6 +85,32 @@ export async function GET(request: Request) {
   const lastSyncedAt = tx.reduce<string | null>((m, t) => (t.synced_at && (!m || t.synced_at > m) ? t.synced_at : m), null);
   const currency = tx.find((t) => t.currency)?.currency ?? "usd";
 
+  // Revenue over time — bucket the range (daily ≤62d, weekly ≤370d, else monthly).
+  const spanDays = Math.max(1, Math.ceil(span / 86400000));
+  const gran: "day" | "week" | "month" = spanDays <= 62 ? "day" : spanDays <= 370 ? "week" : "month";
+  const keyOf = (d: Date) => {
+    if (gran === "day") return d.toISOString().slice(0, 10);
+    if (gran === "week") { const w = new Date(d); w.setUTCDate(w.getUTCDate() - w.getUTCDay()); return w.toISOString().slice(0, 10); }
+    return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+  };
+  const labelOf = (k: string) => gran === "month"
+    ? new Date(k + "-01T00:00:00Z").toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })
+    : new Date(k + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+  const buckets = new Map<string, { gross: number; net: number }>();
+  for (let d = new Date(from); d <= to; ) {
+    buckets.set(keyOf(d), { gross: 0, net: 0 });
+    if (gran === "day") d.setUTCDate(d.getUTCDate() + 1);
+    else if (gran === "week") d.setUTCDate(d.getUTCDate() + 7);
+    else d.setUTCMonth(d.getUTCMonth() + 1);
+  }
+  for (const t of tx.filter((t) => inWin(t, from, to))) {
+    const b = buckets.get(keyOf(new Date(t.created!)));
+    if (!b) continue;
+    if (t.type === "charge") b.gross += t.amount_gross;
+    b.net += t.amount_net;
+  }
+  const timeseries = [...buckets.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([k, v]) => ({ date: k, label: labelOf(k), gross: v.gross, net: v.net }));
+
   const summary: FinanceSummary = {
     livemode: lm,
     range: { from: from.toISOString(), to: to.toISOString() },
@@ -112,6 +138,7 @@ export async function GET(request: Request) {
     failedPayments: (failRes.data ?? []).length,
     disputes: { count: (dispRes.data ?? []).length, amount: (dispRes.data ?? []).reduce((n: number, d: { amount?: number }) => n + (d.amount ?? 0), 0) },
     byProduct: [...prodMap.values()].map((p) => ({ tier: p.tier, label: tierLabel(p.tier), amount: p.amount, billing_type: p.billing_type })),
+    timeseries,
     recentTransactions: [...tx].sort((a, b) => (b.created ?? "").localeCompare(a.created ?? "")).slice(0, 20).map((t) => ({
       balance_transaction_id: t.balance_transaction_id, created: t.created, type: t.type, billing_type: t.billing_type,
       tier: t.tier, email: t.email, amount_gross: t.amount_gross, fee: t.fee, amount_net: t.amount_net, currency: t.currency,
