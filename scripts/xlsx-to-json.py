@@ -300,6 +300,67 @@ def main():
             seen.add((cat, val)); out.append({"category": cat, "value": val, "code": s(r.get("Code")), "sort_order": 1000 + i})
     write("lookups.json", out)
 
+    # --- Phase C: learning library ---------------------------------------
+    def slug_domain(v):
+        return DOMAIN_SLUG.get(s(v) or "", None)
+
+    LEARNING = [
+        {"file": "practices.json", "sheet": "08_Practice_Library", "idwb": "Practice ID", "pk": "practice_id",
+         "fields": {"name": "Practice Name", "competency_id": "Competency ID", "audience": "Audience",
+                    "practice_type": "Practice Type", "instructions": "Instructions", "reflection_prompt": "Reflection Prompt",
+                    "estimated_duration": "Estimated Duration", "recommended_frequency": "Recommended Frequency",
+                    "success_indicators": "Success Indicators"}},
+        {"file": "activities.json", "sheet": "09_Experiential_Activities", "idwb": "Activity ID", "pk": "activity_id",
+         "fields": {"name": "Activity Name", "competency_id": "Competency ID", "audience": "Audience",
+                    "activity_type": "Activity Type", "materials_needed": "Materials Needed",
+                    "facilitator_instructions": "Facilitator Instructions", "participant_instructions": "Participant Instructions",
+                    "debrief_questions": "Debrief Questions", "success_indicators": "Success Indicators"}},
+        {"file": "interventions.json", "sheet": "07_Intervention_Registry", "idwb": "Intervention ID", "pk": "intervention_id",
+         "fields": {"name": "Intervention Name", "competency_id": "Competency ID", "audience": "Audience",
+                    "category": "Intervention Category", "delivery_format": "Delivery Format", "overview": "Intervention Overview",
+                    "difficulty": "Difficulty", "estimated_duration": "Estimated Duration",
+                    "facilitator_instructions": "Facilitator Instructions", "participant_instructions": "Participant Instructions",
+                    "homework": "Homework", "debrief_questions": "Debrief Questions", "success_indicators": "Success Indicators"}},
+        {"file": "worksheets.json", "sheet": "10_Worksheet_Library", "idwb": "Worksheet ID", "pk": "worksheet_id",
+         "fields": {"title": "Title", "competency_id": "Competency ID", "audience": "Audience", "purpose": "Purpose", "location": "Location"}},
+        {"file": "conversation_guides.json", "sheet": "11_Conversation_Guides", "idwb": "Guide ID", "pk": "guide_id",
+         "fields": {"title": "Title", "competency_id": "Competency ID", "audience": "Audience", "purpose": "Purpose", "location": "Location"}},
+        {"file": "journal_prompts.json", "sheet": "12_Journal_Prompts", "idwb": "Prompt ID", "pk": "prompt_id",
+         "fields": {"title": "Title", "prompt": "Prompt", "competency_id": "Competency ID", "audience": "Audience", "use_case": "Use Case"}},
+        {"file": "videos.json", "sheet": "13_Video_Library", "idwb": "Video ID", "pk": "video_id",
+         "fields": {"title": "Title", "competency_id": "Competency ID", "audience": "Audience",
+                    "video_type": "Video Type", "learning_objective": "Learning Objective", "location": "Location"}},
+        {"file": "lessons.json", "sheet": "14_Academy_Lessons", "idwb": "Lesson ID", "pk": "lesson_id",
+         "fields": {"title": "Lesson Title", "course_id": "Course ID", "competency_ids": "Competency ID(s)", "audience": "Audience",
+                    "learning_objective": "Learning Objective", "content_type": "Content Type"}},
+        {"file": "courses.json", "sheet": "30_Courses", "idwb": "Course ID", "pk": "course_id",
+         "fields": {"name": "Course Name", "description": "Description", "version": "Version"}},
+        {"file": "behavioral_indicators.json", "sheet": "05_Behavioral_Indicators", "idwb": "Behavior ID", "pk": "behavior_id", "status": "active",
+         "fields": {"competency_id": "Competency ID", "competency": "Competency", "indicator": "Behavioral Indicator",
+                    "evidence_level": "Evidence Level", "observable_notes": "Observable Notes"}},
+        {"file": "incomplete_indicators.json", "sheet": "06_Incomplete_Indicators", "idwb": "Indicator ID", "pk": "indicator_id", "status": "active",
+         "fields": {"competency_id": "Competency ID", "competency": "Competency",
+                    "indicator": "Observable Indicator of Incomplete Development", "notes": "Notes"}},
+    ]
+    for cfg in LEARNING:
+        _, data = sheet_rows(KB, cfg["sheet"])
+        rows_out = []
+        for r in data:
+            rid = s(r.get(cfg["idwb"]))
+            if not rid:
+                continue
+            row = {cfg["pk"]: rid}
+            for db, wb in cfg["fields"].items():
+                row[db] = s(r.get(wb))
+            if "Phase" in r:
+                row["phase"] = phase_slug(r.get("Phase"))
+            if "Domain" in r:
+                row["domain"] = slug_domain(r.get("Domain"))
+            row["status"] = cfg.get("status", "draft")
+            row["detail"] = {k: (str(v).strip() if v is not None else None) for k, v in r.items()}
+            rows_out.append(row)
+        write(cfg["file"], rows_out)
+
     print("Done.")
 
 
