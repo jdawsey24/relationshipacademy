@@ -52,7 +52,12 @@ async function main() {
   const { data: existingR } = await s.from("studio_result_recommendations").select("trigger_type, trigger_value");
   const knownR = new Set((existingR ?? []).map((r) => `${(r as { trigger_type: string }).trigger_type}::${(r as { trigger_value: string }).trigger_value}`));
   const recs = (live ?? [])
-    .filter((r) => !knownR.has(`${(r as { trigger_type: string }).trigger_type}::${(r as { trigger_value: string }).trigger_value}`))
+    // Skip malformed live rows (e.g. the dormant "Elevated Risk" row has a null
+    // trigger_value and was never consumed by results); NOT NULL would reject them.
+    .filter((r) => {
+      const x = r as { trigger_type?: string | null; trigger_value?: string | null };
+      return x.trigger_type && x.trigger_value && !knownR.has(`${x.trigger_type}::${x.trigger_value}`);
+    })
     .map((r) => ({ ...(r as object), status: "published", audience: "consumer" }));
   if (recs.length) {
     const { error: e } = await s.from("studio_result_recommendations").insert(recs);
