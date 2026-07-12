@@ -106,6 +106,7 @@ export interface KbCompetency {
   name: string;
   definition: string | null;
   developmental_task: string | null;
+  purpose?: string | null;
   healthy_markers: string[];
   common_challenges: string[];
   growth_indicators: string[];
@@ -114,6 +115,7 @@ export interface KbCompetency {
   source_ref: string | null;
   notes: string | null;
   sort_order: number;
+  detail?: Record<string, unknown>; // full 62-field competency profile (Phase B import)
   created_at?: string;
   updated_at?: string;
 }

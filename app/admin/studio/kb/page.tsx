@@ -20,6 +20,7 @@ export default function KbBrowserPage() {
   const [error, setError] = useState(false);
   const [filter, setFilter] = useState({ kind: "", status: "" });
   const [editing, setEditing] = useState<Partial<KbCompetency> | null>(null);
+  const [viewing, setViewing] = useState<KbCompetency | null>(null);
 
   const load = useCallback(() => {
     const qs = new URLSearchParams();
@@ -77,7 +78,7 @@ export default function KbBrowserPage() {
             <tbody>
               {rows.map((r, i) => (
                 <tr key={r.id} className={i % 2 ? "bg-[#F9F9F9]" : "bg-white"}>
-                  <td className="px-3 py-2 font-medium">{r.name}{r.code && <span className="ml-1 text-xs text-charcoal/40">{r.code}</span>}</td>
+                  <td className="px-3 py-2 font-medium"><button onClick={() => setViewing(r)} className="text-left text-midnight-navy hover:underline">{r.name}</button>{r.code && <span className="ml-1 text-xs text-charcoal/40">{r.code}</span>}</td>
                   <td className="px-3 py-2 capitalize">{r.kind}</td>
                   <td className="px-3 py-2 text-charcoal/60">{r.phase_slug || r.domain_slug || r.competency_phase_slug || "—"}</td>
                   <td className="px-3 py-2 text-charcoal/60">{(r.audiences ?? []).join(", ") || "—"}</td>
@@ -96,6 +97,55 @@ export default function KbBrowserPage() {
       )}
 
       {editing && <KbEditor draft={editing} onClose={() => setEditing(null)} onSaved={() => { setEditing(null); load(); }} />}
+      {viewing && <KbDetailDrawer row={viewing} onClose={() => setViewing(null)} onEdit={() => { setEditing(viewing); setViewing(null); }} canWrite={canWrite} />}
+    </div>
+  );
+}
+
+// Read-only rich profile of a competency (the imported 62-field detail).
+function KbDetailDrawer({ row, onClose, onEdit, canWrite }: { row: KbCompetency; onClose: () => void; onEdit: () => void; canWrite: boolean }) {
+  const detail = (row.detail ?? {}) as Record<string, unknown>;
+  const get = (k: string) => { const v = detail[k]; return v == null || v === "" ? null : String(v); };
+  // Fields worth surfacing from the 62-field profile, in reading order.
+  const SECTIONS: [string, string[]][] = [
+    ["Definition & purpose", ["Definition", "Purpose", "Developmental Significance"]],
+    ["Assessment", ["Assessment Intent", "Item Writing Considerations", "Interpretation Notes"]],
+    ["Developmental continuum", ["Continuum - Emerging", "Continuum - Developing", "Continuum - Competent", "Continuum - Advanced", "Continuum - Mastery"]],
+    ["Application", ["Clinical Applications", "Educational Applications", "Coaching Considerations", "Facilitation Notes"]],
+    ["Safety", ["Contraindications", "Cautions", "Suppression or Safety Logic", "Escalation Logic", "Public or Clinical Boundary"]],
+    ["Links", ["Behavioral Indicator IDs", "Recommended Practice IDs", "Linked Activity IDs", "Linked Worksheet IDs", "Linked Lesson IDs", "Related Competency IDs"]],
+    ["Source", ["Source Document", "Source Chapter", "Source Construct", "Source Version"]],
+  ];
+  const list = (arr?: string[]) => (arr && arr.length ? <ul className="mt-1 list-disc pl-5 text-sm text-charcoal/80">{arr.map((x, i) => <li key={i}>{x}</li>)}</ul> : null);
+
+  return (
+    <div className="fixed inset-0 z-50 flex justify-end bg-black/30" onClick={onClose}>
+      <div className="h-full w-full max-w-xl overflow-y-auto bg-white p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
+        <div className="mb-3 flex items-start justify-between">
+          <div>
+            <h2 className="text-xl font-semibold text-midnight-navy">{row.name}</h2>
+            <p className="text-xs text-charcoal/50">{row.kind} · {row.code} · {[row.phase_slug, row.domain_slug].filter(Boolean).join(" / ") || "—"}</p>
+          </div>
+          <button onClick={onClose} className="text-sm text-charcoal/50 hover:text-midnight-navy">Close ✕</button>
+        </div>
+        {row.developmental_task && <p className="mb-2 text-sm"><span className="font-semibold">Developmental task:</span> {row.developmental_task}</p>}
+        {(row.healthy_markers?.length > 0) && <div className="mb-3"><span className="text-sm font-semibold text-charcoal">Observable expressions</span>{list(row.healthy_markers)}</div>}
+
+        {SECTIONS.map(([heading, keys]) => {
+          const present = keys.map((k) => [k, get(k)] as const).filter(([, v]) => v);
+          if (present.length === 0) return null;
+          return (
+            <div key={heading} className="mb-4 border-t border-light-gray pt-3">
+              <h3 className="mb-1 text-sm font-semibold uppercase tracking-wide text-charcoal/60">{heading}</h3>
+              {present.map(([k, v]) => (
+                <p key={k} className="mb-1.5 text-sm text-charcoal/80"><span className="font-medium">{k.replace(/^Continuum - /, "")}:</span> {v}</p>
+              ))}
+            </div>
+          );
+        })}
+
+        {canWrite && <button onClick={onEdit} className="mt-2 rounded-md bg-midnight-navy px-4 py-1.5 text-sm font-medium text-white">Edit</button>}
+      </div>
     </div>
   );
 }
