@@ -34,13 +34,26 @@ async function upsert(table: string, rows: Record<string, unknown>[], onConflict
   console.log(`  ${table}: upserted ${done}`);
 }
 
+// kb rows are heterogeneous (domains/phases/competencies carry different keys).
+// PostgREST fills any key missing from a row in the batch with NULL rather than
+// the column default, so ensure every NOT NULL column is present on every row.
+function normalizeKb(rows: Record<string, unknown>[]): Record<string, unknown>[] {
+  return rows.map((r) => ({
+    code: null, kind: "competency", phase_slug: null, domain_slug: null, competency_phase_slug: null,
+    name: null, definition: null, developmental_task: null, purpose: null,
+    healthy_markers: [], common_challenges: [], growth_indicators: [], audiences: [],
+    status: "active", source_ref: null, notes: null, sort_order: 0, detail: {},
+    ...r,
+  }));
+}
+
 async function main() {
   // Remove Phase A placeholder domain rows (real domains come in as DOM-00x).
   const { error: delErr } = await s.from("kb_competencies").delete().like("code", "DOMAIN-%");
   if (delErr) { console.error("delete placeholders failed:", delErr.message); process.exit(1); }
   console.log("removed placeholder DOMAIN-% rows");
 
-  await upsert("kb_competencies", load("kb_competencies.json"), "code");
+  await upsert("kb_competencies", normalizeKb(load("kb_competencies.json")), "code");
   await upsert("studio_assessments", load("assessments.json"), "assessment_id");
   await upsert("studio_response_models", load("response_models.json"), "response_model_id");
   await upsert("studio_scoring_rules", load("scoring_rules.json"), "scoring_rule_id");
