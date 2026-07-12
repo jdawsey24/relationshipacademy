@@ -121,9 +121,12 @@ begin
     execute format('create index if not exists %I on public.%I (status)', t||'_status_idx', t);
     execute format('alter table public.%I enable row level security', t);
   end loop;
+  -- competency_id index only on the single-competency tables. studio_courses is
+  -- keyed by domain/phase; studio_lessons uses competency_ids (plural) — neither
+  -- has a competency_id column.
   foreach t in array array[
     'studio_interventions','studio_practices','studio_activities','studio_worksheets',
-    'studio_conversation_guides','studio_journal_prompts','studio_videos','studio_lessons',
+    'studio_conversation_guides','studio_journal_prompts','studio_videos',
     'studio_behavioral_indicators','studio_incomplete_indicators'
   ] loop
     execute format('create index if not exists %I on public.%I (competency_id)', t||'_competency_idx', t);
