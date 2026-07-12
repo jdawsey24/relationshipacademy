@@ -8,13 +8,15 @@ import { usePathname } from "next/navigation";
 const TABS = [
   { label: "Registry", href: "/admin/studio", match: ["/admin/studio"] },
   { label: "Knowledge Base", href: "/admin/studio/kb", match: ["/admin/studio/kb"] },
+  { label: "Assessments", href: "/admin/studio/assessment", match: ["/admin/studio/assessment"] },
 ];
 
 export default function StudioTabs() {
   const pathname = usePathname();
   function active(t: (typeof TABS)[number]) {
-    // Registry is only active on the exact page (or object/preview workspaces);
-    // KB owns its own subtree.
+    // KB + Assessments own their own subtrees; Registry covers the root plus the
+    // object/preview workspaces.
+    if (t.href === "/admin/studio/assessment") return pathname.startsWith("/admin/studio/assessment");
     if (t.href === "/admin/studio/kb") return pathname.startsWith("/admin/studio/kb");
     return pathname === "/admin/studio" || pathname.startsWith("/admin/studio/objects") || pathname.startsWith("/admin/studio/preview");
   }
