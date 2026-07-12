@@ -66,6 +66,7 @@ export interface AssessmentItem {
   reading_level: string | null;
   scoring_direction: string | null;
   status: StudioStatus;
+  provenance?: string;
   updated_by: string | null;
   updated_at: string;
 }
