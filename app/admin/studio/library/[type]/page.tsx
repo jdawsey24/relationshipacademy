@@ -6,6 +6,7 @@ import StudioTabs from "@/components/admin/StudioTabs";
 import LibraryNav from "@/components/admin/LibraryNav";
 import StudioStatusBadge from "@/components/admin/StudioStatusBadge";
 import GenericRowEditor from "@/components/admin/GenericRowEditor";
+import AiGenerateModal from "@/components/admin/AiGenerateModal";
 import { useAdminRole, useCanWrite } from "@/components/admin/RoleContext";
 import { LEARNING_TABLES, isLibraryType } from "@/lib/studioLibrary";
 import { DOMAIN_SLUGS, PHASE_SLUGS, domainLabel } from "@/lib/studioAssessment";
@@ -35,6 +36,7 @@ export default function LibraryTypePage() {
   const [comps, setComps] = useState<{ id: string; name: string }[]>([]);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [editing, setEditing] = useState<Row | null>(null);
+  const [showGen, setShowGen] = useState(false);
 
   const load = useCallback(() => {
     if (!valid) return;
@@ -108,6 +110,7 @@ export default function LibraryTypePage() {
           {STATUSES.map((s) => <option key={s} value={s}>{STATUS_LABELS[s]}</option>)}
         </select>
         <input value={filters.search} onChange={(e) => setFilter("search", e.target.value)} placeholder="Search…" className={`${INP} min-w-[160px] flex-1`} />
+        {canWrite && c.generatable && <button onClick={() => setShowGen(true)} className="rounded-md border border-dusty-plum px-3 py-1.5 text-sm font-medium text-dusty-plum hover:bg-dusty-plum/5">Generate with AI</button>}
       </div>
 
       {msg && <div className="mb-3 rounded-md bg-sage-green/10 px-3 py-2 text-sm text-sage-green">{msg}</div>}
@@ -143,7 +146,7 @@ export default function LibraryTypePage() {
                       {canWrite && <td className="px-2 py-2 align-top"><input type="checkbox" checked={selected.has(id)} onChange={() => toggle(id)} /></td>}
                       <td className="px-3 py-2">
                         <button onClick={() => setEditing(r)} className="text-left font-medium text-midnight-navy hover:underline">{String(r[c.labelCol] ?? "—")}</button>
-                        <span className="block text-[11px] text-charcoal/40">{id}</span>
+                        <span className="block text-[11px] text-charcoal/40">{id}{r.provenance === "ai_generated" && <span className="ml-1 rounded bg-dusty-plum/15 px-1 py-0.5 font-semibold uppercase text-dusty-plum">AI</span>}</span>
                       </td>
                       {c.competencyCol && <td className="px-3 py-2 text-charcoal/60">{String(r[c.competencyCol] ?? "—")}</td>}
                       <td className="px-3 py-2 text-charcoal/60 whitespace-nowrap">{domainLabel(String(r.domain ?? ""))}<span className="block text-[11px] text-charcoal/40">{domainLabel(String(r.phase ?? ""))}</span></td>
@@ -168,6 +171,26 @@ export default function LibraryTypePage() {
       )}
 
       {editing && <GenericRowEditor apiBase={`/api/admin/studio/library/${type}`} pk={c.pk} row={editing} canWrite={canWrite} onClose={() => setEditing(null)} onSaved={() => { setEditing(null); load(); }} />}
+      {showGen && (
+        <AiGenerateModal
+          title={`Generate ${c.label.replace(/s$/, "").toLowerCase()} with AI`}
+          subtitle={`Claude drafts one ${c.label.replace(/s$/, "").toLowerCase()} grounded in the competency.`}
+          competencies={comps}
+          onClose={() => setShowGen(false)}
+          onGenerate={async (competency_id, _count, instructions) => {
+            const res = await fetch(`/api/admin/studio/library/${type}/generate`, {
+              method: "POST", headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ competency_id, instructions }),
+            });
+            const d = await res.json().catch(() => ({}));
+            if (!res.ok) return d.error ?? "Failed.";
+            setShowGen(false);
+            setMsg("Generated a draft — review and approve it below.");
+            setFilter("competency_id", competency_id);
+            return null;
+          }}
+        />
+      )}
     </div>
   );
 }
