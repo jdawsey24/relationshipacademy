@@ -10,6 +10,7 @@ const TABS = [
   { label: "Knowledge Base", href: "/admin/studio/kb", match: ["/admin/studio/kb"] },
   { label: "Assessments", href: "/admin/studio/assessment", match: ["/admin/studio/assessment"] },
   { label: "Library", href: "/admin/studio/library", match: ["/admin/studio/library"] },
+  { label: "Assets", href: "/admin/studio/assets", match: ["/admin/studio/assets"] },
 ];
 
 export default function StudioTabs() {
@@ -17,6 +18,7 @@ export default function StudioTabs() {
   function active(t: (typeof TABS)[number]) {
     // KB + Assessments own their own subtrees; Registry covers the root plus the
     // object/preview workspaces.
+    if (t.href === "/admin/studio/assets") return pathname.startsWith("/admin/studio/assets");
     if (t.href === "/admin/studio/library") return pathname.startsWith("/admin/studio/library");
     if (t.href === "/admin/studio/assessment") return pathname.startsWith("/admin/studio/assessment");
     if (t.href === "/admin/studio/kb") return pathname.startsWith("/admin/studio/kb");

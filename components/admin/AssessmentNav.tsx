@@ -10,7 +10,8 @@ const LINKS = [
   { label: "Scoring Rules", href: "/admin/studio/assessment/scoring-rules" },
   { label: "Interpretation", href: "/admin/studio/assessment/interpretation-rules" },
   { label: "Results Templates", href: "/admin/studio/assessment/results-templates" },
-  { label: "Recommendations", href: "/admin/studio/assessment/recommendation-mappings" },
+  { label: "Rec Mappings (KB)", href: "/admin/studio/assessment/recommendation-mappings" },
+  { label: "Result Recs (live)", href: "/admin/studio/assessment/recommendations" },
 ];
 
 export default function AssessmentNav() {

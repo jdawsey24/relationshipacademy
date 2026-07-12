@@ -245,6 +245,26 @@ export async function GET(request: Request) {
     })
     .filter((x): x is RecommendationView => x !== null);
 
+  // Additive triggers (Studio Recommendation Mapper). Backward-compatible: these
+  // only add entries when matching rows exist, so existing "Domain Low" behavior
+  // is unchanged. Phase → keyed by the respondent's structural phase slug; Risk →
+  // keyed by the expiration risk level.
+  for (const rec of recommendationsRes.data ?? []) {
+    if (rec.trigger_type === "Phase" && rec.trigger_value === structuralSlug) {
+      recommendations.push({
+        domain: consumerName || structuralPhase?.name || "Your phase",
+        recommendation_text: rec.recommendation_text,
+        next_step: rec.next_step,
+      });
+    } else if (rec.trigger_type === "Risk" && expiration_risk?.risk_level && rec.trigger_value === expiration_risk.risk_level) {
+      recommendations.push({
+        domain: expiration_risk.title || expiration_risk.risk_level,
+        recommendation_text: rec.recommendation_text,
+        next_step: rec.next_step,
+      });
+    }
+  }
+
   const body: ResultsResponse = {
     session_id: sessionId,
     name: sessionRes.data.name ?? "",
