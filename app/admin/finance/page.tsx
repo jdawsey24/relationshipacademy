@@ -26,7 +26,7 @@ function deltaBits(d: DeltaMetric): { text: string; up: boolean | null } {
 }
 
 export default function FinanceDashboard() {
-  const [livemode, setLivemode] = useState(false);
+  const [livemode, setLivemode] = useState(true);
   const [from, setFrom] = useState(startOfMonth());
   const [to, setTo] = useState(new Date().toISOString());
   const [sum, setSum] = useState<FinanceSummary | null>(null);
@@ -92,8 +92,8 @@ export default function FinanceDashboard() {
       {err && <p className="rounded-md bg-coral-rose/10 px-4 py-3 text-sm text-coral-rose">{err}</p>}
       {loading && !sum ? <p className="text-sm text-charcoal/60">Loading…</p> : sum && (
         <div className="space-y-6">
-          {livemode && sum.recentTransactions.length === 0 && (
-            <p className="rounded-md bg-amber-50 px-4 py-2 text-sm text-amber-800">No live data yet — Stripe is in test mode. Switch to Test to see current activity.</p>
+          {sum.activeSubs === 0 && sum.recentTransactions.length === 0 && sum.newSubs.current === 0 && sum.cancellations.current === 0 && (
+            <p className="rounded-md bg-warm-ivory px-4 py-2 text-sm text-charcoal/60">No {livemode ? "live" : "test"} activity in this date range yet.{livemode ? " Run a backfill below to import Stripe history." : ""}</p>
           )}
 
           {/* Hero numbers */}
