@@ -128,3 +128,75 @@ export async function assembleItemContext(p: ItemContextParams): Promise<Assembl
   if (contextText.length > MAX_CONTEXT) contextText = contextText.slice(0, MAX_CONTEXT) + "\n…[context truncated]";
   return { contextText, sources };
 }
+
+export interface ContentContextParams {
+  competency_id: string;
+  includePractices?: boolean;
+  includeInterventions?: boolean;
+}
+
+// Context for content generation (worksheets/lessons). Same approved-only,
+// retired-excluded, injection-safe rules; richer competency fields + optional
+// related practices/interventions + existing worksheets (for dedup awareness).
+export async function assembleContentContext(p: ContentContextParams): Promise<AssembledContext> {
+  const s = getSupabaseAdminClient();
+  const sources: SourceSnapshot[] = [];
+  const blocks: string[] = [];
+
+  const { data: comp } = await s
+    .from("kb_competencies")
+    .select("code, name, definition, developmental_task, purpose, detail, status, domain_slug, phase_slug")
+    .eq("code", p.competency_id)
+    .eq("kind", "competency")
+    .maybeSingle();
+  if (!comp) throw new Error(`Competency ${p.competency_id} not found.`);
+  const c = comp as { code: string; name: string; definition: string | null; developmental_task: string | null; purpose: string | null; detail: Record<string, unknown>; status: string; domain_slug: string | null; phase_slug: string | null };
+  if (c.status !== "active") throw new Error("That competency is retired — retired records are excluded from retrieval.");
+  const d = c.detail ?? {};
+  const dv = (k: string) => clean(d[k]);
+  sources.push({ source_entity_type: "kb_competency", source_entity_id: c.code, source_version: clean(d["Version"]) || null, source_status: c.status, source_snapshot: { name: c.name } });
+  blocks.push(
+    `[COMPETENCY ${c.code}] ${c.name} (domain: ${c.domain_slug}, phase: ${c.phase_slug})\n` +
+    [
+      c.definition ? `Definition: ${clean(c.definition)}` : "",
+      c.developmental_task ? `Developmental task: ${clean(c.developmental_task)}` : "",
+      c.purpose || dv("Purpose") ? `Purpose: ${clean(c.purpose) || dv("Purpose")}` : "",
+      dv("Developmental Significance") ? `Developmental significance: ${dv("Developmental Significance")}` : "",
+      dv("Expected Developmental Application") ? `Expected application: ${dv("Expected Developmental Application")}` : "",
+      dv("Common Developmental Barriers") ? `Developmental barriers: ${dv("Common Developmental Barriers")}` : "",
+      dv("Coaching Considerations") ? `Coaching: ${dv("Coaching Considerations")}` : "",
+      dv("Facilitation Notes") ? `Facilitation notes: ${dv("Facilitation Notes")}` : "",
+      dv("Consumer Translation") ? `Consumer translation: ${dv("Consumer Translation")}` : "",
+      dv("Suppression or Safety Logic") ? `Safety/suppression: ${dv("Suppression or Safety Logic")}` : "",
+    ].filter(Boolean).join("\n")
+  );
+
+  const { data: inds } = await s.from("studio_behavioral_indicators").select("behavior_id, indicator, status").eq("competency_id", p.competency_id).neq("status", "retired");
+  const indLines: string[] = [];
+  for (const r of inds ?? []) {
+    const x = r as { behavior_id: string; indicator: string; status: string };
+    sources.push({ source_entity_type: "behavioral_indicator", source_entity_id: x.behavior_id, source_version: null, source_status: x.status, source_snapshot: { indicator: x.indicator } });
+    indLines.push(`- ${x.behavior_id}: ${clean(x.indicator)}`);
+  }
+  if (indLines.length) blocks.push(`[BEHAVIORAL INDICATORS]\n${indLines.join("\n")}`);
+
+  async function relatedBlock(table: string, idCol: string, textCols: string[], label: string) {
+    const { data } = await s.from(table).select(`${idCol}, ${textCols.join(", ")}, status`).eq("competency_id", p.competency_id).neq("status", "retired").limit(5);
+    const lines: string[] = [];
+    for (const r of (data ?? []) as unknown[]) {
+      const rr = r as Record<string, unknown>;
+      const id = String(rr[idCol]);
+      const text = textCols.map((tc) => clean(rr[tc])).filter(Boolean).join(" — ");
+      sources.push({ source_entity_type: label, source_entity_id: id, source_version: null, source_status: String(rr.status), source_snapshot: { text } });
+      lines.push(`- ${id}: ${text}`);
+    }
+    if (lines.length) blocks.push(`[${label.toUpperCase()}]\n${lines.join("\n")}`);
+  }
+  if (p.includeInterventions) await relatedBlock("studio_interventions", "intervention_id", ["name", "overview"], "intervention");
+  if (p.includePractices) await relatedBlock("studio_practices", "practice_id", ["name", "instructions"], "practice");
+  await relatedBlock("studio_worksheets", "worksheet_id", ["title", "purpose"], "existing_worksheet");
+
+  let contextText = blocks.join("\n\n");
+  if (contextText.length > MAX_CONTEXT) contextText = contextText.slice(0, MAX_CONTEXT) + "\n…[context truncated]";
+  return { contextText, sources };
+}

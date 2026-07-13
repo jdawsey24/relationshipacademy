@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import AiStudioNav from "@/components/admin/AiStudioNav";
 import AiStatusBadge from "@/components/admin/AiStatusBadge";
+import AiContentReview from "@/components/admin/AiContentReview";
 import type { ItemDraft, QualityCheck, DuplicateMatch } from "@/lib/ai/types";
 
 const VIEWS = [["queue", "Open"], ["approved", "Approved"], ["rejected", "Rejected"], ["history", "All"]] as const;
@@ -13,6 +14,8 @@ export default function AiReviewQueuePage() {
   const [err, setErr] = useState<string | null>(null);
   const [open, setOpen] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
+  const [mode, setMode] = useState<"items" | "content">("items");
+  useEffect(() => { if (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("type") === "content") setMode("content"); }, []);
 
   const load = useCallback(() => {
     fetch(`/api/admin/ai/drafts?view=${view}`)
@@ -25,12 +28,20 @@ export default function AiReviewQueuePage() {
   return (
     <div>
       <AiStudioNav />
+      <div className="mb-4 inline-flex rounded-md border border-light-gray p-0.5">
+        {(["items", "content"] as const).map((m) => (
+          <button key={m} onClick={() => setMode(m)} className={`rounded px-3 py-1.5 text-sm capitalize ${mode === m ? "bg-midnight-navy text-white" : "text-charcoal/70"}`}>{m === "items" ? "Assessment items" : "Content"}</button>
+        ))}
+      </div>
+      {msg && <div className="mb-3 rounded-md bg-sage-green/10 px-3 py-2 text-sm text-sage-green">{msg}</div>}
+      {mode === "content" && <AiContentReview onMsg={setMsg} />}
+      {mode === "items" && (
+      <>
       <div className="mb-3 flex gap-1.5">
         {VIEWS.map(([v, label]) => (
           <button key={v} onClick={() => setView(v)} className={`rounded-md px-3 py-1.5 text-sm ${view === v ? "bg-midnight-navy text-white" : "border border-light-gray text-charcoal/70 hover:bg-light-gray"}`}>{label}</button>
         ))}
       </div>
-      {msg && <div className="mb-3 rounded-md bg-sage-green/10 px-3 py-2 text-sm text-sage-green">{msg}</div>}
       {err && <p className="rounded-md border border-amber-300 bg-amber-50 px-4 py-2.5 text-sm text-amber-800">{err} (Owner + MFA required; run migration 0022 if the tables aren&apos;t set up.)</p>}
       {!err && !rows && <p className="text-sm text-charcoal/60">Loading…</p>}
       {rows && rows.length === 0 && <p className="text-sm text-charcoal/60">No drafts in this view.</p>}
@@ -63,6 +74,8 @@ export default function AiReviewQueuePage() {
       )}
 
       {open && <DraftDrawer id={open} onClose={() => setOpen(null)} onChanged={(m) => { setMsg(m); load(); }} />}
+      </>
+      )}
     </div>
   );
 }

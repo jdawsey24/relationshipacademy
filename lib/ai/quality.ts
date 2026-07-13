@@ -81,6 +81,28 @@ export function runDeterministicItemChecks(it: ItemForCheck): Finding[] {
   return out;
 }
 
+// Deterministic checks for a generated content asset (worksheet/lesson).
+export function runDeterministicContentChecks(assetType: string, content: Record<string, unknown>, hasSources: boolean): Finding[] {
+  const out: Finding[] = [];
+  const add = (check_type: string, passed: boolean, severity: Finding["severity"], finding: string, recommendation: string) =>
+    out.push({ check_type, passed, severity, finding, recommendation });
+  const str = (k: string) => (typeof content[k] === "string" ? (content[k] as string) : "");
+  const arr = (k: string) => (Array.isArray(content[k]) ? (content[k] as unknown[]) : []);
+
+  add("missing_source_links", hasSources, hasSources ? "info" : "critical", hasSources ? "Grounded in approved sources." : "No source links.", "Content must trace to approved RLC records.");
+
+  if (assetType === "worksheet") {
+    add("has_next_step", !!str("next_step").trim(), str("next_step").trim() ? "info" : "medium", str("next_step").trim() ? "Has a clear next step." : "Missing a next step.", "Worksheets must end with a clear next step.");
+    add("has_instructions", !!str("instructions").trim(), str("instructions").trim() ? "info" : "high", str("instructions").trim() ? "Has instructions." : "Missing instructions.", "Add actionable instructions.");
+    const rl = Math.round(fkGrade(str("introduction") || str("instructions")));
+    add("reading_level", rl <= 9, rl > 9 ? "medium" : "info", `Intro reading level ~Grade ${rl}.`, "Simplify for a consumer audience.");
+  } else if (assetType === "lesson") {
+    add("has_objectives", arr("learning_objectives").length > 0, arr("learning_objectives").length > 0 ? "info" : "high", arr("learning_objectives").length > 0 ? `${arr("learning_objectives").length} objective(s).` : "No learning objectives.", "Lessons need measurable learning objectives.");
+    add("has_reflection", arr("reflection_questions").length > 0, arr("reflection_questions").length > 0 ? "info" : "low", "Reflection questions present.", "Include education, application, and reflection.");
+  }
+  return out;
+}
+
 // AI-assisted review of one item (construct overlap, social desirability, unsafe
 // assumptions, phase leakage). On-demand from the Review Queue.
 export async function runAiItemReview(itemText: string, contextText: string): Promise<Finding[]> {
