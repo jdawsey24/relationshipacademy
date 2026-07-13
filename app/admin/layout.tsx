@@ -15,6 +15,7 @@ const NAV_GROUPS: NavItem[][] = [
   [{ label: "Dashboard", href: "/admin" }],
   [
     { label: "Studio", href: "/admin/studio" },
+    { label: "AI Studio", href: "/admin/ai", ownerOnly: true },
     { label: "Website", href: "/admin/website" },
     { label: "Framework", href: "/admin/framework" },
     { label: "Assessment", href: "/admin/assessment", match: ["/admin/questions", "/admin/copy", "/admin/assessment"] },
