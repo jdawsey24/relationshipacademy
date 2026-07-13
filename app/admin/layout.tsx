@@ -14,10 +14,14 @@ type NavItem = { label: string; href?: string; soon?: boolean; match?: string[];
 const NAV_GROUPS: NavItem[][] = [
   [{ label: "Dashboard", href: "/admin" }],
   [
-    { label: "Studio", href: "/admin/studio" },
-    { label: "AI Studio", href: "/admin/ai", ownerOnly: true },
+    // RLC Studio is the primary authoring environment. AI is embedded inside it
+    // (contextual), so there is no separate top-level "AI Studio" destination —
+    // the preserved AI Authoring Studio is reached via RLC Studio → AI Services.
+    { label: "RLC Studio", href: "/admin/studio", match: ["/admin/studio", "/admin/ai"] },
     { label: "Website", href: "/admin/website" },
-    { label: "Framework", href: "/admin/framework" },
+    // The old "/admin/framework" edits public-site phase/domain CARD copy — it is
+    // website content, NOT the canonical RLC Framework (which lives in RLC Studio).
+    { label: "Website Content", href: "/admin/framework" },
     { label: "Assessment", href: "/admin/assessment", match: ["/admin/questions", "/admin/copy", "/admin/assessment"] },
     { label: "Knowledge Center", href: "/admin/knowledge-center" },
     { label: "Academy", href: "/admin/academy" },

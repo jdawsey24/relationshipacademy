@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import StudioTabs from "@/components/admin/StudioTabs";
+import StudioNav from "@/components/admin/StudioNav";
 import AssessmentNav from "@/components/admin/AssessmentNav";
 import StudioStatusBadge from "@/components/admin/StudioStatusBadge";
 import { useAdminRole, useCanWrite } from "@/components/admin/RoleContext";
@@ -61,8 +61,8 @@ export default function InstrumentDetailPage() {
   }, [id]);
   useEffect(() => { load(); }, [load]);
 
-  if (notFound) return <div><StudioTabs /><AssessmentNav /><BackLink /><p className="mt-3 text-sm text-coral-rose">Instrument not found.</p></div>;
-  if (!a) return <div><StudioTabs /><AssessmentNav /><BackLink /><p className="mt-3 text-sm text-charcoal/60">Loading…</p></div>;
+  if (notFound) return <div><StudioNav /><AssessmentNav /><BackLink /><p className="mt-3 text-sm text-coral-rose">Instrument not found.</p></div>;
+  if (!a) return <div><StudioNav /><AssessmentNav /><BackLink /><p className="mt-3 text-sm text-charcoal/60">Loading…</p></div>;
 
   const set = (k: keyof Assessment, v: string) => setA((p) => (p ? { ...p, [k]: v } : p));
 
@@ -83,7 +83,7 @@ export default function InstrumentDetailPage() {
   return (
     <div>
       <h1 className="mb-1 text-2xl font-semibold text-midnight-navy">Content &amp; Assessment Studio</h1>
-      <StudioTabs />
+      <StudioNav />
       <AssessmentNav />
       <BackLink />
 

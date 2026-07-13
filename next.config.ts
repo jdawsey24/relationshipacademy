@@ -59,6 +59,10 @@ const nextConfig: NextConfig = {
     return [
       // Phase pages moved from /framework/phases/:slug to top-level /:slug.
       { source: "/framework/phases/:slug", destination: "/:slug", permanent: true },
+      // RLC Studio refactor: the flat "Knowledge Base" is now the Framework
+      // hierarchy. Admin-internal, so not a permanent (301) redirect.
+      { source: "/admin/studio/kb", destination: "/admin/studio/framework", permanent: false },
+      { source: "/admin/studio/kb/:path*", destination: "/admin/studio/framework", permanent: false },
     ];
   },
 };

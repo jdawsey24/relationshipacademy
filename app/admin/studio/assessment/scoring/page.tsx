@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import StudioTabs from "@/components/admin/StudioTabs";
+import StudioNav from "@/components/admin/StudioNav";
 import AssessmentNav from "@/components/admin/AssessmentNav";
 import SimulationPanel from "@/components/admin/scoring/SimulationPanel";
 import RulesBandsPanel from "@/components/admin/scoring/RulesBandsPanel";
@@ -21,7 +21,7 @@ export default function ScoringPage() {
     <div>
       <h1 className="mb-1 text-2xl font-semibold text-midnight-navy">Content &amp; Assessment Studio</h1>
       <p className="mb-4 text-sm text-charcoal/60">Deterministic scoring for the Studio-authored Snapshot. Owner-authored, <strong>provisional</strong>, simulation-only — never scores real users. AI cannot compute scores or set cut-points.</p>
-      <StudioTabs />
+      <StudioNav />
       <AssessmentNav />
 
       <div className="mb-5 flex flex-wrap gap-1.5">
