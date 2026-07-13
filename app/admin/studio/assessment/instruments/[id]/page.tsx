@@ -127,8 +127,13 @@ export default function InstrumentDetailPage() {
           <label className="block text-sm font-medium text-charcoal">Est. completion (min)
             <input disabled={!canWrite} type="number" min={0} value={a.target_completion_minutes ?? ""} onChange={(e) => setField("target_completion_minutes", e.target.value === "" ? null : Number(e.target.value))} className={INP} />
           </label>
-          <label className="block text-sm font-medium text-charcoal">Min items / competency
-            <input disabled={!canWrite} type="number" min={1} value={(dc.min_items_per_competency as number) ?? 1} onChange={(e) => setDc("min_items_per_competency", Number(e.target.value) || 1)} className={INP} />
+          <label className="block text-sm font-medium text-charcoal">Target total length <span className="font-normal text-charcoal/50">(approx. items)</span>
+            <input disabled={!canWrite} type="number" min={0} value={(dc.target_total_items as number) ?? ""} onChange={(e) => setDc("target_total_items", e.target.value === "" ? undefined : Number(e.target.value))} placeholder="e.g. 47" className={INP} />
+            <span className="mt-0.5 block text-[11px] font-normal text-charcoal/45">The engine spreads this across the competencies your outcomes require.</span>
+          </label>
+          <label className="block text-sm font-medium text-charcoal">Min items / competency <span className="font-normal text-charcoal/50">(advanced)</span>
+            <input disabled={!canWrite || dc.target_total_items != null} type="number" min={1} value={(dc.min_items_per_competency as number) ?? ""} onChange={(e) => setDc("min_items_per_competency", e.target.value === "" ? undefined : (Number(e.target.value) || 1))} placeholder={dc.target_total_items != null ? "auto (from target)" : "1"} className={INP} />
+            <span className="mt-0.5 block text-[11px] font-normal text-charcoal/45">{dc.target_total_items != null ? "Ignored while a target total is set." : "Used only if no target total is set."}</span>
           </label>
           <label className="block text-sm font-medium text-charcoal">Reverse-item target %
             <input disabled={!canWrite} type="number" min={0} max={100} value={dc.reverse_target_pct != null ? Math.round(Number(dc.reverse_target_pct) * 100) : ""} onChange={(e) => setDc("reverse_target_pct", e.target.value === "" ? null : Number(e.target.value) / 100)} placeholder="e.g. 17" className={INP} />

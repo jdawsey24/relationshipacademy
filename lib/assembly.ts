@@ -46,7 +46,9 @@ export interface DesignConstraints {
   reverse_target_pct?: number;        // e.g. 0.17
   phase_anchored_target_pct?: number;
   response_model_policy?: string;     // e.g. "single" (one response model) | "any"
-  min_items_per_competency?: number;  // default 1
+  target_total_items?: number;        // PRIMARY length lever — the engine distributes this
+                                      // across the required competencies (min 1 each).
+  min_items_per_competency?: number;  // advanced override; used when no target_total_items
   scope_domains?: string[];           // default: all framework domains
   scope_phases?: string[];            // default: derived from structural_context (+ readiness)
 }

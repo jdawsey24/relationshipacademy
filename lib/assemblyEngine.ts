@@ -20,7 +20,6 @@ const uniqSort = (xs: string[]): string[] => [...new Set(xs.filter(Boolean))].so
 export function deriveMeasurementModel(spec: SpecificationInput, framework: FrameworkInput): MeasurementModel {
   const dc = spec.design_constraints ?? {};
   const outputs = spec.desired_outputs ?? [];
-  const minItems = Math.max(1, dc.min_items_per_competency ?? 1);
 
   // Scope of domains.
   const allDomains = uniqSort(framework.competencies.map((c) => c.domain_slug ?? ""));
@@ -43,6 +42,13 @@ export function deriveMeasurementModel(spec: SpecificationInput, framework: Fram
 
   const required_competencies = uniqSort(framework.competencies.filter(inScope).map((c) => c.code));
   const compSet = new Set(required_competencies);
+
+  // Length: the owner specifies a TARGET TOTAL, which the engine distributes across
+  // the required competencies (min 1 each). Falls back to an explicit per-competency
+  // minimum when no target is given.
+  const minItems = dc.target_total_items && required_competencies.length > 0
+    ? Math.max(1, Math.round(dc.target_total_items / required_competencies.length))
+    : Math.max(1, dc.min_items_per_competency ?? 1);
   const required_behavioral_indicators = uniqSort(
     framework.indicators.filter((i) => compSet.has(i.competency_id)).map((i) => i.behavior_id)
   );

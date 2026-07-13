@@ -100,6 +100,9 @@ function ModelCard({ title, model, onApprove, approvedBy, accent }: { title: str
         <Stat label="Domains" value={model.required_domains.length} />
         <Stat label="Phases" value={model.required_phases.length} />
       </div>
+      <p className="mt-2 rounded bg-midnight-navy/5 px-2 py-1 text-xs text-charcoal/70">
+        <span className="font-semibold">Estimated total length:</span> {model.required_competencies.length} competencies × {model.coverage_policy.min_items_per_competency} item(s) each ≈ <span className="font-semibold">{model.required_competencies.length * model.coverage_policy.min_items_per_competency} items</span>.
+      </p>
       <div className="mt-3">
         <div className="text-[11px] font-semibold uppercase tracking-wide text-charcoal/50">Evidence required per outcome</div>
         <ul className="mt-1 space-y-1 text-sm text-charcoal/80">

@@ -79,6 +79,15 @@ test("raising min items above the approved supply leaves the outcome unfulfilled
   assert.ok(r.stats.under_covered_competencies.length > 0);
 });
 
+test("target_total_items is distributed across required competencies", () => {
+  // 3 required competencies (exploration), target 12 → round(12/3) = 4 items each.
+  const targetSpec: SpecificationInput = { ...spec, design_constraints: { target_total_items: 12 } };
+  const m = deriveMeasurementModel(targetSpec, framework);
+  assert.equal(m.required_competencies.length, 3);
+  assert.equal(m.coverage_policy.min_items_per_competency, 4);
+  assert.ok(m.outcome_requirements.every((o) => o.min_items_per_competency === 4));
+});
+
 test("empty approved bank → honest zero result, not a throw", () => {
   const m = deriveMeasurementModel(spec, framework);
   const r = assemble(m, spec, []);
