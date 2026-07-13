@@ -137,13 +137,24 @@ export async function approveModel(id: string, actor: string | null): Promise<vo
 
 // ---- Assembly (deterministic run + governed membership) --------------------
 
-async function loadApprovedItems(): Promise<EligibleItem[]> {
+// The approved item bank can exceed PostgREST's 1,000-row response cap, so page
+// through it explicitly — the engine must see EVERY eligible item or coverage
+// (and reproducibility) would silently depend on truncation.
+export async function loadApprovedItems(): Promise<EligibleItem[]> {
   try {
     const s = getSupabaseAdminClient();
-    const { data } = await s.from("studio_assessment_items")
-      .select("item_id, competency_id, behavior_id, domain, phase, item_type, reverse_scored, evidence_strength, response_model, item_text, status")
-      .in("status", ["approved", "published"]).limit(5000);
-    return (data ?? []) as unknown as EligibleItem[];
+    const cols = "item_id, competency_id, behavior_id, domain, phase, item_type, reverse_scored, evidence_strength, response_model, item_text, status";
+    const pageSize = 1000;
+    const out: EligibleItem[] = [];
+    for (let from = 0; ; from += pageSize) {
+      const { data, error } = await s.from("studio_assessment_items").select(cols)
+        .in("status", ["approved", "published"]).order("item_id").range(from, from + pageSize - 1);
+      if (error) break;
+      const rows = (data ?? []) as unknown as EligibleItem[];
+      out.push(...rows);
+      if (rows.length < pageSize) break;
+    }
+    return out;
   } catch {
     return [];
   }
