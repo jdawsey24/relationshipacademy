@@ -54,6 +54,7 @@ export const WORKSPACE_TABS = [
   { key: "related", label: "Related Assets", seg: "related" },
   { key: "publishing", label: "Publishing", seg: "publishing" },
   { key: "health", label: "Health", seg: "health" },
+  { key: "analytics", label: "Analytics", seg: "analytics" },
 ] as const;
 
 export type WorkspaceTabKey = (typeof WORKSPACE_TABS)[number]["key"];

@@ -142,8 +142,22 @@ A collapsible, **competency-route-aware** authoring panel scoped to `/admin/stud
 
 _V1 is competency-route-aware only. Later, context can also resolve from assessment items, content assets, review drafts, and publishing mappings._
 
+## Competency Analytics tab (V1 — built, architecture scaffold)
+
+The 8th workspace tab (`/admin/studio/competency/[code]/analytics`). Read-only. Real per-competency usage/performance analytics **does not exist yet** — the live quiz scores only to the ~4 competency *phases*, not to `COM-*` codes, and recommendations are never logged. So V1 shows what's real, scaffolds the rest, and makes **zero changes to the live results/score path** (no migration).
+
+- **Data** `lib/studioAnalyticsData.ts#getCompetencyAnalytics(code, competency)` → `{ inventory, simulation, phaseContext, domainContext }`, each with `{ source, version, validation, updatedAt }` provenance. Resilient.
+- **Strict separation:** competency-specific blocks (inventory, owner **simulation** results from `studio_score_results`) are kept apart from **broader context** (phase/domain live averages), which is explicitly labeled *shared — not a measure of this competency*.
+- **Deterministic mappings only:** phase via `competency_phases.slug`, domain via `domains.slug` (both confirmed to exist). No presentation-label / name matching; returns null if unmapped.
+- **No false comparison:** simulation is labeled *Provisional (owner test data)* and flagged not-comparable to the live aggregates (different scale/version).
+- **Prominent banner:** validated live-respondent analytics for the individual competency are not yet available.
+- **"Not yet tracked" cards** name the real future events — *completion rate, live performance, recommendation displayed / clicked, resource started / completed* — each with the instrumentation it needs.
+- **Live path untouched:** verified `app/api/results/*`, `app/api/score/*`, `lib/scoring.ts` unchanged.
+
 ## Deferred (follow-ups after validation)
 
+- **Live-path instrumentation** to make per-competency analytics real: a deterministic `questions ↔ kb_competencies.code` crosswalk (unlocks completion + performance) and an event log on `/api/results` + engagement surfaces (unlocks recommendation displayed/clicked, resource started/completed). Consumer-path-touching — a deliberate separate branch.
+- Cross-competency Studio-level Analytics dashboard.
 - **Studio Assistant** capability expansion: Summarize Competency, Find Duplicates, inline AI Review, conversational assistant (each needs a new owner+MFA AI endpoint / cost surface); broader (non-route) context resolution.
 - Standalone cross-competency **Analytics** (completion rates, performance, most-assigned, recommendation frequency).
 - **Sandbox**.
