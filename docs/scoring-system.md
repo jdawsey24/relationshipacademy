@@ -31,6 +31,8 @@ Every new table has RLS enabled, no public policy — all access via the service
 
 Automated (green now via `npm test`): raw/reverse Likert, missing/suppression, domain aggregation, phase-option mapping, structural-context interpretation, expiration vs adaptive, top-2 strengths, growth priority, incongruence execution, recommendation mapping + publication + safety suppression, rule-version preservation, reassessment compare, determinism (AI-cannot-alter).
 
+**SIMULATION E2E VERIFIED (live, 13/13, cleaned up):** authored provisional bands on 3 rules + an incongruence rule (Married + exploration ≥3) + an approved mapping → published worksheet; ran a domain-scope simulation (360 Communication items, structural context Married) → produced all 8 outputs incl. the incongruence flag and an active recommendation to the published asset; score_results persisted with `rule_version` (traceable); rules restored afterward. Owner still reviews rules + approves the simulation before any public activation.
+
 ## 5. Decision-log entry
 > **DEC — Snapshot deterministic scoring (build-only).** Executable scoring layer for the Studio-authored Snapshot. Reused + extended `studio_scoring_rules`/`studio_interpretation_rules`/`studio_recommendation_mappings`; added the normalized runtime/result tables. Engine is pure/deterministic — AI excluded from scoring. Structural context is collected, never inferred. Expiration uses separate direction with structural + transition context. All thresholds provisional; no public activation until owner approves the simulation.
 
