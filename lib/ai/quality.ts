@@ -2,6 +2,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getProvider } from "@/lib/ai/provider";
 import { getActiveTemplate, renderTemplate } from "@/lib/ai/templates";
 import { getAiSettings } from "@/lib/ai/settings";
+import { words, fkGrade } from "@/lib/readability";
 
 // Quality-check engine. Deterministic checks run at generation time (free/fast);
 // AI-assisted checks run on demand from the Review Queue. Findings are advisory —
@@ -17,18 +18,6 @@ export interface Finding {
 
 const JARGON = ["competency", "construct", "developmental", "dyadic", "psychometric", "differentiation", "attachment style", "self-report", "reverse-scored"];
 const MORALIZING = ["should", "must", "ought", "good partner", "bad partner", "healthy relationship", "unhealthy", "right way", "wrong way", "supposed to"];
-
-function words(t: string): string[] { return t.toLowerCase().replace(/[^a-z'\s]/g, " ").split(/\s+/).filter(Boolean); }
-function syllables(w: string): number {
-  const m = w.toLowerCase().replace(/[^a-z]/g, "").replace(/e$/, "").match(/[aeiouy]+/g);
-  return Math.max(1, m ? m.length : 1);
-}
-function fkGrade(t: string): number {
-  const ws = words(t); if (ws.length === 0) return 0;
-  const syl = ws.reduce((a, w) => a + syllables(w), 0);
-  const sentences = Math.max(1, (t.match(/[.!?]+/g) || []).length);
-  return 0.39 * (ws.length / sentences) + 11.8 * (syl / ws.length) - 15.59;
-}
 
 export interface ItemForCheck {
   item_text: string;

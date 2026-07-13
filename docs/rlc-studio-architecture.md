@@ -129,9 +129,22 @@ Competencies store their phase in `kb_competencies.phase_slug` (all 111 populate
 
 No schema/data changes. Every existing table, API, and page keeps working. Governance, AI staged approval, and RLS/role gating are reused unchanged. **Rollback** = revert the branch; there is nothing to un-migrate.
 
+## RLC Studio Assistant (V1 — built)
+
+A collapsible, **competency-route-aware** authoring panel scoped to `/admin/studio/*` + `/admin/ai/*`. It makes AI ambient across Studio by wrapping the **existing** generation endpoints — no new AI infrastructure, no free-form chat, no new cost surface.
+
+- **Shell** `components/admin/StudioAssistant.tsx` (mounted in `app/admin/layout.tsx` inside `RoleProvider`): pathname scoping, persisted open state (`localStorage`), **push content on ≥lg / overlay + backdrop on <lg**, a11y (Escape, focus move + restore, focus trap when overlaid, `aria-expanded`, `role=dialog/complementary`, reduced-motion).
+- **Content** `components/admin/AssistantPanel.tsx`: resolves the competency from the `/admin/studio/competency/[code]` route (shows name / domain · phase / code · status); in-context actions = **Generate assessment items** + **Generate <content type>** (label updates to the type) via the existing `AiGenerateModal` + generate endpoints (drafts flow through the existing approval path); no-context = searchable competency **picker** + quick links. Always: a deterministic **reading-level** check.
+- **Registry endpoint** `GET /api/admin/studio/framework/competencies` (Framework-owned; `{id,name,domain,phase,status}` from `getFrameworkTree`) — replaces the temporary assessment-meta dependency.
+- **Reading level**: shared pure util `lib/readability.ts` (also now the single source for `lib/ai/quality.ts`); shows grade/ease/word/sentence counts, a Grade-5 target, a <50-word reliability warning, and an "estimate only" disclaimer. No network, no AI.
+- **Event logging**: `POST /api/admin/studio/assistant/event` records `assistant.opened|competency_selected|reading_level_check` via the existing `audit()` (no new tables; never logs pasted text).
+- **Role gating**: viewers see the panel + reading level; generate actions are disabled with "Generation requires editor or owner access." Owner-only links (Content Builder, Review Mode) hidden for non-owners.
+
+_V1 is competency-route-aware only. Later, context can also resolve from assessment items, content assets, review drafts, and publishing mappings._
+
 ## Deferred (follow-ups after validation)
 
-- Global collapsible **AI Assistant panel** (contextual action panel, page-aware, reusing AIS-1..4 endpoints; no free-form chat).
+- **Studio Assistant** capability expansion: Summarize Competency, Find Duplicates, inline AI Review, conversational assistant (each needs a new owner+MFA AI endpoint / cost surface); broader (non-route) context resolution.
 - Standalone cross-competency **Analytics** (completion rates, performance, most-assigned, recommendation frequency).
 - **Sandbox**.
 - Framework **Structural Markers** + **Decision Log** as first-class editable screens (currently linked to existing data).
