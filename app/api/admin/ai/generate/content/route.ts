@@ -2,13 +2,14 @@ import { NextResponse } from "next/server";
 import { requireAiOwner, preflightGeneration } from "@/lib/ai/guard";
 import { getAiSettings } from "@/lib/ai/settings";
 import { audit } from "@/lib/audit";
-import { generateContentDraft, type ContentAssetType } from "@/lib/ai/generateContent";
+import { generateContentDraft } from "@/lib/ai/generateContent";
 import { AiError } from "@/lib/ai/generateItem";
+import { CONTENT_ASSET_TYPES, type ContentAssetType } from "@/lib/ai/contentTypes";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const TYPES: ContentAssetType[] = ["worksheet", "lesson"];
+const TYPES: readonly ContentAssetType[] = CONTENT_ASSET_TYPES;
 
 // POST { asset_type, competency_id, parameters } → a content DRAFT into
 // ai_content_drafts (staging). Owner+MFA, kill-switch/rate/cost preflight.

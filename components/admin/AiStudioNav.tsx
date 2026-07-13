@@ -8,6 +8,7 @@ const TABS = [
   { label: "Assessment Builder", href: "/admin/ai/assessment-builder" },
   { label: "Content Builder", href: "/admin/ai/content-builder" },
   { label: "Review Queue", href: "/admin/ai/review" },
+  { label: "Review Mode", href: "/admin/ai/review-mode" },
   { label: "Generation History", href: "/admin/ai/history" },
   { label: "Prompt Templates", href: "/admin/ai/templates" },
   { label: "Quality Rules", href: "/admin/ai/quality" },
@@ -22,7 +23,7 @@ export default function AiStudioNav() {
       <p className="mb-3 text-sm text-charcoal/60">Owner-only drafting + provenance. AI drafts from approved RLC records only, and nothing enters the canonical libraries without your approval.</p>
       <div className="flex flex-wrap gap-1.5 border-b border-light-gray pb-3">
         {TABS.map((t) => {
-          const active = t.href === "/admin/ai" ? pathname === t.href : pathname.startsWith(t.href);
+          const active = t.href === "/admin/ai" ? pathname === t.href : (pathname === t.href || pathname.startsWith(t.href + "/"));
           return (
             <Link key={t.href} href={t.href}
               className={`rounded-md px-3 py-1.5 text-sm transition-colors ${active ? "bg-midnight-navy text-white" : "border border-light-gray text-charcoal/70 hover:bg-light-gray"}`}>

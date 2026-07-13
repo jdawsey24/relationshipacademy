@@ -1,107 +1,84 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import AiStudioNav from "@/components/admin/AiStudioNav";
-import { READING_LEVELS } from "@/lib/ai/types";
 import { AUDIENCES } from "@/lib/studio";
+import { CONTENT_ASSET_TYPES, CONTENT_TYPE_LABELS, CONTENT_FORMS, type ContentAssetType } from "@/lib/ai/contentTypes";
 
 const INP = "mt-1 w-full rounded-md border border-light-gray px-2 py-1.5 text-sm";
 
+function initParams(type: ContentAssetType): Record<string, unknown> {
+  const p: Record<string, unknown> = {};
+  for (const f of CONTENT_FORMS[type]) p[f.key] = f.kind === "checkbox" ? false : (f.default ?? (f.options?.[0] ?? ""));
+  return p;
+}
+
 export default function AiContentBuilderPage() {
-  const [tab, setTab] = useState<"worksheet" | "lesson">("worksheet");
+  const [type, setType] = useState<ContentAssetType>("worksheet");
   const [comps, setComps] = useState<{ id: string; name: string }[]>([]);
-  useEffect(() => { fetch("/api/admin/studio/assessment/items/meta").then((r) => r.json()).then((d) => setComps(d.competencies ?? [])).catch(() => {}); }, []);
-
-  return (
-    <div>
-      <AiStudioNav />
-      <div className="mb-4 flex gap-1.5">
-        {(["worksheet", "lesson"] as const).map((t) => (
-          <button key={t} onClick={() => setTab(t)} className={`rounded-md px-4 py-1.5 text-sm capitalize ${tab === t ? "bg-midnight-navy text-white" : "border border-light-gray text-charcoal/70 hover:bg-light-gray"}`}>{t}</button>
-        ))}
-      </div>
-      {tab === "worksheet" ? <WorksheetForm comps={comps} /> : <LessonForm comps={comps} />}
-    </div>
-  );
-}
-
-function Result({ r }: { r: { draft_id: string | null; validation_status: string } | null }) {
-  if (!r) return null;
-  return (
-    <div className="mt-3 rounded-md bg-sage-green/10 px-3 py-2 text-sm text-sage-green">
-      {r.validation_status === "valid"
-        ? <>Draft created. <Link href="/admin/ai/review?type=content" className="font-semibold underline">Review it →</Link></>
-        : <>The model returned an invalid response — no draft was created (logged in Generation History).</>}
-    </div>
-  );
-}
-
-function useGenerate() {
+  const [competency, setCompetency] = useState("");
+  const [audience, setAudience] = useState("consumer");
+  const [instructions, setInstructions] = useState("");
+  const [includePractices, setIncludePractices] = useState(true);
+  const [params, setParams] = useState<Record<string, unknown>>(() => initParams("worksheet"));
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [result, setResult] = useState<{ draft_id: string | null; validation_status: string } | null>(null);
-  async function go(body: Record<string, unknown>) {
+
+  useEffect(() => { fetch("/api/admin/studio/assessment/items/meta").then((r) => r.json()).then((d) => setComps(d.competencies ?? [])).catch(() => {}); }, []);
+  const fields = useMemo(() => CONTENT_FORMS[type], [type]);
+  function pickType(t: ContentAssetType) { setType(t); setParams(initParams(t)); setResult(null); setErr(null); }
+  const setP = (k: string, v: unknown) => setParams((p) => ({ ...p, [k]: v }));
+
+  async function generate() {
+    if (!competency) { setErr("Select a competency — grounding is required."); return; }
     setBusy(true); setErr(null); setResult(null);
-    const res = await fetch("/api/admin/ai/generate/content", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    const res = await fetch("/api/admin/ai/generate/content", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ asset_type: type, competency_id: competency, includePractices, parameters: { ...params, audience, instructions } }),
+    });
     const d = await res.json().catch(() => ({}));
     setBusy(false);
     if (!res.ok) { setErr(d.error ?? "Generation failed."); return; }
     setResult(d);
   }
-  return { busy, err, result, go };
-}
 
-function WorksheetForm({ comps }: { comps: { id: string; name: string }[] }) {
-  const [f, setF] = useState({ competency_id: "", audience: "consumer", purpose: "", delivery_setting: "Self-guided", length: "Medium", difficulty: "Beginner", reading_level: "Grade 5", version: "Consumer", facilitator_required: false, access_level: "Academy", includePractices: true });
-  const { busy, err, result, go } = useGenerate();
-  const set = (k: string, v: unknown) => setF((p) => ({ ...p, [k]: v }));
   return (
-    <div className="max-w-2xl">
-      <p className="mb-3 rounded-md bg-dusty-plum/10 px-3 py-2 text-xs text-dusty-plum">Worksheets are drafted from the competency (definition, indicators, expected application, barriers, safety) and land as a <strong>Draft</strong> in the Review Queue.</p>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <label className="text-sm font-medium text-charcoal sm:col-span-2">Competency<select value={f.competency_id} onChange={(e) => set("competency_id", e.target.value)} className={INP}><option value="">Select…</option>{comps.map((c) => <option key={c.id} value={c.id}>{c.id} · {c.name}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Audience<select value={f.audience} onChange={(e) => set("audience", e.target.value)} className={INP}>{AUDIENCES.map((a) => <option key={a.value} value={a.value}>{a.label}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Delivery setting<select value={f.delivery_setting} onChange={(e) => set("delivery_setting", e.target.value)} className={INP}>{["Self-guided", "Facilitated", "Couples", "Group"].map((x) => <option key={x}>{x}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Length<select value={f.length} onChange={(e) => set("length", e.target.value)} className={INP}>{["Short", "Medium", "Long"].map((x) => <option key={x}>{x}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Difficulty<select value={f.difficulty} onChange={(e) => set("difficulty", e.target.value)} className={INP}>{["Beginner", "Intermediate", "Advanced"].map((x) => <option key={x}>{x}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Reading level<select value={f.reading_level} onChange={(e) => set("reading_level", e.target.value)} className={INP}>{READING_LEVELS.map((x) => <option key={x}>{x}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Version<select value={f.version} onChange={(e) => set("version", e.target.value)} className={INP}>{["Consumer", "Professional"].map((x) => <option key={x}>{x}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Access level<select value={f.access_level} onChange={(e) => set("access_level", e.target.value)} className={INP}>{["Public", "Academy", "Academy Plus", "Institute"].map((x) => <option key={x}>{x}</option>)}</select></label>
+    <div>
+      <AiStudioNav />
+      <div className="mb-4 flex flex-wrap gap-1.5">
+        {CONTENT_ASSET_TYPES.map((t) => (
+          <button key={t} onClick={() => pickType(t)} className={`rounded-md px-3 py-1.5 text-sm ${type === t ? "bg-midnight-navy text-white" : "border border-light-gray text-charcoal/70 hover:bg-light-gray"}`}>{CONTENT_TYPE_LABELS[t]}</button>
+        ))}
       </div>
-      <label className="mt-3 block text-sm font-medium text-charcoal">Purpose <span className="font-normal text-charcoal/50">(optional)</span><input value={f.purpose} onChange={(e) => set("purpose", e.target.value)} className={INP} /></label>
-      <div className="mt-3 flex gap-4 text-sm">
-        <label className="flex items-center gap-2"><input type="checkbox" checked={f.facilitator_required} onChange={(e) => set("facilitator_required", e.target.checked)} /> Facilitator required</label>
-        <label className="flex items-center gap-2"><input type="checkbox" checked={f.includePractices} onChange={(e) => set("includePractices", e.target.checked)} /> Include related practices as reference</label>
-      </div>
-      {err && <p className="mt-3 text-sm text-coral-rose">{err}</p>}
-      <Result r={result} />
-      <button onClick={() => { if (!f.competency_id) return; go({ asset_type: "worksheet", competency_id: f.competency_id, includePractices: f.includePractices, parameters: f }); }} disabled={busy || !f.competency_id} className="mt-4 rounded-md bg-dusty-plum px-5 py-2 text-sm font-medium text-white disabled:opacity-50">{busy ? "Generating…" : "Generate worksheet draft"}</button>
-    </div>
-  );
-}
 
-function LessonForm({ comps }: { comps: { id: string; name: string }[] }) {
-  const [f, setF] = useState({ competency_id: "", course: "", audience: "academy", lesson_purpose: "", duration: "20 min", delivery_format: "Self-paced", reading_level: "Grade 8", version: "Consumer", certificate_relevance: "None", includePractices: true });
-  const { busy, err, result, go } = useGenerate();
-  const set = (k: string, v: unknown) => setF((p) => ({ ...p, [k]: v }));
-  return (
-    <div className="max-w-2xl">
-      <p className="mb-3 rounded-md bg-dusty-plum/10 px-3 py-2 text-xs text-dusty-plum">Lessons are drafted from the competency (definition, purpose, developmental significance) with measurable objectives, and land as a <strong>Draft</strong> in the Review Queue.</p>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <label className="text-sm font-medium text-charcoal sm:col-span-2">Competency<select value={f.competency_id} onChange={(e) => set("competency_id", e.target.value)} className={INP}><option value="">Select…</option>{comps.map((c) => <option key={c.id} value={c.id}>{c.id} · {c.name}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Course ID <span className="font-normal text-charcoal/50">(optional)</span><input value={f.course} onChange={(e) => set("course", e.target.value)} className={INP} /></label>
-        <label className="text-sm font-medium text-charcoal">Audience<select value={f.audience} onChange={(e) => set("audience", e.target.value)} className={INP}>{AUDIENCES.map((a) => <option key={a.value} value={a.value}>{a.label}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Duration<select value={f.duration} onChange={(e) => set("duration", e.target.value)} className={INP}>{["10 min", "20 min", "30 min", "45 min", "60 min"].map((x) => <option key={x}>{x}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Delivery format<select value={f.delivery_format} onChange={(e) => set("delivery_format", e.target.value)} className={INP}>{["Self-paced", "Live", "Video", "Reading"].map((x) => <option key={x}>{x}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Reading level<select value={f.reading_level} onChange={(e) => set("reading_level", e.target.value)} className={INP}>{READING_LEVELS.map((x) => <option key={x}>{x}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Version<select value={f.version} onChange={(e) => set("version", e.target.value)} className={INP}>{["Consumer", "Professional"].map((x) => <option key={x}>{x}</option>)}</select></label>
-        <label className="text-sm font-medium text-charcoal">Certificate / CE<select value={f.certificate_relevance} onChange={(e) => set("certificate_relevance", e.target.value)} className={INP}>{["None", "Certificate", "CE"].map((x) => <option key={x}>{x}</option>)}</select></label>
+      <div className="max-w-2xl">
+        <p className="mb-3 rounded-md bg-dusty-plum/10 px-3 py-2 text-xs text-dusty-plum">Grounded in the selected competency; lands as a <strong>Draft</strong> in the Review Queue → Content. Approve to add a permanent record to the Content Library.</p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="text-sm font-medium text-charcoal sm:col-span-2">Competency<select value={competency} onChange={(e) => setCompetency(e.target.value)} className={INP}><option value="">Select…</option>{comps.map((c) => <option key={c.id} value={c.id}>{c.id} · {c.name}</option>)}</select></label>
+          <label className="text-sm font-medium text-charcoal">Audience<select value={audience} onChange={(e) => setAudience(e.target.value)} className={INP}>{AUDIENCES.map((a) => <option key={a.value} value={a.value}>{a.label}</option>)}</select></label>
+          {fields.map((f) => (
+            f.kind === "checkbox" ? (
+              <label key={f.key} className="flex items-center gap-2 pt-6 text-sm font-medium text-charcoal"><input type="checkbox" checked={!!params[f.key]} onChange={(e) => setP(f.key, e.target.checked)} /> {f.label}</label>
+            ) : f.kind === "select" ? (
+              <label key={f.key} className="text-sm font-medium text-charcoal">{f.label}<select value={String(params[f.key] ?? "")} onChange={(e) => setP(f.key, e.target.value)} className={INP}>{f.options!.map((o) => <option key={o} value={o}>{o}</option>)}</select></label>
+            ) : (
+              <label key={f.key} className="text-sm font-medium text-charcoal">{f.label}<input value={String(params[f.key] ?? "")} onChange={(e) => setP(f.key, e.target.value)} className={INP} /></label>
+            )
+          ))}
+        </div>
+        <label className="mt-3 flex items-center gap-2 text-sm"><input type="checkbox" checked={includePractices} onChange={(e) => setIncludePractices(e.target.checked)} /> Include related practices as reference</label>
+        <label className="mt-3 block text-sm font-medium text-charcoal">Instructions <span className="font-normal text-charcoal/50">(optional)</span><input value={instructions} onChange={(e) => setInstructions(e.target.value)} className={INP} /></label>
+
+        {err && <p className="mt-3 text-sm text-coral-rose">{err}</p>}
+        {result && (
+          <div className="mt-3 rounded-md bg-sage-green/10 px-3 py-2 text-sm text-sage-green">
+            {result.validation_status === "valid" ? <>Draft created. <Link href="/admin/ai/review?type=content" className="font-semibold underline">Review it →</Link></> : <>The model returned an invalid response — no draft was created (logged in Generation History).</>}
+          </div>
+        )}
+        <button onClick={generate} disabled={busy || !competency} className="mt-4 rounded-md bg-dusty-plum px-5 py-2 text-sm font-medium text-white disabled:opacity-50">{busy ? "Generating…" : `Generate ${CONTENT_TYPE_LABELS[type].toLowerCase()} draft`}</button>
       </div>
-      <label className="mt-3 block text-sm font-medium text-charcoal">Lesson purpose <span className="font-normal text-charcoal/50">(optional)</span><input value={f.lesson_purpose} onChange={(e) => set("lesson_purpose", e.target.value)} className={INP} /></label>
-      {err && <p className="mt-3 text-sm text-coral-rose">{err}</p>}
-      <Result r={result} />
-      <button onClick={() => { if (!f.competency_id) return; go({ asset_type: "lesson", competency_id: f.competency_id, includePractices: f.includePractices, parameters: f }); }} disabled={busy || !f.competency_id} className="mt-4 rounded-md bg-dusty-plum px-5 py-2 text-sm font-medium text-white disabled:opacity-50">{busy ? "Generating…" : "Generate lesson draft"}</button>
     </div>
   );
 }
