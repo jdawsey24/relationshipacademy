@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const LINKS = [
   { label: "Instruments", href: "/admin/studio/assessment" },
   { label: "Item Bank", href: "/admin/studio/assessment/items" },
+  { label: "Scoring", href: "/admin/studio/assessment/scoring" },
   { label: "Response Models", href: "/admin/studio/assessment/response-models" },
   { label: "Scoring Rules", href: "/admin/studio/assessment/scoring-rules" },
   { label: "Interpretation", href: "/admin/studio/assessment/interpretation-rules" },
