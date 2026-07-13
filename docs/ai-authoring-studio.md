@@ -61,3 +61,13 @@ notify pgrst, 'reload schema';
 ```
 
 The canonical Item Bank, Content Library, and Knowledge Base are unaffected by a rollback.
+
+## 7. AIS-2 — Content Builder (Worksheet + Lesson)
+
+Extends the studio with dedicated structured generators. Reuses the AIS-1 spine; content drafts stage in `ai_content_drafts` and promote into the Content Library (`studio_worksheets` WS-######, `studio_lessons` LES-######) on owner approval.
+
+- **Migration `0023_ai_content_templates.sql`** — seeds worksheet/lesson/content_review prompt templates (versioned, immutable) + enables the types in `ai_settings`. No new tables.
+- **`lib/ai/`** — `assembleContentContext` (richer competency fields + related practices/interventions + existing worksheets; retired-excluded, injection-safe), `generateContent`, `approveContent` (promote), content quality checks.
+- **APIs** — `generate/content`, `content-drafts` (+ `[id]/transition`).
+- **UI** — Content Builder (separate Worksheet + Lesson forms); Review Queue Items|Content toggle + content drawer with web/mobile/printable/professional preview modes.
+- **E2E VERIFIED (live):** worksheet + lesson generate → staged drafts w/ sources + quality checks → NOT in library → approve → WS-000223 / LES-000112 in the Content Library (provenance=ai_generated) → reject stays out → cleanup restored counts. `npm test` 24 pass.

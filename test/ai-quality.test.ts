@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { runDeterministicItemChecks } from "../lib/ai/quality";
+import { runDeterministicItemChecks, runDeterministicContentChecks } from "../lib/ai/quality";
 
 function find(findings: ReturnType<typeof runDeterministicItemChecks>, type: string) {
   return findings.find((f) => f.check_type === type)!;
@@ -46,4 +46,24 @@ test("moralizing language is flagged", () => {
 test("jargon is flagged for consumer wording", () => {
   const f = runDeterministicItemChecks({ item_text: "I show high competency in dyadic differentiation.", reverse_candidate: false, behavioral_indicator_id: "BI-1" });
   assert.equal(find(f, "jargon").passed, false);
+});
+
+test("content: worksheet without a next step / sources is flagged", () => {
+  const f = runDeterministicContentChecks("worksheet", { instructions: "Do the thing.", introduction: "Intro." }, false);
+  assert.equal(f.find((x) => x.check_type === "missing_source_links")!.passed, false);
+  assert.equal(f.find((x) => x.check_type === "has_next_step")!.passed, false);
+});
+
+test("content: complete worksheet with sources passes core checks", () => {
+  const f = runDeterministicContentChecks("worksheet", { instructions: "Ask one question a day.", introduction: "This helps you get curious.", next_step: "Try it tomorrow." }, true);
+  assert.equal(f.find((x) => x.check_type === "missing_source_links")!.passed, true);
+  assert.equal(f.find((x) => x.check_type === "has_next_step")!.passed, true);
+  assert.equal(f.find((x) => x.check_type === "has_instructions")!.passed, true);
+});
+
+test("content: lesson requires learning objectives", () => {
+  const none = runDeterministicContentChecks("lesson", { overview: "x" }, true);
+  assert.equal(none.find((x) => x.check_type === "has_objectives")!.passed, false);
+  const withObj = runDeterministicContentChecks("lesson", { learning_objectives: ["Explain curiosity"] }, true);
+  assert.equal(withObj.find((x) => x.check_type === "has_objectives")!.passed, true);
 });
