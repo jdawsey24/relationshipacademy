@@ -78,3 +78,14 @@ Extends the studio with dedicated structured generators. Reuses the AIS-1 spine;
 - **All 7 content types** — config-driven Content Builder; generalized promotion into the Content Library (`PRA/CG/JP/ACT/VID` + `WS/LES`).
 - **Review Mode** — `lib/ai/reviewContent.ts` reviews an EXISTING asset across the 14 categories → `ai_content_reviews` findings (evidence + owner-decision / theoretical-review flags). Never edits.
 - **E2E VERIFIED (live):** all 5 new types generate → approve → PRA-000334 / CG-000112 / JP-000223 / ACT-000223 / VID-000112 in the Content Library (provenance=ai_generated); Review Mode on WS-000001 returned 10 findings + wrote `ai_content_reviews`; cleanup restored counts. `npm test` 24 pass.
+
+## 9. AIS-4 — publishing integration
+
+- **Migration `0025_publication_unique.sql`** — `unique(source_type, source_id, destination)` on `publication_mappings` (created in 0022). No new tables.
+- **`lib/publishing*.ts`** — 9 destinations; `listApprovedForPublishing`, `setMapping`/`removeMapping` (upsert/delete), `getPublishedForDestination` resolver. Approved records route to destinations via mappings; the source is never duplicated.
+- **APIs** — `publishing` (approved records + destinations), `publishing/toggle`. Owner+MFA, audited.
+- **UI** — `/admin/ai/publishing` (per-record destination chips) + "Publishing" nav tab.
+- **Destination wired:** public `/learn` reads `getPublishedForDestination("resource_library")` (backward-compatible; hidden when empty).
+- **E2E VERIFIED (live):** publish approved worksheet → 1 mapping → resolver returns it for /learn (title + description from source) → source NOT duplicated → idempotent re-publish → unpublish removes it, source persists → cleanup. `npm test` 24 pass.
+
+**AIS-1 through AIS-4 complete.** Remaining are the spec's feature-flagged extras (bulk generation, partner/clinician conversion, full-course, book-companion, provider fallback).

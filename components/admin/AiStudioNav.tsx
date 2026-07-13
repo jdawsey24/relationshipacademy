@@ -9,6 +9,7 @@ const TABS = [
   { label: "Content Builder", href: "/admin/ai/content-builder" },
   { label: "Review Queue", href: "/admin/ai/review" },
   { label: "Review Mode", href: "/admin/ai/review-mode" },
+  { label: "Publishing", href: "/admin/ai/publishing" },
   { label: "Generation History", href: "/admin/ai/history" },
   { label: "Prompt Templates", href: "/admin/ai/templates" },
   { label: "Quality Rules", href: "/admin/ai/quality" },
