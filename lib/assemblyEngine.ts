@@ -7,7 +7,7 @@ import { fkGrade } from "@/lib/readability";
 import { tokenSimilarity } from "@/lib/ai/dedupe";
 import { runDeterministicItemChecks } from "@/lib/ai/quality";
 import {
-  ENGINE_VERSION, SECONDS_PER_ITEM, DUP_THRESHOLD, parseTargetGrade, stableHash, nextPhase, OUTPUT_LABELS,
+  ENGINE_VERSION, SECONDS_PER_ITEM, DUP_THRESHOLD, DEFAULT_STRATEGY, parseTargetGrade, stableHash, nextPhase, OUTPUT_LABELS,
   type SpecificationInput, type FrameworkInput, type MeasurementModel, type OutcomeRequirement,
   type EligibleItem, type AssemblyResult, type SelectedItem, type OutcomeFulfillment, type CompetencyCoverage,
 } from "@/lib/assembly";
@@ -79,6 +79,8 @@ export function deriveMeasurementModel(spec: SpecificationInput, framework: Fram
     required_phases: scopePhases,
     outcome_requirements,
     coverage_policy: {
+      measurement_strategy: dc.measurement_strategy ?? DEFAULT_STRATEGY,
+      target_total_items: dc.target_total_items ?? null,
       min_items_per_competency: minItems,
       reverse_target_pct: dc.reverse_target_pct ?? null,
       phase_anchored_target_pct: dc.phase_anchored_target_pct ?? null,
@@ -104,69 +106,140 @@ function qualityPenalty(it: EligibleItem): number {
 const EVIDENCE_RANK: Record<string, number> = { mastery: 4, advanced: 3, developed: 2, emerging: 1 };
 function evidenceRank(s: string | null): number { return EVIDENCE_RANK[(s ?? "").toLowerCase()] ?? 1; }
 
+type Scored = { it: EligibleItem; penalty: number; ev: number; close: number };
+const cellKey = (it: EligibleItem) => `${it.domain ?? ""}|${it.phase ?? ""}`;
+
 export function assemble(model: MeasurementModel, spec: SpecificationInput, approvedItems: EligibleItem[]): AssemblyResult {
   const targetGrade = parseTargetGrade(spec.target_reading_level);
   const dc = spec.design_constraints ?? {};
+  const strategy = model.coverage_policy.measurement_strategy ?? DEFAULT_STRATEGY;
+  const minItems = model.coverage_policy.min_items_per_competency;
+  const budget = model.coverage_policy.target_total_items;
   const reqComp = new Set(model.required_competencies);
   const reqDomain = new Set(model.required_domains);
   const reqPhase = new Set(model.required_phases);
 
   // Eligibility: approved/published + in Model scope.
-  let eligible = approvedItems.filter(
+  let eligibleItems = approvedItems.filter(
     (it) => (it.status === "approved" || it.status === "published")
       && it.competency_id && reqComp.has(it.competency_id)
       && (!it.domain || reqDomain.has(it.domain))
       && (!it.phase || reqPhase.has(it.phase))
   );
-
-  // Response-model consistency: policy "single" restricts to the most common model
-  // (deterministic tie-break by model id).
   if (dc.response_model_policy === "single") {
     const counts = new Map<string, number>();
-    for (const it of eligible) counts.set(it.response_model ?? "", (counts.get(it.response_model ?? "") ?? 0) + 1);
+    for (const it of eligibleItems) counts.set(it.response_model ?? "", (counts.get(it.response_model ?? "") ?? 0) + 1);
     const best = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0]?.[0];
-    if (best) eligible = eligible.filter((it) => (it.response_model ?? "") === best);
+    if (best) eligibleItems = eligibleItems.filter((it) => (it.response_model ?? "") === best);
   }
 
-  const minItems = model.coverage_policy.min_items_per_competency;
+  // Deterministic ranking (quality → evidence → reading closeness → id).
+  const scored: Scored[] = eligibleItems.map((it) => ({ it, penalty: qualityPenalty(it), ev: evidenceRank(it.evidence_strength), close: targetGrade == null ? 0 : Math.abs(fkGrade(it.item_text ?? "") - targetGrade) }));
+  const cmp = (a: Scored, b: Scored) => a.penalty - b.penalty || b.ev - a.ev || a.close - b.close || a.it.item_id.localeCompare(b.it.item_id);
+  const byComp = new Map<string, Scored[]>();
+  const byCell = new Map<string, Scored[]>();
+  const byIndicator = new Map<string, Scored[]>();
+  for (const sc of [...scored].sort(cmp)) {
+    if (sc.it.competency_id) (byComp.get(sc.it.competency_id) ?? byComp.set(sc.it.competency_id, []).get(sc.it.competency_id)!).push(sc);
+    (byCell.get(cellKey(sc.it)) ?? byCell.set(cellKey(sc.it), []).get(cellKey(sc.it))!).push(sc);
+    if (sc.it.behavior_id) (byIndicator.get(sc.it.behavior_id) ?? byIndicator.set(sc.it.behavior_id, []).get(sc.it.behavior_id)!).push(sc);
+  }
+
+  // Selection state + helpers.
   const selected: SelectedItem[] = [];
   const selectedItems: EligibleItem[] = [];
   const selectedTexts: string[] = [];
+  const used = new Set<string>();
+  const coveredIndicators = new Set<string>();
   let duplicates_removed = 0;
+  const isDup = (text: string) => selectedTexts.some((t) => tokenSimilarity(text, t) > DUP_THRESHOLD);
+  const add = (sc: Scored, comp: string | null) => {
+    selected.push({ item_id: sc.it.item_id, position: selected.length + 1, satisfies_competency: comp, selection_reason: `Covers ${comp ?? sc.it.competency_id ?? "?"}${sc.it.behavior_id ? ` (indicator ${sc.it.behavior_id})` : ""}` });
+    selectedItems.push(sc.it); selectedTexts.push(sc.it.item_text ?? ""); used.add(sc.it.item_id);
+    if (sc.it.behavior_id) coveredIndicators.add(sc.it.behavior_id);
+  };
+  // Next best unused, non-duplicate item from a candidate list; optionally prefer
+  // one that covers a not-yet-covered behavioral indicator.
+  const pick = (cands: Scored[] | undefined, preferNewIndicator: boolean): Scored | null => {
+    if (!cands) return null;
+    let fallback: Scored | null = null;
+    for (const c of cands) {
+      if (used.has(c.it.item_id)) continue;
+      if (isDup(c.it.item_text ?? "")) { used.add(c.it.item_id); duplicates_removed++; continue; }
+      if (preferNewIndicator && c.it.behavior_id && !coveredIndicators.has(c.it.behavior_id)) return c;
+      if (!fallback) fallback = c;
+      if (!preferNewIndicator) return c;
+    }
+    return fallback;
+  };
 
-  // Coverage-first greedy, competencies in stable order.
-  for (const comp of model.required_competencies) {
-    const candidates = eligible
-      .filter((it) => it.competency_id === comp)
-      .map((it) => ({ it, penalty: qualityPenalty(it), ev: evidenceRank(it.evidence_strength), close: targetGrade == null ? 0 : Math.abs(fkGrade(it.item_text ?? "") - targetGrade) }))
-      .sort((a, b) => a.penalty - b.penalty || b.ev - a.ev || a.close - b.close || a.it.item_id.localeCompare(b.it.item_id));
+  const cells = uniqSort([...byCell.keys()]);
 
-    let taken = 0;
-    for (const c of candidates) {
-      if (taken >= minItems) break;
-      const text = c.it.item_text ?? "";
-      const isDup = selectedTexts.some((t) => tokenSimilarity(text, t) > DUP_THRESHOLD);
-      if (isDup) { duplicates_removed++; continue; }
-      selected.push({
-        item_id: c.it.item_id, position: selected.length + 1, satisfies_competency: comp,
-        selection_reason: `Covers ${comp}${c.it.behavior_id ? ` (indicator ${c.it.behavior_id})` : ""}`,
-      });
-      selectedItems.push(c.it); selectedTexts.push(text); taken++;
+  if (strategy === "comprehensive") {
+    for (const comp of model.required_competencies) {
+      for (let taken = 0; taken < minItems; taken++) {
+        const c = pick(byComp.get(comp), true);
+        if (!c) break;
+        add(c, comp);
+      }
+    }
+    // Exhaustive: cover any still-missing required indicator.
+    for (const ind of model.required_behavioral_indicators) {
+      if (coveredIndicators.has(ind)) continue;
+      const c = pick(byIndicator.get(ind), false);
+      if (c) add(c, c.it.competency_id);
+    }
+  } else if (strategy === "profile") {
+    const cap = budget ?? model.required_competencies.length;
+    for (let progress = true; progress && selected.length < cap; ) {
+      progress = false;
+      for (const comp of model.required_competencies) {
+        if (selected.length >= cap) break;
+        const c = pick(byComp.get(comp), true);
+        if (c) { add(c, comp); progress = true; }
+      }
+    }
+  } else { // screening — representative sampling across domain × phase cells
+    const cap = budget ?? cells.length;
+    for (let progress = true; progress && selected.length < cap; ) {
+      progress = false;
+      for (const cell of cells) {
+        if (selected.length >= cap) break;
+        const c = pick(byCell.get(cell), true);
+        if (c) { add(c, c.it.competency_id); progress = true; }
+      }
     }
   }
 
-  // Coverage stats.
+  // ---- Coverage stats (strategy-aware) ----
   const perComp = new Map<string, number>();
   for (const s of selected) if (s.satisfies_competency) perComp.set(s.satisfies_competency, (perComp.get(s.satisfies_competency) ?? 0) + 1);
+  const compThreshold = strategy === "comprehensive" ? minItems : 1;
   const competency_coverage: CompetencyCoverage[] = model.required_competencies.map((c) => {
     const sel = perComp.get(c) ?? 0;
-    return { competency_id: c, required: minItems, selected: sel, adequate: sel >= minItems };
+    return { competency_id: c, required: compThreshold, selected: sel, adequate: sel >= compThreshold };
   });
-  const under_covered_competencies = competency_coverage.filter((c) => !c.adequate).map((c) => c.competency_id);
   const competencies_covered = competency_coverage.filter((c) => c.adequate).length;
 
-  const coveredIndicators = new Set(selectedItems.map((it) => it.behavior_id).filter(Boolean) as string[]);
-  const missing_indicators = model.required_behavioral_indicators.filter((b) => !coveredIndicators.has(b));
+  const coveredCells = new Set(selectedItems.map((it) => cellKey(it)));
+  const cells_total = cells.length;
+  const cells_covered = coveredCells.size;
+
+  // Competency → cell (from eligible items) for screening fulfilment.
+  const compCell = new Map<string, string>();
+  for (const it of eligibleItems) if (it.competency_id && !compCell.has(it.competency_id)) compCell.set(it.competency_id, cellKey(it));
+  const compSatisfied = (comp: string): boolean => {
+    if (strategy === "screening") { const cell = compCell.get(comp); return !!cell && coveredCells.has(cell); }
+    return (perComp.get(comp) ?? 0) >= compThreshold;
+  };
+
+  // Under-represented: screening → cells; else → competencies.
+  const under_covered_competencies = strategy === "screening"
+    ? [] // screening reports missing CELLS, not competencies
+    : competency_coverage.filter((c) => !c.adequate).map((c) => c.competency_id);
+  const missing_indicators = strategy === "comprehensive"
+    ? model.required_behavioral_indicators.filter((b) => !coveredIndicators.has(b))
+    : [];
 
   const reverseCount = selectedItems.filter((it) => it.reverse_scored).length;
   const anchored = spec.structural_context ? selectedItems.filter((it) => it.phase === spec.structural_context).length : 0;
@@ -174,12 +247,14 @@ export function assemble(model: MeasurementModel, spec: SpecificationInput, appr
   const mean_reading_grade = grades.length ? Math.round((grades.reduce((a, b) => a + b, 0) / grades.length) * 10) / 10 : null;
 
   const stats = {
+    strategy,
     items_searched: approvedItems.length,
     items_selected: selected.length,
     competencies_required: model.required_competencies.length,
     competencies_covered,
     indicators_required: model.required_behavioral_indicators.length,
     indicators_covered: model.required_behavioral_indicators.filter((b) => coveredIndicators.has(b)).length,
+    cells_total, cells_covered,
     domains_covered: uniqSort(selectedItems.map((it) => it.domain ?? "")),
     phases_covered: uniqSort(selectedItems.map((it) => it.phase ?? "")),
     duplicates_removed,
@@ -192,21 +267,21 @@ export function assemble(model: MeasurementModel, spec: SpecificationInput, appr
     missing_indicators,
   };
 
-  // Outcome fulfilment (purpose validation).
-  const adequate = new Set(competency_coverage.filter((c) => c.adequate).map((c) => c.competency_id));
+  // ---- Outcome fulfilment (purpose validation, strategy-aware) ----
   const outcomeFulfillment: OutcomeFulfillment[] = model.outcome_requirements.map((r) => {
-    const unmet = r.required_competencies.filter((c) => !adequate.has(c));
-    return { output: r.output, label: OUTPUT_LABELS[r.output] ?? r.output, fulfilled: unmet.length === 0 && r.required_competencies.length > 0, unmet_competencies: unmet };
+    const unmet = r.required_competencies.filter((c) => !compSatisfied(c));
+    // For comprehensive, also require the output's indicators (covered via items) — approximated
+    // by competency+indicator coverage already reflected in compSatisfied + missing_indicators.
+    return { output: r.output, label: OUTPUT_LABELS[r.output] ?? r.output, fulfilled: r.required_competencies.length > 0 && unmet.length === 0, unmet_competencies: unmet };
   });
-  const outcome_fulfilled = selected.length > 0 && outcomeFulfillment.length > 0 && outcomeFulfillment.every((o) => o.fulfilled);
+  const indicatorsOk = strategy !== "comprehensive" || missing_indicators.length === 0;
+  const outcome_fulfilled = selected.length > 0 && outcomeFulfillment.length > 0 && outcomeFulfillment.every((o) => o.fulfilled) && indicatorsOk;
 
-  // Fingerprint over the INPUTS (engine + model + relevant spec + sorted eligible ids)
-  // → identical inputs prove identical output.
   const inputs_fingerprint = stableHash({
     engine: ENGINE_VERSION,
     model,
     spec: { structural_context: spec.structural_context, target_reading_level: spec.target_reading_level, design_constraints: dc },
-    eligible: eligible.map((it) => it.item_id).sort(),
+    eligible: eligibleItems.map((it) => it.item_id).sort(),
   });
 
   return { itemIds: selected.map((s) => s.item_id), selected, stats, outcomeFulfillment, outcome_fulfilled, inputs_fingerprint };

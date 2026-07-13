@@ -79,6 +79,29 @@ test("raising min items above the approved supply leaves the outcome unfulfilled
   assert.ok(r.stats.under_covered_competencies.length > 0);
 });
 
+test("screening samples across domain×phase cells (fewer items than full coverage)", () => {
+  const scr: SpecificationInput = { ...spec, design_constraints: { measurement_strategy: "screening", target_total_items: 2 } };
+  const m = deriveMeasurementModel(scr, framework);
+  const r = assemble(m, scr, approved);
+  assert.equal(r.stats.strategy, "screening");
+  assert.equal(r.stats.cells_total, 2);             // communication|exploration + trust|exploration
+  assert.equal(r.stats.cells_covered, 2);
+  assert.ok(r.stats.items_selected <= 2);           // sampled, not one-per-competency
+  assert.equal(r.outcome_fulfilled, true);          // both cells covered → outcomes supported
+});
+
+test("profile pursues broad competency coverage within budget", () => {
+  const prof: SpecificationInput = { ...spec, design_constraints: { measurement_strategy: "profile", target_total_items: 3 } };
+  const r = assemble(deriveMeasurementModel(prof, framework), prof, approved);
+  assert.equal(r.stats.strategy, "profile");
+  assert.equal(r.stats.competencies_covered, 3);
+  assert.equal(r.outcome_fulfilled, true);
+  const tight: SpecificationInput = { ...spec, design_constraints: { measurement_strategy: "profile", target_total_items: 2 } };
+  const r2 = assemble(deriveMeasurementModel(tight, framework), tight, approved);
+  assert.ok(r2.stats.items_selected <= 2);
+  assert.equal(r2.outcome_fulfilled, false);         // a competency remains uncovered
+});
+
 test("target_total_items is distributed across required competencies", () => {
   // 3 required competencies (exploration), target 12 → round(12/3) = 4 items each.
   const targetSpec: SpecificationInput = { ...spec, design_constraints: { target_total_items: 12 } };

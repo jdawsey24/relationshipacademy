@@ -179,8 +179,10 @@ function buildReport(result: AssemblyResult, modelVersion: number): string {
   if (st.missing_indicators.length) lines.push(`Missing behavioral indicators: ${st.missing_indicators.length}.`);
   lines.push("");
   lines.push(`### Technical summary`);
+  lines.push(`- Strategy: ${st.strategy}.`);
   lines.push(`- Searched ${st.items_searched} approved items; selected ${st.items_selected}.`);
-  lines.push(`- Competencies covered: ${st.competencies_covered}/${st.competencies_required}. Behavioral indicators: ${st.indicators_covered}/${st.indicators_required}.`);
+  if (st.strategy === "screening") lines.push(`- Domain × phase cells covered: ${st.cells_covered}/${st.cells_total} (representative sampling). Competencies sampled: ${st.competencies_covered}/${st.competencies_required}.`);
+  else lines.push(`- Competencies covered: ${st.competencies_covered}/${st.competencies_required}. Behavioral indicators: ${st.indicators_covered}/${st.indicators_required}.`);
   lines.push(`- Domains: ${st.domains_covered.length}. Phases: ${st.phases_covered.length}.`);
   lines.push(`- Reverse-item balance: ${Math.round(st.reverse_pct * 100)}%. Phase-anchored: ${Math.round(st.phase_anchored_pct * 100)}%.`);
   lines.push(`- Mean reading grade: ${st.mean_reading_grade ?? "—"}. Estimated completion: ${st.estimated_minutes} min.`);

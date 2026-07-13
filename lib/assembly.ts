@@ -6,7 +6,27 @@
 // lib/assemblyData.ts.
 
 // Bump when the deterministic rules change (part of every assembly's audit trail).
-export const ENGINE_VERSION = "assembly-1.0.0";
+export const ENGINE_VERSION = "assembly-1.1.0";
+
+// ---------------------------------------------------------------------------
+// Measurement Strategy — declared per Specification; the PRIMARY input that tells
+// the engine what LEVEL of measurement an instrument is designed to achieve. The
+// same engine + bank produce brief screeners, broad profiles, and exhaustive
+// clinical instruments while staying theoretically consistent + reproducible.
+// ---------------------------------------------------------------------------
+export type MeasurementStrategy = "screening" | "profile" | "comprehensive";
+
+export const MEASUREMENT_STRATEGIES: { value: MeasurementStrategy; label: string; description: string }[] = [
+  { value: "screening", label: "Screening", description: "Rapid estimate of overall functioning. Representative sampling across domains × phases — not every competency. Maximize construct coverage + efficiency within a small item budget (e.g. Relationship Snapshot™)." },
+  { value: "profile", label: "Profile", description: "Broad competency coverage balancing length + burden. At least one item per competency where the budget allows — sufficient for reliable domain / competency / phase interpretation (e.g. Relationship Profile™)." },
+  { value: "comprehensive", label: "Comprehensive", description: "Exhaustive measurement. Every required competency AND behavioral indicator adequately represented before the instrument is complete (e.g. Clinical Assessment™, Couples Profile™)." },
+];
+
+export const DEFAULT_STRATEGY: MeasurementStrategy = "comprehensive";
+
+export function strategyLabel(s: string | null | undefined): string {
+  return MEASUREMENT_STRATEGIES.find((x) => x.value === s)?.label ?? "Comprehensive";
+}
 
 // Assembly tuning constants — transparent + fixed so runs are reproducible.
 export const SECONDS_PER_ITEM = 12;      // completion-time estimate
@@ -43,11 +63,11 @@ export function nextPhase(phase: string | null | undefined): string | null {
 // Specification (the machine-usable subset the engine consumes)
 // ---------------------------------------------------------------------------
 export interface DesignConstraints {
+  measurement_strategy?: MeasurementStrategy; // screening | profile | comprehensive
   reverse_target_pct?: number;        // e.g. 0.17
   phase_anchored_target_pct?: number;
   response_model_policy?: string;     // e.g. "single" (one response model) | "any"
-  target_total_items?: number;        // PRIMARY length lever — the engine distributes this
-                                      // across the required competencies (min 1 each).
+  target_total_items?: number;        // item BUDGET (screening/profile) / distributed target (comprehensive)
   min_items_per_competency?: number;  // advanced override; used when no target_total_items
   scope_domains?: string[];           // default: all framework domains
   scope_phases?: string[];            // default: derived from structural_context (+ readiness)
@@ -77,13 +97,20 @@ export interface OutcomeRequirement {
   required_competencies: string[];
   min_items_per_competency: number;
 }
+export interface CoveragePolicy {
+  measurement_strategy: MeasurementStrategy;
+  target_total_items: number | null;   // item budget (screening/profile)
+  min_items_per_competency: number;    // comprehensive minimum (and profile fallback)
+  reverse_target_pct: number | null;
+  phase_anchored_target_pct: number | null;
+}
 export interface MeasurementModel {
   required_competencies: string[];
   required_behavioral_indicators: string[];
   required_domains: string[];
   required_phases: string[];
   outcome_requirements: OutcomeRequirement[];
-  coverage_policy: { min_items_per_competency: number; reverse_target_pct: number | null; phase_anchored_target_pct: number | null };
+  coverage_policy: CoveragePolicy;
 }
 
 // ---------------------------------------------------------------------------
@@ -118,12 +145,15 @@ export interface CompetencyCoverage {
 }
 
 export interface AssemblyStats {
+  strategy: MeasurementStrategy;
   items_searched: number;
   items_selected: number;
   competencies_required: number;
   competencies_covered: number;
   indicators_required: number;
   indicators_covered: number;
+  cells_total: number;      // domain × phase cells with eligible items (the screening unit)
+  cells_covered: number;
   domains_covered: string[];
   phases_covered: string[];
   duplicates_removed: number;

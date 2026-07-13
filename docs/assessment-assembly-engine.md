@@ -19,6 +19,16 @@ This evolves the Assessment Studio from item *generation* to a **measurement sys
 - `assemble(model, spec, approvedItems)` — coverage-first greedy: satisfy every required competency to its minimum, then balance (domain/phase, reverse %, phase-anchored %, response-model consistency), then quality/redundancy (`runDeterministicItemChecks`, `tokenSimilarity` dedup, `fkGrade` reading level), deterministic tie-break by `item_id`. Reports **coverage adequacy** (NOT a fabricated reliability α — true reliability needs response data, deferred to validation).
 - No DB / AI / `Date` / `Math.random` → byte-reproducible. `ENGINE_VERSION` + `inputs_fingerprint` on every run. Covered by `test/assembly.test.ts` (reproducibility, scope derivation, coverage/fulfilment, exclusion of out-of-scope/draft/duplicates, empty-bank honesty).
 
+## Measurement Strategy (the primary coverage input)
+
+Every Specification declares a **Measurement Strategy** that tells the engine *what level of measurement* the instrument targets — the same engine + bank then produce brief screeners, broad profiles, and exhaustive clinical instruments:
+
+- **Screening** (e.g. Relationship Snapshot™) — representative **sampling** across domain × phase *cells* to an item budget; maximizes construct coverage + efficiency, not every competency. Fulfilled when every eligible cell is represented. (Full framework, budget 47 → 47 items, 24/24 cells.)
+- **Profile** (e.g. Relationship Profile™) — **broad competency coverage** within a budget (≥1 item per competency where budget allows). Fulfilled when required competencies are covered. (budget 120 → 111/111 competencies.)
+- **Comprehensive** (e.g. Clinical Assessment™) — **exhaustive**: every required competency to its minimum AND every required behavioral indicator. (→ 333 items, 333/333 indicators.)
+
+The strategy branches selection deterministically (screening round-robins cells; profile round-robins competencies; comprehensive covers each competency to `min` then fills missing indicators). Length is a *consequence* of strategy + budget, surfaced on the Measurement Model card.
+
 ## Assembly Report — outcome-fulfilment FIRST
 
 Leads with **purpose validation**: for each desired output, is it supported by the assembled evidence? Names under-represented competencies/indicators and what's still required, before any technical stats (searched/selected, reverse %, reading grade, completion time, duplicates, fingerprint).

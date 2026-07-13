@@ -10,7 +10,7 @@ import StudioStatusBadge from "@/components/admin/StudioStatusBadge";
 import { useAdminRole, useCanWrite } from "@/components/admin/RoleContext";
 import { OWNER_ONLY_STATUSES, type Assessment } from "@/lib/studioAssessment";
 import { STATUS_LABELS, type StudioStatus } from "@/lib/studio";
-import { ASSESSMENT_OUTPUTS, MEASURED_PHASES } from "@/lib/assembly";
+import { ASSESSMENT_OUTPUTS, MEASURED_PHASES, MEASUREMENT_STRATEGIES } from "@/lib/assembly";
 
 const INP = "mt-1 w-full rounded-md border border-light-gray px-2 py-1.5 text-sm disabled:bg-[#F9F9F9] disabled:text-charcoal/50";
 const FIELDS: { key: keyof Assessment; label: string; area?: boolean }[] = [
@@ -114,6 +114,12 @@ export default function InstrumentDetailPage() {
       <section className="mb-6 rounded-md border border-light-gray p-4">
         <h3 className="mb-1 text-sm font-semibold uppercase tracking-wide text-charcoal/70">Assessment Specification</h3>
         <p className="mb-3 text-xs text-charcoal/55">Define <em>what the assessment must accomplish</em>. The Measurement Model derives the required evidence from this — it does not pick items.</p>
+        <label className="mb-3 block text-sm font-medium text-charcoal">Measurement strategy
+          <select disabled={!canWrite} value={(dc.measurement_strategy as string) ?? "comprehensive"} onChange={(e) => setDc("measurement_strategy", e.target.value)} className={INP}>
+            {MEASUREMENT_STRATEGIES.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
+          </select>
+          <span className="mt-0.5 block text-[11px] font-normal text-charcoal/50">{MEASUREMENT_STRATEGIES.find((s) => s.value === ((dc.measurement_strategy as string) ?? "comprehensive"))?.description}</span>
+        </label>
         <div className="grid gap-3 sm:grid-cols-3">
           <label className="block text-sm font-medium text-charcoal">Structural context
             <select disabled={!canWrite} value={a.structural_context ?? ""} onChange={(e) => setField("structural_context", e.target.value || null)} className={INP}>
@@ -152,7 +158,8 @@ export default function InstrumentDetailPage() {
 
       <div className="grid gap-6 md:grid-cols-3">
         <section className="rounded-md border border-light-gray p-4 md:col-span-2">
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-charcoal/70">Instrument details</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-charcoal/70">Instrument details</h3>
+          <p className="mb-3 text-[11px] text-charcoal/45">Descriptive metadata only — the Measurement Model &amp; Assembly Engine read <em>only</em> the Assessment Specification above.</p>
           <div className="grid gap-3 sm:grid-cols-2">
             {FIELDS.map((f) => (
               <label key={f.key} className={`block text-sm font-medium text-charcoal ${f.area ? "sm:col-span-2" : ""}`}>

@@ -7,15 +7,25 @@ import StudioNav from "@/components/admin/StudioNav";
 import AssessmentNav from "@/components/admin/AssessmentNav";
 import InstrumentSubNav from "@/components/admin/InstrumentSubNav";
 import { useAdminRole, useCanWrite } from "@/components/admin/RoleContext";
-import { OUTPUT_LABELS } from "@/lib/assembly";
+import { OUTPUT_LABELS, strategyLabel } from "@/lib/assembly";
 
 interface OutcomeReq { output: string; required_competencies: string[]; min_items_per_competency: number }
 interface ModelRow {
   id: string; version_no: number; status: string;
   required_competencies: string[]; required_behavioral_indicators: string[];
   required_domains: string[]; required_phases: string[]; outcome_requirements: OutcomeReq[];
-  coverage_policy: { min_items_per_competency: number; reverse_target_pct: number | null; phase_anchored_target_pct: number | null };
+  coverage_policy: { measurement_strategy?: string; target_total_items?: number | null; min_items_per_competency: number; reverse_target_pct: number | null; phase_anchored_target_pct: number | null };
   approved_by?: string | null;
+}
+
+function lengthEstimate(model: ModelRow): string {
+  const strat = model.coverage_policy.measurement_strategy ?? "comprehensive";
+  const comps = model.required_competencies.length;
+  const cells = model.required_domains.length * model.required_phases.length;
+  const budget = model.coverage_policy.target_total_items ?? null;
+  if (strat === "screening") return `Screening — samples across ~${cells} domain×phase cells${budget ? ` · budget ≈ ${budget} items` : ` · ≈ ${cells} items`}.`;
+  if (strat === "profile") return budget ? `Profile — broad coverage of up to ${comps} competencies · budget ≈ ${budget} items.` : `Profile — ${comps} competencies × 1 item ≈ ${comps} items.`;
+  return `Comprehensive — ${comps} competencies × ${model.coverage_policy.min_items_per_competency} item(s) each ≈ ${comps * model.coverage_policy.min_items_per_competency} items.`;
 }
 interface SpecRow { name: string; structural_context: string | null; desired_outputs: string[] }
 
@@ -91,7 +101,7 @@ function ModelCard({ title, model, onApprove, approvedBy, accent }: { title: str
   return (
     <section className={`mb-4 rounded-lg border p-4 ${accent ? "border-midnight-navy/30 bg-midnight-navy/5" : "border-light-gray"}`}>
       <div className="mb-2 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-midnight-navy">{title}</h3>
+        <h3 className="text-sm font-semibold text-midnight-navy">{title} <span className="ml-1 rounded bg-dusty-plum/10 px-1.5 py-0.5 text-[10px] uppercase text-dusty-plum">{strategyLabel(model.coverage_policy.measurement_strategy)}</span></h3>
         {onApprove && <button onClick={onApprove} className="rounded-md border border-sage-green px-3 py-1 text-xs font-medium text-sage-green hover:bg-sage-green/5">Approve</button>}
       </div>
       <div className="grid gap-2 text-sm sm:grid-cols-4">
@@ -101,7 +111,7 @@ function ModelCard({ title, model, onApprove, approvedBy, accent }: { title: str
         <Stat label="Phases" value={model.required_phases.length} />
       </div>
       <p className="mt-2 rounded bg-midnight-navy/5 px-2 py-1 text-xs text-charcoal/70">
-        <span className="font-semibold">Estimated total length:</span> {model.required_competencies.length} competencies × {model.coverage_policy.min_items_per_competency} item(s) each ≈ <span className="font-semibold">{model.required_competencies.length * model.coverage_policy.min_items_per_competency} items</span>.
+        <span className="font-semibold">Estimated length:</span> {lengthEstimate(model)}
       </p>
       <div className="mt-3">
         <div className="text-[11px] font-semibold uppercase tracking-wide text-charcoal/50">Evidence required per outcome</div>

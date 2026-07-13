@@ -11,8 +11,10 @@ import { OUTPUT_LABELS } from "@/lib/assembly";
 
 interface OutcomeFul { output: string; label: string; fulfilled: boolean; unmet_competencies: string[] }
 interface Stats {
+  strategy: string;
   items_searched: number; items_selected: number; competencies_required: number; competencies_covered: number;
-  indicators_required: number; indicators_covered: number; domains_covered: string[]; phases_covered: string[];
+  indicators_required: number; indicators_covered: number; cells_total: number; cells_covered: number;
+  domains_covered: string[]; phases_covered: string[];
   duplicates_removed: number; reverse_pct: number; phase_anchored_pct: number; mean_reading_grade: number | null;
   estimated_minutes: number; under_covered_competencies: string[]; missing_indicators: string[];
 }
@@ -111,11 +113,16 @@ export default function AssemblyPage() {
           </div>
 
           {/* Technical stats SECOND */}
+          <div className="mb-2 text-[11px] uppercase tracking-wide text-charcoal/50">Strategy: <span className="font-semibold text-dusty-plum">{latest.stats.strategy}</span></div>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             <Stat label="Searched" value={latest.stats.items_searched} />
             <Stat label="Selected" value={latest.stats.items_selected} />
-            <Stat label="Competencies" value={`${latest.stats.competencies_covered}/${latest.stats.competencies_required}`} />
-            <Stat label="Indicators" value={`${latest.stats.indicators_covered}/${latest.stats.indicators_required}`} />
+            {latest.stats.strategy === "screening"
+              ? <Stat label="Cells covered" value={`${latest.stats.cells_covered}/${latest.stats.cells_total}`} />
+              : <Stat label="Competencies" value={`${latest.stats.competencies_covered}/${latest.stats.competencies_required}`} />}
+            {latest.stats.strategy === "comprehensive"
+              ? <Stat label="Indicators" value={`${latest.stats.indicators_covered}/${latest.stats.indicators_required}`} />
+              : <Stat label="Competencies sampled" value={latest.stats.competencies_covered} />}
             <Stat label="Reverse %" value={`${Math.round(latest.stats.reverse_pct * 100)}%`} />
             <Stat label="Phase-anchored %" value={`${Math.round(latest.stats.phase_anchored_pct * 100)}%`} />
             <Stat label="Reading grade" value={latest.stats.mean_reading_grade ?? "—"} />
