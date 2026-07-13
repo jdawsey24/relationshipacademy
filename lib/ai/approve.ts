@@ -25,14 +25,23 @@ async function logEvent(draftId: string, action: string, actor: string | null, p
   await s.from("ai_approval_events").insert({ draft_type: "item", draft_id: draftId, action, actor_id: actor, prior_status: prior, new_status: next, notes });
 }
 
-// Next permanent ASM-###### id (max numeric ASM id + 1).
+// Next permanent ASM-###### id (max numeric ASM id + 1). Order DESCENDING and
+// take the top numeric id — PostgREST caps rows at 1000, so scanning every row
+// with .limit() silently misses the tail. Exclude the legacy ASM-AI-* ids (they
+// sort above numeric ones and aren't part of the sequence).
 async function nextItemId(): Promise<string> {
   const s = getSupabaseAdminClient();
-  const { data } = await s.from("studio_assessment_items").select("item_id").ilike("item_id", "ASM-%").limit(5000);
+  const { data } = await s
+    .from("studio_assessment_items")
+    .select("item_id")
+    .like("item_id", "ASM-%")
+    .not("item_id", "ilike", "ASM-AI-%")
+    .order("item_id", { ascending: false })
+    .limit(50);
   let max = 0;
   for (const r of data ?? []) {
     const m = /^ASM-(\d{6})$/.exec((r as { item_id: string }).item_id);
-    if (m) max = Math.max(max, parseInt(m[1], 10));
+    if (m) { max = parseInt(m[1], 10); break; } // first (highest) numeric id
   }
   return `ASM-${String(max + 1).padStart(6, "0")}`;
 }
@@ -95,7 +104,10 @@ async function promoteToBank(draft: ItemDraftRow, actor: string | null): Promise
     provenance: "ai_generated",
     updated_by: actor,
   });
-  if (error) throw new AiError("Failed to add the approved item to the Item Bank.", 502);
+  if (error) {
+    console.error("[ai.approve] item bank insert failed:", error.message);
+    throw new AiError(`Failed to add the approved item to the Item Bank: ${error.message}`, 502);
+  }
 
   await s.from("ai_item_drafts").update({
     status: "approved", permanent_item_id: itemId, approved_by: actor, approved_at: new Date().toISOString(), updated_at: new Date().toISOString(),
