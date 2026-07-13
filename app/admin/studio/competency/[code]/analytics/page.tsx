@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCompetencyByCode } from "@/lib/studioFrameworkData";
 import { getCompetencyAnalytics, type Provenance } from "@/lib/studioAnalyticsData";
+import { COVERAGE_TIER_LABELS } from "@/lib/questionMap";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -41,7 +42,7 @@ export default async function CompetencyAnalyticsPage({ params }: { params: Prom
       {/* Prominent honesty banner */}
       <div className="rounded-md border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
         <span className="font-semibold">Validated live-respondent analytics for this individual competency are not yet available.</span>{" "}
-        The metrics below are authoring inventory, owner simulation results, and broader phase/domain context — <span className="font-semibold">not</span> live performance for this competency. See “Not yet tracked” for what’s coming and why.
+        The metrics below are authoring inventory, owner simulation results, an <span className="font-semibold">exploratory</span> live mapped response summary, and broader phase/domain context — <span className="font-semibold">not</span> validated performance for this competency. See “Not yet tracked” for what’s coming and why.
       </div>
 
       {/* 1. Inventory (concise — full breakdown lives in Health) */}
@@ -72,7 +73,36 @@ export default async function CompetencyAnalyticsPage({ params }: { params: Prom
         <ProvLine prov={a.simulation.prov} />
       </section>
 
-      {/* 3. Broader context — phase & domain (shared, NOT this competency) */}
+      {/* 3. Live mapped response summary — governed traceability → DESCRIPTIVE (exploratory) */}
+      <section className="rounded-lg border border-light-gray p-4">
+        <h3 className="text-sm font-semibold text-midnight-navy">Live mapped response summary <span className="font-normal text-charcoal/50">· this competency</span></h3>
+        {a.liveSummary.mappedQuestions === 0 ? (
+          <p className="mt-1 text-sm text-charcoal/55">
+            No live Snapshot questions are mapped to this competency yet. Map them in{" "}
+            <Link href="/admin/studio/assessment/question-map" className="text-midnight-navy hover:underline">Studio → Assessment → Question Map</Link>.
+          </p>
+        ) : (
+          <>
+            <div className="mt-1 flex flex-wrap gap-6 text-sm">
+              <div><div className="text-lg font-semibold text-midnight-navy">{a.liveSummary.descriptiveMean ?? "—"}</div><div className="text-[11px] uppercase tracking-wide text-charcoal/50">Descriptive mean (1–5)</div></div>
+              <div><div className="text-lg font-semibold text-midnight-navy">{a.liveSummary.mappedQuestions}</div><div className="text-[11px] uppercase tracking-wide text-charcoal/50">Mapped questions</div></div>
+              <div><div className="text-lg font-semibold text-midnight-navy">{a.liveSummary.mappedIndicators}</div><div className="text-[11px] uppercase tracking-wide text-charcoal/50">Mapped indicators</div></div>
+              <div><div className="text-lg font-semibold text-midnight-navy">{a.liveSummary.contributingSessions}</div><div className="text-[11px] uppercase tracking-wide text-charcoal/50">Contributing sessions</div></div>
+            </div>
+            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-0.5 text-[11px] text-charcoal/55">
+              <span><span className="font-medium">Coverage:</span> {COVERAGE_TIER_LABELS[a.liveSummary.coverageTier]}</span>
+              <span><span className="font-medium">Assessment version:</span> {a.liveSummary.assessmentVersion ?? "—"}</span>
+              <span><span className="font-medium">Mapping version:</span> {a.liveSummary.mappingVersion ? `v${a.liveSummary.mappingVersion}` : "—"}</span>
+              <span><span className="font-medium">Validation:</span> {a.liveSummary.validationStatus}</span>
+            </div>
+            {a.liveSummary.excludedIncompatible > 0 && <p className="mt-1 text-[11px] text-amber-700">{a.liveSummary.excludedIncompatible} mapped question(s) excluded — incompatible response model (e.g. expiration-risk items).</p>}
+            {a.liveSummary.directExcluded > 0 && <p className="mt-1 text-[11px] text-amber-700">{a.liveSummary.directExcluded} direct-to-competency mapping(s) excluded from this summary (scoring-ineligible).</p>}
+          </>
+        )}
+        <p className="mt-2 rounded bg-amber-50 px-2 py-1 text-[11px] text-amber-800"><strong>Exploratory — not psychometrically validated.</strong> A 47-item Snapshot does not validly measure all 111 competencies; this is descriptive traceability, not a competency score.</p>
+      </section>
+
+      {/* 4. Broader context — phase & domain (shared, NOT this competency) */}
       <section className="rounded-lg border border-dashed border-light-gray bg-light-gray/20 p-4">
         <h3 className="text-sm font-semibold text-charcoal/70">Broader context — phase &amp; domain</h3>
         <p className="mb-3 text-xs text-charcoal/55">Live respondent averages for the whole phase / domain. <span className="font-semibold">Shared across every competency in this phase/domain — not a measure of this competency.</span></p>
@@ -82,14 +112,12 @@ export default async function CompetencyAnalyticsPage({ params }: { params: Prom
         </div>
       </section>
 
-      {/* 4. Not yet tracked — real future events, scaffolded */}
+      {/* 5. Not yet tracked — real future events, scaffolded */}
       <section>
         <h3 className="mb-1 text-sm font-semibold text-midnight-navy">Not yet tracked <span className="font-normal text-charcoal/50">· per competency</span></h3>
-        <p className="mb-3 text-xs text-charcoal/55">These require instrumentation on the live assessment path (a deliberate, separate step — not built here).</p>
+        <p className="mb-3 text-xs text-charcoal/55">These require engagement instrumentation on the live assessment path (a deliberate, separate step — not built here).</p>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            ["Completion rate", "Needs a live questions ↔ competency crosswalk."],
-            ["Live performance", "Needs per-competency scoring (live scores are phase-level today)."],
             ["Recommendation displayed", "Needs a recommendation-impression log on /api/results."],
             ["Recommendation clicked", "Needs click events on recommendation surfaces."],
             ["Resource started", "Needs engagement events on published resources."],

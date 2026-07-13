@@ -1,5 +1,6 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getWorkspaceCounts } from "@/lib/studioFrameworkData";
+import { getCompetencyLiveSummary, type CompetencyLiveSummary } from "@/lib/questionMapData";
 import type { KbCompetency } from "@/lib/studio";
 
 // Server-only per-competency Analytics reads (V1 architecture scaffold). Strict
@@ -45,6 +46,7 @@ export interface CompetencyAnalytics {
   simulation: SimulationStats;
   phaseContext: ContextStat | null;
   domainContext: ContextStat | null;
+  liveSummary: CompetencyLiveSummary; // governed mapping → descriptive (exploratory) summary
 }
 
 function mean(nums: number[]): number | null {
@@ -148,5 +150,7 @@ export async function getCompetencyAnalytics(code: string, competency: KbCompete
     }
   } catch { /* leave null */ }
 
-  return { inventory, simulation, phaseContext, domainContext };
+  const liveSummary = await getCompetencyLiveSummary(code);
+
+  return { inventory, simulation, phaseContext, domainContext, liveSummary };
 }
