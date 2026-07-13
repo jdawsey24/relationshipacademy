@@ -10,6 +10,9 @@ const WRITABLE = [
   "name", "audience", "purpose", "delivery_mode", "estimated_items", "estimated_time",
   "primary_outputs", "scoring_level", "current_stage", "launch_priority",
   "requires_partner_data", "requires_clinician_data", "notes", "status",
+  // Structured Specification (migration 0028) — the machine-usable design brief.
+  "structural_context", "target_reading_level", "target_completion_minutes",
+  "desired_outputs", "design_constraints",
 ] as const;
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {

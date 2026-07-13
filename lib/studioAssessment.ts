@@ -39,6 +39,13 @@ export interface Assessment {
   requires_clinician_data: string | null;
   notes: string | null;
   status: StudioStatus;
+  // Structured Specification (migration 0028) — the machine-usable design brief
+  // consumed by the Assembly Engine. Optional so older reads stay compatible.
+  structural_context?: string | null;
+  target_reading_level?: string | null;
+  target_completion_minutes?: number | null;
+  desired_outputs?: string[] | null;
+  design_constraints?: Record<string, unknown> | null;
   updated_by: string | null;
   updated_at: string;
 }
