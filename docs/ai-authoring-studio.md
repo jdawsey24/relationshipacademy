@@ -71,3 +71,10 @@ Extends the studio with dedicated structured generators. Reuses the AIS-1 spine;
 - **APIs** — `generate/content`, `content-drafts` (+ `[id]/transition`).
 - **UI** — Content Builder (separate Worksheet + Lesson forms); Review Queue Items|Content toggle + content drawer with web/mobile/printable/professional preview modes.
 - **E2E VERIFIED (live):** worksheet + lesson generate → staged drafts w/ sources + quality checks → NOT in library → approve → WS-000223 / LES-000112 in the Content Library (provenance=ai_generated) → reject stays out → cleanup restored counts. `npm test` 24 pass.
+
+## 8. AIS-3 — remaining generators + Review Mode
+
+- **Migration `0024_ai_more_content.sql`** — seeds practice/conversation_guide/journal_prompt/activity/video_outline generator templates + a `review_existing` template; adds `ai_content_reviews`; enables the types in `ai_settings`.
+- **All 7 content types** — config-driven Content Builder; generalized promotion into the Content Library (`PRA/CG/JP/ACT/VID` + `WS/LES`).
+- **Review Mode** — `lib/ai/reviewContent.ts` reviews an EXISTING asset across the 14 categories → `ai_content_reviews` findings (evidence + owner-decision / theoretical-review flags). Never edits.
+- **E2E VERIFIED (live):** all 5 new types generate → approve → PRA-000334 / CG-000112 / JP-000223 / ACT-000223 / VID-000112 in the Content Library (provenance=ai_generated); Review Mode on WS-000001 returned 10 findings + wrote `ai_content_reviews`; cleanup restored counts. `npm test` 24 pass.
