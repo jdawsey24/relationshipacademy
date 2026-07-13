@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import StudioTabs from "@/components/admin/StudioTabs";
 import AssessmentNav from "@/components/admin/AssessmentNav";
 import StudioStatusBadge from "@/components/admin/StudioStatusBadge";
@@ -47,10 +48,11 @@ export default function AssessmentInstrumentsPage() {
           {rows.map((a) => (
             <div key={a.assessment_id} className="rounded-md border border-light-gray p-4">
               <div className="flex flex-wrap items-center gap-3">
-                <h2 className="text-lg font-semibold text-midnight-navy">{a.name}</h2>
+                <Link href={`/admin/studio/assessment/instruments/${encodeURIComponent(a.assessment_id)}`} className="text-lg font-semibold text-midnight-navy hover:underline">{a.name}</Link>
                 <StudioStatusBadge status={a.status} />
                 <span className="text-xs text-charcoal/40">{a.assessment_id}</span>
                 {a.current_stage && <span className="rounded bg-light-gray px-2 py-0.5 text-[11px] text-charcoal/60">{a.current_stage}</span>}
+                <Link href={`/admin/studio/assessment/instruments/${encodeURIComponent(a.assessment_id)}`} className="ml-auto rounded-md border border-light-gray px-3 py-1 text-sm text-midnight-navy hover:bg-light-gray">Open →</Link>
               </div>
               {a.purpose && <p className="mt-1 text-sm text-charcoal/70">{a.purpose}</p>}
               <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-xs text-charcoal/60">
