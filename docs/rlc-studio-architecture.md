@@ -154,9 +154,21 @@ The 8th workspace tab (`/admin/studio/competency/[code]/analytics`). Read-only. 
 - **"Not yet tracked" cards** name the real future events — *completion rate, live performance, recommendation displayed / clicked, resource started / completed* — each with the instrumentation it needs.
 - **Live path untouched:** verified `app/api/results/*`, `app/api/score/*`, `lib/scoring.ts` unchanged.
 
+## Governed Question→Indicator→Competency mapping layer (built)
+
+Canonical assessment architecture: a **governed traceability + descriptive-analysis** system that maps each live 47-item Snapshot question to the **behavioral indicator** it reflects (competency/domain/phase derived from the indicator). It is **not** validated competency scoring. **The public scoring/results path is untouched** — `quiz_responses` is read only for descriptive aggregates.
+
+- **Migration `0027_live_question_map.sql`** (owner-run): a single RLS-locked, append-only table; no `ALTER` on `questions` or any live scoring table. Governance columns: `status` (draft/approved/superseded/retired), immutable `version_no`, `effective_from/to`, `rationale`, `confidence_level`, `assessment_version_id`, `mapping_kind` + `exception_reason`, `scoring_eligible`, `weight`, `reviewed_by`/`approved_by`.
+- **Lifecycle:** editors create drafts; **only the owner approves** (superseding the prior current mapping — history preserved, never deleted); retire keeps history; delete is draft-only.
+- **Data** `lib/questionMap.ts` (client types, coverage tiers) + `lib/questionMapData.ts` (server: governed writes + `getCompetencyLiveSummary`). The descriptive read applies a **response-model compatibility gate** (competency-phase items only — expiration-risk excluded — and `scoring_eligible` only) before aggregating.
+- **Tool** `/admin/studio/assessment/question-map` (Studio → Assessment → Question Map): the 47 questions with competency→indicator pickers, rationale/confidence, discouraged direct-to-competency fallback (requires exception reason, `scoring_eligible=false`), draft→approve→supersede→history, coverage counter.
+- **Analytics** `getCompetencyAnalytics` gains `liveSummary`; the competency Analytics tab shows a **"Live mapped response summary"** — mapped question/indicator counts, contributing sessions, assessment version, mapping version, coverage tier, and validation status **"Exploratory — not psychometrically validated"** (never "Validated live"). "Completion rate" was removed (not meaningful for fixed-form/complete-only data). Note: a 47-item Snapshot does not validly measure all 111 competencies.
+- **Verified:** build green, 39 tests, consumer path untouched (`git diff`), resilient pre-migration (47 questions load, `no_coverage`). Governance + descriptive E2E runs after the owner applies `0027`.
+
 ## Deferred (follow-ups after validation)
 
-- **Live-path instrumentation** to make per-competency analytics real: a deterministic `questions ↔ kb_competencies.code` crosswalk (unlocks completion + performance) and an event log on `/api/results` + engagement surfaces (unlocks recommendation displayed/clicked, resource started/completed). Consumer-path-touching — a deliberate separate branch.
+- **Formal validated scoring/interpretation/recommendations** from the mapping (Assessment System build); weighted/multi-indicator mapping UI; adaptive assessment.
+- **Engagement event log** on `/api/results` + surfaces (recommendation displayed/clicked, resource started/completed) — no clean per-competency surfaces today. Consumer-path-touching — a deliberate separate branch.
 - Cross-competency Studio-level Analytics dashboard.
 - **Studio Assistant** capability expansion: Summarize Competency, Find Duplicates, inline AI Review, conversational assistant (each needs a new owner+MFA AI endpoint / cost surface); broader (non-route) context resolution.
 - Standalone cross-competency **Analytics** (completion rates, performance, most-assigned, recommendation frequency).
