@@ -6,8 +6,9 @@ import { assembleContentContext } from "@/lib/ai/context";
 import { persistChecks, runDeterministicContentChecks } from "@/lib/ai/quality";
 import { estimateCost } from "@/lib/ai/types";
 import { AiError } from "@/lib/ai/generateItem";
+import type { ContentAssetType } from "@/lib/ai/contentTypes";
 
-export type ContentAssetType = "worksheet" | "lesson";
+export type { ContentAssetType } from "@/lib/ai/contentTypes";
 
 export interface GenerateContentInput {
   actor: string | null;

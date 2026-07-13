@@ -10,9 +10,19 @@ type ContentDraftRow = {
   draft_content: Record<string, unknown>; permanent_id: string | null;
 };
 
-const TARGET: Record<string, { table: string; pk: string; prefix: string }> = {
-  worksheet: { table: "studio_worksheets", pk: "worksheet_id", prefix: "WS" },
-  lesson: { table: "studio_lessons", pk: "lesson_id", prefix: "LES" },
+const dstr = (dc: Record<string, unknown>, k: string) => (typeof dc[k] === "string" ? (dc[k] as string) : null);
+const darr = (dc: Record<string, unknown>, k: string) => (Array.isArray(dc[k]) ? (dc[k] as unknown[]) : []);
+
+// Per-type promotion into the Content Library. `extra` returns the type-specific
+// columns (incl. the competency link) beyond the common ones.
+const TARGET: Record<string, { table: string; pk: string; prefix: string; labelCol: string; extra: (dc: Record<string, unknown>, comp: string | null) => Record<string, unknown> }> = {
+  worksheet: { table: "studio_worksheets", pk: "worksheet_id", prefix: "WS", labelCol: "title", extra: (dc, comp) => ({ competency_id: comp, purpose: dstr(dc, "purpose") }) },
+  lesson: { table: "studio_lessons", pk: "lesson_id", prefix: "LES", labelCol: "title", extra: (dc, comp) => ({ competency_ids: comp, learning_objective: darr(dc, "learning_objectives").map(String).join("; ") || dstr(dc, "overview"), content_type: "Lesson" }) },
+  practice: { table: "studio_practices", pk: "practice_id", prefix: "PRA", labelCol: "name", extra: (dc, comp) => ({ competency_id: comp, practice_type: dstr(dc, "practice_type") || "Guided", instructions: dstr(dc, "instructions"), reflection_prompt: dstr(dc, "reflection_prompt") }) },
+  conversation_guide: { table: "studio_conversation_guides", pk: "guide_id", prefix: "CG", labelCol: "title", extra: (dc, comp) => ({ competency_id: comp, purpose: dstr(dc, "purpose") }) },
+  journal_prompt: { table: "studio_journal_prompts", pk: "prompt_id", prefix: "JP", labelCol: "title", extra: (dc, comp) => ({ competency_id: comp, prompt: dstr(dc, "prompt"), use_case: dstr(dc, "use_case") }) },
+  activity: { table: "studio_activities", pk: "activity_id", prefix: "ACT", labelCol: "name", extra: (dc, comp) => ({ competency_id: comp, activity_type: dstr(dc, "activity_type") || "Experiential", participant_instructions: dstr(dc, "participant_instructions") }) },
+  video_outline: { table: "studio_videos", pk: "video_id", prefix: "VID", labelCol: "title", extra: (dc, comp) => ({ competency_id: comp, video_type: dstr(dc, "video_type") || "Concept Lesson", learning_objective: dstr(dc, "learning_objective") }) },
 };
 
 async function getDraft(id: string): Promise<ContentDraftRow> {
@@ -65,8 +75,6 @@ async function promoteContent(draft: ContentDraftRow, actor: string | null): Pro
   const cfg = TARGET[draft.asset_type];
   if (!cfg) throw new AiError(`Cannot promote asset type "${draft.asset_type}".`);
   const dc = draft.draft_content ?? {};
-  const str = (k: string) => (typeof dc[k] === "string" ? (dc[k] as string) : null);
-  const arr = (k: string) => (Array.isArray(dc[k]) ? (dc[k] as unknown[]) : []);
 
   let domain: string | null = null, phase: string | null = null;
   if (draft.competency_id) {
@@ -74,21 +82,13 @@ async function promoteContent(draft: ContentDraftRow, actor: string | null): Pro
     if (c) { domain = (c as { domain_slug: string }).domain_slug; phase = (c as { phase_slug: string }).phase_slug; }
   }
   const id = await nextCanonicalId(cfg.table, cfg.pk, cfg.prefix);
-  const base: Record<string, unknown> = {
-    [cfg.pk]: id, competency_id: undefined, title: str("title"), domain, phase,
-    audience: str("audience") || "consumer", status: "approved", provenance: "ai_generated",
+  const row: Record<string, unknown> = {
+    [cfg.pk]: id, [cfg.labelCol]: dstr(dc, "title"), domain, phase,
+    audience: dstr(dc, "audience") || "consumer", status: "approved", provenance: "ai_generated",
     detail: dc, updated_by: actor,
+    ...cfg.extra(dc, draft.competency_id),
   };
-  if (draft.asset_type === "worksheet") {
-    base.competency_id = draft.competency_id;
-    base.purpose = str("purpose");
-  } else {
-    delete base.competency_id;
-    base.competency_ids = draft.competency_id;
-    base.learning_objective = arr("learning_objectives").map((x) => String(x)).join("; ") || str("overview");
-    base.content_type = "Lesson";
-  }
-  const { error } = await s.from(cfg.table).insert(base);
+  const { error } = await s.from(cfg.table).insert(row);
   if (error) { console.error("[ai.approveContent] insert failed:", error.message); throw new AiError(`Failed to add the approved ${draft.asset_type} to the Content Library: ${error.message}`, 502); }
 
   await s.from("ai_content_drafts").update({ status: "approved", permanent_id: id, approved_by: actor, approved_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq("id", draft.id);

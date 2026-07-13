@@ -95,7 +95,7 @@ function ContentDrawer({ id, onClose, onChanged }: { id: string; onClose: () => 
 
             <div className={`rounded-md border border-light-gray p-4 ${preview === "print" ? "bg-white" : "bg-light-gray/20"}`}>
               <div className={`mx-auto ${width}`}>
-                {draft.asset_type === "worksheet" ? <WorksheetPreview dc={dc} pro={pro} /> : <LessonPreview dc={dc} pro={pro} />}
+                {draft.asset_type === "worksheet" ? <WorksheetPreview dc={dc} pro={pro} /> : draft.asset_type === "lesson" ? <LessonPreview dc={dc} pro={pro} /> : <GenericPreview dc={dc} pro={pro} />}
               </div>
             </div>
 
@@ -126,6 +126,29 @@ function s(dc: Record<string, unknown>, k: string) { return typeof dc[k] === "st
 function a(dc: Record<string, unknown>, k: string) { return Array.isArray(dc[k]) ? (dc[k] as unknown[]) : []; }
 function Sec({ h, children }: { h: string; children: React.ReactNode }) { return <div className="mt-3"><h4 className="text-xs font-semibold uppercase tracking-wide text-charcoal/50">{h}</h4><div className="mt-0.5 text-sm text-charcoal/80">{children}</div></div>; }
 function List({ items }: { items: unknown[] }) { return <ul className="list-disc pl-5">{items.map((x, i) => <li key={i}>{typeof x === "object" ? JSON.stringify(x) : String(x)}</li>)}</ul>; }
+
+// Renders any content draft generically (used for practice / conversation guide /
+// journal prompt / activity / video outline). Facilitator/instructor fields show
+// only in the professional preview.
+function GenericPreview({ dc, pro }: { dc: Record<string, unknown>; pro: boolean }) {
+  const PRO_KEYS = new Set(["facilitator_notes", "facilitator_instructions", "accessibility_notes"]);
+  const keys = Object.keys(dc).filter((k) => k !== "title" && (pro || !PRO_KEYS.has(k)));
+  return (
+    <article>
+      <h3 className="text-xl font-semibold text-midnight-navy">{s(dc, "title")}</h3>
+      {keys.map((k) => {
+        const v = dc[k];
+        const label = k.replace(/_/g, " ");
+        if (Array.isArray(v)) {
+          if (v.length === 0) return null;
+          return <Sec key={k} h={label}>{typeof v[0] === "object" ? v.map((o, i) => { const oo = o as Record<string, unknown>; return <p key={i}>{Object.values(oo).map(String).join(" — ")}</p>; }) : <List items={v} />}</Sec>;
+        }
+        if (typeof v === "string" && v.trim()) return <Sec key={k} h={label}><span className="whitespace-pre-wrap">{v}</span></Sec>;
+        return null;
+      })}
+    </article>
+  );
+}
 
 function WorksheetPreview({ dc, pro }: { dc: Record<string, unknown>; pro: boolean }) {
   return (
