@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { getSupabaseBrowserClient } from "@/lib/supabaseBrowser";
 import { RoleProvider, type AdminRole } from "@/components/admin/RoleContext";
+import StudioAssistant from "@/components/admin/StudioAssistant";
 
 // Admin is a plain working tool: white background, Inter throughout, navy nav.
 // Sidebar is organized as an "operating system" for the RLC ecosystem. Sections
@@ -121,14 +122,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </nav>
 
-      <main className="flex-1 overflow-x-auto px-5 py-6 md:px-8 md:py-8">
-        {isViewer && (
-          <div className="mb-6 rounded-md border border-amber-300 bg-amber-50 px-4 py-2.5 text-sm text-amber-800">
-            <span className="font-semibold">Read-only access.</span> You can view everything here, but saving, uploading, and deleting are disabled for your role.
-          </div>
-        )}
-        <RoleProvider value={role}>{children}</RoleProvider>
-      </main>
+      <RoleProvider value={role}>
+        <StudioAssistant>
+          <main className="flex-1 overflow-x-auto px-5 py-6 md:px-8 md:py-8">
+            {isViewer && (
+              <div className="mb-6 rounded-md border border-amber-300 bg-amber-50 px-4 py-2.5 text-sm text-amber-800">
+                <span className="font-semibold">Read-only access.</span> You can view everything here, but saving, uploading, and deleting are disabled for your role.
+              </div>
+            )}
+            {children}
+          </main>
+        </StudioAssistant>
+      </RoleProvider>
     </div>
   );
 }
