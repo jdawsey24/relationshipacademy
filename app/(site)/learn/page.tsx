@@ -4,6 +4,7 @@ import LeadForm from "@/components/site/LeadForm";
 import { getPublishedArticles } from "@/lib/articles";
 import { getPublishedResources } from "@/lib/resources";
 import { getArticleCategoryNames } from "@/lib/articleCategories";
+import { getPublishedForDestination } from "@/lib/publishingData";
 import { getSiteContentMap, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
@@ -13,10 +14,11 @@ export async function generateMetadata() {
 }
 
 export default async function LearnPage() {
-  const [articles, resources, categories] = await Promise.all([
+  const [articles, resources, categories, libraryContent] = await Promise.all([
     getPublishedArticles(),
     getPublishedResources(),
     getArticleCategoryNames(),
+    getPublishedForDestination("resource_library"),
   ]);
 
   return (
@@ -42,6 +44,23 @@ export default async function LearnPage() {
           </div>
         </div>
       </section>
+
+      {libraryContent.length > 0 && (
+        <section className="px-6 py-12">
+          <div className="mx-auto max-w-5xl">
+            <SectionLabel className="mb-4">From the RLC Library</SectionLabel>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {libraryContent.map((c) => (
+                <div key={`${c.source_type}-${c.id}`} className="rounded-xl border border-light-gray bg-white p-5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wide text-dusty-plum">{c.source_type.replace(/_/g, " ")}</span>
+                  <h3 className="mt-1 font-display text-lg font-semibold text-midnight-navy">{c.title}</h3>
+                  {c.description && <p className="mt-1 font-body text-sm leading-relaxed text-charcoal/80">{c.description}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {articles.length > 0 ? (
         <section className="px-6 py-12">
