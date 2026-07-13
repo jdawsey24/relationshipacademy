@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import StudioTabs from "@/components/admin/StudioTabs";
+import StudioNav from "@/components/admin/StudioNav";
 import { useAdminRole, useCanWrite } from "@/components/admin/RoleContext";
 import {
   AUDIENCES,
@@ -81,9 +81,26 @@ export default function StudioRegistryPage() {
 
   return (
     <div>
-      <h1 className="mb-1 text-2xl font-semibold text-midnight-navy">Content &amp; Assessment Studio</h1>
-      <p className="mb-4 text-sm text-charcoal/60">Author, version, review, approve, and publish RLC content — grounded in the Knowledge Base.</p>
-      <StudioTabs />
+      <h1 className="mb-1 text-2xl font-semibold text-midnight-navy">RLC Studio</h1>
+      <p className="mb-4 text-sm text-charcoal/60">The authoring environment for the Relationship Life Cycle™. Work begins from the <strong>Framework</strong> — open a competency to build, review, and publish everything that belongs to it.</p>
+      <StudioNav />
+
+      <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { href: "/admin/studio/framework", title: "Framework", body: "Phase → Domain → Competency. The canonical source of truth." },
+          { href: "/admin/studio/assessment", title: "Assessments", body: "Item bank, scoring, interpretation, recommendations." },
+          { href: "/admin/studio/library", title: "Content Library", body: "Worksheets, lessons, practices, activities, and more." },
+          { href: "/admin/studio/publishing", title: "Publishing", body: "Route approved assets to their destinations." },
+        ].map((c) => (
+          <Link key={c.href} href={c.href} className="rounded-lg border border-light-gray p-4 transition-colors hover:border-midnight-navy hover:bg-light-gray/40">
+            <div className="text-sm font-semibold text-midnight-navy">{c.title}</div>
+            <div className="mt-1 text-xs text-charcoal/60">{c.body}</div>
+          </Link>
+        ))}
+      </div>
+
+      <div className="mb-2 text-sm font-semibold text-charcoal/70">Governance registry</div>
+      <p className="mb-3 text-xs text-charcoal/50">The versioned spine tracking every governed object (articles and more) through draft → review → approve → publish.</p>
 
       {isOwner && queue.length > 0 && (
         <div className="mb-6 rounded-md border border-amber-300 bg-amber-50 p-4">

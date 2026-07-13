@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import StudioTabs from "@/components/admin/StudioTabs";
+import StudioNav from "@/components/admin/StudioNav";
 import LibraryNav from "@/components/admin/LibraryNav";
 import StudioStatusBadge from "@/components/admin/StudioStatusBadge";
 import GenericRowEditor from "@/components/admin/GenericRowEditor";
@@ -54,7 +54,7 @@ export default function LibraryTypePage() {
   useEffect(() => { setPage(1); setFilters({ competency_id: "", domain: "", phase: "", status: "", search: "" }); }, [type]);
 
   if (!valid || !cfg) {
-    return <div><StudioTabs /><LibraryNav /><p className="text-sm text-coral-rose">Unknown library type.</p></div>;
+    return <div><StudioNav /><LibraryNav /><p className="text-sm text-coral-rose">Unknown library type.</p></div>;
   }
 
   function setFilter(k: string, v: string) { setPage(1); setFilters((f) => ({ ...f, [k]: v })); }
@@ -83,7 +83,7 @@ export default function LibraryTypePage() {
     <div>
       <h1 className="mb-1 text-2xl font-semibold text-midnight-navy">Content &amp; Assessment Studio</h1>
       <p className="mb-4 text-sm text-charcoal/60">{c.label}. Draft, review, and approve — approving/publishing is owner-only.</p>
-      <StudioTabs />
+      <StudioNav />
       <LibraryNav />
 
       <div className="mb-3 flex flex-wrap items-center gap-2">

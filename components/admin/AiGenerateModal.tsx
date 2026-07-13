@@ -6,16 +6,18 @@ import { useEffect, useState } from "react";
 // (the KB grounding), optional count (items only) + instructions, and calls
 // onGenerate. AI output always lands as Draft — the parent reloads to show it.
 export default function AiGenerateModal({
-  title, subtitle, competencies, showCount, onClose, onGenerate,
+  title, subtitle, competencies, showCount, defaultCompetencyId, lockCompetency, onClose, onGenerate,
 }: {
   title: string;
   subtitle: string;
   competencies: { id: string; name: string }[];
   showCount?: boolean;
+  defaultCompetencyId?: string; // pre-select (e.g. from a Competency Workspace)
+  lockCompetency?: boolean;     // when pre-scoped, hide the picker entirely
   onClose: () => void;
   onGenerate: (competencyId: string, count: number, instructions: string) => Promise<string | null>; // returns error or null
 }) {
-  const [competencyId, setCompetencyId] = useState("");
+  const [competencyId, setCompetencyId] = useState(defaultCompetencyId ?? "");
   const [count, setCount] = useState(8);
   const [instructions, setInstructions] = useState("");
   const [configured, setConfigured] = useState<boolean | null>(null);
@@ -42,12 +44,16 @@ export default function AiGenerateModal({
         {configured === false && (
           <p className="mb-3 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-800">AI generation isn&apos;t configured. Set <code>ANTHROPIC_API_KEY</code> to enable it.</p>
         )}
-        <label className="block text-sm font-medium text-charcoal">Competency
-          <select value={competencyId} onChange={(e) => setCompetencyId(e.target.value)} className="mt-1 w-full rounded-md border border-light-gray px-2 py-1.5 text-sm">
-            <option value="">Select…</option>
-            {competencies.map((c) => <option key={c.id} value={c.id}>{c.id} · {c.name}</option>)}
-          </select>
-        </label>
+        {lockCompetency && defaultCompetencyId ? (
+          <p className="rounded-md bg-light-gray px-3 py-2 text-sm text-charcoal/70">Competency: <span className="font-semibold text-midnight-navy">{defaultCompetencyId}</span></p>
+        ) : (
+          <label className="block text-sm font-medium text-charcoal">Competency
+            <select value={competencyId} onChange={(e) => setCompetencyId(e.target.value)} className="mt-1 w-full rounded-md border border-light-gray px-2 py-1.5 text-sm">
+              <option value="">Select…</option>
+              {competencies.map((c) => <option key={c.id} value={c.id}>{c.id} · {c.name}</option>)}
+            </select>
+          </label>
+        )}
         {showCount && (
           <label className="mt-3 block text-sm font-medium text-charcoal">How many items?
             <input type="number" min={1} max={20} value={count} onChange={(e) => setCount(Number(e.target.value))} className="mt-1 w-full rounded-md border border-light-gray px-2 py-1.5 text-sm" />

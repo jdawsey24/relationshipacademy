@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import StudioTabs from "@/components/admin/StudioTabs";
+import StudioNav from "@/components/admin/StudioNav";
 import AssessmentNav from "@/components/admin/AssessmentNav";
 import StudioStatusBadge from "@/components/admin/StudioStatusBadge";
 import AiGenerateModal from "@/components/admin/AiGenerateModal";
@@ -58,7 +58,7 @@ export default function ItemBankPage() {
     <div>
       <h1 className="mb-1 text-2xl font-semibold text-midnight-navy">Content &amp; Assessment Studio</h1>
       <p className="mb-4 text-sm text-charcoal/60">The candidate item bank. Draft, review, and approve items — approving is owner-only.</p>
-      <StudioTabs />
+      <StudioNav />
       <AssessmentNav />
 
       <div className="mb-3 flex flex-wrap items-center gap-2">

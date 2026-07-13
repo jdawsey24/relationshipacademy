@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import StudioTabs from "@/components/admin/StudioTabs";
+import StudioNav from "@/components/admin/StudioNav";
 import StudioStatusBadge from "@/components/admin/StudioStatusBadge";
 import { useAdminRole, useCanWrite } from "@/components/admin/RoleContext";
 import { ASSET_TYPES, type Asset } from "@/lib/studioAssets";
@@ -51,7 +51,7 @@ export default function AssetLibraryPage() {
     <div>
       <h1 className="mb-1 text-2xl font-semibold text-midnight-navy">Content &amp; Assessment Studio</h1>
       <p className="mb-4 text-sm text-charcoal/60">Asset Library — a governed, taggable catalogue over the media bucket.</p>
-      <StudioTabs />
+      <StudioNav />
 
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <select value={filters.asset_type} onChange={(e) => setFilters((f) => ({ ...f, asset_type: e.target.value }))} className={INP}>

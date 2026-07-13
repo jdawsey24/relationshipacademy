@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import StudioTabs from "@/components/admin/StudioTabs";
+import StudioNav from "@/components/admin/StudioNav";
 import AssessmentNav from "@/components/admin/AssessmentNav";
 import StudioStatusBadge from "@/components/admin/StudioStatusBadge";
 import { useAdminRole, useCanWrite } from "@/components/admin/RoleContext";
@@ -37,7 +37,7 @@ export default function AssessmentSubEditorPage() {
   useEffect(() => { load(); }, [load]);
 
   if (!valid || !cfg) {
-    return <div><StudioTabs /><AssessmentNav /><p className="text-sm text-coral-rose">Unknown section.</p></div>;
+    return <div><StudioNav /><AssessmentNav /><p className="text-sm text-coral-rose">Unknown section.</p></div>;
   }
 
   function labelFor(r: Row): string {
@@ -55,7 +55,7 @@ export default function AssessmentSubEditorPage() {
     <div>
       <h1 className="mb-1 text-2xl font-semibold text-midnight-navy">Content &amp; Assessment Studio</h1>
       <p className="mb-4 text-sm text-charcoal/60">{cfg.label}. Edit and govern — approving/publishing is owner-only.</p>
-      <StudioTabs />
+      <StudioNav />
       <AssessmentNav />
 
       {msg && <div className="mb-3 rounded-md bg-sage-green/10 px-3 py-2 text-sm text-sage-green">{msg}</div>}

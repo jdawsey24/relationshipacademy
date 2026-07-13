@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import StudioTabs from "@/components/admin/StudioTabs";
+import StudioNav from "@/components/admin/StudioNav";
 import LibraryNav from "@/components/admin/LibraryNav";
 import { LEARNING_TABLES, LIBRARY_ORDER } from "@/lib/studioLibrary";
 
@@ -21,7 +21,7 @@ export default function LibraryOverviewPage() {
     <div>
       <h1 className="mb-1 text-2xl font-semibold text-midnight-navy">Content &amp; Assessment Studio</h1>
       <p className="mb-4 text-sm text-charcoal/60">The learning library — practices, activities, worksheets, lessons, and more, keyed to competencies. Authoring only; nothing here publishes to the live Academy until a deliberate later step.</p>
-      <StudioTabs />
+      <StudioNav />
       <LibraryNav />
 
       {error && <p className="text-sm text-coral-rose">Failed to load. If the learning tables aren&apos;t set up yet, run migration 0019_studio_learning.sql and the importer.</p>}

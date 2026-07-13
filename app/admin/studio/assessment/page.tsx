@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import StudioTabs from "@/components/admin/StudioTabs";
+import StudioNav from "@/components/admin/StudioNav";
 import AssessmentNav from "@/components/admin/AssessmentNav";
 import StudioStatusBadge from "@/components/admin/StudioStatusBadge";
 import { useCanWrite } from "@/components/admin/RoleContext";
@@ -35,7 +35,7 @@ export default function AssessmentInstrumentsPage() {
     <div>
       <h1 className="mb-1 text-2xl font-semibold text-midnight-navy">Content &amp; Assessment Studio</h1>
       <p className="mb-4 text-sm text-charcoal/60">Author and govern the assessment architecture. Nothing here affects the live assessment until an explicit publish step.</p>
-      <StudioTabs />
+      <StudioNav />
       <AssessmentNav />
 
       {msg && <div className="mb-4 rounded-md bg-sage-green/10 px-3 py-2 text-sm text-sage-green">{msg}</div>}
