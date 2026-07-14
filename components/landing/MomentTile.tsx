@@ -1,18 +1,17 @@
 import type { Moment } from "./moments";
 
-// Feather all four edges so the photo dissolves into the page (no hard frame),
-// then a soft drop shadow for depth — an Apple-style floating image.
+// Feather all four edges so the photo has no hard border.
 const FEATHER =
-  "linear-gradient(to right, transparent, #000 10%, #000 90%, transparent), linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent)";
+  "linear-gradient(to right, transparent, #000 13%, #000 87%, transparent), linear-gradient(to bottom, transparent, #000 13%, #000 87%, transparent)";
 
 export default function MomentTile({
   moment,
   className = "",
-  variant = "float",
+  variant = "embed",
 }: {
   moment: Moment;
   className?: string;
-  variant?: "float" | "framed";
+  variant?: "embed" | "framed";
 }) {
   // Framed: a clean rounded photo (used for the founder portrait).
   if (variant === "framed") {
@@ -25,7 +24,8 @@ export default function MomentTile({
       />
     );
   }
-  // Float: feathered, transparent-edged, soft-shadowed — floats on the page.
+  // Embed: feathered edges + multiply blend + reduced opacity, so the image
+  // recedes and reads as part of the ivory surface rather than sitting on top.
   return (
     <div
       role="img"
@@ -37,7 +37,8 @@ export default function MomentTile({
         WebkitMaskComposite: "source-in",
         maskImage: FEATHER,
         maskComposite: "intersect",
-        filter: "drop-shadow(0 18px 30px rgba(28,53,87,0.22))",
+        mixBlendMode: "multiply",
+        opacity: 0.85,
       }}
     />
   );
