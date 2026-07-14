@@ -14,6 +14,7 @@ export default function InstrumentSubNav({ id }: { id: string }) {
     { label: "Measurement Model", href: `${base}/measurement-model` },
     { label: "Assembly", href: `${base}/assembly` },
     { label: "Sandbox", href: `${base}/sandbox` },
+    { label: "Consumer Text", href: `${base}/consumer-text` },
     { label: "Publish", href: `${base}/publish` },
   ];
   return (

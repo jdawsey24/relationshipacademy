@@ -71,7 +71,7 @@ export default function InstrumentPublishPage() {
           {!r.ready && (
             <p className="mb-4 rounded-md border border-amber-300 bg-amber-50 px-4 py-2.5 text-sm text-amber-800">
               Not ready to publish. Real respondents are never scored on missing cut-points or shown raw item wording — author the items above first
-              (cut-points in <Link href="/admin/studio/assessment/scoring" className="underline">Scoring → Rules &amp; Bands</Link>; consumer text in the <Link href={`/admin/studio/assessment/items?competency_id=`} className="underline">Item Bank</Link>).
+              (cut-points in <Link href="/admin/studio/assessment/scoring" className="underline">Scoring → Rules &amp; Bands</Link>; consumer text with the <Link href={`/admin/studio/assessment/instruments/${encodeURIComponent(id)}/consumer-text`} className="underline">AI consumer-text pass</Link>).
             </p>
           )}
 
