@@ -65,6 +65,10 @@ No edits to `app/api/score`, `app/api/results`, `lib/scoring.ts`, `app/snapshot`
 - Resilient pre-migration (pages show empty states; framework derivation verified against live data).
 - Post-`0028` E2E (owner): Specification → generate + approve Model → run assembly (0 approved → honest unmet report; approve items → engine selects them; fingerprint stable on re-run) → approve assembly.
 
+## Sandbox (built)
+
+Run an **approved assembled instrument** through the deterministic scoring engine, **off the live consumer path** (persists a `kind='simulation'` attempt; provisional cut-points; never scores real users). Instrument sub-nav → **Sandbox**. `SimScope` gains a `"assessment"` type; `loadItems`/`scopeItems` resolve the approved `studio_assessment_membership`; the page takes a structural context + responses and renders primary outputs + the score-results traceability + recommendation results (reuses `lib/studioScoring` unchanged). Verified: approved 47-item Snapshot → 54 score results + 11 findings.
+
 ## Deferred phases
 
-Sandbox (simulate an assembled set via a new multi-item loader) · dual Participant/Developer Preview · outcome-first Builder redesign · consumer "Developmental Alignment / Relationship Alignment" language · optional AI narrative · publish an assembled instrument to live.
+Dual Participant/Developer Preview (render `studio_results_templates` as the taker sees them) · outcome-first Builder redesign · consumer "Developmental Alignment / Relationship Alignment" language · optional AI narrative · publish an assembled instrument to live.

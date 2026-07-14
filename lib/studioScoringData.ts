@@ -8,11 +8,25 @@ import {
 // rules/items, runs the pure engine, and persists a SIMULATION attempt + results.
 // Resilient: returns empty structures if migration 0026 is absent.
 
-export interface SimScope { type: "competency" | "domain"; id: string; }
+export interface SimScope { type: "competency" | "domain" | "assessment"; id: string; }
+
+// The approved assembled membership item ids for an instrument (Sandbox scope).
+async function assessmentMemberItemIds(s: ReturnType<typeof getSupabaseAdminClient>, assessmentId: string): Promise<string[]> {
+  const { data } = await s.from("studio_assessment_membership")
+    .select("item_id").eq("assessment_id", assessmentId).eq("status", "approved").eq("source", "assembled").order("position");
+  return (data ?? []).map((r) => String((r as Record<string, unknown>).item_id));
+}
 
 async function loadItems(scope: SimScope): Promise<ScoreItemDef[]> {
   const s = getSupabaseAdminClient();
-  let q = s.from("studio_assessment_items").select("item_id, competency_id, domain, phase, reverse_scored").limit(500);
+  const sel = "item_id, competency_id, domain, phase, reverse_scored";
+  if (scope.type === "assessment") {
+    const ids = await assessmentMemberItemIds(s, scope.id);
+    if (!ids.length) return [];
+    const { data } = await s.from("studio_assessment_items").select(sel).in("item_id", ids);
+    return ((data ?? []) as ScoreItemDef[]).map((x) => ({ ...x, scale_max: 5 }));
+  }
+  let q = s.from("studio_assessment_items").select(sel).limit(500);
   q = scope.type === "competency" ? q.eq("competency_id", scope.id) : q.eq("domain", scope.id);
   const { data } = await q;
   return ((data ?? []) as ScoreItemDef[]).map((x) => ({ ...x, scale_max: 5 }));
@@ -32,7 +46,16 @@ async function loadRuleByLevel(level: string): Promise<ScoringRuleDef | undefine
 export async function scopeItems(scope: SimScope): Promise<{ item_id: string; item_text: string; competency_id: string | null; reverse_scored: boolean }[]> {
   try {
     const s = getSupabaseAdminClient();
-    let q = s.from("studio_assessment_items").select("item_id, item_text, competency_id, reverse_scored").limit(60);
+    const sel = "item_id, item_text, competency_id, reverse_scored";
+    if (scope.type === "assessment") {
+      const ids = await assessmentMemberItemIds(s, scope.id);
+      if (!ids.length) return [];
+      const { data } = await s.from("studio_assessment_items").select(sel).in("item_id", ids);
+      const rows = (data ?? []) as { item_id: string; item_text: string; competency_id: string | null; reverse_scored: boolean }[];
+      const order = new Map(ids.map((id, i) => [id, i]));
+      return rows.sort((a, b) => (order.get(a.item_id) ?? 0) - (order.get(b.item_id) ?? 0));
+    }
+    let q = s.from("studio_assessment_items").select(sel).limit(60);
     q = scope.type === "competency" ? q.eq("competency_id", scope.id) : q.eq("domain", scope.id);
     const { data } = await q;
     return (data ?? []) as { item_id: string; item_text: string; competency_id: string | null; reverse_scored: boolean }[];

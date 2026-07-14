@@ -270,9 +270,10 @@ export function assemble(model: MeasurementModel, spec: SpecificationInput, appr
   // ---- Outcome fulfilment (purpose validation, strategy-aware) ----
   const outcomeFulfillment: OutcomeFulfillment[] = model.outcome_requirements.map((r) => {
     const unmet = r.required_competencies.filter((c) => !compSatisfied(c));
-    // For comprehensive, also require the output's indicators (covered via items) — approximated
-    // by competency+indicator coverage already reflected in compSatisfied + missing_indicators.
-    return { output: r.output, label: OUTPUT_LABELS[r.output] ?? r.output, fulfilled: r.required_competencies.length > 0 && unmet.length === 0, unmet_competencies: unmet };
+    // An outcome with no derivable evidence requirements under this Specification
+    // (e.g. "readiness" with an "Any" structural context → no next phase) has nothing
+    // to satisfy — it's vacuously met, not a failure.
+    return { output: r.output, label: OUTPUT_LABELS[r.output] ?? r.output, fulfilled: unmet.length === 0, unmet_competencies: unmet };
   });
   const indicatorsOk = strategy !== "comprehensive" || missing_indicators.length === 0;
   const outcome_fulfilled = selected.length > 0 && outcomeFulfillment.length > 0 && outcomeFulfillment.every((o) => o.fulfilled) && indicatorsOk;
