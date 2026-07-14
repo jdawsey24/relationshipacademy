@@ -1,7 +1,7 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { domainLabel } from "@/lib/studioAssessment";
 import {
-  computeScores, deriveFindings, selectRecommendations,
+  computeScores, deriveFindings, selectRecommendations, resolveBand, expectedPhaseFor,
   type ScoreItemDef, type ScoringRuleDef, type Band, type IncongruenceRuleDef, type RecMappingDef, type FindingRow,
 } from "@/lib/studioScoring";
 
@@ -206,6 +206,50 @@ export async function getLiveResults(attemptId: string): Promise<{ consumerRepor
   const structuralContext = (attempt.structural_context as string) ?? null;
   const consumerReport = assessmentId ? await buildConsumerReport(assessmentId, trace.findings as unknown as FindingRow[], structuralContext) : [];
   return { consumerReport, findings: trace.findings, scoreResults: trace.scoreResults, recommendations: trace.recommendations, structuralContext };
+}
+
+// Structured participant results (original-Snapshot layout): per-domain score +
+// band, developmental alignment, and expiration risk. Bands are RE-RESOLVED here
+// from the persisted score + the current cut-points (the engine doesn't persist
+// bands), so labels/interpretations always reflect the owner's authored rules.
+export interface DomainResultRow { slug: string; name: string; score: number; level: string | null; interpretation: string | null; cta: string | null }
+export interface DetailedResults {
+  firstName: string | null;
+  structuralContext: string | null;
+  domains: DomainResultRow[];
+  alignment: { status: string; interpretation: string } | null;
+  expirationRisk: { level: string; interpretation: string } | null;
+}
+export async function getLiveResultsDetailed(attemptId: string): Promise<DetailedResults | null> {
+  const trace = await getAttemptTrace(attemptId);
+  if (!trace) return null;
+  const attempt = trace.attempt as Record<string, unknown>;
+  const structuralContext = (attempt.structural_context as string) ?? null;
+  const firstName = String(attempt.respondent_name ?? "").trim().split(/\s+/)[0] || null;
+  const findings = (trace.findings as { finding_type: string; finding_key: string; consumer_summary?: string }[]) ?? [];
+  const scoreRows = (trace.scoreResults as { score_level: string; entity_id: string; transformed_score: number }[]) ?? [];
+
+  const domainRule = await loadRuleByLevel("domain");
+  const domains: DomainResultRow[] = scoreRows
+    .filter((r) => r.score_level === "domain")
+    .map((r) => {
+      const band = resolveBand(r.transformed_score, domainRule?.cut_points);
+      return { slug: r.entity_id, name: domainLabel(r.entity_id), score: r.transformed_score, level: band?.label ?? null, interpretation: band?.interpretation ?? null, cta: band?.cta ?? null };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  // Alignment: the strongest-scoring phase vs the phase expected for the stated
+  // context (the engine's own logic) — plus any incongruence-rule finding.
+  const pa = findings.find((f) => f.finding_type === "phase_alignment");
+  const expectedPhase = expectedPhaseFor(structuralContext);
+  const phaseMismatch = !!(pa && expectedPhase && pa.finding_key !== expectedPhase);
+  const incongruent = phaseMismatch || findings.some((f) => f.finding_type === "incongruence");
+  const alignment = pa ? { status: incongruent ? "Incongruent" : "Congruent", interpretation: pa.consumer_summary ?? "" } : null;
+
+  const exp = findings.find((f) => f.finding_type === "expiration_risk");
+  const expirationRisk = exp ? { level: exp.finding_key === "adaptive" ? "Healthy adaptation" : "Worth attention", interpretation: exp.consumer_summary ?? "" } : null;
+
+  return { firstName, structuralContext, domains, alignment, expirationRisk };
 }
 
 // Items for the PUBLIC quiz of an assembled instrument: the approved membership
