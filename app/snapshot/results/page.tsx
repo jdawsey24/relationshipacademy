@@ -40,6 +40,9 @@ function ResultsInner() {
   const sessionId = params.get("session_id");
   const [data, setData] = useState<ResultsResponse | null>(null);
   const [error, setError] = useState(false);
+  // Additive AI narrative — never blocks the deterministic report; renders only
+  // when present. Off unless "result_narrative" is enabled in AI Settings.
+  const [narrative, setNarrative] = useState<{ heading: string; body: string }[] | null>(null);
 
   useEffect(() => {
     if (!sessionId) {
@@ -54,6 +57,22 @@ function ResultsInner() {
       })
       .then((d) => active && setData(d))
       .catch(() => active && setError(true));
+    return () => {
+      active = false;
+    };
+  }, [sessionId]);
+
+  // Separate, resilient fetch for the personalized AI narrative. Any failure is
+  // silent — the deterministic report above is never affected.
+  useEffect(() => {
+    if (!sessionId) return;
+    let active = true;
+    fetch(`/api/results/narrative?session_id=${sessionId}`)
+      .then((r) => (r.ok ? r.json() : { narrative: null }))
+      .then((d) => {
+        if (active && Array.isArray(d.narrative) && d.narrative.length > 0) setNarrative(d.narrative);
+      })
+      .catch(() => {});
     return () => {
       active = false;
     };
@@ -101,6 +120,24 @@ function ResultsInner() {
           </p>
         )}
       </section>
+
+      {/* Personalized AI summary — additive; renders only when present. */}
+      {narrative && (
+        <section className="mt-10 rounded-2xl border border-dusty-plum/25 bg-dusty-plum/5 px-6 py-6">
+          <h2 className="font-display text-2xl font-semibold text-midnight-navy">Your Personalized Summary</h2>
+          <div className="mt-4 space-y-4">
+            {narrative.map((s, i) => (
+              <div key={i}>
+                {s.heading && <h3 className="font-ui text-lg font-semibold text-midnight-navy">{s.heading}</h3>}
+                {s.body && <p className="mt-1 font-body leading-relaxed text-charcoal">{s.body}</p>}
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 border-t border-dusty-plum/20 pt-3 font-body text-xs text-charcoal/50">
+            This summary is generated from your responses to give you a personalized reflection — your scores are calculated the same way for everyone.
+          </p>
+        </section>
+      )}
 
       {/* Expiration risk as PRIMARY result (above domains) when applicable */}
       {data.is_expiration && data.expiration_risk && (
