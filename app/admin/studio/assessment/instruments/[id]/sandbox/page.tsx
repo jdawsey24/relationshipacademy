@@ -6,7 +6,11 @@ import { useParams } from "next/navigation";
 import StudioNav from "@/components/admin/StudioNav";
 import AssessmentNav from "@/components/admin/AssessmentNav";
 import InstrumentSubNav from "@/components/admin/InstrumentSubNav";
+import { useCanWrite } from "@/components/admin/RoleContext";
 import { STRUCTURAL_MARKERS, FREQUENCY_SCALE } from "@/lib/studioScoring";
+import { domainLabel } from "@/lib/studioAssessment";
+
+interface Narrative { sections: { heading: string; body: string }[]; model: string; safety_status: string; safety_notes: string[] }
 
 const INP = "rounded-md border border-light-gray px-2 py-1.5 text-sm";
 type ScopeItem = { item_id: string; item_text: string; reverse_scored: boolean };
@@ -36,6 +40,29 @@ export default function SandboxPage() {
   const [err, setErr] = useState<string | null>(null);
   const [result, setResult] = useState<SimResult | null>(null);
   const [view, setView] = useState<"participant" | "developer">("participant");
+  const canWrite = useCanWrite();
+  const [narrative, setNarrative] = useState<Narrative | null>(null);
+  const [narrBusy, setNarrBusy] = useState(false);
+  const [narrErr, setNarrErr] = useState<string | null>(null);
+
+  async function expandWithAi() {
+    if (!result) return;
+    setNarrBusy(true); setNarrErr(null); setNarrative(null);
+    const f = (t: string) => result.findings.filter((x) => x.finding_type === t);
+    const payload = {
+      firstName: null,
+      structuralContext: structural,
+      phaseAlignment: f("phase_alignment")[0]?.consumer_summary ?? null,
+      strengths: f("strength").map((x) => domainLabel(x.finding_key)),
+      growthArea: f("growth_priority")[0] ? domainLabel(f("growth_priority")[0].finding_key) : null,
+      authoredSections: result.consumerReport,
+    };
+    const res = await fetch("/api/admin/studio/ai/result-narrative", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    const d = await res.json().catch(() => ({}));
+    setNarrBusy(false);
+    if (!res.ok) { setNarrErr(d.error ?? "Failed to generate."); return; }
+    setNarrative(d);
+  }
 
   const load = useCallback(() => {
     fetch("/api/admin/studio/assessment/assessments").then((r) => r.json())
@@ -49,7 +76,7 @@ export default function SandboxPage() {
   function randomize() { if (items) setResponses(Object.fromEntries(items.map((i) => [i.item_id, 1 + Math.floor(Math.random() * 5)]))); }
 
   async function run() {
-    setBusy(true); setErr(null); setResult(null);
+    setBusy(true); setErr(null); setResult(null); setNarrative(null); setNarrErr(null);
     const res = await fetch("/api/admin/studio/scoring/simulate", {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ scope: { type: "assessment", id }, structuralContext: structural, acknowledgedTransition: transition || null, responses }),
@@ -142,6 +169,35 @@ export default function SandboxPage() {
                     </div>
                   ))}
                   <p className="border-t border-light-gray pt-3 text-[11px] text-charcoal/40">Consumer copy is drawn from your authored Results Templates. Provisional — sample data, not a real result.</p>
+                </div>
+              )}
+
+              {/* AI expansion — owner-only preview, off the live path */}
+              {canWrite && (
+                <div className="max-w-2xl">
+                  <button onClick={expandWithAi} disabled={narrBusy} className="rounded-md border border-dusty-plum px-4 py-1.5 text-sm font-medium text-dusty-plum hover:bg-dusty-plum/5 disabled:opacity-50">
+                    {narrBusy ? "Generating…" : "✨ Expand with AI"}
+                  </button>
+                  <span className="ml-2 text-[11px] text-charcoal/45">Grounded in the results above · owner preview · off the live path</span>
+                  {narrErr && <p className="mt-2 text-sm text-coral-rose">{narrErr}</p>}
+                </div>
+              )}
+
+              {narrative && (
+                <div className="max-w-2xl space-y-4 rounded-lg border border-dusty-plum/30 bg-dusty-plum/5 p-6">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded bg-dusty-plum/15 px-2 py-0.5 text-[10px] font-semibold uppercase text-dusty-plum">AI-drafted narrative · preview</span>
+                    <span className={`rounded px-2 py-0.5 text-[10px] font-semibold uppercase ${narrative.safety_status === "ok" ? "bg-sage-green/20 text-sage-green" : "bg-amber-100 text-amber-800"}`}>safety: {narrative.safety_status}</span>
+                    <span className="text-[10px] text-charcoal/40">{narrative.model}</span>
+                  </div>
+                  {narrative.sections.map((s, i) => (
+                    <div key={i}>
+                      {s.heading && <h3 className="text-lg font-semibold text-midnight-navy">{s.heading}</h3>}
+                      {s.body && <p className="mt-1 font-body text-[15px] leading-relaxed text-charcoal/90">{s.body}</p>}
+                    </div>
+                  ))}
+                  {narrative.safety_notes.length > 0 && <p className="border-t border-dusty-plum/20 pt-2 text-[11px] text-amber-700">Safety flags: {narrative.safety_notes.join("; ")}</p>}
+                  <p className="border-t border-dusty-plum/20 pt-2 text-[11px] text-charcoal/45">Provisional AI draft, grounded in the deterministic results — it never changes the scores. Governed by the <code>result_narrative</code> prompt template. Not shown to real respondents.</p>
                 </div>
               )}
             </div>

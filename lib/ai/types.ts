@@ -1,6 +1,6 @@
 // Client-safe types + constants for the AI Authoring Studio. No server imports.
 
-export const GENERATION_TYPES = ["assessment_item", "worksheet", "lesson", "item_review", "content_review"] as const;
+export const GENERATION_TYPES = ["assessment_item", "worksheet", "lesson", "item_review", "content_review", "result_narrative"] as const;
 export type GenerationType = (typeof GENERATION_TYPES)[number];
 
 // The seven assessment item types from the spec.
