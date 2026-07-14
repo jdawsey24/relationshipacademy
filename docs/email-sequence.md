@@ -6,12 +6,12 @@ never blocks scoring, and everything no-ops safely if not configured).
 
 ## The sequence (`lib/email/sequence.ts`)
 
-| Day | key | Subject | Purpose |
-|-----|-----|---------|---------|
-| 0 | `results` | Your Relationship Snapshot results | Welcome + link to results |
-| 2 | `understand` | Making sense of your snapshot | How to read domains + alignment |
-| 5 | `growth-tip` | One small step for {growth area} | Practical tip tied to their areas |
-| 9 | `academy` | Ready to go a little deeper? | Academy conversion |
+| Day | key | Subject | CTA → |
+|-----|-----|---------|-------|
+| 0 | `results` | Your Relationship Snapshot Is Ready | View your results → `/snapshot/results` |
+| 2 | `myth` | The Biggest Myth About Relationships | Learn more about the RLC™ → `/framework` |
+| 5 | `label` | There's More to Your Relationship Than a Label | Explore the framework → `/framework` |
+| 9 | `academy` | Continue Building Stronger Relationships | Join the Relationship Academy → Skool |
 
 Copy is drafted in the RLC voice; edit it directly in `sequence.ts`. Each email
 has HTML + plaintext, an on-brand layout, and an unsubscribe footer.

@@ -18,8 +18,8 @@ interface EnrollmentRow {
 function varsFor(e: EnrollmentRow): StepVars {
   return {
     firstName: e.first_name,
-    growthAreas: Array.isArray(e.growth_areas) ? e.growth_areas : [],
     resultsUrl: e.attempt_id ? `${SITE}/snapshot/results?attempt=${e.attempt_id}` : `${SITE}/snapshot/intro`,
+    frameworkUrl: `${SITE}/framework`,
     academyUrl: ACADEMY_URL,
     unsubscribeUrl: `${SITE}/api/email/unsubscribe?id=${e.id}`,
   };

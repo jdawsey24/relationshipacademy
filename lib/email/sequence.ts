@@ -1,11 +1,11 @@
-// The Relationship Snapshot nurture sequence: 4 emails over ~10 days, drafted in
-// the RLC voice, nurturing toward the Academy. Pure content + rendering (no I/O)
-// so it's easy to review/edit. Timing is offsetDays from enrollment.
+// The Relationship Snapshot nurture sequence: 4 emails over ~10 days, in the RLC
+// voice, nurturing toward the Academy. Pure content + rendering (no I/O) so it's
+// easy to review/edit. Timing is offsetDays from enrollment.
 
 export interface StepVars {
   firstName: string | null;
-  growthAreas: string[];
   resultsUrl: string;
+  frameworkUrl: string;
   academyUrl: string;
   unsubscribeUrl: string;
 }
@@ -23,13 +23,11 @@ const IVORY = "#F7F4EF";
 const CHARCOAL = "#333333";
 
 const hi = (v: StepVars) => (v.firstName ? `Hi ${v.firstName},` : "Hi there,");
-const growthPhrase = (v: StepVars) =>
-  v.growthAreas.length ? v.growthAreas.join(" and ") : "the areas that matter most to you";
 
 // Shared HTML shell — inline styles (email clients ignore <style>/external CSS).
 function layout(inner: string, v: StepVars, opts?: { cta?: { label: string; url: string } }): string {
   const cta = opts?.cta
-    ? `<tr><td style="padding:8px 0 4px;">
+    ? `<tr><td style="padding:10px 0 4px;">
          <a href="${opts.cta.url}" style="display:inline-block;background:${CORAL};color:#ffffff;text-decoration:none;font-weight:600;font-size:16px;padding:14px 30px;border-radius:9999px;">${opts.cta.label}</a>
        </td></tr>`
     : "";
@@ -61,70 +59,73 @@ export const SEQUENCE: SequenceStep[] = [
   {
     key: "results",
     offsetDays: 0,
-    subject: () => "Your Relationship Snapshot results",
+    subject: () => "Your Relationship Snapshot Is Ready",
     body: (v) => ({
       html: layout(
         h1("Your snapshot is ready") +
-          p(`${hi(v)}`) +
-          p("Thank you for taking the Relationship Snapshot&trade;. It's a real act of care to pause and look honestly at your relationship — and you just did that.") +
-          p("Your results show where your relationship is developmentally right now: what's working, and the areas with the most room to grow. There are no grades here, just a clearer picture.") +
-          p("You can revisit your results anytime:"),
+          p(hi(v)) +
+          p("Most people have never been taught how relationships actually develop. Instead, we rely on advice from family, social media, or past experiences.") +
+          p("Your Relationship Snapshot&trade; is designed to help you step back and understand where you are today — so you can make more intentional decisions moving forward."),
         v,
         { cta: { label: "View your results", url: v.resultsUrl } }
       ),
-      text: `${hi(v)}\n\nThank you for taking the Relationship Snapshot. It's a real act of care to pause and look honestly at your relationship — and you just did that.\n\nYour results show where your relationship is developmentally right now: what's working, and the areas with the most room to grow. There are no grades here, just a clearer picture.\n\nView your results: ${v.resultsUrl}${footerText(v)}`,
+      text: `${hi(v)}\n\nMost people have never been taught how relationships actually develop. Instead, we rely on advice from family, social media, or past experiences.\n\nYour Relationship Snapshot is designed to help you step back and understand where you are today — so you can make more intentional decisions moving forward.\n\nView your results: ${v.resultsUrl}${footerText(v)}`,
     }),
   },
   {
-    key: "understand",
+    key: "myth",
     offsetDays: 2,
-    subject: () => "Making sense of your snapshot",
+    subject: () => "The Biggest Myth About Relationships",
     body: (v) => ({
       html: layout(
-        h1("How to read your snapshot") +
-          p(`${hi(v)}`) +
-          p("A quick guide to what your results mean, now that you've had a couple of days with them.") +
-          p("<strong>Your six domains</strong> — like communication, trust, and conflict — each get a score and a label (Strength, Healthy Development, Growth Opportunity, or Needs Attention). Together they show the shape of how your relationship is functioning today.") +
-          p("<strong>Developmental alignment</strong> tells you whether your day-to-day habits match the stage your relationship is in. When they don't quite line up, that's not a problem — it's just useful information about where to focus.") +
-          p("The most helpful question isn't &ldquo;is my score good?&rdquo; — it's &ldquo;what's one area I'd like to feel more solid in?&rdquo;"),
+        h1("The biggest myth about relationships") +
+          p(hi(v)) +
+          p("Most people believe successful relationships happen because two people found &ldquo;the right person.&rdquo;") +
+          p("In reality, relationships require development.") +
+          p("People grow.<br/>Relationships change.<br/>New challenges emerge.") +
+          p("The healthiest relationships aren't the ones without problems — they're the ones that continue developing through each season of life.") +
+          p("Every relationship moves through recognizable patterns and stages. Learning to see them is where intentional growth begins."),
         v,
-        { cta: { label: "Revisit your results", url: v.resultsUrl } }
+        { cta: { label: "Learn more about the Relationship Life Cycle&trade;", url: v.frameworkUrl } }
       ),
-      text: `${hi(v)}\n\nA quick guide to what your results mean.\n\nYour six domains — like communication, trust, and conflict — each get a score and a label (Strength, Healthy Development, Growth Opportunity, or Needs Attention). Together they show the shape of how your relationship is functioning today.\n\nDevelopmental alignment tells you whether your day-to-day habits match the stage your relationship is in. When they don't quite line up, that's not a problem — it's just useful information about where to focus.\n\nThe most helpful question isn't "is my score good?" — it's "what's one area I'd like to feel more solid in?"\n\nRevisit your results: ${v.resultsUrl}${footerText(v)}`,
+      text: `${hi(v)}\n\nMost people believe successful relationships happen because two people found "the right person."\n\nIn reality, relationships require development.\n\nPeople grow.\nRelationships change.\nNew challenges emerge.\n\nThe healthiest relationships aren't the ones without problems — they're the ones that continue developing through each season of life.\n\nEvery relationship moves through recognizable patterns and stages. Learning to see them is where intentional growth begins.\n\nLearn more about the Relationship Life Cycle: ${v.frameworkUrl}${footerText(v)}`,
     }),
   },
   {
-    key: "growth-tip",
+    key: "label",
     offsetDays: 5,
-    subject: (v) => `One small step for ${v.growthAreas[0] ?? "your relationship"}`,
+    subject: () => "There's More to Your Relationship Than a Label",
     body: (v) => ({
       html: layout(
-        h1("Small steps, real change") +
-          p(`${hi(v)}`) +
-          p(`Your snapshot pointed to ${growthPhrase(v)} as an area with room to grow. The good news: growth here rarely comes from big dramatic changes. It comes from small, repeatable moments.`) +
-          p("This week, try one thing: when something feels off between you, name it out loud gently instead of waiting for it to pass. &ldquo;I noticed I felt a little distant today&rdquo; is a full sentence — and often the start of a good conversation.") +
-          p("That single habit — noticing and naming — quietly strengthens almost every domain the snapshot measures."),
+        h1("There's more to your relationship than a label") +
+          p(hi(v)) +
+          p("Being single, dating, engaged, or married tells us very little about how a relationship is actually functioning.") +
+          p("Two married couples can have completely different levels of trust, communication, emotional intimacy, and partnership.") +
+          p("Likewise, two people who are dating may be in very different places developmentally.") +
+          p("That's why the Relationship Life Cycle&trade; focuses on understanding how relationships grow — not just what they look like on the outside."),
         v,
-        { cta: { label: "See your growth areas", url: v.resultsUrl } }
+        { cta: { label: "Explore the framework", url: v.frameworkUrl } }
       ),
-      text: `${hi(v)}\n\nYour snapshot pointed to ${growthPhrase(v)} as an area with room to grow. The good news: growth here rarely comes from big dramatic changes. It comes from small, repeatable moments.\n\nThis week, try one thing: when something feels off between you, name it out loud gently instead of waiting for it to pass. "I noticed I felt a little distant today" is a full sentence — and often the start of a good conversation.\n\nThat single habit — noticing and naming — quietly strengthens almost every domain the snapshot measures.\n\nSee your growth areas: ${v.resultsUrl}${footerText(v)}`,
+      text: `${hi(v)}\n\nBeing single, dating, engaged, or married tells us very little about how a relationship is actually functioning.\n\nTwo married couples can have completely different levels of trust, communication, emotional intimacy, and partnership.\n\nLikewise, two people who are dating may be in very different places developmentally.\n\nThat's why the Relationship Life Cycle focuses on understanding how relationships grow — not just what they look like on the outside.\n\nExplore the framework: ${v.frameworkUrl}${footerText(v)}`,
     }),
   },
   {
     key: "academy",
     offsetDays: 9,
-    subject: () => "Ready to go a little deeper?",
+    subject: () => "Continue Building Stronger Relationships",
     body: (v) => ({
       html: layout(
-        h1("Keep growing with the Academy") +
-          p(`${hi(v)}`) +
-          p("Your snapshot showed you where things stand. If you're ready to actually build on it, that's what the Relationship Academy is for.") +
-          p(`Inside, you'll find guided lessons, live sessions, and a supportive community — all organized around the same framework behind your snapshot, so you can strengthen ${growthPhrase(v)} with real structure and support.`) +
-          p("It's a warm, judgment-free place to keep doing this work. I'd love to see you there."),
+        h1("Continue building stronger relationships") +
+          p(hi(v)) +
+          p("A snapshot can show you where you are today.") +
+          p("It can't teach you how to build healthier communication, strengthen trust, navigate conflict, deepen emotional intimacy, or prepare for future transitions.") +
+          p("That's exactly why I created the Relationship Academy.") +
+          p("Inside, you'll learn practical relationship skills grounded in the Relationship Life Cycle&trade; Framework — through lessons, live trainings, workbooks, and a community committed to growing healthier relationships.") +
+          p("Whether you're single, dating, engaged, married, healing after heartbreak, or preparing for what's next, your relationship education doesn't have to stop with one assessment."),
         v,
         { cta: { label: "Join the Relationship Academy", url: v.academyUrl } }
       ),
-      text: `${hi(v)}\n\nYour snapshot showed you where things stand. If you're ready to actually build on it, that's what the Relationship Academy is for.\n\nInside, you'll find guided lessons, live sessions, and a supportive community — all organized around the same framework behind your snapshot, so you can strengthen ${growthPhrase(v)} with real structure and support.\n\nIt's a warm, judgment-free place to keep doing this work. I'd love to see you there.\n\nJoin the Relationship Academy: ${v.academyUrl}${footerText(v)}`,
+      text: `${hi(v)}\n\nA snapshot can show you where you are today.\n\nIt can't teach you how to build healthier communication, strengthen trust, navigate conflict, deepen emotional intimacy, or prepare for future transitions.\n\nThat's exactly why I created the Relationship Academy.\n\nInside, you'll learn practical relationship skills grounded in the Relationship Life Cycle Framework — through lessons, live trainings, workbooks, and a community committed to growing healthier relationships.\n\nWhether you're single, dating, engaged, married, healing after heartbreak, or preparing for what's next, your relationship education doesn't have to stop with one assessment.\n\nJoin the Relationship Academy: ${v.academyUrl}${footerText(v)}`,
     }),
   },
 ];
