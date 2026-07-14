@@ -16,6 +16,7 @@ interface SimResult {
   scores: { scoreResults: { score_level: string; entity_id: string; raw_score: number; transformed_score: number; valid_response_count: number; confidence_status: string; rule_version: string | null; band?: { label: string } | null }[] };
   findings: { finding_type: string; finding_key: string; consumer_summary: string }[];
   recommendations: { recommendation_mapping_id: string; asset_id: string | null; rank: number; suppression_status: string; suppression_reason: string | null }[];
+  consumerReport: { section_name: string; heading: string; body: string }[];
 }
 
 // Sandbox — run the APPROVED assembled instrument through the deterministic
@@ -34,6 +35,7 @@ export default function SandboxPage() {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [result, setResult] = useState<SimResult | null>(null);
+  const [view, setView] = useState<"participant" | "developer">("participant");
 
   const load = useCallback(() => {
     fetch("/api/admin/studio/assessment/assessments").then((r) => r.json())
@@ -117,7 +119,36 @@ export default function SandboxPage() {
       )}
 
       {result && (
-        <div className="mt-6 space-y-4">
+        <div className="mt-6">
+          <div className="mb-4 inline-flex overflow-hidden rounded-md border border-light-gray text-sm">
+            <button onClick={() => setView("participant")} className={`px-4 py-1.5 ${view === "participant" ? "bg-midnight-navy text-white" : "text-charcoal/70 hover:bg-light-gray"}`}>Participant view</button>
+            <button onClick={() => setView("developer")} className={`px-4 py-1.5 ${view === "developer" ? "bg-midnight-navy text-white" : "text-charcoal/70 hover:bg-light-gray"}`}>Developer view</button>
+          </div>
+
+          {view === "participant" && (
+            <div className="space-y-4">
+              {result.consumerReport.length === 0 ? (
+                <p className="rounded-md border border-light-gray bg-light-gray/40 px-4 py-6 text-sm text-charcoal/60">
+                  No results templates authored for this instrument yet. Add consumer copy in{" "}
+                  <Link href="/admin/studio/assessment/results-templates" className="text-midnight-navy hover:underline">Results Templates</Link> and it will render here as the participant sees it.
+                </p>
+              ) : (
+                <div className="max-w-2xl space-y-5 rounded-lg border border-light-gray bg-white p-6">
+                  <p className="text-xs uppercase tracking-wide text-charcoal/40">Your Relationship Snapshot™ · sample result</p>
+                  {result.consumerReport.map((sec, i) => (
+                    <div key={i}>
+                      {sec.heading && <h3 className="text-lg font-semibold text-midnight-navy">{sec.heading}</h3>}
+                      {sec.body && <p className="mt-1 font-body text-[15px] leading-relaxed text-charcoal/90">{sec.body}</p>}
+                    </div>
+                  ))}
+                  <p className="border-t border-light-gray pt-3 text-[11px] text-charcoal/40">Consumer copy is drawn from your authored Results Templates. Provisional — sample data, not a real result.</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {view === "developer" && (
+          <div className="space-y-4">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-charcoal/70">Primary outputs (provisional)</h3>
           <Output label="Structural context">{byType("structural_context")[0]?.finding_key ?? structural}</Output>
           <Output label="Phase alignment">{byType("phase_alignment")[0]?.consumer_summary ?? "—"}</Output>
@@ -148,6 +179,8 @@ export default function SandboxPage() {
             </>
           )}
           {result.attempt_id && <p className="text-xs text-charcoal/40">Attempt {result.attempt_id} (persisted for traceability — simulation only)</p>}
+          </div>
+          )}
         </div>
       )}
     </div>
