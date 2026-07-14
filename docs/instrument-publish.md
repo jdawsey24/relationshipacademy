@@ -101,6 +101,35 @@ hidden entirely when nothing is live, so the Snapshot page is unchanged until an
 4. Open the **Publish** tab; when all gates are green, click **Publish to live**.
 5. Verify `/assess/<public_slug>` and the card on `/assessment`. **Unpublish** to take it down.
 
+## Flagship swap — /snapshot now serves the Studio instrument
+
+The flagship assessment at **`/snapshot`** is served by the Studio instrument
+(`FLAGSHIP_SLUG` in `lib/flagship.ts`, currently `relationship-snapshot`) instead
+of the legacy multi-route quiz. The swap is **routing/rendering only** — the
+legacy engine is left byte-for-byte intact and dark:
+
+- `app/snapshot/intro/page.tsx` renders `<AssessFlow slug={FLAGSHIP_SLUG} …>`
+  (shared with `/assess/[slug]`); results at `app/snapshot/results/page.tsx`
+  render `<AssessResults/>`. The single page handles intro → context → questions
+  → capture, posting to the `/api/assess/*` endpoints and the studio engine.
+- Legacy steps `phase-select`, `questions/[domain]`, `capture` are now
+  server redirects to `/snapshot/intro`. `app/snapshot/layout.tsx` dropped the
+  legacy `QuizProvider`.
+- **Untouched (rollback path):** `lib/scoring.ts`, `app/api/score`,
+  `app/api/results`, the `questions`/`quiz_*` tables, and `QuizContext`. The 47
+  legacy engine tests still pass.
+- The `/assessment` page hides the flagship from its "more assessments" cards
+  (filtered by `FLAGSHIP_SLUG`); every site CTA already points to `/snapshot/intro`.
+
+**Prerequisite:** the instrument must be published (`live_enabled` + `public_slug
+= relationship-snapshot`) or `/snapshot` shows "not available." Scoring uses the
+bands mirrored from the live `result_levels` (Needs Attention / Growth Opportunity
+/ Healthy Development / Strength on the 1–5 scale).
+
+**Rollback:** `git revert` the swap commit (restores the legacy `/snapshot`
+pages + layout), or unpublish the instrument. No data migration is involved; the
+legacy engine and tables were never modified.
+
 ## Invariants
 
 - Snapshot untouched: nothing under `app/snapshot/*`, `app/api/score`, `app/api/results`,

@@ -1,18 +1,6 @@
-"use client";
-
-import { QuizProvider } from "@/components/quiz/QuizContext";
-
-// Wraps every /snapshot/* page in the shared quiz state. Because this layout
-// persists across client-side navigation within /snapshot, the respondent's
-// phase selection and responses survive page-to-page moves.
-export default function SnapshotLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <QuizProvider>
-      <div className="min-h-screen bg-warm-ivory">{children}</div>
-    </QuizProvider>
-  );
+// Shell for the flagship assessment. The flow is now the single-page Studio
+// instrument (its own state), so the legacy QuizProvider is no longer needed —
+// QuizContext is preserved in the repo for the dark legacy flow / rollback.
+export default function SnapshotLayout({ children }: { children: React.ReactNode }) {
+  return <div className="min-h-screen bg-warm-ivory font-body text-charcoal">{children}</div>;
 }

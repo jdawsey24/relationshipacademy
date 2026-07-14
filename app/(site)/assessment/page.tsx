@@ -3,6 +3,7 @@ import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
 import { listLiveInstruments } from "@/lib/instrumentPublish";
+import { FLAGSHIP_SLUG } from "@/lib/flagship";
 import JsonLd from "@/components/JsonLd";
 import { faqSchema, breadcrumbSchema } from "@/lib/schema";
 
@@ -52,7 +53,9 @@ const SAMPLE_DOMAINS = [
 
 export default async function AssessmentPage() {
   const content = await getSiteContentMap();
-  const liveInstruments = await listLiveInstruments();
+  // Exclude the flagship instrument — it's served as the main assessment at
+  // /snapshot (hero CTA), not as a secondary "more assessments" card.
+  const liveInstruments = (await listLiveInstruments()).filter((i) => i.public_slug !== FLAGSHIP_SLUG);
   return (
     <main className="bg-warm-ivory">
       <JsonLd data={[
