@@ -252,7 +252,7 @@ export default function RelationshipSnapshotLanding() {
       <section className="bg-[#FBF9F5] px-6 py-24">
         <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-[0.8fr_1.2fr]">
           <div className="mx-auto w-full max-w-xs">
-            <MomentTile moment={MOMENTS.portrait} className="aspect-[4/5] w-full" />
+            <MomentTile moment={MOMENTS.portrait} variant="framed" className="aspect-[4/5] w-full" />
           </div>
           <div>
             <h2 className="text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-4xl">Created by a relationship therapist. Built for real life.</h2>
