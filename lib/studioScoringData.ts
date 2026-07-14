@@ -1,18 +1,73 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { domainLabel } from "@/lib/studioAssessment";
 import {
   computeScores, deriveFindings, selectRecommendations,
   type ScoreItemDef, type ScoringRuleDef, type Band, type IncongruenceRuleDef, type RecMappingDef, type FindingRow,
 } from "@/lib/studioScoring";
 
+// Consumer-facing report: render the instrument's AUTHORED results templates
+// (studio_results_templates: consumer_heading + consumer_copy_template with
+// {{placeholders}}), filling placeholders from the engine's findings and resolving
+// domain/phase codes to friendly names. This is the participant view — the copy is
+// the owner's authored voice, not engine- or model-invented text.
+export interface ConsumerSection { section_name: string; heading: string; body: string; }
+
+async function buildConsumerReport(assessmentId: string, findings: FindingRow[], structuralContext: string | null): Promise<ConsumerSection[]> {
+  try {
+    const s = getSupabaseAdminClient();
+    const { data: tpls } = await s.from("studio_results_templates")
+      .select("section_name, section_order, consumer_heading, consumer_copy_template")
+      .eq("assessment_id", assessmentId).order("section_order");
+    if (!tpls || tpls.length === 0) return [];
+    const { data: phases } = await s.from("competency_phases").select("slug, consumer_name");
+    const phaseConsumer = new Map((phases ?? []).map((p) => [String((p as Record<string, unknown>).slug), String((p as Record<string, unknown>).consumer_name ?? "")]));
+
+    const strengths = findings.filter((f) => f.finding_type === "strength").map((f) => f.finding_key);
+    const growth = findings.find((f) => f.finding_type === "growth_priority")?.finding_key;
+    const phaseAlign = findings.find((f) => f.finding_type === "phase_alignment")?.finding_key;
+    const nextStep = findings.find((f) => f.finding_type === "next_step");
+    const rec = nextStep?.finding_key;
+
+    const values: Record<string, string> = {
+      structural_context: structuralContext || "your current stage",
+      phase_translation: (phaseAlign && (phaseConsumer.get(phaseAlign) || domainLabel(phaseAlign))) || "your current phase",
+      strength_1: strengths[0] ? domainLabel(strengths[0]) : "an area of strength",
+      strength_2: strengths[1] ? domainLabel(strengths[1]) : "another area of strength",
+      growth_area: growth ? domainLabel(growth) : "an area to grow",
+      recommendation_name: rec && rec !== "an approved resource" ? rec : "a recommended resource",
+    };
+    const fill = (t: string) => t.replace(/\{\{\s*([a-z_0-9]+)\s*\}\}/gi, (_m, k: string) => values[k] ?? "").replace(/\s{2,}/g, " ").trim();
+    return (tpls as Record<string, unknown>[])
+      .map((t) => ({ section_name: String(t.section_name ?? ""), heading: fill(String(t.consumer_heading ?? "")), body: fill(String(t.consumer_copy_template ?? "")) }))
+      .filter((x) => x.heading || x.body);
+  } catch {
+    return [];
+  }
+}
+
 // Server integration for the deterministic scoring engine. Loads owner-authored
 // rules/items, runs the pure engine, and persists a SIMULATION attempt + results.
 // Resilient: returns empty structures if migration 0026 is absent.
 
-export interface SimScope { type: "competency" | "domain"; id: string; }
+export interface SimScope { type: "competency" | "domain" | "assessment"; id: string; }
+
+// The approved assembled membership item ids for an instrument (Sandbox scope).
+async function assessmentMemberItemIds(s: ReturnType<typeof getSupabaseAdminClient>, assessmentId: string): Promise<string[]> {
+  const { data } = await s.from("studio_assessment_membership")
+    .select("item_id").eq("assessment_id", assessmentId).eq("status", "approved").eq("source", "assembled").order("position");
+  return (data ?? []).map((r) => String((r as Record<string, unknown>).item_id));
+}
 
 async function loadItems(scope: SimScope): Promise<ScoreItemDef[]> {
   const s = getSupabaseAdminClient();
-  let q = s.from("studio_assessment_items").select("item_id, competency_id, domain, phase, reverse_scored").limit(500);
+  const sel = "item_id, competency_id, domain, phase, reverse_scored";
+  if (scope.type === "assessment") {
+    const ids = await assessmentMemberItemIds(s, scope.id);
+    if (!ids.length) return [];
+    const { data } = await s.from("studio_assessment_items").select(sel).in("item_id", ids);
+    return ((data ?? []) as ScoreItemDef[]).map((x) => ({ ...x, scale_max: 5 }));
+  }
+  let q = s.from("studio_assessment_items").select(sel).limit(500);
   q = scope.type === "competency" ? q.eq("competency_id", scope.id) : q.eq("domain", scope.id);
   const { data } = await q;
   return ((data ?? []) as ScoreItemDef[]).map((x) => ({ ...x, scale_max: 5 }));
@@ -32,7 +87,16 @@ async function loadRuleByLevel(level: string): Promise<ScoringRuleDef | undefine
 export async function scopeItems(scope: SimScope): Promise<{ item_id: string; item_text: string; competency_id: string | null; reverse_scored: boolean }[]> {
   try {
     const s = getSupabaseAdminClient();
-    let q = s.from("studio_assessment_items").select("item_id, item_text, competency_id, reverse_scored").limit(60);
+    const sel = "item_id, item_text, competency_id, reverse_scored";
+    if (scope.type === "assessment") {
+      const ids = await assessmentMemberItemIds(s, scope.id);
+      if (!ids.length) return [];
+      const { data } = await s.from("studio_assessment_items").select(sel).in("item_id", ids);
+      const rows = (data ?? []) as { item_id: string; item_text: string; competency_id: string | null; reverse_scored: boolean }[];
+      const order = new Map(ids.map((id, i) => [id, i]));
+      return rows.sort((a, b) => (order.get(a.item_id) ?? 0) - (order.get(b.item_id) ?? 0));
+    }
+    let q = s.from("studio_assessment_items").select(sel).limit(60);
     q = scope.type === "competency" ? q.eq("competency_id", scope.id) : q.eq("domain", scope.id);
     const { data } = await q;
     return (data ?? []) as { item_id: string; item_text: string; competency_id: string | null; reverse_scored: boolean }[];
@@ -44,6 +108,7 @@ export interface SimResult {
   scores: ReturnType<typeof computeScores>;
   findings: (FindingRow & { id?: string })[];
   recommendations: ReturnType<typeof selectRecommendations>["recommendations"];
+  consumerReport: ConsumerSection[];
   provisional: true;
 }
 
@@ -99,7 +164,11 @@ export async function runSimulation(input: {
     // persistence best-effort; the computed result is still returned
   }
 
-  return { attempt_id: attemptId, scores, findings: allFindings, recommendations, provisional: true };
+  const consumerReport = input.scope.type === "assessment"
+    ? await buildConsumerReport(input.scope.id, allFindings, input.structuralContext)
+    : [];
+
+  return { attempt_id: attemptId, scores, findings: allFindings, recommendations, consumerReport, provisional: true };
 }
 
 export async function getAttemptTrace(attemptId: string) {

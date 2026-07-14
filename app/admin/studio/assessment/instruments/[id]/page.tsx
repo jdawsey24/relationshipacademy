@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import StudioNav from "@/components/admin/StudioNav";
 import AssessmentNav from "@/components/admin/AssessmentNav";
+import InstrumentSubNav from "@/components/admin/InstrumentSubNav";
 import StudioStatusBadge from "@/components/admin/StudioStatusBadge";
 import { useAdminRole, useCanWrite } from "@/components/admin/RoleContext";
 import { OWNER_ONLY_STATUSES, type Assessment } from "@/lib/studioAssessment";
 import { STATUS_LABELS, type StudioStatus } from "@/lib/studio";
+import { ASSESSMENT_OUTPUTS, MEASURED_PHASES, MEASUREMENT_STRATEGIES } from "@/lib/assembly";
 
 const INP = "mt-1 w-full rounded-md border border-light-gray px-2 py-1.5 text-sm disabled:bg-[#F9F9F9] disabled:text-charcoal/50";
 const FIELDS: { key: keyof Assessment; label: string; area?: boolean }[] = [
@@ -65,12 +67,23 @@ export default function InstrumentDetailPage() {
   if (!a) return <div><StudioNav /><AssessmentNav /><BackLink /><p className="mt-3 text-sm text-charcoal/60">Loading…</p></div>;
 
   const set = (k: keyof Assessment, v: string) => setA((p) => (p ? { ...p, [k]: v } : p));
+  const setField = (k: keyof Assessment, v: unknown) => setA((p) => (p ? { ...p, [k]: v } : p));
+  const dc = (a.design_constraints ?? {}) as Record<string, unknown>;
+  const setDc = (k: string, v: unknown) => setField("design_constraints", { ...dc, [k]: v });
+  const outputs = a.desired_outputs ?? [];
+  const toggleOutput = (val: string) => setField("desired_outputs", outputs.includes(val) ? outputs.filter((o) => o !== val) : [...outputs, val]);
 
   async function save() {
     if (!a) return;
     setBusy(true); setMsg(null);
     const payload: Record<string, unknown> = { status: a.status };
     for (const f of FIELDS) payload[f.key] = a[f.key] ?? null;
+    // Structured Specification (the Assembly Engine's design brief).
+    payload.structural_context = a.structural_context ?? null;
+    payload.target_reading_level = a.target_reading_level ?? null;
+    payload.target_completion_minutes = a.target_completion_minutes ?? null;
+    payload.desired_outputs = a.desired_outputs ?? [];
+    payload.design_constraints = a.design_constraints ?? {};
     const res = await fetch(`/api/admin/studio/assessment/assessments/${encodeURIComponent(id)}`, {
       method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
     });
@@ -93,11 +106,60 @@ export default function InstrumentDetailPage() {
         <span className="font-mono text-xs text-charcoal/40">{a.assessment_id}</span>
       </div>
 
+      <InstrumentSubNav id={id} />
+
       {msg && <div className="mb-4 rounded-md bg-sage-green/10 px-3 py-2 text-sm text-sage-green">{msg}</div>}
+
+      {/* Assessment Specification — outcome-first design brief for the Assembly Engine */}
+      <section className="mb-6 rounded-md border border-light-gray p-4">
+        <h3 className="mb-1 text-sm font-semibold uppercase tracking-wide text-charcoal/70">Assessment Specification</h3>
+        <p className="mb-3 text-xs text-charcoal/55">Define <em>what the assessment must accomplish</em>. The Measurement Model derives the required evidence from this — it does not pick items.</p>
+        <label className="mb-3 block text-sm font-medium text-charcoal">Measurement strategy
+          <select disabled={!canWrite} value={(dc.measurement_strategy as string) ?? "comprehensive"} onChange={(e) => setDc("measurement_strategy", e.target.value)} className={INP}>
+            {MEASUREMENT_STRATEGIES.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
+          </select>
+          <span className="mt-0.5 block text-[11px] font-normal text-charcoal/50">{MEASUREMENT_STRATEGIES.find((s) => s.value === ((dc.measurement_strategy as string) ?? "comprehensive"))?.description}</span>
+        </label>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <label className="block text-sm font-medium text-charcoal">Structural context
+            <select disabled={!canWrite} value={a.structural_context ?? ""} onChange={(e) => setField("structural_context", e.target.value || null)} className={INP}>
+              <option value="">Any</option>
+              {MEASURED_PHASES.map((p) => <option key={p} value={p}>{p[0].toUpperCase() + p.slice(1)}</option>)}
+            </select>
+          </label>
+          <label className="block text-sm font-medium text-charcoal">Target reading level
+            <input disabled={!canWrite} value={a.target_reading_level ?? ""} onChange={(e) => setField("target_reading_level", e.target.value || null)} placeholder="e.g. Grade 5" className={INP} />
+          </label>
+          <label className="block text-sm font-medium text-charcoal">Est. completion (min)
+            <input disabled={!canWrite} type="number" min={0} value={a.target_completion_minutes ?? ""} onChange={(e) => setField("target_completion_minutes", e.target.value === "" ? null : Number(e.target.value))} className={INP} />
+          </label>
+          <label className="block text-sm font-medium text-charcoal">Target total length <span className="font-normal text-charcoal/50">(approx. items)</span>
+            <input disabled={!canWrite} type="number" min={0} value={(dc.target_total_items as number) ?? ""} onChange={(e) => setDc("target_total_items", e.target.value === "" ? undefined : Number(e.target.value))} placeholder="e.g. 47" className={INP} />
+            <span className="mt-0.5 block text-[11px] font-normal text-charcoal/45">The engine spreads this across the competencies your outcomes require.</span>
+          </label>
+          <label className="block text-sm font-medium text-charcoal">Min items / competency <span className="font-normal text-charcoal/50">(advanced)</span>
+            <input disabled={!canWrite || dc.target_total_items != null} type="number" min={1} value={(dc.min_items_per_competency as number) ?? ""} onChange={(e) => setDc("min_items_per_competency", e.target.value === "" ? undefined : (Number(e.target.value) || 1))} placeholder={dc.target_total_items != null ? "auto (from target)" : "1"} className={INP} />
+            <span className="mt-0.5 block text-[11px] font-normal text-charcoal/45">{dc.target_total_items != null ? "Ignored while a target total is set." : "Used only if no target total is set."}</span>
+          </label>
+          <label className="block text-sm font-medium text-charcoal">Reverse-item target %
+            <input disabled={!canWrite} type="number" min={0} max={100} value={dc.reverse_target_pct != null ? Math.round(Number(dc.reverse_target_pct) * 100) : ""} onChange={(e) => setDc("reverse_target_pct", e.target.value === "" ? null : Number(e.target.value) / 100)} placeholder="e.g. 17" className={INP} />
+          </label>
+        </div>
+        <div className="mt-3 text-sm font-medium text-charcoal">Desired outputs <span className="font-normal text-charcoal/50">(what the assessment produces)</span></div>
+        <div className="mt-1 grid gap-1 sm:grid-cols-2">
+          {ASSESSMENT_OUTPUTS.map((o) => (
+            <label key={o.value} className="flex items-center gap-2 text-sm text-charcoal/80">
+              <input type="checkbox" disabled={!canWrite} checked={outputs.includes(o.value)} onChange={() => toggleOutput(o.value)} /> {o.label}
+            </label>
+          ))}
+        </div>
+        {canWrite && <button onClick={save} disabled={busy} className="mt-4 rounded-md bg-midnight-navy px-4 py-2 text-sm font-medium text-white disabled:opacity-50">{busy ? "Saving…" : "Save Specification"}</button>}
+      </section>
 
       <div className="grid gap-6 md:grid-cols-3">
         <section className="rounded-md border border-light-gray p-4 md:col-span-2">
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-charcoal/70">Instrument details</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-charcoal/70">Instrument details</h3>
+          <p className="mb-3 text-[11px] text-charcoal/45">Descriptive metadata only — the Measurement Model &amp; Assembly Engine read <em>only</em> the Assessment Specification above.</p>
           <div className="grid gap-3 sm:grid-cols-2">
             {FIELDS.map((f) => (
               <label key={f.key} className={`block text-sm font-medium text-charcoal ${f.area ? "sm:col-span-2" : ""}`}>

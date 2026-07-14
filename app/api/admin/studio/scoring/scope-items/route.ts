@@ -12,6 +12,6 @@ export async function GET(request: Request) {
   const u = new URL(request.url);
   const type = u.searchParams.get("type");
   const id = u.searchParams.get("id") ?? "";
-  if ((type !== "competency" && type !== "domain") || !id) return NextResponse.json({ rows: [] });
+  if (!type || !["competency", "domain", "assessment"].includes(type) || !id) return NextResponse.json({ rows: [] });
   return NextResponse.json({ rows: await scopeItems({ type, id } as SimScope) });
 }

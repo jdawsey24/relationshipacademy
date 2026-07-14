@@ -16,8 +16,8 @@ export async function POST(request: Request) {
   let body: Record<string, unknown>;
   try { body = await request.json(); } catch { return NextResponse.json({ error: "Invalid JSON." }, { status: 400 }); }
   const scope = body.scope as SimScope;
-  if (!scope || (scope.type !== "competency" && scope.type !== "domain") || !scope.id) {
-    return NextResponse.json({ error: "A competency or domain scope is required." }, { status: 400 });
+  if (!scope || !["competency", "domain", "assessment"].includes(scope.type) || !scope.id) {
+    return NextResponse.json({ error: "A competency, domain, or assessment scope is required." }, { status: 400 });
   }
   const responses = (typeof body.responses === "object" && body.responses ? body.responses : {}) as Record<string, number>;
   const result = await runSimulation({
