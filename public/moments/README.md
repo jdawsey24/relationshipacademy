@@ -1,22 +1,24 @@
-# Relationship Moments™ — landing page image assets
+# Relationship Moments™ — landing page image mapping
 
-Drop your images in this folder (`/public/moments/`) with these exact filenames.
-Until a file exists, its tile shows a soft brand tint (never a broken image), so
-the page looks intentional before the assets arrive.
+The landing page (`/relationship-snapshot`) pulls images from `/public`. Current
+mapping (edit `components/landing/moments.ts` to reassign):
 
-| Filename | Used on the landing page for | Suggested crop |
-|----------|------------------------------|----------------|
-| `coffee.jpg` | Two people talking over coffee (hero + "who it's for") | portrait / square |
-| `walking.jpg` | A couple walking together (hero + "who it's for") | portrait / square |
-| `conversation.jpg` | A respectful conversation ("recognition" + "who it's for") | portrait 3:4 |
-| `planning.jpg` | A couple planning together ("recognition" + "who it's for") | portrait 3:4 |
-| `journal.jpg` | Someone reflecting in a journal (hero + "who it's for") | portrait / square |
-| `janelle-portrait.jpg` | Founder portrait ("Created by a relationship therapist") | portrait 4:5 |
+| Slot | File in /public | Used on |
+|------|-----------------|---------|
+| coffee | `coffee.jpg` | hero + who-it's-for |
+| walking | `walking.jpg` | hero + who-it's-for |
+| conversation | `talking.png` | recognition section |
+| planning | `working together.jpg` | recognition section |
+| journal | `journaling.jpg` | hero + who-it's-for |
+| proposal | `proposal.jpg` | who-it's-for |
+| olderCouple | `older couple.jpg` | who-it's-for |
+| cooking | `cooking together.jpg` | who-it's-for |
+| **portrait** | `janelle-portrait.jpg` **(not added yet)** | trust section |
 
-Notes
-- These render as CSS `background-size: cover`, so any reasonable resolution works
-  (aim for ~1000px on the short edge; `.jpg`, `.png`, or `.webp` — if you use a
-  different extension, tell me and I'll update `components/landing/moments.ts`).
-- The hero moments float and parallax; keep the subjects roughly centered so they
-  stay in frame as they move.
-- Per the brief: isolated "moments," not large romantic stock photography.
+To do
+- **Add your founder portrait** as `/public/janelle-portrait.jpg` (4:5 works best).
+  Until then, that tile shows a soft plum tint.
+- Unused-but-available files in /public you can swap in: `talking 2.jpg`,
+  `shared responsibilities.jpg`, `excitement.jpg`, `older couple knitting.jpg`.
+- Tiles render as `background-size: cover`; keep subjects roughly centered (the
+  hero moments float + parallax).

@@ -239,10 +239,10 @@ export default function RelationshipSnapshotLanding() {
           </div>
           <div className="grid grid-cols-3 gap-3.5">
             <MomentTile moment={MOMENTS.coffee} className="aspect-[3/4]" />
-            <MomentTile moment={MOMENTS.walking} className="mt-8 aspect-[3/4]" />
+            <MomentTile moment={MOMENTS.proposal} className="mt-8 aspect-[3/4]" />
             <MomentTile moment={MOMENTS.journal} className="aspect-[3/4]" />
-            <MomentTile moment={MOMENTS.planning} className="mt-8 aspect-[3/4]" />
-            <MomentTile moment={MOMENTS.conversation} className="aspect-[3/4]" />
+            <MomentTile moment={MOMENTS.cooking} className="mt-8 aspect-[3/4]" />
+            <MomentTile moment={MOMENTS.olderCouple} className="aspect-[3/4]" />
             <MomentTile moment={MOMENTS.walking} className="mt-8 aspect-[3/4]" />
           </div>
         </div>
