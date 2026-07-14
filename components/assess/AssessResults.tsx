@@ -2,8 +2,11 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import Logo from "@/components/Logo";
+import CtaButton from "@/components/site/CtaButton";
 import { classesFor, resultLevelColor, alignmentColor, type ColorToken } from "@/lib/phases";
+import { ACADEMY_URL } from "@/lib/flagship";
 
 // Structured participant results — mirrors the original Snapshot layout:
 // developmental alignment + expiration risk (each a short read-out), then a
@@ -89,6 +92,9 @@ function ResultsInner() {
               {data.domains.map((d) => <DomainCard key={d.slug} d={d} />)}
             </div>
           </section>
+
+          {/* Academy conversion — personalized to growth areas */}
+          <AcademyCta domains={data.domains} firstName={data.firstName} attempt={attempt} />
         </>
       ) : (
         // Fallback: authored narrative report when structured data isn't available.
@@ -102,6 +108,26 @@ function ResultsInner() {
         </div>
       )}
     </main>
+  );
+}
+
+function AcademyCta({ domains, firstName, attempt }: { domains: Domain[]; firstName: string | null; attempt: string | null }) {
+  // Growth areas = the lower-band domains (sorted desc, so lowest are last).
+  const growth = domains.filter((d) => d.level === "Growth Opportunity" || d.level === "Needs Attention").slice(-2).map((d) => d.name);
+  const q = new URLSearchParams({ ...(firstName ? { name: firstName } : {}), ...(attempt ? { attempt } : {}) }).toString();
+  return (
+    <section className="mt-12 rounded-2xl bg-midnight-navy px-6 py-9 text-center text-white">
+      <h2 className="font-display text-2xl font-semibold sm:text-3xl">Keep building on your snapshot</h2>
+      <p className="mx-auto mt-4 max-w-xl font-body text-[17px] leading-relaxed text-white/85">
+        {growth.length
+          ? `Your growth areas — ${growth.join(" and ")} — are exactly what the Relationship Academy helps you strengthen, with guided lessons and a supportive community organized around this framework.`
+          : "The Relationship Academy helps you build on your strengths with guided lessons and a supportive community organized around this framework."}
+      </p>
+      <div className="mt-7 flex flex-col items-center gap-3">
+        <CtaButton href={ACADEMY_URL} variant="accent" external>Join The Relationship Academy</CtaButton>
+        <Link href={`/snapshot/thank-you${q ? `?${q}` : ""}`} className="font-ui text-sm text-white/75 underline underline-offset-4 hover:text-white">See what&apos;s next →</Link>
+      </div>
+    </section>
   );
 }
 
