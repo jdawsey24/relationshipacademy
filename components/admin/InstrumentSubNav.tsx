@@ -14,6 +14,7 @@ export default function InstrumentSubNav({ id }: { id: string }) {
     { label: "Measurement Model", href: `${base}/measurement-model` },
     { label: "Assembly", href: `${base}/assembly` },
     { label: "Sandbox", href: `${base}/sandbox` },
+    { label: "Publish", href: `${base}/publish` },
   ];
   return (
     <div className="mb-5 flex flex-wrap gap-1.5">

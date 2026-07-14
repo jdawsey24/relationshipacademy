@@ -2,6 +2,7 @@ import Link from "next/link";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
+import { listLiveInstruments } from "@/lib/instrumentPublish";
 import JsonLd from "@/components/JsonLd";
 import { faqSchema, breadcrumbSchema } from "@/lib/schema";
 
@@ -51,6 +52,7 @@ const SAMPLE_DOMAINS = [
 
 export default async function AssessmentPage() {
   const content = await getSiteContentMap();
+  const liveInstruments = await listLiveInstruments();
   return (
     <main className="bg-warm-ivory">
       <JsonLd data={[
@@ -70,6 +72,25 @@ export default async function AssessmentPage() {
           <div className="mt-8"><CtaButton href="/snapshot/intro">Take the Free Assessment</CtaButton></div>
         </div>
       </section>
+
+      {/* Additional live assessments (shown only when an instrument is published live) */}
+      {liveInstruments.length > 0 && (
+        <section className="px-6 pb-4">
+          <div className="mx-auto max-w-3xl">
+            <SectionLabel className="mb-4 text-center">{get(content, "assessment.more.eyebrow", "More assessments")}</SectionLabel>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {liveInstruments.map((inst) => (
+                <div key={inst.assessment_id} className="flex flex-col rounded-2xl border border-light-gray bg-white p-6 text-left">
+                  <h2 className="font-display text-xl font-semibold text-midnight-navy">{inst.name}</h2>
+                  {inst.purpose && <p className="mt-2 flex-1 font-body text-sm leading-relaxed text-charcoal/80">{inst.purpose}</p>}
+                  {inst.estimated_time && <p className="mt-3 text-xs text-charcoal/50">About {inst.estimated_time}</p>}
+                  <div className="mt-5"><CtaButton href={`/assess/${inst.public_slug}`} variant="secondary">Take this assessment</CtaButton></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* How It Works */}
       <section className="px-6 py-16">
