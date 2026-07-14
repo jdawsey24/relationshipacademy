@@ -16,10 +16,13 @@ AI expansion of a respondent's **deterministic** result into a warm, personalize
 - **Feature flag:** `result_narrative` is in `GENERATION_TYPES` but **not** in `ai_settings.enabled_generation_types` by default → live generation is OFF; the Sandbox preview is owner-only.
 - **Live path untouched:** no changes to `app/api/results`, `app/api/score`, `lib/scoring.ts`, `app/snapshot`. Verified: grounded 5-section narrative, `safety=ok`, no invented scores.
 
-## Phase 2 — deferred (touches the live path; separate branch + approval)
+## Phase 2 — built (build-only; ships OFF; touches the live results page additively)
 
-Wire the narrative into the report a real respondent receives, additively + resiliently:
-- Resilient **public** `GET /api/results/narrative?session_id=` — valid completed session + `result_narrative` feature flag + kill-switch + per-IP/session rate limit + cost ceiling; returns a **cached** narrative or generates **once**.
-- New `result_narratives` cache table (migration): keyed by `session_id` + `inputs_hash`; stores narrative + model + prompt version + safety status; RLS-locked.
-- `app/snapshot/results/page.tsx` fetches it **separately** from `/api/results` (which stays byte-for-byte unchanged): deterministic report renders immediately; narrative appears when ready or **never, gracefully** (fallback = authored report). Add the consumer **disclosure** line.
-- The live switch = enabling `result_narrative` in AI Settings (off by default).
+The narrative now reaches the **live results page**, additive + resilient. **The scoring path is untouched** (`app/api/results`, `app/api/score`, `lib/scoring.ts`).
+
+- **Migration `0029_result_narratives.sql`** (owner-run): `result_narratives` cache — one narrative per `session_id`; RLS-locked, service-role only.
+- **`lib/resultNarrativeLive.ts`** — `buildNarrativeGrounding(session_id)` **independently** re-queries the session's stored results (`quiz_sessions`, `structural_phase_selection`→`structural_phases`, `domain_scores`→`domains`, `alignment_results`) → `{ firstName, structuralContext, strengths(top-2 domains), growthArea(lowest), phaseAlignment, alignmentStatus }` (never email/raw responses). `getOrCreateLiveNarrative` is **cache-first**; a missing cache table (pre-`0029`) or a **safety-flagged/errored** result returns null and generates/caches nothing.
+- **`GET /api/results/narrative?session_id=`** — resilient, never 500s: `isUuid` + rate limit (`result-narrative`, 10/60s) + **feature flag** (`result_narrative` enabled) + kill-switch + soft daily cost ceiling. Returns `{ narrative: sections | null }`. Generate-once cache bounds cost.
+- **`app/snapshot/results/page.tsx`** — a **separate** fetch renders a "Your Personalized Summary" section after the Structural Phase banner **only when present**, with a consumer disclosure line. Deterministic report unchanged.
+- **Go-live is the owner's:** ships OFF (`result_narrative` not in `enabled_generation_types`). **Run `0029` first, then enable `result_narrative` in AI Settings.** Instant off = disable it or the kill switch. Voice = author a `result_narrative` Prompt Template.
+- Verified: scoring path untouched (git diff); default OFF → `{ enabled:false }`; live grounding from a real session → grounded 5-section narrative, `safety=ok`; resilient pre-migration (null, no generation); 47 tests pass.
