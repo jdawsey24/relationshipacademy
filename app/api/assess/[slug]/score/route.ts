@@ -3,6 +3,7 @@ import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
 import { readJsonBody } from "@/lib/apiSecurity";
 import { getPublicInstrumentBySlug } from "@/lib/instrumentPublish";
 import { runLiveScoring } from "@/lib/studioScoringData";
+import { enrollFromAttempt } from "@/lib/email/enrollment";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -41,6 +42,9 @@ export async function POST(request: Request, { params }: { params: Promise<{ slu
       email: cap(body.email) || null,
     });
     if (!res.attempt_id) return NextResponse.json({ error: "Scoring did not complete." }, { status: 502 });
+    // Enroll in the email sequence + send the results email. Resilient — never
+    // blocks or fails the score response if email isn't configured or errors.
+    await enrollFromAttempt(res.attempt_id).catch(() => {});
     return NextResponse.json({ attempt_id: res.attempt_id });
   } catch {
     return NextResponse.json({ error: "Scoring failed." }, { status: 502 });
