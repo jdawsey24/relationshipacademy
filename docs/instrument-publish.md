@@ -64,6 +64,29 @@ Until all gates pass, the **Publish** button is disabled and lists exactly what 
 (`computeScores` / `deriveFindings` / `selectRecommendations`), only with `kind='live'`,
 respondent identity, and `provisional=false` (readiness‑gated instruments are validated).
 
+## AI-assisted consumer item text (governed propose → apply)
+
+Authoring consumer wording for every item by hand is the biggest gate. The
+**Consumer Text** tab (`/admin/studio/assessment/instruments/[id]/consumer-text`)
+scaffolds it with AI, without ever letting the model write the canonical bank:
+
+- `lib/ai/consumerItemText.ts#generateConsumerItemDrafts` loads the instrument's
+  approved membership items (missing consumer text, or all), and in batches of 8
+  asks the provider to rewrite each `item_text` into plain-language consumer
+  wording. **Meaning and direction are preserved as a hard rule** — reverse-scored
+  and negatively-worded items are never flipped (scoring is untouched regardless;
+  this field is display-only).
+- Generation type `consumer_item_text` is gated by the standard AI preflight
+  (kill switch, `enabled_generation_types`, rate limit, daily cost ceiling) and
+  owner+MFA (`requireAiOwner`); each pass records an `ai_generation_requests`
+  row for cost tracking. Enable the type in **AI Settings** before first use.
+- Drafts are **proposed in the review UI** with per-row quality flags (reading
+  grade > 8, clinical terms, phrased-as-a-question, large length delta). Nothing
+  is saved until the owner clicks **Apply** (or **Apply all**), which writes
+  `consumer_item_text` through the existing governed item PATCH + audit
+  (`studio.consumer_text.apply`).
+- A live "N of total have consumer text" counter tracks readiness gate #3.
+
 ## Site integration
 
 `app/(site)/assessment/page.tsx` renders a card per live instrument (from
