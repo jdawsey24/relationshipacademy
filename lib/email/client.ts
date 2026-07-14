@@ -4,7 +4,7 @@ import { Resend } from "resend";
 // a no-op (not configured) when RESEND_API_KEY is absent — so nothing in the app
 // breaks if email isn't set up yet.
 
-const FROM = process.env.EMAIL_FROM || "Relationship Life Cycle <hello@notify.relationshiplc.com>";
+const FROM = process.env.EMAIL_FROM || "Janelle Dawsey <snapshot@notify.relationshiplc.com>";
 const REPLY_TO = process.env.EMAIL_REPLY_TO || "hello@janelledawsey.com";
 
 let client: Resend | null = null;
