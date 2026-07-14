@@ -8,9 +8,7 @@ import { classesFor, resultLevelColor, alignmentColor, type ColorToken } from "@
 // Structured participant results — mirrors the original Snapshot layout:
 // developmental alignment + expiration risk (each a short read-out), then a
 // per-domain breakdown with score + band (Healthy Development / Growth
-// Opportunity / …) + interpretation. The AI narrative, when enabled, renders
-// additively as a personalized summary above the structured report. Fully
-// resilient: the deterministic breakdown always renders.
+// Opportunity / …) + interpretation.
 
 type Section = { heading: string; body: string };
 type Domain = { slug: string; name: string; score: number; level: string | null; interpretation: string | null; cta: string | null };
@@ -26,8 +24,6 @@ interface Results {
 function ResultsInner() {
   const attempt = useSearchParams().get("attempt");
   const [data, setData] = useState<Results | null>(null);
-  const [narrative, setNarrative] = useState<Section[] | null>(null);
-  const [narrativePending, setNarrativePending] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -37,17 +33,6 @@ function ResultsInner() {
       .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
       .then((d) => { if (active) setData(d); })
       .catch(() => active && setError(true));
-    return () => { active = false; };
-  }, [attempt]);
-
-  useEffect(() => {
-    if (!attempt) return;
-    let active = true;
-    fetch(`/api/assess/narrative?attempt=${attempt}`)
-      .then((r) => r.json())
-      .then((d) => { if (active) setNarrative(Array.isArray(d.narrative) && d.narrative.length ? d.narrative : null); })
-      .catch(() => {})
-      .finally(() => { if (active) setNarrativePending(false); });
     return () => { active = false; };
   }, [attempt]);
 
@@ -71,27 +56,6 @@ function ResultsInner() {
           <p className="font-ui text-xs uppercase tracking-wide text-charcoal/60">Your Relationship Stage</p>
           <p className="mt-1 font-display text-2xl font-semibold text-midnight-navy">{data.structuralContext}</p>
         </section>
-      )}
-
-      {/* Personalized AI summary — additive; renders only when present. */}
-      {narrative && (
-        <section className="mt-8 rounded-2xl border border-dusty-plum/25 bg-dusty-plum/5 px-6 py-6">
-          <h2 className="font-display text-2xl font-semibold text-midnight-navy">Your Personalized Summary</h2>
-          <div className="mt-4 space-y-4">
-            {narrative.map((s, i) => (
-              <div key={i}>
-                {s.heading && <h3 className="font-ui text-lg font-semibold text-midnight-navy">{s.heading}</h3>}
-                {s.body && <p className="mt-1 font-body leading-relaxed text-charcoal">{s.body}</p>}
-              </div>
-            ))}
-          </div>
-          <p className="mt-4 border-t border-dusty-plum/20 pt-3 font-body text-xs text-charcoal/50">
-            This summary is generated from your responses to give you a personalized reflection — your scores are calculated the same way for everyone.
-          </p>
-        </section>
-      )}
-      {!narrative && narrativePending && hasStructured && (
-        <p className="mt-6 text-center text-xs text-charcoal/40">Personalizing your summary…</p>
       )}
 
       {hasStructured ? (
