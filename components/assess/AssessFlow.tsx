@@ -72,11 +72,29 @@ export default function AssessFlow({ slug, resultsHref }: { slug: string; result
       <header className="mb-8 text-center"><Logo variant="full" href="/" className="mx-auto h-10" /></header>
 
       {step === "intro" && (
-        <section className="text-center">
-          <h1 className="font-display text-3xl font-semibold text-midnight-navy">{data.instrument.name}</h1>
-          {data.instrument.purpose && <p className="mx-auto mt-3 max-w-lg font-body text-charcoal/80">{data.instrument.purpose}</p>}
-          <p className="mt-4 text-sm text-charcoal/50">{data.items.length} questions{data.instrument.estimated_time ? ` · about ${data.instrument.estimated_time}` : ""}</p>
-          <button onClick={() => setStep("context")} className="mt-8 rounded-full bg-midnight-navy px-8 py-3 font-ui text-sm font-semibold text-white hover:bg-midnight-navy/90">Begin</button>
+        <section className="mx-auto flex min-h-[68vh] max-w-xl flex-col items-center justify-center text-center">
+          <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Free relationship assessment</p>
+          <h1 className="mt-3 text-balance font-display text-4xl font-semibold text-midnight-navy sm:text-5xl">{data.instrument.name}</h1>
+          {data.instrument.purpose && <p className="mx-auto mt-4 max-w-md font-body text-lg leading-relaxed text-charcoal/75">{data.instrument.purpose}</p>}
+
+          <div className="mt-8 w-full max-w-sm rounded-2xl border border-light-gray bg-white/70 p-5 text-left shadow-sm shadow-midnight-navy/5">
+            <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal/45">Before you begin</p>
+            <ul className="mt-3 space-y-2.5">
+              {[
+                "Answer based on how things are right now — not how you'd like them to be.",
+                "There are no right or wrong answers.",
+                "Your responses are private.",
+              ].map((t) => (
+                <li key={t} className="flex gap-2.5 font-body text-sm leading-relaxed text-charcoal/80">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-coral-rose" aria-hidden="true" />
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <button onClick={() => setStep("context")} className="mt-8 rounded-full bg-midnight-navy px-10 py-3.5 font-ui text-base font-semibold text-white transition-colors hover:bg-midnight-navy/90">Begin</button>
+          <p className="mt-4 font-ui text-sm text-charcoal/50">{data.items.length} questions · about {data.instrument.estimated_time || "6–10 minutes"}</p>
         </section>
       )}
 
