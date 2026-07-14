@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
 import { isUuid } from "@/lib/apiSecurity";
-import { getLiveResults } from "@/lib/studioScoringData";
+import { getLiveResults, getLiveResultsDetailed } from "@/lib/studioScoringData";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,7 +14,14 @@ export async function GET(request: Request) {
   if (!isUuid(attempt)) return NextResponse.json({ error: "Not found." }, { status: 404 });
   if (!(await rateLimit(request, { bucket: "assess-results", limit: 30, windowSeconds: 60 }))) return tooManyRequests();
 
-  const res = await getLiveResults(attempt);
+  const [res, detailed] = await Promise.all([getLiveResults(attempt), getLiveResultsDetailed(attempt)]);
   if (!res) return NextResponse.json({ error: "Not found." }, { status: 404 });
-  return NextResponse.json({ consumerReport: res.consumerReport, structuralContext: res.structuralContext });
+  return NextResponse.json({
+    consumerReport: res.consumerReport,
+    structuralContext: res.structuralContext,
+    firstName: detailed?.firstName ?? null,
+    domains: detailed?.domains ?? [],
+    alignment: detailed?.alignment ?? null,
+    expirationRisk: detailed?.expirationRisk ?? null,
+  });
 }

@@ -58,6 +58,11 @@ const EXPECTED_PHASE: Record<string, string> = {
   Engaged: "expansion", Married: "expansion",
 };
 
+/** The expected developmental phase slug for a structural context (or null). */
+export function expectedPhaseFor(structuralContext: string | null): string | null {
+  return structuralContext ? EXPECTED_PHASE[structuralContext] ?? null : null;
+}
+
 export interface ScoreInput {
   items: ScoreItemDef[];
   responses: Record<string, number>;
