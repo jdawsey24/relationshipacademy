@@ -1,11 +1,9 @@
 import CtaButton from "@/components/site/CtaButton";
 import SectionLabel from "@/components/site/SectionLabel";
-import HeroMoments from "@/components/landing/HeroMoments";
+import HeroVisual from "@/components/landing/HeroVisual";
 import ResultsPreviewMock from "@/components/landing/ResultsPreviewMock";
 import QuestionMock from "@/components/landing/QuestionMock";
-import MomentTile from "@/components/landing/MomentTile";
 import FaqAccordion, { type Faq } from "@/components/landing/FaqAccordion";
-import { MOMENTS } from "@/components/landing/moments";
 
 export const metadata = {
   title: "The Relationship Snapshot™ — How's your relationship, really?",
@@ -76,14 +74,14 @@ export default function RelationshipSnapshotLanding() {
               <p className="font-ui text-sm text-charcoal/55">Free • Takes about 5 minutes • Personalized results</p>
             </div>
           </div>
-          <div className="order-first lg:order-last"><HeroMoments /></div>
+          <div className="order-first lg:order-last"><HeroVisual /></div>
         </div>
       </section>
 
       {/* 2 · RECOGNITION */}
       <section className="px-6 py-20">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-center">
-          <div className="mx-auto max-w-[620px]">
+        <div className="mx-auto max-w-2xl">
+          <div>
             <h2 className="text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-4xl">
               Most of us were never taught how relationships grow.
             </h2>
@@ -103,10 +101,6 @@ export default function RelationshipSnapshotLanding() {
             <p className="mt-6 font-body text-lg font-medium leading-relaxed text-midnight-navy">
               You should not have to wait for a crisis to understand your relationship.
             </p>
-          </div>
-          <div className="hidden grid-cols-2 gap-4 lg:grid">
-            <MomentTile moment={MOMENTS.conversation} className="mt-8 aspect-[3/4]" />
-            <MomentTile moment={MOMENTS.planning} className="aspect-[3/4]" />
           </div>
         </div>
       </section>
@@ -221,8 +215,8 @@ export default function RelationshipSnapshotLanding() {
 
       {/* 8 · WHO IT'S FOR */}
       <section className="px-6 py-24">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <div className="mx-auto max-w-[560px]">
+        <div className="mx-auto max-w-2xl">
+          <div>
             <h2 className="text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-4xl">Built for where you are now.</h2>
             <p className="mt-6 font-body text-lg leading-relaxed text-charcoal/80">You can take the Relationship Snapshot&trade; whether you are:</p>
             <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
@@ -237,23 +231,12 @@ export default function RelationshipSnapshotLanding() {
               The Snapshot can be completed by one person. Your partner does not need to participate for you to receive meaningful insight.
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-3.5">
-            <MomentTile moment={MOMENTS.coffee} className="aspect-[3/4]" />
-            <MomentTile moment={MOMENTS.proposal} className="mt-8 aspect-[3/4]" />
-            <MomentTile moment={MOMENTS.journal} className="aspect-[3/4]" />
-            <MomentTile moment={MOMENTS.cooking} className="mt-8 aspect-[3/4]" />
-            <MomentTile moment={MOMENTS.olderCouple} className="aspect-[3/4]" />
-            <MomentTile moment={MOMENTS.walking} className="mt-8 aspect-[3/4]" />
-          </div>
         </div>
       </section>
 
       {/* 9 · TRUST */}
       <section className="bg-[#FBF9F5] px-6 py-24">
-        <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-[0.8fr_1.2fr]">
-          <div className="mx-auto w-full max-w-xs">
-            <MomentTile moment={MOMENTS.portrait} variant="framed" className="aspect-[4/5] w-full" />
-          </div>
+        <div className="mx-auto max-w-3xl">
           <div>
             <h2 className="text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-4xl">Created by a relationship therapist. Built for real life.</h2>
             <div className="mt-6 space-y-4 font-body text-lg leading-relaxed text-charcoal/80">
