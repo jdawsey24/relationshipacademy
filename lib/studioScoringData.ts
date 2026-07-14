@@ -109,12 +109,13 @@ export interface SimResult {
   findings: (FindingRow & { id?: string })[];
   recommendations: ReturnType<typeof selectRecommendations>["recommendations"];
   consumerReport: ConsumerSection[];
-  provisional: true;
+  provisional: boolean;
 }
 
 export async function runSimulation(input: {
   scope: SimScope; structuralContext: string | null; acknowledgedTransition?: string | null;
   responses: Record<string, number>; actor: string | null;
+  kind?: string; respondentName?: string | null; respondentEmail?: string | null;
 }): Promise<SimResult> {
   const s = getSupabaseAdminClient();
   const [items, competencyRule, domainRule, phaseRule] = await Promise.all([
@@ -138,7 +139,9 @@ export async function runSimulation(input: {
   try {
     const { data: att } = await s.from("studio_assessment_attempts").insert({
       structural_context: input.structuralContext, acknowledged_transition: input.acknowledgedTransition ?? null,
-      responses: input.responses, kind: "simulation", created_by: input.actor,
+      assessment_id: input.scope.type === "assessment" ? input.scope.id : null,
+      responses: input.responses, kind: input.kind ?? "simulation", created_by: input.actor,
+      respondent_name: input.respondentName ?? null, respondent_email: input.respondentEmail ?? null,
     }).select("id").maybeSingle();
     attemptId = (att as { id: string } | null)?.id ?? null;
     if (attemptId) {
@@ -168,7 +171,69 @@ export async function runSimulation(input: {
     ? await buildConsumerReport(input.scope.id, allFindings, input.structuralContext)
     : [];
 
-  return { attempt_id: attemptId, scores, findings: allFindings, recommendations, consumerReport, provisional: true };
+  return { attempt_id: attemptId, scores, findings: allFindings, recommendations, consumerReport, provisional: (input.kind ?? "simulation") !== "live" };
+}
+
+// ---------------------------------------------------------------------------
+// Live respondent scoring (the parallel published assessment). Same load +
+// pure-engine + persist path as runSimulation, but records a real attempt
+// (kind='live') with respondent identity. Readiness-gated instruments have
+// validated cut-points, so provisional=false.
+// ---------------------------------------------------------------------------
+export async function runLiveScoring(input: {
+  assessmentId: string; structuralContext: string | null; acknowledgedTransition?: string | null;
+  responses: Record<string, number>; name: string | null; email: string | null;
+}): Promise<SimResult> {
+  return runSimulation({
+    scope: { type: "assessment", id: input.assessmentId },
+    structuralContext: input.structuralContext,
+    acknowledgedTransition: input.acknowledgedTransition ?? null,
+    responses: input.responses,
+    actor: null,
+    kind: "live",
+    respondentName: input.name,
+    respondentEmail: input.email,
+  });
+}
+
+// Public results for a live attempt: the authored participant report + the
+// deterministic outputs, resolved from a persisted attempt id.
+export async function getLiveResults(attemptId: string): Promise<{ consumerReport: ConsumerSection[]; findings: unknown[]; scoreResults: unknown[]; recommendations: unknown[]; structuralContext: string | null } | null> {
+  const trace = await getAttemptTrace(attemptId);
+  if (!trace) return null;
+  const attempt = trace.attempt as Record<string, unknown>;
+  const assessmentId = String(attempt.assessment_id ?? "");
+  const structuralContext = (attempt.structural_context as string) ?? null;
+  const consumerReport = assessmentId ? await buildConsumerReport(assessmentId, trace.findings as unknown as FindingRow[], structuralContext) : [];
+  return { consumerReport, findings: trace.findings, scoreResults: trace.scoreResults, recommendations: trace.recommendations, structuralContext };
+}
+
+// Items for the PUBLIC quiz of an assembled instrument: the approved membership
+// in position order, surfacing consumer_item_text (falls back to item_text).
+export interface PublicQuizItem { item_id: string; text: string; domain: string | null; phase: string | null; reverse_scored: boolean; }
+export async function loadPublicQuizItems(assessmentId: string): Promise<PublicQuizItem[]> {
+  try {
+    const s = getSupabaseAdminClient();
+    const { data: mem } = await s.from("studio_assessment_membership")
+      .select("item_id, position").eq("assessment_id", assessmentId).eq("status", "approved").eq("source", "assembled").order("position");
+    const order = new Map((mem ?? []).map((r, i) => [String((r as Record<string, unknown>).item_id), (r as Record<string, unknown>).position as number ?? i]));
+    const ids = [...order.keys()];
+    if (!ids.length) return [];
+    const { data } = await s.from("studio_assessment_items")
+      .select("item_id, consumer_item_text, item_text, domain, phase, reverse_scored").in("item_id", ids);
+    const rows = (data ?? []) as Record<string, unknown>[];
+    return rows
+      .map((x) => ({
+        item_id: String(x.item_id),
+        text: String((x.consumer_item_text as string) || (x.item_text as string) || ""),
+        domain: (x.domain as string) ?? null,
+        phase: (x.phase as string) ?? null,
+        reverse_scored: !!x.reverse_scored,
+      }))
+      .sort((a, b) => (order.get(a.item_id) ?? 0) - (order.get(b.item_id) ?? 0));
+  } catch {
+    return [];
+  }
 }
 
 export async function getAttemptTrace(attemptId: string) {
