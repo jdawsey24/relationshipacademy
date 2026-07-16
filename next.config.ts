@@ -63,6 +63,13 @@ const nextConfig: NextConfig = {
       // hierarchy. Admin-internal, so not a permanent (301) redirect.
       { source: "/admin/studio/kb", destination: "/admin/studio/framework", permanent: false },
       { source: "/admin/studio/kb/:path*", destination: "/admin/studio/framework", permanent: false },
+      // Snapshot cutover: the cluster quiz now owns /snapshot. Old 47-item entry
+      // points (and existing ad links / bookmarks) land on the new picker.
+      { source: "/snapshot/intro", destination: "/snapshot", permanent: true },
+      { source: "/snapshot/phase-select", destination: "/snapshot", permanent: true },
+      { source: "/snapshot/capture", destination: "/snapshot", permanent: true },
+      { source: "/snapshot/thank-you", destination: "/snapshot", permanent: true },
+      { source: "/snapshot/questions/:domain", destination: "/snapshot", permanent: true },
     ];
   },
 };

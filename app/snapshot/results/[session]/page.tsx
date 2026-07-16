@@ -66,6 +66,10 @@ function PlaybookCard({ session, title, subtitle }: { session: string; title: st
     const d = await res.json().catch(() => ({}));
     setBusy(false);
     if (!res.ok) { setErr(d.error ?? "Something went wrong."); return; }
+    // Conversion event for ad/analytics tracking (Meta Pixel + GA, loaded site-wide).
+    const w = window as unknown as { fbq?: (...a: unknown[]) => void; gtag?: (...a: unknown[]) => void };
+    try { w.fbq?.("track", "Lead", { content_name: "Relationship Snapshot Playbook" }); } catch { /* noop */ }
+    try { w.gtag?.("event", "snapshot_conversion", { event_category: "snapshot" }); } catch { /* noop */ }
     setDone(true);
   }
 
@@ -76,7 +80,7 @@ function PlaybookCard({ session, title, subtitle }: { session: string; title: st
       <p className="mx-auto mt-2 max-w-md font-body text-[17px] leading-relaxed text-white/85">{subtitle}</p>
 
       {done ? (
-        <p className="mx-auto mt-6 max-w-sm font-body text-white/90">Your Playbook is on its way to <span className="font-semibold">{email}</span>. Check your inbox.</p>
+        <p className="mx-auto mt-6 max-w-sm font-body text-white/90">You&apos;re all set. Watch <span className="font-semibold">{email}</span> — your Playbook and next steps are on their way.</p>
       ) : open ? (
         <div className="mx-auto mt-6 flex max-w-sm flex-col gap-2.5">
           <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your email"

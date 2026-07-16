@@ -45,7 +45,7 @@ export default async function HomePage() {
         </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <CtaButton href="/framework" variant="primary">Explore the Framework</CtaButton>
-          <CtaButton href="/snapshot/intro" variant="secondary">Take the Free Assessment</CtaButton>
+          <CtaButton href="/snapshot" variant="secondary">Take the Free Assessment</CtaButton>
         </div>
         <span className="mt-16 animate-bounce text-midnight-navy/40" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6" /></svg>
@@ -137,7 +137,7 @@ export default async function HomePage() {
             ))}
           </ul>
           <div className="mt-10 flex flex-col items-center gap-3">
-            <CtaButton href="/snapshot/intro" variant="primary">Take the Free Snapshot</CtaButton>
+            <CtaButton href="/snapshot" variant="primary">Take the Free Snapshot</CtaButton>
             <Link href="/assessment" className="font-ui text-sm text-midnight-navy underline underline-offset-4">Learn more about the assessment</Link>
           </div>
         </div>

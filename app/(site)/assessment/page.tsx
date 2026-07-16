@@ -72,7 +72,7 @@ export default async function AssessmentPage() {
           <p className="mx-auto mt-6 max-w-[600px] font-body text-lg leading-relaxed text-charcoal">
             {get(content, "assessment.hero.subhead", "The Relationship Snapshot™ is a free assessment designed to help you better understand your relationship, recognize what's going well, and identify opportunities for growth.")}
           </p>
-          <div className="mt-8"><CtaButton href="/snapshot/intro">Take the Free Assessment</CtaButton></div>
+          <div className="mt-8"><CtaButton href="/snapshot">Take the Free Assessment</CtaButton></div>
         </div>
       </section>
 
@@ -208,7 +208,7 @@ export default async function AssessmentPage() {
       <section className="px-6 py-20 text-center">
         <div className="mx-auto max-w-xl">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "assessment.cta.heading", "Ready to get started?")}</h2>
-          <div className="mt-6"><CtaButton href="/snapshot/intro" variant="primary">Take the Free Snapshot</CtaButton></div>
+          <div className="mt-6"><CtaButton href="/snapshot" variant="primary">Take the Free Snapshot</CtaButton></div>
           <p className="mt-3 font-body text-sm text-charcoal/60">{get(content, "assessment.cta.note", "Free. Confidential. Takes about 10 minutes.")}</p>
         </div>
       </section>

@@ -11,7 +11,7 @@ export const metadata = {
     "It's easy to know your relationship status. It's harder to know how your relationship is actually doing. Take the free Relationship Snapshot™ — a 5-minute assessment that shows what's working, where to grow, and what to focus on next.",
 };
 
-const START = "/snapshot/intro";
+const START = "/snapshot";
 
 const OUTCOMES = [
   { title: "What's working", body: "Recognize the habits and strengths that are helping your relationship move forward." },

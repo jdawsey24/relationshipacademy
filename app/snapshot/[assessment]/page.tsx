@@ -37,7 +37,7 @@ export default function QuizPage() {
     const d = await res.json().catch(() => ({}));
     if (!res.ok) { setBusy(false); setErr(d.error ?? "Something went wrong."); return; }
     if (d.tied && Array.isArray(d.tiebreak)) { setBusy(false); setTiebreak({ sessionId: d.session_id, options: d.tiebreak }); return; }
-    router.push(`/quiz/results/${d.session_id}`);
+    router.push(`/snapshot/results/${d.session_id}`);
   }, [quiz, assessment, router]);
 
   function choose(question: Question, optionId: string) {
@@ -57,7 +57,7 @@ export default function QuizPage() {
     });
     const d = await res.json().catch(() => ({}));
     if (!res.ok) { setBusy(false); setErr(d.error ?? "Something went wrong."); return; }
-    router.push(`/quiz/results/${tiebreak.sessionId}`);
+    router.push(`/snapshot/results/${tiebreak.sessionId}`);
   }
 
   if (notFound) return <Centered>This quiz isn&apos;t available right now.</Centered>;
