@@ -1,0 +1,3182 @@
+{
+  "exploration": [
+    {
+      "question_order": 1,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 5,
+          "statement": "I keep choosing the wrong people."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know where this is going."
+        },
+        {
+          "cluster_id": 1,
+          "statement": "I don't know what's wrong with me."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I push people away before they can really know me."
+        }
+      ]
+    },
+    {
+      "question_order": 2,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 5,
+          "statement": "I always date emotionally unavailable people."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I don't know if I'm reading too much into things."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I feel like nobody communicates anymore."
+        },
+        {
+          "cluster_id": 1,
+          "statement": "I feel like everyone else finds love except me."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I always expect people to leave."
+        }
+      ]
+    },
+    {
+      "question_order": 3,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 1,
+          "statement": "I don't feel like anyone chooses me."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I feel like nobody wants a relationship anymore."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I hate feeling uncertain."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't want to waste my time."
+        }
+      ]
+    },
+    {
+      "question_order": 4,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should lean in or walk away."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I hate being breadcrumbed."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I leave before they leave."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I reread conversations over and over."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I don't trust my own judgment anymore."
+        }
+      ]
+    },
+    {
+      "question_order": 5,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 1,
+          "statement": "I feel like no one ever chooses me first."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I can't tell if they're serious about this."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I always assume the worst."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I stay too long."
+        }
+      ]
+    },
+    {
+      "question_order": 6,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 4,
+          "statement": "I find dating apps exhausting."
+        },
+        {
+          "cluster_id": 1,
+          "statement": "I feel defeated by dating."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I hate waiting for someone to text back."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I attract toxic people."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I'm afraid I'll get hurt again."
+        }
+      ]
+    },
+    {
+      "question_order": 7,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 24,
+          "statement": "I'm afraid I'll choose the wrong person."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "Dating feels impossible today."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I sabotage good relationships."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I overanalyze every text."
+        }
+      ]
+    },
+    {
+      "question_order": 8,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 1,
+          "statement": "I never get past the talking stage."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should ask what we are."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I want love, but I'm scared of it."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I don't know what healthy looks like."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I feel like everyone has too many options to commit."
+        }
+      ]
+    },
+    {
+      "question_order": 9,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 4,
+          "statement": "I hate modern dating."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I don't trust anyone."
+        },
+        {
+          "cluster_id": 1,
+          "statement": "I feel like I'm not enough."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I wish I could stop overthinking."
+        }
+      ]
+    },
+    {
+      "question_order": 10,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 3,
+          "statement": "I keep my guard up."
+        },
+        {
+          "cluster_id": 1,
+          "statement": "I always get rejected."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I ignore red flags."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know when to walk away."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I feel like dating has become a game."
+        }
+      ]
+    },
+    {
+      "question_order": 11,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 5,
+          "statement": "I confuse chemistry with compatibility."
+        },
+        {
+          "cluster_id": 1,
+          "statement": "I feel invisible."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I need reassurance all the time."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if we're dating or just hanging out."
+        }
+      ]
+    },
+    {
+      "question_order": 12,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 5,
+          "statement": "I fall too fast."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I don't understand why people ghost."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I hate feeling uncertain."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't want to waste my time."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I don't let people get close."
+        }
+      ]
+    },
+    {
+      "question_order": 13,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 6,
+          "statement": "I always assume the worst."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know where this is going."
+        },
+        {
+          "cluster_id": 1,
+          "statement": "I always get friend-zoned."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I push people away."
+        }
+      ]
+    },
+    {
+      "question_order": 14,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 5,
+          "statement": "I fall too fast."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I don't know if I'm reading too much into things."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I want love, but I'm scared of it."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I feel like nobody communicates anymore."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I'm afraid I'll choose the wrong person."
+        }
+      ]
+    },
+    {
+      "question_order": 15,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 4,
+          "statement": "I hate being breadcrumbed."
+        },
+        {
+          "cluster_id": 1,
+          "statement": "I feel defeated by dating."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I don't know what healthy looks like."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I wish I could stop overthinking."
+        }
+      ]
+    },
+    {
+      "question_order": 16,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 1,
+          "statement": "I always get friend-zoned."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I can't tell if they're serious about this."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I don't trust anyone."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I feel like everyone has too many options to commit."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I stay too long."
+        }
+      ]
+    },
+    {
+      "question_order": 17,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 1,
+          "statement": "I feel like no one ever chooses me first."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I reread conversations over and over."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I attract toxic people."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should ask what we are."
+        }
+      ]
+    },
+    {
+      "question_order": 18,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 1,
+          "statement": "I feel like everyone else finds love except me."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I need reassurance all the time."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I find dating apps exhausting."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should lean in or walk away."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I leave before they leave."
+        }
+      ]
+    },
+    {
+      "question_order": 19,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 3,
+          "statement": "I keep my guard up."
+        },
+        {
+          "cluster_id": 1,
+          "statement": "I feel like I'm not enough."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I ignore red flags."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I don't understand why people ghost."
+        }
+      ]
+    },
+    {
+      "question_order": 20,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 4,
+          "statement": "I feel like dating has become a game."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I always expect people to leave."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I hate waiting for someone to text back."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know when to walk away."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I don't trust my own judgment anymore."
+        }
+      ]
+    },
+    {
+      "question_order": 21,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 4,
+          "statement": "Dating feels impossible today."
+        },
+        {
+          "cluster_id": 3,
+          "statement": "I don't let people get close."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I overanalyze every text."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if we're dating or just hanging out."
+        }
+      ]
+    },
+    {
+      "question_order": 22,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 1,
+          "statement": "I don't feel like anyone chooses me."
+        },
+        {
+          "cluster_id": 5,
+          "statement": "I confuse chemistry with compatibility."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should lean in or walk away."
+        },
+        {
+          "cluster_id": 6,
+          "statement": "I always assume the worst."
+        },
+        {
+          "cluster_id": 4,
+          "statement": "I hate modern dating."
+        }
+      ]
+    }
+  ],
+  "exclusivity": [
+    {
+      "question_order": 1,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 23,
+          "statement": "I overthink every decision."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I always have to initiate."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I don't want love to become my whole identity."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know where this is going."
+        }
+      ]
+    },
+    {
+      "question_order": 2,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 23,
+          "statement": "I keep waiting until I'm \"ready.\""
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I feel emotionally alone even though I'm in a relationship."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I'm afraid I'll choose the wrong person."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I enjoy my peace too much."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I feel like I have to get relationships right."
+        }
+      ]
+    },
+    {
+      "question_order": 3,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 15,
+          "statement": "I always feel like I'm doing more."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if we're dating or just hanging out."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I've worked too hard to give everything up."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid of making the wrong decision."
+        }
+      ]
+    },
+    {
+      "question_order": 4,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid I'm too damaged."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should ask what we are."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I'm afraid a relationship will change my life too much."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't feel prioritized."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I don't want to lose my independence."
+        }
+      ]
+    },
+    {
+      "question_order": 5,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 15,
+          "statement": "I miss feeling pursued."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I struggle when things feel uncertain."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I don't want to make another mistake."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know when to walk away."
+        }
+      ]
+    },
+    {
+      "question_order": 6,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should lean in or walk away."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I thought relationships would feel easier than this."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't think they see how much I'm trying."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I can't tell if they're serious about this."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I'm afraid commitment means losing myself."
+        }
+      ]
+    },
+    {
+      "question_order": 7,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 24,
+          "statement": "I don't want to waste my time."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I expect too much from myself."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I don't want to compromise who I am."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I feel taken for granted."
+        }
+      ]
+    },
+    {
+      "question_order": 8,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if we're dating or just hanging out."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I always have to initiate."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid of making the wrong decision."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't feel appreciated."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I don't want to lose my independence."
+        }
+      ]
+    },
+    {
+      "question_order": 9,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 15,
+          "statement": "I don't feel prioritized."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should ask what we are."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid I'm too damaged."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I'm afraid commitment means losing myself."
+        }
+      ]
+    },
+    {
+      "question_order": 10,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 15,
+          "statement": "I always feel like I'm doing more."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should lean in or walk away."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I feel emotionally alone even though I'm in a relationship."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I don't want to compromise who I am."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I don't want to make another mistake."
+        }
+      ]
+    },
+    {
+      "question_order": 11,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 22,
+          "statement": "I'm afraid a relationship will change my life too much."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't feel appreciated."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know where this is going."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I feel like I have to get relationships right."
+        }
+      ]
+    },
+    {
+      "question_order": 12,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 15,
+          "statement": "I miss feeling pursued."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I can't tell if they're serious about this."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I expect too much from myself."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I enjoy my peace too much."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I struggle when things feel uncertain."
+        }
+      ]
+    },
+    {
+      "question_order": 13,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 22,
+          "statement": "I don't want love to become my whole identity."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I overthink every decision."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I'm afraid I'll choose the wrong person."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I feel taken for granted."
+        }
+      ]
+    },
+    {
+      "question_order": 14,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 24,
+          "statement": "I don't know when to walk away."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't think they see how much I'm trying."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I thought relationships would feel easier than this."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I keep waiting until I'm \"ready.\""
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I've worked too hard to give everything up."
+        }
+      ]
+    },
+    {
+      "question_order": 15,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 24,
+          "statement": "I don't want to waste my time."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid I'm too damaged."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't think they see how much I'm trying."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I don't want love to become my whole identity."
+        }
+      ]
+    },
+    {
+      "question_order": 16,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 15,
+          "statement": "I feel taken for granted."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I feel like I have to get relationships right."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I can't tell if they're serious about this."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I don't want to lose my independence."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know when to walk away."
+        }
+      ]
+    },
+    {
+      "question_order": 17,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 24,
+          "statement": "I'm afraid I'll choose the wrong person."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I've worked too hard to give everything up."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't feel prioritized."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid of making the wrong decision."
+        }
+      ]
+    },
+    {
+      "question_order": 18,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 15,
+          "statement": "I don't feel appreciated."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I don't want to compromise who I am."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if we're dating or just hanging out."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I thought relationships would feel easier than this."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't want to waste my time."
+        }
+      ]
+    },
+    {
+      "question_order": 19,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 23,
+          "statement": "I overthink every decision."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know where this is going."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I'm afraid a relationship will change my life too much."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I always feel like I'm doing more."
+        }
+      ]
+    },
+    {
+      "question_order": 20,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 23,
+          "statement": "I don't want to make another mistake."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I struggle when things feel uncertain."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I feel emotionally alone even though I'm in a relationship."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I always have to initiate."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should lean in or walk away."
+        }
+      ]
+    },
+    {
+      "question_order": 21,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 24,
+          "statement": "I don't know if I should ask what we are."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I miss feeling pursued."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I keep waiting until I'm \"ready.\""
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I'm afraid commitment means losing myself."
+        }
+      ]
+    },
+    {
+      "question_order": 22,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 22,
+          "statement": "I struggle when things feel uncertain."
+        },
+        {
+          "cluster_id": 24,
+          "statement": "I don't know where this is going."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I expect too much from myself."
+        },
+        {
+          "cluster_id": 22,
+          "statement": "I enjoy my peace too much."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't feel prioritized."
+        }
+      ]
+    }
+  ],
+  "expansion": [
+    {
+      "question_order": 1,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 9,
+          "statement": "We're on different pages sexually."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid of making the wrong decision."
+        },
+        {
+          "cluster_id": 8,
+          "statement": "I miss who we used to be."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if this relationship can be saved."
+        }
+      ]
+    },
+    {
+      "question_order": 2,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 7,
+          "statement": "I avoid conflict."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has changed us."
+        },
+        {
+          "cluster_id": 18,
+          "statement": "Our careers are pulling us in different directions."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to become the kind of partner I'm looking for."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I feel taken for granted."
+        }
+      ]
+    },
+    {
+      "question_order": 3,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 8,
+          "statement": "We feel like roommates."
+        },
+        {
+          "cluster_id": 10,
+          "statement": "I carry the relationship."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm grieving someone who's still alive."
+        },
+        {
+          "cluster_id": 14,
+          "statement": "I feel like people take advantage of me."
+        }
+      ]
+    },
+    {
+      "question_order": 4,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 11,
+          "statement": "Have we outgrown each other?"
+        },
+        {
+          "cluster_id": 9,
+          "statement": "We don't have sex anymore."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I never learned how to have healthy relationships."
+        },
+        {
+          "cluster_id": 10,
+          "statement": "I always have to bring up the hard conversations."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know who I am without this relationship."
+        }
+      ]
+    },
+    {
+      "question_order": 5,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 18,
+          "statement": "I don't trust how they handle money."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I feel like I have to get relationships right."
+        },
+        {
+          "cluster_id": 14,
+          "statement": "I ignore my own needs."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has made us strangers."
+        }
+      ]
+    },
+    {
+      "question_order": 6,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 15,
+          "statement": "I miss feeling pursued."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I miss who we were before children."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I keep hoping things will change."
+        },
+        {
+          "cluster_id": 10,
+          "statement": "I notice everything; they notice nothing."
+        },
+        {
+          "cluster_id": 7,
+          "statement": "I don't feel heard."
+        }
+      ]
+    },
+    {
+      "question_order": 7,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 25,
+          "statement": "I want to become emotionally healthier."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I never imagined this would be my story."
+        },
+        {
+          "cluster_id": 18,
+          "statement": "I feel like work always comes first."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't feel prioritized."
+        }
+      ]
+    },
+    {
+      "question_order": 8,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 7,
+          "statement": "We don't know how to disagree."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I don't want to make another mistake."
+        },
+        {
+          "cluster_id": 8,
+          "statement": "We're growing apart."
+        },
+        {
+          "cluster_id": 14,
+          "statement": "I always end up doing everything."
+        },
+        {
+          "cluster_id": 9,
+          "statement": "I miss physical affection."
+        }
+      ]
+    },
+    {
+      "question_order": 9,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 11,
+          "statement": "We've tried everything."
+        },
+        {
+          "cluster_id": 7,
+          "statement": "I feel like I'm talking to a wall."
+        },
+        {
+          "cluster_id": 10,
+          "statement": "I carry all the responsibility."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I overthink every decision."
+        }
+      ]
+    },
+    {
+      "question_order": 10,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't recognize my life anymore."
+        },
+        {
+          "cluster_id": 9,
+          "statement": "I don't feel desired."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to stop repeating old patterns."
+        },
+        {
+          "cluster_id": 14,
+          "statement": "I feel guilty setting boundaries."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I feel like I'm raising the kids alone."
+        }
+      ]
+    },
+    {
+      "question_order": 11,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 18,
+          "statement": "I worry money will become the reason we don't make it."
+        },
+        {
+          "cluster_id": 14,
+          "statement": "I don't know how to say no."
+        },
+        {
+          "cluster_id": 8,
+          "statement": "I don't feel appreciated anymore."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't think they see how much I'm trying."
+        }
+      ]
+    },
+    {
+      "question_order": 12,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 8,
+          "statement": "I feel like they don't understand me."
+        },
+        {
+          "cluster_id": 18,
+          "statement": "We avoid talking about finances."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know what my future looks like anymore."
+        },
+        {
+          "cluster_id": 9,
+          "statement": "Our intimacy feels forced."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I always feel like I'm doing more."
+        }
+      ]
+    },
+    {
+      "question_order": 13,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 11,
+          "statement": "I'm emotionally checked out."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I thought relationships would feel easier than this."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to stop sabotaging myself."
+        },
+        {
+          "cluster_id": 10,
+          "statement": "Everything falls on me."
+        }
+      ]
+    },
+    {
+      "question_order": 14,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 19,
+          "statement": "Becoming parents changed everything."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I expect too much from myself."
+        },
+        {
+          "cluster_id": 10,
+          "statement": "I feel like I'm parenting my partner."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to communicate better."
+        },
+        {
+          "cluster_id": 7,
+          "statement": "We keep having the same argument."
+        }
+      ]
+    },
+    {
+      "question_order": 15,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 18,
+          "statement": "We argue about money."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if this is fixable."
+        },
+        {
+          "cluster_id": 7,
+          "statement": "We don't know how to repair after arguments."
+        },
+        {
+          "cluster_id": 14,
+          "statement": "I say yes when I want to say no."
+        }
+      ]
+    },
+    {
+      "question_order": 16,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 19,
+          "statement": "We argue about parenting."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I don't feel appreciated."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm afraid of starting over."
+        },
+        {
+          "cluster_id": 9,
+          "statement": "I don't feel attractive anymore."
+        },
+        {
+          "cluster_id": 8,
+          "statement": "We don't spend quality time together."
+        }
+      ]
+    },
+    {
+      "question_order": 17,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 25,
+          "statement": "I want healthier relationships."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I always have to initiate."
+        },
+        {
+          "cluster_id": 18,
+          "statement": "Money is causing constant tension."
+        },
+        {
+          "cluster_id": 10,
+          "statement": "I'm always thinking about us."
+        }
+      ]
+    },
+    {
+      "question_order": 18,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 7,
+          "statement": "I feel shut out when they go quiet."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I keep waiting until I'm \"ready.\""
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I feel like I failed."
+        },
+        {
+          "cluster_id": 8,
+          "statement": "I miss feeling like a couple."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I don't know how to balance marriage and parenting."
+        }
+      ]
+    },
+    {
+      "question_order": 19,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 14,
+          "statement": "I stay longer than I should."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know how to be alone."
+        },
+        {
+          "cluster_id": 9,
+          "statement": "Our sex life feels routine."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if I should stay or leave."
+        }
+      ]
+    },
+    {
+      "question_order": 20,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 25,
+          "statement": "I want to trust myself."
+        },
+        {
+          "cluster_id": 15,
+          "statement": "I feel emotionally alone even though I'm in a relationship."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid I'm too damaged."
+        },
+        {
+          "cluster_id": 18,
+          "statement": "We have different financial priorities."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "We never have time for each other."
+        }
+      ]
+    },
+    {
+      "question_order": 21,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 9,
+          "statement": "We avoid talking about sex."
+        },
+        {
+          "cluster_id": 10,
+          "statement": "We don't work as a team."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if I'm happy anymore."
+        },
+        {
+          "cluster_id": 7,
+          "statement": "Every conversation turns into an argument."
+        }
+      ]
+    },
+    {
+      "question_order": 22,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't know who I am without this relationship."
+        },
+        {
+          "cluster_id": 14,
+          "statement": "I give too much and don't know how to stop."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I keep waiting until I'm \"ready.\""
+        },
+        {
+          "cluster_id": 8,
+          "statement": "I feel lonely in my relationship."
+        },
+        {
+          "cluster_id": 10,
+          "statement": "I always have to bring up the hard conversations."
+        }
+      ]
+    }
+  ],
+  "expiration": [
+    {
+      "question_order": 1,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I'm grieving someone who's still alive."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I'm afraid to trust again."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "Our goals don't match anymore."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if this relationship can be saved."
+        }
+      ]
+    },
+    {
+      "question_order": 2,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't recognize my life anymore."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "We've tried everything."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I don't know if I'll ever feel safe again."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "I don't know how to grow together."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "We have different beliefs about marriage."
+        }
+      ]
+    },
+    {
+      "question_order": 3,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 16,
+          "statement": "I wonder if they regret what they did."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if this is fixable."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "I feel like I've outgrown my relationship."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know what my future looks like anymore."
+        }
+      ]
+    },
+    {
+      "question_order": 4,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't know how to be alone."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I don't know how to stop imagining what happened."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "Have we outgrown each other?"
+        },
+        {
+          "cluster_id": 21,
+          "statement": "I feel like I'm growing alone."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I keep hoping things will change."
+        }
+      ]
+    },
+    {
+      "question_order": 5,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 21,
+          "statement": "We love each other, but we want different lives."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I want to forgive, but I don't know how."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I never imagined this would be my story."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I'm emotionally checked out."
+        }
+      ]
+    },
+    {
+      "question_order": 6,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I'm afraid of starting over."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if I should stay or leave."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I can't stop checking their phone."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I keep looking for signs they'll cheat."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "We have different values."
+        }
+      ]
+    },
+    {
+      "question_order": 7,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 16,
+          "statement": "I don't know if I can ever trust them again."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "We're becoming different people."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if I'm happy anymore."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I feel like I failed."
+        }
+      ]
+    },
+    {
+      "question_order": 8,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 21,
+          "statement": "I feel like I've outgrown my relationship."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if I'm happy anymore."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know how to be alone."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I'm afraid to trust again."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know who I am without this relationship."
+        }
+      ]
+    },
+    {
+      "question_order": 9,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I never imagined this would be my story."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "We have different beliefs about marriage."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "We've tried everything."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I don't know how to stop imagining what happened."
+        }
+      ]
+    },
+    {
+      "question_order": 10,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if I should stay or leave."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I want to forgive, but I don't know how."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "We're becoming different people."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "Have we outgrown each other?"
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm grieving someone who's still alive."
+        }
+      ]
+    },
+    {
+      "question_order": 11,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't know what my future looks like anymore."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "I feel like I'm growing alone."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if this relationship can be saved."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I can't stop checking their phone."
+        }
+      ]
+    },
+    {
+      "question_order": 12,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 16,
+          "statement": "I don't know if I can ever trust them again."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I feel like I failed."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I'm emotionally checked out."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "We have different values."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I keep looking for signs they'll cheat."
+        }
+      ]
+    },
+    {
+      "question_order": 13,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't know who I am without this relationship."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "We love each other, but we want different lives."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I keep hoping things will change."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I wonder if they regret what they did."
+        }
+      ]
+    },
+    {
+      "question_order": 14,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 21,
+          "statement": "I don't know how to grow together."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't recognize my life anymore."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm afraid of starting over."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if this is fixable."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I don't know if I'll ever feel safe again."
+        }
+      ]
+    },
+    {
+      "question_order": 15,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 16,
+          "statement": "I don't know if I'll ever feel safe again."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know what my future looks like anymore."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "Our goals don't match anymore."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I keep hoping things will change."
+        }
+      ]
+    },
+    {
+      "question_order": 16,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I never imagined this would be my story."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I keep looking for signs they'll cheat."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "I feel like I'm growing alone."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if I should stay or leave."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "We love each other, but we want different lives."
+        }
+      ]
+    },
+    {
+      "question_order": 17,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 21,
+          "statement": "We have different beliefs about marriage."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I don't know if I can ever trust them again."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "We've tried everything."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm grieving someone who's still alive."
+        }
+      ]
+    },
+    {
+      "question_order": 18,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't know who I am without this relationship."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if this is fixable."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "I don't know how to grow together."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I'm emotionally checked out."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I wonder if they regret what they did."
+        }
+      ]
+    },
+    {
+      "question_order": 19,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I feel like I failed."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if this relationship can be saved."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I want to forgive, but I don't know how."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "We're becoming different people."
+        }
+      ]
+    },
+    {
+      "question_order": 20,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 21,
+          "statement": "I feel like I've outgrown my relationship."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I can't stop checking their phone."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't recognize my life anymore."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "Our goals don't match anymore."
+        },
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if I'm happy anymore."
+        }
+      ]
+    },
+    {
+      "question_order": 21,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 11,
+          "statement": "Have we outgrown each other?"
+        },
+        {
+          "cluster_id": 21,
+          "statement": "We have different values."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know how to be alone."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I don't know how to stop imagining what happened."
+        }
+      ]
+    },
+    {
+      "question_order": 22,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 11,
+          "statement": "I don't know if I'm happy anymore."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I'm afraid to trust again."
+        },
+        {
+          "cluster_id": 16,
+          "statement": "I can't stop checking their phone."
+        },
+        {
+          "cluster_id": 21,
+          "statement": "I feel like I'm growing alone."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm afraid of starting over."
+        }
+      ]
+    }
+  ],
+  "recovery": [
+    {
+      "question_order": 1,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I don't know how to start over."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I miss who we were before children."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I feel like I have to get relationships right."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know who I am without this relationship."
+        }
+      ]
+    },
+    {
+      "question_order": 2,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't know how to be alone."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Becoming parents changed everything."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid of making the wrong decision."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I compare everyone to my ex."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I still think about them every day."
+        }
+      ]
+    },
+    {
+      "question_order": 3,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I don't know who I am anymore."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I never imagined this would be my story."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I don't want to make another mistake."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I don't know how to balance marriage and parenting."
+        }
+      ]
+    },
+    {
+      "question_order": 4,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't recognize my life anymore."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I can't move on."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has changed us."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm afraid of starting over."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I keep waiting until I'm \"ready.\""
+        }
+      ]
+    },
+    {
+      "question_order": 5,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 19,
+          "statement": "We never have time for each other."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I keep wondering why I wasn't enough."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I expect too much from myself."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I feel like I failed."
+        }
+      ]
+    },
+    {
+      "question_order": 6,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 23,
+          "statement": "I overthink every decision."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I'm scared to date again."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I feel like I'm raising the kids alone."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I thought relationships would feel easier than this."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know what my future looks like anymore."
+        }
+      ]
+    },
+    {
+      "question_order": 7,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I'm grieving someone who's still alive."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid I'm too damaged."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I feel embarrassed that it ended."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "We argue about parenting."
+        }
+      ]
+    },
+    {
+      "question_order": 8,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 23,
+          "statement": "I expect too much from myself."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Becoming parents changed everything."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I can't move on."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has made us strangers."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know who I am without this relationship."
+        }
+      ]
+    },
+    {
+      "question_order": 9,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I never imagined this would be my story."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I feel like I'm raising the kids alone."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I don't want to make another mistake."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I'm scared to date again."
+        }
+      ]
+    },
+    {
+      "question_order": 10,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't know what my future looks like anymore."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid I'm too damaged."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm grieving someone who's still alive."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I keep wondering why I wasn't enough."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I miss who we were before children."
+        }
+      ]
+    },
+    {
+      "question_order": 11,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I'm afraid of starting over."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I don't know who I am anymore."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I keep waiting until I'm \"ready.\""
+        },
+        {
+          "cluster_id": 19,
+          "statement": "We never have time for each other."
+        }
+      ]
+    },
+    {
+      "question_order": 12,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 19,
+          "statement": "We argue about parenting."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has changed us."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I compare everyone to my ex."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I overthink every decision."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know how to be alone."
+        }
+      ]
+    },
+    {
+      "question_order": 13,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't recognize my life anymore."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I don't know how to balance marriage and parenting."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I still think about them every day."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid of making the wrong decision."
+        }
+      ]
+    },
+    {
+      "question_order": 14,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I don't know how to start over."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I thought relationships would feel easier than this."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has made us strangers."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I feel like I have to get relationships right."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I feel like I failed."
+        }
+      ]
+    },
+    {
+      "question_order": 15,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I feel embarrassed that it ended."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I never imagined this would be my story."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has made us strangers."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I expect too much from myself."
+        }
+      ]
+    },
+    {
+      "question_order": 16,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I'm scared to date again."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I miss who we were before children."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I feel like I failed."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I overthink every decision."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I compare everyone to my ex."
+        }
+      ]
+    },
+    {
+      "question_order": 17,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't know how to be alone."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Becoming parents changed everything."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I still think about them every day."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I feel like I have to get relationships right."
+        }
+      ]
+    },
+    {
+      "question_order": 18,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I'm afraid of starting over."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't recognize my life anymore."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid I'm too damaged."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I don't know how to start over."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "We never have time for each other."
+        }
+      ]
+    },
+    {
+      "question_order": 19,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 19,
+          "statement": "We argue about parenting."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know who I am without this relationship."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I'm afraid of making the wrong decision."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I feel embarrassed that it ended."
+        }
+      ]
+    },
+    {
+      "question_order": 20,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I keep wondering why I wasn't enough."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has changed us."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I keep waiting until I'm \"ready.\""
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know what my future looks like anymore."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I don't know how to balance marriage and parenting."
+        }
+      ]
+    },
+    {
+      "question_order": 21,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I can't move on."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I feel like I'm raising the kids alone."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I don't want to make another mistake."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm grieving someone who's still alive."
+        }
+      ]
+    },
+    {
+      "question_order": 22,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 23,
+          "statement": "I thought relationships would feel easier than this."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I feel like I failed."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has made us strangers."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I don't know who I am anymore."
+        },
+        {
+          "cluster_id": 23,
+          "statement": "I keep waiting until I'm \"ready.\""
+        }
+      ]
+    }
+  ],
+  "renewal": [
+    {
+      "question_order": 1,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 13,
+          "statement": "I want to date differently this time."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to communicate better."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I want to create a healthier family than the one I grew up in."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm afraid of starting over."
+        }
+      ]
+    },
+    {
+      "question_order": 2,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 25,
+          "statement": "I want to trust myself."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I feel like I failed."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I miss who we were before children."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I can't move on."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I believe healthy love is possible."
+        }
+      ]
+    },
+    {
+      "question_order": 3,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 25,
+          "statement": "I want to stop repeating old patterns."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I want to break generational patterns."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has made us strangers."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I still think about them every day."
+        }
+      ]
+    },
+    {
+      "question_order": 4,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 19,
+          "statement": "Becoming parents changed everything."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I'm scared to date again."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know who I am without this relationship."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I finally know what I want."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I don't want dysfunction to become normal."
+        }
+      ]
+    },
+    {
+      "question_order": 5,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 26,
+          "statement": "I want my children to see a healthy relationship."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want healthier relationships."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "We never have time for each other."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I'm afraid I'll repeat the same mistakes."
+        }
+      ]
+    },
+    {
+      "question_order": 6,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I'm grieving someone who's still alive."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to become the kind of partner I'm looking for."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I keep wondering why I wasn't enough."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "We argue about parenting."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I don't want to repeat my past."
+        }
+      ]
+    },
+    {
+      "question_order": 7,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 26,
+          "statement": "I want my relationships to reflect my values."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I feel like I'm raising the kids alone."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I don't know how to start over."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I never imagined this would be my story."
+        }
+      ]
+    },
+    {
+      "question_order": 8,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't know what my future looks like anymore."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to stop sabotaging myself."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I want to trust myself again."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I don't know who I am anymore."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I don't want my children to repeat my mistakes."
+        }
+      ]
+    },
+    {
+      "question_order": 9,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 25,
+          "statement": "I want to become emotionally healthier."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know how to be alone."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I want my story to change direction."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has changed us."
+        }
+      ]
+    },
+    {
+      "question_order": 10,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I feel embarrassed that it ended."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I want to build something healthy."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I don't know how to balance marriage and parenting."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't recognize my life anymore."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I never learned how to have healthy relationships."
+        }
+      ]
+    },
+    {
+      "question_order": 11,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 13,
+          "statement": "I'm ready, but I want to do it right."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I want to leave a different legacy than I inherited."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I compare everyone to my ex."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I feel like I failed."
+        }
+      ]
+    },
+    {
+      "question_order": 12,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 19,
+          "statement": "Becoming parents changed everything."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I believe healthy love is possible."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to become the kind of partner I'm looking for."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I want to create a healthier family than the one I grew up in."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I can't move on."
+        }
+      ]
+    },
+    {
+      "question_order": 13,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 25,
+          "statement": "I want to stop sabotaging myself."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I want to build something healthy."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I want my children to see a healthy relationship."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I don't know who I am anymore."
+        }
+      ]
+    },
+    {
+      "question_order": 14,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 19,
+          "statement": "I miss who we were before children."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I want to break generational patterns."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I don't want to repeat my past."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to stop repeating old patterns."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know what my future looks like anymore."
+        }
+      ]
+    },
+    {
+      "question_order": 15,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I don't recognize my life anymore."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I never learned how to have healthy relationships."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I don't know how to start over."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has changed us."
+        }
+      ]
+    },
+    {
+      "question_order": 16,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I feel embarrassed that it ended."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I'm afraid I'll repeat the same mistakes."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I don't want my children to repeat my mistakes."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know how to be alone."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "We argue about parenting."
+        }
+      ]
+    },
+    {
+      "question_order": 17,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 20,
+          "statement": "I never imagined this would be my story."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I'm ready, but I want to do it right."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I want to leave a different legacy than I inherited."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to trust myself."
+        }
+      ]
+    },
+    {
+      "question_order": 18,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I'm scared to date again."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to become emotionally healthier."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I finally know what I want."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm grieving someone who's still alive."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I don't know how to balance marriage and parenting."
+        }
+      ]
+    },
+    {
+      "question_order": 19,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I compare everyone to my ex."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want to communicate better."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I want my story to change direction."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "I feel like I'm raising the kids alone."
+        }
+      ]
+    },
+    {
+      "question_order": 20,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 19,
+          "statement": "We never have time for each other."
+        },
+        {
+          "cluster_id": 12,
+          "statement": "I still think about them every day."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I want my relationships to reflect my values."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I'm afraid of starting over."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I want to date differently this time."
+        }
+      ]
+    },
+    {
+      "question_order": 21,
+      "option_count": 4,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I keep wondering why I wasn't enough."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has made us strangers."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I want to trust myself again."
+        },
+        {
+          "cluster_id": 20,
+          "statement": "I don't know who I am without this relationship."
+        }
+      ]
+    },
+    {
+      "question_order": 22,
+      "option_count": 5,
+      "options": [
+        {
+          "cluster_id": 12,
+          "statement": "I feel embarrassed that it ended."
+        },
+        {
+          "cluster_id": 13,
+          "statement": "I finally know what I want."
+        },
+        {
+          "cluster_id": 26,
+          "statement": "I don't want dysfunction to become normal."
+        },
+        {
+          "cluster_id": 25,
+          "statement": "I want healthier relationships."
+        },
+        {
+          "cluster_id": 19,
+          "statement": "Parenting has changed us."
+        }
+      ]
+    }
+  ]
+}

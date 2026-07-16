@@ -1,0 +1,86 @@
+[
+  {
+    "id": "exploration",
+    "display_name": "Exploration Assessment",
+    "entry_prompt": "Dating, meeting people, deciding whether to invest in someone new.",
+    "question_count": 22,
+    "valid_clusters": [
+      1,
+      5,
+      6,
+      3,
+      4,
+      24
+    ]
+  },
+  {
+    "id": "exclusivity",
+    "display_name": "Exclusivity Assessment",
+    "entry_prompt": "A relationship recently became exclusive and is being tested by real investment.",
+    "question_count": 22,
+    "valid_clusters": [
+      22,
+      15,
+      23,
+      24
+    ]
+  },
+  {
+    "id": "expansion",
+    "display_name": "Expansion Assessment",
+    "entry_prompt": "An established relationship building shared systems and daily life together.",
+    "question_count": 22,
+    "valid_clusters": [
+      8,
+      15,
+      20,
+      7,
+      14,
+      18,
+      10,
+      9,
+      11,
+      25,
+      23,
+      19
+    ]
+  },
+  {
+    "id": "expiration",
+    "display_name": "Expiration Assessment",
+    "entry_prompt": "A relationship that may be ending, or where acceptance of change is the struggle.",
+    "question_count": 22,
+    "valid_clusters": [
+      21,
+      11,
+      16,
+      20
+    ]
+  },
+  {
+    "id": "recovery",
+    "display_name": "Recovery Assessment",
+    "entry_prompt": "Healing after a breakup, divorce, or loss.",
+    "question_count": 22,
+    "valid_clusters": [
+      20,
+      12,
+      23,
+      19
+    ]
+  },
+  {
+    "id": "renewal",
+    "display_name": "Renewal Assessment",
+    "entry_prompt": "Ready to re-engage with life and love after healing.",
+    "question_count": 22,
+    "valid_clusters": [
+      13,
+      25,
+      12,
+      19,
+      20,
+      26
+    ]
+  }
+]
