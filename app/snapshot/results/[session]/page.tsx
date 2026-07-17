@@ -80,7 +80,7 @@ function PlaybookCard({ session, title, subtitle }: { session: string; title: st
       <p className="mx-auto mt-2 max-w-md font-body text-[17px] leading-relaxed text-white/85">{subtitle}</p>
 
       {done ? (
-        <p className="mx-auto mt-6 max-w-sm font-body text-white/90">You&apos;re all set. Watch <span className="font-semibold">{email}</span> — your Playbook and next steps are on their way.</p>
+        <p className="mx-auto mt-6 max-w-sm font-body text-white/90">Check your inbox — your first email is on its way to <span className="font-semibold">{email}</span>.</p>
       ) : open ? (
         <div className="mx-auto mt-6 flex max-w-sm flex-col gap-2.5">
           <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your email"
