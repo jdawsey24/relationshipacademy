@@ -130,7 +130,7 @@ export default async function PhaseDetailPage({ params }: { params: Promise<{ ph
             See how your relationship is functioning right now across all six domains.
           </p>
           <div className="mt-6">
-            <CtaButton href="/snapshot/intro" variant="accent">Start the Free Snapshot</CtaButton>
+            <CtaButton href="/snapshot" variant="accent">Start the Free Snapshot</CtaButton>
           </div>
         </div>
       </section>

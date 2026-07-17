@@ -26,7 +26,7 @@ export default async function QuizPickerPage() {
           return (
             <Link
               key={a.id}
-              href={`/quiz/${a.id}`}
+              href={`/snapshot/${a.id}`}
               className="group flex items-center justify-between gap-4 rounded-2xl border border-light-gray bg-white px-5 py-4 transition-colors hover:border-midnight-navy/50"
             >
               <span>

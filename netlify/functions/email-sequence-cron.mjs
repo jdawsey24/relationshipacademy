@@ -4,12 +4,14 @@
 export default async () => {
   const base = process.env.SITE_URL || process.env.URL || "https://relationshiplc.com";
   const secret = process.env.CRON_SECRET || "";
-  try {
-    const res = await fetch(`${base}/api/cron/email-sequence?secret=${encodeURIComponent(secret)}`);
-    const body = await res.text();
-    console.log("email-sequence cron:", res.status, body);
-  } catch (e) {
-    console.log("email-sequence cron error:", e?.message ?? e);
+  const q = `secret=${encodeURIComponent(secret)}`;
+  for (const path of ["/api/cron/email-sequence", "/api/cron/snapshot-nurture"]) {
+    try {
+      const res = await fetch(`${base}${path}?${q}`);
+      console.log(`${path}:`, res.status, await res.text());
+    } catch (e) {
+      console.log(`${path} error:`, e?.message ?? e);
+    }
   }
   return new Response("ok");
 };

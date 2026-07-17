@@ -29,7 +29,7 @@ export default function LandingHeader() {
           {LINKS.map((l) => (
             <a key={l.href} href={l.href} className="font-ui text-sm text-charcoal/75 transition-colors hover:text-midnight-navy">{l.label}</a>
           ))}
-          <a href="/snapshot/intro" className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-midnight-navy px-6 font-ui text-sm font-medium text-white transition-colors hover:bg-midnight-navy/90">
+          <a href="/snapshot" className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-midnight-navy px-6 font-ui text-sm font-medium text-white transition-colors hover:bg-midnight-navy/90">
             Take the Snapshot
           </a>
         </nav>

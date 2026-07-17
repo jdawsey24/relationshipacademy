@@ -147,7 +147,7 @@ export default async function FrameworkPage() {
       <section className="px-6 py-20 text-center">
         <div className="mx-auto max-w-2xl">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "framework.cta.heading", "Ready to see where your relationship is?")}</h2>
-          <div className="mt-8"><CtaButton href="/snapshot/intro" variant="primary">Take the Free Snapshot</CtaButton></div>
+          <div className="mt-8"><CtaButton href="/snapshot" variant="primary">Take the Free Snapshot</CtaButton></div>
         </div>
       </section>
     </main>
