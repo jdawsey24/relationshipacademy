@@ -1,6 +1,7 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { emailConfigured, sendEmail } from "@/lib/email/client";
 import { ACADEMY_URL } from "@/lib/flagship";
+import { playbookUrl } from "@/lib/snapshot/playbooks";
 
 // Per-cluster nurture for converted Snapshot sessions. One templated sequence,
 // personalized by the person's Primary cluster (name, alignment paragraph,
@@ -17,6 +18,7 @@ interface Vars {
   resultsUrl: string;
   academyUrl: string;
   unsubscribeUrl: string;
+  playbookUrl: string | null;  // absolute PDF url, if this cluster has a Playbook
 }
 
 function layout(inner: string, v: Vars, cta?: { label: string; url: string }): string {
@@ -46,12 +48,19 @@ export const SEQUENCE: Step[] = [
   {
     key: "result", offsetDays: 0,
     subject: (v) => `Your Snapshot result: ${v.clusterName}`,
-    body: (v) => ({
-      html: layout(h1("Here's what your Snapshot shows") + p("Hi there,") + p(v.alignmentParagraph) +
-        p("Over the next few days I'll send a few short notes to help you make sense of this and decide what to do with it. No pressure — just a little clarity at a time.") +
-        p("You can revisit your results anytime:"), v, { label: "View your results", url: v.resultsUrl }),
-      text: `Hi there,\n\n${v.alignmentParagraph}\n\nOver the next few days I'll send a few short notes to help you make sense of this. View your results: ${v.resultsUrl}${foot(v)}`,
-    }),
+    body: (v) => {
+      const cta = v.playbookUrl ? { label: "Download your Playbook", url: v.playbookUrl } : { label: "View your results", url: v.resultsUrl };
+      const line = v.playbookUrl
+        ? "Your Relationship Playbook&trade; is ready — it goes deeper on what this means and what to do next. Grab it below."
+        : "Over the next few days I'll send a few short notes to help you make sense of this and decide what to do with it. No pressure — just a little clarity at a time.";
+      const textLine = v.playbookUrl
+        ? `Your Relationship Playbook is ready — download it here: ${v.playbookUrl}`
+        : `Over the next few days I'll send a few short notes to help you make sense of this. View your results: ${v.resultsUrl}`;
+      return {
+        html: layout(h1("Here's what your Snapshot shows") + p("Hi there,") + p(v.alignmentParagraph) + p(line), v, cta),
+        text: `Hi there,\n\n${v.alignmentParagraph}\n\n${textLine}${foot(v)}`,
+      };
+    },
   },
   {
     key: "pillar-1", offsetDays: 2,
@@ -106,6 +115,7 @@ async function varsFor(row: SessionRow): Promise<Vars | null> {
     resultsUrl: `${SITE}/snapshot/results/${row.id}`,
     academyUrl: ACADEMY_URL,
     unsubscribeUrl: `${SITE}/api/snapshot/unsubscribe?session=${row.id}`,
+    playbookUrl: (() => { const u = playbookUrl(row.primary_cluster_id); return u ? `${SITE}${u}` : null; })(),
   };
 }
 

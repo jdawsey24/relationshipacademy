@@ -1,5 +1,6 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { scoreClusters } from "@/lib/snapshot/scoring";
+import { playbookUrl } from "@/lib/snapshot/playbooks";
 
 // Data layer for the Relationship Snapshot cluster quizzes. Service-role only
 // (public API routes call these). Option→cluster mapping is never sent to the
@@ -133,6 +134,7 @@ export interface SnapshotResults {
   assessment_display: string;
   primary: { id: number; name: string; playbook_title: string; playbook_subtitle: string; alignment_paragraph: string } | null;
   secondary: { id: number; name: string; secondary_blurb: string } | null;
+  playbook_url: string | null;  // the Primary's Playbook PDF, if one exists yet
 }
 
 export async function getResults(sessionId: string): Promise<SnapshotResults | null> {
@@ -153,5 +155,6 @@ export async function getResults(sessionId: string): Promise<SnapshotResults | n
     assessment_display: ((asm as { display_name?: string } | null)?.display_name) ?? "",
     primary: p ? { id: p.id as number, name: p.name as string, playbook_title: p.playbook_title as string, playbook_subtitle: p.playbook_subtitle as string, alignment_paragraph: p.alignment_paragraph as string } : null,
     secondary: sec ? { id: sec.id as number, name: sec.name as string, secondary_blurb: sec.secondary_blurb as string } : null,
+    playbook_url: playbookUrl(row.primary_cluster_id),
   };
 }

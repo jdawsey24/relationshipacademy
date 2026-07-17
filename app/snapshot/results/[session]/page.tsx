@@ -7,6 +7,7 @@ interface Results {
   assessment_display: string;
   primary: { id: number; name: string; playbook_title: string; playbook_subtitle: string; alignment_paragraph: string } | null;
   secondary: { id: number; name: string; secondary_blurb: string } | null;
+  playbook_url: string | null;
 }
 
 export default function ResultsPage() {
@@ -45,12 +46,12 @@ export default function ResultsPage() {
       )}
 
       {/* Playbook — CTA on Primary only */}
-      <PlaybookCard session={session} title={data.primary.playbook_title} subtitle={data.primary.playbook_subtitle} />
+      <PlaybookCard session={session} title={data.primary.playbook_title} subtitle={data.primary.playbook_subtitle} playbookUrl={data.playbook_url} />
     </main>
   );
 }
 
-function PlaybookCard({ session, title, subtitle }: { session: string; title: string; subtitle: string }) {
+function PlaybookCard({ session, title, subtitle, playbookUrl }: { session: string; title: string; subtitle: string; playbookUrl: string | null }) {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
@@ -80,13 +81,24 @@ function PlaybookCard({ session, title, subtitle }: { session: string; title: st
       <p className="mx-auto mt-2 max-w-md font-body text-[17px] leading-relaxed text-white/85">{subtitle}</p>
 
       {done ? (
-        <p className="mx-auto mt-6 max-w-sm font-body text-white/90">Check your inbox — your first email is on its way to <span className="font-semibold">{email}</span>.</p>
+        <div className="mx-auto mt-6 max-w-sm">
+          {playbookUrl ? (
+            <>
+              <a href={playbookUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
+                Download your Playbook
+              </a>
+              <p className="mt-3 font-body text-sm text-white/80">A copy is also on its way to <span className="font-semibold">{email}</span>.</p>
+            </>
+          ) : (
+            <p className="font-body text-white/90">You&apos;re all set. Your Playbook for this area is being finalized — I&apos;ll send it to <span className="font-semibold">{email}</span> the moment it&apos;s ready. Watch your inbox for your first steps.</p>
+          )}
+        </div>
       ) : open ? (
         <div className="mx-auto mt-6 flex max-w-sm flex-col gap-2.5">
           <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your email"
             className="w-full rounded-full border border-white/25 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-white/60 focus:outline-none" />
           <button onClick={submit} disabled={busy || !email.trim()} className="rounded-full bg-coral-rose px-6 py-3 font-ui text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50">
-            {busy ? "Sending…" : "Send me my Playbook"}
+            {busy ? "Sending…" : playbookUrl ? "Get my Playbook" : "Send me my Playbook"}
           </button>
           {err && <p className="text-sm text-soft-coral">{err}</p>}
         </div>
