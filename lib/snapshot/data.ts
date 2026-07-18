@@ -47,14 +47,24 @@ export async function startSession(markerId: string): Promise<StartResult | null
     pools.set(cid, shuffle(pool));
   }
 
-  // Assign without replacement: one unique statement per slot occurrence of a cluster.
+  // Assign without replacement — unique per cluster AND unique across the whole
+  // session (a few statements legitimately live in two clusters; the no-repeat rule
+  // is about the sentence, so dedup session-wide, advancing past any already used).
   const cursor = new Map<number, number>();
+  const used = new Set<string>();
   const sessionId = randomUUID();
   const sessionItems = slots.map((sl) => {
     const pool = pools.get(sl.cluster_id) ?? [];
-    const idx = cursor.get(sl.cluster_id) ?? 0;
-    cursor.set(sl.cluster_id, idx + 1);
-    const statement = pool[idx] ?? pool[pool.length ? idx % pool.length : 0] ?? "This resonates most for me.";
+    let idx = cursor.get(sl.cluster_id) ?? 0;
+    let statement: string | undefined;
+    while (idx < pool.length) {
+      const cand = pool[idx];
+      idx++;
+      if (!used.has(cand)) { statement = cand; break; }
+    }
+    cursor.set(sl.cluster_id, idx);
+    if (!statement) statement = pool[Math.max(0, pool.length - 1)] ?? "This resonates most for me."; // feasibility guaranteed offline; fallback only
+    used.add(statement);
     return { id: randomUUID(), session_id: sessionId, question_id: sl.question_id, slot_order: sl.slot_order, cluster_id: sl.cluster_id, tier: sl.tier, statement };
   });
 
