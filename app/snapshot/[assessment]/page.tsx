@@ -5,13 +5,14 @@ import { useParams, useRouter } from "next/navigation";
 
 type Option = { id: string; statement: string };
 type Question = { id: string; question_order: number; options: Option[] };
-interface Quiz { assessment: { id: string; display_name: string }; questions: Question[] }
+interface Quiz { questions: Question[] }
 type TieOption = { cluster_id: number; name: string; statement: string };
 
 export default function QuizPage() {
   const { assessment } = useParams<{ assessment: string }>();
   const router = useRouter();
   const [quiz, setQuiz] = useState<Quiz | null>(null);
+  const [sessionId, setSessionId] = useState<string>("");
   const [notFound, setNotFound] = useState(false);
   const [idx, setIdx] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -20,25 +21,29 @@ export default function QuizPage() {
   const [tiebreak, setTiebreak] = useState<{ sessionId: string; options: TieOption[] } | null>(null);
 
   useEffect(() => {
-    fetch(`/api/snapshot/quiz/${encodeURIComponent(assessment)}`)
+    // Start the session: resolves each slot's statement (unique per session) server-side.
+    fetch(`/api/snapshot/start`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ marker: assessment }),
+    })
       .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
-      .then((d: Quiz) => setQuiz(d))
+      .then((d: { session_id: string; questions: Question[] }) => { setSessionId(d.session_id); setQuiz({ questions: d.questions }); })
       .catch(() => setNotFound(true));
   }, [assessment]);
 
   const submit = useCallback(async (finalAnswers: Record<string, string>) => {
-    if (!quiz) return;
+    if (!quiz || !sessionId) return;
     setBusy(true); setErr(null);
     const payload = quiz.questions.map((q) => ({ question_id: q.id, option_id: finalAnswers[q.id] })).filter((a) => a.option_id);
     const res = await fetch(`/api/snapshot/score`, {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ assessment, answers: payload }),
+      body: JSON.stringify({ session_id: sessionId, answers: payload }),
     });
     const d = await res.json().catch(() => ({}));
     if (!res.ok) { setBusy(false); setErr(d.error ?? "Something went wrong."); return; }
     if (d.tied && Array.isArray(d.tiebreak)) { setBusy(false); setTiebreak({ sessionId: d.session_id, options: d.tiebreak }); return; }
     router.push(`/snapshot/results/${d.session_id}`);
-  }, [quiz, assessment, router]);
+  }, [quiz, sessionId, router]);
 
   function choose(question: Question, optionId: string) {
     if (busy) return;
