@@ -1,127 +1,79 @@
+import { randomUUID } from "crypto";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { scoreClusters } from "@/lib/snapshot/scoring";
+import { contextFor, shuffle } from "@/lib/snapshot/statements";
 import { playbookUrl } from "@/lib/snapshot/playbooks";
 
-// Data layer for the Relationship Snapshot cluster quizzes. Service-role only
-// (public API routes call these). Option→cluster mapping is never sent to the
-// client — scoring happens here.
+// v2 data layer: 5 structural markers, slot-based questions whose statements are
+// resolved once at session start (sampled without replacement per cluster, cluster
+// 24 context-filtered by marker). Service-role only.
 
 export interface PickerAssessment { id: string; display_name: string; entry_prompt: string }
-export interface QuizOption { id: string; statement: string }
+export interface QuizOption { id: string; statement: string }   // id = session_item id
 export interface QuizQuestion { id: string; question_order: number; options: QuizOption[] }
-export interface Quiz { assessment: { id: string; display_name: string }; questions: QuizQuestion[] }
+export interface StartResult { session_id: string; questions: QuizQuestion[] }
+
+// Picker order = the intentional situation order, not alphabetical.
+const MARKER_ORDER = ["single_but_dating", "in_a_relationship", "married_or_long_term", "recent_divorce_breakup", "single_contemplating_dating"];
 
 export async function listAssessments(): Promise<PickerAssessment[]> {
   const s = getSupabaseAdminClient();
-  const { data } = await s.from("snapshot_assessments").select("id, display_name, entry_prompt").order("id");
-  // Keep the phase order intentional, not alphabetical.
-  const order = ["exploration", "exclusivity", "expansion", "expiration", "recovery", "renewal"];
-  return ((data ?? []) as PickerAssessment[]).sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+  const { data } = await s.from("snapshot_assessments").select("id, display_name, entry_prompt");
+  return ((data ?? []) as PickerAssessment[]).sort((a, b) => MARKER_ORDER.indexOf(a.id) - MARKER_ORDER.indexOf(b.id));
 }
 
-export async function getQuiz(assessmentId: string): Promise<Quiz | null> {
+// Start a session: resolve each slot to a unique statement from its cluster's pool
+// (without replacement), persist, and return the quiz with resolved statements.
+export async function startSession(markerId: string): Promise<StartResult | null> {
   const s = getSupabaseAdminClient();
-  const { data: asm } = await s.from("snapshot_assessments").select("id, display_name").eq("id", assessmentId).maybeSingle();
+  const { data: asm } = await s.from("snapshot_assessments").select("id").eq("id", markerId).maybeSingle();
   if (!asm) return null;
-  const { data: qs } = await s.from("snapshot_quiz_questions")
-    .select("id, question_order").eq("assessment_id", assessmentId).order("question_order");
-  const questionIds = (qs ?? []).map((q) => (q as { id: string }).id);
-  if (!questionIds.length) return null;
-  const { data: opts } = await s.from("snapshot_quiz_question_options")
-    .select("id, question_id, statement, option_order").in("question_id", questionIds).order("option_order");
-  const optsByQ = new Map<string, QuizOption[]>();
-  for (const o of (opts ?? []) as { id: string; question_id: string; statement: string }[]) {
-    (optsByQ.get(o.question_id) ?? optsByQ.set(o.question_id, []).get(o.question_id)!).push({ id: o.id, statement: o.statement });
+
+  const { data: qData } = await s.from("snapshot_quiz_questions").select("id, question_order").eq("assessment_id", markerId).order("question_order");
+  const questions = (qData ?? []) as { id: string; question_order: number }[];
+  if (!questions.length) return null;
+  const qIds = questions.map((q) => q.id);
+  const { data: slotData } = await s.from("snapshot_quiz_question_slots").select("question_id, slot_order, cluster_id, tier").in("question_id", qIds);
+  const slots = (slotData ?? []) as { question_id: string; slot_order: number; cluster_id: number; tier: string }[];
+
+  // Item pools per cluster (context-filtered for cluster 24), shuffled once.
+  const clusterIds = [...new Set(slots.map((sl) => sl.cluster_id))];
+  const { data: itemData } = await s.from("snapshot_quiz_items").select("cluster_id, statement, context").in("cluster_id", clusterIds);
+  const items = (itemData ?? []) as { cluster_id: number; statement: string; context: string | null }[];
+  const pools = new Map<number, string[]>();
+  for (const cid of clusterIds) {
+    const ctx = contextFor(markerId, cid);
+    const pool = items.filter((i) => i.cluster_id === cid && (ctx === null || i.context === ctx)).map((i) => i.statement);
+    pools.set(cid, shuffle(pool));
   }
-  const questions: QuizQuestion[] = (qs ?? []).map((q) => {
-    const qq = q as { id: string; question_order: number };
-    return { id: qq.id, question_order: qq.question_order, options: optsByQ.get(qq.id) ?? [] };
+
+  // Assign without replacement: one unique statement per slot occurrence of a cluster.
+  const cursor = new Map<number, number>();
+  const sessionId = randomUUID();
+  const sessionItems = slots.map((sl) => {
+    const pool = pools.get(sl.cluster_id) ?? [];
+    const idx = cursor.get(sl.cluster_id) ?? 0;
+    cursor.set(sl.cluster_id, idx + 1);
+    const statement = pool[idx] ?? pool[pool.length ? idx % pool.length : 0] ?? "This resonates most for me.";
+    return { id: randomUUID(), session_id: sessionId, question_id: sl.question_id, slot_order: sl.slot_order, cluster_id: sl.cluster_id, tier: sl.tier, statement };
   });
-  return { assessment: { id: (asm as { id: string }).id, display_name: (asm as { display_name: string }).display_name }, questions };
-}
 
-// Load the cluster_id for a set of selected option ids.
-async function clustersForOptions(optionIds: string[]): Promise<number[]> {
-  if (!optionIds.length) return [];
-  const s = getSupabaseAdminClient();
-  const { data } = await s.from("snapshot_quiz_question_options").select("id, cluster_id").in("id", optionIds);
-  const byId = new Map((data ?? []).map((o) => [(o as { id: string }).id, (o as { cluster_id: number }).cluster_id]));
-  return optionIds.map((id) => byId.get(id)).filter((c): c is number => typeof c === "number");
-}
+  const { error: sErr } = await s.from("snapshot_quiz_sessions").insert({ id: sessionId, assessment_id: markerId });
+  if (sErr) return null;
+  const { error: iErr } = await s.from("snapshot_quiz_session_items").insert(sessionItems);
+  if (iErr) return null;
 
-async function oneStatementForCluster(clusterId: number): Promise<string> {
-  const s = getSupabaseAdminClient();
-  const { data } = await s.from("snapshot_quiz_items").select("statement").eq("cluster_id", clusterId).limit(1).maybeSingle();
-  return ((data as { statement?: string } | null)?.statement) ?? "This resonates with me most.";
-}
-
-export interface ScoreOutcome {
-  session_id: string;
-  tied: boolean;
-  tiebreak?: { cluster_id: number; name: string; statement: string }[];
-}
-
-// Create the session, persist answers, score. If a first-place tie, leave the
-// session unfinalized and return the head-to-head options; else finalize.
-export async function scoreAndCreateSession(input: {
-  assessmentId: string;
-  answers: { question_id: string; option_id: string }[];
-}): Promise<ScoreOutcome | null> {
-  const s = getSupabaseAdminClient();
-  const { data: asm } = await s.from("snapshot_assessments").select("id").eq("id", input.assessmentId).maybeSingle();
-  if (!asm) return null;
-
-  const { data: sess } = await s.from("snapshot_quiz_sessions")
-    .insert({ assessment_id: input.assessmentId, completed_at: new Date().toISOString() }).select("id").single();
-  const sessionId = (sess as { id: string } | null)?.id;
-  if (!sessionId) return null;
-
-  const answerRows = input.answers.map((a) => ({ session_id: sessionId, question_id: a.question_id, selected_option_id: a.option_id }));
-  if (answerRows.length) await s.from("snapshot_quiz_answers").insert(answerRows);
-
-  const clusterIds = await clustersForOptions(input.answers.map((a) => a.option_id));
-  const result = scoreClusters(clusterIds);
-
-  if (result.isTied) {
-    await s.from("snapshot_quiz_sessions").update({ is_tied: true }).eq("id", sessionId);
-    const names = await clusterNames(result.tiedClusterIds);
-    const tiebreak = await Promise.all(result.tiedClusterIds.map(async (cid) => ({
-      cluster_id: cid, name: names.get(cid) ?? `Cluster ${cid}`, statement: await oneStatementForCluster(cid),
-    })));
-    return { session_id: sessionId, tied: true, tiebreak };
+  const byQ = new Map<string, { id: string; slot_order: number; statement: string }[]>();
+  for (const si of sessionItems) {
+    const arr = byQ.get(si.question_id) ?? [];
+    arr.push({ id: si.id, slot_order: si.slot_order, statement: si.statement });
+    byQ.set(si.question_id, arr);
   }
-
-  await s.from("snapshot_quiz_sessions").update({
-    primary_cluster_id: result.primary?.clusterId ?? null,
-    secondary_cluster_id: result.secondary?.clusterId ?? null,
-  }).eq("id", sessionId);
-  return { session_id: sessionId, tied: false };
-}
-
-// Resolve a tie: the picked cluster becomes Primary, another tied cluster Secondary.
-export async function resolveTiebreak(sessionId: string, winnerClusterId: number): Promise<boolean> {
-  const s = getSupabaseAdminClient();
-  const { data: sess } = await s.from("snapshot_quiz_sessions").select("id, is_tied").eq("id", sessionId).maybeSingle();
-  if (!sess) return false;
-  // Recompute the tied set from the session's answers.
-  const { data: ans } = await s.from("snapshot_quiz_answers").select("selected_option_id").eq("session_id", sessionId);
-  const clusterIds = await clustersForOptions((ans ?? []).map((a) => (a as { selected_option_id: string }).selected_option_id));
-  const { tiedClusterIds } = scoreClusters(clusterIds);
-  if (!tiedClusterIds.includes(winnerClusterId)) return false;
-  const secondary = tiedClusterIds.find((c) => c !== winnerClusterId) ?? null;
-  const { error } = await s.from("snapshot_quiz_sessions")
-    .update({ primary_cluster_id: winnerClusterId, secondary_cluster_id: secondary }).eq("id", sessionId);
-  return !error;
-}
-
-// Conversion: the CTA click captures email + timestamps converted_at. This is the
-// event the GHL nurture / ad conversion pixels hang off. Playbook delivery (PDF)
-// is a later phase.
-export async function convertSession(sessionId: string, email: string): Promise<boolean> {
-  const s = getSupabaseAdminClient();
-  const { error } = await s.from("snapshot_quiz_sessions")
-    .update({ contact_email: email, converted_at: new Date().toISOString() }).eq("id", sessionId);
-  return !error;
+  const outQuestions: QuizQuestion[] = questions.map((q) => ({
+    id: q.id, question_order: q.question_order,
+    options: (byQ.get(q.id) ?? []).sort((a, b) => a.slot_order - b.slot_order).map((o) => ({ id: o.id, statement: o.statement })),
+  }));
+  return { session_id: sessionId, questions: outQuestions };
 }
 
 async function clusterNames(ids: number[]): Promise<Map<number, string>> {
@@ -130,11 +82,77 @@ async function clusterNames(ids: number[]): Promise<Map<number, string>> {
   return new Map((data ?? []).map((c) => [(c as { id: number }).id, (c as { name: string }).name]));
 }
 
+async function oneStatement(markerId: string, clusterId: number): Promise<string> {
+  const s = getSupabaseAdminClient();
+  const ctx = contextFor(markerId, clusterId);
+  let q = s.from("snapshot_quiz_items").select("statement").eq("cluster_id", clusterId);
+  if (ctx !== null) q = q.eq("context", ctx);
+  const { data } = await q.limit(1).maybeSingle();
+  return ((data as { statement?: string } | null)?.statement) ?? "This resonates most for me.";
+}
+
+export interface ScoreOutcome {
+  session_id: string;
+  tied: boolean;
+  tiebreak?: { cluster_id: number; name: string; statement: string }[];
+}
+
+// Score a started session from its answers (each = a chosen session_item id).
+export async function scoreSession(input: { sessionId: string; answers: { question_id: string; option_id: string }[] }): Promise<ScoreOutcome | null> {
+  const s = getSupabaseAdminClient();
+  const { data: sess } = await s.from("snapshot_quiz_sessions").select("id, assessment_id").eq("id", input.sessionId).maybeSingle();
+  if (!sess) return null;
+  const markerId = (sess as { assessment_id: string }).assessment_id;
+
+  const answerRows = input.answers.map((a) => ({ session_id: input.sessionId, question_id: a.question_id, selected_session_item_id: a.option_id }));
+  if (answerRows.length) await s.from("snapshot_quiz_answers").upsert(answerRows, { onConflict: "session_id,question_id" });
+
+  const { data: sis } = await s.from("snapshot_quiz_session_items").select("cluster_id").in("id", input.answers.map((a) => a.option_id));
+  const clusterIds = (sis ?? []).map((x) => (x as { cluster_id: number }).cluster_id);
+  const result = scoreClusters(clusterIds);
+
+  if (result.isTied) {
+    await s.from("snapshot_quiz_sessions").update({ is_tied: true }).eq("id", input.sessionId);
+    const names = await clusterNames(result.tiedClusterIds);
+    const tiebreak = await Promise.all(result.tiedClusterIds.map(async (cid) => ({ cluster_id: cid, name: names.get(cid) ?? `Cluster ${cid}`, statement: await oneStatement(markerId, cid) })));
+    return { session_id: input.sessionId, tied: true, tiebreak };
+  }
+  await s.from("snapshot_quiz_sessions").update({
+    completed_at: new Date().toISOString(),
+    primary_cluster_id: result.primary?.clusterId ?? null,
+    secondary_cluster_id: result.secondary?.clusterId ?? null,
+  }).eq("id", input.sessionId);
+  return { session_id: input.sessionId, tied: false };
+}
+
+export async function resolveTiebreak(sessionId: string, winnerClusterId: number): Promise<boolean> {
+  const s = getSupabaseAdminClient();
+  const { data: sess } = await s.from("snapshot_quiz_sessions").select("id").eq("id", sessionId).maybeSingle();
+  if (!sess) return false;
+  const { data: ans } = await s.from("snapshot_quiz_answers").select("selected_session_item_id").eq("session_id", sessionId);
+  const selIds = (ans ?? []).map((a) => (a as { selected_session_item_id: string | null }).selected_session_item_id).filter((x): x is string => !!x);
+  const { data: sis } = await s.from("snapshot_quiz_session_items").select("cluster_id").in("id", selIds);
+  const clusterIds = (sis ?? []).map((x) => (x as { cluster_id: number }).cluster_id);
+  const { tiedClusterIds } = scoreClusters(clusterIds);
+  if (!tiedClusterIds.includes(winnerClusterId)) return false;
+  const secondary = tiedClusterIds.find((c) => c !== winnerClusterId) ?? null;
+  const { error } = await s.from("snapshot_quiz_sessions")
+    .update({ completed_at: new Date().toISOString(), primary_cluster_id: winnerClusterId, secondary_cluster_id: secondary }).eq("id", sessionId);
+  return !error;
+}
+
+export async function convertSession(sessionId: string, email: string): Promise<boolean> {
+  const s = getSupabaseAdminClient();
+  const { error } = await s.from("snapshot_quiz_sessions")
+    .update({ contact_email: email, converted_at: new Date().toISOString() }).eq("id", sessionId);
+  return !error;
+}
+
 export interface SnapshotResults {
   assessment_display: string;
   primary: { id: number; name: string; playbook_title: string; playbook_subtitle: string; alignment_paragraph: string } | null;
   secondary: { id: number; name: string; secondary_blurb: string } | null;
-  playbook_url: string | null;  // the Primary's Playbook PDF, if one exists yet
+  playbook_url: string | null;
 }
 
 export async function getResults(sessionId: string): Promise<SnapshotResults | null> {
