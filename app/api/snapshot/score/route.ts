@@ -6,9 +6,10 @@ import { scoreSession } from "@/lib/snapshot/data";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// POST /api/snapshot/score — { session_id, answers: [{ question_id, option_id }] }
-// where option_id is the chosen session_item id. Scores the started session and
-// returns { session_id } or, on a first-place tie, { tied: true, tiebreak: [...] }.
+// POST /api/snapshot/score — { session_id, answers: [{ question_id, option_id, is_neutral }] }
+// where option_id is the chosen session_item id (null when is_neutral, the "None of
+// these fit" answer). Scores the started session and returns { session_id } or, on a
+// first-place tie, { tied: true, tiebreak: [...] }.
 export async function POST(request: Request) {
   if (!(await rateLimit(request, { bucket: "snapshot-score", limit: 15, windowSeconds: 60 }))) return tooManyRequests();
   let body: Record<string, unknown>;
@@ -17,9 +18,9 @@ export async function POST(request: Request) {
   const sessionId = String(body.session_id ?? "");
   const raw = Array.isArray(body.answers) ? body.answers : [];
   const answers = raw
-    .map((a) => a as { question_id?: unknown; option_id?: unknown })
-    .filter((a) => isUuid(String(a.question_id)) && isUuid(String(a.option_id)))
-    .map((a) => ({ question_id: String(a.question_id), option_id: String(a.option_id) }));
+    .map((a) => a as { question_id?: unknown; option_id?: unknown; is_neutral?: unknown })
+    .filter((a) => isUuid(String(a.question_id)) && (a.is_neutral === true || isUuid(String(a.option_id))))
+    .map((a) => ({ question_id: String(a.question_id), option_id: a.is_neutral === true ? null : String(a.option_id), is_neutral: a.is_neutral === true }));
   if (!isUuid(sessionId) || answers.length === 0) return NextResponse.json({ error: "Missing answers." }, { status: 400 });
 
   try {

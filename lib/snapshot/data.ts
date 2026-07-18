@@ -107,22 +107,34 @@ export interface ScoreOutcome {
   tiebreak?: { cluster_id: number; name: string; statement: string }[];
 }
 
-// Score a started session from its answers (each = a chosen session_item id).
-export async function scoreSession(input: { sessionId: string; answers: { question_id: string; option_id: string }[] }): Promise<ScoreOutcome | null> {
+// A neutral answer ("None of these fit") selects no statement; option_id is null.
+const LOW_CONFIDENCE_RATIO = 0.4; // >40% neutral flags the session as low-confidence
+
+// Score a started session from its answers (each = a chosen session_item id, or a
+// neutral answer that scores nothing). Neutral answers are tallied and, past a
+// threshold, flag the session as low-confidence.
+export async function scoreSession(input: { sessionId: string; answers: { question_id: string; option_id: string | null; is_neutral?: boolean }[] }): Promise<ScoreOutcome | null> {
   const s = getSupabaseAdminClient();
   const { data: sess } = await s.from("snapshot_quiz_sessions").select("id, assessment_id").eq("id", input.sessionId).maybeSingle();
   if (!sess) return null;
   const markerId = (sess as { assessment_id: string }).assessment_id;
 
-  const answerRows = input.answers.map((a) => ({ session_id: input.sessionId, question_id: a.question_id, selected_session_item_id: a.option_id }));
+  const answerRows = input.answers.map((a) => ({
+    session_id: input.sessionId, question_id: a.question_id,
+    selected_session_item_id: a.is_neutral ? null : a.option_id, is_neutral: !!a.is_neutral,
+  }));
   if (answerRows.length) await s.from("snapshot_quiz_answers").upsert(answerRows, { onConflict: "session_id,question_id" });
 
-  const { data: sis } = await s.from("snapshot_quiz_session_items").select("cluster_id").in("id", input.answers.map((a) => a.option_id));
+  const neutralCount = input.answers.filter((a) => a.is_neutral).length;
+  const isLowConfidence = input.answers.length > 0 && neutralCount / input.answers.length > LOW_CONFIDENCE_RATIO;
+
+  const pickedIds = input.answers.filter((a) => !a.is_neutral && a.option_id).map((a) => a.option_id as string);
+  const { data: sis } = pickedIds.length ? await s.from("snapshot_quiz_session_items").select("cluster_id").in("id", pickedIds) : { data: [] };
   const clusterIds = (sis ?? []).map((x) => (x as { cluster_id: number }).cluster_id);
   const result = scoreClusters(clusterIds);
 
   if (result.isTied) {
-    await s.from("snapshot_quiz_sessions").update({ is_tied: true }).eq("id", input.sessionId);
+    await s.from("snapshot_quiz_sessions").update({ is_tied: true, neutral_answer_count: neutralCount, is_low_confidence: isLowConfidence }).eq("id", input.sessionId);
     const names = await clusterNames(result.tiedClusterIds);
     const tiebreak = await Promise.all(result.tiedClusterIds.map(async (cid) => ({ cluster_id: cid, name: names.get(cid) ?? `Cluster ${cid}`, statement: await oneStatement(markerId, cid) })));
     return { session_id: input.sessionId, tied: true, tiebreak };
@@ -131,6 +143,7 @@ export async function scoreSession(input: { sessionId: string; answers: { questi
     completed_at: new Date().toISOString(),
     primary_cluster_id: result.primary?.clusterId ?? null,
     secondary_cluster_id: result.secondary?.clusterId ?? null,
+    neutral_answer_count: neutralCount, is_low_confidence: isLowConfidence,
   }).eq("id", input.sessionId);
   return { session_id: input.sessionId, tied: false };
 }

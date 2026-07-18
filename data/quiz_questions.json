@@ -2,11 +2,11 @@
   "single_but_dating": [
     {
       "question_order": 1,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 3,
+          "cluster_id": 27,
           "tier": "primary"
         },
         {
@@ -21,6 +21,11 @@
         },
         {
           "slot_order": 4,
+          "cluster_id": 6,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
           "cluster_id": 4,
           "tier": "primary"
         }
@@ -32,53 +37,58 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 1,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 3,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 4,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 27,
           "tier": "primary"
         },
         {
-          "slot_order": 5,
+          "slot_order": 2,
           "cluster_id": 6,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 5,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 1,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 3,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 3,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 4,
+          "cluster_id": 6,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 24,
+          "cluster_id": 4,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 3,
+          "cluster_id": 1,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 6,
+          "cluster_id": 3,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 27,
           "tier": "primary"
         }
       ]
@@ -94,33 +104,33 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 24,
+          "cluster_id": 6,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 1,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 27,
           "tier": "primary"
         },
         {
-          "slot_order": 5,
+          "slot_order": 4,
           "cluster_id": 4,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 1,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 5,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 27,
+          "cluster_id": 1,
           "tier": "primary"
         },
         {
@@ -130,12 +140,17 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 6,
+          "cluster_id": 24,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 1,
+          "cluster_id": 6,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 27,
           "tier": "primary"
         }
       ]
@@ -146,34 +161,34 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 24,
+          "cluster_id": 27,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 5,
+          "cluster_id": 24,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 3,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 4,
           "tier": "primary"
         },
         {
+          "slot_order": 4,
+          "cluster_id": 3,
+          "tier": "primary"
+        },
+        {
           "slot_order": 5,
-          "cluster_id": 27,
+          "cluster_id": 1,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 7,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
@@ -182,17 +197,22 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 6,
+          "cluster_id": 4,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 3,
+          "cluster_id": 6,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 24,
+          "cluster_id": 3,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 5,
           "tier": "primary"
         }
       ]
@@ -203,17 +223,17 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 1,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
           "cluster_id": 5,
           "tier": "primary"
         },
         {
+          "slot_order": 2,
+          "cluster_id": 1,
+          "tier": "primary"
+        },
+        {
           "slot_order": 3,
-          "cluster_id": 3,
+          "cluster_id": 24,
           "tier": "primary"
         },
         {
@@ -230,16 +250,16 @@
     },
     {
       "question_order": 9,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 20,
-          "tier": "shadow"
+          "cluster_id": 1,
+          "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 4,
+          "cluster_id": 24,
           "tier": "primary"
         },
         {
@@ -249,7 +269,12 @@
         },
         {
           "slot_order": 4,
-          "cluster_id": 24,
+          "cluster_id": 27,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 3,
           "tier": "primary"
         }
       ]
@@ -260,54 +285,59 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 12,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 19,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 4,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 1,
           "tier": "primary"
         },
         {
+          "slot_order": 2,
+          "cluster_id": 3,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 5,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 4,
+          "tier": "primary"
+        },
+        {
           "slot_order": 5,
-          "cluster_id": 23,
+          "cluster_id": 12,
           "tier": "shadow"
         }
       ]
     },
     {
       "question_order": 11,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 3,
-          "tier": "primary"
+          "cluster_id": 23,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
-          "cluster_id": 5,
-          "tier": "primary"
+          "cluster_id": 20,
+          "tier": "shadow"
         },
         {
           "slot_order": 3,
-          "cluster_id": 27,
+          "cluster_id": 1,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 12,
-          "tier": "shadow"
+          "cluster_id": 3,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 24,
+          "tier": "primary"
         }
       ]
     },
@@ -327,43 +357,48 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 4,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 20,
+          "cluster_id": 19,
           "tier": "shadow"
         },
         {
+          "slot_order": 4,
+          "cluster_id": 6,
+          "tier": "primary"
+        },
+        {
           "slot_order": 5,
-          "cluster_id": 24,
+          "cluster_id": 4,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 13,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 3,
+          "cluster_id": 24,
           "tier": "primary"
         },
         {
           "slot_order": 2,
+          "cluster_id": 5,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 1,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
           "cluster_id": 23,
           "tier": "shadow"
         },
         {
-          "slot_order": 3,
-          "cluster_id": 19,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 1,
+          "slot_order": 5,
+          "cluster_id": 27,
           "tier": "primary"
         }
       ]
@@ -374,23 +409,23 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 4,
+          "cluster_id": 3,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 5,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 6,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
-          "cluster_id": 23,
+          "slot_order": 3,
+          "cluster_id": 20,
           "tier": "shadow"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 4,
+          "tier": "primary"
         },
         {
           "slot_order": 5,
@@ -401,26 +436,31 @@
     },
     {
       "question_order": 15,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 3,
+          "cluster_id": 27,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 1,
+          "cluster_id": 6,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 6,
+          "cluster_id": 3,
           "tier": "primary"
         },
         {
           "slot_order": 4,
           "cluster_id": 19,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 23,
           "tier": "shadow"
         }
       ]
@@ -431,8 +471,8 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 19,
-          "tier": "shadow"
+          "cluster_id": 5,
+          "tier": "primary"
         },
         {
           "slot_order": 2,
@@ -441,44 +481,49 @@
         },
         {
           "slot_order": 3,
+          "cluster_id": 1,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
           "cluster_id": 12,
           "tier": "shadow"
         },
         {
-          "slot_order": 4,
-          "cluster_id": 24,
-          "tier": "primary"
-        },
-        {
           "slot_order": 5,
-          "cluster_id": 27,
-          "tier": "primary"
+          "cluster_id": 19,
+          "tier": "shadow"
         }
       ]
     },
     {
       "question_order": 17,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 4,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 6,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 24,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
+          "slot_order": 2,
           "cluster_id": 5,
           "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 6,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 4,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 12,
+          "tier": "shadow"
         }
       ]
     },
@@ -493,38 +538,7 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 27,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 1,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 23,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 5,
-          "cluster_id": 3,
-          "tier": "primary"
-        }
-      ]
-    },
-    {
-      "question_order": 19,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 5,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 24,
           "tier": "primary"
         },
         {
@@ -534,8 +548,44 @@
         },
         {
           "slot_order": 4,
+          "cluster_id": 24,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 4,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 19,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 27,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 3,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
           "cluster_id": 23,
           "tier": "shadow"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 19,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 4,
+          "tier": "primary"
         }
       ]
     },
@@ -545,34 +595,34 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 27,
+          "cluster_id": 1,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 4,
+          "cluster_id": 27,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 20,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 3,
           "tier": "primary"
         },
         {
-          "slot_order": 5,
+          "slot_order": 4,
           "cluster_id": 12,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 20,
           "tier": "shadow"
         }
       ]
     },
     {
       "question_order": 21,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
@@ -581,8 +631,8 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 23,
-          "tier": "shadow"
+          "cluster_id": 24,
+          "tier": "primary"
         },
         {
           "slot_order": 3,
@@ -591,8 +641,13 @@
         },
         {
           "slot_order": 4,
-          "cluster_id": 4,
+          "cluster_id": 5,
           "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 23,
+          "tier": "shadow"
         }
       ]
     },
@@ -602,12 +657,43 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 24,
+          "cluster_id": 23,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 27,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 20,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 19,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 12,
+          "tier": "shadow"
+        }
+      ]
+    },
+    {
+      "question_order": 23,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 3,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 3,
+          "cluster_id": 24,
           "tier": "primary"
         },
         {
@@ -617,37 +703,11 @@
         },
         {
           "slot_order": 4,
-          "cluster_id": 19,
-          "tier": "shadow"
+          "cluster_id": 4,
+          "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 20,
-          "tier": "shadow"
-        }
-      ]
-    },
-    {
-      "question_order": 23,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 1,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 12,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 27,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 5,
           "tier": "primary"
         }
@@ -657,12 +717,12 @@
   "in_a_relationship": [
     {
       "question_order": 1,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 23,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
@@ -671,12 +731,17 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 16,
-          "tier": "shadow"
+          "cluster_id": 24,
+          "tier": "primary"
         },
         {
           "slot_order": 4,
           "cluster_id": 22,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 23,
           "tier": "primary"
         }
       ]
@@ -687,13 +752,13 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 15,
-          "tier": "primary"
+          "cluster_id": 11,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
-          "cluster_id": 22,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 3,
@@ -702,24 +767,24 @@
         },
         {
           "slot_order": 4,
-          "cluster_id": 24,
+          "cluster_id": 15,
           "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 16,
-          "tier": "shadow"
+          "cluster_id": 22,
+          "tier": "primary"
         }
       ]
     },
     {
       "question_order": 3,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 22,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
@@ -728,13 +793,18 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 15,
-          "tier": "primary"
+          "cluster_id": 11,
+          "tier": "shadow"
         },
         {
           "slot_order": 4,
-          "cluster_id": 16,
-          "tier": "shadow"
+          "cluster_id": 22,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 15,
+          "tier": "primary"
         }
       ]
     },
@@ -744,44 +814,44 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 16,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 24,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 22,
           "tier": "primary"
         },
         {
-          "slot_order": 5,
+          "slot_order": 2,
+          "cluster_id": 24,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
           "cluster_id": 15,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 16,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 23,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 5,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 22,
+          "cluster_id": 24,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 15,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 3,
@@ -790,8 +860,13 @@
         },
         {
           "slot_order": 4,
-          "cluster_id": 16,
-          "tier": "shadow"
+          "cluster_id": 15,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 22,
+          "tier": "primary"
         }
       ]
     },
@@ -801,23 +876,23 @@
       "slots": [
         {
           "slot_order": 1,
+          "cluster_id": 22,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
           "cluster_id": 16,
           "tier": "shadow"
         },
         {
-          "slot_order": 2,
+          "slot_order": 3,
           "cluster_id": 15,
           "tier": "primary"
         },
         {
-          "slot_order": 3,
-          "cluster_id": 24,
-          "tier": "primary"
-        },
-        {
           "slot_order": 4,
-          "cluster_id": 22,
-          "tier": "primary"
+          "cluster_id": 21,
+          "tier": "shadow"
         },
         {
           "slot_order": 5,
@@ -828,32 +903,6 @@
     },
     {
       "question_order": 7,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 15,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 16,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 22,
-          "tier": "primary"
-        }
-      ]
-    },
-    {
-      "question_order": 8,
       "option_count": 5,
       "slots": [
         {
@@ -863,48 +912,84 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 21,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 15,
           "tier": "primary"
         },
         {
-          "slot_order": 5,
+          "slot_order": 3,
           "cluster_id": 22,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 16,
+          "tier": "shadow"
+        }
+      ]
+    },
+    {
+      "question_order": 8,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 16,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 22,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 11,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 15,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 9,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 22,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
-          "cluster_id": 24,
+          "cluster_id": 15,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 23,
+          "cluster_id": 22,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 15,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 24,
           "tier": "primary"
         }
       ]
@@ -915,44 +1000,44 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 15,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 11,
+          "cluster_id": 16,
           "tier": "shadow"
         },
         {
-          "slot_order": 3,
+          "slot_order": 2,
           "cluster_id": 23,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
+          "slot_order": 3,
           "cluster_id": 22,
           "tier": "primary"
         },
         {
+          "slot_order": 4,
+          "cluster_id": 15,
+          "tier": "primary"
+        },
+        {
           "slot_order": 5,
-          "cluster_id": 16,
+          "cluster_id": 21,
           "tier": "shadow"
         }
       ]
     },
     {
       "question_order": 11,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 22,
+          "cluster_id": 23,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 21,
-          "tier": "shadow"
+          "cluster_id": 22,
+          "tier": "primary"
         },
         {
           "slot_order": 3,
@@ -961,8 +1046,13 @@
         },
         {
           "slot_order": 4,
-          "cluster_id": 23,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 11,
+          "tier": "shadow"
         }
       ]
     },
@@ -972,39 +1062,8 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 15,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 24,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 22,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 5,
           "cluster_id": 16,
           "tier": "shadow"
-        }
-      ]
-    },
-    {
-      "question_order": 13,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 15,
-          "tier": "primary"
         },
         {
           "slot_order": 2,
@@ -1020,32 +1079,37 @@
           "slot_order": 4,
           "cluster_id": 21,
           "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 15,
+          "tier": "primary"
         }
       ]
     },
     {
-      "question_order": 14,
+      "question_order": 13,
       "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 11,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 2,
           "cluster_id": 24,
           "tier": "primary"
         },
         {
-          "slot_order": 3,
+          "slot_order": 2,
           "cluster_id": 15,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
+          "slot_order": 3,
           "cluster_id": 22,
           "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 5,
@@ -1055,13 +1119,13 @@
       ]
     },
     {
-      "question_order": 15,
-      "option_count": 4,
+      "question_order": 14,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 23,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
@@ -1070,11 +1134,47 @@
         },
         {
           "slot_order": 3,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 21,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 22,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 15,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
           "cluster_id": 16,
           "tier": "shadow"
         },
         {
+          "slot_order": 2,
+          "cluster_id": 15,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
           "slot_order": 4,
+          "cluster_id": 11,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
           "cluster_id": 22,
           "tier": "primary"
         }
@@ -1086,7 +1186,7 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 15,
+          "cluster_id": 22,
           "tier": "primary"
         },
         {
@@ -1096,7 +1196,7 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 22,
+          "cluster_id": 15,
           "tier": "primary"
         },
         {
@@ -1106,23 +1206,23 @@
         },
         {
           "slot_order": 5,
-          "cluster_id": 11,
+          "cluster_id": 16,
           "tier": "shadow"
         }
       ]
     },
     {
       "question_order": 17,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 16,
-          "tier": "shadow"
+          "cluster_id": 22,
+          "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 22,
+          "cluster_id": 15,
           "tier": "primary"
         },
         {
@@ -1132,8 +1232,13 @@
         },
         {
           "slot_order": 4,
-          "cluster_id": 15,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 21,
+          "tier": "shadow"
         }
       ]
     },
@@ -1143,8 +1248,8 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 23,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
@@ -1153,8 +1258,8 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 21,
-          "tier": "shadow"
+          "cluster_id": 23,
+          "tier": "primary"
         },
         {
           "slot_order": 4,
@@ -1170,27 +1275,32 @@
     },
     {
       "question_order": 19,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 22,
-          "tier": "primary"
+          "cluster_id": 11,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
-          "cluster_id": 15,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 23,
           "tier": "primary"
         },
         {
+          "slot_order": 3,
+          "cluster_id": 24,
+          "tier": "primary"
+        },
+        {
           "slot_order": 4,
-          "cluster_id": 11,
-          "tier": "shadow"
+          "cluster_id": 15,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 22,
+          "tier": "primary"
         }
       ]
     },
@@ -1210,7 +1320,7 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 24,
+          "cluster_id": 15,
           "tier": "primary"
         },
         {
@@ -1220,32 +1330,37 @@
         },
         {
           "slot_order": 5,
-          "cluster_id": 23,
-          "tier": "primary"
+          "cluster_id": 11,
+          "tier": "shadow"
         }
       ]
     },
     {
       "question_order": 21,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 11,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 15,
+          "cluster_id": 24,
           "tier": "primary"
         },
         {
-          "slot_order": 3,
+          "slot_order": 2,
           "cluster_id": 16,
           "tier": "shadow"
         },
         {
+          "slot_order": 3,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
           "slot_order": 4,
+          "cluster_id": 11,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
           "cluster_id": 21,
           "tier": "shadow"
         }
@@ -1255,26 +1370,31 @@
   "married_or_long_term": [
     {
       "question_order": 1,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 15,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 19,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
+          "slot_order": 2,
           "cluster_id": 18,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 25,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 15,
           "tier": "primary"
         }
       ]
@@ -1285,53 +1405,58 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 18,
+          "cluster_id": 11,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 19,
+          "cluster_id": 23,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 20,
+          "cluster_id": 15,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 25,
+          "cluster_id": 14,
           "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 9,
+          "cluster_id": 20,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 3,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 25,
+          "cluster_id": 9,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 11,
+          "cluster_id": 25,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 14,
+          "cluster_id": 10,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 10,
+          "cluster_id": 8,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 20,
           "tier": "primary"
         }
       ]
@@ -1342,34 +1467,34 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 15,
+          "cluster_id": 19,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 14,
+          "cluster_id": 11,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 20,
+          "cluster_id": 18,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 23,
+          "cluster_id": 25,
           "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 11,
+          "cluster_id": 14,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 5,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
@@ -1378,17 +1503,22 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 20,
+          "cluster_id": 8,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 19,
+          "cluster_id": 20,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 8,
+          "cluster_id": 10,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 7,
           "tier": "primary"
         }
       ]
@@ -1399,53 +1529,58 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 7,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 10,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 23,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
+          "slot_order": 2,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
           "cluster_id": 9,
           "tier": "primary"
         },
         {
-          "slot_order": 5,
+          "slot_order": 4,
           "cluster_id": 15,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 18,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 7,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 18,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 25,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 7,
           "tier": "primary"
         },
         {
+          "slot_order": 2,
+          "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 9,
+          "tier": "primary"
+        },
+        {
           "slot_order": 4,
-          "cluster_id": 11,
+          "cluster_id": 14,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 25,
           "tier": "primary"
         }
       ]
@@ -1456,17 +1591,17 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 20,
+          "cluster_id": 11,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 8,
+          "cluster_id": 23,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 25,
+          "cluster_id": 8,
           "tier": "primary"
         },
         {
@@ -1476,34 +1611,39 @@
         },
         {
           "slot_order": 5,
-          "cluster_id": 9,
+          "cluster_id": 15,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 9,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 14,
+          "cluster_id": 10,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 15,
+          "cluster_id": 11,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 23,
+          "cluster_id": 19,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 16,
-          "tier": "shadow"
+          "cluster_id": 8,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 20,
+          "tier": "primary"
         }
       ]
     },
@@ -1518,75 +1658,18 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 21,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 10,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
-          "cluster_id": 18,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 5,
-          "cluster_id": 20,
-          "tier": "primary"
-        }
-      ]
-    },
-    {
-      "question_order": 11,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
+          "slot_order": 3,
           "cluster_id": 14,
           "tier": "primary"
         },
         {
-          "slot_order": 3,
-          "cluster_id": 8,
-          "tier": "primary"
-        },
-        {
           "slot_order": 4,
-          "cluster_id": 21,
-          "tier": "shadow"
-        }
-      ]
-    },
-    {
-      "question_order": 12,
-      "option_count": 5,
-      "slots": [
-        {
-          "slot_order": 1,
           "cluster_id": 16,
           "tier": "shadow"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 25,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 7,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 10,
-          "tier": "primary"
         },
         {
           "slot_order": 5,
@@ -1596,39 +1679,44 @@
       ]
     },
     {
-      "question_order": 13,
-      "option_count": 4,
+      "question_order": 11,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 19,
+          "cluster_id": 7,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 18,
+          "cluster_id": 23,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 11,
+          "cluster_id": 18,
           "tier": "primary"
         },
         {
           "slot_order": 4,
           "cluster_id": 21,
           "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 25,
+          "tier": "primary"
         }
       ]
     },
     {
-      "question_order": 14,
+      "question_order": 12,
       "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 9,
-          "tier": "primary"
+          "cluster_id": 21,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
@@ -1642,8 +1730,8 @@
         },
         {
           "slot_order": 4,
-          "cluster_id": 10,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 5,
@@ -1653,27 +1741,94 @@
       ]
     },
     {
-      "question_order": 15,
-      "option_count": 4,
+      "question_order": 13,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 25,
+          "cluster_id": 10,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 7,
+          "cluster_id": 25,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 16,
-          "tier": "shadow"
+          "cluster_id": 9,
+          "tier": "primary"
         },
         {
           "slot_order": 4,
           "cluster_id": 8,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 7,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 14,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 15,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 7,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 18,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 15,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 16,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 14,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 18,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 23,
           "tier": "primary"
         }
       ]
@@ -1684,53 +1839,58 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 7,
+          "cluster_id": 9,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 20,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 15,
           "tier": "primary"
         },
         {
+          "slot_order": 3,
+          "cluster_id": 11,
+          "tier": "primary"
+        },
+        {
           "slot_order": 4,
-          "cluster_id": 10,
+          "cluster_id": 20,
           "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 23,
+          "cluster_id": 8,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 17,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 9,
+          "cluster_id": 7,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 14,
+          "cluster_id": 25,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 8,
+          "cluster_id": 10,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 15,
+          "cluster_id": 21,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 20,
           "tier": "primary"
         }
       ]
@@ -1741,53 +1901,58 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 11,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 16,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 20,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 25,
           "tier": "primary"
         },
         {
+          "slot_order": 2,
+          "cluster_id": 10,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 14,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
           "slot_order": 5,
-          "cluster_id": 21,
-          "tier": "shadow"
+          "cluster_id": 11,
+          "tier": "primary"
         }
       ]
     },
     {
       "question_order": 19,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 19,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 18,
           "tier": "primary"
         },
         {
+          "slot_order": 3,
+          "cluster_id": 21,
+          "tier": "shadow"
+        },
+        {
           "slot_order": 4,
-          "cluster_id": 10,
+          "cluster_id": 15,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 19,
           "tier": "primary"
         }
       ]
@@ -1798,12 +1963,12 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 23,
+          "cluster_id": 18,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 25,
+          "cluster_id": 9,
           "tier": "primary"
         },
         {
@@ -1813,7 +1978,69 @@
         },
         {
           "slot_order": 4,
+          "cluster_id": 8,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 23,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 21,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 14,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 16,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 21,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 25,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 19,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 22,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 10,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
           "cluster_id": 7,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 11,
           "tier": "primary"
         },
         {
@@ -1824,38 +2051,12 @@
       ]
     },
     {
-      "question_order": 21,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 14,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 19,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 21,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 16,
-          "tier": "shadow"
-        }
-      ]
-    },
-    {
-      "question_order": 22,
+      "question_order": 23,
       "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 18,
+          "cluster_id": 11,
           "tier": "primary"
         },
         {
@@ -1865,42 +2066,16 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 11,
+          "cluster_id": 8,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 20,
-          "tier": "primary"
+          "cluster_id": 21,
+          "tier": "shadow"
         },
         {
           "slot_order": 5,
-          "cluster_id": 8,
-          "tier": "primary"
-        }
-      ]
-    },
-    {
-      "question_order": 23,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 18,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 20,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 8,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 7,
           "tier": "primary"
         }
@@ -1912,7 +2087,7 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 23,
+          "cluster_id": 20,
           "tier": "primary"
         },
         {
@@ -1922,44 +2097,49 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 21,
+          "cluster_id": 16,
           "tier": "shadow"
         },
         {
           "slot_order": 4,
-          "cluster_id": 11,
+          "cluster_id": 25,
           "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 10,
+          "cluster_id": 18,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 25,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 25,
+          "cluster_id": 10,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 9,
+          "cluster_id": 8,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 15,
+          "cluster_id": 23,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 16,
-          "tier": "shadow"
+          "cluster_id": 15,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 9,
+          "tier": "primary"
         }
       ]
     }
@@ -1967,7 +2147,7 @@
   "recent_divorce_breakup": [
     {
       "question_order": 1,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
@@ -1976,8 +2156,8 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 12,
-          "tier": "primary"
+          "cluster_id": 11,
+          "tier": "shadow"
         },
         {
           "slot_order": 3,
@@ -1987,6 +2167,11 @@
         {
           "slot_order": 4,
           "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 12,
           "tier": "primary"
         }
       ]
@@ -1997,34 +2182,34 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 19,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
           "cluster_id": 23,
           "tier": "primary"
         },
         {
-          "slot_order": 3,
-          "cluster_id": 12,
+          "slot_order": 2,
+          "cluster_id": 19,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
+          "slot_order": 3,
           "cluster_id": 16,
           "tier": "shadow"
         },
         {
-          "slot_order": 5,
+          "slot_order": 4,
           "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 12,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 3,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
@@ -2038,11 +2223,16 @@
         },
         {
           "slot_order": 3,
+          "cluster_id": 21,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 4,
           "cluster_id": 23,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
+          "slot_order": 5,
           "cluster_id": 19,
           "tier": "primary"
         }
@@ -2054,17 +2244,48 @@
       "slots": [
         {
           "slot_order": 1,
+          "cluster_id": 12,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 11,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 19,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 5,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
           "cluster_id": 20,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 12,
-          "tier": "primary"
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 3,
-          "cluster_id": 19,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
@@ -2074,33 +2295,7 @@
         },
         {
           "slot_order": 5,
-          "cluster_id": 11,
-          "tier": "shadow"
-        }
-      ]
-    },
-    {
-      "question_order": 5,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 20,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
           "cluster_id": 19,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 12,
           "tier": "primary"
         }
       ]
@@ -2111,17 +2306,17 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 20,
+          "cluster_id": 23,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 19,
+          "cluster_id": 20,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 23,
+          "cluster_id": 19,
           "tier": "primary"
         },
         {
@@ -2138,11 +2333,11 @@
     },
     {
       "question_order": 7,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 12,
+          "cluster_id": 20,
           "tier": "primary"
         },
         {
@@ -2152,13 +2347,18 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 20,
+          "cluster_id": 19,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 19,
+          "cluster_id": 12,
           "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 16,
+          "tier": "shadow"
         }
       ]
     },
@@ -2168,53 +2368,58 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 12,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 19,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
+          "slot_order": 2,
+          "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
           "cluster_id": 11,
           "tier": "shadow"
         },
         {
+          "slot_order": 4,
+          "cluster_id": 12,
+          "tier": "primary"
+        },
+        {
           "slot_order": 5,
-          "cluster_id": 20,
+          "cluster_id": 23,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 9,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
           "cluster_id": 12,
           "tier": "primary"
         },
         {
-          "slot_order": 3,
+          "slot_order": 2,
           "cluster_id": 19,
           "tier": "primary"
         },
         {
+          "slot_order": 3,
+          "cluster_id": 21,
+          "tier": "shadow"
+        },
+        {
           "slot_order": 4,
           "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 23,
           "tier": "primary"
         }
       ]
@@ -2230,13 +2435,44 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 19,
+          "cluster_id": 20,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 16,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 11,
           "tier": "shadow"
+        }
+      ]
+    },
+    {
+      "question_order": 11,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 12,
+          "tier": "primary"
         },
         {
           "slot_order": 4,
@@ -2245,34 +2481,8 @@
         },
         {
           "slot_order": 5,
-          "cluster_id": 23,
-          "tier": "primary"
-        }
-      ]
-    },
-    {
-      "question_order": 11,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 12,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 19,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 20,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 23,
-          "tier": "primary"
+          "cluster_id": 21,
+          "tier": "shadow"
         }
       ]
     },
@@ -2282,22 +2492,22 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 23,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 21,
+          "cluster_id": 16,
           "tier": "shadow"
         },
         {
-          "slot_order": 3,
+          "slot_order": 2,
           "cluster_id": 20,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
+          "slot_order": 3,
           "cluster_id": 12,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 23,
           "tier": "primary"
         },
         {
@@ -2309,26 +2519,31 @@
     },
     {
       "question_order": 13,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 19,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 12,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 20,
           "tier": "primary"
         },
         {
-          "slot_order": 4,
+          "slot_order": 2,
+          "cluster_id": 21,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 3,
           "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 12,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 19,
           "tier": "primary"
         }
       ]
@@ -2349,6 +2564,37 @@
         },
         {
           "slot_order": 3,
+          "cluster_id": 11,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 20,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 15,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
           "cluster_id": 20,
           "tier": "primary"
         },
@@ -2359,33 +2605,7 @@
         },
         {
           "slot_order": 5,
-          "cluster_id": 19,
-          "tier": "primary"
-        }
-      ]
-    },
-    {
-      "question_order": 15,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 11,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 19,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 12,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 23,
           "tier": "primary"
         }
       ]
@@ -2396,54 +2616,59 @@
       "slots": [
         {
           "slot_order": 1,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
           "cluster_id": 16,
           "tier": "shadow"
         },
         {
-          "slot_order": 2,
-          "cluster_id": 20,
-          "tier": "primary"
-        },
-        {
           "slot_order": 3,
-          "cluster_id": 23,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 21,
-          "tier": "shadow"
+          "cluster_id": 23,
+          "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 12,
+          "cluster_id": 20,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 17,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 20,
+          "cluster_id": 23,
           "tier": "primary"
         },
         {
           "slot_order": 2,
+          "cluster_id": 21,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
           "cluster_id": 19,
           "tier": "primary"
         },
         {
-          "slot_order": 3,
-          "cluster_id": 11,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 21,
-          "tier": "shadow"
+          "slot_order": 5,
+          "cluster_id": 12,
+          "tier": "primary"
         }
       ]
     },
@@ -2453,7 +2678,38 @@
       "slots": [
         {
           "slot_order": 1,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 23,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 12,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
           "cluster_id": 11,
+          "tier": "shadow"
+        }
+      ]
+    },
+    {
+      "question_order": 19,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 21,
           "tier": "shadow"
         },
         {
@@ -2463,13 +2719,13 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 20,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 16,
-          "tier": "shadow"
+          "cluster_id": 20,
+          "tier": "primary"
         },
         {
           "slot_order": 5,
@@ -2479,8 +2735,8 @@
       ]
     },
     {
-      "question_order": 19,
-      "option_count": 4,
+      "question_order": 20,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
@@ -2489,44 +2745,18 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 12,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 16,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 21,
-          "tier": "shadow"
-        }
-      ]
-    },
-    {
-      "question_order": 20,
-      "option_count": 5,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 19,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 21,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 11,
           "tier": "shadow"
         },
         {
-          "slot_order": 4,
+          "slot_order": 3,
           "cluster_id": 12,
           "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 16,
+          "tier": "shadow"
         },
         {
           "slot_order": 5,
@@ -2539,16 +2769,16 @@
   "single_contemplating_dating": [
     {
       "question_order": 1,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 25,
+          "cluster_id": 20,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 19,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
@@ -2558,7 +2788,12 @@
         },
         {
           "slot_order": 4,
-          "cluster_id": 12,
+          "cluster_id": 25,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 19,
           "tier": "primary"
         }
       ]
@@ -2569,12 +2804,12 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 20,
+          "cluster_id": 19,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 19,
+          "cluster_id": 13,
           "tier": "primary"
         },
         {
@@ -2584,19 +2819,19 @@
         },
         {
           "slot_order": 4,
-          "cluster_id": 13,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 12,
+          "cluster_id": 20,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 3,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
@@ -2605,17 +2840,22 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 13,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 25,
+          "cluster_id": 13,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 12,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 25,
           "tier": "primary"
         }
       ]
@@ -2626,7 +2866,7 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 25,
+          "cluster_id": 19,
           "tier": "primary"
         },
         {
@@ -2636,43 +2876,48 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 20,
+          "cluster_id": 13,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 19,
+          "cluster_id": 25,
           "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 26,
+          "cluster_id": 20,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 5,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 12,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
           "cluster_id": 13,
           "tier": "primary"
         },
         {
+          "slot_order": 2,
+          "cluster_id": 25,
+          "tier": "primary"
+        },
+        {
           "slot_order": 3,
-          "cluster_id": 20,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 19,
+          "cluster_id": 26,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 20,
           "tier": "primary"
         }
       ]
@@ -2683,7 +2928,38 @@
       "slots": [
         {
           "slot_order": 1,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
           "cluster_id": 26,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 25,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 12,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 7,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 13,
           "tier": "primary"
         },
         {
@@ -2703,33 +2979,7 @@
         },
         {
           "slot_order": 5,
-          "cluster_id": 20,
-          "tier": "primary"
-        }
-      ]
-    },
-    {
-      "question_order": 7,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 20,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
           "cluster_id": 26,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 12,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 13,
           "tier": "primary"
         }
       ]
@@ -2740,7 +2990,7 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 26,
+          "cluster_id": 25,
           "tier": "primary"
         },
         {
@@ -2750,42 +3000,47 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 13,
+          "cluster_id": 19,
           "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 25,
+          "cluster_id": 20,
           "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 19,
+          "cluster_id": 13,
           "tier": "primary"
         }
       ]
     },
     {
       "question_order": 9,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 6,
-          "tier": "shadow"
+          "cluster_id": 19,
+          "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 24,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 20,
           "tier": "primary"
         },
         {
+          "slot_order": 3,
+          "cluster_id": 12,
+          "tier": "primary"
+        },
+        {
           "slot_order": 4,
+          "cluster_id": 26,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
           "cluster_id": 13,
           "tier": "primary"
         }
@@ -2797,54 +3052,59 @@
       "slots": [
         {
           "slot_order": 1,
+          "cluster_id": 24,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 2,
           "cluster_id": 25,
           "tier": "primary"
         },
         {
-          "slot_order": 2,
-          "cluster_id": 26,
+          "slot_order": 3,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
-          "slot_order": 3,
-          "cluster_id": 5,
-          "tier": "shadow"
-        },
-        {
           "slot_order": 4,
-          "cluster_id": 19,
+          "cluster_id": 13,
           "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 4,
+          "cluster_id": 3,
           "tier": "shadow"
         }
       ]
     },
     {
       "question_order": 11,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 3,
+          "cluster_id": 5,
           "tier": "shadow"
         },
         {
           "slot_order": 2,
-          "cluster_id": 20,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
           "slot_order": 3,
+          "cluster_id": 26,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
           "cluster_id": 1,
           "tier": "shadow"
         },
         {
-          "slot_order": 4,
-          "cluster_id": 12,
-          "tier": "primary"
+          "slot_order": 5,
+          "cluster_id": 4,
+          "tier": "shadow"
         }
       ]
     },
@@ -2854,8 +3114,8 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 26,
-          "tier": "primary"
+          "cluster_id": 4,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
@@ -2864,24 +3124,24 @@
         },
         {
           "slot_order": 3,
-          "cluster_id": 4,
-          "tier": "shadow"
+          "cluster_id": 19,
+          "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 5,
-          "tier": "shadow"
+          "cluster_id": 20,
+          "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 13,
-          "tier": "primary"
+          "cluster_id": 6,
+          "tier": "shadow"
         }
       ]
     },
     {
       "question_order": 13,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
@@ -2890,18 +3150,23 @@
         },
         {
           "slot_order": 2,
-          "cluster_id": 24,
+          "cluster_id": 1,
           "tier": "shadow"
         },
         {
           "slot_order": 3,
-          "cluster_id": 3,
-          "tier": "shadow"
+          "cluster_id": 19,
+          "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 19,
+          "cluster_id": 12,
           "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 24,
+          "tier": "shadow"
         }
       ]
     },
@@ -2911,69 +3176,12 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 19,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 1,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
           "cluster_id": 6,
           "tier": "shadow"
         },
         {
-          "slot_order": 4,
+          "slot_order": 2,
           "cluster_id": 20,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 5,
-          "cluster_id": 4,
-          "tier": "shadow"
-        }
-      ]
-    },
-    {
-      "question_order": 15,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 3,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 1,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 12,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 6,
-          "tier": "shadow"
-        }
-      ]
-    },
-    {
-      "question_order": 16,
-      "option_count": 5,
-      "slots": [
-        {
-          "slot_order": 1,
-          "cluster_id": 25,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 26,
           "tier": "primary"
         },
         {
@@ -2984,6 +3192,68 @@
         {
           "slot_order": 4,
           "cluster_id": 5,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 12,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 15,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 5,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 3,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 12,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 26,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 13,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 16,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 26,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 6,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 4,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 1,
           "tier": "shadow"
         },
         {
@@ -2995,26 +3265,31 @@
     },
     {
       "question_order": 17,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 6,
-          "tier": "shadow"
+          "cluster_id": 13,
+          "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 4,
-          "tier": "shadow"
+          "cluster_id": 20,
+          "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 24,
-          "tier": "shadow"
+          "cluster_id": 25,
+          "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 5,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 3,
           "tier": "shadow"
         }
       ]
@@ -3025,53 +3300,58 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 19,
-          "tier": "primary"
+          "cluster_id": 6,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
-          "cluster_id": 20,
-          "tier": "primary"
+          "cluster_id": 4,
+          "tier": "shadow"
         },
         {
           "slot_order": 3,
-          "cluster_id": 13,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 1,
           "tier": "shadow"
         },
         {
-          "slot_order": 5,
-          "cluster_id": 12,
+          "slot_order": 4,
+          "cluster_id": 20,
           "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 5,
+          "tier": "shadow"
         }
       ]
     },
     {
       "question_order": 19,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 1,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 25,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
+          "slot_order": 2,
+          "cluster_id": 24,
+          "tier": "shadow"
+        },
+        {
           "slot_order": 3,
+          "cluster_id": 26,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 4,
           "cluster_id": 3,
           "tier": "shadow"
         },
         {
-          "slot_order": 4,
-          "cluster_id": 26,
+          "slot_order": 5,
+          "cluster_id": 25,
           "tier": "primary"
         }
       ]
@@ -3082,53 +3362,58 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 24,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 5,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 12,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 4,
           "cluster_id": 20,
           "tier": "primary"
         },
         {
-          "slot_order": 5,
-          "cluster_id": 25,
+          "slot_order": 2,
+          "cluster_id": 6,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 26,
           "tier": "primary"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 19,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 1,
+          "tier": "shadow"
         }
       ]
     },
     {
       "question_order": 21,
-      "option_count": 4,
+      "option_count": 5,
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 19,
-          "tier": "primary"
+          "cluster_id": 5,
+          "tier": "shadow"
         },
         {
           "slot_order": 2,
-          "cluster_id": 26,
+          "cluster_id": 12,
           "tier": "primary"
         },
         {
           "slot_order": 3,
-          "cluster_id": 3,
-          "tier": "shadow"
+          "cluster_id": 13,
+          "tier": "primary"
         },
         {
           "slot_order": 4,
-          "cluster_id": 13,
+          "cluster_id": 24,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 19,
           "tier": "primary"
         }
       ]
@@ -3139,53 +3424,58 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 26,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 2,
-          "cluster_id": 3,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 3,
-          "cluster_id": 6,
-          "tier": "shadow"
-        },
-        {
-          "slot_order": 4,
-          "cluster_id": 20,
-          "tier": "primary"
-        },
-        {
-          "slot_order": 5,
-          "cluster_id": 4,
-          "tier": "shadow"
-        }
-      ]
-    },
-    {
-      "question_order": 23,
-      "option_count": 4,
-      "slots": [
-        {
-          "slot_order": 1,
           "cluster_id": 25,
           "tier": "primary"
         },
         {
           "slot_order": 2,
-          "cluster_id": 24,
+          "cluster_id": 6,
           "tier": "shadow"
         },
         {
           "slot_order": 3,
-          "cluster_id": 5,
+          "cluster_id": 3,
           "tier": "shadow"
         },
         {
           "slot_order": 4,
+          "cluster_id": 4,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
           "cluster_id": 13,
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "question_order": 23,
+      "option_count": 5,
+      "slots": [
+        {
+          "slot_order": 1,
+          "cluster_id": 26,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 2,
+          "cluster_id": 1,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 3,
+          "cluster_id": 3,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 4,
+          "cluster_id": 5,
+          "tier": "shadow"
+        },
+        {
+          "slot_order": 5,
+          "cluster_id": 19,
           "tier": "primary"
         }
       ]
@@ -3196,28 +3486,28 @@
       "slots": [
         {
           "slot_order": 1,
-          "cluster_id": 12,
+          "cluster_id": 25,
           "tier": "primary"
         },
         {
           "slot_order": 2,
+          "cluster_id": 20,
+          "tier": "primary"
+        },
+        {
+          "slot_order": 3,
           "cluster_id": 4,
           "tier": "shadow"
         },
         {
-          "slot_order": 3,
-          "cluster_id": 1,
-          "tier": "shadow"
-        },
-        {
           "slot_order": 4,
-          "cluster_id": 6,
-          "tier": "shadow"
+          "cluster_id": 12,
+          "tier": "primary"
         },
         {
           "slot_order": 5,
-          "cluster_id": 19,
-          "tier": "primary"
+          "cluster_id": 24,
+          "tier": "shadow"
         }
       ]
     }
