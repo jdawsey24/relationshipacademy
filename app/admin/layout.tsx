@@ -32,6 +32,7 @@ const NAV_GROUPS: NavItem[][] = [
   [
     { label: "CRM", href: "/admin/crm" },
     { label: "Analytics", href: "/admin/analytics" },
+    { label: "Snapshot", href: "/admin/snapshot" },
     { label: "Media Library", href: "/admin/media" },
   ],
   [
