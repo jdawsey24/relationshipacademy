@@ -64,4 +64,23 @@ export async function requireEntitledCompanionUser(): Promise<CompanionUser | Ne
   return cu;
 }
 
+export interface CompanionProfile {
+  user_id: string;
+  current_status_id: string | null;
+  onboarding_completed_at: string | null;
+  install_state: string;
+  notification_prefs: Record<string, unknown>;
+}
+
+/** Ensure a companion_profiles row exists (defense-in-depth) and return it. */
+export async function ensureCompanionProfile(userId: string): Promise<CompanionProfile> {
+  const admin = getSupabaseAdminClient();
+  const { data } = await admin.from("companion_profiles").select("*").eq("user_id", userId).maybeSingle();
+  if (data) return data as CompanionProfile;
+  const { data: created } = await admin.from("companion_profiles").upsert({ user_id: userId }, { onConflict: "user_id" }).select("*").maybeSingle();
+  return (created as CompanionProfile) ?? {
+    user_id: userId, current_status_id: null, onboarding_completed_at: null, install_state: "not_shown", notification_prefs: {},
+  };
+}
+
 export { COMPANION_PRODUCT_KEY };
