@@ -589,7 +589,7 @@
   },
   {
     "cluster_id": 8,
-    "statement": "I don't feel heard."
+    "statement": "I feel like a stranger in my own home."
   },
   {
     "cluster_id": 8,
@@ -597,11 +597,11 @@
   },
   {
     "cluster_id": 8,
-    "statement": "I don't feel desired."
+    "statement": "We don't check in with each other anymore."
   },
   {
     "cluster_id": 8,
-    "statement": "I miss feeling pursued."
+    "statement": "We've stopped really talking, just coordinating."
   },
   {
     "cluster_id": 8,
@@ -953,7 +953,7 @@
   },
   {
     "cluster_id": 13,
-    "statement": "I want to become a better partner."
+    "statement": "I want love to feel different this time."
   },
   {
     "cluster_id": 13,
@@ -1218,10 +1218,6 @@
   {
     "cluster_id": 16,
     "statement": "I don't know if I can trust them again."
-  },
-  {
-    "cluster_id": 16,
-    "statement": "I don't know if they've really changed."
   },
   {
     "cluster_id": 16,
@@ -1729,7 +1725,7 @@
   },
   {
     "cluster_id": 23,
-    "statement": "I feel like I failed."
+    "statement": "I'm terrified of looking back with regret."
   },
   {
     "cluster_id": 23,
@@ -1741,7 +1737,7 @@
   },
   {
     "cluster_id": 23,
-    "statement": "I pretend everything is okay."
+    "statement": "I don't want to admit when something feels wrong."
   },
   {
     "cluster_id": 23,
@@ -1888,7 +1884,7 @@
   },
   {
     "cluster_id": 25,
-    "statement": "I want to become emotionally healthier."
+    "statement": "I want to understand my own patterns better."
   },
   {
     "cluster_id": 25,
@@ -2093,5 +2089,17 @@
   {
     "cluster_id": 27,
     "statement": "I keep my guard up so I don't get taken advantage of again."
+  },
+  {
+    "cluster_id": 16,
+    "statement": "I don't know if I'll ever stop watching for the signs."
+  },
+  {
+    "cluster_id": 20,
+    "statement": "I don't know how to introduce myself now."
+  },
+  {
+    "cluster_id": 23,
+    "statement": "I'm afraid people will judge whatever I decide."
   }
 ]
