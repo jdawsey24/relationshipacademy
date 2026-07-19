@@ -171,12 +171,28 @@ export async function convertSession(sessionId: string, email: string): Promise<
   return !error;
 }
 
+// Primary renders the full structured Results-tab content (alignment_paragraph is
+// deprecated and not returned). Secondary stays intentionally light: title + blurb.
+export interface PrimaryResult {
+  id: number; name: string; result_title: string; core_pattern: string;
+  what_this_means: string; why_this_happens: string;
+  how_it_may_show_up: string[]; strengths: string[]; blind_spots: string[];
+  cost_of_staying_here: string; growth_looks_like: string;
+  unmet_need: string; developmental_focus: string;
+  playbook_title: string; playbook_subtitle: string; why_this_playbook: string;
+  key_takeaway: string; call_to_action: string;
+}
 export interface SnapshotResults {
   assessment_display: string;
-  primary: { id: number; name: string; playbook_title: string; playbook_subtitle: string; alignment_paragraph: string } | null;
-  secondary: { id: number; name: string; secondary_blurb: string } | null;
+  primary: PrimaryResult | null;
+  secondary: { id: number; name: string; result_title: string; secondary_blurb: string } | null;
   playbook_url: string | null;
 }
+
+const RESULT_COLS = "id, name, unmet_need, result_title, core_pattern, what_this_means, why_this_happens, how_it_may_show_up, strengths, blind_spots, cost_of_staying_here, growth_looks_like, developmental_focus, playbook_title, playbook_subtitle, why_this_playbook, key_takeaway, call_to_action, secondary_blurb";
+
+const str = (v: unknown) => (typeof v === "string" ? v : "");
+const arr = (v: unknown) => (Array.isArray(v) ? (v as string[]) : []);
 
 export async function getResults(sessionId: string): Promise<SnapshotResults | null> {
   const s = getSupabaseAdminClient();
@@ -187,15 +203,23 @@ export async function getResults(sessionId: string): Promise<SnapshotResults | n
   const ids = [row.primary_cluster_id, row.secondary_cluster_id].filter((x): x is number => typeof x === "number");
   const [{ data: asm }, { data: clusters }] = await Promise.all([
     s.from("snapshot_assessments").select("display_name").eq("id", row.assessment_id).maybeSingle(),
-    ids.length ? s.from("snapshot_clusters").select("id, name, playbook_title, playbook_subtitle, alignment_paragraph, secondary_blurb").in("id", ids) : Promise.resolve({ data: [] }),
+    ids.length ? s.from("snapshot_clusters").select(RESULT_COLS).in("id", ids) : Promise.resolve({ data: [] }),
   ]);
   const byId = new Map(((clusters ?? []) as Record<string, unknown>[]).map((c) => [c.id as number, c]));
   const p = row.primary_cluster_id != null ? byId.get(row.primary_cluster_id) : null;
   const sec = row.secondary_cluster_id != null ? byId.get(row.secondary_cluster_id) : null;
   return {
     assessment_display: ((asm as { display_name?: string } | null)?.display_name) ?? "",
-    primary: p ? { id: p.id as number, name: p.name as string, playbook_title: p.playbook_title as string, playbook_subtitle: p.playbook_subtitle as string, alignment_paragraph: p.alignment_paragraph as string } : null,
-    secondary: sec ? { id: sec.id as number, name: sec.name as string, secondary_blurb: sec.secondary_blurb as string } : null,
+    primary: p ? {
+      id: p.id as number, name: str(p.name), result_title: str(p.result_title), core_pattern: str(p.core_pattern),
+      what_this_means: str(p.what_this_means), why_this_happens: str(p.why_this_happens),
+      how_it_may_show_up: arr(p.how_it_may_show_up), strengths: arr(p.strengths), blind_spots: arr(p.blind_spots),
+      cost_of_staying_here: str(p.cost_of_staying_here), growth_looks_like: str(p.growth_looks_like),
+      unmet_need: str(p.unmet_need), developmental_focus: str(p.developmental_focus),
+      playbook_title: str(p.playbook_title), playbook_subtitle: str(p.playbook_subtitle),
+      why_this_playbook: str(p.why_this_playbook), key_takeaway: str(p.key_takeaway), call_to_action: str(p.call_to_action),
+    } : null,
+    secondary: sec ? { id: sec.id as number, name: str(sec.name), result_title: str(sec.result_title), secondary_blurb: str(sec.secondary_blurb) } : null,
     playbook_url: playbookUrl(row.primary_cluster_id),
   };
 }
