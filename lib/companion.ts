@@ -101,6 +101,54 @@ export function isEditable(status: ContentStatus): boolean {
   return status === "draft";
 }
 
+// ---------------------------------------------------------------------------
+// Blueprint sections (living, completed gradually). Labels are consumer-facing;
+// descriptions are placeholders until approved copy is supplied.
+// ---------------------------------------------------------------------------
+export const BLUEPRINT_SECTIONS = [
+  { key: "vision", label: "Relationship vision" },
+  { key: "core_values", label: "Core values" },
+  { key: "emotional_safety", label: "What helps me feel emotionally safe" },
+  { key: "what_makes_me_withdraw", label: "What makes me withdraw" },
+  { key: "what_helps_me_trust", label: "What helps me trust" },
+  { key: "what_overwhelms_me", label: "What overwhelms me" },
+  { key: "what_helps_me_reconnect", label: "What helps me reconnect" },
+  { key: "experiences_that_shaped_me", label: "Experiences that shaped me" },
+  { key: "lessons_learned", label: "Lessons I have learned" },
+  { key: "patterns_to_change", label: "Patterns I want to change" },
+  { key: "strengths_developed", label: "Strengths I have developed" },
+  { key: "qualities_to_embody", label: "Qualities I want to embody" },
+  { key: "qualities_i_value", label: "Qualities I value in relationships" },
+  { key: "green_flags", label: "Green flags" },
+  { key: "yellow_flags", label: "Yellow flags" },
+  { key: "red_flags", label: "Red flags" },
+  { key: "boundaries", label: "Boundaries" },
+  { key: "non_negotiables", label: "Non-negotiables" },
+  { key: "support_system", label: "Support system" },
+  { key: "growth_priorities", label: "Current growth priorities" },
+  { key: "relationship_commitment", label: "Personal relationship commitment" },
+] as const;
+export type BlueprintSectionKey = (typeof BLUEPRINT_SECTIONS)[number]["key"];
+export const BLUEPRINT_SECTION_KEYS = new Set<string>(BLUEPRINT_SECTIONS.map((s) => s.key));
+
+// Conversation Planner fields (launchable standalone or from an experience).
+export const PLANNER_FIELDS = [
+  { key: "discuss", label: "What do I want to discuss?" },
+  { key: "why_matters", label: "Why does this matter?" },
+  { key: "hoped_outcome", label: "What outcome am I hoping for?" },
+  { key: "facts", label: "What facts do I know?" },
+  { key: "assumptions", label: "What assumptions am I making?" },
+  { key: "want_understood", label: "What do I want the other person to understand?" },
+  { key: "want_to_understand", label: "What do I want to understand from them?" },
+  { key: "boundary_request", label: "What boundary, request, or need do I want to communicate?" },
+  { key: "how_communicate", label: "How do I want to communicate it?" },
+  { key: "respectful_looks_like", label: "What would a respectful conversation look like?" },
+  { key: "when_where", label: "When and where should the conversation happen?" },
+  { key: "after_reflection", label: "After-conversation reflection" },
+] as const;
+export type PlannerFieldKey = (typeof PLANNER_FIELDS)[number]["key"];
+export const PLANNER_FIELD_KEYS = new Set<string>(PLANNER_FIELDS.map((f) => f.key));
+
 // Entitlement grant sources (extensible; V1 uses one_time_purchase).
 export const ENTITLEMENT_SOURCES = [
   "one_time_purchase", "bundle", "academy_inclusion", "promotional", "manual_grant", "subscription",

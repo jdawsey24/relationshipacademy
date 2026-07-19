@@ -37,6 +37,14 @@ export default function CompanionHome() {
             </div>
           )}
 
+          <Link href="/companion/planner" className="mt-6 flex items-center justify-between rounded-2xl border border-light-gray bg-white p-4 transition-colors hover:border-midnight-navy/40">
+            <span>
+              <span className="block font-display text-lg font-semibold text-midnight-navy">Plan a conversation</span>
+              <span className="mt-0.5 block font-body text-sm text-charcoal/60">Prepare for something you need to say.</span>
+            </span>
+            <span className="text-xl text-midnight-navy/40" aria-hidden="true">→</span>
+          </Link>
+
           <div className="mt-6 space-y-2.5">
             {data.cards.length === 0 ? (
               <p className="rounded-2xl border border-dashed border-light-gray bg-white/60 p-6 text-center font-body text-sm text-charcoal/50">Nothing here yet. New guided experiences appear as they&apos;re published.</p>

@@ -37,6 +37,13 @@ export default function CompanionSession() {
     save(ref, value);
   }
 
+  // Guard against losing an in-flight autosave on accidental navigation/close.
+  useEffect(() => {
+    const handler = (e: BeforeUnloadEvent) => { if (saveState === "saving") { e.preventDefault(); e.returnValue = ""; } };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [saveState]);
+
   async function complete() {
     if (!data) return;
     await fetch(`/api/companion/entries/${data.entry_id}`, { method: "POST" }).catch(() => {});

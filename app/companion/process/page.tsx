@@ -4,19 +4,31 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import CompanionChrome from "@/components/companion/CompanionChrome";
 
-interface Card { id: string; slug: string; title: string; short_description: string | null; est_minutes: number | null; universal: boolean }
+interface Card { id: string; slug: string; title: string; short_description: string | null; est_minutes: number | null; mode: string; universal: boolean }
+type Mode = "all" | "guided" | "free" | "short";
 
 export default function CompanionProcess() {
   const [cards, setCards] = useState<Card[] | null>(null);
   const [q, setQ] = useState("");
+  const [mode, setMode] = useState<Mode>("all");
 
   useEffect(() => { fetch("/api/companion/experiences?view=process").then((r) => r.ok ? r.json() : null).then((d) => setCards(d?.cards ?? [])).catch(() => {}); }, []);
 
   const filtered = useMemo(() => {
     if (!cards) return [];
     const t = q.trim().toLowerCase();
-    return t ? cards.filter((c) => c.title.toLowerCase().includes(t) || (c.short_description ?? "").toLowerCase().includes(t)) : cards;
-  }, [cards, q]);
+    return cards.filter((c) => {
+      if (t && !(c.title.toLowerCase().includes(t) || (c.short_description ?? "").toLowerCase().includes(t))) return false;
+      if (mode === "guided" && c.mode !== "guided") return false;
+      if (mode === "free" && c.mode !== "free") return false;
+      if (mode === "short" && !(c.est_minutes != null && c.est_minutes <= 10)) return false;
+      return true;
+    });
+  }, [cards, q, mode]);
+
+  const FILTERS: { key: Mode; label: string }[] = [
+    { key: "all", label: "All" }, { key: "guided", label: "Guided" }, { key: "free", label: "Free reflection" }, { key: "short", label: "Under 10 min" },
+  ];
 
   return (
     <CompanionChrome active="process">
@@ -25,6 +37,12 @@ export default function CompanionProcess() {
 
       <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search"
         className="mt-4 w-full rounded-xl border border-light-gray bg-white px-4 py-2.5 font-body text-sm focus:border-midnight-navy/40 focus:outline-none" />
+      <div className="mt-3 flex gap-2 overflow-x-auto">
+        {FILTERS.map((f) => (
+          <button key={f.key} onClick={() => setMode(f.key)}
+            className={`shrink-0 rounded-full px-3.5 py-1.5 font-ui text-xs ${mode === f.key ? "bg-midnight-navy text-white" : "border border-light-gray bg-white text-charcoal/65"}`}>{f.label}</button>
+        ))}
+      </div>
 
       <div className="mt-4 space-y-2.5">
         {cards === null ? <p className="font-body text-sm text-charcoal/50">Loading…</p> :
