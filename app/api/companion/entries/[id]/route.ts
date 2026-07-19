@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireEntitledCompanionUser } from "@/lib/companionAuth";
 import { saveResponse, completeEntry } from "@/lib/companion/entries";
+import { trackCompanionEvent } from "@/lib/companion/analytics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,5 +27,6 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   const { id } = await params;
   const ok = await completeEntry(cu.user.id, id);
   if (!ok) return NextResponse.json({ error: "Not found." }, { status: 404 });
+  await trackCompanionEvent(cu.user.id, "experience_completed", {});
   return NextResponse.json({ ok: true });
 }

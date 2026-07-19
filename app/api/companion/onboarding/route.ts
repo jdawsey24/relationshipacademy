@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireEntitledCompanionUser } from "@/lib/companionAuth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { RELATIONSHIP_STATUSES, INTEREST_TOPICS } from "@/lib/companion";
+import { trackCompanionEvent } from "@/lib/companion/analytics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -28,5 +29,6 @@ export async function POST(request: Request) {
   // Replace interest preferences.
   await s.from("user_interest_preferences").delete().eq("user_id", uid);
   if (interests.length) await s.from("user_interest_preferences").insert(interests.map((topic) => ({ user_id: uid, topic })));
+  await trackCompanionEvent(uid, "onboarding_completed", { status_key: statusKey, count: interests.length });
   return NextResponse.json({ ok: true });
 }

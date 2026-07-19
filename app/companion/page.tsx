@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import CompanionChrome from "@/components/companion/CompanionChrome";
+import InstallGuide from "@/components/companion/InstallGuide";
 
 interface Card { id: string; slug: string; title: string; short_description: string | null; est_minutes: number | null }
 interface Recent { id: string; title: string | null; status: string; updated_at: string }
@@ -16,7 +17,11 @@ export default function CompanionHome() {
 
   return (
     <CompanionChrome active="home">
-      <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
+      <InstallGuide />
+      <div className="flex items-center justify-between">
+        <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
+        <Link href="/companion/settings" aria-label="Settings" className="text-lg text-charcoal/40 hover:text-charcoal">⚙</Link>
+      </div>
       <h1 className="mt-2 text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy">What are you navigating right now?</h1>
 
       {!data ? (
