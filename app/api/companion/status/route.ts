@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireEntitledCompanionUser } from "@/lib/companionAuth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { RELATIONSHIP_STATUSES } from "@/lib/companion";
+import { trackCompanionEvent } from "@/lib/companion/analytics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -24,5 +25,6 @@ export async function POST(request: Request) {
   const uid = cu.user.id;
   await s.from("companion_profiles").update({ current_status_id: statusId, updated_at: new Date().toISOString() }).eq("user_id", uid);
   await s.from("user_structural_status_history").insert({ user_id: uid, structural_status_id: statusId });
+  await trackCompanionEvent(uid, "status_changed", { status_key: statusKey });
   return NextResponse.json({ ok: true });
 }

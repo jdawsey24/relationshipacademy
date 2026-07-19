@@ -8,6 +8,10 @@
 // ---------------------------------------------------------------------------
 export const COMPANION_ENABLED = process.env.NEXT_PUBLIC_COMPANION_ENABLED === "true";
 export const COMPANION_PRODUCT_KEY = "companion";
+// Stripe Price lookup_key for the one-time Companion purchase. The owner creates
+// a Price with this lookup_key (metadata product_key="companion",
+// billing_type="one_time") in Stripe; checkout is inert until it exists.
+export const COMPANION_PRICE_LOOKUP_KEY = "companion_onetime";
 
 // ---------------------------------------------------------------------------
 // Relationship status (consumer labels; internal structural context stored in DB).

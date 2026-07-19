@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireEntitledCompanionUser } from "@/lib/companionAuth";
 import { startEntry } from "@/lib/companion/entries";
+import { trackCompanionEvent } from "@/lib/companion/analytics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,5 +15,6 @@ export async function POST(request: Request) {
   const slug = String(body.slug ?? "");
   const started = await startEntry(cu.user.id, slug);
   if (!started) return NextResponse.json({ error: "Experience not available." }, { status: 404 });
+  await trackCompanionEvent(cu.user.id, "experience_started", { slug });
   return NextResponse.json(started);
 }

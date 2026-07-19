@@ -64,6 +64,28 @@ async function applyTierFlip(event: Stripe.Event) {
   }
 }
 
+// ---- 1b) Relationship Companion grant ----
+// One-time purchase completes -> write a companion_entitlements row. Keyed by
+// metadata.product_key === "companion" so it never touches Academy purchases.
+async function applyCompanionGrant(event: Stripe.Event) {
+  if (event.type !== "checkout.session.completed") return;
+  const s = event.data.object as Stripe.Checkout.Session;
+  if (s.metadata?.product_key !== "companion") return;
+  const userId = s.metadata?.user_id;
+  if (!userId) return;
+  const customerId = typeof s.customer === "string" ? s.customer : s.customer?.id ?? null;
+  const { grantFromStripeSession } = await import("@/lib/companion/entitlementGrants");
+  const granted = await grantFromStripeSession({ userId, customerId, ref: s.id });
+  if (granted) {
+    const email = s.customer_details?.email ?? s.customer_email ?? null;
+    if (email) {
+      const { sendCompanionAccessEmail } = await import("@/lib/companion/email");
+      const origin = process.env.SITE_URL || process.env.URL || "https://relationshiplc.com";
+      await sendCompanionAccessEmail(email, `${origin}/companion/welcome?purchase=success`);
+    }
+  }
+}
+
 // ---- 2) Finance sync ----
 async function handleFinanceEvent(event: Stripe.Event) {
   switch (event.type) {
@@ -146,6 +168,15 @@ export async function POST(request: Request) {
     await applyTierFlip(event);
   } catch (e) {
     console.error("[stripe/webhook] tier flip error:", e instanceof Error ? e.message : e);
+  }
+
+  // 1b) Relationship Companion access — an independent grant, separate from the
+  // Academy tier ladder. Idempotent (keyed by the Stripe object id). Never blocks
+  // the above.
+  try {
+    await applyCompanionGrant(event);
+  } catch (e) {
+    console.error("[stripe/webhook] companion grant error:", e instanceof Error ? e.message : e);
   }
 
   // 2) Finance sync (status machine). No-ops safely if the finance tables are absent.

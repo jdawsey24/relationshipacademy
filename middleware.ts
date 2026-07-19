@@ -21,6 +21,7 @@ const COMPANION_PUBLIC = new Set([
   "/companion/login",
   "/companion/welcome",
   "/companion/verify",
+  "/companion/offline", // PWA offline shell — must be reachable without a session
 ]);
 const COMPANION_AUTH_PAGES = new Set(["/companion/login"]);
 
