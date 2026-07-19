@@ -16,7 +16,7 @@ const NAV: { key: NavKey; label: string; href: string; icon: string }[] = [
 // The Companion app shell: mobile-first, warm-ivory, bottom tab nav, and the
 // consumer gate (entitlement -> email verify -> onboarding) enforced before any
 // app screen renders. Auth/onboarding/welcome pages render WITHOUT this shell.
-export default function CompanionChrome({ active, children, hideNav }: { active: NavKey; children: React.ReactNode; hideNav?: boolean }) {
+export default function CompanionChrome({ active, children, hideNav }: { active: NavKey | "none"; children: React.ReactNode; hideNav?: boolean }) {
   const router = useRouter();
   const [gate, setGate] = useState<"loading" | "ok">("loading");
 
