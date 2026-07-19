@@ -8,6 +8,10 @@ type Question = { id: string; question_order: number; options: Option[] };
 interface Quiz { questions: Question[] }
 type TieOption = { cluster_id: number; name: string; statement: string };
 
+// Sentinel answer value for "None of these fit" — a neutral answer that scores
+// nothing (option_id null, is_neutral true).
+const NEUTRAL = "__neutral__";
+
 export default function QuizPage() {
   const { assessment } = useParams<{ assessment: string }>();
   const router = useRouter();
@@ -34,7 +38,14 @@ export default function QuizPage() {
   const submit = useCallback(async (finalAnswers: Record<string, string>) => {
     if (!quiz || !sessionId) return;
     setBusy(true); setErr(null);
-    const payload = quiz.questions.map((q) => ({ question_id: q.id, option_id: finalAnswers[q.id] })).filter((a) => a.option_id);
+    const payload = quiz.questions
+      .filter((q) => finalAnswers[q.id])
+      .map((q) => {
+        const v = finalAnswers[q.id];
+        return v === NEUTRAL
+          ? { question_id: q.id, option_id: null, is_neutral: true }
+          : { question_id: q.id, option_id: v, is_neutral: false };
+      });
     const res = await fetch(`/api/snapshot/score`, {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ session_id: sessionId, answers: payload }),
@@ -45,9 +56,9 @@ export default function QuizPage() {
     router.push(`/snapshot/results/${d.session_id}`);
   }, [quiz, sessionId, router]);
 
-  function choose(question: Question, optionId: string) {
+  function choose(question: Question, value: string) {
     if (busy) return;
-    const next = { ...answers, [question.id]: optionId };
+    const next = { ...answers, [question.id]: value };
     setAnswers(next);
     const isLast = idx === (quiz?.questions.length ?? 0) - 1;
     setTimeout(() => { if (isLast) submit(next); else setIdx((i) => i + 1); }, 260);
@@ -114,6 +125,10 @@ export default function QuizPage() {
             </button>
           );
         })}
+        <button disabled={busy} onClick={() => choose(q, NEUTRAL)}
+          className={`block w-full rounded-2xl border border-dashed px-5 py-3.5 text-left font-body text-[15px] leading-relaxed transition-colors disabled:cursor-default ${answers[q.id] === NEUTRAL ? "border-midnight-navy bg-midnight-navy/5 text-midnight-navy" : "border-light-gray bg-transparent text-charcoal/60 hover:border-midnight-navy/40 hover:text-charcoal"}`}>
+          None of these fit
+        </button>
       </div>
       {answering && <p className="mt-5 text-center font-ui text-sm text-charcoal/50">Reading your snapshot…</p>}
       {err && <p className="mt-4 text-center text-sm text-coral-rose">{err}</p>}
