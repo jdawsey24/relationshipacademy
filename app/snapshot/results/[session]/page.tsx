@@ -166,9 +166,12 @@ function PlaybookCard({ session, title, subtitle, whyThisPlaybook, keyTakeaway, 
               {err && <p className="text-sm text-soft-coral">{err}</p>}
             </div>
           ) : (
-            <button onClick={() => setOpen(true)} className="mt-6 inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
-              {ctaLabel || "Get Your Playbook"} →
-            </button>
+            <>
+              {ctaLabel && <p className="mx-auto mt-4 max-w-md font-body text-[15px] leading-relaxed text-white/75">{ctaLabel}</p>}
+              <button onClick={() => setOpen(true)} className="mt-5 inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
+                Get Your Playbook →
+              </button>
+            </>
           )}
         </>
       )}
