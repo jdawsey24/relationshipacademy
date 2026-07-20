@@ -187,3 +187,6 @@ All 25 reviewer selections validated as canonical (correct ID + name + phase + d
 **Still pending owner call — 3** (Trust-domain proxies; not in the approved 16 nor the held 6): RS-0020, RS-0023, RS-0027 — approve as proxies or add to steward review.
 
 **Competency resolution tally:** 19 originally-valid + 16 approved = **35 resolved**; 6 held + 3 pending = 9 unresolved-with-options; 16 Recovery/Renewal = task-level, Draft. (60 total.) Registry unmodified pending final corrected-load approval.
+
+### Update — 3 borderline moved to steward review (owner, 2026-07-20)
+RS-0020, RS-0023, RS-0027 added to the steward hold. **Held for steward phase/domain review is now 9** (RS-0020, 0023, 0027, 0040, 0047, 0048, 0050, 0051, 0054), competency left unresolved. Tally: **35 resolved · 9 held (unresolved-with-options) · 16 Recovery/Renewal task-level Draft** = 60.
