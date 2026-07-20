@@ -133,3 +133,19 @@ A deterministic transform of registry v0.1 → the schema, applied by a reviewed
 2. **§5.2** — choose (a)/(b)/(c) for Recovery/Renewal.
 3. **§4 ⚠** — confirm the ambiguous/new category mappings.
 Then I finalize the corrected-registry dataset + the migration for a second review — still nothing destructive until you approve that.
+
+---
+
+## 10. Decisions resolved (owner, 2026-07-20) — corrected load applied
+- **§5.1 Exclusivity task:** **Intentional Investment** is canonical. **Op-Def / RLC Operations Manual §3.2 "Investment" → correct to "Intentional Investment"** (owner/steward manual edit; flagged, not auto-edited).
+- **§5.2 Recovery & Renewal:** do **not** create/infer competencies. The 16 R/R situations are mapped to **canonical Phase + Developmental Task only** and held in **Draft** until the competency architecture is operationalized. (Option c.)
+- **§4 categories confirmed:** Roles & Responsibilities **and** Family & Social Relationships → **Shared Life**; **Getting to Know Each Other** approved as a Companion-only consumer category (no framework meaning).
+
+### Corrected-load result (deterministic transforms done)
+- Statuses → 5; the 10 `ST-002` situations (RS-0011–RS-0020) reassigned to **Single + `current_focus="considering_dating"`**.
+- Domains → canonical IDs/names (Emotional Intimacy = DOM-003, Conflict Management = DOM-004, **Physical Intimacy** = DOM-006).
+- Developmental Task derived from Phase; categories remapped to the 14-set (distribution spans 13 categories; "Getting to Know Each Other" is net-new with no v0.1 source — available for manual assignment).
+- Competencies: **19 valid kept** (linked to canonical `Competency ID` → BIs derive); **16 R/R = task-level, Draft**; **25 need a steward pick** → `docs/companion-competency-remap-worklist.md` (each row lists the canonical competencies available for its phase+domain).
+
+### Remaining before the corrected dataset + migrations go to second review
+- Complete the **25-row competency worklist** (steward selects one canonical `Competency ID` per row from the provided options).
