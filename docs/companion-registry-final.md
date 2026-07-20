@@ -149,3 +149,10 @@ Then I finalize the corrected-registry dataset + the migration for a second revi
 
 ### Remaining before the corrected dataset + migrations go to second review
 - Complete the **25-row competency worklist** (steward selects one canonical `Competency ID` per row from the provided options).
+
+---
+
+## 11. Competency handling — updated (owner, 2026-07-20)
+- **No inline manual selection.** In the corrected load, **non-canonical competency values are removed** and the Competency field is left **UNRESOLVED** wherever a canonical mapping can't be determined automatically. Only the **19 auto-resolvable** competencies carry a canonical `Competency ID`.
+- The **canonical review document** is now **`docs/companion-competency-review-workbook.xlsx`** (supersedes the markdown worklist). It contains **only the 25 unresolved situations** with options, columns: Situation ID · Title · Phase · Domain · User Need · Canonical competency options (phase/domain) · blank **Selected Competency** · Notes. (The 16 Recovery/Renewal remain excluded — decided task-level/Draft, no options.)
+- **The registry is not modified** until those mappings are approved via the workbook.
