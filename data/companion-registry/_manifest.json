@@ -1,0 +1,24 @@
+{
+  "generated_from": "Registry v0.1 + MKB v2.1 + reviewed workbook",
+  "situations": 60,
+  "framework": {
+    "phases": 6,
+    "domains": 6,
+    "competencies": 111,
+    "behavioral_indicators": 333
+  },
+  "competency_resolution": {
+    "resolved": 35,
+    "held_steward_review": 9,
+    "recovery_renewal_task_level_draft": 16
+  },
+  "categories": 14,
+  "statuses": 5,
+  "notes": [
+    "Task=Intentional Investment; Domain=Physical Intimacy",
+    "5 statuses; considering_dating -> single.current_focus",
+    "14 consumer categories",
+    "R/R competency null + Draft",
+    "9 held competency null"
+  ]
+}

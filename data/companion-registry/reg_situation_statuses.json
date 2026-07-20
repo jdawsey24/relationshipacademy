@@ -1,0 +1,70 @@
+[
+  {
+    "situation_id": "RS-0003",
+    "status_key": "single"
+  },
+  {
+    "situation_id": "RS-0005",
+    "status_key": "single"
+  },
+  {
+    "situation_id": "RS-0007",
+    "status_key": "single"
+  },
+  {
+    "situation_id": "RS-0018",
+    "status_key": "dating"
+  },
+  {
+    "situation_id": "RS-0020",
+    "status_key": "dating"
+  },
+  {
+    "situation_id": "RS-0029",
+    "status_key": "committed"
+  },
+  {
+    "situation_id": "RS-0032",
+    "status_key": "engaged"
+  },
+  {
+    "situation_id": "RS-0032",
+    "status_key": "married"
+  },
+  {
+    "situation_id": "RS-0034",
+    "status_key": "engaged"
+  },
+  {
+    "situation_id": "RS-0034",
+    "status_key": "married"
+  },
+  {
+    "situation_id": "RS-0036",
+    "status_key": "engaged"
+  },
+  {
+    "situation_id": "RS-0038",
+    "status_key": "engaged"
+  },
+  {
+    "situation_id": "RS-0046",
+    "status_key": "committed"
+  },
+  {
+    "situation_id": "RS-0046",
+    "status_key": "married"
+  },
+  {
+    "situation_id": "RS-0049",
+    "status_key": "committed"
+  },
+  {
+    "situation_id": "RS-0054",
+    "status_key": "committed"
+  },
+  {
+    "situation_id": "RS-0059",
+    "status_key": "committed"
+  }
+]

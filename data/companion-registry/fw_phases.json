@@ -1,0 +1,44 @@
+[
+  {
+    "phase_id": "PH-001",
+    "name": "Exploration",
+    "phase_code": "EXPL",
+    "developmental_task": "Discernment",
+    "display_order": 1
+  },
+  {
+    "phase_id": "PH-002",
+    "name": "Exclusivity",
+    "phase_code": "EXCL",
+    "developmental_task": "Intentional Investment",
+    "display_order": 2
+  },
+  {
+    "phase_id": "PH-003",
+    "name": "Expansion",
+    "phase_code": "EXPN",
+    "developmental_task": "Integration",
+    "display_order": 3
+  },
+  {
+    "phase_id": "PH-004",
+    "name": "Expiration",
+    "phase_code": "EXPR",
+    "developmental_task": "Acceptance",
+    "display_order": 4
+  },
+  {
+    "phase_id": "PH-005",
+    "name": "Recovery",
+    "phase_code": null,
+    "developmental_task": "Healing",
+    "display_order": 5
+  },
+  {
+    "phase_id": "PH-006",
+    "name": "Renewal",
+    "phase_code": null,
+    "developmental_task": "Reengagement",
+    "display_order": 6
+  }
+]

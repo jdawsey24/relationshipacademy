@@ -1,0 +1,26 @@
+[
+  {
+    "domain_id": "DOM-001",
+    "name": "Communication"
+  },
+  {
+    "domain_id": "DOM-002",
+    "name": "Trust"
+  },
+  {
+    "domain_id": "DOM-003",
+    "name": "Emotional Intimacy"
+  },
+  {
+    "domain_id": "DOM-004",
+    "name": "Conflict Management"
+  },
+  {
+    "domain_id": "DOM-005",
+    "name": "Role Functioning"
+  },
+  {
+    "domain_id": "DOM-006",
+    "name": "Physical Intimacy"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "status_key": "single",
+    "name": "Single",
+    "display_order": 1
+  },
+  {
+    "status_key": "dating",
+    "name": "Dating",
+    "display_order": 2
+  },
+  {
+    "status_key": "committed",
+    "name": "Committed Relationship",
+    "display_order": 3
+  },
+  {
+    "status_key": "engaged",
+    "name": "Engaged",
+    "display_order": 4
+  },
+  {
+    "status_key": "married",
+    "name": "Married",
+    "display_order": 5
+  }
+]

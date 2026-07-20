@@ -1,0 +1,72 @@
+[
+  {
+    "category_id": "CAT-001",
+    "name": "Getting Started",
+    "display_order": 1
+  },
+  {
+    "category_id": "CAT-002",
+    "name": "Getting to Know Each Other",
+    "display_order": 2
+  },
+  {
+    "category_id": "CAT-003",
+    "name": "Communication",
+    "display_order": 3
+  },
+  {
+    "category_id": "CAT-004",
+    "name": "Trust",
+    "display_order": 4
+  },
+  {
+    "category_id": "CAT-005",
+    "name": "Boundaries",
+    "display_order": 5
+  },
+  {
+    "category_id": "CAT-006",
+    "name": "Conflict",
+    "display_order": 6
+  },
+  {
+    "category_id": "CAT-007",
+    "name": "Emotional Connection",
+    "display_order": 7
+  },
+  {
+    "category_id": "CAT-008",
+    "name": "Physical & Sexual Intimacy",
+    "display_order": 8
+  },
+  {
+    "category_id": "CAT-009",
+    "name": "Shared Life",
+    "display_order": 9
+  },
+  {
+    "category_id": "CAT-010",
+    "name": "Big Decisions",
+    "display_order": 10
+  },
+  {
+    "category_id": "CAT-011",
+    "name": "Life Changes",
+    "display_order": 11
+  },
+  {
+    "category_id": "CAT-012",
+    "name": "Breakups & Loss",
+    "display_order": 12
+  },
+  {
+    "category_id": "CAT-013",
+    "name": "Growing Forward",
+    "display_order": 13
+  },
+  {
+    "category_id": "CAT-014",
+    "name": "Wins Worth Celebrating",
+    "display_order": 14
+  }
+]

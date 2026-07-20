@@ -1,0 +1,1082 @@
+[
+  {
+    "situation_id": "RS-0001",
+    "search_text": "I Am Not Ready to Date Yet",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0001",
+    "search_text": "Not Ready to Date",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0001",
+    "search_text": "why do I am not ready to date yet?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0002",
+    "search_text": "I Feel Behind Because I Am Single",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0002",
+    "search_text": "Feeling Behind",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0002",
+    "search_text": "why do I feel behind because i am single?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0003",
+    "search_text": "I Keep Thinking About My Ex",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0003",
+    "search_text": "Thinking About an Ex",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0003",
+    "search_text": "why do I keep thinking about my ex?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0004",
+    "search_text": "I Want Closure After a Breakup",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0004",
+    "search_text": "Wanting Closure",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0004",
+    "search_text": "why do I want closure after a breakup?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0005",
+    "search_text": "My Ex Wants to Come Back",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0005",
+    "search_text": "An Ex Wants to Return",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0005",
+    "search_text": "my ex wants to come back",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0006",
+    "search_text": "I Am Learning How to Be Alone",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0006",
+    "search_text": "Learning to Be Alone",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0006",
+    "search_text": "why do I am learning how to be alone?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0007",
+    "search_text": "I Keep Choosing the Same Type of Person",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0007",
+    "search_text": "Repeating Partner Patterns",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0007",
+    "search_text": "why do I keep choosing the same type of person?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0008",
+    "search_text": "I Am Grieving the Relationship I Thought I Would Have",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0008",
+    "search_text": "Grieving the Future",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0008",
+    "search_text": "why do I am grieving the relationship i thought i would have?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0009",
+    "search_text": "I Want to Rebuild My Confidence After a Breakup",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0009",
+    "search_text": "Rebuilding Confidence",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0009",
+    "search_text": "why do I want to rebuild my confidence after a breakup?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0010",
+    "search_text": "I Am Happy Being Single",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0010",
+    "search_text": "Happy Being Single",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0010",
+    "search_text": "why do I am happy being single?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0011",
+    "search_text": "Am I Ready to Start Dating Again?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0011",
+    "search_text": "Dating Readiness",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0011",
+    "search_text": "am i ready to start dating again?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0012",
+    "search_text": "I Am Afraid of Getting Hurt Again",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0012",
+    "search_text": "Fear of Being Hurt",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0012",
+    "search_text": "why do I am afraid of getting hurt again?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0013",
+    "search_text": "I Do Not Know What I Am Looking For",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0013",
+    "search_text": "Unclear Dating Intentions",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0013",
+    "search_text": "why do I do not know what i am looking for?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0014",
+    "search_text": "I Want to Date Differently This Time",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0014",
+    "search_text": "Dating Differently",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0014",
+    "search_text": "why do I want to date differently this time?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0015",
+    "search_text": "I Am Nervous About Dating Apps",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0015",
+    "search_text": "Dating App Anxiety",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0015",
+    "search_text": "why do I am nervous about dating apps?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0016",
+    "search_text": "How Do I Meet People Without Using Apps?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0016",
+    "search_text": "Meeting People Offline",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0016",
+    "search_text": "how do i meet people without using apps?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0017",
+    "search_text": "I Am Worried I Will Ignore Red Flags Again",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0017",
+    "search_text": "Fear of Missing Red Flags",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0017",
+    "search_text": "why do I am worried i will ignore red flags again?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0018",
+    "search_text": "How Much of My Past Should I Share?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0018",
+    "search_text": "Sharing My Past",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0018",
+    "search_text": "how much of my past should i share?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0019",
+    "search_text": "I Am Dating Because Everyone Says I Should",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0019",
+    "search_text": "Pressure to Date",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0019",
+    "search_text": "why do I am dating because everyone says i should?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0020",
+    "search_text": "I Want to Create Better Dating Boundaries",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0020",
+    "search_text": "Dating Boundaries",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0020",
+    "search_text": "why do I want to create better dating boundaries?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0021",
+    "search_text": "Before a First Date",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0021",
+    "search_text": "First Date Preparation",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0021",
+    "search_text": "before a first date",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0022",
+    "search_text": "Should I Text First?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0022",
+    "search_text": "Texting First",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0022",
+    "search_text": "should i text first?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0023",
+    "search_text": "They Have Not Responded to My Message",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0023",
+    "search_text": "No Response",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0023",
+    "search_text": "they have not responded to my message",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0024",
+    "search_text": "They Keep Canceling Plans",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0024",
+    "search_text": "Repeated Cancellations",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0024",
+    "search_text": "they keep canceling plans",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0025",
+    "search_text": "I Do Not Know What They Are Looking For",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0025",
+    "search_text": "Unclear Intentions",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0025",
+    "search_text": "why do I do not know what they are looking for?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0026",
+    "search_text": "We Are Dating, but I Do Not Know Where This Is Going",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0026",
+    "search_text": "Undefined Direction",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0026",
+    "search_text": "how do we are dating, but i do not know where this is going?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0027",
+    "search_text": "I Am More Invested Than They Are",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0027",
+    "search_text": "Uneven Investment",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0027",
+    "search_text": "why do I am more invested than they are?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0028",
+    "search_text": "When Should We Become Exclusive?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0028",
+    "search_text": "Becoming Exclusive",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0028",
+    "search_text": "when should we become exclusive?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0029",
+    "search_text": "How Do I Bring Up Sexual Health and Boundaries?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0029",
+    "search_text": "Sexual Health Conversation",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0029",
+    "search_text": "how do i bring up sexual health and boundaries?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0030",
+    "search_text": "I See Potential, but I Also See Red Flags",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0030",
+    "search_text": "Potential and Red Flags",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0030",
+    "search_text": "why do I see potential, but i also see red flags?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0031",
+    "search_text": "We Need to Talk About Expectations",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0031",
+    "search_text": "Relationship Expectations",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0031",
+    "search_text": "how do we need to talk about expectations?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0032",
+    "search_text": "We Keep Having the Same Fight",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0032",
+    "search_text": "Recurring Fight",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0032",
+    "search_text": "how do we keep having the same fight?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0033",
+    "search_text": "I Do Not Feel Emotionally Safe Opening Up",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0033",
+    "search_text": "Emotional Safety",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0033",
+    "search_text": "why do I do not feel emotionally safe opening up?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0034",
+    "search_text": "We Need Better Boundaries With Family",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0034",
+    "search_text": "Family Boundaries",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0034",
+    "search_text": "how do we need better boundaries with family?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0035",
+    "search_text": "I Am Unsure Whether I Can Trust Them",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0035",
+    "search_text": "Trust Uncertainty",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0035",
+    "search_text": "why do I am unsure whether i can trust them?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0036",
+    "search_text": "We Need to Talk About Money",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0036",
+    "search_text": "Money Conversation",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0036",
+    "search_text": "how do we need to talk about money?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0037",
+    "search_text": "Our Physical Intimacy Feels One-Sided",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0037",
+    "search_text": "Uneven Physical Intimacy",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0037",
+    "search_text": "our physical intimacy feels one-sided",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0038",
+    "search_text": "Should We Move In Together?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0038",
+    "search_text": "Moving In Together",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0038",
+    "search_text": "should we move in together?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0039",
+    "search_text": "I Feel Like I Am Carrying the Relationship",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0039",
+    "search_text": "Carrying the Relationship",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0039",
+    "search_text": "why do I feel like i am carrying the relationship?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0040",
+    "search_text": "We Repaired Something That Used to Divide Us",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0040",
+    "search_text": "Successful Repair",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0040",
+    "search_text": "how do we repaired something that used to divide us?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0041",
+    "search_text": "Are We Ready for Marriage?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0041",
+    "search_text": "Marriage Readiness",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0041",
+    "search_text": "are we ready for marriage?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0042",
+    "search_text": "We Need to Discuss What Marriage Means to Us",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0042",
+    "search_text": "Meaning of Marriage",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0042",
+    "search_text": "how do we need to discuss what marriage means to us?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0043",
+    "search_text": "Our Families Are Taking Over the Wedding",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0043",
+    "search_text": "Wedding Family Pressure",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0043",
+    "search_text": "our families are taking over the wedding",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0044",
+    "search_text": "We Disagree About Having Children",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0044",
+    "search_text": "Children Decision",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0044",
+    "search_text": "how do we disagree about having children?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0045",
+    "search_text": "We Need a Plan for Money After Marriage",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0045",
+    "search_text": "Marriage Financial Plan",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0045",
+    "search_text": "how do we need a plan for money after marriage?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0046",
+    "search_text": "We Handle Conflict Very Differently",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0046",
+    "search_text": "Different Conflict Styles",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0046",
+    "search_text": "how do we handle conflict very differently?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0047",
+    "search_text": "I Have Doubts Before the Wedding",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0047",
+    "search_text": "Premarital Doubts",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0047",
+    "search_text": "why do I have doubts before the wedding?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0048",
+    "search_text": "We Need to Discuss Sex Before Marriage",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0048",
+    "search_text": "Premarital Sexual Conversation",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0048",
+    "search_text": "how do we need to discuss sex before marriage?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0049",
+    "search_text": "We Are Blending Families",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0049",
+    "search_text": "Blending Families",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0049",
+    "search_text": "how do we are blending families?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0050",
+    "search_text": "We Completed a Major Premarital Goal",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0050",
+    "search_text": "Premarital Milestone",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0050",
+    "search_text": "how do we completed a major premarital goal?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0051",
+    "search_text": "We Feel More Like Roommates Than Partners",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0051",
+    "search_text": "Roommate Dynamic",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0051",
+    "search_text": "how do we feel more like roommates than partners?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0052",
+    "search_text": "We Keep Arguing About Household Responsibilities",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0052",
+    "search_text": "Household Conflict",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0052",
+    "search_text": "how do we keep arguing about household responsibilities?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0053",
+    "search_text": "Parenting Is Straining Our Marriage",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0053",
+    "search_text": "Parenting Strain",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0053",
+    "search_text": "parenting is straining our marriage",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0054",
+    "search_text": "We Are Rebuilding Trust After Betrayal",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0054",
+    "search_text": "Trust After Betrayal",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0054",
+    "search_text": "how do we are rebuilding trust after betrayal?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0055",
+    "search_text": "Our Sex Life Has Changed",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0055",
+    "search_text": "Changing Sex Life",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0055",
+    "search_text": "our sex life has changed",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0056",
+    "search_text": "A Major Life Change Is Affecting Us",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0056",
+    "search_text": "Major Life Change",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0056",
+    "search_text": "a major life change is affecting us",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0057",
+    "search_text": "I Am Questioning Whether to Stay Married",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0057",
+    "search_text": "Questioning the Marriage",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0057",
+    "search_text": "why do I am questioning whether to stay married?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0058",
+    "search_text": "We Are Considering Separation",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0058",
+    "search_text": "Considering Separation",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0058",
+    "search_text": "how do we are considering separation?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0059",
+    "search_text": "We Want to Reconnect After a Difficult Season",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0059",
+    "search_text": "Reconnecting",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0059",
+    "search_text": "how do we want to reconnect after a difficult season?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0060",
+    "search_text": "We Made It Through a Difficult Season Together",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0060",
+    "search_text": "Shared Resilience",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  },
+  {
+    "situation_id": "RS-0060",
+    "search_text": "how do we made it through a difficult season together?",
+    "term_type": "Consumer Phrase",
+    "locale": "en-US"
+  }
+]
