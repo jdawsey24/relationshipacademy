@@ -9,11 +9,13 @@ import {
 } from "@/lib/companion";
 
 type Block = { id: string; block_type: string; block_order: number; payload: unknown; conditional_on: unknown };
+type Situation = { situation_id: string; official_title: string; primary_experience_type_id: string | null };
 type Detail = {
   experience: Record<string, unknown>;
   blocks: Block[];
   versions: { version_no: number; created_at: string }[];
   reviews: { action: string; actor: string | null; from_status: string | null; to_status: string | null; created_at: string; note: string | null }[];
+  situations: Situation[];
 };
 
 const ACTION_LABEL: Record<ContentAction, string> = {
@@ -82,6 +84,16 @@ export default function CompanionExperienceEditor() {
       <section className="mt-6 rounded-xl border border-light-gray bg-white p-5">
         <p className="text-sm font-semibold text-midnight-navy">Details {!editable && <span className="ml-2 text-xs font-normal text-charcoal/45">(read-only — revise to edit)</span>}</p>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          <label className="block text-sm sm:col-span-2">
+            <span className="text-xs font-medium text-charcoal/60">Situation (registry link)</span>
+            <select value={(exp.situation_id as string) ?? ""} disabled={!editable}
+              onChange={(e) => api(`/api/admin/companion/experiences/${id}`, "PATCH", { situation_id: e.target.value || null })}
+              className="admin-input mt-1 w-full disabled:opacity-60">
+              <option value="">— not linked —</option>
+              {d.situations.map((s) => <option key={s.situation_id} value={s.situation_id}>{s.situation_id} · {s.official_title}</option>)}
+            </select>
+            {exp.experience_type_id ? <span className="mt-1 block text-xs text-charcoal/45">Experience type (from situation): {String(exp.experience_type_id)}</span> : null}
+          </label>
           <MetaField label="Consumer title" value={exp.consumer_title as string} disabled={!editable} onSave={(v) => api(`/api/admin/companion/experiences/${id}`, "PATCH", { consumer_title: v })} />
           <MetaField label="Estimated minutes" value={String(exp.est_minutes ?? "")} disabled={!editable} onSave={(v) => api(`/api/admin/companion/experiences/${id}`, "PATCH", { est_minutes: v ? Number(v) : null })} />
           <MetaField label="Short description" value={exp.short_description as string} disabled={!editable} full onSave={(v) => api(`/api/admin/companion/experiences/${id}`, "PATCH", { short_description: v })} />

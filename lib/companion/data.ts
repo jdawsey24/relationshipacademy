@@ -22,12 +22,13 @@ export async function listExperiences(): Promise<ExperienceListRow[]> {
 export async function getExperienceDetail(id: string) {
   try {
     const s = getSupabaseAdminClient();
-    const [{ data: exp }, { data: blocks }, { data: versions }, { data: reviews }, { data: statusMaps }] = await Promise.all([
+    const [{ data: exp }, { data: blocks }, { data: versions }, { data: reviews }, { data: statusMaps }, situations] = await Promise.all([
       s.from("companion_experiences").select("*").eq("id", id).maybeSingle(),
       s.from("companion_experience_blocks").select("*").eq("experience_id", id).order("block_order"),
       s.from("companion_experience_versions").select("id, version_no, created_at").eq("experience_id", id).order("version_no", { ascending: false }),
       s.from("companion_content_reviews").select("*").eq("experience_id", id).order("created_at", { ascending: false }),
       s.from("companion_experience_status_mappings").select("structural_status_id, mode").eq("experience_id", id),
+      listSituations(),
     ]);
     if (!exp) return null;
     return {
@@ -36,8 +37,21 @@ export async function getExperienceDetail(id: string) {
       versions: (versions ?? []) as Record<string, unknown>[],
       reviews: (reviews ?? []) as Record<string, unknown>[],
       statusMappings: (statusMaps ?? []) as Record<string, unknown>[],
+      situations,
     };
   } catch { return null; }
+}
+
+// Situation catalog for the experience↔situation link (0046). Resilient: returns
+// [] if the registry tables aren't present yet.
+export async function listSituations(): Promise<{ situation_id: string; official_title: string; primary_experience_type_id: string | null }[]> {
+  try {
+    const s = getSupabaseAdminClient();
+    const { data } = await s.from("reg_situations")
+      .select("situation_id, official_title, primary_experience_type_id")
+      .order("situation_id");
+    return (data ?? []) as { situation_id: string; official_title: string; primary_experience_type_id: string | null }[];
+  } catch { return []; }
 }
 
 export async function listReusableTemplates() {

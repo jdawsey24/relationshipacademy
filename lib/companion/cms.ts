@@ -65,6 +65,17 @@ export async function updateExperienceMeta(id: string, patch: Record<string, unk
   const meta: Record<string, unknown> = { updated_at: new Date().toISOString() };
   for (const [k, v] of Object.entries(patch)) if (META_FIELDS.has(k)) meta[k] = v;
   if ("title" in meta) meta.slug = slugify(String(meta.title));
+  // Link to a registry situation (0046): derive experience_type_id from it.
+  if ("situation_id" in patch) {
+    const sid = patch.situation_id ? String(patch.situation_id) : null;
+    meta.situation_id = sid;
+    if (sid) {
+      const { data: sit } = await s.from("reg_situations").select("primary_experience_type_id").eq("situation_id", sid).maybeSingle();
+      meta.experience_type_id = (sit as { primary_experience_type_id?: string } | null)?.primary_experience_type_id ?? null;
+    } else {
+      meta.experience_type_id = null;
+    }
+  }
   const { error } = await s.from("companion_experiences").update(meta).eq("id", id);
   if (error) throw new CompanionCmsError("Failed to save.", 502);
   await audit({ actor, action: "companion.experience.update", target: id, metadata: { fields: Object.keys(meta) } });
