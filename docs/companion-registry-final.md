@@ -156,3 +156,34 @@ Then I finalize the corrected-registry dataset + the migration for a second revi
 - **No inline manual selection.** In the corrected load, **non-canonical competency values are removed** and the Competency field is left **UNRESOLVED** wherever a canonical mapping can't be determined automatically. Only the **19 auto-resolvable** competencies carry a canonical `Competency ID`.
 - The **canonical review document** is now **`docs/companion-competency-review-workbook.xlsx`** (supersedes the markdown worklist). It contains **only the 25 unresolved situations** with options, columns: Situation ID · Title · Phase · Domain · User Need · Canonical competency options (phase/domain) · blank **Selected Competency** · Notes. (The 16 Recovery/Renewal remain excluded — decided task-level/Draft, no options.)
 - **The registry is not modified** until those mappings are approved via the workbook.
+
+---
+
+## 12. Competency review outcome (owner, 2026-07-20)
+All 25 reviewer selections validated as canonical (correct ID + name + phase + domain vs MKB v2.1).
+
+**Approved — 16** (folded into the corrected load with canonical Competency IDs):
+| Situation | Competency ID | Competency |
+|---|---|---|
+| RS-0015 | ROL-EXPL-003 | Congruence |
+| RS-0026 | COM-EXPL-007 | Clarification |
+| RS-0032 | CON-EXPN-002 | Problem Solving |
+| RS-0034 | ROL-EXPN-001 | Role Integration |
+| RS-0035 | TRU-EXCL-002 | Consistency |
+| RS-0036 | ROL-EXPN-002 | Shared Responsibility |
+| RS-0038 | ROL-EXPN-001 | Role Integration |
+| RS-0041 | ROL-EXPN-001 | Role Integration |
+| RS-0043 | ROL-EXPN-003 | Coordination |
+| RS-0044 | ROL-EXPN-002 | Shared Responsibility |
+| RS-0045 | ROL-EXPN-003 | Coordination |
+| RS-0046 | CON-EXPN-001 | Negotiation |
+| RS-0049 | ROL-EXPN-003 | Coordination |
+| RS-0052 | ROL-EXPN-002 | Shared Responsibility |
+| RS-0053 | ROL-EXPN-003 | Coordination |
+| RS-0058 | ROL-EXPR-002 | Role Transition |
+
+**Held for steward phase/domain re-examination — 6** (competency left UNRESOLVED; these are framework-mapping questions, not competency-choice errors): RS-0040, RS-0047, RS-0048, RS-0050, RS-0051 (chosen competency contradicts the reconnect need), RS-0054.
+
+**Still pending owner call — 3** (Trust-domain proxies; not in the approved 16 nor the held 6): RS-0020, RS-0023, RS-0027 — approve as proxies or add to steward review.
+
+**Competency resolution tally:** 19 originally-valid + 16 approved = **35 resolved**; 6 held + 3 pending = 9 unresolved-with-options; 16 Recovery/Renewal = task-level, Draft. (60 total.) Registry unmodified pending final corrected-load approval.
