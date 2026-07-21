@@ -1,0 +1,60 @@
+# Companion Content — Theory/Safety Review (preparatory)
+
+**Date:** 2026-07-21 · **Reviewer:** AI (preparatory pass) · **Adjudication + sign-off:** owner (framework author + LMFT), via the governance ladder.
+
+## Scope & method
+All **43 published guided experiences** (288 content blocks) were reviewed against the canonical grounding already in the system: each situation's `definition` + `user_need`, and each mapped competency's `name`, `educational_objective`, and canonical behavioral `indicators` (`fw_behavioral_indicators`). Six independent reviewers each took a batch, grounding **only** in that canonical data — flagging, never rewriting or inventing theory. This report is preparatory input for the formal theory/safety pass; **the owner adjudicates every item.**
+
+## Result at a glance
+- ~27 experiences reviewed clean.
+- **2 blockers**, **4 should-fix**, **~11 notes** across ~16 experiences.
+- Dominant theme: **competency-mapping fit** (content vs. its mapped competency) — a registry crosswalk question, not a writing-quality one — plus **generalized "stated-as-fact" claims** in educational notes that may implicitly expand the framework.
+
+---
+
+## 🔴 Blockers (must resolve before launch)
+
+1. **`placeholder-something-happened` — a placeholder is PUBLISHED.** Title is `[APPROVED TITLE TO BE PROVIDED]`, situation is empty, no mapped competency, every block is a bracket stub (`[GUIDED REFLECTION PROMPT TO BE PROVIDED]`, etc.). It cannot be reviewed and must not be live. The slug (`something-happened`) + an emotion-select block suggest a sensitive/aftermath scenario → once authored it needs an explicit safety classification and re-review. **Action:** unpublish now (I can do this on request), then author + review before re-publishing.
+
+2. **`we-feel-more-like-roommates-than-partners` — competency contradiction.** The situation's `user_need` is to **reconnect**, and every block pushes reconnection ("the first step toward reconnecting"). But the mapped Primary competency is **Disengagement**, whose canonical indicators are the *opposite* intent ("Reduces emotional investment in patterns that are ending", "Stops attempting to preserve a form of closeness that no longer exists"). **Action:** verify the mapping — likely a connection/repair competency, not Disengagement; or realign the content.
+
+## 🟠 Should-fix (competency-mapping fit)
+The content is sound, but the **mapped competency doesn't match what the experience actually does**. These are crosswalk decisions for you — re-map, or re-align content:
+
+- **`we-disagree-about-having-children`** → mapped **Shared Responsibility** (labor/over-underfunctioning indicators), but content is a values/desire disagreement about having children. No content touches division of labor.
+- **`i-do-not-know-what-i-am-looking-for`** → mapped **Clarification** (interpersonal: "asks for more information", "checks understanding"), but content is **internal self-clarity** "before anyone else is part of the picture" — no other person to clarify with.
+- **`they-have-not-responded-to-my-message`** → mapped **Reflection**, whose indicators are explicitly **conflict-scoped** ("processes what happened in conflict", "after disagreement"). A non-response isn't a disagreement.
+- **`we-are-rebuilding-trust-after-betrayal`** → **role confusion** (safety-adjacent): the closing casts the user as the *betrayed* party ("keep watching for genuine, consistent effort"), but the practice + reflection cast them as the one who must *perform* repair ("show up steadily… even on the hard days"). Asking a possibly-betrayed user to carry repair labor risks placing the burden on the wrong person. **Decide which partner the user is, or handle both explicitly.**
+
+## 🟡 Notes — theory fidelity (generalized claims stated as fact)
+Educational notes that assert empirical/framework generalizations **not supported by the mapped competency's canonical indicators** — verify against the manual, or soften so the framework isn't implicitly expanded:
+
+- **`we-keep-having-the-same-fight`** — "A recurring fight *usually means* the underlying problem hasn't been named"; "Turning 'me vs. you' into 'us vs. the problem' is what makes it solvable."
+- **`we-repaired-something-that-used-to-divide-us`** — "Being able to reconnect after conflict is *one of the strongest signs of a healthy bond*."
+- **`we-handle-conflict-very-differently`** — "Different conflict styles aren't a dealbreaker — *unspoken ones are*" (absolute predictive claim).
+- **`we-keep-arguing-about-household-responsibilities`** — "Fights about housework are *usually about fairness and feeling valued*, not just the dishes" (emotional-meaning attribution beyond Shared Responsibility).
+- **`we-are-blending-families`** — "presenting a *united front*" (not in the logistical Coordination indicators).
+
+## 🟡 Notes — sensitive-situation handling (clinician judgment)
+These lean one direction or omit a safety distinction; worth your clinical eye:
+
+- **`i-do-not-feel-emotionally-safe-opening-up`** — frames unsafety as a pacing problem and nudges disclosure "to test the water"; never acknowledges dynamics where more disclosure is *not* advisable.
+- **`i-see-potential-but-i-also-see-red-flags`** — treats all red flags as reflective evidence over time; doesn't distinguish incompatibility red flags from **safety/abuse** red flags.
+- **`i-am-unsure-whether-i-can-trust-them`** — user_need is to sort "fear vs. evidence," but the reflection prompts only suspicion ("what has your gut been noticing…"), tilting toward validating it rather than even-handed.
+
+## 🟡 Notes — scope / structure
+- **`i-am-nervous-about-dating-apps`** — situation definition includes feeling **unsafe** about online dating, but content only addresses congruence; safety dimension untouched.
+- **Reused generic `conversation_planner` block** fits poorly on solo / pre-partner experiences (`before-a-first-date`, `i-am-nervous-about-dating-apps`, `i-do-not-know-what-i-am-looking-for`) — "what you'd want *them* to understand" assumes a partner who isn't there.
+- **`our-families-are-taking-over-the-wedding`** — mapped **Coordination** (logistical) but content is couple-boundary/alliance work.
+
+---
+
+## Recommended owner actions
+1. **Unpublish `placeholder-something-happened`** immediately (blocker #1).
+2. **Adjudicate the competency mappings** (blocker #2 + the should-fix set) — decide re-map vs. re-align. These touch the governed crosswalk, so they're yours to set.
+3. **Review the "stated-as-fact" claims** against the manual — keep or soften each.
+4. **Clinician review of the sensitive-situation cluster** (trust / red-flags / emotional-safety), especially the safety/abuse red-flag distinction.
+5. Decide whether the generic conversation-planner block belongs in solo experiences.
+6. Route the surviving content through the formal Draft→Theory→Safety→Approved ladder for the sign-off of record.
+
+_No content or mappings were changed by this review._
