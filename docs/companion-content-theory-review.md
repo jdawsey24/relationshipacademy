@@ -35,12 +35,12 @@ Educational notes that assert empirical/framework generalizations **not supporte
 - **`we-keep-arguing-about-household-responsibilities`** — "Fights about housework are *usually about fairness and feeling valued*, not just the dishes" (emotional-meaning attribution beyond Shared Responsibility).
 - **`we-are-blending-families`** — "presenting a *united front*" (not in the logistical Coordination indicators).
 
-## 🟡 Notes — sensitive-situation handling (clinician judgment)
-These lean one direction or omit a safety distinction; worth your clinical eye:
+## 🟡 Notes — sensitive-situation handling (clinician judgment) — ✅ RESOLVED (2026-07-21)
+All three re-authored (owner-approved) with safety-aware balance and re-published via the governance ladder (v6). Edits keep the educational, non-diagnostic, non-directive boundary.
 
-- **`i-do-not-feel-emotionally-safe-opening-up`** — frames unsafety as a pacing problem and nudges disclosure "to test the water"; never acknowledges dynamics where more disclosure is *not* advisable.
-- **`i-see-potential-but-i-also-see-red-flags`** — treats all red flags as reflective evidence over time; doesn't distinguish incompatibility red flags from **safety/abuse** red flags.
-- **`i-am-unsure-whether-i-can-trust-them`** — user_need is to sort "fear vs. evidence," but the reflection prompts only suspicion ("what has your gut been noticing…"), tilting toward validating it rather than even-handed.
+- **`i-do-not-feel-emotionally-safe-opening-up`** — was framing unsafety as only a pacing problem. Now acknowledges that if opening up keeps feeling unsafe no matter the pace, that's information worth heeding (reflection/educational-note/closing).
+- **`i-see-potential-but-i-also-see-red-flags`** — was treating all red flags as wait-and-see. Now distinguishes fit/incompatibility concerns from **safety** concerns (controlled, disrespected, pressured, afraid) that "aren't a wait-and-see — a reason to step back and reach for support" (intro + closing).
+- **`i-am-unsure-whether-i-can-trust-them`** — reflection was one-directional (suspicion only). Now even-handed: invites the fear-side too ("what past experiences might be coloring how you're reading this") and separates old fears from real evidence (reflection + closing).
 
 ## 🟡 Notes — scope / structure
 - **`i-am-nervous-about-dating-apps`** — situation definition includes feeling **unsafe** about online dating, but content only addresses congruence; safety dimension untouched.
