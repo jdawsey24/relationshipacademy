@@ -37,7 +37,7 @@ export default async function CompanionWelcomePage({ searchParams }: { searchPar
             <Medallion paths={["M8 11V8a4 4 0 0 1 8 0", "M6 11h12v9H6z", "M12 15v2"]} />
             <p className="mt-5 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
             <h1 className="mt-2 font-display text-3xl font-semibold text-midnight-navy">Companion access isn&apos;t active yet</h1>
-            <p className="mt-3 font-body leading-relaxed text-charcoal/70">This account doesn&apos;t include the Relationship Companion yet. Once it&apos;s part of your membership, it&apos;ll open right here — no download needed.</p>
+            <p className="mt-3 font-body leading-relaxed text-charcoal/70">The Relationship Companion is a one-time purchase. Once you&apos;ve unlocked it, it opens right here — no app store, no download.</p>
           </>
         )}
       </div>

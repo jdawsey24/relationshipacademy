@@ -12,6 +12,12 @@ export const COMPANION_PRODUCT_KEY = "companion";
 // a Price with this lookup_key (metadata product_key="companion",
 // billing_type="one_time") in Stripe; checkout is inert until it exists.
 export const COMPANION_PRICE_LOOKUP_KEY = "companion_onetime";
+// Discounted one-time price for returning customers who already own another
+// paid item (currently: an active Academy membership). The owner creates a
+// second Price with this lookup_key at the discounted amount (e.g. $9.99).
+// Optional: if it doesn't exist in Stripe, checkout falls back to the base price,
+// so no one is ever blocked from buying.
+export const COMPANION_RETURNING_PRICE_LOOKUP_KEY = "companion_returning";
 
 // ---------------------------------------------------------------------------
 // Relationship status (consumer labels; internal structural context stored in DB).
