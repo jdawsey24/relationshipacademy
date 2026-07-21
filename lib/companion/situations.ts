@@ -100,7 +100,7 @@ export async function searchSituations(q: string, includeDraft: boolean): Promis
 
 export interface SituationDetail {
   situation_id: string; title: string; definition: string | null; user_need: string | null;
-  category: string | null; publication_status: string;
+  category: string | null; category_id: string | null; publication_status: string;
   experience_slug: string | null;   // a linked PUBLISHED experience to run, if any
 }
 
@@ -120,7 +120,8 @@ export async function getSituationDetail(situationId: string, includeDraft: bool
     return {
       situation_id: r.situation_id as string, title: r.official_title as string,
       definition: (r.definition as string) ?? null, user_need: (r.user_need as string) ?? null,
-      category: ((cat as { name?: string } | null)?.name) ?? null, publication_status: r.publication_status as string,
+      category: ((cat as { name?: string } | null)?.name) ?? null, category_id: (r.primary_category_id as string) ?? null,
+      publication_status: r.publication_status as string,
       experience_slug: ((exp as { slug?: string } | null)?.slug) ?? null,
     };
   } catch { return null; }
