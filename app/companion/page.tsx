@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import CompanionChrome from "@/components/companion/CompanionChrome";
 import InstallGuide from "@/components/companion/InstallGuide";
+import SituationCard from "@/components/companion/SituationCard";
 
-interface Situation { situation_id: string; title: string; user_need: string | null }
+interface Situation { situation_id: string; title: string; user_need: string | null; category_id: string | null }
 interface Recent { id: string; title: string | null; status: string; updated_at: string }
 
 export default function CompanionHome() {
@@ -31,36 +32,32 @@ export default function CompanionHome() {
       {preview && <p className="mt-1 font-ui text-[11px] uppercase tracking-wide text-coral-rose">Staff preview · showing draft situations</p>}
 
       {draft && (
-        <Link href="/companion/journey" className="mt-6 block rounded-2xl border border-midnight-navy/30 bg-white p-4">
+        <Link href="/companion/journey" className="mt-6 block rounded-2xl border border-midnight-navy/25 bg-white p-4 transition-colors hover:border-midnight-navy/40">
           <p className="font-ui text-[11px] font-semibold uppercase tracking-wide text-coral-rose">Continue where you left off</p>
           <p className="mt-1 font-display text-lg font-semibold text-midnight-navy">{draft.title ?? "Your reflection"}</p>
         </Link>
       )}
 
-      <Link href="/companion/planner" className="mt-6 flex items-center justify-between rounded-2xl border border-light-gray bg-white p-4 transition-colors hover:border-midnight-navy/40">
-        <span>
-          <span className="block font-display text-lg font-semibold text-midnight-navy">Plan a conversation</span>
-          <span className="mt-0.5 block font-body text-sm text-charcoal/60">Prepare for something you need to say.</span>
+      <Link href="/companion/planner"
+        className="mt-6 flex items-center gap-3.5 rounded-2xl bg-midnight-navy p-4 text-white transition-colors hover:bg-midnight-navy/95">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/15">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5h16v10H9l-4 4V5z" /></svg>
         </span>
-        <span className="text-xl text-midnight-navy/40" aria-hidden="true">→</span>
+        <span className="flex-1">
+          <span className="block font-display text-lg font-semibold">Plan a conversation</span>
+          <span className="mt-0.5 block font-body text-[13px] text-white/70">Prepare for something you need to say.</span>
+        </span>
+        <span className="text-white/50" aria-hidden="true">→</span>
       </Link>
 
-      <div className="mt-6 space-y-2.5">
+      <p className="mt-7 font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal/40">For where you are now</p>
+      <div className="mt-2.5 space-y-2.5">
         {situations === null ? (
           <p className="font-body text-sm text-charcoal/50">Loading…</p>
         ) : situations.length === 0 ? (
           <p className="rounded-2xl border border-dashed border-light-gray bg-white/60 p-6 text-center font-body text-sm text-charcoal/50">Nothing here yet for where you are right now. New situations appear as they&apos;re published.</p>
-        ) : situations.map((sit) => <SituationCard key={sit.situation_id} sit={sit} />)}
+        ) : situations.map((sit) => <SituationCard key={sit.situation_id} id={sit.situation_id} title={sit.title} need={sit.user_need} categoryId={sit.category_id} />)}
       </div>
     </CompanionChrome>
-  );
-}
-
-function SituationCard({ sit }: { sit: Situation }) {
-  return (
-    <Link href={`/companion/situations/${sit.situation_id}`} className="block rounded-2xl border border-light-gray bg-white p-4 transition-colors hover:border-midnight-navy/40">
-      <p className="font-display text-lg font-semibold text-midnight-navy">{sit.title}</p>
-      {sit.user_need && <p className="mt-0.5 font-body text-sm leading-relaxed text-charcoal/65">{sit.user_need}</p>}
-    </Link>
   );
 }
