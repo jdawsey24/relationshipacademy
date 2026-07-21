@@ -431,10 +431,10 @@
  },
  {
   "situation_id": "RS-0044",
-  "phase_id": "PH-003",
-  "developmental_task": "Integration",
-  "domain_id": "DOM-005",
-  "competency_id": "ROL-EXPN-002",
+  "phase_id": "PH-002",
+  "developmental_task": "Intentional Investment",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXCL-005",
   "mapping_role": "Primary",
   "resolution_status": "resolved",
   "active": true
