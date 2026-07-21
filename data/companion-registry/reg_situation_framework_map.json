@@ -501,10 +501,10 @@
  },
  {
   "situation_id": "RS-0051",
-  "phase_id": "PH-004",
-  "developmental_task": "Acceptance",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
   "domain_id": "DOM-003",
-  "competency_id": "EMI-EXPR-002",
+  "competency_id": "EMI-EXPN-002",
   "mapping_role": "Primary",
   "resolution_status": "resolved",
   "active": true
