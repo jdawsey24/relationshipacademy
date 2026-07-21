@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import CompanionChrome from "@/components/companion/CompanionChrome";
+import SafetyInterstitial, { type SafetyPayload } from "@/components/companion/SafetyInterstitial";
 import { PLANNER_FIELDS } from "@/lib/companion";
 
 // The 12 planner fields grouped into readable sections.
@@ -22,6 +23,7 @@ export default function CompanionPlannerEdit() {
   const [fields, setFields] = useState<Record<string, string>>({});
   const [state, setState] = useState<"idle" | "saving" | "saved">("idle");
   const [notFound, setNotFound] = useState(false);
+  const [safety, setSafety] = useState<SafetyPayload | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
@@ -34,8 +36,9 @@ export default function CompanionPlannerEdit() {
     setFields(next); setState("saving");
     clearTimeout(timer.current);
     timer.current = setTimeout(async () => {
-      await fetch(`/api/companion/planner/${id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ fields: next }) }).catch(() => {});
+      const r = await fetch(`/api/companion/planner/${id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ fields: next }) }).then((res) => res.json()).catch(() => null);
       setState("saved");
+      if (r?.safety) setSafety(r.safety as SafetyPayload);
     }, 700);
   }
 
@@ -45,6 +48,7 @@ export default function CompanionPlannerEdit() {
 
   return (
     <CompanionChrome active="none">
+      {safety && <SafetyInterstitial payload={safety} onClose={() => setSafety(null)} />}
       <div className="flex items-center justify-between">
         <button onClick={() => router.replace("/companion/planner")} className="flex items-center gap-1 font-ui text-sm text-charcoal/55 hover:text-charcoal"><span aria-hidden="true">←</span> Plans</button>
         <span className="font-ui text-xs text-charcoal/40">{state === "saving" ? "Saving…" : state === "saved" ? "Saved" : ""}</span>

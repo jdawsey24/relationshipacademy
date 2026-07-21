@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import BlockView, { type RenderBlock } from "@/components/companion/blocks/BlockRenderer";
+import SafetyInterstitial, { type SafetyPayload } from "@/components/companion/SafetyInterstitial";
+import GetHelp from "@/components/companion/GetHelp";
 import { isInputBlock } from "@/lib/companion";
 
 const isAnswered = (v: unknown): boolean =>
@@ -17,6 +19,7 @@ export default function CompanionSession() {
   const [responses, setResponses] = useState<Record<string, unknown>>({});
   const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">("idle");
   const [notFound, setNotFound] = useState(false);
+  const [safety, setSafety] = useState<SafetyPayload | null>(null);
   const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
   useEffect(() => {
@@ -31,8 +34,9 @@ export default function CompanionSession() {
     setSaveState("saving");
     clearTimeout(timers.current[ref]);
     timers.current[ref] = setTimeout(async () => {
-      await fetch(`/api/companion/entries/${data.entry_id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ block_ref: ref, response: value }) }).catch(() => {});
+      const r = await fetch(`/api/companion/entries/${data.entry_id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ block_ref: ref, response: value }) }).then((res) => res.json()).catch(() => null);
       setSaveState("saved");
+      if (r?.safety) setSafety(r.safety as SafetyPayload); // interrupt the educational flow
     }, 700);
   }, [data]);
 
@@ -66,6 +70,9 @@ export default function CompanionSession() {
   const pct = inputs.length ? Math.round((answered / inputs.length) * 100) : 0;
 
   return (
+    <>
+    {safety && <SafetyInterstitial payload={safety} onClose={() => setSafety(null)} />}
+    <GetHelp />
     <main className="mx-auto min-h-screen max-w-md bg-warm-ivory px-5 pb-32 pt-6">
       <div className="flex items-center justify-between">
         <button onClick={() => router.replace("/companion")} className="flex items-center gap-1 font-ui text-sm text-charcoal/55 hover:text-charcoal">
@@ -93,6 +100,7 @@ export default function CompanionSession() {
       </button>
       <p className="mt-3 text-center font-body text-xs text-charcoal/40">Your reflection is private to you. You can leave and come back anytime.</p>
     </main>
+    </>
   );
 }
 

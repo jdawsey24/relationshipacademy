@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import CompanionChrome from "@/components/companion/CompanionChrome";
+import SafetyInterstitial, { type SafetyPayload } from "@/components/companion/SafetyInterstitial";
 
 interface Section { key: string; label: string; body: string; updated_at: string | null }
 
@@ -18,6 +19,7 @@ const GROUPS: { title: string; keys: string[] }[] = [
 
 export default function CompanionBlueprint() {
   const [sections, setSections] = useState<Section[] | null>(null);
+  const [safety, setSafety] = useState<SafetyPayload | null>(null);
   useEffect(() => { fetch("/api/companion/blueprint").then((r) => r.ok ? r.json() : null).then((d) => setSections(d?.sections ?? [])).catch(() => {}); }, []);
 
   const byKey = new Map((sections ?? []).map((s) => [s.key, s]));
@@ -27,6 +29,7 @@ export default function CompanionBlueprint() {
 
   return (
     <CompanionChrome active="blueprint">
+      {safety && <SafetyInterstitial payload={safety} onClose={() => setSafety(null)} />}
       <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Blueprint</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy">Your blueprint</h1>
       <p className="mt-1 font-body text-sm leading-relaxed text-charcoal/60">A living picture of what matters to you. Fill it in gradually — nothing needs finishing in one sitting.</p>
@@ -52,7 +55,7 @@ export default function CompanionBlueprint() {
                 <h2 className="font-display text-lg font-semibold text-midnight-navy">{g.title}</h2>
                 <div className="mt-1.5 h-px bg-light-gray" />
                 <div className="mt-3 space-y-2.5">
-                  {items.map((s) => <SectionEditor key={s.key} section={s} />)}
+                  {items.map((s) => <SectionEditor key={s.key} section={s} onSafety={setSafety} />)}
                 </div>
               </section>
             );
@@ -63,7 +66,7 @@ export default function CompanionBlueprint() {
   );
 }
 
-function SectionEditor({ section }: { section: Section }) {
+function SectionEditor({ section, onSafety }: { section: Section; onSafety: (p: SafetyPayload) => void }) {
   const [text, setText] = useState(section.body);
   const [state, setState] = useState<"idle" | "saving" | "saved">("idle");
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -72,8 +75,9 @@ function SectionEditor({ section }: { section: Section }) {
     setText(v); setState("saving");
     clearTimeout(timer.current);
     timer.current = setTimeout(async () => {
-      await fetch("/api/companion/blueprint", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ key: section.key, text: v }) }).catch(() => {});
+      const r = await fetch("/api/companion/blueprint", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ key: section.key, text: v }) }).then((res) => res.json()).catch(() => null);
       setState("saved");
+      if (r?.safety) onSafety(r.safety as SafetyPayload);
     }, 800);
   }
 

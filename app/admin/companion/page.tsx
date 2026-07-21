@@ -41,6 +41,7 @@ export default function CompanionAdminPage() {
           <h1 className="text-2xl font-semibold text-midnight-navy">Relationship Companion</h1>
           <p className="mt-1 text-sm text-charcoal/60">Author guided processing experiences from reusable blocks. Content is placeholder until the approved library is supplied.</p>
         </div>
+        <Link href="/admin/companion/safety" className="rounded-md border border-coral-rose/40 px-4 py-2 text-sm font-semibold text-coral-rose hover:bg-coral-rose/5">Safety layer</Link>
       </div>
 
       <div className="mt-6 flex gap-2">

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import GetHelp from "@/components/companion/GetHelp";
 
 type NavKey = "home" | "process" | "blueprint" | "journey" | "library";
 const NAV: { key: NavKey; label: string; href: string; icon: string }[] = [
@@ -42,6 +43,7 @@ export default function CompanionChrome({ active, children, hideNav }: { active:
   return (
     <div className="min-h-screen bg-warm-ivory">
       <main className={`mx-auto w-full max-w-md px-5 pt-6 ${hideNav ? "pb-10" : "pb-28"}`}>{children}</main>
+      <GetHelp />
       {!hideNav && (
         <nav className="fixed inset-x-0 bottom-0 z-20 border-t border-light-gray bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-md items-stretch justify-between px-2">
