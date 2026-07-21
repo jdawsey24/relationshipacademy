@@ -267,7 +267,7 @@ A **data-driven block renderer**: `experience_versions.blocks` is an ordered arr
 
 **NOT launched to production.** The Companion is fully built and flag-hidden.
 
-- **Feature flag** `NEXT_PUBLIC_COMPANION_ENABLED` — set to `true` in **local `.env.local` ONLY** (for preview). **Netlify production is UNSET / still hidden.** This is a *build-time* variable: a real launch requires setting it in Netlify production **and redeploying**, plus surfacing a public entry point (no marketing route yet — planned `/relationship-companion`).
+- **Feature flag** `NEXT_PUBLIC_COMPANION_ENABLED` is now a **real kill-switch** (as of 2026-07-21). Previously it was defined but unused (a no-op) and was accidentally set `true` in all Netlify contexts. It is now wired to gate: the Companion app shell (coming-soon; staff bypass via `is_staff`), the `/companion/welcome` entry, the `/companion` checkout API (blocks purchase), and the `/relationship-companion` landing CTA. **Set to `false` in Netlify (all contexts)** until launch. It's a *build-time* variable, so a launch = set it `true` in Netlify **and redeploy** (plus surface a public entry point — the landing `/relationship-companion` exists but is not linked in nav).
 - **Pricing is LIVE in Stripe** — Companion `$19.99` one-time (`companion_onetime`), with a returning-customer discount to `$9.99` (`companion_returning`) for owners of a paid Playbook or an active Academy membership. Verified end-to-end with a real test-mode purchase (card → webhook → grant → discounted price). See `docs/playbook-commerce.md`.
 - **Consumer UI redesign COMPLETE** across every surface (warm/serif design language).
 

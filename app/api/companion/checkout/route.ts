@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireCompanionUser } from "@/lib/companionAuth";
 import { getStripe, stripeConfigured } from "@/lib/stripe";
-import { COMPANION_PRICE_LOOKUP_KEY, COMPANION_RETURNING_PRICE_LOOKUP_KEY, COMPANION_PRODUCT_KEY } from "@/lib/companion";
+import { COMPANION_ENABLED, COMPANION_PRICE_LOOKUP_KEY, COMPANION_RETURNING_PRICE_LOOKUP_KEY, COMPANION_PRODUCT_KEY } from "@/lib/companion";
 import { getReturningEligibility } from "@/lib/companion/pricing";
 
 export const runtime = "nodejs";
@@ -15,6 +15,8 @@ export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
   const cu = await requireCompanionUser();
   if (cu instanceof NextResponse) return cu;
+  // Launch kill-switch: no purchases until the Companion is enabled (staff may preview but not buy).
+  if (!COMPANION_ENABLED) return NextResponse.json({ error: "The Relationship Companion isn't available yet." }, { status: 503 });
   if (!stripeConfigured()) return NextResponse.json({ error: "Purchasing isn't available yet." }, { status: 503 });
 
   const stripe = getStripe();
