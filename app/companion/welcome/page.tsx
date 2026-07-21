@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { COMPANION_ENABLED } from "@/lib/companion";
 
 // Post-purchase access flow + un-entitled landing. After a successful purchase the
 // checkout redirects here with ?purchase=success: confirm access, then "Open My
@@ -19,6 +20,20 @@ function Medallion({ paths, tone = "navy" }: { paths: string[]; tone?: "navy" | 
 export default async function CompanionWelcomePage({ searchParams }: { searchParams: Promise<{ purchase?: string }> }) {
   const { purchase } = await searchParams;
   const success = purchase === "success";
+
+  // Launch kill-switch: until enabled, this entry point shows Coming soon.
+  if (!COMPANION_ENABLED) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-warm-ivory px-6 text-center">
+        <div className="max-w-sm">
+          <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
+          <h1 className="mt-2 font-display text-3xl font-semibold text-midnight-navy">Coming soon</h1>
+          <p className="mt-3 font-body leading-relaxed text-charcoal/70">The Relationship Companion isn&apos;t available yet. Check back soon.</p>
+          <Link href="/" className="mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full bg-midnight-navy px-6 font-ui text-sm font-semibold text-white">Back to Relationship Life Cycle</Link>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-warm-ivory px-6 text-center">

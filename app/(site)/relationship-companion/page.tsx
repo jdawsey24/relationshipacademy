@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
+import { COMPANION_ENABLED } from "@/lib/companion";
+
+// Buy CTA when launched; a "Coming soon" pill while the launch kill-switch is off.
+function CompanionCta() {
+  if (COMPANION_ENABLED) return <CtaButton href="/companion">Get the Companion — $19.99</CtaButton>;
+  return <span className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-midnight-navy/20 bg-white/60 px-8 font-ui text-base font-medium text-charcoal/60">Coming soon</span>;
+}
 
 export const metadata: Metadata = {
   title: "The Relationship Companion™ | Relationship Life Cycle™",
@@ -42,7 +49,7 @@ export default function RelationshipCompanionPage() {
           One situation at a time, at your own pace. Guided reflections built on the Relationship Life Cycle&trade; framework — so you can move through hard moments with more clarity and make choices that feel like yours.
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
-          <CtaButton href="/companion">Get the Companion — $19.99</CtaButton>
+          <CompanionCta />
           <p className="font-body text-sm text-charcoal/50">One-time purchase · $9.99 for Playbook &amp; Academy members</p>
         </div>
       </section>
@@ -122,7 +129,7 @@ export default function RelationshipCompanionPage() {
       <section className="mt-20 text-center">
         <h2 className="text-balance font-display text-3xl font-semibold text-midnight-navy">Give yourself a place to think it through</h2>
         <div className="mt-8 flex flex-col items-center gap-3">
-          <CtaButton href="/companion">Get the Companion — $19.99</CtaButton>
+          <CompanionCta />
           <p className="font-body text-sm text-charcoal/50">One-time purchase · Private · Opens in your browser</p>
         </div>
       </section>
