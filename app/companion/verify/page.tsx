@@ -13,7 +13,7 @@ export default function CompanionVerifyPage() {
         </span>
         <p className="mt-5 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
         <h1 className="mt-2 font-display text-3xl font-semibold text-midnight-navy">Verify your email</h1>
-        <p className="mt-3 font-body leading-relaxed text-charcoal/70">[VERIFICATION COPY TO BE PROVIDED] — check your inbox for a confirmation link, then reopen the Companion.</p>
+        <p className="mt-3 font-body leading-relaxed text-charcoal/70">We&rsquo;ve sent a confirmation link to your email. Open it to verify your address, then come back here and reopen the Companion.</p>
       </div>
     </main>
   );
