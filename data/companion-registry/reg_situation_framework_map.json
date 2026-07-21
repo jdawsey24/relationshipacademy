@@ -123,8 +123,8 @@
   "situation_id": "RS-0013",
   "phase_id": "PH-001",
   "developmental_task": "Discernment",
-  "domain_id": "DOM-001",
-  "competency_id": "COM-EXPL-007",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPL-002",
   "mapping_role": "Primary",
   "resolution_status": "resolved",
   "active": true
