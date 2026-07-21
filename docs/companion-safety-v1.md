@@ -25,5 +25,5 @@ An **educational** safety layer, not a clinical crisis-classification engine. Sc
 
 ## Notes / open items for legal
 - **Retention:** `companion_safety_events.user_id` is `on delete set null`, so the metadata audit trail persists (detached) if an account is deleted. Confirm this retention posture with legal, and whether the account-delete flow should purge safety events.
-- **Scope:** V1 screens the guided-experience free-text (the educational flow). Other free-text surfaces (Blueprint, Journal, Planner) reuse `screenText()` trivially if the clinician wants them screened too — not wired in V1.
+- **Scope:** V1 screens every learner free-text authoring surface — the guided experience (`entries`, context `experience`), the **Blueprint** (context `blueprint`), and the **Conversation Planner** (context `planner`). Journey PATCH is only title/tags/favorite (the reflections themselves are screened at creation), so it is intentionally not screened.
 - Minors policy, mandatory-reporting posture, and human-escalation path remain open questions from the authoring brief (§11).

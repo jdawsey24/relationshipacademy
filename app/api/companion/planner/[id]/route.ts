@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireEntitledCompanionUser } from "@/lib/companionAuth";
 import { getPlan, savePlan, deletePlan } from "@/lib/companion/planner";
+import { screenText } from "@/lib/companion/safety";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -24,7 +25,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   const fields = (body.fields && typeof body.fields === "object") ? body.fields as Record<string, unknown> : {};
   const ok = await savePlan(cu.user.id, id, fields, typeof body.status === "string" ? body.status : undefined);
   if (!ok) return NextResponse.json({ error: "Not found." }, { status: 404 });
-  return NextResponse.json({ ok: true });
+  const text = Object.values(fields).filter((v) => typeof v === "string").join("\n");
+  const safety = await screenText(text, { userId: cu.user.id, context: "planner", situationRef: id });
+  return NextResponse.json(safety ? { ok: true, safety } : { ok: true });
 }
 
 export async function DELETE(_req: Request, { params }: { params: Promise<{ id: string }> }) {
