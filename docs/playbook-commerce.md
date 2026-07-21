@@ -11,11 +11,14 @@ Companion returning-customer discount can detect it.
   all writes via the service role. **Owner runs this migration.**
 
 ## Stripe (owner sets up)
-- One Product "Relationship Playbook" with **one Price** at **$29.99**, lookup
-  key `playbook_onetime`, one-time, metadata `product_key=playbook`,
-  `billing_type=one_time`. The specific playbook (cluster id) rides in the
-  checkout session metadata, not the price. Purchasing is inert until this
-  price exists (checkout returns a clean "not available yet").
+- One Product "Relationship Playbook" with **one Price** at **$29.99**, **one-time**,
+  lookup key `playbook_onetime`. That's all the price needs. Purchasing is inert
+  until this price exists (checkout returns a clean "not available yet").
+- **No Stripe metadata to set.** The code finds the price by lookup key only; the
+  `product_key`, `billing_type`, and `cluster_id` metadata are injected by the
+  checkout code onto the session/payment-intent at purchase time (the webhook +
+  finance layer read them there, never off the price).
+- CLI: `stripe prices create --product prod_XXX --currency usd --unit-amount 2999 --lookup-key playbook_onetime`
 - The buy button does not hardcode the price (avoids drift) — the amount is
   shown on the Stripe Checkout page. Price anchor: Playbook $29.99 · Companion
   $19.99 base / $9.99 for owners of a playbook or Academy membership.
