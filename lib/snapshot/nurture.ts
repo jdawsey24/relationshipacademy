@@ -49,12 +49,15 @@ export const SEQUENCE: Step[] = [
     key: "result", offsetDays: 0,
     subject: (v) => `Your Snapshot result: ${v.clusterName}`,
     body: (v) => {
-      const cta = v.playbookUrl ? { label: "Download your Playbook", url: v.playbookUrl } : { label: "View your results", url: v.resultsUrl };
+      // The Playbook is a paid product; the CTA sends people to their results
+      // page where they can unlock it. (playbookUrl is used only as an
+      // "a Playbook exists for this cluster" flag, never as a direct link.)
+      const cta = v.playbookUrl ? { label: "Get your Playbook", url: v.resultsUrl } : { label: "View your results", url: v.resultsUrl };
       const line = v.playbookUrl
-        ? "Your Relationship Playbook&trade; is ready — it goes deeper on what this means and what to do next. Grab it below."
+        ? "Your Relationship Playbook&trade; goes deeper on what this means and what to do next. You can unlock it from your results page below."
         : "Over the next few days I'll send a few short notes to help you make sense of this and decide what to do with it. No pressure — just a little clarity at a time.";
       const textLine = v.playbookUrl
-        ? `Your Relationship Playbook is ready — download it here: ${v.playbookUrl}`
+        ? `Your Relationship Playbook goes deeper on what to do next — unlock it from your results: ${v.resultsUrl}`
         : `Over the next few days I'll send a few short notes to help you make sense of this. View your results: ${v.resultsUrl}`;
       return {
         html: layout(h1("Here's what your Snapshot shows") + p("Hi there,") + p(v.alignmentParagraph) + p(line), v, cta),

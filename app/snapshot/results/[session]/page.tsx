@@ -61,12 +61,13 @@ export default function ResultsPage() {
       {/* Playbook — CTA on Primary only */}
       <PlaybookCard
         session={session}
+        clusterId={p.id}
         title={p.playbook_title}
         subtitle={p.playbook_subtitle}
         whyThisPlaybook={p.why_this_playbook}
         keyTakeaway={p.key_takeaway}
         ctaLabel={p.call_to_action}
-        playbookUrl={data.playbook_url}
+        available={data.playbook_url != null}
       />
 
       {/* Secondary — named + one line, no CTA */}
@@ -108,15 +109,43 @@ function Bullets({ label, items }: { label: string; items: string[] }) {
   );
 }
 
-function PlaybookCard({ session, title, subtitle, whyThisPlaybook, keyTakeaway, ctaLabel, playbookUrl }: {
-  session: string; title: string; subtitle: string; whyThisPlaybook: string; keyTakeaway: string; ctaLabel: string; playbookUrl: string | null;
+function PlaybookCard({ session, clusterId, title, subtitle, whyThisPlaybook, keyTakeaway, ctaLabel, available }: {
+  session: string; clusterId: number; title: string; subtitle: string; whyThisPlaybook: string; keyTakeaway: string; ctaLabel: string; available: boolean;
 }) {
+  const [buying, setBuying] = useState(false);
+  const [buyErr, setBuyErr] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
+  // Primary CTA — start the paid checkout. Ownership must attach to an account,
+  // so an unauthenticated buyer is sent to sign in and returned here.
+  async function buy() {
+    setBuying(true); setBuyErr(null);
+    try {
+      const res = await fetch(`/api/playbooks/checkout`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cluster_id: clusterId, session_id: session }),
+      });
+      if (res.status === 401) {
+        window.location.href = `/academy/login?next=${encodeURIComponent(`/snapshot/results/${session}`)}`;
+        return;
+      }
+      const d = await res.json().catch(() => ({}));
+      if (!res.ok || !d.url) { setBuyErr(d.error ?? "Could not start checkout."); setBuying(false); return; }
+      // High-intent signal for ad/analytics tracking (Meta Pixel + GA).
+      const w = window as unknown as { fbq?: (...a: unknown[]) => void; gtag?: (...a: unknown[]) => void };
+      try { w.fbq?.("track", "InitiateCheckout", { content_name: "Relationship Playbook" }); } catch { /* noop */ }
+      window.location.href = d.url;
+    } catch {
+      setBuyErr("Could not start checkout."); setBuying(false);
+    }
+  }
+
+  // Secondary — capture the lead (email + nurture) for people not ready to buy.
+  // Keeps list growth + the Meta Pixel Lead signal; nurture soft-sells the Playbook.
   async function submit() {
     setBusy(true); setErr(null);
     const res = await fetch(`/api/snapshot/convert`, {
@@ -126,7 +155,6 @@ function PlaybookCard({ session, title, subtitle, whyThisPlaybook, keyTakeaway, 
     const d = await res.json().catch(() => ({}));
     setBusy(false);
     if (!res.ok) { setErr(d.error ?? "Something went wrong."); return; }
-    // Conversion event for ad/analytics tracking (Meta Pixel + GA, loaded site-wide).
     const w = window as unknown as { fbq?: (...a: unknown[]) => void; gtag?: (...a: unknown[]) => void };
     try { w.fbq?.("track", "Lead", { content_name: "Relationship Snapshot Playbook" }); } catch { /* noop */ }
     try { w.gtag?.("event", "snapshot_conversion", { event_category: "snapshot" }); } catch { /* noop */ }
@@ -139,41 +167,57 @@ function PlaybookCard({ session, title, subtitle, whyThisPlaybook, keyTakeaway, 
       <h2 className="mt-1 font-display text-2xl font-semibold sm:text-3xl">{title}</h2>
       <p className="mx-auto mt-2 max-w-md font-body text-[17px] leading-relaxed text-white/85">{subtitle}</p>
       {whyThisPlaybook && <p className="mx-auto mt-3 max-w-md font-body text-[15px] leading-relaxed text-white/70">{whyThisPlaybook}</p>}
+      {keyTakeaway && <p className="mx-auto mt-5 max-w-md border-t border-white/15 pt-5 font-body text-[15px] italic leading-relaxed text-white/85">{keyTakeaway}</p>}
 
-      {done ? (
-        <div className="mx-auto mt-6 max-w-sm">
-          {playbookUrl ? (
-            <>
-              <a href={playbookUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
-                Download your Playbook
-              </a>
-              <p className="mt-3 font-body text-sm text-white/80">A copy is also on its way to <span className="font-semibold">{email}</span>.</p>
-            </>
-          ) : (
-            <p className="font-body text-white/90">You&apos;re all set. Your Playbook for this area is being finalized — I&apos;ll send it to <span className="font-semibold">{email}</span> the moment it&apos;s ready. Watch your inbox for your first steps.</p>
-          )}
-        </div>
-      ) : (
+      {available ? (
         <>
-          {keyTakeaway && <p className="mx-auto mt-5 max-w-md border-t border-white/15 pt-5 font-body text-[15px] italic leading-relaxed text-white/85">{keyTakeaway}</p>}
-          {open ? (
-            <div className="mx-auto mt-5 flex max-w-sm flex-col gap-2.5">
+          {ctaLabel && <p className="mx-auto mt-4 max-w-md font-body text-[15px] leading-relaxed text-white/75">{ctaLabel}</p>}
+          <button onClick={buy} disabled={buying}
+            className="mt-5 inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60">
+            {buying ? "Starting checkout…" : "Get Your Playbook →"}
+          </button>
+          {buyErr && <p className="mt-3 font-body text-sm text-soft-coral">{buyErr}</p>}
+
+          {/* Secondary lead capture — for people who aren't ready to buy today. */}
+          <div className="mx-auto mt-6 max-w-sm border-t border-white/15 pt-5">
+            {done ? (
+              <p className="font-body text-sm text-white/85">You&apos;re on the list — I&apos;ll send a few short notes to <span className="font-semibold">{email}</span> to help you decide. No pressure.</p>
+            ) : open ? (
+              <div className="flex flex-col gap-2.5">
+                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your email"
+                  className="w-full rounded-full border border-white/25 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-white/60 focus:outline-none" />
+                <button onClick={submit} disabled={busy || !email.trim()} className="rounded-full border border-white/30 px-6 py-3 font-ui text-sm font-semibold text-white transition-opacity hover:bg-white/10 disabled:opacity-50">
+                  {busy ? "Sending…" : "Email me my results"}
+                </button>
+                {err && <p className="text-sm text-soft-coral">{err}</p>}
+              </div>
+            ) : (
+              <button onClick={() => setOpen(true)} className="font-body text-sm text-white/70 underline underline-offset-4 hover:text-white">
+                Not ready? Email me my results instead
+              </button>
+            )}
+          </div>
+        </>
+      ) : (
+        // No playbook for this cluster yet — keep the lead-capture path only.
+        <div className="mx-auto mt-6 max-w-sm">
+          {done ? (
+            <p className="font-body text-white/90">You&apos;re all set. Your Playbook for this area is being finalized — I&apos;ll send it to <span className="font-semibold">{email}</span> the moment it&apos;s ready.</p>
+          ) : open ? (
+            <div className="flex flex-col gap-2.5">
               <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your email"
                 className="w-full rounded-full border border-white/25 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-white/60 focus:outline-none" />
               <button onClick={submit} disabled={busy || !email.trim()} className="rounded-full bg-coral-rose px-6 py-3 font-ui text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50">
-                {busy ? "Sending…" : playbookUrl ? "Get my Playbook" : "Send me my Playbook"}
+                {busy ? "Sending…" : "Send me my results"}
               </button>
               {err && <p className="text-sm text-soft-coral">{err}</p>}
             </div>
           ) : (
-            <>
-              {ctaLabel && <p className="mx-auto mt-4 max-w-md font-body text-[15px] leading-relaxed text-white/75">{ctaLabel}</p>}
-              <button onClick={() => setOpen(true)} className="mt-5 inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
-                Get Your Playbook →
-              </button>
-            </>
+            <button onClick={() => setOpen(true)} className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
+              Get Your Results →
+            </button>
           )}
-        </>
+        </div>
       )}
     </section>
   );

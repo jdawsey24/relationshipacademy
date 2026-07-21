@@ -48,6 +48,12 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false, // don't advertise the Next.js version
+  // The paid Playbook PDFs live outside public/ and are streamed by the gated
+  // download route via fs. Force-include them in that function's bundle so the
+  // read works on Netlify/serverless (they aren't statically imported).
+  outputFileTracingIncludes: {
+    "/api/playbooks/[cluster]/download": ["./content/playbooks/**"],
+  },
   images: {
     // Serve modern formats automatically via next/image.
     formats: ["image/avif", "image/webp"],

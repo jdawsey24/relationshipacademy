@@ -86,6 +86,21 @@ async function applyCompanionGrant(event: Stripe.Event) {
   }
 }
 
+// ---- 1c) Relationship Playbook grant ----
+// One-time playbook purchase completes -> write a playbook_entitlements row.
+// Keyed by metadata.product_key === "playbook"; cluster_id says which playbook.
+async function applyPlaybookGrant(event: Stripe.Event) {
+  if (event.type !== "checkout.session.completed") return;
+  const s = event.data.object as Stripe.Checkout.Session;
+  if (s.metadata?.product_key !== "playbook") return;
+  const userId = s.metadata?.user_id;
+  const clusterId = Number(s.metadata?.cluster_id);
+  if (!userId || !Number.isInteger(clusterId)) return;
+  const customerId = typeof s.customer === "string" ? s.customer : s.customer?.id ?? null;
+  const { grantPlaybookFromStripeSession } = await import("@/lib/snapshot/playbookGrants");
+  await grantPlaybookFromStripeSession({ userId, clusterId, customerId, ref: s.id });
+}
+
 // ---- 2) Finance sync ----
 async function handleFinanceEvent(event: Stripe.Event) {
   switch (event.type) {
@@ -177,6 +192,14 @@ export async function POST(request: Request) {
     await applyCompanionGrant(event);
   } catch (e) {
     console.error("[stripe/webhook] companion grant error:", e instanceof Error ? e.message : e);
+  }
+
+  // 1c) Relationship Playbook access — an independent one-time grant. Idempotent
+  // (keyed by the Stripe object id). Never blocks the above.
+  try {
+    await applyPlaybookGrant(event);
+  } catch (e) {
+    console.error("[stripe/webhook] playbook grant error:", e instanceof Error ? e.message : e);
   }
 
   // 2) Finance sync (status machine). No-ops safely if the finance tables are absent.
