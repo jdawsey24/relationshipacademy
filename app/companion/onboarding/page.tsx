@@ -44,7 +44,7 @@ export default function CompanionOnboardingPage() {
 
       {step === 0 && (
         <Section eyebrow="Welcome" title="A private space to process" onNext={() => setStep(1)} nextLabel="Get started">
-          <p className="text-balance font-body text-[16px] leading-relaxed text-charcoal/75">[APPROVED INTRODUCTION TO BE PROVIDED] — The Relationship Companion is a private space to process what you&apos;re navigating and make more intentional decisions. It&apos;s not therapy, and there&apos;s no schedule to keep.</p>
+          <p className="text-balance font-body text-[16px] leading-relaxed text-charcoal/75">The Relationship Companion is a private, judgment-free space to think through whatever you&apos;re navigating — so you can move at your own pace and make choices that feel intentional. It isn&apos;t therapy, and there&apos;s nothing to keep up with. Come as often, or as rarely, as you need.</p>
         </Section>
       )}
 
@@ -93,7 +93,7 @@ export default function CompanionOnboardingPage() {
       {step === 3 && (
         <Section eyebrow="One last thing" title="Before you begin" onNext={finish} nextDisabled={!ack || busy} nextLabel={busy ? "Setting up…" : "Enter the Companion"}>
           <div className="rounded-2xl border border-light-gray bg-white p-5 font-body text-sm leading-relaxed text-charcoal/75">
-            <p>[APPROVED LEGAL / PRIVACY COPY TO BE PROVIDED]</p>
+            <p>A few things to know before you start. This is a private, reflective space — a tool for thinking things through, not a substitute for professional care.</p>
             <ul className="mt-3 space-y-2">
               {["Your entries are private to you.", "This is an educational, reflective tool.", "It is not therapy, diagnosis, crisis care, or emergency support.", "It does not make relationship decisions for you."].map((line) => (
                 <li key={line} className="flex items-start gap-2">
