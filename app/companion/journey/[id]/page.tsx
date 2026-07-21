@@ -12,6 +12,17 @@ interface Detail {
   tags: string[];
 }
 
+function StatusPill({ status }: { status: string }) {
+  const archived = /archiv/i.test(status);
+  const done = /complete|published/i.test(status);
+  const c = archived ? "#868C96" : done ? "#5F9E7C" : "#C09A52";
+  const label = archived ? "Archived" : done ? "Complete" : "In progress";
+  return (
+    <span className="inline-flex items-center rounded-full px-2 py-0.5 font-ui text-[10px] font-semibold uppercase tracking-wide"
+      style={{ backgroundColor: `${c}22`, color: c }}>{label}</span>
+  );
+}
+
 export default function CompanionJourneyDetail() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -38,48 +49,51 @@ export default function CompanionJourneyDetail() {
 
   return (
     <CompanionChrome active="journey">
-      <button onClick={() => router.replace("/companion/journey")} className="font-ui text-sm text-charcoal/55">← Journey</button>
+      <button onClick={() => router.replace("/companion/journey")} className="flex items-center gap-1 font-ui text-sm text-charcoal/55 hover:text-charcoal"><span aria-hidden="true">←</span> Journey</button>
 
-      <input value={title} onChange={(e) => setTitle(e.target.value)} onBlur={() => title !== (d.entry.title ?? "") && patch({ title })}
-        placeholder="Untitled reflection" className="mt-3 w-full bg-transparent font-display text-2xl font-semibold text-midnight-navy focus:outline-none" />
-      <div className="mt-1 flex items-center gap-3">
-        <span className="font-ui text-xs text-charcoal/45">{d.entry.status} · {d.experienceTitle ?? "Free reflection"}</span>
-        <button onClick={() => patch({ favorite: !d.favorite })} className={`text-sm ${d.favorite ? "text-coral-rose" : "text-charcoal/30"}`}>♥</button>
+      <div className="mt-4 flex items-start justify-between gap-3">
+        <input value={title} onChange={(e) => setTitle(e.target.value)} onBlur={() => title !== (d.entry.title ?? "") && patch({ title })}
+          placeholder="Untitled reflection" className="w-full bg-transparent font-display text-3xl font-semibold leading-tight text-midnight-navy placeholder:text-midnight-navy/30 focus:outline-none" />
+        <button onClick={() => patch({ favorite: !d.favorite })} aria-label={d.favorite ? "Remove from favorites" : "Add to favorites"}
+          className={`mt-1.5 shrink-0 p-1 transition-colors ${d.favorite ? "text-coral-rose" : "text-charcoal/25 hover:text-coral-rose/60"}`}>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill={d.favorite ? "currentColor" : "none"} stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="M12 21s-7-4.6-9.4-8A4.9 4.9 0 0 1 12 6.8a4.9 4.9 0 0 1 9.4 6.2C19 16.4 12 21 12 21z" /></svg>
+        </button>
+      </div>
+      <div className="mt-2 flex flex-wrap items-center gap-2">
+        <StatusPill status={d.entry.status} />
+        <span className="font-ui text-xs text-charcoal/45">{d.experienceTitle ?? "Free reflection"} · {new Date(d.entry.updated_at).toLocaleDateString(undefined, { month: "short", day: "numeric" })}</span>
       </div>
 
       {d.entry.status === "draft" && (
-        <p className="mt-3 rounded-xl border border-midnight-navy/25 bg-white p-3 font-body text-sm text-charcoal/70">This reflection is unfinished — reopen it from the experience to continue.</p>
+        <p className="mt-4 rounded-2xl border border-amber-warm/40 bg-amber-warm/5 p-3.5 font-body text-sm text-charcoal/70">This reflection is unfinished — reopen it from the experience to continue.</p>
       )}
 
-      {/* Tags */}
-      <div className="mt-4">
+      <div className="mt-5">
         <div className="flex flex-wrap gap-1.5">
           {d.tags.map((t) => (
             <span key={t} className="flex items-center gap-1 rounded-full bg-warm-ivory px-2.5 py-1 font-ui text-xs text-charcoal/60">
-              {t}<button onClick={() => patch({ removeTag: t })} className="text-charcoal/35">×</button>
+              {t}<button onClick={() => patch({ removeTag: t })} aria-label={`Remove tag ${t}`} className="text-charcoal/35 hover:text-charcoal/60">×</button>
             </span>
           ))}
         </div>
-        <div className="mt-2 flex gap-2">
-          <input value={tag} onChange={(e) => setTag(e.target.value)} placeholder="Add a tag" onKeyDown={(e) => { if (e.key === "Enter" && tag.trim()) { patch({ addTag: tag }); setTag(""); } }}
-            className="flex-1 rounded-lg border border-light-gray bg-white px-3 py-1.5 font-body text-sm focus:outline-none" />
-        </div>
+        <input value={tag} onChange={(e) => setTag(e.target.value)} placeholder="Add a tag" onKeyDown={(e) => { if (e.key === "Enter" && tag.trim()) { patch({ addTag: tag }); setTag(""); } }}
+          className="mt-2 w-full rounded-lg border border-light-gray bg-white px-3 py-1.5 font-body text-sm text-charcoal placeholder:text-charcoal/40 focus:border-midnight-navy/40 focus:outline-none" />
       </div>
 
-      {/* Saved responses (read-only review) */}
-      <div className="mt-5 space-y-2">
-        {d.responses.length === 0 ? <p className="font-body text-sm text-charcoal/45">No saved responses.</p> :
-          d.responses.map((r) => (
-            <div key={r.block_ref} className="rounded-xl border border-light-gray bg-white p-3">
-              <p className="whitespace-pre-wrap font-body text-sm leading-relaxed text-charcoal/80">{renderVal(r.response) || <span className="text-charcoal/35">—</span>}</p>
+      <p className="mt-6 font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal/40">Your reflections</p>
+      <div className="mt-2.5 space-y-2.5">
+        {d.responses.length === 0 ? <p className="rounded-2xl border border-dashed border-light-gray bg-white/60 p-6 text-center font-body text-sm text-charcoal/45">No saved responses.</p> :
+          d.responses.map((r, i) => (
+            <div key={r.block_ref} className="rounded-2xl border border-light-gray bg-white p-4">
+              <p className="font-ui text-[10px] font-semibold uppercase tracking-wide text-charcoal/35">Reflection {i + 1}</p>
+              <p className="mt-1 whitespace-pre-wrap font-body text-[15px] leading-relaxed text-charcoal/80">{renderVal(r.response) || <span className="text-charcoal/35">—</span>}</p>
             </div>
           ))}
       </div>
 
-      {/* Manage */}
-      <div className="mt-6 flex gap-3 border-t border-light-gray pt-4">
-        {d.entry.status !== "archived" && <button onClick={() => patch({ archive: true })} className="font-ui text-sm text-charcoal/55">Archive</button>}
-        <button onClick={del} className="font-ui text-sm text-coral-rose">Delete</button>
+      <div className="mt-7 flex gap-4 border-t border-light-gray pt-4">
+        {d.entry.status !== "archived" && <button onClick={() => patch({ archive: true })} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">Archive</button>}
+        <button onClick={del} className="font-ui text-sm text-coral-rose hover:underline">Delete</button>
       </div>
     </CompanionChrome>
   );
