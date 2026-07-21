@@ -11,11 +11,14 @@ Companion returning-customer discount can detect it.
   all writes via the service role. **Owner runs this migration.**
 
 ## Stripe (owner sets up)
-- One Product "Relationship Playbook" with **one Price**, lookup key
-  `playbook_onetime`, one-time, metadata `product_key=playbook`,
+- One Product "Relationship Playbook" with **one Price** at **$29.99**, lookup
+  key `playbook_onetime`, one-time, metadata `product_key=playbook`,
   `billing_type=one_time`. The specific playbook (cluster id) rides in the
   checkout session metadata, not the price. Purchasing is inert until this
   price exists (checkout returns a clean "not available yet").
+- The buy button does not hardcode the price (avoids drift) — the amount is
+  shown on the Stripe Checkout page. Price anchor: Playbook $29.99 · Companion
+  $19.99 base / $9.99 for owners of a playbook or Academy membership.
 
 ## Flow
 1. **Buy** — `POST /api/playbooks/checkout` `{ cluster_id }` (requires a signed-in
@@ -43,5 +46,5 @@ discounted Companion price (`companion_returning`).
 
 ## Owner checklist
 - [ ] Run migration `0042_playbook_entitlements.sql`.
-- [ ] Create the Stripe price (`playbook_onetime`, one-time) at the chosen amount.
+- [ ] Create the Stripe price (`playbook_onetime`, one-time) at **$29.99**.
 - [ ] (For the Companion discount) create `companion_returning` if not already.
