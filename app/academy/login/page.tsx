@@ -27,7 +27,11 @@ export default function AcademyLoginPage() {
       setSubmitting(false);
       return;
     }
-    router.push("/academy/dashboard");
+    // Honor a same-origin ?next= (e.g. returning to a playbook purchase). Only
+    // accept a relative path ("/…", not "//…") to avoid open-redirects.
+    const raw = new URLSearchParams(window.location.search).get("next");
+    const next = raw && /^\/(?!\/)/.test(raw) ? raw : "/academy/dashboard";
+    router.push(next);
     router.refresh();
   }
 
