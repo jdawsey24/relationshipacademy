@@ -1,0 +1,779 @@
+[
+  {
+    "competency_id": "COM-EXPL-001",
+    "name": "Curiosity",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "COM-EXPL-002",
+    "name": "Active Listening",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "COM-EXPL-003",
+    "name": "Perspective Taking",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "COM-EXPL-004",
+    "name": "Transparency",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "COM-EXPL-005",
+    "name": "Emotional Expression",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "COM-EXPL-006",
+    "name": "Reciprocity",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "COM-EXPL-007",
+    "name": "Clarification",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "COM-EXCL-001",
+    "name": "Expectation Setting",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "COM-EXCL-002",
+    "name": "Vulnerability",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "COM-EXCL-003",
+    "name": "Boundary Communication",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "COM-EXCL-004",
+    "name": "Needs Expression",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "COM-EXCL-005",
+    "name": "Future-Oriented Communication",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "COM-EXCL-006",
+    "name": "Repair Initiation",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "COM-EXCL-007",
+    "name": "Commitment Clarity",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "COM-EXPN-001",
+    "name": "Shared Decision-Making",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "COM-EXPN-002",
+    "name": "Conflict Navigation",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "COM-EXPN-003",
+    "name": "Role Negotiation",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "COM-EXPN-004",
+    "name": "Adaptive Communication",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "COM-EXPN-005",
+    "name": "Coordination",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "COM-EXPN-006",
+    "name": "Repair Communication",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "COM-EXPR-001",
+    "name": "Acknowledgment",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "COM-EXPR-002",
+    "name": "Transition Communication",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "COM-EXPR-003",
+    "name": "Respectful Communication",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "COM-EXPR-004",
+    "name": "Reorientation",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "TRU-EXPL-001",
+    "name": "Dependability",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "TRU-EXPL-002",
+    "name": "Availability",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "TRU-EXPL-003",
+    "name": "Congruence",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "TRU-EXPL-004",
+    "name": "Accountability",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "TRU-EXPL-005",
+    "name": "Psychological Safety",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "TRU-EXPL-006",
+    "name": "Reliability",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "TRU-EXPL-007",
+    "name": "Transparency",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "TRU-EXCL-001",
+    "name": "Safeguarding",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "TRU-EXCL-002",
+    "name": "Consistency",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "TRU-EXCL-003",
+    "name": "Accountability",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "TRU-EXCL-004",
+    "name": "Trust Repair",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "TRU-EXCL-005",
+    "name": "Integrity",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "TRU-EXPN-001",
+    "name": "Stewardship",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "TRU-EXPN-002",
+    "name": "Interdependence",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "TRU-EXPN-003",
+    "name": "Delegation / Shared Reliance",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "TRU-EXPN-004",
+    "name": "Resilience Under Stress",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "TRU-EXPN-005",
+    "name": "Resource Reliability",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "TRU-EXPR-001",
+    "name": "Wise Trust",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "TRU-EXPR-002",
+    "name": "Boundary Protection",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "TRU-EXPR-003",
+    "name": "Self-Trust",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "TRU-EXPR-004",
+    "name": "Agency",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "EMI-EXPL-001",
+    "name": "Gradual Self-Disclosure",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "EMI-EXPL-002",
+    "name": "Values and Beliefs Exchange",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "EMI-EXPL-003",
+    "name": "Appropriate Emotional Expression",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "EMI-EXPL-004",
+    "name": "Curiosity and Empathy",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "EMI-EXPL-005",
+    "name": "Authenticity",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "EMI-EXCL-001",
+    "name": "Intentional Vulnerability",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "EMI-EXCL-002",
+    "name": "Confiding",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "EMI-EXCL-003",
+    "name": "Sharing Fears and Needs",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "EMI-EXCL-004",
+    "name": "Sharing Insecurities and Dreams",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "EMI-EXCL-005",
+    "name": "Sharing Internal Struggles",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "EMI-EXCL-006",
+    "name": "Sharing Relational Concerns",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "EMI-EXCL-007",
+    "name": "Safety for Deeper Reciprocity",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "EMI-EXPN-001",
+    "name": "Emotional Regulation Support",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "EMI-EXPN-002",
+    "name": "Comfort During Stress",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "EMI-EXPN-003",
+    "name": "Validation",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "EMI-EXPN-004",
+    "name": "Mutual Encouragement",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "EMI-EXPN-005",
+    "name": "Shared Resilience",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "EMI-EXPN-006",
+    "name": "Secure Base",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "EMI-EXPR-001",
+    "name": "Detachment",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "EMI-EXPR-002",
+    "name": "Disengagement",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "EMI-EXPR-003",
+    "name": "Autonomy",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "EMI-EXPR-004",
+    "name": "Adaptability",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "CON-EXPL-001",
+    "name": "Emotional Regulation",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "CON-EXPL-002",
+    "name": "Objectivity",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "CON-EXPL-003",
+    "name": "Reflection",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "CON-EXPL-004",
+    "name": "Accountability",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "CON-EXPL-005",
+    "name": "Delivery",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "CON-EXPL-006",
+    "name": "Receptivity",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "CON-EXCL-001",
+    "name": "Collaboration",
+    "phase": "Exclusivity",
+    "domain": "Conflict Management",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "CON-EXCL-002",
+    "name": "Repair",
+    "phase": "Exclusivity",
+    "domain": "Conflict Management",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "CON-EXPN-001",
+    "name": "Negotiation",
+    "phase": "Expansion",
+    "domain": "Conflict Management",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "CON-EXPN-002",
+    "name": "Problem Solving",
+    "phase": "Expansion",
+    "domain": "Conflict Management",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "CON-EXPR-001",
+    "name": "De-escalation",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "CON-EXPR-002",
+    "name": "Cooperation",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "CON-EXPR-003",
+    "name": "Restraint",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "CON-EXPR-004",
+    "name": "Civility",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "ROL-EXPL-001",
+    "name": "Role Awareness",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "ROL-EXPL-002",
+    "name": "Intentionality",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "ROL-EXPL-003",
+    "name": "Congruence",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "ROL-EXPL-004",
+    "name": "Reciprocity",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "ROL-EXPL-005",
+    "name": "Boundaries",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "ROL-EXPL-006",
+    "name": "Role Alignment",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "ROL-EXCL-001",
+    "name": "Partnership",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "ROL-EXCL-002",
+    "name": "Dependability",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "ROL-EXCL-003",
+    "name": "Shared Commitment",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "ROL-EXPN-001",
+    "name": "Role Integration",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "ROL-EXPN-002",
+    "name": "Shared Responsibility",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "ROL-EXPN-003",
+    "name": "Coordination",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "ROL-EXPR-001",
+    "name": "Role Release",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "ROL-EXPR-002",
+    "name": "Role Transition",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "ROL-EXPR-003",
+    "name": "Role Redefinition",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "PHY-EXPL-001",
+    "name": "Boundaries",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "PHY-EXPL-002",
+    "name": "Consent",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "PHY-EXPL-003",
+    "name": "Self-Awareness",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "PHY-EXPL-004",
+    "name": "Sexual Integrity",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "PHY-EXPL-005",
+    "name": "Respect",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Discernment"
+  },
+  {
+    "competency_id": "PHY-EXCL-001",
+    "name": "Fidelity",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "PHY-EXCL-002",
+    "name": "Mutual Desire",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "PHY-EXCL-003",
+    "name": "Sexual Communication",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Intentional Investment"
+  },
+  {
+    "competency_id": "PHY-EXPN-001",
+    "name": "Attunement",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "PHY-EXPN-002",
+    "name": "Erotic Discovery",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "PHY-EXPN-003",
+    "name": "Adaptability",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "PHY-EXPN-004",
+    "name": "Mutual Pursuit",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Integration"
+  },
+  {
+    "competency_id": "PHY-EXPR-001",
+    "name": "Release",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "PHY-EXPR-002",
+    "name": "Redefinition",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Acceptance"
+  },
+  {
+    "competency_id": "PHY-EXPR-003",
+    "name": "Sexual Agency",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "developmental_task": "Acceptance"
+  }
+]

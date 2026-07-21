@@ -16,6 +16,15 @@ const ACADEMY_PUBLIC = new Set([
 ]);
 const ACADEMY_AUTH_PAGES = new Set(["/academy/login", "/academy/signup"]);
 
+// Companion paths reachable without a session (login + post-purchase access flow).
+const COMPANION_PUBLIC = new Set([
+  "/companion/login",
+  "/companion/welcome",
+  "/companion/verify",
+  "/companion/offline", // PWA offline shell — must be reachable without a session
+]);
+const COMPANION_AUTH_PAGES = new Set(["/companion/login"]);
+
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
 
@@ -71,6 +80,30 @@ export async function middleware(request: NextRequest) {
     if (ACADEMY_AUTH_PAGES.has(pathname)) {
       const url = request.nextUrl.clone();
       url.pathname = "/academy/dashboard";
+      return NextResponse.redirect(url);
+    }
+    return response;
+  }
+
+  // -------------------------------------------------------------------------
+  // COMPANION branch: /companion + /api/companion (no MFA). Entitlement is
+  // checked per-page/route (requireEntitledCompanionUser), not here.
+  // -------------------------------------------------------------------------
+  if (pathname.startsWith("/companion") || pathname.startsWith("/api/companion")) {
+    const isCompanionApi = pathname.startsWith("/api/companion");
+    if (!user) {
+      if (isCompanionApi) return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+      if (!COMPANION_PUBLIC.has(pathname)) {
+        const url = request.nextUrl.clone();
+        url.pathname = "/companion/login";
+        return NextResponse.redirect(url);
+      }
+      return response;
+    }
+    // Signed in but on the login page: send into the app.
+    if (COMPANION_AUTH_PAGES.has(pathname)) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/companion";
       return NextResponse.redirect(url);
     }
     return response;
@@ -161,6 +194,8 @@ export const config = {
     "/api/admin/:path*",
     "/academy/:path*",
     "/api/academy/:path*",
+    "/companion/:path*",
+    "/api/companion/:path*",
     // Institute: only the gated paths + auth pages + API (marketing stays public).
     "/institute/dashboard/:path*",
     "/institute/account/:path*",

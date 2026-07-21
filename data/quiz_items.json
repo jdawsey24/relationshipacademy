@@ -589,7 +589,7 @@
   },
   {
     "cluster_id": 8,
-    "statement": "I don't feel heard."
+    "statement": "I feel like a stranger in my own home."
   },
   {
     "cluster_id": 8,
@@ -597,11 +597,11 @@
   },
   {
     "cluster_id": 8,
-    "statement": "I don't feel desired."
+    "statement": "We don't check in with each other anymore."
   },
   {
     "cluster_id": 8,
-    "statement": "I miss feeling pursued."
+    "statement": "We've stopped really talking, just coordinating."
   },
   {
     "cluster_id": 8,
@@ -761,7 +761,8 @@
   },
   {
     "cluster_id": 11,
-    "statement": "Have we outgrown each other?"
+    "statement": "Have we outgrown each other?",
+    "context": "reflective"
   },
   {
     "cluster_id": 11,
@@ -773,7 +774,8 @@
   },
   {
     "cluster_id": 11,
-    "statement": "We've tried everything."
+    "statement": "We've tried everything.",
+    "context": "reflective"
   },
   {
     "cluster_id": 11,
@@ -785,11 +787,13 @@
   },
   {
     "cluster_id": 11,
-    "statement": "I miss the everyday moments."
+    "statement": "I miss the everyday moments.",
+    "context": "reflective"
   },
   {
     "cluster_id": 11,
-    "statement": "I'm tired of saying goodbye."
+    "statement": "I'm tired of saying goodbye.",
+    "context": "reflective"
   },
   {
     "cluster_id": 11,
@@ -801,11 +805,13 @@
   },
   {
     "cluster_id": 11,
-    "statement": "I keep making excuses for them."
+    "statement": "I keep making excuses for them.",
+    "context": "reflective"
   },
   {
     "cluster_id": 11,
-    "statement": "I worry we'll become strangers."
+    "statement": "I worry we'll become strangers.",
+    "context": "reflective"
   },
   {
     "cluster_id": 11,
@@ -813,11 +819,12 @@
   },
   {
     "cluster_id": 11,
-    "statement": "We argue more because we're apart."
+    "statement": "I don't know if this relationship still has a future."
   },
   {
     "cluster_id": 11,
-    "statement": "I don't know what I actually want."
+    "statement": "I don't know what I actually want.",
+    "context": "reflective"
   },
   {
     "cluster_id": 11,
@@ -825,7 +832,8 @@
   },
   {
     "cluster_id": 11,
-    "statement": "I want love, but I love my freedom."
+    "statement": "I want love, but I love my freedom.",
+    "context": "reflective"
   },
   {
     "cluster_id": 12,
@@ -953,7 +961,7 @@
   },
   {
     "cluster_id": 13,
-    "statement": "I want to become a better partner."
+    "statement": "I want love to feel different this time."
   },
   {
     "cluster_id": 13,
@@ -1129,7 +1137,7 @@
   },
   {
     "cluster_id": 15,
-    "statement": "I feel like we're roommates."
+    "statement": "I feel like we're just going through the motions."
   },
   {
     "cluster_id": 15,
@@ -1153,7 +1161,8 @@
   },
   {
     "cluster_id": 16,
-    "statement": "I'm afraid to trust again."
+    "statement": "I'm afraid to trust again.",
+    "context": "reflective"
   },
   {
     "cluster_id": 16,
@@ -1165,19 +1174,23 @@
   },
   {
     "cluster_id": 16,
-    "statement": "I wonder if they regret what they did."
+    "statement": "I wonder if they regret what they did.",
+    "context": "reflective"
   },
   {
     "cluster_id": 16,
-    "statement": "I don't know if I'll ever feel safe again."
+    "statement": "I don't know if I'll ever feel safe again.",
+    "context": "reflective"
   },
   {
     "cluster_id": 16,
-    "statement": "I want to forgive, but I don't know how."
+    "statement": "I want to forgive, but I don't know how.",
+    "context": "reflective"
   },
   {
     "cluster_id": 16,
-    "statement": "I don't know how to stop imagining what happened."
+    "statement": "I don't know how to stop imagining what happened.",
+    "context": "reflective"
   },
   {
     "cluster_id": 16,
@@ -1189,11 +1202,13 @@
   },
   {
     "cluster_id": 16,
-    "statement": "I'm exhausted from worrying."
+    "statement": "I'm exhausted from worrying.",
+    "context": "reflective"
   },
   {
     "cluster_id": 16,
-    "statement": "I don't know how to move forward."
+    "statement": "I don't know how to move forward.",
+    "context": "reflective"
   },
   {
     "cluster_id": 16,
@@ -1201,7 +1216,8 @@
   },
   {
     "cluster_id": 16,
-    "statement": "I compare myself to the other person."
+    "statement": "I compare myself to the other person.",
+    "context": "reflective"
   },
   {
     "cluster_id": 16,
@@ -1209,7 +1225,8 @@
   },
   {
     "cluster_id": 16,
-    "statement": "I don't know how to forgive the past."
+    "statement": "I don't know how to forgive the past.",
+    "context": "reflective"
   },
   {
     "cluster_id": 16,
@@ -1221,11 +1238,8 @@
   },
   {
     "cluster_id": 16,
-    "statement": "I don't know if they've really changed."
-  },
-  {
-    "cluster_id": 16,
-    "statement": "I'm afraid of going through this again."
+    "statement": "I'm afraid of going through this again.",
+    "context": "reflective"
   },
   {
     "cluster_id": 17,
@@ -1377,91 +1391,113 @@
   },
   {
     "cluster_id": 19,
-    "statement": "Parenting has changed us."
+    "statement": "Parenting has changed us.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "Becoming parents changed everything."
+    "statement": "Becoming parents changed everything.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "We argue about parenting."
+    "statement": "We argue about parenting.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "I feel like I'm raising the kids alone."
+    "statement": "I feel like I'm raising the kids alone.",
+    "context": "solo"
   },
   {
     "cluster_id": 19,
-    "statement": "We never have time for each other."
+    "statement": "We never have time for each other.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "I miss who we were before children."
+    "statement": "I miss who we were before children.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "Parenting has made us strangers."
+    "statement": "Parenting has made us strangers.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "I don't know how to balance marriage and parenting."
+    "statement": "I don't know how to balance marriage and parenting.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "I feel like an outsider."
+    "statement": "I feel like an outsider.",
+    "context": "solo"
   },
   {
     "cluster_id": 19,
-    "statement": "I wish everyone got along."
+    "statement": "I wish everyone got along.",
+    "context": "solo"
   },
   {
     "cluster_id": 19,
-    "statement": "We can't agree on anything."
+    "statement": "We can't agree on anything.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "We don't parent the same way."
+    "statement": "We don't parent the same way.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "I feel like I'm parenting alone."
+    "statement": "I feel like I'm parenting alone.",
+    "context": "solo"
   },
   {
     "cluster_id": 19,
-    "statement": "We have different parenting styles."
+    "statement": "We have different parenting styles.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "I don't know how to create one family."
+    "statement": "I don't know how to create one family.",
+    "context": "partnered"
   },
   {
     "cluster_id": 19,
-    "statement": "I don't trust my co-parent's decisions."
+    "statement": "I don't trust my co-parent's decisions.",
+    "context": "solo"
   },
   {
     "cluster_id": 19,
-    "statement": "I wish we could just focus on the kids."
+    "statement": "I wish we could just focus on the kids.",
+    "context": "solo"
   },
   {
     "cluster_id": 19,
-    "statement": "I don't know how to let go of the anger."
+    "statement": "I don't know how to let go of the anger.",
+    "context": "solo"
   },
   {
     "cluster_id": 19,
-    "statement": "I don't know how to co-parent peacefully."
+    "statement": "I don't know how to co-parent peacefully.",
+    "context": "solo"
   },
   {
     "cluster_id": 19,
-    "statement": "I don't know my role with their children."
+    "statement": "I don't know my role with their children.",
+    "context": "partnered"
   },
   {
     "cluster_id": 20,
-    "statement": "I don't recognize my life anymore."
+    "statement": "I don't recognize my life anymore.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
-    "statement": "I feel like I failed."
+    "statement": "I feel like I failed.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
@@ -1473,7 +1509,8 @@
   },
   {
     "cluster_id": 20,
-    "statement": "I never imagined this would be my story."
+    "statement": "I never imagined this would be my story.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
@@ -1481,7 +1518,8 @@
   },
   {
     "cluster_id": 20,
-    "statement": "I don't know what my future looks like anymore."
+    "statement": "I don't know what my future looks like anymore.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
@@ -1489,7 +1527,8 @@
   },
   {
     "cluster_id": 20,
-    "statement": "I'm exhausted."
+    "statement": "I'm running on empty and no one seems to notice.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
@@ -1497,23 +1536,28 @@
   },
   {
     "cluster_id": 20,
-    "statement": "I feel like a burden."
+    "statement": "I feel like a burden.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
-    "statement": "I miss who I used to be."
+    "statement": "I miss who I used to be.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
-    "statement": "My world changed overnight."
+    "statement": "My world changed overnight.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
-    "statement": "I don't want to waste time."
+    "statement": "I don't want this feeling to define the rest of my life.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
-    "statement": "I've lost who I used to be."
+    "statement": "I've lost who I used to be.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
@@ -1529,91 +1573,110 @@
   },
   {
     "cluster_id": 20,
-    "statement": "We don't grieve the same way."
+    "statement": "We don't grieve the same way.",
+    "context": "general"
   },
   {
     "cluster_id": 20,
-    "statement": "I don't know how to co-parent."
+    "statement": "I don't know how to keep the peace for the kids' sake."
   },
   {
     "cluster_id": 21,
-    "statement": "We love each other, but we want different lives."
+    "statement": "We love each other, but we want different lives.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "I feel like I've outgrown my relationship."
+    "statement": "I feel like I've outgrown my relationship.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "We're becoming different people."
+    "statement": "We're becoming different people.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "Our goals don't match anymore."
+    "statement": "Our goals don't match anymore.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "I feel like I'm growing alone."
+    "statement": "I feel like I'm growing alone.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "We have different values."
+    "statement": "We have different values.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "We have different beliefs about marriage."
+    "statement": "We have different beliefs about marriage.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "I don't know how to grow together."
+    "statement": "I don't know how to grow together.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "We don't agree about faith."
+    "statement": "We don't agree about faith.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "I want wisdom more than chemistry."
+    "statement": "I want wisdom more than chemistry.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "We experience the world differently."
+    "statement": "We experience the world differently.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "I want to ask better questions early."
+    "statement": "I wish we'd asked harder questions before committing.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "We agree on chemistry but not on life."
+    "statement": "We agree on chemistry but not on life.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "I don't want to compromise my beliefs."
+    "statement": "I don't want to compromise my beliefs.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "I want to honor my values while dating."
+    "statement": "I don't want to lose myself trying to keep the peace.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "I don't know how to date with integrity."
+    "statement": "I don't know how to stay true to myself in this relationship."
   },
   {
     "cluster_id": 21,
-    "statement": "I don't know when to talk about marriage."
+    "statement": "I don't know if we're actually on the same page about our future."
   },
   {
     "cluster_id": 21,
-    "statement": "I don't know when to talk about children."
+    "statement": "I don't know when to talk about children.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "I want to know someone beyond attraction."
+    "statement": "I wonder if we ever really knew each other beyond the initial spark.",
+    "context": "reflective"
   },
   {
     "cluster_id": 21,
-    "statement": "Our families have different expectations."
+    "statement": "Our families have different expectations.",
+    "context": "reflective"
   },
   {
     "cluster_id": 22,
@@ -1729,7 +1792,7 @@
   },
   {
     "cluster_id": 23,
-    "statement": "I feel like I failed."
+    "statement": "I'm terrified of looking back with regret."
   },
   {
     "cluster_id": 23,
@@ -1741,7 +1804,7 @@
   },
   {
     "cluster_id": 23,
-    "statement": "I pretend everything is okay."
+    "statement": "I don't want to admit when something feels wrong."
   },
   {
     "cluster_id": 23,
@@ -1888,7 +1951,7 @@
   },
   {
     "cluster_id": 25,
-    "statement": "I want to become emotionally healthier."
+    "statement": "I want to understand my own patterns better."
   },
   {
     "cluster_id": 25,
@@ -1896,11 +1959,11 @@
   },
   {
     "cluster_id": 25,
-    "statement": "I want to trust myself."
+    "statement": "I want to stop doubting every choice I make."
   },
   {
     "cluster_id": 25,
-    "statement": "I want to become the kind of partner I'm looking for."
+    "statement": "I want to become the partner I know I could be."
   },
   {
     "cluster_id": 25,
@@ -2093,5 +2156,113 @@
   {
     "cluster_id": 27,
     "statement": "I keep my guard up so I don't get taken advantage of again."
+  },
+  {
+    "cluster_id": 16,
+    "statement": "I don't know if I'll ever stop watching for the signs.",
+    "context": "reflective"
+  },
+  {
+    "cluster_id": 20,
+    "statement": "I don't know how to introduce myself now."
+  },
+  {
+    "cluster_id": 23,
+    "statement": "I'm afraid people will judge whatever I decide."
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I don't know how to date while co-parenting.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I feel guilty at the thought of dating taking time away from my kids.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I worry about introducing someone new to my kids.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I don't have energy to date and parent alone.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I feel like dating isn't fair to my kids right now.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I don't know when it's the right time to introduce someone to my kids.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I feel torn between my kids and my own life.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I don't know how my ex will react to me dating again.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 20,
+    "statement": "I don't know how to be sick and still show up for everyone else.",
+    "context": "general"
+  },
+  {
+    "cluster_id": 20,
+    "statement": "I feel like I've disappeared into everyone else's needs.",
+    "context": "general"
+  },
+  {
+    "cluster_id": 20,
+    "statement": "I don't know how we'll get through this together.",
+    "context": "general"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I don't know how to explain the divorce to my kids.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I feel guilty about how this is affecting my kids.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I don't know how to make holidays work anymore.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I worry my kids will blame themselves.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 19,
+    "statement": "I don't know how to build new traditions as a smaller family.",
+    "context": "solo"
+  },
+  {
+    "cluster_id": 11,
+    "statement": "I keep replaying how it ended.",
+    "context": "reflective"
+  },
+  {
+    "cluster_id": 11,
+    "statement": "I don't know if I made the right call.",
+    "context": "reflective"
+  },
+  {
+    "cluster_id": 11,
+    "statement": "I wonder if I gave up too soon.",
+    "context": "reflective"
   }
 ]

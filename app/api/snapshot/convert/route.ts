@@ -3,6 +3,7 @@ import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
 import { readJsonBody, isUuid } from "@/lib/apiSecurity";
 import { convertSession } from "@/lib/snapshot/data";
 import { enrollFromSession } from "@/lib/snapshot/nurture";
+import { pushLeadToGHL } from "@/lib/snapshot/ghl";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -20,8 +21,8 @@ export async function POST(request: Request) {
   if (!isUuid(sessionId) || !EMAIL_RE.test(email)) return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
   const ok = await convertSession(sessionId, email);
   if (!ok) return NextResponse.json({ error: "Something went wrong." }, { status: 502 });
-  // Enroll in the per-cluster nurture + send the first email. Resilient — never
-  // fails the conversion if email isn't configured or errors.
-  await enrollFromSession(sessionId).catch(() => {});
+  // Enroll in the per-cluster nurture (first email) and push the lead to GHL.
+  // Both are resilient — a failure in either never fails the conversion.
+  await Promise.allSettled([enrollFromSession(sessionId), pushLeadToGHL(sessionId)]);
   return NextResponse.json({ ok: true });
 }

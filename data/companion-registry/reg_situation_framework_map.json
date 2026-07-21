@@ -1,0 +1,602 @@
+[
+ {
+  "situation_id": "RS-0001",
+  "phase_id": "PH-005",
+  "developmental_task": "Healing",
+  "domain_id": "DOM-003",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0002",
+  "phase_id": "PH-006",
+  "developmental_task": "Reengagement",
+  "domain_id": "DOM-003",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0003",
+  "phase_id": "PH-005",
+  "developmental_task": "Healing",
+  "domain_id": "DOM-003",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0004",
+  "phase_id": "PH-005",
+  "developmental_task": "Healing",
+  "domain_id": "DOM-003",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0005",
+  "phase_id": "PH-006",
+  "developmental_task": "Reengagement",
+  "domain_id": "DOM-002",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0006",
+  "phase_id": "PH-005",
+  "developmental_task": "Healing",
+  "domain_id": "DOM-005",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0007",
+  "phase_id": "PH-006",
+  "developmental_task": "Reengagement",
+  "domain_id": "DOM-002",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0008",
+  "phase_id": "PH-005",
+  "developmental_task": "Healing",
+  "domain_id": "DOM-003",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0009",
+  "phase_id": "PH-005",
+  "developmental_task": "Healing",
+  "domain_id": "DOM-002",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0010",
+  "phase_id": "PH-006",
+  "developmental_task": "Reengagement",
+  "domain_id": "DOM-005",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0011",
+  "phase_id": "PH-006",
+  "developmental_task": "Reengagement",
+  "domain_id": "DOM-002",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0012",
+  "phase_id": "PH-006",
+  "developmental_task": "Reengagement",
+  "domain_id": "DOM-002",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0013",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXPL-007",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0014",
+  "phase_id": "PH-006",
+  "developmental_task": "Reengagement",
+  "domain_id": "DOM-002",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0015",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPL-003",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0016",
+  "phase_id": "PH-006",
+  "developmental_task": "Reengagement",
+  "domain_id": "DOM-005",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0017",
+  "phase_id": "PH-006",
+  "developmental_task": "Reengagement",
+  "domain_id": "DOM-002",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0018",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXPL-004",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0019",
+  "phase_id": "PH-006",
+  "developmental_task": "Reengagement",
+  "domain_id": "DOM-005",
+  "competency_id": null,
+  "mapping_role": "Primary",
+  "resolution_status": "task_level_draft",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0020",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-002",
+  "competency_id": "ROL-EXPL-005",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0021",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXPL-001",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0022",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXPL-006",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0023",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-002",
+  "competency_id": "CON-EXPL-003",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0024",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-002",
+  "competency_id": "TRU-EXPL-001",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0025",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXPL-007",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0026",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXPL-007",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0027",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-002",
+  "competency_id": "COM-EXPL-006",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0028",
+  "phase_id": "PH-002",
+  "developmental_task": "Intentional Investment",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXCL-007",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0029",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-006",
+  "competency_id": "PHY-EXPL-004",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0030",
+  "phase_id": "PH-001",
+  "developmental_task": "Discernment",
+  "domain_id": "DOM-002",
+  "competency_id": "TRU-EXPL-003",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0031",
+  "phase_id": "PH-002",
+  "developmental_task": "Intentional Investment",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXCL-001",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0032",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-004",
+  "competency_id": "CON-EXPN-002",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0033",
+  "phase_id": "PH-002",
+  "developmental_task": "Intentional Investment",
+  "domain_id": "DOM-003",
+  "competency_id": "EMI-EXCL-001",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0034",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-001",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0035",
+  "phase_id": "PH-002",
+  "developmental_task": "Intentional Investment",
+  "domain_id": "DOM-002",
+  "competency_id": "TRU-EXCL-002",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0036",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-002",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0037",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-006",
+  "competency_id": "PHY-EXPN-001",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0038",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-001",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0039",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-002",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0040",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-004",
+  "competency_id": "COM-EXPN-006",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0041",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-001",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0042",
+  "phase_id": "PH-002",
+  "developmental_task": "Intentional Investment",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXCL-005",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0043",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-003",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0044",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-002",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0045",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-003",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0046",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-004",
+  "competency_id": "CON-EXPN-001",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0047",
+  "phase_id": "PH-002",
+  "developmental_task": "Intentional Investment",
+  "domain_id": "DOM-002",
+  "competency_id": "COM-EXCL-005",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0048",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-006",
+  "competency_id": "COM-EXPN-001",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0049",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-003",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0050",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-003",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0051",
+  "phase_id": "PH-004",
+  "developmental_task": "Acceptance",
+  "domain_id": "DOM-003",
+  "competency_id": "EMI-EXPR-002",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0052",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-002",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0053",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPN-003",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0054",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-002",
+  "competency_id": "TRU-EXPN-004",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0055",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-006",
+  "competency_id": "PHY-EXPN-003",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0056",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-001",
+  "competency_id": "COM-EXPN-004",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0057",
+  "phase_id": "PH-004",
+  "developmental_task": "Acceptance",
+  "domain_id": "DOM-002",
+  "competency_id": "TRU-EXPR-004",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0058",
+  "phase_id": "PH-004",
+  "developmental_task": "Acceptance",
+  "domain_id": "DOM-005",
+  "competency_id": "ROL-EXPR-002",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0059",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-003",
+  "competency_id": "EMI-EXPN-006",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ },
+ {
+  "situation_id": "RS-0060",
+  "phase_id": "PH-003",
+  "developmental_task": "Integration",
+  "domain_id": "DOM-003",
+  "competency_id": "EMI-EXPN-005",
+  "mapping_role": "Primary",
+  "resolution_status": "resolved",
+  "active": true
+ }
+]

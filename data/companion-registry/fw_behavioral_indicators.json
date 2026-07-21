@@ -1,0 +1,2666 @@
+[
+  {
+    "behavior_id": "BI-000001",
+    "competency_id": "COM-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Asks thoughtful questions to understand the other person.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000002",
+    "competency_id": "COM-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Explores values, experiences, preferences, and perspectives without rushing conclusions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000003",
+    "competency_id": "COM-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Shows genuine interest through follow-up questions and engaged responses.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000004",
+    "competency_id": "COM-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Gives focused attention when the other person is speaking.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000005",
+    "competency_id": "COM-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Reflects or summarizes what was heard to confirm understanding.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000006",
+    "competency_id": "COM-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Responds to the meaning of the message rather than preparing a defense or reply.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000007",
+    "competency_id": "COM-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Considers the other person's viewpoint before responding.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000008",
+    "competency_id": "COM-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Acknowledges that another perspective may differ from their own without dismissing it.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000009",
+    "competency_id": "COM-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Seeks to understand the context behind the other person's thoughts, feelings, or choices.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000010",
+    "competency_id": "COM-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Shares relevant thoughts, intentions, and information honestly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000011",
+    "competency_id": "COM-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Avoids misleading omissions or vague responses when clarity is needed.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000012",
+    "competency_id": "COM-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Communicates in a way that allows the other person to make informed relational decisions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000013",
+    "competency_id": "COM-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Names emotions in clear and understandable language.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000014",
+    "competency_id": "COM-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Shares emotional reactions in a way that fits the stage of the relationship.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000015",
+    "competency_id": "COM-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Communicates feelings without relying on blame, withdrawal, or exaggeration.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000016",
+    "competency_id": "COM-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Balances talking and listening during conversations.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000017",
+    "competency_id": "COM-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Invites the other person's input rather than dominating communication.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000018",
+    "competency_id": "COM-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Matches relational interest with appropriate mutual engagement.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000019",
+    "competency_id": "COM-EXPL-007",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Asks for more information when something is unclear.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000020",
+    "competency_id": "COM-EXPL-007",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Checks understanding before assuming meaning or intent.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000021",
+    "competency_id": "COM-EXPL-007",
+    "phase": "Exploration",
+    "domain": "Communication",
+    "indicator": "Restates or revisits key points to reduce misunderstanding.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000022",
+    "competency_id": "COM-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Clearly states relational expectations, preferences, and assumptions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000023",
+    "competency_id": "COM-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Invites discussion about shared expectations instead of relying on unspoken rules.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000024",
+    "competency_id": "COM-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Clarifies what each person understands, agrees to, and can realistically sustain.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000025",
+    "competency_id": "COM-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Shares personally meaningful information with appropriate emotional openness.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000026",
+    "competency_id": "COM-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Allows the other person to understand fears, hopes, or concerns that affect the relationship.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000027",
+    "competency_id": "COM-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Communicates beyond surface-level facts when deeper connection is developmentally appropriate.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000028",
+    "competency_id": "COM-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "States personal limits, needs, and conditions clearly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000029",
+    "competency_id": "COM-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Communicates what is acceptable and unacceptable without hostility or ambiguity.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000030",
+    "competency_id": "COM-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Responds to boundary conversations with respect and willingness to understand.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000031",
+    "competency_id": "COM-EXCL-004",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Identifies and communicates emotional, relational, or practical needs directly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000032",
+    "competency_id": "COM-EXCL-004",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Uses clear language to request support, understanding, or change.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000033",
+    "competency_id": "COM-EXCL-004",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Avoids expecting the other person to infer needs without communication.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000034",
+    "competency_id": "COM-EXCL-005",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Discusses future expectations, plans, and relational direction openly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000035",
+    "competency_id": "COM-EXCL-005",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Explores how individual goals may affect the relationship.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000036",
+    "competency_id": "COM-EXCL-005",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Uses communication to assess alignment around next steps and long-term intentions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000037",
+    "competency_id": "COM-EXCL-006",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Names communication ruptures or misunderstandings when they occur.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000038",
+    "competency_id": "COM-EXCL-006",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Initiates follow-up conversations after disconnection or hurt.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000039",
+    "competency_id": "COM-EXCL-006",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Takes the first step toward restoring understanding rather than avoiding the issue.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000040",
+    "competency_id": "COM-EXCL-007",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Communicates the meaning, expectations, and limits of the commitment.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000041",
+    "competency_id": "COM-EXCL-007",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Clarifies relational status, agreements, and intentions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000042",
+    "competency_id": "COM-EXCL-007",
+    "phase": "Exclusivity",
+    "domain": "Communication",
+    "indicator": "Reduces ambiguity about what each person has agreed to within the relationship.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000043",
+    "competency_id": "COM-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Invites the partner into decisions that affect both people.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000044",
+    "competency_id": "COM-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Considers both perspectives before reaching a decision.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000045",
+    "competency_id": "COM-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Communicates options, tradeoffs, and preferences collaboratively.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000046",
+    "competency_id": "COM-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Stays engaged in communication during disagreement without escalating unnecessarily.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000047",
+    "competency_id": "COM-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Communicates concerns while preserving respect and connection.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000048",
+    "competency_id": "COM-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Works toward understanding or resolution rather than winning the argument.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000049",
+    "competency_id": "COM-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Discusses responsibilities, expectations, and role changes openly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000050",
+    "competency_id": "COM-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Renegotiates roles when circumstances or life demands shift.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000051",
+    "competency_id": "COM-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Seeks agreement about how responsibilities will be shared or adjusted.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000052",
+    "competency_id": "COM-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Adjusts communication style based on context, stress, or partner need.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000053",
+    "competency_id": "COM-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Uses different communication strategies when previous approaches are not working.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000054",
+    "competency_id": "COM-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Maintains clarity and connection through changing circumstances.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000055",
+    "competency_id": "COM-EXPN-005",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Shares logistical information needed to manage daily life together.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000056",
+    "competency_id": "COM-EXPN-005",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Clarifies responsibilities, timelines, and plans.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000057",
+    "competency_id": "COM-EXPN-005",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Communicates proactively to reduce confusion or duplicated effort.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000058",
+    "competency_id": "COM-EXPN-006",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Participates in ongoing dialogue to restore understanding after rupture.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000059",
+    "competency_id": "COM-EXPN-006",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Clarifies impact, responsibility, and needed repair steps.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000060",
+    "competency_id": "COM-EXPN-006",
+    "phase": "Expansion",
+    "domain": "Communication",
+    "indicator": "Uses communication to rebuild connection rather than simply ending the conflict.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000061",
+    "competency_id": "COM-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Names the current relational reality without denial or avoidance.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000062",
+    "competency_id": "COM-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Communicates recognition of change, loss, strain, or transition.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000063",
+    "competency_id": "COM-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Validates what is happening even when the reality is painful or unwanted.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000064",
+    "competency_id": "COM-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Discusses changing roles, expectations, responsibilities, and next steps.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000065",
+    "competency_id": "COM-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Communicates clearly during separation, loss, caregiving, or major structural change.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000066",
+    "competency_id": "COM-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Uses communication to support orientation to a new relational reality.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000067",
+    "competency_id": "COM-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Maintains dignity, civility, and consideration during difficult exchanges.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000068",
+    "competency_id": "COM-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Avoids contempt, cruelty, humiliation, or unnecessary harm.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000069",
+    "competency_id": "COM-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Communicates disagreement, grief, or disappointment without dehumanizing the other person.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000070",
+    "competency_id": "COM-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Communicates in ways that align with the new relational structure.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000071",
+    "competency_id": "COM-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Clarifies how future contact, roles, or boundaries will function.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000072",
+    "competency_id": "COM-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Communication",
+    "indicator": "Uses language that supports movement from the old relational pattern into the new reality.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000073",
+    "competency_id": "TRU-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Follows through on stated intentions and commitments.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000074",
+    "competency_id": "TRU-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Shows up in ways that can be reasonably counted on.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000075",
+    "competency_id": "TRU-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Demonstrates predictable care through consistent behavior.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000076",
+    "competency_id": "TRU-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Makes appropriate time, attention, or presence available when needed.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000077",
+    "competency_id": "TRU-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Responds to reasonable bids for connection or support.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000078",
+    "competency_id": "TRU-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Demonstrates accessibility without overpromising or overextending.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000079",
+    "competency_id": "TRU-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Aligns words, actions, and intentions consistently.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000080",
+    "competency_id": "TRU-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Behaves in ways that match stated values or commitments.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000081",
+    "competency_id": "TRU-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Reduces confusion by maintaining consistency between what is said and what is done.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000082",
+    "competency_id": "TRU-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Acknowledges personal contribution to problems or harm.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000083",
+    "competency_id": "TRU-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Takes responsibility without excessive defensiveness or blame-shifting.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000084",
+    "competency_id": "TRU-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Makes concrete efforts to correct behavior after taking responsibility.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000085",
+    "competency_id": "TRU-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Responds in ways that make honesty and vulnerability feel emotionally safe.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000086",
+    "competency_id": "TRU-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Avoids punishing, mocking, or weaponizing disclosed information.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000087",
+    "competency_id": "TRU-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Creates space for concerns to be expressed without fear of retaliation.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000088",
+    "competency_id": "TRU-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Behaves consistently across time and situations.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000089",
+    "competency_id": "TRU-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Keeps agreements or communicates when agreements cannot be kept.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000090",
+    "competency_id": "TRU-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Builds predictability through repeated trustworthy action.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000091",
+    "competency_id": "TRU-EXPL-007",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Shares relevant thoughts, intentions, and information honestly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000092",
+    "competency_id": "TRU-EXPL-007",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Avoids misleading omissions or vague responses when clarity is needed.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000093",
+    "competency_id": "TRU-EXPL-007",
+    "phase": "Exploration",
+    "domain": "Trust",
+    "indicator": "Communicates in a way that allows the other person to make informed relational decisions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000094",
+    "competency_id": "TRU-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Protects the relationship from avoidable threats or betrayals.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000095",
+    "competency_id": "TRU-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Makes choices that preserve trust and relational security.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000096",
+    "competency_id": "TRU-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Considers how outside influences, secrecy, or boundary violations could affect the relationship.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000097",
+    "competency_id": "TRU-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Maintains stable patterns of behavior, communication, and follow-through.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000098",
+    "competency_id": "TRU-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Demonstrates trustworthiness across different contexts and stress levels.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000099",
+    "competency_id": "TRU-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Avoids unpredictable shifts that create relational uncertainty.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000100",
+    "competency_id": "TRU-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Acknowledges personal contribution to problems or harm.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000101",
+    "competency_id": "TRU-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Takes responsibility without excessive defensiveness or blame-shifting.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000102",
+    "competency_id": "TRU-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Makes concrete efforts to correct behavior after taking responsibility.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000103",
+    "competency_id": "TRU-EXCL-004",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Acknowledges broken trust and its impact.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000104",
+    "competency_id": "TRU-EXCL-004",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Participates in corrective action to rebuild trust over time.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000105",
+    "competency_id": "TRU-EXCL-004",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Demonstrates patience, transparency, and consistency during repair.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000106",
+    "competency_id": "TRU-EXCL-005",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Acts in alignment with stated values, agreements, and commitments.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000107",
+    "competency_id": "TRU-EXCL-005",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Makes choices that remain trustworthy even when unobserved.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000108",
+    "competency_id": "TRU-EXCL-005",
+    "phase": "Exclusivity",
+    "domain": "Trust",
+    "indicator": "Avoids deception, double standards, or hidden violations of agreement.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000109",
+    "competency_id": "TRU-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Protects and cares for what the relationship has built.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000110",
+    "competency_id": "TRU-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Makes decisions with the health of the shared life in mind.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000111",
+    "competency_id": "TRU-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Treats shared responsibilities, resources, and trust as something to be managed carefully.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000112",
+    "competency_id": "TRU-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Relies on the partner appropriately while maintaining personal responsibility.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000113",
+    "competency_id": "TRU-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Balances independence with healthy mutual reliance.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000114",
+    "competency_id": "TRU-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Allows support, influence, and shared functioning without losing individual agency.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000115",
+    "competency_id": "TRU-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Allows responsibilities to be shared or delegated with trust.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000116",
+    "competency_id": "TRU-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Relies on the partner's capacity without micromanaging or withdrawing completely.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000117",
+    "competency_id": "TRU-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Communicates clearly about what is being entrusted and what follow-through is expected.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000118",
+    "competency_id": "TRU-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Maintains trust-building behaviors during pressure, crisis, or strain.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000119",
+    "competency_id": "TRU-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Uses stress as an opportunity to strengthen rather than abandon relational reliability.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000120",
+    "competency_id": "TRU-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Remains engaged and trustworthy when conditions become difficult.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000121",
+    "competency_id": "TRU-EXPN-005",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Manages shared time, money, energy, or responsibilities consistently.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000122",
+    "competency_id": "TRU-EXPN-005",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Follows through on practical obligations that affect the shared life.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000123",
+    "competency_id": "TRU-EXPN-005",
+    "phase": "Expansion",
+    "domain": "Trust",
+    "indicator": "Communicates realistically about resources, limitations, and capacity.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000124",
+    "competency_id": "TRU-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Discerns where trust is appropriate, limited, or no longer advisable.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000125",
+    "competency_id": "TRU-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Adjusts trust based on current reality rather than wishful thinking or fear alone.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000126",
+    "competency_id": "TRU-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Places trust in people, systems, or supports that are appropriate to the transition.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000127",
+    "competency_id": "TRU-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Maintains boundaries that protect emotional, relational, physical, or practical well-being.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000128",
+    "competency_id": "TRU-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Limits access or expectations when the relationship structure changes.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000129",
+    "competency_id": "TRU-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Responds to boundary violations with clear corrective action.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000130",
+    "competency_id": "TRU-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Relies on personal judgment, values, and perception during transition.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000131",
+    "competency_id": "TRU-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Makes decisions without excessive self-doubt or dependence on external validation.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000132",
+    "competency_id": "TRU-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Recognizes internal signals that indicate safety, concern, or readiness.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000133",
+    "competency_id": "TRU-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Makes intentional choices within the limits of the current reality.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000134",
+    "competency_id": "TRU-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Identifies available options rather than becoming passive or helpless.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000135",
+    "competency_id": "TRU-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Trust",
+    "indicator": "Acts in alignment with values, needs, and future direction.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000136",
+    "competency_id": "EMI-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Shares personal information in stages appropriate to relational safety.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000137",
+    "competency_id": "EMI-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Allows deeper knowledge to develop over time rather than all at once.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000138",
+    "competency_id": "EMI-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Monitors whether disclosure is mutual, safe, and contextually appropriate.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000139",
+    "competency_id": "EMI-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Discusses core values, beliefs, and life perspectives openly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000140",
+    "competency_id": "EMI-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Invites understanding of the other person's worldview.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000141",
+    "competency_id": "EMI-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Uses values conversations to evaluate compatibility and emotional safety.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000142",
+    "competency_id": "EMI-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Shares emotions in a way that fits the relational context.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000143",
+    "competency_id": "EMI-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Communicates feelings without oversharing, withholding, or overwhelming the other person.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000144",
+    "competency_id": "EMI-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Demonstrates emotional honesty with appropriate pacing and boundaries.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000145",
+    "competency_id": "EMI-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Shows interest in the other person's emotional world.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000146",
+    "competency_id": "EMI-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Responds to disclosed feelings with care and understanding.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000147",
+    "competency_id": "EMI-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Asks emotionally attuned questions rather than dismissing or minimizing.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000148",
+    "competency_id": "EMI-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Presents self honestly rather than performing an idealized identity.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000149",
+    "competency_id": "EMI-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Allows personal values, emotions, and preferences to be known appropriately.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000150",
+    "competency_id": "EMI-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Avoids shaping self-expression solely to gain approval or avoid rejection.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000151",
+    "competency_id": "EMI-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Chooses to share deeper emotional material with relational purpose and awareness.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000152",
+    "competency_id": "EMI-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Allows the partner access to meaningful inner experiences.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000153",
+    "competency_id": "EMI-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Uses vulnerability to deepen connection rather than test, manipulate, or overwhelm.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000154",
+    "competency_id": "EMI-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Shares private thoughts, concerns, or experiences with trust and care.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000155",
+    "competency_id": "EMI-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Turns toward the partner for meaningful emotional disclosure.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000156",
+    "competency_id": "EMI-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Allows the partner to become a trusted emotional witness.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000157",
+    "competency_id": "EMI-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Communicates fears and relational needs directly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000158",
+    "competency_id": "EMI-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Allows the partner to understand vulnerabilities that affect connection.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000159",
+    "competency_id": "EMI-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Requests reassurance, support, or clarity when needed.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000160",
+    "competency_id": "EMI-EXCL-004",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Discloses personal doubts, hopes, and aspirations with emotional honesty.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000161",
+    "competency_id": "EMI-EXCL-004",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Invites the partner into both tender and aspirational parts of the self.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000162",
+    "competency_id": "EMI-EXCL-004",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Responds to the partner's insecurities and dreams with care.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000163",
+    "competency_id": "EMI-EXCL-005",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Communicates internal stress, conflict, or emotional difficulty without total withdrawal.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000164",
+    "competency_id": "EMI-EXCL-005",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Allows the partner to understand what is being carried internally.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000165",
+    "competency_id": "EMI-EXCL-005",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Seeks connection or support while maintaining ownership of the struggle.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000166",
+    "competency_id": "EMI-EXCL-006",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Names concerns about the relationship with honesty and care.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000167",
+    "competency_id": "EMI-EXCL-006",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Raises relational issues before they become hidden resentment.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000168",
+    "competency_id": "EMI-EXCL-006",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Invites dialogue about connection, needs, and relational health.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000169",
+    "competency_id": "EMI-EXCL-007",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Creates emotional conditions where deeper sharing can be mutual.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000170",
+    "competency_id": "EMI-EXCL-007",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Responds to vulnerability in ways that encourage continued openness.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000171",
+    "competency_id": "EMI-EXCL-007",
+    "phase": "Exclusivity",
+    "domain": "Emotional Intimacy",
+    "indicator": "Balances giving and receiving emotional access.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000172",
+    "competency_id": "EMI-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Helps the partner regulate through calm presence, reassurance, or grounding.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000173",
+    "competency_id": "EMI-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Offers support without taking over the partner's emotional process.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000174",
+    "competency_id": "EMI-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Responds to distress in ways that reduce escalation and increase security.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000175",
+    "competency_id": "EMI-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Offers comfort, care, or reassurance during stressful periods.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000176",
+    "competency_id": "EMI-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Moves toward the partner during distress rather than withdrawing reflexively.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000177",
+    "competency_id": "EMI-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Provides support that fits the partner's expressed needs.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000178",
+    "competency_id": "EMI-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Acknowledges the partner's emotional experience as understandable or meaningful.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000179",
+    "competency_id": "EMI-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Communicates that feelings make sense even when perspectives differ.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000180",
+    "competency_id": "EMI-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Avoids minimizing, dismissing, or immediately problem-solving emotional disclosure.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000181",
+    "competency_id": "EMI-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Supports the partner's growth, effort, and resilience through affirming communication.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000182",
+    "competency_id": "EMI-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Offers encouragement during challenge without pressure or control.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000183",
+    "competency_id": "EMI-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Receives encouragement from the partner as part of mutual emotional support.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000184",
+    "competency_id": "EMI-EXPN-005",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Faces stressors as a connected unit while maintaining emotional support.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000185",
+    "competency_id": "EMI-EXPN-005",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Uses challenges to strengthen rather than weaken the emotional bond.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000186",
+    "competency_id": "EMI-EXPN-005",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Recovers from strain through mutual care and persistence.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000187",
+    "competency_id": "EMI-EXPN-006",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Functions as a source of emotional steadiness and support for the partner.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000188",
+    "competency_id": "EMI-EXPN-006",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Encourages the partner's growth while remaining emotionally available.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000189",
+    "competency_id": "EMI-EXPN-006",
+    "phase": "Expansion",
+    "domain": "Emotional Intimacy",
+    "indicator": "Provides safety from which both partners can engage life demands.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000190",
+    "competency_id": "EMI-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Internally loosens attachment to a relational structure that is changing or ending.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000191",
+    "competency_id": "EMI-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Releases expectations that no longer fit the current reality.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000192",
+    "competency_id": "EMI-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Allows emotional attachment to reorganize without becoming avoidant or numb.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000193",
+    "competency_id": "EMI-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Reduces emotional investment in patterns that are ending or no longer appropriate.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000194",
+    "competency_id": "EMI-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Adjusts emotional access and availability to match the new relational reality.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000195",
+    "competency_id": "EMI-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Stops attempting to preserve a form of closeness that no longer exists.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000196",
+    "competency_id": "EMI-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Regulates emotions and makes decisions without relying on the former relational structure.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000197",
+    "competency_id": "EMI-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Reestablishes a stable sense of self during relational transition.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000198",
+    "competency_id": "EMI-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Maintains emotional functioning independent of the prior role or attachment.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000199",
+    "competency_id": "EMI-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Adjusts emotionally or behaviorally to changed relational circumstances.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000200",
+    "competency_id": "EMI-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Modifies expectations and coping strategies as conditions change.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000201",
+    "competency_id": "EMI-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Emotional Intimacy",
+    "indicator": "Demonstrates flexibility in response to loss, transition, or restructuring.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000202",
+    "competency_id": "CON-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Manages emotional activation during disagreement.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000203",
+    "competency_id": "CON-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Pauses or slows reactions before responding destructively.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000204",
+    "competency_id": "CON-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Uses calming strategies to stay engaged without escalation.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000205",
+    "competency_id": "CON-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Separates facts from interpretations during conflict.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000206",
+    "competency_id": "CON-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Evaluates behavior and patterns without idealizing or demonizing.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000207",
+    "competency_id": "CON-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Considers one's own contribution and the other person's behavior fairly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000208",
+    "competency_id": "CON-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Processes what happened in conflict before making decisions or conclusions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000209",
+    "competency_id": "CON-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Identifies lessons, patterns, and personal reactions after disagreement.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000210",
+    "competency_id": "CON-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Considers what the conflict reveals about the relationship.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000211",
+    "competency_id": "CON-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Acknowledges personal contribution to problems or harm.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000212",
+    "competency_id": "CON-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Takes responsibility without excessive defensiveness or blame-shifting.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000213",
+    "competency_id": "CON-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Makes concrete efforts to correct behavior after taking responsibility.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000214",
+    "competency_id": "CON-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Communicates concerns with tone, timing, and language that support understanding.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000215",
+    "competency_id": "CON-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Expresses disagreement without contempt, aggression, or unnecessary harshness.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000216",
+    "competency_id": "CON-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Chooses an approach that makes productive dialogue more likely.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000217",
+    "competency_id": "CON-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Receives feedback, concern, or disagreement without immediate rejection.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000218",
+    "competency_id": "CON-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Listens for valid information even when uncomfortable.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000219",
+    "competency_id": "CON-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Conflict Management",
+    "indicator": "Allows the other person's perspective to influence understanding.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000220",
+    "competency_id": "CON-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Conflict Management",
+    "indicator": "Approaches conflict as a shared problem rather than a win-lose contest.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000221",
+    "competency_id": "CON-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Conflict Management",
+    "indicator": "Works with the partner to identify mutual solutions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000222",
+    "competency_id": "CON-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Conflict Management",
+    "indicator": "Uses disagreement as an opportunity to strengthen teamwork.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000223",
+    "competency_id": "CON-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Conflict Management",
+    "indicator": "Takes steps to restore connection after conflict or rupture.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000224",
+    "competency_id": "CON-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Conflict Management",
+    "indicator": "Offers or receives apology, clarification, and corrective action.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000225",
+    "competency_id": "CON-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Conflict Management",
+    "indicator": "Addresses lingering hurt rather than moving on without repair.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000226",
+    "competency_id": "CON-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Conflict Management",
+    "indicator": "Discusses competing needs, preferences, or priorities to reach workable agreements.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000227",
+    "competency_id": "CON-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Conflict Management",
+    "indicator": "Makes concessions without abandoning core needs or values.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000228",
+    "competency_id": "CON-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Conflict Management",
+    "indicator": "Seeks solutions that consider both partners and the shared life.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000229",
+    "competency_id": "CON-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Conflict Management",
+    "indicator": "Identifies shared problems clearly and works toward practical solutions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000230",
+    "competency_id": "CON-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Conflict Management",
+    "indicator": "Breaks complex issues into manageable steps.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000231",
+    "competency_id": "CON-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Conflict Management",
+    "indicator": "Evaluates whether solutions are effective and adjusts as needed.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000232",
+    "competency_id": "CON-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Reduces intensity during conflict or transition.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000233",
+    "competency_id": "CON-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Avoids actions that inflame an already strained situation.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000234",
+    "competency_id": "CON-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Uses calm, space, or structure to prevent unnecessary harm.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000235",
+    "competency_id": "CON-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Works with others when continued coordination is necessary.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000236",
+    "competency_id": "CON-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Participates in practical decisions despite emotional difficulty.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000237",
+    "competency_id": "CON-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Maintains functional collaboration during transition, caregiving, separation, or dissolution.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000238",
+    "competency_id": "CON-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Controls impulses to retaliate, punish, or escalate.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000239",
+    "competency_id": "CON-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Pauses before acting on anger, grief, or fear.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000240",
+    "competency_id": "CON-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Chooses responses that minimize avoidable relational damage.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000241",
+    "competency_id": "CON-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Maintains basic respect and dignity during difficult interactions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000242",
+    "competency_id": "CON-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Communicates without contempt, humiliation, or unnecessary hostility.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000243",
+    "competency_id": "CON-EXPR-004",
+    "phase": "Expiration",
+    "domain": "Conflict Management",
+    "indicator": "Honors shared humanity even when the relationship is strained or ending.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000244",
+    "competency_id": "ROL-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Identifies the current relational role accurately.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000245",
+    "competency_id": "ROL-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Recognizes what belongs and does not belong in the present relationship stage.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000246",
+    "competency_id": "ROL-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Understands the responsibilities and limits associated with the current role.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000247",
+    "competency_id": "ROL-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Acts with awareness of relational purpose rather than drifting into roles unconsciously.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000248",
+    "competency_id": "ROL-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Makes choices that match stated relational intentions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000249",
+    "competency_id": "ROL-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Considers the developmental meaning of actions before assuming greater responsibility.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000250",
+    "competency_id": "ROL-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Aligns words, actions, and intentions consistently.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000251",
+    "competency_id": "ROL-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Behaves in ways that match stated values or commitments.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000252",
+    "competency_id": "ROL-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Reduces confusion by maintaining consistency between what is said and what is done.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000253",
+    "competency_id": "ROL-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Balances talking and listening during conversations.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000254",
+    "competency_id": "ROL-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Invites the other person's input rather than dominating communication.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000255",
+    "competency_id": "ROL-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Matches relational interest with appropriate mutual engagement.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000256",
+    "competency_id": "ROL-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Communicates physical, emotional, sexual, or relational limits clearly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000257",
+    "competency_id": "ROL-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Respects the other person's stated boundaries.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000258",
+    "competency_id": "ROL-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Adjusts behavior when boundaries are clarified or changed.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000259",
+    "competency_id": "ROL-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Behaves in ways that fit the current relational structure.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000260",
+    "competency_id": "ROL-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Avoids assuming spouse-level, caregiver, or committed-partner roles prematurely.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000261",
+    "competency_id": "ROL-EXPL-006",
+    "phase": "Exploration",
+    "domain": "Role Functioning",
+    "indicator": "Adjusts behavior when actions exceed the relationship's actual stage.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000262",
+    "competency_id": "ROL-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "indicator": "Functions as a committed partner rather than an independent dater.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000263",
+    "competency_id": "ROL-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "indicator": "Considers the relationship in decisions and patterns of behavior.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000264",
+    "competency_id": "ROL-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "indicator": "Demonstrates a partner identity through consistent relational engagement.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000265",
+    "competency_id": "ROL-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "indicator": "Follows through on stated intentions and commitments.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000266",
+    "competency_id": "ROL-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "indicator": "Shows up in ways that can be reasonably counted on.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000267",
+    "competency_id": "ROL-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "indicator": "Demonstrates predictable care through consistent behavior.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000268",
+    "competency_id": "ROL-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "indicator": "Demonstrates mutual investment in the relationship's stability and direction.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000269",
+    "competency_id": "ROL-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "indicator": "Communicates and acts in ways that reflect chosen commitment.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000270",
+    "competency_id": "ROL-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Role Functioning",
+    "indicator": "Aligns behavior with the shared commitment rather than individual convenience alone.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000271",
+    "competency_id": "ROL-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "indicator": "Incorporates multiple roles and responsibilities into a cohesive relational system.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000272",
+    "competency_id": "ROL-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "indicator": "Balances partner, family, work, caregiving, or household roles within the relationship.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000273",
+    "competency_id": "ROL-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "indicator": "Adjusts role functioning as the shared life becomes more complex.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000274",
+    "competency_id": "ROL-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "indicator": "Carries practical, emotional, or relational responsibilities with the partner.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000275",
+    "competency_id": "ROL-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "indicator": "Participates in the labor required to sustain the shared life.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000276",
+    "competency_id": "ROL-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "indicator": "Avoids overfunctioning, underfunctioning, or leaving one person to carry the system alone.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000277",
+    "competency_id": "ROL-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "indicator": "Shares logistical information needed to manage daily life together.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000278",
+    "competency_id": "ROL-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "indicator": "Clarifies responsibilities, timelines, and plans.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000279",
+    "competency_id": "ROL-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Role Functioning",
+    "indicator": "Communicates proactively to reduce confusion or duplicated effort.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000280",
+    "competency_id": "ROL-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "indicator": "Lets go of relational roles that no longer fit the current reality.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000281",
+    "competency_id": "ROL-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "indicator": "Stops functioning from a prior role when the relationship structure changes.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000282",
+    "competency_id": "ROL-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "indicator": "Recognizes when former responsibilities, privileges, or expectations must end.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000283",
+    "competency_id": "ROL-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "indicator": "Moves from one relational role to another with awareness and adjustment.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000284",
+    "competency_id": "ROL-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "indicator": "Communicates and behaves in ways that reflect the changing role.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000285",
+    "competency_id": "ROL-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "indicator": "Adapts responsibilities, expectations, and identity during relational transition.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000286",
+    "competency_id": "ROL-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "indicator": "Establishes a new understanding of self and others after role change.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000287",
+    "competency_id": "ROL-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "indicator": "Clarifies what the role now means and how it should function.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000288",
+    "competency_id": "ROL-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Role Functioning",
+    "indicator": "Creates new role expectations that fit the current relational reality.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000289",
+    "competency_id": "PHY-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Communicates physical, emotional, sexual, or relational limits clearly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000290",
+    "competency_id": "PHY-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Respects the other person's stated boundaries.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000291",
+    "competency_id": "PHY-EXPL-001",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Adjusts behavior when boundaries are clarified or changed.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000292",
+    "competency_id": "PHY-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Seeks clear agreement before physical or sexual contact.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000293",
+    "competency_id": "PHY-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Respects hesitation, refusal, or changed consent without pressure.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000294",
+    "competency_id": "PHY-EXPL-002",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Treats consent as ongoing and mutual rather than assumed.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000295",
+    "competency_id": "PHY-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Recognizes personal desires, values, readiness, and vulnerabilities around physical intimacy.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000296",
+    "competency_id": "PHY-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Identifies motivations for physical or sexual choices.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000297",
+    "competency_id": "PHY-EXPL-003",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Notices when pressure, fear, loneliness, or impulse may influence decisions.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000298",
+    "competency_id": "PHY-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Aligns sexual choices with values, boundaries, agreements, and developmental readiness.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000299",
+    "competency_id": "PHY-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Avoids using physical intimacy to bypass clarity or commitment.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000300",
+    "competency_id": "PHY-EXPL-004",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Makes intimate decisions that are honest and internally consistent.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000301",
+    "competency_id": "PHY-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Honors the other person's body, choices, comfort, and boundaries.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000302",
+    "competency_id": "PHY-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Communicates physical interest without entitlement or pressure.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000303",
+    "competency_id": "PHY-EXPL-005",
+    "phase": "Exploration",
+    "domain": "Physical Intimacy",
+    "indicator": "Treats physical intimacy as mutual rather than owed or assumed.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000304",
+    "competency_id": "PHY-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "indicator": "Honors agreed-upon sexual or physical boundaries within the committed relationship.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000305",
+    "competency_id": "PHY-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "indicator": "Avoids secrecy, betrayal, or behavior that violates physical intimacy agreements.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000306",
+    "competency_id": "PHY-EXCL-001",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "indicator": "Clarifies agreements when boundaries are uncertain or changing.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000307",
+    "competency_id": "PHY-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "indicator": "Expresses and responds to desire in ways that consider both partners.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000308",
+    "competency_id": "PHY-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "indicator": "Cultivates physical connection that is wanted, mutual, and respectful.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000309",
+    "competency_id": "PHY-EXCL-002",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "indicator": "Notices whether desire is shared rather than one-sided or pressured.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000310",
+    "competency_id": "PHY-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "indicator": "Discusses sexual needs, desires, comfort, boundaries, and concerns clearly.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000311",
+    "competency_id": "PHY-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "indicator": "Invites dialogue about physical intimacy without shame or avoidance.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000312",
+    "competency_id": "PHY-EXCL-003",
+    "phase": "Exclusivity",
+    "domain": "Physical Intimacy",
+    "indicator": "Uses communication to create mutual understanding around sexual connection.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000313",
+    "competency_id": "PHY-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Notices changes in the partner's physical, emotional, or sexual needs.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000314",
+    "competency_id": "PHY-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Responds sensitively to comfort, desire, stress, or capacity.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000315",
+    "competency_id": "PHY-EXPN-001",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Adjusts physical connection based on the partner's cues and communication.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000316",
+    "competency_id": "PHY-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Continues learning about the partner's evolving desires, preferences, and erotic world.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000317",
+    "competency_id": "PHY-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Explores fantasy, imagination, and novelty in a respectful and consensual way.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000318",
+    "competency_id": "PHY-EXPN-002",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Avoids assuming physical intimacy is fully known or static.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000319",
+    "competency_id": "PHY-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Adjusts emotionally or behaviorally to changed relational circumstances.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000320",
+    "competency_id": "PHY-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Modifies expectations and coping strategies as conditions change.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000321",
+    "competency_id": "PHY-EXPN-003",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Demonstrates flexibility in response to loss, transition, or restructuring.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000322",
+    "competency_id": "PHY-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Initiates affection, desire, or intimacy rather than leaving pursuit to one person.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000323",
+    "competency_id": "PHY-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Creates opportunities for physical and romantic connection.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000324",
+    "competency_id": "PHY-EXPN-004",
+    "phase": "Expansion",
+    "domain": "Physical Intimacy",
+    "indicator": "Makes the partner feel wanted, chosen, and actively desired.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000325",
+    "competency_id": "PHY-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "indicator": "Lets go of former expectations or patterns of physical intimacy that no longer fit.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000326",
+    "competency_id": "PHY-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "indicator": "Accepts that physical access, expression, or availability may change or end.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000327",
+    "competency_id": "PHY-EXPR-001",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "indicator": "Stops clinging to physical intimacy structures that belong to a prior relationship reality.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000328",
+    "competency_id": "PHY-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "indicator": "Reframes what physical or sexual intimacy means after relational transition.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000329",
+    "competency_id": "PHY-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "indicator": "Clarifies new boundaries, meanings, and expressions of physical connection.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000330",
+    "competency_id": "PHY-EXPR-002",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "indicator": "Creates an updated understanding of intimacy that fits the current reality.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000331",
+    "competency_id": "PHY-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "indicator": "Makes intentional choices about sexual and physical life after transition.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000332",
+    "competency_id": "PHY-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "indicator": "Acts in alignment with values, safety, readiness, and future direction.",
+    "evidence_level": "Developed"
+  },
+  {
+    "behavior_id": "BI-000333",
+    "competency_id": "PHY-EXPR-003",
+    "phase": "Expiration",
+    "domain": "Physical Intimacy",
+    "indicator": "Reclaims ownership over physical and sexual decision-making.",
+    "evidence_level": "Developed"
+  }
+]

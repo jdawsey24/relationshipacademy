@@ -1,0 +1,27 @@
+[
+  {
+    "experience_type_id": "ET-001",
+    "name": "Prepare",
+    "definition": "Prepare for an upcoming experience, conversation, or transition."
+  },
+  {
+    "experience_type_id": "ET-002",
+    "name": "Process",
+    "definition": "Understand and reflect on a recent or ongoing experience."
+  },
+  {
+    "experience_type_id": "ET-003",
+    "name": "Decide",
+    "definition": "Evaluate a meaningful relational decision."
+  },
+  {
+    "experience_type_id": "ET-004",
+    "name": "Build",
+    "definition": "Strengthen relational skills, habits, or patterns."
+  },
+  {
+    "experience_type_id": "ET-005",
+    "name": "Celebrate",
+    "definition": "Recognize and reinforce healthy relational growth and milestones."
+  }
+]

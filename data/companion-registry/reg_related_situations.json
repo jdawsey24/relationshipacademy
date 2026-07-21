@@ -1,0 +1,182 @@
+[
+  {
+    "source_situation_id": "RS-0001",
+    "target_situation_id": "RS-0011",
+    "relationship_type": "Related",
+    "rationale": "Readiness progression"
+  },
+  {
+    "source_situation_id": "RS-0003",
+    "target_situation_id": "RS-0004",
+    "relationship_type": "Related",
+    "rationale": "Post-breakup processing"
+  },
+  {
+    "source_situation_id": "RS-0005",
+    "target_situation_id": "RS-0007",
+    "relationship_type": "Related",
+    "rationale": "Repetition risk"
+  },
+  {
+    "source_situation_id": "RS-0008",
+    "target_situation_id": "RS-0009",
+    "relationship_type": "Related",
+    "rationale": "Recovery sequence"
+  },
+  {
+    "source_situation_id": "RS-0011",
+    "target_situation_id": "RS-0014",
+    "relationship_type": "Related",
+    "rationale": "Readiness to changed practice"
+  },
+  {
+    "source_situation_id": "RS-0012",
+    "target_situation_id": "RS-0017",
+    "relationship_type": "Related",
+    "rationale": "Fear and discernment"
+  },
+  {
+    "source_situation_id": "RS-0013",
+    "target_situation_id": "RS-0025",
+    "relationship_type": "Related",
+    "rationale": "Intention clarity"
+  },
+  {
+    "source_situation_id": "RS-0015",
+    "target_situation_id": "RS-0016",
+    "relationship_type": "Related",
+    "rationale": "Ways of meeting people"
+  },
+  {
+    "source_situation_id": "RS-0018",
+    "target_situation_id": "RS-0029",
+    "relationship_type": "Related",
+    "rationale": "Difficult disclosure preparation"
+  },
+  {
+    "source_situation_id": "RS-0022",
+    "target_situation_id": "RS-0023",
+    "relationship_type": "Related",
+    "rationale": "Communication uncertainty"
+  },
+  {
+    "source_situation_id": "RS-0024",
+    "target_situation_id": "RS-0027",
+    "relationship_type": "Related",
+    "rationale": "Investment and reliability"
+  },
+  {
+    "source_situation_id": "RS-0025",
+    "target_situation_id": "RS-0026",
+    "relationship_type": "Related",
+    "rationale": "Direction and intentions"
+  },
+  {
+    "source_situation_id": "RS-0026",
+    "target_situation_id": "RS-0028",
+    "relationship_type": "Related",
+    "rationale": "Commitment progression"
+  },
+  {
+    "source_situation_id": "RS-0027",
+    "target_situation_id": "RS-0039",
+    "relationship_type": "Related",
+    "rationale": "Imbalanced investment"
+  },
+  {
+    "source_situation_id": "RS-0031",
+    "target_situation_id": "RS-0042",
+    "relationship_type": "Related",
+    "rationale": "Expectation clarification"
+  },
+  {
+    "source_situation_id": "RS-0032",
+    "target_situation_id": "RS-0046",
+    "relationship_type": "Related",
+    "rationale": "Conflict patterns"
+  },
+  {
+    "source_situation_id": "RS-0033",
+    "target_situation_id": "RS-0051",
+    "relationship_type": "Related",
+    "rationale": "Emotional disconnection"
+  },
+  {
+    "source_situation_id": "RS-0034",
+    "target_situation_id": "RS-0043",
+    "relationship_type": "Related",
+    "rationale": "Family boundaries"
+  },
+  {
+    "source_situation_id": "RS-0035",
+    "target_situation_id": "RS-0054",
+    "relationship_type": "Related",
+    "rationale": "Trust evaluation and repair"
+  },
+  {
+    "source_situation_id": "RS-0036",
+    "target_situation_id": "RS-0045",
+    "relationship_type": "Related",
+    "rationale": "Financial integration"
+  },
+  {
+    "source_situation_id": "RS-0037",
+    "target_situation_id": "RS-0055",
+    "relationship_type": "Related",
+    "rationale": "Physical intimacy change"
+  },
+  {
+    "source_situation_id": "RS-0038",
+    "target_situation_id": "RS-0041",
+    "relationship_type": "Related",
+    "rationale": "Integration readiness"
+  },
+  {
+    "source_situation_id": "RS-0044",
+    "target_situation_id": "RS-0053",
+    "relationship_type": "Related",
+    "rationale": "Children and parenting"
+  },
+  {
+    "source_situation_id": "RS-0047",
+    "target_situation_id": "RS-0057",
+    "relationship_type": "Related",
+    "rationale": "Commitment doubt"
+  },
+  {
+    "source_situation_id": "RS-0048",
+    "target_situation_id": "RS-0055",
+    "relationship_type": "Related",
+    "rationale": "Sexual communication"
+  },
+  {
+    "source_situation_id": "RS-0049",
+    "target_situation_id": "RS-0053",
+    "relationship_type": "Related",
+    "rationale": "Family-system integration"
+  },
+  {
+    "source_situation_id": "RS-0051",
+    "target_situation_id": "RS-0059",
+    "relationship_type": "Related",
+    "rationale": "Disconnection and reconnection"
+  },
+  {
+    "source_situation_id": "RS-0056",
+    "target_situation_id": "RS-0060",
+    "relationship_type": "Related",
+    "rationale": "Adaptation and resilience"
+  },
+  {
+    "source_situation_id": "RS-0057",
+    "target_situation_id": "RS-0058",
+    "relationship_type": "Related",
+    "rationale": "Marital decision pathway"
+  },
+  {
+    "source_situation_id": "RS-0059",
+    "target_situation_id": "RS-0060",
+    "relationship_type": "Related",
+    "rationale": "Reconnection and resilience"
+  }
+]
