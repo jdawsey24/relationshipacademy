@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireCompanionUser } from "@/lib/companionAuth";
 import { getStripe, stripeConfigured } from "@/lib/stripe";
-import { COMPANION_PRICE_LOOKUP_KEY, COMPANION_PRODUCT_KEY } from "@/lib/companion";
+import { COMPANION_PRICE_LOOKUP_KEY, COMPANION_RETURNING_PRICE_LOOKUP_KEY, COMPANION_PRODUCT_KEY } from "@/lib/companion";
+import { getReturningEligibility } from "@/lib/companion/pricing";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,8 +22,18 @@ export async function POST(request: Request) {
   const admin = getSupabaseAdminClient();
 
   try {
-    const prices = await stripe.prices.list({ lookup_keys: [COMPANION_PRICE_LOOKUP_KEY], active: true, limit: 1 });
-    const price = prices.data[0];
+    // Returning customers who already own another paid item (e.g. an active
+    // Academy membership) get the discounted price when it exists. Load both
+    // lookup keys and pick: discounted-if-eligible-and-present, else base.
+    const eligibility = await getReturningEligibility(cu.user.id);
+    const wantedKeys = eligibility.qualifies
+      ? [COMPANION_RETURNING_PRICE_LOOKUP_KEY, COMPANION_PRICE_LOOKUP_KEY]
+      : [COMPANION_PRICE_LOOKUP_KEY];
+    const prices = await stripe.prices.list({ lookup_keys: wantedKeys, active: true, limit: 2 });
+    const byKey = new Map(prices.data.map((p) => [p.lookup_key, p]));
+    const price =
+      (eligibility.qualifies ? byKey.get(COMPANION_RETURNING_PRICE_LOOKUP_KEY) : undefined) ??
+      byKey.get(COMPANION_PRICE_LOOKUP_KEY);
     if (!price) return NextResponse.json({ error: "Companion isn't available for purchase yet." }, { status: 400 });
 
     // Reuse the shared Stripe customer on the profile (never mint a second).
@@ -34,7 +45,8 @@ export async function POST(request: Request) {
       await admin.from("profiles").upsert({ id: cu.user.id, stripe_customer_id: customerId }, { onConflict: "id" });
     }
 
-    const meta = { user_id: cu.user.id, product_key: COMPANION_PRODUCT_KEY, billing_type: "one_time" };
+    const returningApplied = price.lookup_key === COMPANION_RETURNING_PRICE_LOOKUP_KEY;
+    const meta = { user_id: cu.user.id, product_key: COMPANION_PRODUCT_KEY, billing_type: "one_time", price_tier: returningApplied ? "returning" : "standard" };
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       customer: customerId,
