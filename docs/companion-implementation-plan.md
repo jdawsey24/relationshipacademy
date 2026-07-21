@@ -260,3 +260,19 @@ A **data-driven block renderer**: `experience_versions.blocks` is an ordered arr
 - **Consumer language** only in UI ("Add to Home Screen", "Save to Your Phone", "Use It Like an App"); technical terms (PWA, service worker, manifest) stay in internal docs.
 
 **Post-purchase acceptance:** immediate authenticated access; confirmation page explains mobile access; first-time mobile user gets device-appropriate install guidance; Android native prompt where supported; iOS Safari-specific steps; guide reopenable; standalone launch after install where supported; messaging never implies a PDF/App-Store download; access stays tied to the authenticated account.
+
+---
+
+## Launch status (updated 2026-07-21)
+
+**NOT launched to production.** The Companion is fully built and flag-hidden.
+
+- **Feature flag** `NEXT_PUBLIC_COMPANION_ENABLED` — set to `true` in **local `.env.local` ONLY** (for preview). **Netlify production is UNSET / still hidden.** This is a *build-time* variable: a real launch requires setting it in Netlify production **and redeploying**, plus surfacing a public entry point (no marketing route yet — planned `/relationship-companion`).
+- **Pricing is LIVE in Stripe** — Companion `$19.99` one-time (`companion_onetime`), with a returning-customer discount to `$9.99` (`companion_returning`) for owners of a paid Playbook or an active Academy membership. Verified end-to-end with a real test-mode purchase (card → webhook → grant → discounted price). See `docs/playbook-commerce.md`.
+- **Consumer UI redesign COMPLETE** across every surface (warm/serif design language).
+
+**Open launch gates (owner/external — must clear before production):**
+1. **Clinical-safety layer is unauthored** — crisis-detection taxonomy + resources were to be written by a qualified clinician; none exists. RS-0057 "Questioning Whether to Stay Married" and RS-0058 "Considering Separation" are held as Draft pending this.
+2. **Content review** — the 42 published guided experiences bypassed the Draft→Theory→Safety→Approved ladder (published directly for preview); a formal theory/safety pass is required.
+3. **Legal/privacy copy** — onboarding privacy line + gate copy are drafts, pending owner/counsel review.
+4. **Branded PWA assets** — icons currently reuse `logo-mark.png`; install screenshots pending.
