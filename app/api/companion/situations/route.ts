@@ -16,7 +16,7 @@ export async function GET(request: Request) {
   const includeDraft = cu.isStaff;
 
   if (q.trim()) return NextResponse.json({ results: await searchSituations(q, includeDraft) });
-  if (view === "process") return NextResponse.json({ groups: await getSituationCatalog(includeDraft) });
   const statusKey = await getUserStatusKey(cu.user.id);
+  if (view === "process") return NextResponse.json({ groups: await getSituationCatalog(includeDraft, statusKey) });
   return NextResponse.json({ situations: await getSituationsForStatus(statusKey, includeDraft), preview: includeDraft });
 }

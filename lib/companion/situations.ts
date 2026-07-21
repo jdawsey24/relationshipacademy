@@ -51,20 +51,28 @@ export async function getSituationsForStatus(statusKey: string | null, includeDr
   } catch { return []; }
 }
 
-/** All situations grouped by consumer category. For Process. */
-export async function getSituationCatalog(includeDraft: boolean): Promise<CategoryGroup[]> {
+/** Situations grouped by consumer category. For Process. When statusKey is given,
+ * limited to situations relevant to that status (primary or additional) — mirrors
+ * Home's status filter, but keeps the category grouping. Pass null for the full catalog. */
+export async function getSituationCatalog(includeDraft: boolean, statusKey?: string | null): Promise<CategoryGroup[]> {
   try {
     const s = getSupabaseAdminClient();
-    const [{ data: cats }, sits] = await Promise.all([
+    const [{ data: cats }, sitsRaw, { data: m2m }] = await Promise.all([
       s.from("reg_situation_categories").select("category_id, name, display_order").order("display_order"),
       (async () => {
         let q = s.from("reg_situations").select(SELECT).order("official_title");
         if (!includeDraft) q = q.eq("publication_status", "Published");
         return (await q).data ?? [];
       })(),
+      statusKey ? s.from("reg_situation_statuses").select("situation_id").eq("status_key", statusKey) : Promise.resolve({ data: [] }),
     ]);
+    let sits = sitsRaw as Record<string, unknown>[];
+    if (statusKey) {
+      const extra = new Set(((m2m ?? []) as { situation_id: string }[]).map((r) => r.situation_id));
+      sits = sits.filter((r) => r.primary_status_key === statusKey || extra.has(r.situation_id as string));
+    }
     const byCat = new Map<string, SituationCard[]>();
-    for (const r of sits as Record<string, unknown>[]) {
+    for (const r of sits) {
       const c = (r.primary_category_id as string) ?? "_none";
       (byCat.get(c) ?? byCat.set(c, []).get(c)!).push(toCard(r));
     }
