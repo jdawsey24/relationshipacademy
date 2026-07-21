@@ -3,17 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { RELATIONSHIP_STATUSES, INTEREST_TOPICS } from "@/lib/companion";
+import { STATUS_META } from "@/lib/companion/statusMeta";
 
 // Post-entitlement onboarding: intro -> status -> interests -> privacy ack.
 // Copy is placeholder where marked. Status filters/prioritizes; it never assigns a phase.
-
-const STATUS_META: Record<string, { desc: string; icon: string[] }> = {
-  single: { desc: "On my own right now", icon: ["M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z", "M5 20c0-3.5 3-6 7-6s7 2.5 7 6"] },
-  dating: { desc: "Getting to know someone", icon: ["M8.5 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", "M15.5 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", "M3.5 20c0-2.8 2.2-5 5-5", "M20.5 20c0-2.8-2.2-5-5-5"] },
-  committed: { desc: "In a committed relationship", icon: ["M12 21s-7-4.6-9.4-8A4.9 4.9 0 0 1 12 6.8a4.9 4.9 0 0 1 9.4 6.2C19 16.4 12 21 12 21z"] },
-  engaged: { desc: "Planning toward marriage", icon: ["M12 9a5 5 0 1 0 0 10 5 5 0 0 0 0-10z", "M9 9l3-5 3 5"] },
-  married: { desc: "Married", icon: ["M9 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8z", "M15 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"] },
-};
 
 function Glyph({ paths, size = 20 }: { paths: string[]; size?: number }) {
   return (
@@ -51,7 +44,7 @@ export default function CompanionOnboardingPage() {
 
       {step === 0 && (
         <Section eyebrow="Welcome" title="A private space to process" onNext={() => setStep(1)} nextLabel="Get started">
-          <p className="text-balance font-body text-[16px] leading-relaxed text-charcoal/75">[APPROVED INTRODUCTION TO BE PROVIDED] — The Relationship Companion is a private space to process what you&apos;re navigating and make more intentional decisions. It&apos;s not therapy, and there&apos;s no schedule to keep.</p>
+          <p className="text-balance font-body text-[16px] leading-relaxed text-charcoal/75">The Relationship Companion is a private, judgment-free space to think through whatever you&apos;re navigating — so you can move at your own pace and make choices that feel intentional. It isn&apos;t therapy, and there&apos;s nothing to keep up with. Come as often, or as rarely, as you need.</p>
         </Section>
       )}
 
@@ -100,7 +93,7 @@ export default function CompanionOnboardingPage() {
       {step === 3 && (
         <Section eyebrow="One last thing" title="Before you begin" onNext={finish} nextDisabled={!ack || busy} nextLabel={busy ? "Setting up…" : "Enter the Companion"}>
           <div className="rounded-2xl border border-light-gray bg-white p-5 font-body text-sm leading-relaxed text-charcoal/75">
-            <p>[APPROVED LEGAL / PRIVACY COPY TO BE PROVIDED]</p>
+            <p>A few things to know before you start. This is a private, reflective space — a tool for thinking things through, not a substitute for professional care.</p>
             <ul className="mt-3 space-y-2">
               {["Your entries are private to you.", "This is an educational, reflective tool.", "It is not therapy, diagnosis, crisis care, or emergency support.", "It does not make relationship decisions for you."].map((line) => (
                 <li key={line} className="flex items-start gap-2">
