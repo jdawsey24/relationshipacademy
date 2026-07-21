@@ -5,6 +5,17 @@ import { useParams, useRouter } from "next/navigation";
 import CompanionChrome from "@/components/companion/CompanionChrome";
 import { PLANNER_FIELDS } from "@/lib/companion";
 
+// The 12 planner fields grouped into readable sections.
+const GROUPS = [
+  { title: "The conversation", keys: ["discuss", "why_matters", "hoped_outcome"] },
+  { title: "What you know", keys: ["facts", "assumptions"] },
+  { title: "Understanding each other", keys: ["want_understood", "want_to_understand"] },
+  { title: "How to say it", keys: ["boundary_request", "how_communicate", "respectful_looks_like"] },
+  { title: "When and where", keys: ["when_where"] },
+  { title: "Afterward", keys: ["after_reflection"] },
+];
+const LABEL: Record<string, string> = Object.fromEntries(PLANNER_FIELDS.map((f) => [f.key, f.label]));
+
 export default function CompanionPlannerEdit() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -35,22 +46,33 @@ export default function CompanionPlannerEdit() {
   return (
     <CompanionChrome active="none">
       <div className="flex items-center justify-between">
-        <button onClick={() => router.replace("/companion/planner")} className="font-ui text-sm text-charcoal/55">← Plans</button>
+        <button onClick={() => router.replace("/companion/planner")} className="flex items-center gap-1 font-ui text-sm text-charcoal/55 hover:text-charcoal"><span aria-hidden="true">←</span> Plans</button>
         <span className="font-ui text-xs text-charcoal/40">{state === "saving" ? "Saving…" : state === "saved" ? "Saved" : ""}</span>
       </div>
-      <h1 className="mt-3 font-display text-2xl font-semibold text-midnight-navy">Plan the conversation</h1>
-      <p className="mt-1 font-body text-sm text-charcoal/55">[APPROVED PLANNER GUIDANCE TO BE PROVIDED]</p>
 
-      <div className="mt-5 space-y-3">
-        {PLANNER_FIELDS.map((f) => (
-          <label key={f.key} className="block rounded-2xl border border-light-gray bg-white p-4">
-            <span className="font-body text-sm font-medium text-midnight-navy">{f.label}</span>
-            <textarea value={fields[f.key] ?? ""} onChange={(e) => onChange(f.key, e.target.value)} rows={2}
-              className="mt-2 w-full rounded-xl border border-light-gray bg-warm-ivory/40 px-3 py-2 font-body text-sm focus:border-midnight-navy/40 focus:outline-none" />
-          </label>
+      <p className="mt-4 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Conversation Planner</p>
+      <h1 className="mt-1.5 font-display text-3xl font-semibold leading-tight text-midnight-navy">Plan the conversation</h1>
+      <p className="mt-1 font-body text-sm leading-relaxed text-charcoal/55">Work through what you want to say, at your own pace. Everything saves privately as you go.</p>
+
+      <div className="mt-6 space-y-7">
+        {GROUPS.map((g) => (
+          <section key={g.title}>
+            <h2 className="font-display text-lg font-semibold text-midnight-navy">{g.title}</h2>
+            <div className="mt-1.5 h-px bg-light-gray" />
+            <div className="mt-3 space-y-2.5">
+              {g.keys.map((k) => (
+                <div key={k} className="rounded-2xl border border-light-gray bg-white p-4">
+                  <label htmlFor={k} className="block font-display text-[17px] font-semibold leading-snug text-midnight-navy">{LABEL[k]}</label>
+                  <textarea id={k} value={fields[k] ?? ""} onChange={(e) => onChange(k, e.target.value)} rows={2}
+                    className="mt-2.5 w-full rounded-xl border border-light-gray bg-warm-ivory/50 px-3 py-2.5 font-body text-sm leading-relaxed text-charcoal focus:border-midnight-navy/40 focus:outline-none focus:ring-2 focus:ring-midnight-navy/10" />
+                </div>
+              ))}
+            </div>
+          </section>
         ))}
       </div>
-      <button onClick={del} className="mt-6 font-ui text-sm text-coral-rose">Delete plan</button>
+
+      <button onClick={del} className="mt-7 font-ui text-sm text-coral-rose hover:underline">Delete plan</button>
     </CompanionChrome>
   );
 }
