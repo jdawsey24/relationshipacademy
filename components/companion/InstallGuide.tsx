@@ -90,7 +90,7 @@ export default function InstallGuide({ open, onClose }: { open?: boolean; onClos
           ) : (
             <p>You can keep using the Companion in your browser. On a phone, open it in your mobile browser to save it to your Home Screen.</p>
           ))}
-          <p className="mt-3 text-xs text-charcoal/40">[PLACEHOLDER ILLUSTRATIONS TO BE PROVIDED]</p>
+          <p className="mt-3 text-xs text-charcoal/45">Once it&apos;s on your Home Screen, the Companion opens full-screen, just like an app.</p>
         </div>
 
         <button onClick={close} className="mt-4 w-full py-2 font-ui text-sm text-charcoal/55">Maybe later</button>

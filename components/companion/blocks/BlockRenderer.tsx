@@ -25,8 +25,10 @@ const READING: Record<string, { label: string | null; accent: string; icon: stri
 };
 
 function bodyText(payload: unknown): string {
+  // Real authored content lives in `text`; `placeholder` is only a CMS-draft hint.
+  // Prefer text; never surface a bracket placeholder token to a learner.
   const p = payload as { placeholder?: string; text?: string } | null;
-  return p?.placeholder ?? p?.text ?? "[CONTENT TO BE PROVIDED]";
+  return (p?.text?.trim() || p?.placeholder?.trim() || "");
 }
 
 function Glyph({ icon }: { icon: string[] }) {
