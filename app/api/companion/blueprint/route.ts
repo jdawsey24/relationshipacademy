@@ -19,8 +19,9 @@ export async function PATCH(request: Request) {
   let body: Record<string, unknown>;
   try { body = await request.json(); } catch { return NextResponse.json({ error: "Invalid JSON." }, { status: 400 }); }
   const key = String(body.key ?? "");
+  // Classify BEFORE persistence/processing (item 3), then persist the section.
+  const safety = await screenText(body.text, { userId: cu.user.id, context: "blueprint", situationRef: key });
   const ok = await saveBlueprintSection(cu.user.id, key, String(body.text ?? ""), body.archivePrior === true);
   if (!ok) return NextResponse.json({ error: "Unknown section." }, { status: 400 });
-  const safety = await screenText(body.text, { userId: cu.user.id, context: "blueprint", situationRef: key });
   return NextResponse.json(safety ? { ok: true, safety } : { ok: true });
 }

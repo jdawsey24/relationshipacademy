@@ -23,10 +23,11 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   let body: Record<string, unknown>;
   try { body = await request.json(); } catch { return NextResponse.json({ error: "Invalid JSON." }, { status: 400 }); }
   const fields = (body.fields && typeof body.fields === "object") ? body.fields as Record<string, unknown> : {};
-  const ok = await savePlan(cu.user.id, id, fields, typeof body.status === "string" ? body.status : undefined);
-  if (!ok) return NextResponse.json({ error: "Not found." }, { status: 404 });
+  // Classify the combined free-text BEFORE persistence/processing (item 3).
   const text = Object.values(fields).filter((v) => typeof v === "string").join("\n");
   const safety = await screenText(text, { userId: cu.user.id, context: "planner", situationRef: id });
+  const ok = await savePlan(cu.user.id, id, fields, typeof body.status === "string" ? body.status : undefined);
+  if (!ok) return NextResponse.json({ error: "Not found." }, { status: 404 });
   return NextResponse.json(safety ? { ok: true, safety } : { ok: true });
 }
 

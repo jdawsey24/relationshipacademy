@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireEntitledCompanionUser } from "@/lib/companionAuth";
 import { getJourneyEntry, updateJourneyEntry, setFavorite, addTag, removeTag, archiveEntry, deleteEntry } from "@/lib/companion/journey";
+import { screenText } from "@/lib/companion/safety";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -22,12 +23,19 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   const uid = cu.user.id;
   let body: Record<string, unknown>;
   try { body = await request.json(); } catch { return NextResponse.json({ error: "Invalid JSON." }, { status: 400 }); }
-  if (typeof body.title === "string") { if (!(await updateJourneyEntry(uid, id, { title: body.title }))) return NextResponse.json({ error: "Not found." }, { status: 404 }); }
+  let safety = null;
+  if (typeof body.title === "string") {
+    if (!(await updateJourneyEntry(uid, id, { title: body.title }))) return NextResponse.json({ error: "Not found." }, { status: 404 });
+    // A title is free text, so it IS a disclosure surface — but titles are short
+    // and ambiguous, so only a clear (>= level 2) classification surfaces an
+    // interstitial; ambiguous L1 signals never interrupt a rename (item 15).
+    safety = await screenText(body.title, { userId: uid, context: "journey_title", situationRef: id, minConfidenceLevel: 2 });
+  }
   if (typeof body.favorite === "boolean") await setFavorite(uid, id, body.favorite);
   if (typeof body.addTag === "string" && body.addTag.trim()) await addTag(uid, id, body.addTag);
   if (typeof body.removeTag === "string") await removeTag(uid, id, body.removeTag);
   if (body.archive === true) await archiveEntry(uid, id);
-  return NextResponse.json({ ok: true });
+  return NextResponse.json(safety ? { ok: true, safety } : { ok: true });
 }
 
 // DELETE — explicit confirmation is enforced client-side; irreversible.

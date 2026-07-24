@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "status": "PROPOSED — clinician review required before seeding",
+    "registry_version": "2.0.1",
+    "authored_by": "structured from the owner's phrase lists; severities + flags are PROPOSED drafts, revised per owner review round 2",
+    "severity_framework": {
+      "1": "possible / ambiguous / context-sensitive safety signal",
+      "2": "clear safety disclosure without evidence of acute/imminent danger",
+      "3": "explicit serious harm, suicidal intent, severe violence, sexual assault/force, or credible threat"
+    },
+    "revision_notes": [
+      "IPV physical split: ordinary assault (hit/slap/push/grab) = sev2; choking/strangulation = sev3. Context/immediacy still escalate action level.",
+      "Self-harm: bare 'hurt myself'/'cut myself' NO LONGER sev3 intentional harm; only intentional formulations ('want to hurt myself','self-harm','cut myself on purpose') + suicide-thought formulations classify. Accidental injury preserved (no bare pattern).",
+      "Weapon immediacy terms carry NO implies_category — weapon presence is category-neutral; the engine takes the category from the associated finding, else leaves it UNDETERMINED.",
+      "Removed over-broad immediacy: 'just took', bare 'hiding', bare 'getting worse', bare 'took the pills' → replaced with intentional/contextual formulations.",
+      "'won't let me leave' is an atomic affirmative confinement pattern; negation handling stays ENABLED (the internal negation is part of the phrase, so it is not suppressed).",
+      "Harm-to-others: explicit intent ('want to kill him'/'going to kill her') = sev3; bare 'kill him' = sev1 (hyperbole/quote/media risk), escalated by context/immediacy.",
+      "Added sexual-consent common-language coverage with deliberate, non-uniform severities."
+    ]
+  },
+
+  "rules": {
+    "self_harm": [
+      { "concept": "suicidal_intent", "severity": 3, "match_type": "phrase", "patterns": ["kill myself", "end my life", "take my life", "commit suicide", "want to kill myself"] },
+      { "concept": "suicidal_ideation", "severity": 3, "match_type": "phrase", "patterns": ["thinking about killing myself", "thoughts of killing myself", "thinking about suicide", "thoughts of suicide", "thinking about ending my life", "don't want to wake up"] },
+      { "concept": "suicidal_signal", "severity": 2, "match_type": "keyword", "patterns": ["suicidal"] },
+      { "concept": "passive_death_wish", "severity": 2, "match_type": "phrase", "patterns": ["want to die", "wish i were dead", "wish i was dead", "better off dead", "don't want to live", "don't want to be here anymore", "no reason to live", "everyone would be better without me", "everyone would be better off without me", "want to end it all"] },
+      { "concept": "self_harm_intent", "severity": 2, "match_type": "phrase", "patterns": ["want to hurt myself", "want to harm myself", "thinking about harming myself", "thinking about hurting myself", "self-harm", "self harm", "cut myself on purpose", "cutting myself", "hurting myself on purpose", "harm myself on purpose"] },
+      { "concept": "diffuse_distress", "severity": 1, "match_type": "phrase", "patterns": ["want everything to stop", "want to disappear forever", "can't go on"] }
+    ],
+
+    "ipv": [
+      { "concept": "physical_assault", "severity": 2, "match_type": "phrase", "patterns": ["hit me", "hits me", "hitting me", "slapped me", "slaps me", "punched me", "punches me", "kicked me", "kicks me", "shoved me", "pushed me", "grabbed me", "grabs me"] },
+      { "concept": "severe_violence", "severity": 3, "match_type": "phrase", "patterns": ["choke me", "choked me", "chokes me", "choking me", "strangled me", "strangles me", "strangling me"] },
+      { "concept": "threat", "severity": 3, "match_type": "phrase", "patterns": ["threatened me", "threatening me", "threatened to hurt me", "threatened to kill me", "threatened my children", "threatened my family", "threatened my pets"] },
+      { "concept": "lethality_fear", "severity": 3, "match_type": "phrase", "patterns": ["going to kill me"] },
+      { "concept": "fear_of_partner", "severity": 2, "match_type": "phrase", "patterns": ["afraid of my partner", "scared of my partner", "scared to go home", "afraid to go home", "afraid of what my partner will do", "afraid of what he'll do", "afraid of what she'll do"] },
+      { "concept": "confinement", "severity": 2, "match_type": "phrase", "patterns": ["won't let me leave", "blocked the door", "trapped me", "cornered me"] },
+      { "concept": "financial_control", "severity": 2, "match_type": "phrase", "patterns": ["controls my money", "controls where i go", "keeps me from working", "won't let me work"] },
+      { "concept": "isolation", "severity": 2, "match_type": "phrase", "patterns": ["won't let me see my friends", "won't let me see my family", "keeps me from my friends", "keeps me from my family"] },
+      { "concept": "surveillance", "severity": 2, "match_type": "phrase", "patterns": ["tracks my location", "monitors my phone", "checks my phone", "following me", "stalking me"] },
+      { "concept": "intimidation", "severity": 2, "match_type": "phrase", "patterns": ["breaks things to scare me", "punched walls to intimidate me", "punched the wall to scare me", "punches walls"] },
+      { "concept": "referenced_abuse", "severity": 1, "match_type": "phrase", "patterns": ["does the same thing to me", "does that to me", "does this to me"] }
+    ],
+
+    "sexual_coercion": [
+      { "concept": "assault", "severity": 3, "match_type": "phrase", "patterns": ["forced me to have sex", "raped me", "sexually assaulted me", "touched me without consent", "touched me without my permission", "sexual contact without permission", "made me have sex", "made me do sexual things"] },
+      { "concept": "nonconsent", "severity": 3, "match_type": "regex", "patterns": ["said no.{0,30}(kept going|wouldn'?t stop|didn'?t stop|wouldn'?t listen|didn'?t listen)"] },
+      { "concept": "nonconsent", "severity": 3, "match_type": "phrase", "patterns": ["kept going when i said no", "kept going after i said no", "didn't stop when i said no", "wouldn't stop when i said no", "wouldn't listen when i said no", "didn't listen when i said no"] },
+      { "concept": "consent_impossible", "severity": 3, "match_type": "phrase", "patterns": ["sex while i was asleep", "sex while i was unconscious", "sex when i was too drunk", "too intoxicated to consent", "removed a condom without permission", "took the condom off without"] },
+      { "concept": "coercion", "severity": 2, "match_type": "phrase", "patterns": ["pressured me into sex", "wouldn't take no for an answer", "kept asking until i gave in", "guilted me into sex", "manipulated me into sex", "threatened me for sex"] },
+      { "concept": "fear_to_refuse", "severity": 2, "match_type": "phrase", "patterns": ["afraid to say no", "scared to say no", "have sex because i'm afraid", "feel like i have to have sex", "afraid they'll get angry if i say no"] },
+      { "concept": "consent_unclear", "severity": 2, "match_type": "phrase", "patterns": ["i didn't agree to it", "didn't agree to it", "i didn't consent", "i never agreed to it", "i was asleep when it happened", "asleep when it happened"] },
+      { "concept": "consent_ambiguous", "severity": 1, "match_type": "phrase", "patterns": ["wouldn't stop"] }
+    ],
+
+    "harm_to_others": [
+      { "concept": "lethal_intent", "severity": 3, "match_type": "regex", "patterns": ["(about to|going to|gonna|want to|planning to) kill (him|her|them|someone|my partner)"] },
+      { "concept": "lethal_intent", "severity": 3, "match_type": "phrase", "patterns": ["i'm going to kill", "planning to kill him", "planning to kill her", "planning to kill them"] },
+      { "concept": "violent_intent", "severity": 3, "match_type": "regex", "patterns": ["(about to|going to|gonna|want to|planning to) hurt (him|her|them|someone|my partner)"] },
+      { "concept": "violent_intent", "severity": 3, "match_type": "phrase", "patterns": ["want to stab", "going to stab", "want to shoot", "going to shoot"] },
+      { "concept": "lethal_reference", "severity": 1, "match_type": "phrase", "context_required": true, "patterns": ["kill him", "kill her", "kill them", "kill my partner"] },
+      { "concept": "violent_method", "severity": 2, "match_type": "phrase", "patterns": ["stab them", "stab him", "stab her", "shoot them", "shoot him", "shoot her", "strangle them", "choke them"] },
+      { "concept": "violent_urge", "severity": 2, "match_type": "phrase", "patterns": ["hurt my partner", "seriously hurt them", "seriously hurt him", "seriously hurt her"] },
+      { "concept": "hostile_ideation", "severity": 2, "match_type": "phrase", "patterns": ["they deserve to die", "wish they were dead", "wish he were dead", "wish she were dead"] },
+      { "concept": "ambiguous_hostility", "severity": 1, "match_type": "phrase", "patterns": ["make them pay", "make him pay", "make her pay"] },
+      { "concept": "loss_of_control", "severity": 2, "match_type": "phrase", "patterns": ["afraid i'll hurt someone", "worried i might hurt them", "losing control and might hurt someone", "scared i'll hurt someone"] }
+    ]
+  },
+
+  "responses": [
+    { "level": "1", "discreet_mode": false, "heading": "Support is available.", "message": "Something you shared may be worth getting additional support around. You can keep going, or you can view support options at any time. You decide what feels right for you." },
+    { "level": "2", "discreet_mode": false, "heading": "Let's pause here for a moment.", "message": "Something you shared raises a concern about your well-being or safety. You do not have to figure out what it means on your own. This tool cannot assess your safety or respond in real time, but you can connect with people who are trained to listen, help you think through what is happening, and discuss your options.\n\nYou decide whether you want to contact a resource below." },
+    { "level": "3", "discreet_mode": false, "heading": "Let's pause and focus on your safety.", "message": "Something you shared may involve a serious risk of harm to you or someone else. This tool cannot assess the situation, provide crisis care, or monitor what is happening in real time. Please consider connecting with a trained crisis or safety resource below, or with someone you trust who can be with you and help you get support." },
+    { "level": "immediate_danger", "discreet_mode": false, "heading": "If someone may be in immediate danger:", "message": "Contact local emergency services if you can do so safely. In the United States, call 911. You can also use the support options below to connect with trained help." },
+    { "level": "digital_safety", "discreet_mode": true, "heading": "Need privacy?", "message": "Someone with access to your device may be able to see your browsing activity. Nothing on this screen will automatically text, email, call, or notify anyone. You choose what you open. Use Quick Exit if you need to leave this screen quickly." }
+  ],
+
+  "immediacy_terms": [
+    { "kind": "intent", "match_type": "phrase", "patterns": ["about to", "going to do it", "i'm going to do it", "about to do it"] },
+    { "kind": "active_act", "match_type": "phrase", "implies_category": "self_harm", "patterns": ["already took the pills", "took too many pills", "took a whole bottle", "took all my pills", "overdosed", "took an overdose"] },
+    { "kind": "weapon", "match_type": "phrase", "patterns": ["he has a gun", "she has a gun", "has a gun", "has a knife", "has a weapon", "have a gun", "have the gun with me", "i have a knife", "holding a gun", "pointing a gun at me"] },
+    { "kind": "confinement", "match_type": "phrase", "patterns": ["won't let me leave", "blocked the door", "trapped me", "cornered me", "hiding from him", "hiding from her", "hiding from my partner", "locked me in", "locked in the room"] },
+    { "kind": "escalation", "match_type": "phrase", "patterns": ["threatening me", "going to kill me", "coming after me", "about to hurt me"] },
+    { "kind": "temporal", "match_type": "phrase", "patterns": ["right now", "here right now", "at this moment", "as we speak"] },
+    { "kind": "temporal", "match_type": "keyword", "patterns": ["tonight"] }
+  ]
+}

@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { requireOwner } from "@/lib/adminApi";
 import { getAdminUser } from "@/lib/supabaseServer";
 import { audit } from "@/lib/audit";
-import { updateResource, deleteResource } from "@/lib/companion/safetyCms";
-import { verificationError } from "@/lib/companion/safetyValidation";
+import { updateImmediacy, deleteImmediacy, getImmediacy } from "@/lib/companion/safetyCms";
+import { validateImmediacyTerm } from "@/lib/companion/safetyValidation";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -15,14 +15,16 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   const { id } = await params;
   let body: Record<string, unknown>;
   try { body = await request.json(); } catch { return NextResponse.json({ error: "Invalid JSON." }, { status: 400 }); }
-  // Only enforce verification integrity when the write touches verification fields.
-  if ("verified_at" in body || "verified_by" in body || "source" in body) {
-    const verr = verificationError(body);
-    if (verr) return NextResponse.json({ error: verr }, { status: 400 });
-  }
+
+  const current = await getImmediacy(id);
+  if (!current) return NextResponse.json({ error: "Not found." }, { status: 404 });
+  const merged = { ...current, ...body } as Record<string, unknown>;
+  const v = validateImmediacyTerm(merged, merged.is_active === true);
+  if (!v.ok) return NextResponse.json({ error: v.errors.join(" ") }, { status: 400 });
+
   try {
-    await updateResource(id, body, user?.email ?? null);
-    await audit({ actor: user?.email ?? null, action: "companion.safety.resource.update", target: id, metadata: { fields: Object.keys(body) } });
+    await updateImmediacy(id, body, user?.email ?? null);
+    await audit({ actor: user?.email ?? null, action: "companion.safety.immediacy.update", target: id, metadata: { fields: Object.keys(body) } });
     return NextResponse.json({ ok: true });
   } catch (e) { return NextResponse.json({ error: e instanceof Error ? e.message : "Failed." }, { status: 502 }); }
 }
@@ -33,8 +35,8 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
   const user = await getAdminUser();
   const { id } = await params;
   try {
-    await deleteResource(id);
-    await audit({ actor: user?.email ?? null, action: "companion.safety.resource.delete", target: id });
+    await deleteImmediacy(id);
+    await audit({ actor: user?.email ?? null, action: "companion.safety.immediacy.delete", target: id });
     return NextResponse.json({ ok: true });
   } catch (e) { return NextResponse.json({ error: e instanceof Error ? e.message : "Failed." }, { status: 502 }); }
 }

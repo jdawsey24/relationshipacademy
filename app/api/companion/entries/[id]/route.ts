@@ -8,10 +8,11 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // PATCH { block_ref, response } — save one block (autosave). Ownership verified.
-// V1 safety layer: the learner's free-text is screened; on a high-risk trigger
-// the response is still saved (it's their private entry) but the API returns a
-// `safety` interrupt so the client halts the experience and shows support +
-// resources instead of continuing.
+// Safety Layer V2: the learner's free-text is CLASSIFIED BEFORE it flows into
+// normal processing (item 3). The response is still persisted (it's their private
+// entry — authorized primary content), but on an actionable classification the
+// API returns a `safety` interrupt so the client halts the experience and shows
+// support + resources instead of continuing.
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const cu = await requireEntitledCompanionUser();
   if (cu instanceof NextResponse) return cu;
@@ -20,9 +21,11 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   try { body = await request.json(); } catch { return NextResponse.json({ error: "Invalid JSON." }, { status: 400 }); }
   const blockRef = String(body.block_ref ?? "");
   if (!blockRef) return NextResponse.json({ error: "Missing block." }, { status: 400 });
+  // 1) Safety classification precedes persistence/processing.
+  const safety = await screenText(body.response, { userId: cu.user.id, context: "experience", situationRef: id });
+  // 2) Authorized persistence of the learner's own entry.
   const ok = await saveResponse(cu.user.id, id, blockRef, body.response ?? null);
   if (!ok) return NextResponse.json({ error: "Not found." }, { status: 404 });
-  const safety = await screenText(body.response, { userId: cu.user.id, context: "experience", situationRef: id });
   return NextResponse.json(safety ? { ok: true, safety } : { ok: true });
 }
 

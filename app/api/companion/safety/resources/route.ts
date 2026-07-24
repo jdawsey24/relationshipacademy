@@ -11,6 +11,8 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const cu = await requireCompanionUser();
   if (cu instanceof NextResponse) return cu;
-  const resources = await getActiveResources("high_risk");
+  // Persistent "Get help" screen shows all active verified resources for the
+  // jurisdiction (default US; jurisdiction-aware routing lands with geo/prefs).
+  const resources = await getActiveResources("US");
   return NextResponse.json({ resources });
 }
