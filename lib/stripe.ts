@@ -10,6 +10,12 @@ export function stripeConfigured(): boolean {
   return !!process.env.STRIPE_SECRET_KEY;
 }
 
+/** True when the configured Stripe key is a LIVE key (sk_live_…). Used to keep
+ *  test-mode events from ever granting production access. */
+export function stripeIsLive(): boolean {
+  return (process.env.STRIPE_SECRET_KEY ?? "").startsWith("sk_live_");
+}
+
 export function getStripe(): Stripe {
   if (client) return client;
   const key = process.env.STRIPE_SECRET_KEY;

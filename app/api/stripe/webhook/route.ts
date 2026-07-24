@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { getStripe, stripeConfigured } from "@/lib/stripe";
+import { getStripe, stripeConfigured, stripeIsLive } from "@/lib/stripe";
+import { livemodeMatches, shouldRetry, type GrantResult } from "@/lib/companion/entitlementReliability";
 import {
   claimEvent, markEventProcessed, markEventFailed,
   recordCharge, recordRefund, upsertSubscription, upsertPayout, upsertDispute,
@@ -67,16 +68,26 @@ async function applyTierFlip(event: Stripe.Event) {
 // ---- 1b) Relationship Companion grant ----
 // One-time purchase completes -> write a companion_entitlements row. Keyed by
 // metadata.product_key === "companion" so it never touches Academy purchases.
-async function applyCompanionGrant(event: Stripe.Event) {
-  if (event.type !== "checkout.session.completed") return;
+// Returns a GrantResult; "failed" tells the webhook to signal Stripe to retry.
+// "not_applicable" = not a Companion purchase (or paid Stripe not confirmed).
+async function applyCompanionGrant(event: Stripe.Event): Promise<GrantResult> {
+  if (event.type !== "checkout.session.completed") return "not_applicable";
   const s = event.data.object as Stripe.Checkout.Session;
-  if (s.metadata?.product_key !== "companion") return;
+  if (s.metadata?.product_key !== "companion") return "not_applicable";
+  // Stripe stays authoritative for payment: only grant on a PAID session.
+  if (s.payment_status && s.payment_status !== "paid" && s.payment_status !== "no_payment_required") return "not_applicable";
   const userId = s.metadata?.user_id;
-  if (!userId) return;
+  if (!userId) return "not_applicable";
+  // Environment separation: a test-mode event must never grant in a live env.
+  if (!livemodeMatches(stripeIsLive(), event.livemode)) {
+    console.warn(`[stripe/webhook] companion grant skipped: livemode mismatch (key live=${stripeIsLive()}, event live=${event.livemode})`);
+    return "not_applicable";
+  }
   const customerId = typeof s.customer === "string" ? s.customer : s.customer?.id ?? null;
   const { grantFromStripeSession } = await import("@/lib/companion/entitlementGrants");
-  const granted = await grantFromStripeSession({ userId, customerId, ref: s.id });
-  if (granted) {
+  const result = await grantFromStripeSession({ userId, customerId, ref: s.id, livemode: event.livemode });
+  // Send the access email once, only on a fresh grant (not on idempotent replays).
+  if (result === "granted") {
     const email = s.customer_details?.email ?? s.customer_email ?? null;
     if (email) {
       const { sendCompanionAccessEmail } = await import("@/lib/companion/email");
@@ -84,6 +95,7 @@ async function applyCompanionGrant(event: Stripe.Event) {
       await sendCompanionAccessEmail(email, `${origin}/companion/welcome?purchase=success`);
     }
   }
+  return result;
 }
 
 // ---- 1c) Relationship Playbook grant ----
@@ -186,12 +198,16 @@ export async function POST(request: Request) {
   }
 
   // 1b) Relationship Companion access — an independent grant, separate from the
-  // Academy tier ladder. Idempotent (keyed by the Stripe object id). Never blocks
-  // the above.
+  // Academy tier ladder. Idempotent + race-safe (DB unique index on stripe_ref).
+  // On FAILURE we must NOT silently 200 — we signal Stripe to retry (mustRetry),
+  // because payment succeeded but the entitlement did not persist. The retry is
+  // safe: the grant is idempotent, so a re-delivery cannot double-grant.
+  let mustRetry = false;
   try {
-    await applyCompanionGrant(event);
+    if (shouldRetry(await applyCompanionGrant(event))) mustRetry = true;
   } catch (e) {
     console.error("[stripe/webhook] companion grant error:", e instanceof Error ? e.message : e);
+    mustRetry = true;
   }
 
   // 1c) Relationship Playbook access — an independent one-time grant. Idempotent
@@ -204,16 +220,22 @@ export async function POST(request: Request) {
 
   // 2) Finance sync (status machine). No-ops safely if the finance tables are absent.
   const claim = await claimEvent(event); // resilient: returns "skip" on any error
-  if (claim === "skip") return NextResponse.json({ received: true });
-  try {
-    await handleFinanceEvent(event);
-    await markEventProcessed(event.id);
-  } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e);
-    console.error("[stripe/webhook] finance handler error:", msg);
-    await markEventFailed(event.id, msg);
-    return NextResponse.json({ error: "Finance handler error." }, { status: 500 }); // Stripe retries
+  if (claim !== "skip") {
+    try {
+      await handleFinanceEvent(event);
+      await markEventProcessed(event.id);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      console.error("[stripe/webhook] finance handler error:", msg);
+      await markEventFailed(event.id, msg);
+      return NextResponse.json({ error: "Finance handler error." }, { status: 500 }); // Stripe retries
+    }
   }
+
+  // A failed Companion grant means paid-but-ungranted — ask Stripe to redeliver.
+  // Finance is already idempotent (claimEvent skips a processed event on retry), so
+  // returning 500 here re-attempts only the grant, never a double finance write.
+  if (mustRetry) return NextResponse.json({ error: "Entitlement grant pending retry." }, { status: 500 });
 
   return NextResponse.json({ received: true });
 }
