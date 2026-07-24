@@ -33,7 +33,8 @@ async function paidCompanionSessions(windowHours: number): Promise<PaidSession[]
     const userId = s.metadata?.user_id;
     if (!userId) continue;
     const customerId = typeof s.customer === "string" ? s.customer : s.customer?.id ?? null;
-    out.push({ ref: s.id, userId, customerId });
+    const paymentIntentId = typeof s.payment_intent === "string" ? s.payment_intent : s.payment_intent?.id ?? null;
+    out.push({ ref: s.id, userId, customerId, paymentIntentId });
   }
   return out;
 }
@@ -58,7 +59,7 @@ export async function reconcileCompanionEntitlements(opts: { windowHours?: numbe
   if (opts.repair) {
     for (const m of missing) {
       const keyLive = stripeIsLive();
-      const result = await grantFromStripeSession({ userId: m.userId, customerId: m.customerId, ref: m.ref, livemode: keyLive });
+      const result = await grantFromStripeSession({ userId: m.userId, customerId: m.customerId, ref: m.ref, paymentIntentId: m.paymentIntentId ?? null, livemode: keyLive });
       if (result === "failed") refs_still_failing.push(m.ref); else refs_repaired.push(m.ref);
     }
   }

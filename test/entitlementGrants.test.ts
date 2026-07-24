@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   classifyInsertError, shouldRetry, livemodeMatches, reconcileDiff, PG_UNIQUE_VIOLATION,
+  refundIsFull, disputeClosedAction, nextStatus, hasEffectiveAccess, statusGrantsAccess,
   type PaidSession,
 } from "../lib/companion/entitlementReliability";
 
@@ -48,4 +49,57 @@ test("reconcileDiff: fully-granted → no discrepancies", () => {
 test("reconcileDiff de-dupes input and skips rows missing ref/user", () => {
   const paid = [p("cs_1"), p("cs_1"), { ref: "", userId: "u", customerId: null }, { ref: "cs_x", userId: "", customerId: null }];
   assert.deepEqual(reconcileDiff(paid, new Set()).map((x) => x.ref), ["cs_1"]);
+});
+
+// ---- refund full-vs-partial ----
+test("refundIsFull: full covers the charge; partial does not", () => {
+  assert.equal(refundIsFull(1999, 1999), true);
+  assert.equal(refundIsFull(2000, 1999), true);   // cumulative >= amount
+  assert.equal(refundIsFull(500, 1999), false);   // partial
+  assert.equal(refundIsFull(0, 0), false);
+});
+
+// ---- dispute outcome mapping ----
+test("disputeClosedAction maps won/lost, ignores non-terminal", () => {
+  assert.equal(disputeClosedAction("won"), "dispute_won");
+  assert.equal(disputeClosedAction("lost"), "dispute_lost");
+  assert.equal(disputeClosedAction("under_review"), null);
+});
+
+// ---- state machine (locked policy) ----
+test("full refund: active → revoked_refund; idempotent no-op thereafter", () => {
+  assert.equal(nextStatus("full_refund", "active"), "revoked_refund");
+  assert.equal(nextStatus("full_refund", "revoked_refund"), null);   // redelivery → no-op
+});
+test("dispute lifecycle: open → suspended; won → active; lost → revoked_dispute", () => {
+  assert.equal(nextStatus("dispute_open", "active"), "dispute_suspended");
+  assert.equal(nextStatus("dispute_won", "dispute_suspended"), "active");
+  assert.equal(nextStatus("dispute_lost", "dispute_suspended"), "revoked_dispute");
+  assert.equal(nextStatus("dispute_won", "active"), null);           // nothing to restore
+});
+test("admin revoke/restore transitions are guarded", () => {
+  assert.equal(nextStatus("admin_revoke", "active"), "revoked_admin");
+  assert.equal(nextStatus("admin_restore", "revoked_admin"), "active");
+  assert.equal(nextStatus("admin_restore", "active"), null);        // already active → no-op
+});
+
+// ---- EFFECTIVE ACCESS = any active source (the central principle) ----
+const NOW = 1_800_000_000_000;
+test("effective access: any one active source grants access", () => {
+  assert.equal(hasEffectiveAccess([{ status: "revoked_refund" }, { status: "active" }], NOW), true);
+});
+test("full refund removes access only when it was the SOLE source", () => {
+  assert.equal(hasEffectiveAccess([{ status: "revoked_refund" }], NOW), false);            // sole source refunded → no access
+  assert.equal(hasEffectiveAccess([{ status: "revoked_refund" }, { status: "active" }], NOW), true); // other source keeps access
+});
+test("suspended / revoked sources do not grant access; expired doesn't either", () => {
+  assert.equal(hasEffectiveAccess([{ status: "dispute_suspended" }], NOW), false);
+  assert.equal(hasEffectiveAccess([{ status: "revoked_dispute" }], NOW), false);
+  assert.equal(hasEffectiveAccess([{ status: "active", expires_at: new Date(NOW - 1000).toISOString() }], NOW), false);
+  assert.equal(hasEffectiveAccess([{ status: "active", expires_at: null }], NOW), true);
+});
+test("manual grant (active) independently grants access alongside a revoked purchase", () => {
+  assert.equal(hasEffectiveAccess([{ status: "revoked_refund" }, { status: "active" /* manual */ }], NOW), true);
+  assert.equal(statusGrantsAccess("active"), true);
+  assert.equal(statusGrantsAccess("dispute_suspended"), false);
 });

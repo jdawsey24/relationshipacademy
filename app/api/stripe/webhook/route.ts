@@ -84,8 +84,9 @@ async function applyCompanionGrant(event: Stripe.Event): Promise<GrantResult> {
     return "not_applicable";
   }
   const customerId = typeof s.customer === "string" ? s.customer : s.customer?.id ?? null;
+  const paymentIntentId = typeof s.payment_intent === "string" ? s.payment_intent : s.payment_intent?.id ?? null;
   const { grantFromStripeSession } = await import("@/lib/companion/entitlementGrants");
-  const result = await grantFromStripeSession({ userId, customerId, ref: s.id, livemode: event.livemode });
+  const result = await grantFromStripeSession({ userId, customerId, ref: s.id, paymentIntentId, livemode: event.livemode });
   // Send the access email once, only on a fresh grant (not on idempotent replays).
   if (result === "granted") {
     const email = s.customer_details?.email ?? s.customer_email ?? null;
@@ -96,6 +97,49 @@ async function applyCompanionGrant(event: Stripe.Event): Promise<GrantResult> {
     }
   }
   return result;
+}
+
+// ---- 1b-ii) Companion refund / dispute lifecycle ----
+// Precise revocation/suspension/restoration keyed by payment_intent. Companion-only
+// (checked via local match, else the PI's product_key). Livemode-guarded. Returns
+// true on a real failure so the webhook can ask Stripe to retry.
+async function isCompanionPaymentIntent(pi: string | null): Promise<boolean> {
+  if (!pi) return false;
+  const admin = getSupabaseAdminClient();
+  const { data } = await admin.from("companion_entitlements").select("id").eq("payment_intent_id", pi).maybeSingle();
+  if (data) return true;                                   // fast path: local match
+  try { const p = await getStripe().paymentIntents.retrieve(pi); return p.metadata?.product_key === "companion"; }
+  catch { return false; }
+}
+
+async function applyCompanionRefund(event: Stripe.Event): Promise<boolean> {
+  if (event.type !== "charge.refunded") return false;
+  const charge = event.data.object as Stripe.Charge;
+  const pi = typeof charge.payment_intent === "string" ? charge.payment_intent : charge.payment_intent?.id ?? null;
+  if (!livemodeMatches(stripeIsLive(), event.livemode)) return false;
+  if (!(await isCompanionPaymentIntent(pi)) || !pi) return false;
+  const { applyLifecycleByPaymentIntent, recordPartialRefund } = await import("@/lib/companion/entitlementLifecycle");
+  const { refundIsFull } = await import("@/lib/companion/entitlementReliability");
+  if (refundIsFull(charge.amount_refunded, charge.amount)) {
+    const r = await applyLifecycleByPaymentIntent(pi, "full_refund", { reason: "charge.refunded (full)", stripeEventId: event.id, livemode: event.livemode });
+    return r === "failed";
+  }
+  await recordPartialRefund(pi, charge.amount_refunded, event.id, event.livemode);   // audit only, keeps access
+  return false;
+}
+
+async function applyCompanionDispute(event: Stripe.Event): Promise<boolean> {
+  if (event.type !== "charge.dispute.created" && event.type !== "charge.dispute.closed") return false;
+  const d = event.data.object as Stripe.Dispute;
+  const pi = typeof d.payment_intent === "string" ? d.payment_intent : d.payment_intent?.id ?? null;
+  if (!livemodeMatches(stripeIsLive(), event.livemode)) return false;
+  if (!(await isCompanionPaymentIntent(pi)) || !pi) return false;
+  const { applyLifecycleByPaymentIntent } = await import("@/lib/companion/entitlementLifecycle");
+  const { disputeClosedAction } = await import("@/lib/companion/entitlementReliability");
+  const action = event.type === "charge.dispute.created" ? "dispute_open" : disputeClosedAction(d.status);
+  if (!action) return false;   // non-terminal dispute update
+  const r = await applyLifecycleByPaymentIntent(pi, action, { reason: `${event.type} (${d.status})`, stripeEventId: event.id, livemode: event.livemode });
+  return r === "failed";
 }
 
 // ---- 1c) Relationship Playbook grant ----
@@ -207,6 +251,16 @@ export async function POST(request: Request) {
     if (shouldRetry(await applyCompanionGrant(event))) mustRetry = true;
   } catch (e) {
     console.error("[stripe/webhook] companion grant error:", e instanceof Error ? e.message : e);
+    mustRetry = true;
+  }
+
+  // 1b-ii) Companion refund + dispute lifecycle (revoke / suspend / restore).
+  // Retry-safe: a failure asks Stripe to redeliver; transitions are idempotent.
+  try {
+    if (await applyCompanionRefund(event)) mustRetry = true;
+    if (await applyCompanionDispute(event)) mustRetry = true;
+  } catch (e) {
+    console.error("[stripe/webhook] companion refund/dispute error:", e instanceof Error ? e.message : e);
     mustRetry = true;
   }
 
