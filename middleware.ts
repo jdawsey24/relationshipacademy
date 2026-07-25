@@ -19,11 +19,12 @@ const ACADEMY_AUTH_PAGES = new Set(["/academy/login", "/academy/signup"]);
 // Companion paths reachable without a session (login + post-purchase access flow).
 const COMPANION_PUBLIC = new Set([
   "/companion/login",
+  "/companion/signup",
   "/companion/welcome",
   "/companion/verify",
   "/companion/offline", // PWA offline shell — must be reachable without a session
 ]);
-const COMPANION_AUTH_PAGES = new Set(["/companion/login"]);
+const COMPANION_AUTH_PAGES = new Set(["/companion/login", "/companion/signup"]);
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
@@ -91,8 +92,11 @@ export async function middleware(request: NextRequest) {
   // -------------------------------------------------------------------------
   if (pathname.startsWith("/companion") || pathname.startsWith("/api/companion")) {
     const isCompanionApi = pathname.startsWith("/api/companion");
+    // Public companion APIs reachable without a session (self-serve signup).
+    const isPublicCompanionApi = pathname === "/api/companion/signup";
     if (!user) {
-      if (isCompanionApi) return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+      if (isCompanionApi && !isPublicCompanionApi) return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+      if (isPublicCompanionApi) return response;
       if (!COMPANION_PUBLIC.has(pathname)) {
         const url = request.nextUrl.clone();
         url.pathname = "/companion/login";
