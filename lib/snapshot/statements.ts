@@ -14,6 +14,10 @@ export const CLUSTER_CONTEXT_BY_MARKER: Record<number, Record<string, string>> =
   11: { recent_divorce_breakup: "reflective" },
   16: { recent_divorce_breakup: "reflective" },
   21: { recent_divorce_breakup: "reflective" },
+  // Cluster 26 pool is split so childless singles don't get co-parenting items:
+  // "core" = the non-parenting statements; the "coparent" items are held for a
+  // future co-parenting track (no marker maps to them yet).
+  26: { single_contemplating_dating: "core" },
 };
 
 // The context filter for a given marker + cluster, or null to use the full pool.
