@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import CompanionChrome from "@/components/companion/CompanionChrome";
 import InstallGuide from "@/components/companion/InstallGuide";
-import SituationCard from "@/components/companion/SituationCard";
+import SituationList from "@/components/companion/SituationList";
+
+const HOME_SUGGESTIONS = 4;
 
 interface Situation { situation_id: string; title: string; user_need: string | null; category_id: string | null }
 interface Recent { id: string; title: string | null; status: string; updated_at: string }
@@ -51,12 +53,21 @@ export default function CompanionHome() {
       </Link>
 
       <p className="mt-7 font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal/40">For where you are now</p>
-      <div className="mt-2.5 space-y-2.5">
+      <div className="mt-2.5">
         {situations === null ? (
           <p className="font-body text-sm text-charcoal/50">Loading…</p>
         ) : situations.length === 0 ? (
           <p className="rounded-2xl border border-dashed border-light-gray bg-white/60 p-6 text-center font-body text-sm text-charcoal/50">Nothing here yet for where you are right now. New situations appear as they&apos;re published.</p>
-        ) : situations.map((sit) => <SituationCard key={sit.situation_id} id={sit.situation_id} title={sit.title} need={sit.user_need} categoryId={sit.category_id} />)}
+        ) : (
+          <>
+            <SituationList situations={situations.slice(0, HOME_SUGGESTIONS)} />
+            <Link href="/companion/process"
+              className="mt-3 flex items-center justify-center gap-1.5 rounded-2xl border border-light-gray/70 py-3 font-ui text-[13px] font-semibold text-midnight-navy/75 transition-colors hover:bg-white hover:text-midnight-navy">
+              Browse all situations
+              <span aria-hidden="true">→</span>
+            </Link>
+          </>
+        )}
       </div>
     </CompanionChrome>
   );

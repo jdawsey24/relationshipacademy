@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import CompanionChrome from "@/components/companion/CompanionChrome";
-import SituationCard from "@/components/companion/SituationCard";
+import SituationList from "@/components/companion/SituationList";
 import CategoryGlyph from "@/components/companion/CategoryGlyph";
 import { categoryMeta, tint } from "@/lib/companion/categoryMeta";
 
@@ -36,31 +36,28 @@ export default function CompanionProcess() {
       </div>
 
       {results !== null ? (
-        <div className="mt-4 space-y-2.5">
+        <div className="mt-4">
           {results.length === 0 ? <p className="rounded-2xl border border-dashed border-light-gray bg-white/60 p-6 text-center font-body text-sm text-charcoal/50">No situations match.</p>
-            : results.map((s) => <SituationCard key={s.situation_id} id={s.situation_id} title={s.title} need={s.user_need} categoryId={s.category_id} />)}
+            : <SituationList situations={results} />}
         </div>
       ) : groups === null ? (
         <p className="mt-4 font-body text-sm text-charcoal/50">Loading…</p>
       ) : groups.length === 0 ? (
         <p className="mt-4 rounded-2xl border border-dashed border-light-gray bg-white/60 p-6 text-center font-body text-sm text-charcoal/50">Nothing here yet for where you are right now.</p>
       ) : (
-        <div className="mt-6 space-y-7">
+        <div className="mt-6 space-y-6">
           {groups.map((g) => {
             const { accent } = categoryMeta(g.category_id);
             return (
               <section key={g.category_id}>
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg" style={{ backgroundColor: tint(accent, 0.13), color: accent }}>
-                    <CategoryGlyph categoryId={g.category_id} size={16} />
+                <div className="mb-2.5 flex items-center gap-2.5 px-1">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-md" style={{ backgroundColor: tint(accent, 0.13), color: accent }}>
+                    <CategoryGlyph categoryId={g.category_id} size={14} />
                   </span>
-                  <h2 className="font-display text-xl font-semibold text-midnight-navy">{g.name}</h2>
+                  <h2 className="font-display text-[17px] font-semibold text-midnight-navy">{g.name}</h2>
                   <span className="ml-auto font-ui text-[11px] font-medium text-charcoal/40">{g.situations.length}</span>
                 </div>
-                <div className="mt-2.5 h-px bg-light-gray" />
-                <div className="mt-3 space-y-2.5">
-                  {g.situations.map((s) => <SituationCard key={s.situation_id} id={s.situation_id} title={s.title} need={s.user_need} categoryId={g.category_id} />)}
-                </div>
+                <SituationList situations={g.situations} categoryId={g.category_id} />
               </section>
             );
           })}
