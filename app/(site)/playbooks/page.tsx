@@ -27,62 +27,88 @@ export default async function PlaybooksPage({ searchParams }: { searchParams: Pr
 // ---------------------------------------------------------------------------
 // Public landing
 // ---------------------------------------------------------------------------
+const WHATS_INSIDE = [
+  { title: "The pattern, made clear", body: "What’s actually happening beneath the frustration — named plainly, without jargon or blame." },
+  { title: "Why it keeps happening", body: "The roots of the pattern and how it quietly shapes the way you show up in dating and relationships." },
+  { title: "What to do about it", body: "Concrete, therapist-developed shifts and reflections you can use right away — not vague encouragement." },
+];
+
 async function Landing() {
   const playbooks = await getPlaybookMarketing();
   return (
     <main className="mx-auto max-w-4xl px-6 pb-24 pt-14">
+      {/* Hero */}
       <section className="text-center">
         <SectionLabel>The Relationship Playbook&trade;</SectionLabel>
         <h1 className="mt-4 text-balance font-display text-4xl font-semibold leading-tight text-midnight-navy sm:text-5xl">
-          A focused guide for exactly what you&apos;re navigating
+          Go deep on the one pattern you keep running into
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-balance font-body text-lg leading-relaxed text-charcoal/75">
-          Each Relationship Playbook&trade; goes deep on one real pattern — rejection, trust, second-guessing, needing reassurance — with therapist-developed guidance you can actually use. Not generic dating tips. A clear next step for where you actually are.
+          Each Relationship Playbook&trade; is a focused, therapist-developed guide to a single real pattern in dating and relationships — feeling unchosen, guarding your heart, needing constant reassurance, knowing whether to stay. Not generic dating tips: a clear, compassionate way to understand what&apos;s happening and what to do next.
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
-          <CtaButton href="/snapshot">Find your Playbook</CtaButton>
-          <p className="font-body text-sm text-charcoal/50">{PLAYBOOK_PRICE_DISPLAY} each · One-time · Developed by Janelle Dawsey, LMFT</p>
+          <CtaButton href="#playbooks">Browse the Playbooks</CtaButton>
+          <p className="font-body text-sm text-charcoal/50">{PLAYBOOK_PRICE_DISPLAY} each · One-time · Yours to keep · By Janelle Dawsey, LMFT</p>
         </div>
       </section>
 
-      {/* How you get one */}
+      {/* What a Playbook is */}
       <section className="mt-20 rounded-3xl bg-white/70 p-8 sm:p-12">
-        <SectionLabel tone="sage">How it works</SectionLabel>
+        <SectionLabel tone="sage">What it is</SectionLabel>
         <p className="mt-4 text-balance font-display text-2xl font-medium leading-relaxed text-midnight-navy sm:text-[28px]">
-          Take the free Relationship Snapshot&trade; and we&apos;ll point you to the Playbook that fits your pattern.
+          A Playbook meets you exactly where you&apos;re stuck — and walks you through it.
         </p>
         <p className="mt-4 max-w-2xl font-body text-lg leading-relaxed text-charcoal/75">
-          The Snapshot takes about 10 minutes and is free. It identifies the pattern that&apos;s shaping your relationships right now — and matches you to the Playbook written for it. You can also browse the Playbooks below and choose the one that speaks to you.
+          Where generic advice stays on the surface, each Playbook goes deep on one pattern: why it happens, how it&apos;s shaping your relationships, and the specific shifts that actually help. Written by Janelle Dawsey, LMFT, and grounded in the Relationship Life Cycle&trade; framework. A focused read you keep and return to at your own pace.
         </p>
-        <div className="mt-6"><CtaButton href="/snapshot" variant="secondary">Take the free Snapshot</CtaButton></div>
-      </section>
-
-      {/* The playbooks */}
-      <section className="mt-20">
-        <div className="text-center">
-          <SectionLabel>The Playbooks</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-midnight-navy">Find the one that fits</h2>
-        </div>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {playbooks.map((p) => (
-            <Link key={p.slug} href={`/playbooks/${p.slug}`}
-              className="group flex flex-col rounded-2xl border border-midnight-navy/10 bg-white p-6 transition-colors hover:border-midnight-navy/30">
-              <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal/45">Relationship Playbook&trade;</p>
-              <h3 className="mt-2 font-display text-xl font-semibold leading-tight text-midnight-navy">{p.subtitle}</h3>
-              {p.corePattern && <p className="mt-2 flex-1 font-body text-[15px] leading-relaxed text-charcoal/70">{p.corePattern}</p>}
-              <span className="mt-4 inline-flex items-center gap-1 font-ui text-sm font-semibold text-midnight-navy">
-                Learn more <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
-              </span>
-            </Link>
+        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+          {WHATS_INSIDE.map((f) => (
+            <div key={f.title} className="rounded-2xl border border-midnight-navy/10 bg-white p-5">
+              <h3 className="font-display text-lg font-semibold text-midnight-navy">{f.title}</h3>
+              <p className="mt-2 font-body text-[14px] leading-relaxed text-charcoal/70">{f.body}</p>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="mt-20 text-center">
-        <h2 className="text-balance font-display text-3xl font-semibold text-midnight-navy">Not sure which one?</h2>
-        <p className="mx-auto mt-3 max-w-lg font-body text-lg text-charcoal/70">Take the free Snapshot and we&apos;ll match you to the Playbook for your pattern.</p>
-        <div className="mt-8"><CtaButton href="/snapshot">Find your Playbook</CtaButton></div>
+      {/* The Playbooks — the centerpiece */}
+      <section id="playbooks" className="mt-20 scroll-mt-24">
+        <div className="text-center">
+          <SectionLabel>The Playbooks</SectionLabel>
+          <h2 className="mt-3 font-display text-3xl font-semibold text-midnight-navy">Find the one that fits what you&apos;re navigating</h2>
+          <p className="mx-auto mt-3 max-w-lg font-body text-charcoal/65">Each goes deep on a single pattern. Read the one that sounds like you.</p>
+        </div>
+        <div className="mt-10 grid gap-5 sm:grid-cols-2">
+          {playbooks.map((p) => (
+            <Link key={p.slug} href={`/playbooks/${p.slug}`}
+              className="group flex flex-col rounded-2xl border border-midnight-navy/10 bg-white p-6 transition-all hover:-translate-y-px hover:border-midnight-navy/30 hover:shadow-[0_3px_18px_rgba(28,53,87,0.07)]">
+              <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal/45">Relationship Playbook&trade;</p>
+              <h3 className="mt-2 font-display text-xl font-semibold leading-tight text-midnight-navy">{p.subtitle}</h3>
+              {p.corePattern && <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/70">{p.corePattern}</p>}
+              {p.keyTakeaway && (
+                <p className="mt-3 flex-1 border-l-2 border-coral-rose/40 pl-3 font-body text-[14px] italic leading-relaxed text-charcoal/60">
+                  &ldquo;{p.keyTakeaway}&rdquo;
+                </p>
+              )}
+              <span className="mt-4 inline-flex items-center gap-1 font-ui text-sm font-semibold text-midnight-navy">
+                Read this Playbook <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
+              </span>
+            </Link>
+          ))}
+        </div>
+        <p className="mt-6 text-center font-body text-sm text-charcoal/50">{PLAYBOOK_PRICE_DISPLAY} each · one-time purchase · delivered instantly, yours to keep</p>
+      </section>
+
+      {/* Not sure which? — the Snapshot, now a helper, not the pitch */}
+      <section className="mt-20 rounded-3xl bg-midnight-navy px-8 py-12 text-center text-white sm:px-12">
+        <SectionLabel tone="white">Not sure which one?</SectionLabel>
+        <p className="mx-auto mt-4 max-w-2xl text-balance font-display text-2xl font-medium leading-relaxed">
+          Take the free Relationship Snapshot&trade; and we&apos;ll point you to the Playbook for your pattern.
+        </p>
+        <p className="mx-auto mt-4 max-w-xl font-body text-[15px] leading-relaxed text-white/75">
+          About 10 minutes, free. It identifies the pattern shaping your relationships right now and matches you to the Playbook written for it.
+        </p>
+        <div className="mt-6 flex justify-center"><CtaButton href="/snapshot" variant="secondary">Take the free Snapshot</CtaButton></div>
       </section>
     </main>
   );
