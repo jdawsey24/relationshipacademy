@@ -4,7 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import CompanionChrome from "@/components/companion/CompanionChrome";
 import SituationList from "@/components/companion/SituationList";
 import CategoryGlyph from "@/components/companion/CategoryGlyph";
+import PreviewToggle from "@/components/companion/PreviewToggle";
 import { categoryMeta, tint } from "@/lib/companion/categoryMeta";
+import { getViewAsUser, setViewAsUser, asUserParam } from "@/lib/companion/previewMode";
 
 interface Situation { situation_id: string; title: string; user_need: string | null; category_id: string | null }
 interface Group { category_id: string; name: string; situations: Situation[] }
@@ -13,21 +15,31 @@ export default function CompanionProcess() {
   const [groups, setGroups] = useState<Group[] | null>(null);
   const [results, setResults] = useState<Situation[] | null>(null);
   const [q, setQ] = useState("");
+  const [isStaff, setIsStaff] = useState(false);
+  const [asUser, setAsUser] = useState(false);
 
-  useEffect(() => { fetch("/api/companion/situations?view=process").then((r) => r.ok ? r.json() : null).then((d) => setGroups(d?.groups ?? [])).catch(() => {}); }, []);
+  useEffect(() => { setAsUser(getViewAsUser()); }, []);
+
+  useEffect(() => {
+    setGroups(null);
+    fetch(`/api/companion/situations?view=process${asUserParam(asUser)}`).then((r) => r.ok ? r.json() : null).then((d) => { setGroups(d?.groups ?? []); setIsStaff(!!d?.is_staff); }).catch(() => {});
+  }, [asUser]);
 
   const runSearch = useCallback(async (text: string) => {
     if (!text.trim()) { setResults(null); return; }
-    const r = await fetch(`/api/companion/situations?q=${encodeURIComponent(text)}`);
+    const r = await fetch(`/api/companion/situations?q=${encodeURIComponent(text)}${asUserParam(asUser)}`);
     if (r.ok) setResults((await r.json()).results);
-  }, []);
+  }, [asUser]);
   useEffect(() => { const t = setTimeout(() => runSearch(q), 250); return () => clearTimeout(t); }, [q, runSearch]);
+
+  const toggleView = () => { const n = !asUser; setViewAsUser(n); setAsUser(n); };
 
   return (
     <CompanionChrome active="process">
       <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Process</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy">Find your moment</h1>
       <p className="mt-1 font-body text-sm text-charcoal/60">What are you working through right now?</p>
+      <PreviewToggle staff={isStaff} asUser={asUser} onToggle={toggleView} />
 
       <div className="mt-4 flex items-center gap-2 rounded-xl border border-light-gray bg-white px-4 py-2.5 text-charcoal/40 focus-within:border-midnight-navy/40">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth={1.7} aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3-3" /></svg>

@@ -13,10 +13,13 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const view = url.searchParams.get("view") ?? "home";
   const q = url.searchParams.get("q") ?? "";
-  const includeDraft = cu.isStaff;
+  // Staff see Draft situations by default; `?as=user` lets them preview the real
+  // member view (Published only) without changing publication state.
+  const asUser = url.searchParams.get("as") === "user";
+  const includeDraft = cu.isStaff && !asUser;
 
-  if (q.trim()) return NextResponse.json({ results: await searchSituations(q, includeDraft) });
+  if (q.trim()) return NextResponse.json({ results: await searchSituations(q, includeDraft), is_staff: cu.isStaff });
   const statusKey = await getUserStatusKey(cu.user.id);
-  if (view === "process") return NextResponse.json({ groups: await getSituationCatalog(includeDraft, statusKey) });
-  return NextResponse.json({ situations: await getSituationsForStatus(statusKey, includeDraft), preview: includeDraft });
+  if (view === "process") return NextResponse.json({ groups: await getSituationCatalog(includeDraft, statusKey), is_staff: cu.isStaff });
+  return NextResponse.json({ situations: await getSituationsForStatus(statusKey, includeDraft), preview: includeDraft, is_staff: cu.isStaff });
 }

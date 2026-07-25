@@ -5,6 +5,8 @@ import Link from "next/link";
 import CompanionChrome from "@/components/companion/CompanionChrome";
 import InstallGuide from "@/components/companion/InstallGuide";
 import SituationList from "@/components/companion/SituationList";
+import PreviewToggle from "@/components/companion/PreviewToggle";
+import { getViewAsUser, setViewAsUser, asUserParam } from "@/lib/companion/previewMode";
 
 const HOME_SUGGESTIONS = 4;
 
@@ -13,14 +15,22 @@ interface Recent { id: string; title: string | null; status: string; updated_at:
 
 export default function CompanionHome() {
   const [situations, setSituations] = useState<Situation[] | null>(null);
-  const [preview, setPreview] = useState(false);
+  const [isStaff, setIsStaff] = useState(false);
+  const [asUser, setAsUser] = useState(false);
   const [recent, setRecent] = useState<Recent[]>([]);
 
+  useEffect(() => { setAsUser(getViewAsUser()); }, []);
+
   useEffect(() => {
-    fetch("/api/companion/situations?view=home").then((r) => r.ok ? r.json() : null).then((d) => { if (d) { setSituations(d.situations); setPreview(!!d.preview); } }).catch(() => {});
+    setSituations(null);
+    fetch(`/api/companion/situations?view=home${asUserParam(asUser)}`).then((r) => r.ok ? r.json() : null).then((d) => { if (d) { setSituations(d.situations); setIsStaff(!!d.is_staff); } }).catch(() => {});
+  }, [asUser]);
+
+  useEffect(() => {
     fetch("/api/companion/experiences?view=home").then((r) => r.ok ? r.json() : null).then((d) => setRecent(d?.recent ?? [])).catch(() => {});
   }, []);
 
+  const toggleView = () => { const n = !asUser; setViewAsUser(n); setAsUser(n); };
   const draft = recent.find((r) => r.status === "draft");
 
   return (
@@ -31,7 +41,7 @@ export default function CompanionHome() {
         <Link href="/companion/settings" aria-label="Settings" className="text-lg text-charcoal/40 hover:text-charcoal">⚙</Link>
       </div>
       <h1 className="mt-2 text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy">What are you navigating right now?</h1>
-      {preview && <p className="mt-1 font-ui text-[11px] uppercase tracking-wide text-coral-rose">Staff preview · showing draft situations</p>}
+      <PreviewToggle staff={isStaff} asUser={asUser} onToggle={toggleView} />
 
       {draft && (
         <Link href="/companion/journey" className="mt-6 block rounded-2xl border border-midnight-navy/25 bg-white p-4 transition-colors hover:border-midnight-navy/40">
