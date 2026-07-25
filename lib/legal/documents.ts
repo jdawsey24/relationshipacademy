@@ -1102,7 +1102,7 @@ Nothing in these Terms excludes warranties or rights that cannot lawfully be exc
 
 To the fullest extent permitted by applicable law, Symmetricly and its owners, officers, employees, contractors, affiliates, and licensors will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages arising from or relating to use of the services.
 
-To the fullest extent permitted by applicable law, Symmetricly's aggregate liability arising from a particular paid consumer service will not exceed the amount you paid to Symmetricly for that service during the [12 months] preceding the event giving rise to the claim.
+To the fullest extent permitted by applicable law, Symmetricly's aggregate liability arising from a particular paid consumer service will not exceed the amount you paid to Symmetricly for that service during the 12 months preceding the event giving rise to the claim.
 
 These limitations do not apply where prohibited by law and do not limit liability that cannot legally be limited or excluded.
 
