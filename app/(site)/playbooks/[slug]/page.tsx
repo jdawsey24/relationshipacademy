@@ -35,7 +35,7 @@ export default async function PlaybookDetailPage({ params }: { params: Promise<{
         <h1 className="mt-3 text-balance font-display text-4xl font-semibold leading-tight text-midnight-navy sm:text-[44px]">{p.subtitle}</h1>
         {p.corePattern && <p className="mt-5 text-balance font-body text-lg leading-relaxed text-charcoal/75">{p.corePattern}</p>}
         <div className="mt-8"><PlaybookBuyButton clusterId={p.clusterId} label={`Get this Playbook — ${PLAYBOOK_PRICE_DISPLAY}`} className="!justify-start" /></div>
-        <p className="mt-3 font-body text-sm text-charcoal/50">One-time purchase · Instant access · Developed by Janelle Dawsey, LMFT</p>
+        <p className="mt-3 font-body text-sm text-charcoal/50">One-time purchase · instant access · yours to keep · by Janelle Dawsey, LMFT</p>
       </section>
 
       {/* What it helps with */}
@@ -46,21 +46,38 @@ export default async function PlaybookDetailPage({ params }: { params: Promise<{
         </section>
       )}
 
-      {/* Pillars (if authored) */}
+      {/* Pillars (if authored) — the "chapters" */}
       {p.pillars.length > 0 && (
         <section className="mt-14">
           <SectionLabel>Inside</SectionLabel>
           <h2 className="mt-3 font-display text-2xl font-semibold text-midnight-navy">What you&apos;ll work through</h2>
-          <ul className="mt-6 space-y-3">
-            {p.pillars.map((pillar) => (
-              <li key={pillar} className="flex items-start gap-3 font-body text-[17px] leading-relaxed text-charcoal/80">
-                <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-coral-rose/70" aria-hidden="true" />
-                <span>{pillar}</span>
+          <ol className="mt-6 space-y-3">
+            {p.pillars.map((pillar, i) => (
+              <li key={pillar} className="flex items-start gap-4 rounded-2xl border border-midnight-navy/10 bg-white p-4">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-coral-rose/10 font-ui text-sm font-semibold text-coral-rose">{i + 1}</span>
+                <span className="font-body text-[16px] leading-relaxed text-charcoal/80">{pillar}</span>
               </li>
             ))}
-          </ul>
+          </ol>
         </section>
       )}
+
+      {/* What you get */}
+      <section className="mt-14 rounded-3xl border border-midnight-navy/10 bg-white/70 p-8 sm:p-10">
+        <SectionLabel tone="sage">What you get</SectionLabel>
+        <div className="mt-4 grid gap-4 sm:grid-cols-3">
+          {[
+            { t: "A focused guide", b: "One clear pattern, gone deep — a guide you read at your own pace, not a course to keep up with." },
+            { t: "Yours to keep", b: "Delivered instantly after purchase and always in your library — return to it whenever you need it." },
+            { t: "Therapist-developed", b: "Written by Janelle Dawsey, LMFT, and grounded in the Relationship Life Cycle™ framework." },
+          ].map((f) => (
+            <div key={f.t}>
+              <h3 className="font-display text-lg font-semibold text-midnight-navy">{f.t}</h3>
+              <p className="mt-1.5 font-body text-[14px] leading-relaxed text-charcoal/70">{f.b}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Key takeaway */}
       {p.keyTakeaway && (
