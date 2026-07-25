@@ -41,6 +41,15 @@ export async function POST(request: Request) {
     // Reuse the shared Stripe customer on the profile (never mint a second).
     const { data: prof } = await admin.from("profiles").select("stripe_customer_id, full_name").eq("id", cu.user.id).maybeSingle();
     let customerId = (prof as { stripe_customer_id: string | null } | null)?.stripe_customer_id ?? null;
+    // Self-heal: a stored id that doesn't exist in THIS Stripe mode (e.g. a stale
+    // TEST-mode customer from earlier dev) would make checkout throw. Verify it, and
+    // fall through to create a fresh customer (overwriting the bad id) if it's invalid.
+    if (customerId) {
+      try {
+        const existing = await stripe.customers.retrieve(customerId);
+        if ((existing as { deleted?: boolean }).deleted) customerId = null;
+      } catch { customerId = null; }
+    }
     if (!customerId) {
       const customer = await stripe.customers.create({ email: cu.user.email ?? undefined, name: (prof as { full_name?: string } | null)?.full_name ?? undefined, metadata: { user_id: cu.user.id } });
       customerId = customer.id;
