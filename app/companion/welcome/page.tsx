@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { COMPANION_ENABLED } from "@/lib/companion";
+import BuyCompanionButton from "@/components/companion/BuyCompanionButton";
 
 // Post-purchase access flow + un-entitled landing. After a successful purchase the
 // checkout redirects here with ?purchase=success: confirm access, then "Open My
@@ -51,8 +52,9 @@ export default async function CompanionWelcomePage({ searchParams }: { searchPar
           <>
             <Medallion paths={["M8 11V8a4 4 0 0 1 8 0", "M6 11h12v9H6z", "M12 15v2"]} />
             <p className="mt-5 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
-            <h1 className="mt-2 font-display text-3xl font-semibold text-midnight-navy">Companion access isn&apos;t active yet</h1>
+            <h1 className="mt-2 font-display text-3xl font-semibold text-midnight-navy">Unlock your Relationship Companion</h1>
             <p className="mt-3 font-body leading-relaxed text-charcoal/70">The Relationship Companion is a one-time purchase. Once you&apos;ve unlocked it, it opens right here — no app store, no download.</p>
+            <BuyCompanionButton />
           </>
         )}
       </div>
