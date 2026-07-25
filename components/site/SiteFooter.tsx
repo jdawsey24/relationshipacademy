@@ -13,6 +13,12 @@ const NAV = [
   { label: "Contact", href: "/contact" },
 ];
 
+const LEGAL = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Use", href: "/terms" },
+  { label: "Refund & Cancellation", href: "/refund" },
+];
+
 function Icon({ kind }: { kind: string }) {
   if (kind === "instagram") return (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>);
   if (kind === "tiktok") return (<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.6 3.6 3.5 3.9v2.4c-1.3.1-2.5-.3-3.6-.9v5.9c0 3-2.2 5.2-5 5.2-2.7 0-4.9-2-4.9-4.7 0-2.8 2.4-4.9 5.4-4.5v2.5c-.4-.1-.8-.2-1.2-.1-1.1.1-1.9 1-1.8 2.2.1 1.1 1 1.9 2.1 1.8 1.2 0 2-1 2-2.3V3h3.5z" /></svg>);
@@ -51,7 +57,15 @@ export default async function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-8 h-px w-full max-w-xs bg-light-gray" />
+        <nav className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-1.5">
+          {LEGAL.map((item) => (
+            <Link key={item.href} href={item.href} className="font-ui text-xs text-charcoal/55 transition-colors hover:text-midnight-navy">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="mt-6 h-px w-full max-w-xs bg-light-gray" />
 
         <p className="mt-6 font-body text-xs text-charcoal/50">
           {get(map, "settings.footer_note", "© 2026 Relationship Life Cycle™ | A Symmetricly Framework")}

@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import { COMPANION_ENABLED } from "@/lib/companion";
+
+const COMPANION_LEGAL = [
+  { label: "Informed Use & Safety Disclosure", href: "/relationship-companion/informed-use" },
+  { label: "Companion Privacy Disclosure", href: "/relationship-companion/privacy" },
+  { label: "Crisis & Safety Disclaimer", href: "/relationship-companion/crisis" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Use", href: "/terms" },
+  { label: "Refund & Cancellation", href: "/refund" },
+];
 
 // Buy CTA when launched; a "Coming soon" pill while the launch kill-switch is off.
 function CompanionCta() {
@@ -51,6 +61,12 @@ export default function RelationshipCompanionPage() {
         <div className="mt-8 flex flex-col items-center gap-3">
           <CompanionCta />
           <p className="font-body text-sm text-charcoal/50">One-time purchase · $9.99 for Playbook &amp; Academy members</p>
+          <p className="font-body text-xs text-charcoal/45">
+            Review the{" "}
+            <Link href="/relationship-companion/informed-use" className="underline underline-offset-2 hover:text-midnight-navy">Informed Use &amp; Safety Disclosure</Link>,{" "}
+            <Link href="/refund" className="underline underline-offset-2 hover:text-midnight-navy">Refund Policy</Link>, and{" "}
+            <Link href="/terms" className="underline underline-offset-2 hover:text-midnight-navy">Terms</Link> before purchasing.
+          </p>
         </div>
       </section>
 
@@ -132,6 +148,18 @@ export default function RelationshipCompanionPage() {
           <CompanionCta />
           <p className="font-body text-sm text-charcoal/50">One-time purchase · Private · Opens in your browser</p>
         </div>
+      </section>
+
+      {/* Legal & safety disclosures */}
+      <section className="mt-16 border-t border-light-gray pt-8 text-center">
+        <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Before you begin</p>
+        <nav className="mx-auto mt-3 flex max-w-2xl flex-wrap justify-center gap-x-5 gap-y-1.5">
+          {COMPANION_LEGAL.map((item) => (
+            <Link key={item.href} href={item.href} className="font-ui text-[13px] text-midnight-navy/70 underline underline-offset-2 hover:text-midnight-navy">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
       </section>
     </main>
   );

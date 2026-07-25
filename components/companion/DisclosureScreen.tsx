@@ -63,6 +63,21 @@ export default function DisclosureScreen({ onAccepted }: { onAccepted: () => voi
           ))}
         </div>
 
+        {/* Related governing documents (open in a new tab so you don't lose this screen). */}
+        <nav className="mt-7 flex flex-wrap gap-x-4 gap-y-1.5 border-t border-light-gray pt-4">
+          {[
+            { label: "Companion Privacy Disclosure", href: "/relationship-companion/privacy" },
+            { label: "Crisis & Safety Disclaimer", href: "/relationship-companion/crisis" },
+            { label: "Privacy Policy", href: "/privacy" },
+            { label: "Terms of Use", href: "/terms" },
+          ].map((d) => (
+            <a key={d.href} href={d.href} target="_blank" rel="noopener noreferrer"
+              className="font-ui text-[12px] text-midnight-navy/70 underline underline-offset-2 hover:text-midnight-navy">
+              {d.label}
+            </a>
+          ))}
+        </nav>
+
         <p className="mt-6 font-body text-[11px] text-charcoal/40">Version {DISCLOSURE_VERSION}. This is an educational tool, not a crisis or therapy service, and it does not monitor you in real time.</p>
       </div>
 
