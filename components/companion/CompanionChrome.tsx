@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import GetHelp from "@/components/companion/GetHelp";
+import DisclosureScreen from "@/components/companion/DisclosureScreen";
 import { COMPANION_ENABLED } from "@/lib/companion";
 
 type NavKey = "home" | "process" | "blueprint" | "journey" | "library";
@@ -20,19 +21,21 @@ const NAV: { key: NavKey; label: string; href: string; icon: string }[] = [
 // app screen renders. Auth/onboarding/welcome pages render WITHOUT this shell.
 export default function CompanionChrome({ active, children, hideNav }: { active: NavKey | "none"; children: React.ReactNode; hideNav?: boolean }) {
   const router = useRouter();
-  const [gate, setGate] = useState<"loading" | "ok" | "coming_soon">("loading");
+  const [gate, setGate] = useState<"loading" | "ok" | "coming_soon" | "disclosure">("loading");
 
   useEffect(() => {
     let cancelled = false;
     fetch("/api/companion/profile")
       .then((r) => { if (r.status === 401) { window.location.href = "/companion/login"; throw new Error("unauth"); } return r.json(); })
-      .then((d: { hasEntitlement: boolean; emailVerified: boolean; onboarded: boolean; is_staff?: boolean }) => {
+      .then((d: { hasEntitlement: boolean; emailVerified: boolean; onboarded: boolean; disclosure_accepted?: boolean; is_staff?: boolean }) => {
         if (cancelled) return;
         // Launch kill-switch: until enabled, only staff may preview the app.
         if (!COMPANION_ENABLED && !d.is_staff) return setGate("coming_soon");
         if (!d.hasEntitlement) return router.replace("/companion/welcome");
         if (!d.emailVerified) return router.replace("/companion/verify");
         if (!d.onboarded) return router.replace("/companion/onboarding");
+        // Informed-use gate: must accept the current disclosure version before use.
+        if (!d.disclosure_accepted) return setGate("disclosure");
         setGate("ok");
       })
       .catch(() => {});
@@ -41,6 +44,10 @@ export default function CompanionChrome({ active, children, hideNav }: { active:
 
   if (gate === "loading") {
     return <div className="flex min-h-screen items-center justify-center bg-warm-ivory"><p className="font-body text-charcoal/50">Opening your Companion…</p></div>;
+  }
+
+  if (gate === "disclosure") {
+    return <DisclosureScreen onAccepted={() => setGate("ok")} />;
   }
 
   if (gate === "coming_soon") {
