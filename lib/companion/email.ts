@@ -3,7 +3,7 @@ import { sendEmail } from "@/lib/email/client";
 // Transactional post-purchase access email. Framed as instant access to a private
 // web app saved to the phone — never a PDF download.
 const NAVY = "#1C3557", IVORY = "#F7F4EF", CHARCOAL = "#333333", CORAL = "#D9777D";
-const SUPPORT = "admin@relationshiplc.com";
+const SUPPORT = "info@symmetricly.co";
 
 export async function sendCompanionAccessEmail(to: string, appUrl: string): Promise<void> {
   if (!to) return;
