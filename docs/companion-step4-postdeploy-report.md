@@ -92,3 +92,35 @@ remaining items are legal/policy decisions and a few environment-limited checks,
 **The Companion remains DISABLED (flag off).** Re-activation is a separate Owner decision; if taken, the
 sensible sequence is: resolve the open legal/policy items (ideally attorney sign-off) → optionally finish the
 two environment-limited checks (cross-user O, installed-PWA R) → set the flag true → deploy → spot-check live.
+
+---
+
+## Status update — 2026-07-25 (post go-live + redeploy)
+
+_The A–S verification above is a point-in-time record of the Step 4 test (run with the flag OFF via a staff
+bypass). It is preserved unchanged. The status/verdict below reflects what changed afterward and the current
+production state._
+
+- **Companion is now LIVE (flag ON).** Per explicit Owner directive ("make the companion live"), confirmed
+  via decision prompt to go live **WITHOUT attorney review, under the documented Owner Risk Acceptance**,
+  `NEXT_PUBLIC_COMPANION_ENABLED` was set **`true` (production context)** and deployed. The public marketing
+  landing shows a purchasable CTA ("Get the Companion — $19.99") on **live Stripe**; `/companion` (unauth)
+  redirects to `/companion/login` (the live gate). This supersedes the "remains DISABLED" verdict above.
+- **⚠️ Attorney review still NOT PERFORMED.** The six governing documents are live to paying customers as
+  not-attorney-reviewed drafts. This remains the single outstanding launch risk.
+- **Currently published deploy:** `6a65406ee4433d9d21886cd8` · branch `main` · state `ready` (redeploy of
+  `main` on 2026-07-25). Post-deploy smoke green: `/`, `/snapshot`, `/playbooks`, `/privacy`,
+  `/relationship-companion/crisis` all 200.
+- **Changes shipped since the original Step 4 (all on the live `main`):**
+  - Purchase flow hardened — added the buy button + `/companion/signup`; self-heal for a stale TEST-mode
+    Stripe customer id in the checkout routes. First purchase (a $0 / 100%-off promo) granted correctly.
+  - Snapshot: parenting content removed from the two childless-single markers; `single_contemplating_dating`
+    results rebalanced toward the sellable Playbook clusters (offer-share 43% → 66%). Both verified live
+    (0 parenting statements served).
+- **Environment-limited checks still open** (unchanged, not defects): live cross-user isolation (O); a real
+  **paid** ($19.99, no promo) purchase to exercise `payment_intent_id` capture — the one live purchase was
+  $0 so the payment-intent path is still unexercised (P).
+
+**Current verdict:** the Companion is **LIVE and taking payments under the Owner Risk Acceptance**. Technical
+posture is unchanged from the 0-FAIL Step 4 (same code, now on the published `main`). The recommended
+follow-up is attorney review of the six governing documents, plus the two environment-limited checks above.
