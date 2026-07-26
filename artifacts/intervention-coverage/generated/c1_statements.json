@@ -1,0 +1,911 @@
+[
+ {
+  "sid": "STM-0001",
+  "statement": "Why am I still single?",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0002",
+  "statement": "Why doesn't anyone choose me?",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0003",
+  "statement": "I feel invisible.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0004",
+  "statement": "I always get rejected.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0005",
+  "statement": "I never get past the talking stage.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": 2,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0006",
+  "statement": "I always get friend-zoned.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0007",
+  "statement": "I don't know what's wrong with me.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0008",
+  "statement": "Everyone else finds love except me.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 17,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0009",
+  "statement": "Dating makes me feel defeated.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0010",
+  "statement": "Maybe I'm just not attractive enough.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0011",
+  "statement": "Maybe I'm too much.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0012",
+  "statement": "Maybe I'm not enough.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0013",
+  "statement": "Nobody stays interested in me.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0014",
+  "statement": "I always end up alone.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0015",
+  "statement": "I feel behind everyone else.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": 17,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0016",
+  "statement": "I've never been in love.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0017",
+  "statement": "I've never had a serious relationship.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0018",
+  "statement": "I don't think I'll ever get married.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0019",
+  "statement": "I think I've missed my chance.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 17,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0020",
+  "statement": "I feel like everyone else knows something I don't.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 17,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0140",
+  "statement": "Maybe I'm too picky.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0141",
+  "statement": "Maybe my standards are too high.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0142",
+  "statement": "Maybe my standards are too low.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0143",
+  "statement": "I think I'm the problem.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0144",
+  "statement": "I don't know if I'm lovable.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0145",
+  "statement": "I don't think I'm relationship material.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0146",
+  "statement": "I always feel like the backup option.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0147",
+  "statement": "I never feel like the first choice.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0148",
+  "statement": "I feel like everyone settles for me.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0149",
+  "statement": "I don't think people see my value.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0150",
+  "statement": "I wish someone would choose me the way I choose them.",
+  "type": "Need",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0151",
+  "statement": "I don't think I'll ever be enough.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0152",
+  "statement": "I'm tired of proving my worth.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": 27,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0153",
+  "statement": "I feel like I have to earn love.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 27,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0154",
+  "statement": "I don't know why I'm never enough.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0155",
+  "statement": "Maybe love just isn't meant for me.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0156",
+  "statement": "I feel broken.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0157",
+  "statement": "I wish relationships came easier for me.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0158",
+  "statement": "I envy people who seem to find love effortlessly.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": 17,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0159",
+  "statement": "I don't know what I'm doing wrong.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0172",
+  "statement": "I'm tired of trying.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0173",
+  "statement": "I'm exhausted by dating.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0174",
+  "statement": "Every relationship ends the same way.",
+  "type": "Relational Condition",
+  "actionable": false,
+  "sec_ec": 5,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0175",
+  "statement": "I'm losing hope.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0176",
+  "statement": "I don't get excited about dating anymore.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0177",
+  "statement": "I don't even want to download the apps again.",
+  "type": "Self-Behavior",
+  "actionable": true,
+  "sec_ec": null,
+  "flag": true,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0178",
+  "statement": "I feel emotionally burned out.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0179",
+  "statement": "I'm afraid to get my hopes up.",
+  "type": "Fear",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0180",
+  "statement": "I expect disappointment now.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0181",
+  "statement": "I don't believe people mean what they say.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0182",
+  "statement": "Love feels harder than it should.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0183",
+  "statement": "I'm tired of investing in people who leave.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0184",
+  "statement": "I'm afraid I'll end up alone.",
+  "type": "Fear",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0252",
+  "statement": "Maybe I'm too independent.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0253",
+  "statement": "Maybe I'm too needy.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 6,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0254",
+  "statement": "Maybe I love too hard.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0255",
+  "statement": "Maybe I don't love enough.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0256",
+  "statement": "I always care more than they do.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 15,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0257",
+  "statement": "I feel like I'm always the one left behind.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0258",
+  "statement": "I don't know why I get attached so quickly.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 5,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0259",
+  "statement": "I don't know why people lose interest in me.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0260",
+  "statement": "I feel like I have to be perfect to be loved.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 27,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0261",
+  "statement": "I don't know who I am outside of relationships.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 22,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0262",
+  "statement": "I keep changing myself for other people.",
+  "type": "Self-Behavior",
+  "actionable": true,
+  "sec_ec": 22,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0263",
+  "statement": "I don't know if people like the real me.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0264",
+  "statement": "I wish I could stop caring so much.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0265",
+  "statement": "I always feel replaceable.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": 27,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0266",
+  "statement": "I don't feel special to anyone.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0267",
+  "statement": "I'm tired of being \"almost enough.\"",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0268",
+  "statement": "I wonder if something is wrong with me.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0269",
+  "statement": "I feel like love comes easily for everyone but me.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 17,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0270",
+  "statement": "I don't know why I always feel unwanted.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0271",
+  "statement": "I feel invisible even when I'm with people.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0436",
+  "statement": "I don't know if we're just friends.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 24,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0437",
+  "statement": "They say they're not ready for a relationship.",
+  "type": "Other-Person Behavior",
+  "actionable": false,
+  "sec_ec": 24,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0438",
+  "statement": "They give me just enough attention to keep me around.",
+  "type": "Other-Person Behavior",
+  "actionable": false,
+  "sec_ec": 24,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0439",
+  "statement": "I don't know if they're keeping me as an option.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 24,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0440",
+  "statement": "I feel like I'm waiting for them to choose me.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": 24,
+  "flag": true,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0441",
+  "statement": "I don't know if I'm wasting my time.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 24,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0442",
+  "statement": "I keep hoping they'll change their mind.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0443",
+  "statement": "I don't know when to walk away.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 24,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0522",
+  "statement": "I thought they'd be different.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 5,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0523",
+  "statement": "I keep getting my hopes up.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0524",
+  "statement": "Every time I think it's going somewhere, it ends.",
+  "type": "Relational Condition",
+  "actionable": false,
+  "sec_ec": 5,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0525",
+  "statement": "I'm tired of being disappointed.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0526",
+  "statement": "I don't know how to have hope without getting hurt.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 3,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0527",
+  "statement": "I expect people to leave eventually.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 3,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0528",
+  "statement": "I don't believe good things last.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0529",
+  "statement": "I don't trust when things are going well.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0530",
+  "statement": "I wait for the other shoe to drop.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 3,
+  "flag": true,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0531",
+  "statement": "I don't know how to enjoy a healthy relationship without worrying it'll end.",
+  "type": "Thought/Belief",
+  "actionable": false,
+  "sec_ec": 6,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0563",
+  "statement": "I miss having someone.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0564",
+  "statement": "I miss having my person.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0565",
+  "statement": "I don't like coming home to an empty house.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0566",
+  "statement": "I hate sleeping alone.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0567",
+  "statement": "I miss being someone's favorite person.",
+  "type": "Emotion",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0568",
+  "statement": "Holidays are hard.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0569",
+  "statement": "Weekends feel lonely.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0570",
+  "statement": "I feel forgotten.",
+  "type": "Experience",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "High"
+ },
+ {
+  "sid": "STM-0571",
+  "statement": "I don't want to do life alone.",
+  "type": "Need",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ },
+ {
+  "sid": "STM-0572",
+  "statement": "I wish someone would ask me how my day was.",
+  "type": "Need",
+  "actionable": false,
+  "sec_ec": null,
+  "flag": false,
+  "conf": "Moderate"
+ }
+]

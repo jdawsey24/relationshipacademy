@@ -1,0 +1,522 @@
+[
+ {
+  "code": "COM-EXPL-001",
+  "kind": "competency",
+  "name": "Curiosity",
+  "definition": "Within the Communication domain, Curiosity is the Developmental Competency of asking thoughtful questions and exploring the other person's values, experiences, preferences, and perspectives with genuine interest and without rushing to conclusions. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Asks thoughtful questions to understand the other person.",
+   "Explores values, experiences, preferences, and perspectives without rushing conclusions.",
+   "Shows genuine interest through follow-up questions and engaged responses."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Curiosity",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Curiosity remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Curiosity within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Curiosity enables the individual or relational system to meet the communication demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "COM-EXPL-004",
+  "kind": "competency",
+  "name": "Transparency",
+  "definition": "Within the Communication domain, Transparency is the Developmental Competency of sharing relevant thoughts, intentions, and information honestly, avoiding misleading omissions or vagueness, so the other person can make informed relational decisions. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Shares relevant thoughts, intentions, and information honestly.",
+   "Avoids misleading omissions or vague responses when clarity is needed.",
+   "Communicates in a way that allows the other person to make informed relational decisions."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Transparency",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Transparency remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Transparency within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Transparency enables the individual or relational system to meet the communication demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "COM-EXPL-005",
+  "kind": "competency",
+  "name": "Emotional Expression",
+  "definition": "Within the Communication domain, Emotional Expression is the Developmental Competency of naming emotions in clear language and sharing emotional reactions in a way that fits the stage of the relationship, without blame, withdrawal, or exaggeration. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Names emotions in clear and understandable language.",
+   "Shares emotional reactions in a way that fits the stage of the relationship.",
+   "Communicates feelings without relying on blame, withdrawal, or exaggeration."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Emotional Expression",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Emotional Expression remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Emotional Expression within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Emotional Expression enables the individual or relational system to meet the communication demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "COM-EXPL-007",
+  "kind": "competency",
+  "name": "Clarification",
+  "definition": "Within the Communication domain, Clarification is the Developmental Competency of asking for more information when something is unclear, checking understanding before assuming meaning or intent, and revisiting key points to reduce misunderstanding. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Asks for more information when something is unclear.",
+   "Checks understanding before assuming meaning or intent.",
+   "Restates or revisits key points to reduce misunderstanding."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Clarification",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Clarification remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Clarification within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Clarification enables the individual or relational system to meet the communication demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "CON-EXPL-001",
+  "kind": "competency",
+  "name": "Emotional Regulation",
+  "definition": "Within the Conflict Management domain, Emotional Regulation is the Developmental Competency of managing emotional activation during disagreement, pausing or slowing reactions before responding destructively, and using calming strategies to stay engaged without escalation. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Manages emotional activation during disagreement.",
+   "Pauses or slows reactions before responding destructively.",
+   "Uses calming strategies to stay engaged without escalation."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Emotional Regulation",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Emotional Regulation remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Emotional Regulation within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Emotional Regulation enables the individual or relational system to meet the conflict management demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "CON-EXPL-002",
+  "kind": "competency",
+  "name": "Objectivity",
+  "definition": "Within the Conflict Management domain, Objectivity is the Developmental Competency of separating facts from interpretations during conflict, evaluating behavior and patterns without idealizing or demonizing, and considering one's own contribution and the other person's behavior fairly. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Separates facts from interpretations during conflict.",
+   "Evaluates behavior and patterns without idealizing or demonizing.",
+   "Considers one's own contribution and the other person's behavior fairly."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Objectivity",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Objectivity remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Objectivity within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Objectivity enables the individual or relational system to meet the conflict management demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "CON-EXPL-003",
+  "kind": "competency",
+  "name": "Reflection",
+  "definition": "Within the Conflict Management domain, Reflection is the Developmental Competency of processing what happened in conflict before drawing conclusions, identifying lessons, patterns, and personal reactions after disagreement, and considering what the conflict reveals about the relationship. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Processes what happened in conflict before making decisions or conclusions.",
+   "Identifies lessons, patterns, and personal reactions after disagreement.",
+   "Considers what the conflict reveals about the relationship."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Reflection",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Reflection remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Reflection within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Reflection enables the individual or relational system to meet the conflict management demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "EMI-EXPL-001",
+  "kind": "competency",
+  "name": "Gradual Self-Disclosure",
+  "definition": "Within the Emotional Intimacy domain, Gradual Self-Disclosure is the Developmental Competency of sharing personal information in stages appropriate to relational safety, allowing deeper knowledge to develop over time, and monitoring whether disclosure is mutual, safe, and contextually appropriate. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Shares personal information in stages appropriate to relational safety.",
+   "Allows deeper knowledge to develop over time rather than all at once.",
+   "Monitors whether disclosure is mutual, safe, and contextually appropriate."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Gradual Self-Disclosure",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Gradual Self-Disclosure remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Gradual Self-Disclosure within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Gradual Self-Disclosure enables the individual or relational system to meet the emotional intimacy demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "EMI-EXPL-003",
+  "kind": "competency",
+  "name": "Appropriate Emotional Expression",
+  "definition": "Within the Emotional Intimacy domain, Appropriate Emotional Expression is the Developmental Competency of sharing emotions in a way that fits the relational context, communicating feelings without oversharing, withholding, or overwhelming, and demonstrating emotional honesty with appropriate pacing and boundaries. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Shares emotions in a way that fits the relational context.",
+   "Communicates feelings without oversharing, withholding, or overwhelming the other person.",
+   "Demonstrates emotional honesty with appropriate pacing and boundaries."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Appropriate Emotional Expression",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Appropriate Emotional Expression remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Appropriate Emotional Expression within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Appropriate Emotional Expression enables the individual or relational system to meet the emotional intimacy demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "EMI-EXPL-005",
+  "kind": "competency",
+  "name": "Authenticity",
+  "definition": "Within the Emotional Intimacy domain, Authenticity is the Developmental Competency of presenting oneself honestly rather than performing an idealized identity, allowing personal values, emotions, and preferences to be known, and avoiding self-expression shaped solely to gain approval or avoid rejection. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Presents self honestly rather than performing an idealized identity.",
+   "Allows personal values, emotions, and preferences to be known appropriately.",
+   "Avoids shaping self-expression solely to gain approval or avoid rejection."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Authenticity",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Authenticity remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Authenticity within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Authenticity enables the individual or relational system to meet the emotional intimacy demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "ROL-EXPL-001",
+  "kind": "competency",
+  "name": "Role Awareness",
+  "definition": "Within the Role Functioning domain, Role Awareness is the Developmental Competency of identifying the current relational role accurately, recognizing what belongs and does not belong in the present relationship stage, and understanding the responsibilities and limits of the current role. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Identifies the current relational role accurately.",
+   "Recognizes what belongs and does not belong in the present relationship stage.",
+   "Understands the responsibilities and limits associated with the current role."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Role Awareness",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Role Awareness remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Role Awareness within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Role Awareness enables the individual or relational system to meet the role functioning demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "ROL-EXPL-002",
+  "kind": "competency",
+  "name": "Intentionality",
+  "definition": "Within the Role Functioning domain, Intentionality is the Developmental Competency of acting with awareness of relational purpose rather than drifting into roles unconsciously, making choices that match stated relational intentions, and considering the developmental meaning of actions before assuming greater responsibility. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Acts with awareness of relational purpose rather than drifting into roles unconsciously.",
+   "Makes choices that match stated relational intentions.",
+   "Considers the developmental meaning of actions before assuming greater responsibility."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Intentionality",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Intentionality remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Intentionality within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Intentionality enables the individual or relational system to meet the role functioning demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "ROL-EXPL-003",
+  "kind": "competency",
+  "name": "Congruence",
+  "definition": "Within the Role Functioning domain, Congruence is the Developmental Competency of aligning words, actions, and intentions consistently and behaving in ways that match stated values and commitments, reducing confusion between what is said and what is done. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Aligns words, actions, and intentions consistently.",
+   "Behaves in ways that match stated values or commitments.",
+   "Reduces confusion by maintaining consistency between what is said and what is done."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Congruence",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Congruence remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Congruence within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Congruence enables the individual or relational system to meet the role functioning demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "ROL-EXPL-004",
+  "kind": "competency",
+  "name": "Reciprocity",
+  "definition": "Within the Role Functioning domain, Reciprocity is the Developmental Competency of balancing talking and listening, inviting the other person's input, and matching relational interest with appropriate mutual engagement. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Balances talking and listening during conversations.",
+   "Invites the other person's input rather than dominating communication.",
+   "Matches relational interest with appropriate mutual engagement."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Reciprocity",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Reciprocity remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Reciprocity within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Reciprocity enables the individual or relational system to meet the role functioning demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "ROL-EXPL-005",
+  "kind": "competency",
+  "name": "Boundaries",
+  "definition": "Within the Role Functioning domain, Boundaries is the Developmental Competency of communicating physical, emotional, sexual, and relational limits clearly, respecting the other person's stated boundaries, and adjusting behavior when boundaries are clarified or changed. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Communicates physical, emotional, sexual, or relational limits clearly.",
+   "Respects the other person's stated boundaries.",
+   "Adjusts behavior when boundaries are clarified or changed."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Boundaries",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Boundaries remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Boundaries within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Boundaries enables the individual or relational system to meet the role functioning demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "TRU-EXPL-001",
+  "kind": "competency",
+  "name": "Dependability",
+  "definition": "Within the Trust domain, Dependability is the Developmental Competency of following through on stated intentions and commitments and showing up in ways that can reasonably be counted on, demonstrating predictable care through consistent behavior. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Follows through on stated intentions and commitments.",
+   "Shows up in ways that can be reasonably counted on.",
+   "Demonstrates predictable care through consistent behavior."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Dependability",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Dependability remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Dependability within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Dependability enables the individual or relational system to meet the trust demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "TRU-EXPL-002",
+  "kind": "competency",
+  "name": "Availability",
+  "definition": "Within the Trust domain, Availability is the Developmental Competency of making appropriate time, attention, and presence available when needed and responding to reasonable bids for connection or support without overpromising or overextending. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Makes appropriate time, attention, or presence available when needed.",
+   "Responds to reasonable bids for connection or support.",
+   "Demonstrates accessibility without overpromising or overextending."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Availability",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Availability remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Availability within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Availability enables the individual or relational system to meet the trust demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "TRU-EXPL-003",
+  "kind": "competency",
+  "name": "Congruence",
+  "definition": "Within the Trust domain, Congruence is the Developmental Competency of aligning words, actions, and intentions consistently and behaving in ways that match stated values and commitments, reducing confusion between what is said and what is done. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Aligns words, actions, and intentions consistently.",
+   "Behaves in ways that match stated values or commitments.",
+   "Reduces confusion by maintaining consistency between what is said and what is done."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Congruence",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Congruence remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Congruence within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Congruence enables the individual or relational system to meet the trust demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "TRU-EXPL-004",
+  "kind": "competency",
+  "name": "Accountability",
+  "definition": "Within the Trust domain, Accountability is the Developmental Competency of acknowledging personal contribution to problems or harm, taking responsibility without defensiveness or blame-shifting, and making concrete efforts to correct behavior. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Acknowledges personal contribution to problems or harm.",
+   "Takes responsibility without excessive defensiveness or blame-shifting.",
+   "Makes concrete efforts to correct behavior after taking responsibility."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Accountability",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Accountability remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Accountability within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Accountability enables the individual or relational system to meet the trust demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ },
+ {
+  "code": "TRU-EXPL-006",
+  "kind": "competency",
+  "name": "Reliability",
+  "definition": "Within the Trust domain, Reliability is the Developmental Competency of behaving consistently across time and situations, keeping agreements or communicating when agreements cannot be kept, and building predictability through repeated trustworthy action. It is one of the phase-specific abilities required to complete the developmental task of Discernment within the Exploration phase.",
+  "developmental_task": "Discernment",
+  "healthy_markers": [
+   "Behaves consistently across time and situations.",
+   "Keeps agreements or communicates when agreements cannot be kept.",
+   "Builds predictability through repeated trustworthy action."
+  ],
+  "common_challenges": [
+   "Internal barriers such as fear, avoidance, unexamined relational schemas, or emotional dysregulation that inhibit Reliability",
+   "relational barriers such as an unsafe, unresponsive, or undermining relational environment",
+   "environmental barriers such as stress load, time scarcity, or contextual instability. Barriers should be assessed when Reliability remains incompletely developed despite intervention."
+  ],
+  "growth_indicators": [
+   "Structured psychoeducation on Reliability within Exploration",
+   "guided reflection and journaling (see linked journal prompts)",
+   "repeated behavioral practice (see linked practices)",
+   "facilitated experiential application with feedback (see linked activities)",
+   "a relational environment that reinforces rather than punishes the competency",
+   "clinician, coach, or facilitator support during skill acquisition."
+  ],
+  "purpose": "Reliability enables the individual or relational system to meet the trust demands of Exploration, a phase in which individuals are gathering evidence about compatibility, character, and relational fit. The competency supports evaluating compatibility and gathering behavioral evidence before deeper relational investment."
+ }
+]
