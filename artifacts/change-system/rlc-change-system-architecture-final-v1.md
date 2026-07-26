@@ -1,7 +1,8 @@
-# Relationship Life Cycle™ Change System Architecture — Final v1
+# Relationship Life Cycle™ Change System Architecture — Final v1 (rev v1.1)
 
-**Status:** FROZEN v1 for human review. Supersedes `rlc-change-system-architecture-v1.md` (Draft v1, preserved
-for audit). **Targeted adjudication revision — not a redesign.** No interventions generated; no framework,
+**Status:** FROZEN, with one post-freeze correction (**v1.1 — barrier-language**, see §25 + Decision Log R7).
+Supersedes `rlc-change-system-architecture-v1.md` (Draft v1, preserved for audit); prior frozen state
+preserved in git history. **Targeted adjudication revision — not a redesign.** No interventions generated; no framework,
 competencies, barriers, phases, tasks, domains, Experience Clusters, Problem Expressions, or mechanism
 taxonomies created or modified. Next project (separate, after approval): **RLC Intervention Development
 Standard** — not begun here.
@@ -285,16 +286,23 @@ relevance is a candidate hypothesis requiring individual evidence beyond stateme
 statements alone. Task = **Discernment** throughout. Consumer/professional suitability noted **without
 finalized tiers** (§14).
 
-| PE | Interference (evidence) | Pathway (planning) | Competency relevance | Candidate barrier (hypothesis; not from statements alone) | Change Target | Mechanism requirement | Consumer/Professional suitability | Expected Developmental Application → Outcome | Unresolved |
+**Barrier-language rule (v1.1 correction — see §25):** the *Observed Interference Pattern* column is
+**descriptive only** — its phrases (e.g. "self-worth generalization", "attention capture") are **not** RLC
+constructs. The *Canonical Barrier Candidate* column may name **only** one of the three canonical categories
+(**Internal / Relational / Environmental**), and only when the canonical definition genuinely fits (RLC has
+**no catalog of named barriers** — verified); otherwise it reads **"No canonical barrier identified."** All
+entries are category-level hypotheses **pending individual evidence** (never inferred from statements alone).
+
+| PE | Interference (evidence) | Pathway (planning) | Competency relevance | Observed interference pattern (descriptive) → Canonical Barrier Candidate | Change Target | Mechanism requirement | Consumer/Professional suitability | Expected Developmental Application → Outcome | Unresolved |
 |---|---|---|---|---|---|---|---|---|---|
-| **PE-1** self-worth conclusion (28) | **Conditional** — statements show a self-verdict appraisal; interference established only where it forecloses evaluation | Barrier-dominant (planning) | Objectivity, Reflection, Authenticity | Internal: outcome→self-worth generalization | Reduce the appraisal's interference with fit-evaluation | cognitive differentiation (fact vs self-conclusion) | likely benefits from facilitation; **refer if safety/impairment signals** (gate pending) | holds outcome as data not verdict → Objectivity/Reflection freed | needs an individual severity/impairment signal (§23) |
-| **PE-2** chosenness fixation (13) | **Established (hypothesis)** — attention organized around being selected | Combined | Objectivity, Role Awareness, Curiosity | Internal: attention capture | Redirect attention to mutual evaluation + build evaluator stance | attention redirection + evidence discrimination | self-guided plausible; facilitation optional | evaluates fit rather than auditions | overlap w/ PE-1 — keep as distinct presentation |
-| **PE-3** self-editing (5) | **Established** — self-editing to be chosen | Combined | **Authenticity** (direct) | Internal: rejection-fear | Enact authentic self-presentation | graded authentic disclosure + behavioral rehearsal | self-guided only in a **safe** context (§13b) | fit assessed on real self | context-safety check required |
-| **PE-4** over-investment (5) | **Established** — investing more as the other invests less | Combined | **Reciprocity (Exploration) ✅** — mutual pursuit/effort/initiation/investment as Discernment evidence; **+ Intentionality** | Internal: difficulty down-regulating investment | Pace investment to observed reciprocity; observe mutual engagement | response interruption + reciprocity/evidence discrimination | self-guided plausible | reciprocity becomes observable → paced investment | **RESOLVED** (Reciprocity adjudication §22-12) — guardrail: information, not scorekeeping |
+| **PE-1** self-worth conclusion (28) | **Conditional** — statements show a self-verdict appraisal; interference established only where it forecloses evaluation | Barrier-dominant (planning) | Objectivity, Reflection, Authenticity | *pattern:* outcome→self-worth generalization → **Internal** category candidate (aligns w/ ODM Internal example "unexamined relational schema"); pending individual evidence | Reduce the appraisal's interference with fit-evaluation | cognitive differentiation (fact vs self-conclusion) | likely benefits from facilitation; **refer if safety/impairment signals** (gate pending) | holds outcome as data not verdict → Objectivity/Reflection freed | needs an individual severity/impairment signal (§23) |
+| **PE-2** chosenness fixation (13) | **Established (hypothesis)** — attention organized around being selected | Combined | Objectivity, Role Awareness, Curiosity | *pattern:* attention capture → **Internal** category candidate (non-exhaustive; **no named ODM example matches precisely** — weak canonical fit); pending individual evidence | Redirect attention to mutual evaluation + build evaluator stance | attention redirection + evidence discrimination | self-guided plausible; facilitation optional | evaluates fit rather than auditions | overlap w/ PE-1 — keep as distinct presentation |
+| **PE-3** self-editing (5) | **Established** — self-editing to be chosen | Combined | **Authenticity** (direct) | *pattern:* rejection-fear driving editing → **Internal** category candidate (aligns w/ ODM Internal example "fear"); pending individual evidence | Enact authentic self-presentation | graded authentic disclosure + behavioral rehearsal | self-guided only in a **safe** context (§13b) | fit assessed on real self | context-safety check required |
+| **PE-4** over-investment (5) | **Established** — investing more as the other invests less | Combined | **Reciprocity (Exploration) ✅** — mutual pursuit/effort/initiation/investment as Discernment evidence; **+ Intentionality** | *pattern:* difficulty down-regulating investment → **Internal** category candidate (weak-moderate; ODM "emotional dysregulation"-adjacent) or **No canonical barrier identified**; pending individual evidence | Pace investment to observed reciprocity; observe mutual engagement | response interruption + reciprocity/evidence discrimination | self-guided plausible | reciprocity becomes observable → paced investment | **RESOLVED** (Reciprocity adjudication §22-12) — guardrail: information, not scorekeeping |
 | **PE-5** read evidence/decide (8) | **Established** — "don't know when to walk away," reads standing poorly | Competency-dominant | Reciprocity, Availability, Congruence, Reliability, Clarification, Intentionality, Boundaries | — | Strengthen evidence observation + evidence-based decision | evidence discrimination + implementation intentions | self-guided | decides from evidence, not open-ended waiting | needs specific (non-generic) intervention |
-| **PE-6** negative expectancy (14) | **Conditional** — interference established only where it distorts evidence-gathering | Barrier-dominant (planning) | Curiosity, Objectivity, Authenticity | Internal: protective expectancy | Reduce pre-discounting of positive evidence | cognitive differentiation + evidence discrimination | facilitation may help; **do not challenge accurate expectancy (§13c)** | weighs evidence vs predicting doom | individual signal for accurate-vs-distorted expectancy |
-| **PE-7** burnout/withdrawal (9) | **Established** — depletion + withdrawal | Combined | **Intentionality** | Internal: depletion (state) | Distinguish intentional rest from avoidant withdrawal; restore capacity to apply | response interruption + rest/environmental restructuring | self-guided; facilitation optional | intentional engagement | rest must not be pathologized (§12) |
-| **PE-8** loneliness/longing (19) | **Not established** — manifest content = distress only | **Neither / Recognition-Context** | — | — | none (validate) | recognition/education only — **not an intervention** (§19) | distress acknowledged; no over-intervention | temporal-comparison subset (0015–0019) — human-review flag |
+| **PE-6** negative expectancy (14) | **Conditional** — interference established only where it distorts evidence-gathering | Barrier-dominant (planning) | Curiosity, Objectivity, Authenticity | *pattern:* protective negative expectancy → **Internal** category candidate (ODM examples "unexamined relational schema"/"avoidance"); pending individual evidence | Reduce pre-discounting of positive evidence | cognitive differentiation + evidence discrimination | facilitation may help; **do not challenge accurate expectancy (§13c)** | weighs evidence vs predicting doom | individual signal for accurate-vs-distorted expectancy |
+| **PE-7** burnout/withdrawal (9) | **Established** — depletion + withdrawal | Combined | **Intentionality** | *pattern:* depletion (state) → **Internal** (emotional) or **Environmental** category candidate (ODM "stress load"); *state, not stable schema*; pending individual evidence | Distinguish intentional rest from avoidant withdrawal; restore capacity to apply | response interruption + rest/environmental restructuring | self-guided; facilitation optional | intentional engagement | rest must not be pathologized (§12) |
+| **PE-8** loneliness/longing (19) | **Not established** — manifest content = distress only | **Neither / Recognition-Context** | — | **No canonical barrier identified** (no interference established) | none (validate) | recognition/education only — **not an intervention** (§19) | distress acknowledged; no over-intervention | temporal-comparison subset (0015–0019) — human-review flag |
 
 **Break-test result:** the Final v1 rules handle all eight cleanly. The Gate correctly **declines to
 intervene** on PE-8; PE-1/PE-6 are correctly **conditional**; **PE-4 is now resolved** (Reciprocity is a
@@ -365,6 +373,7 @@ discrepancy — now reconciled.)*
 | R4 | **Playbook methodological implication** added: statements→…→interventions; Playbook = delivery environment; Recognition/Context ≠ intervention; prior behavioral Plays preserved as one intervention form (§19). |
 | R5 | **Statement-count reconciliation** added (1,085 rows / 1,058 unique; 1,069 = stale) (§20). |
 | R6 | **Measurement Spine** anchored first to the Behavioral Codebook (BI/II); no new constructs (§16). |
+| R7 | **(v1.1 post-freeze)** Barrier language corrected: **Observed Interference Pattern** (descriptive) separated from **Canonical Barrier Candidate** (Internal/Relational/Environmental category only, or "No canonical barrier identified"); verified RLC has no named-barrier catalog. Stress test + §25 updated. Labeling only — no determination changed. |
 
 **HELD (deliberately not finalized):**
 | Item | Reason |
@@ -396,9 +405,26 @@ Codebook · cross-cluster generalization · keeping Change Mechanism operational
    dropped from Unresolved rather than carried forward.
 Everything else from Draft v1 is retained unchanged.
 
+## 25. Post-freeze correction v1.1 — Barrier language (Observed Pattern vs Canonical Barrier Candidate)
+Human review of the frozen Final v1 identified that the stress-test "candidate barrier" cells risked reifying
+**descriptive interference processes** (self-worth generalization, attention capture, rejection-fear,
+protective expectancy, depletion) into unofficial RLC Developmental Barriers. **Correction applied:**
+- Two distinct concepts are now separated: **Observed/Possible Interference Pattern** (descriptive, *not* a
+  construct) vs **Canonical Barrier Candidate** (only the canonical categories **Internal / Relational /
+  Environmental**, and only where the canonical definition genuinely fits — verified: **RLC has no catalog of
+  named barriers**, only these three categories with non-exhaustive ODM examples).
+- Where no canonical category genuinely fits, the cell reads **"No canonical barrier identified."**
+- All barrier candidates are **category-level hypotheses pending individual evidence** — never inferred from
+  statement content alone (Statement Evidence Rule, §4).
+- The descriptive labels used in the upstream diagnostic (`../intervention-coverage/
+  cluster-1-barrier-coverage-analysis.md`, incl. its α–ζ shorthand) are likewise **interference-pattern
+  descriptions, not constructs**; that document is a prior diagnostic and is read under this rule.
+This correction changes **labeling discipline only** — no pathway, gate, competency, or barrier determination
+changed. The Intervention Development Standard adopts this Observed-Pattern-vs-Canonical-Barrier distinction.
+
 ## STOP CONDITION — honored
-Final v1 architecture + revised Cluster 1 stress test + updated Decision Log + statement-count reconciliation
-produced. **No** interventions generated · 333 templates untouched · no techniques created · no external
+Final v1 architecture (rev v1.1) + revised Cluster 1 stress test + updated Decision Log + statement-count
+reconciliation produced. **No** interventions generated · 333 templates untouched · no techniques created · no external
 literature review · no Playbook redesign · no Snapshot change · not operationalized across the other 26
 clusters · no new competencies/barriers · framework & manuals unmodified · suitability taxonomy not
 finalized. **Returned for human review. Next (separate) project: RLC Intervention Development Standard — not
