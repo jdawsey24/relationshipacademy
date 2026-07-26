@@ -1,6 +1,6 @@
 # Cross-Cluster Behavioral Evidence Rule — DRAFT v1 (for approval)
 
-**Status:** DRAFT. Not operationalized. Prototyped on Cluster 1 only (see `Cluster 1 Rule Application`).
+**Status:** **Provisionally Validated — Cluster 1 Prototype** (owner-approved for prototype use). NOT globally validated; NOT operationalized across other clusters. Global validation requires successful application to additional clusters with different phenomenological/developmental profiles.
 Do not apply to other clusters until approved.
 
 ## Purpose
@@ -38,7 +38,7 @@ If the answer to the last link is not clearly yes → **exclude**.
 1. **Canonical mappings never change.** A borrowed statement stays canonically assigned to its original cluster. Cross-cluster use is an **application relationship**, not a remapping.
 2. **Phenomenological similarity alone is insufficient.** Emotional resemblance between clusters is not evidence. The chain must be developmental and behavioral.
 3. **No inferred psychological mechanism.** No bridge like *feeling unchosen → abandonment fear → chasing → stop chasing*. No attachment style, unconscious motive, personality trait, pathology, or generic psychology unless directly established by approved source material.
-4. **Cross-cluster evidence does not establish prevalence.** Never say/imply "people with this result do this." The application must be **conditional**: ✔ "If you notice yourself increasing your effort when the other person becomes less available…" �’ NOT "When you start chasing because you're afraid they won't choose you…". The behavior is an *applicable intervention pathway*, not an attributed trait.
+4. **Cross-cluster evidence does not establish prevalence.** Never say/imply "people with this result do this." The application must be **conditional**: ✔ "If you notice yourself increasing your effort when the other person becomes less available…" — ✗ NOT "When you start chasing because you're afraid they won't choose you…". The behavior is an *applicable intervention pathway*, not an attributed trait.
 5. **Same-phase evidence is preferred.** Cross-**phase** candidates need stronger justification and human review (the task/context is less likely to align).
 6. **Existing competencies take priority.** A candidate that operationalizes an existing competency for the target phase/task is stronger. Do NOT invent competencies. Task-supported/competency-gap candidates are admissible only at a **lower evidence status** with human review.
 7. **The behavior must matter to the target task.** Not "could this help?" but "would altering this behavior *materially* improve performance of THIS cluster's developmental task?" If not, exclude.

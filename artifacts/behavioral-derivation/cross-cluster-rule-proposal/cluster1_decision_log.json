@@ -1,0 +1,42 @@
+[
+ {
+  "change_type": "Approval",
+  "target": "Cluster 1 — Difficulty Feeling Chosen",
+  "description": "Prototype behavioral architecture APPROVED. Three PRIMARY behavioral plays locked in sequence PRESENT → OBSERVE → DECIDE. Smallest sufficient primary architecture; no additional primary Plays unless prototype development reveals a substantive behavioral gap."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "T1 — Authentic Self-Presentation (Tier 1, STM-0262)",
+  "description": "Resolves the previously-held CP-06/C1. Governing logic = Discernment requires accurate information about both people; excessive self-editing degrades that information (NOT 'be vulnerable to be chosen')."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "T2 — Reciprocity-Based Investment (Tier 2, Human Approved)",
+  "description": "OBSERVATION component. Consolidates STM-0395 + STM-0042 + the translated observation component of STM-1039 (observe consistency in Exploration, not Exclusivity promises)."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "T3 — Evidence-Informed Decision-Making (Tier 2, Human Approved)",
+  "description": "DECISION component; condition-based, no arbitrary calendar timelines. Distinct from T2: T2 gathers/interprets evidence, T3 uses sufficient evidence to decide continue/deepen/slow/discontinue."
+ },
+ {
+  "change_type": "Ruling",
+  "target": "'Do not dismiss available people' (STM-0396)",
+  "description": "HELD / NOT ADMITTED to Cluster 1. Precedent: developmental-task relevance ALONE is insufficient for cross-cluster admission; center of gravity is partner selection, not Difficulty Feeling Chosen."
+ },
+ {
+  "change_type": "Ruling",
+  "target": "Red-flag checking (STM-0037)",
+  "description": "REJECTED for Cluster 1 (semantic-only; fails Rule 2 + Rule 7)."
+ },
+ {
+  "change_type": "New-Distinction",
+  "target": "Primary Behavioral Play vs Context-Activated Play",
+  "description": "Introduced. A Context-Activated Play becomes relevant only when its triggering circumstance is present. Intentional Dating Break = Context-Activated (dating fatigue/burnout), NOT part of the primary sequence and not a universal C1 response. Recorded for potential reuse across other Experience Clusters."
+ },
+ {
+  "change_type": "Rule-Status",
+  "target": "Cross-Cluster Behavioral Evidence Rule",
+  "description": "Status = 'Provisionally Validated — Cluster 1 Prototype'. Cluster 1 demonstrated the rule can: close a genuine behavioral evidence gap; preserve canonical mappings; reject weak semantic associations; prevent unsupported prevalence claims; prevent unsupported psychological mechanisms; and produce a smaller, coherent behavioral architecture. GLOBAL validation still requires successful application to additional clusters with different phenomenological/developmental profiles."
+ }
+]

@@ -1,0 +1,80 @@
+[
+ {
+  "seq": "1 — PRESENT",
+  "cls": "Primary Behavioral Play",
+  "name": "Authentic Self-Presentation",
+  "tier": "Tier 1",
+  "comp": "Emotional Intimacy → Authenticity",
+  "purpose": "Present enough of one's actual preferences, needs, values, and responses for relational fit to be evaluated.",
+  "logic": "NOT 'be more vulnerable so you can be chosen.' Discernment requires sufficiently accurate information about BOTH people; excessive self-editing reduces the quality of that information.",
+  "role": "Provides accurate self-information (the input to Discernment).",
+  "sids": "STM-0262",
+  "src": "1 — Difficulty Feeling Chosen",
+  "status": "APPROVED — resolves the previously-held CP-06/C1 application."
+ },
+ {
+  "seq": "2 — OBSERVE",
+  "cls": "Primary Behavioral Play",
+  "name": "Reciprocity-Based Investment",
+  "tier": "Tier 2 — Human Approved",
+  "comp": "Role Functioning → Reciprocity; Trust → Availability, Congruence",
+  "purpose": "Adjust investment according to demonstrated reciprocity, availability, and consistency rather than increasing pursuit or remaining oriented primarily toward whether one is being selected.",
+  "logic": "Governed cross-cluster evidence (Tier 2). Consolidates STM-0395 + STM-0042 with the developmentally TRANSLATED observation component of STM-1039 (observe consistency in Exploration — not Exclusivity commitment-promises).",
+  "role": "OBSERVATION component — gathers and interprets relational evidence.",
+  "sids": "STM-0395, STM-0042, STM-1039",
+  "src": "5 (Exploration); 24 (Exclusivity, translated)",
+  "status": "APPROVED (human-gated Tier 2)."
+ },
+ {
+  "seq": "3 — DECIDE",
+  "cls": "Primary Behavioral Play",
+  "name": "Evidence-Informed Decision-Making",
+  "tier": "Tier 2 — Human Approved",
+  "comp": "Role Functioning → Boundaries; Trust → Accountability",
+  "purpose": "Use accumulated relational evidence to determine whether to continue, deepen, slow, or discontinue investment rather than remaining indefinitely in open-ended waiting.",
+  "logic": "Condition-based (NO arbitrary calendar timelines). Distinct from T2: T2 gathers/interprets evidence; T3 uses sufficient evidence to make an investment decision.",
+  "role": "DECISION component — acts on sufficient relational evidence.",
+  "sids": "STM-0039, STM-0556",
+  "src": "5 — Trusting Your Own Judgment (Exploration)",
+  "status": "APPROVED (human-gated Tier 2)."
+ },
+ {
+  "seq": "— (not in sequence)",
+  "cls": "Context-Activated Play",
+  "name": "Intentional Dating Break",
+  "tier": "Tier 1",
+  "comp": "Role Functioning → Intentionality",
+  "purpose": "Distinguish a chosen rest from avoidant withdrawal when dating fatigue/burnout is present.",
+  "logic": "TRIGGER-GATED: relevant only when dating fatigue/burnout is present. Do NOT assume every Cluster 1 user needs a dating break; it is not a universal response to Difficulty Feeling Chosen.",
+  "role": "Context-activated — outside the PRESENT→OBSERVE→DECIDE primary sequence.",
+  "sids": "STM-0177",
+  "src": "1 — Difficulty Feeling Chosen",
+  "status": "RETAINED as Context-Activated Play (existing CP-18)."
+ },
+ {
+  "seq": "—",
+  "cls": "Held Candidate",
+  "name": "Do not dismiss available people before checking",
+  "tier": "Tier 2 (admissible)",
+  "comp": "Role Functioning → Intentionality",
+  "purpose": "(not admitted to Cluster 1)",
+  "logic": "RULING: developmental-task relevance ALONE is insufficient for cross-cluster admission. Its center of gravity is partner SELECTION, not Difficulty Feeling Chosen; C1-specificity insufficient.",
+  "role": "—",
+  "sids": "STM-0396",
+  "src": "5 — Trusting Your Own Judgment (Exploration)",
+  "status": "HELD / NOT ADMITTED — preserved as precedent that task-relevance alone does not qualify."
+ },
+ {
+  "seq": "—",
+  "cls": "Rejected Candidate",
+  "name": "Red-flag checking",
+  "tier": "Tier 2 (failed)",
+  "comp": "Conflict Management → Objectivity",
+  "purpose": "(rejected)",
+  "logic": "Fails Rule 2 (semantic-only) + Rule 7 (materiality); belongs to self-trust (C5), C1 never states it.",
+  "role": "—",
+  "sids": "STM-0037",
+  "src": "5 — Trusting Your Own Judgment (Exploration)",
+  "status": "REJECTED for Cluster 1."
+ }
+]
