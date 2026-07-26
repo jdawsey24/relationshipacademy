@@ -4,8 +4,11 @@ import { Resend } from "resend";
 // a no-op (not configured) when RESEND_API_KEY is absent — so nothing in the app
 // breaks if email isn't set up yet.
 
-const FROM = process.env.EMAIL_FROM || "Relationship Life Cycle <snapshot@notify.relationshiplc.com>";
-const REPLY_TO = process.env.EMAIL_REPLY_TO || "hello@janelledawsey.com";
+// From must be on a Resend-verified domain — notify.relationshiplc.com is verified
+// (DKIM/SPF present); the bare root relationshiplc.com is NOT, so we send from the
+// subdomain. Reply-To can be any address (just where replies land) → the brand inbox.
+const FROM = process.env.EMAIL_FROM || "Relationship Life Cycle <admin@notify.relationshiplc.com>";
+const REPLY_TO = process.env.EMAIL_REPLY_TO || "admin@relationshiplc.com";
 
 let client: Resend | null = null;
 function resend(): Resend | null {

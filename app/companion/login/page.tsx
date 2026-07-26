@@ -42,7 +42,7 @@ export default function CompanionLoginPage() {
           {err && <p className="text-center font-body text-sm text-coral-rose">{err}</p>}
         </div>
         <p className="mt-4 font-body text-sm text-charcoal/60">New to the Companion? <a href="/companion/signup" className="text-midnight-navy/80 underline underline-offset-2">Create an account</a></p>
-        <p className="mt-3 font-body text-xs text-charcoal/45">Trouble signing in? Email <a href="mailto:info@symmetricly.co" className="text-midnight-navy/70 underline underline-offset-2">info@symmetricly.co</a> and we&rsquo;ll help you get back in.</p>
+        <p className="mt-3 font-body text-xs text-charcoal/45">Trouble signing in? Email <a href="mailto:admin@relationshiplc.com" className="text-midnight-navy/70 underline underline-offset-2">admin@relationshiplc.com</a> and we&rsquo;ll help you get back in.</p>
       </div>
     </main>
   );
