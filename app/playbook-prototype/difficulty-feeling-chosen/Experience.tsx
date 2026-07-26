@@ -100,7 +100,10 @@ export default function Experience() {
   useEffect(() => {
     try { const raw = localStorage.getItem(KEY); if (raw) setSaved(JSON.parse(raw)); } catch { /* noop */ }
   }, []);
-  const savePlay = () => { try { localStorage.setItem(KEY, JSON.stringify(play)); setSaved(play); } catch { /* noop */ } };
+  const savePlay = (p: Play = play): boolean => {
+    try { localStorage.setItem(KEY, JSON.stringify(p)); setSaved(p); return true; }
+    catch { return false; }
+  };
 
   return (
     <>
@@ -445,13 +448,15 @@ function BreakModule({ play, patch, onDone }: { play: Play; patch: (p: Partial<P
   );
 }
 
-function MyPlay({ play, onSave }: { play: Play; onSave: () => void }) {
+function MyPlay({ play, onSave }: { play: Play; onSave: (p: Play) => boolean }) {
+  const [status, setStatus] = useState<"idle" | "saved" | "error">("idle");
   const row = (label: string, value?: string) => value ? (
     <div className="border-t border-light-gray py-4">
       <p className="font-ui text-[11px] font-semibold uppercase tracking-wide text-coral-rose">{label}</p>
       <p className="mt-1 font-body text-[16px] text-charcoal/85">{value}</p>
     </div>
   ) : null;
+  const empty = !play.present && !play.observe.length && !play.need.length;
   return (
     <div className="pt-4">
       <H>My Relationship Play</H>
@@ -460,9 +465,20 @@ function MyPlay({ play, onSave }: { play: Play; onSave: () => void }) {
         {row("Observe — I’ll pay attention to", play.observe.length ? play.observe.join(" · ") : undefined)}
         {row("Decide — I’ll decide using", play.need.length ? play.need.join(" · ") : undefined)}
         {play.breakRelevant && row("If I need a break", [play.breakFrom, play.breakFor, play.breakReassess].filter(Boolean).join(" — ") || "(your notes)")}
+        {empty && <p className="py-4 font-body text-[15px] italic text-charcoal/50">You didn&rsquo;t add anything yet — that&rsquo;s okay. You can go back and pick what you&rsquo;d like to keep.</p>}
       </div>
       <P>This is yours. Come back to it whenever you meet someone new.</P>
-      <Primary onClick={onSave}>Save</Primary>
+      <button
+        onClick={() => setStatus(onSave(play) ? "saved" : "error")}
+        className="mt-8 inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
+        {status === "saved" ? "Saved ✓" : "Save my Play"}
+      </button>
+      {status === "saved" && (
+        <p className="mt-3 font-body text-sm text-midnight-navy/70">Saved to this device &mdash; it&rsquo;ll be here when you come back.</p>
+      )}
+      {status === "error" && (
+        <p className="mt-3 font-body text-sm text-soft-coral">We couldn&rsquo;t save on this device. If you&rsquo;re in a private/incognito window, try a normal one.</p>
+      )}
     </div>
   );
 }
