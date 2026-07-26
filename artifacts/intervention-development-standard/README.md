@@ -1,6 +1,18 @@
 # RLC Intervention Development Standard
 
-`rlc-intervention-development-standard-draft-v1.md` — **DRAFT v1** (staged for human review; NOT final).
+- **`rlc-intervention-development-standard-v1.1.md` — FINAL APPROVAL CANDIDATE v1.1** (current; awaiting sign-off). Read this.
+- `rlc-intervention-development-standard-draft-v1.md` — Draft v1 (preserved for audit; superseded by v1.1).
+
+**v1.1 changed from Draft v1:** PE-1 → Framework Coverage Question OPEN (Barrier ≠ Competency ≠ Change Target;
+no self-worth competency created); suitability screening moved to the intervention level (Snapshot NOT a
+clinical severity screener); R2 Supported/Facilitated split from R3 Clinician-Dependent; NEW Intervention
+Portfolio Sufficiency Standard + product-claim scoping; Human Adjudication Queue re-triaged (single hard
+pre-development blocker = the PE-1 FCQ, and it blocks PE-1 only). Next phase after approval: Cluster 1
+Intervention Development and Evidence Review.
+
+---
+
+`rlc-intervention-development-standard-draft-v1.md` — Draft v1 (staged for human review; superseded).
 The governing methodology for how valid RLC interventions are identified, selected, adapted, designed,
 evidence-sourced, developmentally anchored, safety-bounded, delivered, practiced, measured, reviewed,
 validated, and translated across consumer/professional contexts. Product-independent (serves Playbook,
