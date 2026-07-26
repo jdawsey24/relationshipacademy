@@ -29,3 +29,18 @@ to a pre-set evidence criterion; self-affirmation/compassion buffer-only (d≈0.
 no new mechanisms. Every advancing technique ships Empirically-Supported(technique)/RLC-Theory-Derived
 (application) — none is Direct-to-target. Readiness: **READY** for Phase 2 (no hard blockers; Del-15 items are
 confirmations of downgrades). 16 deliverables + readiness test.
+
+---
+
+`phase2-rlc-intervention-portfolio.md` — **PHASE 2** (intervention authoring & portfolio construction).
+Minimum sufficient portfolio = **4 Core Interventions** + 2 Supporting Practices + 4-item Education layer +
+1 Recognition/Context spec, covering all 7 active PEs via 4 mechanism families:
+- CI-01 Bounded Reflection (M1 perspective shift) — PE-1 (+PE-2 module); Task-Supporting target
+- CI-02 Evidence-to-Decision (M7 evidence discrimination + M6 implementation intention; +M5 forward-value) —
+  PE-5 (+PE-4 investment application, +PE-6-distorted expectancy application); Objectivity+Intentionality
+- CI-03 Authentic-Presentation Experiment (M4/M8 behavioural experiment, safety-gated) — PE-3
+- CI-04 Intentional Engagement (M6 values-guided if-then) — PE-7
+Every intervention: Empirically-Supported Technique / RLC-Theory-Derived Application (no RLC efficacy claim).
+Full specs + fidelity/success/safety matrices + coverage audit (all 8 PEs) + outcome model + gaps + research
+needs + adjudication queue. 19 deliverables. Portfolio test: Partially Sufficient (credible, bounded; entrenched
+PE-1 = R3 referral). Staged for review. Next: consumer translation (Literature -> Plays -> Practices -> ...).
