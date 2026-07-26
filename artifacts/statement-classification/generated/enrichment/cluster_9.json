@@ -1,0 +1,155 @@
+[
+  {
+    "sid": "STM-0088",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States the current absence of sex as a relational pattern, not a felt state or discrete act.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0089",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Dominant proposition characterizes the quality of the couple's intimacy as forced.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0090",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective experience of not being desired within the relationship; no enacted behavior stated.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0091",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 1,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-concept evaluation of one's own attractiveness; overlaps self-worth cluster 1.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0092",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes a structural mismatch (sexual desire discrepancy) between the partners.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0093",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names a felt state of longing for absent physical affection; latent need not inferred.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0094",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 7,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expresses uncertainty about how to talk about sex; communication overlap to cluster 7.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0484",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective experience of no longer feeling desired; no enacted behavior stated.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0485",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to initiate intimacy; manifest content is not-knowing, not an enacted act.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0486",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 7,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "'We avoid' frames a shared avoidance pattern; whether it names the user's own alterable act is unclear.",
+    "confidence": "Low",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0487",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Dominant proposition characterizes the couple's sex life as routine.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0488",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names longing for affection over sex; comparison foregrounds the felt state of missing.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0489",
+    "statement_type": "Experience",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective sense of insufficient emotional connection for intimacy; overlaps disconnection cluster 8.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0490",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes a structural desire discrepancy between the partners.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0491",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 7,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to voice one's wants; communication overlap to cluster 7.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0492",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 1,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-concept evaluation of one's own attractiveness; overlaps self-worth cluster 1.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0493",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names the emotional state of feeling rejected by the partner; no enacted behavior stated.",
+    "confidence": "Moderate",
+    "review_flag": false
+  }
+]

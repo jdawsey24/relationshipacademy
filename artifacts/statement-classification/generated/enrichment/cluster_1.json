@@ -1,0 +1,911 @@
+[
+  {
+    "sid": "STM-0001",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Rhetorical self-directed question ruminating on being single.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0002",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Ruminative question about not being chosen.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0003",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective state of going unseen.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0004",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring lived pattern of being rejected.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0005",
+    "statement_type": "Experience",
+    "secondary_ec": 2,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring pattern of connections not advancing past early stage.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0006",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring outcome of being placed in a friend role.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0007",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-evaluative uncertainty about a personal flaw.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0008",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 17,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Comparative conclusion contrasting self with others finding love.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0009",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names the emotional state of feeling defeated.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0010",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Speculative self-evaluation of attractiveness.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0011",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Speculative self-concept judgment.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0012",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Speculative self-concept judgment of insufficiency.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0013",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring experience of others losing interest.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0014",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring life outcome of ending up alone.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0015",
+    "statement_type": "Experience",
+    "secondary_ec": 17,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Felt comparative sense of lagging behind others.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0016",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States an absence in relational history.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0017",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States an absence in relational history.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0018",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Pessimistic prediction about future marriage.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0019",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 17,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Conclusion about a lost opportunity/timeline.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0020",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 17,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Comparative belief about others possessing hidden knowledge.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0140",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Speculative self-evaluation of being too selective.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0141",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Speculative evaluation of own standards.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0142",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Speculative evaluation of own standards.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0143",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-blaming conclusion.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0144",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about own lovability.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0145",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-concept judgment about relational suitability.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0146",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective sense of being a fallback rather than chosen.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0147",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective sense of never being prioritized as first choice.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0148",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Felt sense of being settled-for rather than chosen.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0149",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Belief that others fail to recognize one's worth.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0150",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to receive reciprocal choosing.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0151",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Pessimistic self-worth prediction.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0152",
+    "statement_type": "Emotion",
+    "secondary_ec": 27,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names weariness; primary expression is emotional exhaustion.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0153",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 27,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Belief that love must be earned/is conditional.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0154",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Ruminative self-worth question.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0155",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Fatalistic belief that love is not meant for oneself.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0156",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective self-state of feeling broken.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0157",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative lament about relational difficulty.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0158",
+    "statement_type": "Emotion",
+    "secondary_ec": 17,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names envy in a comparison to others.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0159",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-evaluative uncertainty about a mistake.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0172",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names emotional weariness.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0173",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names emotional exhaustion with dating.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0174",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes a recurring cross-relationship ending pattern.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0175",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names diminishing hope as an emotional state.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0176",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names a diminished emotional response to dating.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0177",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Aversion to re-engaging apps; avoidance of a concrete action.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0178",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names emotional burnout.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0179",
+    "statement_type": "Fear",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit fear about raising one's hopes.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0180",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Predictive expectation of disappointment.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0181",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Generalized belief distrusting others' words.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0182",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative judgment that love is harder than it should be.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0183",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names weariness; primary expression is emotional exhaustion.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0184",
+    "statement_type": "Fear",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit fear of ending up alone.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0252",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Speculative self-attribute evaluation.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0253",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 6,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Speculative self-attribute of being too needy.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0254",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Speculative self-attribute evaluation.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0255",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Speculative self-attribute evaluation.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0256",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 15,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Comparative belief about one-sided investment.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0257",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring felt experience of being left behind.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0258",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Puzzlement over own quick-attachment pattern.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0259",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Puzzlement over others losing interest.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0260",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 27,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Belief that love requires being perfect/earned.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0261",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 22,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about identity apart from relationships.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0262",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": 22,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted, repeated altering of self for others.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0263",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about others accepting the authentic self.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0264",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Wish to change an internal caring disposition.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0265",
+    "statement_type": "Experience",
+    "secondary_ec": 27,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Felt sense of being replaceable/disposable.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0266",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Felt sense of not being valued as special.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0267",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names weariness about a near-enough self-state.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0268",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Ruminative wondering about a personal flaw.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0269",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 17,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Comparative belief contrasting self with others.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0270",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Ruminative question about feeling unwanted.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0271",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective state of going unseen among others.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0436",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 24,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about the relationship's status/definition.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0437",
+    "statement_type": "Other-Person Behavior",
+    "secondary_ec": 24,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Reports the other person's stated position.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0438",
+    "statement_type": "Other-Person Behavior",
+    "secondary_ec": 24,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Attributes intermittent attention-giving to the other person.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0439",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 24,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about being treated as an option.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0440",
+    "statement_type": "Experience",
+    "secondary_ec": 24,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Felt one-sided limbo awaiting the other's choice.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0441",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 24,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative concern about wasted investment.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0442",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring internal hope; cognition, not an enacted behavior.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0443",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 24,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about the walk-away decision.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0522",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Disappointed past expectation about a partner.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0523",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring internal raising of hope; cognitive.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0524",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes a recurring pattern of relationships ending.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0525",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names weariness/emotional exhaustion.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0526",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 3,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about hoping without vulnerability to hurt.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0527",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 3,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Predictive belief that others will leave.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0528",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Pessimistic generalized belief that good things end.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0529",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Distrust of positive circumstances.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0530",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 3,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Anticipatory bracing for a bad outcome.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0531",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 6,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty paired with worry despite the relationship being healthy.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0563",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names longing for companionship.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0564",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names longing for a partner.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0565",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Aversive experience of returning to an empty home.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0566",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names a strong aversion to sleeping alone.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0567",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names longing to be someone's favored person.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0568",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes what holidays are like to endure.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0569",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes the loneliness of weekends.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0570",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective state of feeling forgotten/unseen.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0571",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to have companionship rather than be alone.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0572",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to receive attentive care from a partner.",
+    "confidence": "Moderate",
+    "review_flag": false
+  }
+]

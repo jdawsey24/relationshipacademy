@@ -1,0 +1,290 @@
+[
+{
+"sid": "STM-0061",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Uncertainty about the relationship's definition/status.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0062",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Open question about trajectory.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0063",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Internal deliberation about a DTR talk; behavior contemplated, not performed.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0064",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Timing uncertainty about exclusivity.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0065",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Uncertainty about timing of investment.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0066",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Evaluative concern about investment; not a stated relational need.",
+"confidence": "Moderate",
+"review_flag": false
+},
+{
+"sid": "STM-0067",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Discernment uncertainty about exiting; exit not enacted.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0068",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Discernment uncertainty about investing further.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0069",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Seeking a way to read the other's intent.",
+"confidence": "Moderate",
+"review_flag": false
+},
+{
+"sid": "STM-0070",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Internal deliberation about vetting; behavior contemplated, not performed.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0185",
+"statement_type": "Fear",
+"secondary_ec": 23,
+"behaviorally_actionable": false,
+"mapping_rationale": "Explicit fear; canonical 24 preserved, 23 as adjacency.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0186",
+"statement_type": "Fear",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Explicit fear of wasted investment.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0196",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Discernment uncertainty about commitment timing.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0197",
+"statement_type": "Fear",
+"secondary_ec": 23,
+"behaviorally_actionable": false,
+"mapping_rationale": "Explicit fear; same wrong-choice construct as C23; canonical 24 preserved.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0198",
+"statement_type": "Thought/Belief",
+"secondary_ec": 23,
+"behaviorally_actionable": false,
+"mapping_rationale": "Recurring internal rumination — cognition, not an enacted behavior.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0199",
+"statement_type": "Thought/Belief",
+"secondary_ec": 23,
+"behaviorally_actionable": false,
+"mapping_rationale": "Maximizing / grass-is-greener thought.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0200",
+"statement_type": "Fear",
+"secondary_ec": 23,
+"behaviorally_actionable": false,
+"mapping_rationale": "Explicit fear of settling; wrong-choice adjacency.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0201",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Evaluative uncertainty about sufficiency.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0202",
+"statement_type": "Thought/Belief",
+"secondary_ec": 25,
+"behaviorally_actionable": false,
+"mapping_rationale": "Uncertainty about relational norms; literacy (C25) overlap.",
+"confidence": "Moderate",
+"review_flag": false
+},
+{
+"sid": "STM-0203",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Discernment about ending the search.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0204",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Duplicate construct of STM-0067.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0205",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Duplicate construct of STM-0068.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-0206",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Self-doubt about the legitimacy of one's needs.",
+"confidence": "Moderate",
+"review_flag": false
+},
+{
+"sid": "STM-0207",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Mirror of prior; self-doubt about need calibration.",
+"confidence": "Moderate",
+"review_flag": false
+},
+{
+"sid": "STM-1037",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Person's doubt/prediction about sustained effort.",
+"confidence": "Moderate",
+"review_flag": false
+},
+{
+"sid": "STM-1038",
+"statement_type": "Relational Condition",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Describes a change in the relationship's dynamic after defining; borders Other-Person Behavior.",
+"confidence": "Moderate",
+"review_flag": true
+},
+{
+"sid": "STM-1039",
+"statement_type": "Self-Behavior",
+"secondary_ec": null,
+"behaviorally_actionable": true,
+"mapping_rationale": "Enacted wait-and-see/monitoring stance; alterable; adaptiveness not judged.",
+"confidence": "Moderate",
+"review_flag": true
+},
+{
+"sid": "STM-1044",
+"statement_type": "Relational Condition",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Dominant proposition compares the relational dynamic before/after definition.",
+"confidence": "Moderate",
+"review_flag": false
+},
+{
+"sid": "STM-1046",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Dominant clause = readiness self-doubt; borders Self-Behavior (said yes).",
+"confidence": "Moderate",
+"review_flag": true
+},
+{
+"sid": "STM-1051",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Doubt/prediction about long-term viability.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-1052",
+"statement_type": "Thought/Belief",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Ambivalence about own desire at the commitment threshold.",
+"confidence": "High",
+"review_flag": false
+},
+{
+"sid": "STM-1053",
+"statement_type": "Relational Condition",
+"secondary_ec": null,
+"behaviorally_actionable": false,
+"mapping_rationale": "Same construct as STM-1044; relationship harder after definition.",
+"confidence": "Moderate",
+"review_flag": false
+}
+]

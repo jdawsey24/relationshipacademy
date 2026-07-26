@@ -1,0 +1,821 @@
+[
+  {
+    "sid": "STM-0192",
+    "statement_type": "Fear",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit fear ('I'm afraid') of a feared future outcome.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0367",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 11,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to perform a disclosure; not-knowing-how, not an enacted behavior.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0368",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-evaluative conclusion of failure, not a named emotion.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0369",
+    "statement_type": "Emotion",
+    "secondary_ec": 11,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names an active grief state over a still-living person.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0370",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective lived state of not recognizing one's own life.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0371",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 19,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to co-parent; not-knowing-how, not enacted behavior.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0372",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to be alone; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0373",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 11,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to separate shared lives; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0374",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Reflective appraisal of one's life narrative ('never imagined').",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0375",
+    "statement_type": "Fear",
+    "secondary_ec": 13,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit fear ('afraid') of starting over.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0376",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about what the future holds.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0623",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about self/identity absent the relationship.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0624",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Substantive desire to re-establish selfhood; developmental, not a discrete enacted behavior.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0625",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about what life is now.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0626",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective perceptual state of everything being unfamiliar.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0627",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names an active grief state over an imagined future.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0628",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Longing/missing an anticipated shared life; emotional state.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0629",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjectively lived loss of part of one's identity.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0630",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 13,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to dream/hope again; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0631",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about one's own wants.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0632",
+    "statement_type": "Experience",
+    "secondary_ec": 13,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Living through an existential rebuilding process; unclear if a discrete enactable behavior.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0747",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 12,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to grieve and move forward; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0748",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names guilt.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0749",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty/belief about self-permission to be happy.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0750",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Longing/missing a planned future; emotional state.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0751",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": 12,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted, alterable behavior of still wearing the ring.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0752",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 12,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to stop feeling married; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0753",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to introduce oneself; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0754",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective upheaval of one's world changing overnight.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0755",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about who understands the loss.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0756",
+    "statement_type": "Fear",
+    "secondary_ec": 12,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit fear ('afraid') that moving forward means leaving them behind.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0797",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 17,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Reflective appraisal about dating at this age ('never thought').",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0798",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 4,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluation that dating is completely different now.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0799",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 4,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about what people now expect.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0800",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative concern about wasting time; not a stated relational need.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0801",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 16,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to trust after past experience; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0802",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 17,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Wondering/rumination about being too old to start over.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0803",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 13,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty/prediction about ever finding love again.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0804",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 22,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative preference against merging lives too quickly; 'don't want' not auto-Need.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0805",
+    "statement_type": "Emotion",
+    "secondary_ec": 22,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes emotional states of enjoying independence and missing companionship.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0806",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 3,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to balance guardedness and openness; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0807",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 12,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about whether the missing will ever stop.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0808",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names guilt.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0809",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 12,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Interpretation that dating again equals betrayal.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0810",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 12,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative stance against replacing them; 'don't want' not auto-Need.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0811",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Conclusion that no one understands this grief.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0812",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about self/identity absent the spouse.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0813",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 12,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Persisting cognition of still thinking of the couple as 'we'.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0814",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 12,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to love anew while honoring the past; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0815",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes the lived day-to-day variability of grief.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0816",
+    "statement_type": "Need",
+    "secondary_ec": 13,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Stated desire for companionship, hedged by readiness doubt; type genuinely split.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0827",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "State/pattern of the relationship shifting to caregiving over partnership.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0828",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names exhaustion.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0829",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names guilt.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0830",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 14,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to ask for help; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0831",
+    "statement_type": "Emotion",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Longing/missing the former relationship; emotional state.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0832",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to balance love and responsibility; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0833",
+    "statement_type": "Experience",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective experience of feeling alone within the relationship.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0834",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 22,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to caregive without losing self; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0835",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names love alongside feeling overwhelmed.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0836",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 25,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Reflection that nobody prepared them for this season.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0837",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "State/change of the relationship caused by illness.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0838",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-concept of being a burden.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0839",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative concern/wish about the partner not feeling trapped.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0840",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to ask for what one needs; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0841",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Longing/missing one's former self; emotional state.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0842",
+    "statement_type": "Fear",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Worry/anticipated abandonment due to health.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0843",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to stay connected amid change; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0844",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 9,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-perception of no longer feeling attractive.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0845",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 9,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to navigate intimacy now; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0846",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Stated desire to feel like more than one's diagnosis.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0847",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to grieve an unrealized loss; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0848",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names emotional pain triggered by pregnancy announcements.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0849",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 9,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Appraisal/belief that one's body has failed.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0850",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Pattern/difference in how the couple grieves.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0851",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to support the partner; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0852",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "State of the relationship feeling different now.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0853",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to have hope; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0854",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective experience of feeling alone in the experience.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0855",
+    "statement_type": "Emotion",
+    "secondary_ec": 17,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names weariness/frustration at repeated external questioning.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0856",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 12,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about how to move forward; not-knowing-how.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0927",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective lived state of not recognizing oneself.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0928",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjectively lived loss of one's former self.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0929",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about the identity one is becoming.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0930",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 22,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Retrospective self-appraisal that identity was built around the relationship.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0931",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about self/identity without someone to love.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0932",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative conclusion of having outgrown one's former self.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0933",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about one's own wants.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0934",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Stated desire to feel like oneself again.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0935",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Longing/missing the more joyful former self; emotional state.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0936",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative stance against the past defining oneself; 'don't want' not auto-Need.",
+    "confidence": "Moderate",
+    "review_flag": false
+  }
+]

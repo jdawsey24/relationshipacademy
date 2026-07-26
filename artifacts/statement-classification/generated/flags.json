@@ -1,0 +1,360 @@
+{
+ "STM-0038": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm rapid attachment as a lived Experience vs an enacted pattern (Self-Behavior)."
+ },
+ "STM-0078": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Confirm Self-Behavior (user's enacted initiation) vs Relational Condition (labor imbalance)."
+ },
+ "STM-0110": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm emotional check-out as a felt state (Experience) vs an enacted withdrawal (Self-Behavior)."
+ },
+ "STM-0139": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Mixed readiness self-appraisal + a want; confirm Thought/Belief vs Need."
+ },
+ "STM-0167": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Comparison is cognitive but embeds online engagement; confirm Thought/Belief vs Self-Behavior (viewing/checking)."
+ },
+ "STM-0177": {
+  "flag_category": [
+   "self-behavior-boundary",
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Confirm enacted app-avoidance (Self-Behavior) vs a stated aversion (Thought/Need)."
+ },
+ "STM-0244": {
+  "flag_category": [
+   "statement-type-ambiguous",
+   "wording-insufficient"
+  ],
+  "flag_reason": "Bare observation about the changed dating landscape; type genuinely unclear (Thought/Belief vs Relational Condition)."
+ },
+ "STM-0251": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Want-for-love vs wariness-of-pain; confirm Need vs Fear."
+ },
+ "STM-0279": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm whether 'creating problems' is cognitive (manufacturing worry) or an enacted relational behavior."
+ },
+ "STM-0288": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Confirm Relational Condition (recurring dead conversations) vs an implied self-behavior/skill."
+ },
+ "STM-0289": {
+  "flag_category": [
+   "self-vs-other-behavior"
+  ],
+  "flag_reason": "Confirm the actionable behavior is the user's (matching), not the others' non-response."
+ },
+ "STM-0299": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm rapid attachment as Experience vs an enacted pattern (mirror of STM-0038)."
+ },
+ "STM-0321": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Confirm Self-Behavior (over-functioning) vs Relational Condition (labor imbalance)."
+ },
+ "STM-0334": {
+  "flag_category": [
+   "source-data-inconsistency"
+  ],
+  "flag_reason": "Byte-identical duplicate of STM-0879 (both C2); confirm intended dedup handling."
+ },
+ "STM-0377": {
+  "flag_category": [
+   "self-behavior-boundary",
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Aspiration to change a self-pattern; confirm Need vs a wished-for (not-yet-enacted) Self-Behavior."
+ },
+ "STM-0381": {
+  "flag_category": [
+   "self-behavior-boundary",
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Want to stop self-sabotage; confirm Need vs wished-for Self-Behavior ('sabotage' itself unspecified)."
+ },
+ "STM-0421": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Overanalysis is cognitive but embeds checking; confirm Thought/Belief vs Self-Behavior (monitoring social media)."
+ },
+ "STM-0440": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm felt one-sided limbo (Experience) vs an enacted passive-waiting behavior."
+ },
+ "STM-0455": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Confirm Relational Condition (labor imbalance) vs Self-Behavior (over-functioning) / Experience."
+ },
+ "STM-0486": {
+  "flag_category": [
+   "self-vs-other-behavior",
+   "actionability-unclear"
+  ],
+  "flag_reason": "'We avoid' = shared pattern; confirm the user's own alterable avoidance (Self-Behavior/actionable) vs a couple-level condition."
+ },
+ "STM-0515": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Retrospective; confirm Thought/Belief (self-appraisal) vs Self-Behavior (an enacted ignoring/override)."
+ },
+ "STM-0530": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Idiomatic anticipatory bracing; confirm Thought/Belief (anticipation) vs an enacted waiting stance."
+ },
+ "STM-0534": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm enacted chasing/pursuit (Self-Behavior) vs a felt experience ('I feel like…')."
+ },
+ "STM-0598": {
+  "flag_category": [
+   "statement-type-ambiguous",
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Foregrounds weariness (Emotion) but embeds reminding; confirm Emotion vs Self-Behavior/actionability."
+ },
+ "STM-0613": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Desire to forgive + not knowing how; confirm Need vs Thought/Belief (skills gap)."
+ },
+ "STM-0624": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Confirm Need (re-establish selfhood) vs Thought/Belief; developmental, not enacted."
+ },
+ "STM-0632": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm Experience (living through rebuilding) vs Self-Behavior (enacted rebuilding)."
+ },
+ "STM-0653": {
+  "flag_category": [
+   "source-data-inconsistency",
+   "wording-insufficient"
+  ],
+  "flag_reason": "Not a first-person relational statement — source-doc meta/header text; confirm removal from the bank."
+ },
+ "STM-0654": {
+  "flag_category": [
+   "source-data-inconsistency",
+   "wording-insufficient"
+  ],
+  "flag_reason": "Source scaffolding label ('Examples:'), not a classifiable statement; confirm removal."
+ },
+ "STM-0675": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Confirm Need (relief from anxiety) vs Emotion (naming anxiety)."
+ },
+ "STM-0689": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm enacted wait-and-see stance (Self-Behavior/actionable) vs a hopeful belief."
+ },
+ "STM-0695": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm enacted rationalizing/justifying (Self-Behavior) vs a cognitive pattern."
+ },
+ "STM-0713": {
+  "flag_category": [
+   "self-vs-other-behavior",
+   "actionability-unclear"
+  ],
+  "flag_reason": "'We avoid' = couple-level; confirm the user's own alterable avoidance vs a shared condition (mirror of STM-0486)."
+ },
+ "STM-0741": {
+  "flag_category": [
+   "actionability-unclear"
+  ],
+  "flag_reason": "Skills-gap ('don't know how'); confirm whether it implies an alterable Self-Behavior — actionability unclear."
+ },
+ "STM-0759": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Confirm Need (protect children) vs Thought/Belief (evaluative concern)."
+ },
+ "STM-0794": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Confirm Need (preserve honest attention) vs Thought/Belief (evaluative stance)."
+ },
+ "STM-0795": {
+  "flag_category": [
+   "self-behavior-boundary",
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Wished-for practice; confirm Need vs an aspirational (not-yet-enacted) Self-Behavior."
+ },
+ "STM-0816": {
+  "flag_category": [
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Desire for companionship hedged by readiness doubt; confirm Need vs Fear/Thought — type split."
+ },
+ "STM-0820": {
+  "flag_category": [
+   "actionability-unclear",
+   "source-data-inconsistency"
+  ],
+  "flag_reason": "Near-duplicate of STM-0741; skills-gap actionability unclear."
+ },
+ "STM-0879": {
+  "flag_category": [
+   "source-data-inconsistency"
+  ],
+  "flag_reason": "Byte-identical duplicate of STM-0334 (both C2); confirm intended dedup handling."
+ },
+ "STM-0949": {
+  "flag_category": [
+   "self-behavior-boundary",
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Confirm enacted planning reliance (Self-Behavior) vs a stated Need ('need a plan')."
+ },
+ "STM-0952": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm enacted control/non-allowing (Self-Behavior) vs a difficulty/experience."
+ },
+ "STM-0963": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm enacted waiting/delay (Self-Behavior/actionable) vs a belief about readiness."
+ },
+ "STM-0966": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm enacted certainty-seeking that gates action (Self-Behavior) vs a cognitive pattern."
+ },
+ "STM-1010": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm enacted mechanical-performing stance (Self-Behavior) vs felt disengagement (Experience)."
+ },
+ "STM-1015": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm felt disengagement (Experience) vs enacted withdrawal (Self-Behavior) — mirror of STM-0110/1010."
+ },
+ "STM-1030": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm ongoing enacted effort to unlearn (Self-Behavior) vs an aspiration/Need."
+ },
+ "STM-1038": {
+  "flag_category": [
+   "self-vs-other-behavior"
+  ],
+  "flag_reason": "'The effort' unattributed; confirm Relational Condition vs Other-Person Behavior (partner's effort)."
+ },
+ "STM-1039": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Enacted wait-and-see vs internal stance; retained visible per ruling — confirm the Self-Behavior boundary."
+ },
+ "STM-1040": {
+  "flag_category": [
+   "source-data-inconsistency",
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Enacted graduated disclosure; source 'candidate-Exclusivity' tag differs from the assigned Exploration phase — confirm phase/source tag."
+ },
+ "STM-1041": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Deliberation about raising a concern; confirm it's contemplated (Thought/Belief), not an enacted Self-Behavior."
+ },
+ "STM-1042": {
+  "flag_category": [
+   "source-data-inconsistency",
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Deliberation about disclosure timing; source 'candidate-Exclusivity' tag differs from assigned Exploration phase — confirm."
+ },
+ "STM-1046": {
+  "flag_category": [
+   "self-behavior-boundary",
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Contains a decision ('said yes') + readiness doubt; confirm Thought/Belief (dominant) vs Self-Behavior."
+ },
+ "STM-1048": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm enacted watching/monitoring (Self-Behavior/actionable) vs internal appraisal."
+ },
+ "STM-1056": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm Experience (living through rebuilding) vs enacted rebuilding (Self-Behavior)."
+ },
+ "STM-1067": {
+  "flag_category": [
+   "self-behavior-boundary"
+  ],
+  "flag_reason": "Confirm Experience (lived reconnection) vs enacted reconnecting (Self-Behavior)."
+ },
+ "STM-1079": {
+  "flag_category": [
+   "self-behavior-boundary",
+   "statement-type-ambiguous"
+  ],
+  "flag_reason": "Felt obligation vs enacted caretaking; confirm Thought/Belief vs Self-Behavior (managing others' feelings)."
+ }
+}

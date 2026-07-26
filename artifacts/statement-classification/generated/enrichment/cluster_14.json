@@ -1,0 +1,182 @@
+[
+  {
+    "sid": "STM-0316",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States uncertainty about how to say no — a capability appraisal, not a stated enacted refusal.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0317",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Names an enacted over-giving behavior that could be moderated.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0318",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": 5,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted staying-too-long response; alterable; overlaps cluster-5 staying pattern.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0319",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted self-neglect (ignoring own needs) that could be enacted differently.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0320",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names guilt as the felt state; boundary-setting is context, not the proposition.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0321",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": 10,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Describes doing everything — an enacted over-functioning; overlaps cluster-10 carrying-alone; type borderline with relational condition.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0322",
+    "statement_type": "Other-Person Behavior",
+    "secondary_ec": 27,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Attributes exploiting behavior to others; overlaps cluster-27 being-used.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0323",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-appraisal of a recurring pattern of whom one attracts; overlaps cluster-5 choosing pattern.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0324",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States uncertainty about how to protect one's peace — a capability appraisal.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0325",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Cognitive conflation equating love with sacrifice; an interpretation.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0444",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted compliance (saying yes against one's wish); alterable.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0445",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative motivation to avoid disappointing others; not a stated relational need.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0446",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted avoidance of difficult conversations; could be enacted differently.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0447",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted over-apologizing behavior; alterable.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0448",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted peace-keeping/accommodation despite unhappiness; alterable.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0449",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted masking (pretending everything is okay); alterable.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0450",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Withholds asking for own needs — an enacted non-action.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0451",
+    "statement_type": "Fear",
+    "secondary_ec": 1,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit fear that one's needs are too much; overlaps cluster-1 self-worth.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0452",
+    "statement_type": "Fear",
+    "secondary_ec": 3,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Anticipated rejection if honest (being pushed away); overlaps cluster-3 fear of being known.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0453",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States uncertainty about how to self-advocate — a capability appraisal.",
+    "confidence": "Moderate",
+    "review_flag": false
+  }
+]

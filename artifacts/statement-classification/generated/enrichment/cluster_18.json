@@ -1,0 +1,182 @@
+[
+  {
+    "sid": "STM-0707",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring couple-level conflict pattern over money; state of the relationship, not a single self-behavior.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0708",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative appraisal of the partner's money handling; distrust framed as the person's judgment.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0709",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 21,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes a structural divergence in the couple's financial priorities; overlaps wanting different things.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0710",
+    "statement_type": "Experience",
+    "secondary_ec": 10,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjectively living through carrying the financial load; overlaps carrying-it-alone imbalance.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0711",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States money as a persistent source of tension in the relationship; circumstance, not enacted behavior.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0712",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expressed uncertainty/evaluation about financial compatibility; wondering, not an enacted response.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0713",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Couple-level ('we') avoidance of the finances topic; framed as shared pattern, not solely the person's act.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0714",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty/prediction about building a future together; cognition, not an enacted behavior.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0715",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States financial stress is harming the relationship; describes the relationship's state.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0716",
+    "statement_type": "Fear",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Anticipated feared outcome that money causes the relationship to fail.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0717",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 21,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes careers pulling the couple in different directions; structural divergence overlapping different-lives.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0718",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 15,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Appraisal that work is prioritized over the relationship; overlaps feeling deprioritized.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0719",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States the couple lacks shared time; circumstance overlapping growing-apart/roommate dynamic.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0720",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expressed not-knowing how to balance ambition and relationship; uncertainty, not an enacted act.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0721",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 21,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes developmental divergence (one growing, one stuck) in the relationship; overlaps different-directions.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0722",
+    "statement_type": "Experience",
+    "secondary_ec": 15,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective state of feeling unsupported in one's goals; overlaps feeling unappreciated.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0723",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 21,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about whether dreams still align; wondering, overlapping wanting different things.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0724",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States that success has changed the relationship; describes a change in the relationship's state.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0725",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 22,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about supporting partner without losing self; overlaps fear of losing autonomy.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0726",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 21,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative worry that lifestyles are no longer compatible; appraisal overlapping different-lives.",
+    "confidence": "Moderate",
+    "review_flag": false
+  }
+]

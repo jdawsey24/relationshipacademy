@@ -1,0 +1,290 @@
+[
+  {
+    "sid": "STM-0377",
+    "statement_type": "Need",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Stated desire to change a self-pattern; aspiration, not a currently enacted behavior.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0378",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit desire to experience/establish healthier relationships.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0379",
+    "statement_type": "Need",
+    "secondary_ec": 7,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish a better communication capability; adjacency to communication cluster.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0380",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish greater emotional health; general growth want.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0381",
+    "statement_type": "Need",
+    "secondary_ec": 3,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Stated want to stop self-sabotage; framed as aspiration, sabotage adjacency to cluster 3.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0382",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "General self-improvement want to become a better partner (per meta, stays out of 13).",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0383",
+    "statement_type": "Need",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to stop attracting unhealthy partners; adjacency to attraction-pattern cluster.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0384",
+    "statement_type": "Need",
+    "secondary_ec": 6,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to experience felt security, mirroring the 'want to feel safe' Need form.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0385",
+    "statement_type": "Need",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish self-trust; adjacency to self-judgment cluster.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0386",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish a lasting relationship.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0387",
+    "statement_type": "Need",
+    "secondary_ec": 22,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to preserve self within love; adjacency to losing-self cluster.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0388",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to become a better partner; general self-improvement want.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0917",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes relationship state: love present yet struggle persists.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0918",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative conclusion that love is insufficient to resolve problems.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0919",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Prior assumption/realization about love's sufficiency.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0920",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Realization/conclusion that relationships require skills.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0921",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Characterizes the dyad's pattern: good intentions but poor habits.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0922",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative judgment about the partners' character.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0923",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit conclusion ('I think') about a shared skills gap.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0924",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Retrospective wish/lament about lacking earlier guidance.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0925",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to receive practical tools rather than encouragement.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0926",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Belief/prediction that improvement is possible with learning.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1027",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Retrospective wish/lament about lacking earlier guidance.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1028",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-assessment/conclusion naming a relationship-skills gap.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1029",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Realization that relationships are a skill.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1030",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": 26,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Ongoing enacted effort to unlearn inherited patterns; alterable; inherited adjacency to cluster 26.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-1031",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to receive practical guidance over clichés.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1032",
+    "statement_type": "Need",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to receive an explanation for a repeating pattern; adjacency to pattern cluster.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1033",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to receive understanding, not just advice.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1034",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish competence and stop guessing through relationships.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1035",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to acquire understanding of how healthy relationships work.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1036",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish relationship literacy.",
+    "confidence": "High",
+    "review_flag": false
+  }
+]

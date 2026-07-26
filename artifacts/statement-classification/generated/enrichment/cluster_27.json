@@ -1,0 +1,146 @@
+[
+  {
+    "sid": "STM-1070",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective felt state of being used, parallel to 'I feel invisible'; no discrete behavior stated.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1071",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 1,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Conclusion that worth must be proven to be chosen; overlaps feeling-chosen worth theme.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1072",
+    "statement_type": "Fear",
+    "secondary_ec": 1,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit 'I'm afraid' of not being wanted if achieving stops; anticipated feared outcome.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1073",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 4,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative appraisal of dating culture as transactional; overlaps modern-dating cluster.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1074",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective felt state of being replaceable/disposable, parallel to 'I feel invisible'.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1075",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 1,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Distrusting conclusion that no one wants the self versus what they have; worth/being-wanted overlap.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1076",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 4,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative judgment that effort/integrity go unrewarded in dating; modern-dating overlap.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1077",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 15,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Appraisal of emotional-labor imbalance (give more than received); overlaps taken-for-granted cluster.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1078",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Interpretation that one's needs are received by others as excessive; no enacted behavior stated.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1079",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 14,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Felt obligation to manage others' emotions over one's own; wording blurs appraisal versus enacted caretaking.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-1080",
+    "statement_type": "Emotion",
+    "secondary_ec": 15,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names a depleted/drained affective state from one-sided relationships; overlaps imbalance cluster.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1081",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 1,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Interpretation of being valued for doing not being; overlaps worth/being-chosen theme.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1082",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 1,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Ruminative wondering whether one would be wanted if giving stopped; being-wanted overlap.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1083",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about discerning genuine interest versus self-interest; overlaps judgment/genuineness cluster.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1084",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 1,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Belief that love must be earned rather than received; overlaps earning-worth theme.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1085",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": 3,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted protective guarding to avoid exploitation; alterable response, overlaps guardedness cluster.",
+    "confidence": "High",
+    "review_flag": false
+  }
+]

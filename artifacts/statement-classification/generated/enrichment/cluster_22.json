@@ -1,0 +1,182 @@
+[
+  {
+    "sid": "STM-0937",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expresses a desire to preserve personal independence.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0938",
+    "statement_type": "Fear",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit fear that a relationship will alter one's life too drastically.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0939",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative justification citing prior investment against giving things up.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0940",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States uncertainty about how to integrate a partner into an established life.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0941",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Directly names enjoyment of personal peace/solitude.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0942",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expresses uncertainty about having capacity for another person.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0943",
+    "statement_type": "Fear",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit fear that commitment entails loss of self.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0944",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to preserve one's identity from compromise.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0945",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States a desire to establish a relationship that adds to one's life.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0946",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to keep love from subsuming personal identity.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0947",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-descriptive preference for predictability.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0948",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes subjectively struggling when things feel uncertain.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0949",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Recurring enacted reliance on having a plan; alterable.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0950",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative aversion to depending on others.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0951",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expresses a desire/orientation to control outcomes.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0952",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Difficulty enacting an allow/non-control stance; alterable.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0953",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted anticipatory bracing for disappointment; alterable.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0954",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States uncertainty about how to relax into a relationship.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0955",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes subjectively struggling when unable to fix things.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0956",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 10,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-perceived responsibility for making everything work; overlaps carrying-it-alone.",
+    "confidence": "Moderate",
+    "review_flag": false
+  }
+]

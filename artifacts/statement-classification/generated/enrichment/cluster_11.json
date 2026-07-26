@@ -1,0 +1,389 @@
+[
+  {
+    "sid": "STM-0103",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Internal stay/leave deliberation; decision contemplated, not enacted.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0104",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Question about the relationship's salvageability; a prediction, not an action.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0105",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Self-evaluative question about one's own asks; appraisal, not enacted behavior.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0106",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Wondering whether the pair has diverged; 8 (growing apart) as adjacency.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0107",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 21,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative question weighing love against sufficiency; 21 (love vs different lives) adjacency.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0108",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about own happiness; explicit 'I don't know if' framing.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0109",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about whether the relationship is repairable; core discernment cognition.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0110",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names a lived state of emotional disengagement; ambiguous whether an enacted withdrawal.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0111",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Reports the couple's exhausted collective efforts; a state of the relationship.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0112",
+    "statement_type": "Experience",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Subjective sense of no longer recognizing the relationship; 8 (growing apart) adjacency.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0113",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about the threshold for leaving; deliberative cognition.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0114",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring hope that things will change; cognition, not an enacted behavior.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0115",
+    "statement_type": "Fear",
+    "secondary_ec": 23,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit fear of a wrong decision; 23 (fear of wrong choice) as adjacency.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0687",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring pattern of valuing potential over present reality; an interpretive orientation.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0688",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit belief/prediction that the partner will change.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0689",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted wait-and-see/holding stance; alterable, adaptiveness not judged.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0690",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Rumination about where hope shades into denial; uncertainty, not action.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0691",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative concern about giving up prematurely; not a stated relational need.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0692",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative concern about overstaying; not a stated relational need.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0693",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty distinguishing reality from possibility; deliberative cognition.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0694",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about whether patience helps or harms; rumination.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0695",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Enacted rationalizing/justifying response; alterable; cognitive-vs-enacted borderline.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0696",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Reports where memory/attention dwells (past self over present); an interpretive orientation.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0727",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Evaluative uncertainty about whether long distance is worthwhile.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0728",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expresses longing/missing of shared everyday moments.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0729",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about the relationship's trajectory; 8 (growing apart) adjacency.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0730",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes distance as a structural circumstance making things harder.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0731",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about one's own endurance/capacity to continue.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0732",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expresses emotional weariness at repeated goodbyes.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0733",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty whether the relationship is progressing or stalling.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0734",
+    "statement_type": "Fear",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Anticipated relational loss (becoming strangers); 8 (growing apart) adjacency.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0735",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 7,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes an increased-conflict pattern attributed to distance; 7 (communication conflict) adjacency.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0736",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expresses not knowing how to sustain connection; 8 (emotional connection) adjacency.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0997",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 22,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Ambivalence between wanting love and valuing freedom; 22 (losing independence) adjacency.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0998",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit internal ambivalence about wanting a relationship.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0999",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty distinguishing readiness from loneliness.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1000",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty distinguishing missing the person from missing companionship.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1001",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Recurring change of mind; decisional vacillation, not an enacted behavior.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1002",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty about one's own wants.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1003",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 23,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Wish to offload the decision; reflects decision-paralysis; 23 adjacency.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1004",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": 5,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Distrust of own shifting feelings; 5 (trusting own judgment) adjacency.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1005",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Explicit internal conflict between comfort and growth.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1006",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Uncertainty whether to fight for or release the relationship; core discernment cognition.",
+    "confidence": "High",
+    "review_flag": false
+  }
+]

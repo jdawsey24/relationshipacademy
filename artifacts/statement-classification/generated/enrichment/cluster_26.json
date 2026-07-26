@@ -1,0 +1,92 @@
+[
+  {
+    "sid": "STM-1017",
+    "statement_type": "Fear",
+    "secondary_ec": 13,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Aversion to an anticipated future outcome — children repeating the person's mistakes; no enacted self-behavior stated.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1018",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish/provide an outcome — children witnessing a healthy relationship; aspirational, no discrete enacted behavior.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1019",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish/leave a different legacy than inherited; future-facing aspiration, not an enacted response.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1020",
+    "statement_type": "Need",
+    "secondary_ec": 13,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish change by breaking generational patterns; aspirational goal, not a specific enacted behavior.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1021",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to create/establish a healthier family than the one grown up in; aspirational, no enacted behavior.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1022",
+    "statement_type": "Fear",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Aversion to an anticipated feared outcome — dysfunction becoming normalized; no enacted self-behavior stated.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1023",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish/preserve alignment between relationships and one's values; aspirational, not an enacted response.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1024",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to build/establish something lasting beyond oneself; aspirational legacy want, no discrete enacted behavior.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1025",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Dominant proposition is the desire for future generations to benefit; aspirational, not the incidental reference to ongoing work.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-1026",
+    "statement_type": "Need",
+    "secondary_ec": 13,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Desire to establish a new direction for one's story; aspirational reengagement, not an enacted response.",
+    "confidence": "Moderate",
+    "review_flag": false
+  }
+]

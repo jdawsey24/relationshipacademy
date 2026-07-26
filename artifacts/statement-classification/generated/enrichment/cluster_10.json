@@ -1,0 +1,164 @@
+[
+  {
+    "sid": "STM-0095",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Characterizes the imbalanced arrangement in which one partner carries all responsibility.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0096",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Dominant proposition names a parent-child over-functioning dynamic between partners.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0097",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes the structural imbalance of everything landing on the person.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0098",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 8,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States a relationship pattern of not functioning as a team; overlaps disconnection cluster.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0099",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 18,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Names a recurring financial-stress circumstance of the relationship; overlaps money/work cluster.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0100",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 19,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States that parenting altered the relationship; overlaps parenting-changed-everything cluster.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0101",
+    "statement_type": "Relational Condition",
+    "secondary_ec": 21,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes disagreement over the couple's future direction; overlaps different-lives cluster.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0102",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States a shared skills gap in joint decision-making as a relationship pattern.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0593",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Characterizes the imbalance in which the person sustains the whole relationship.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0594",
+    "statement_type": "Thought/Belief",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Reports ongoing cognitive preoccupation with the relationship, not an enacted behavior.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0595",
+    "statement_type": "Self-Behavior",
+    "secondary_ec": null,
+    "behaviorally_actionable": true,
+    "mapping_rationale": "Identifies an enacted response of always initiating the hard conversations; alterable.",
+    "confidence": "High",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0596",
+    "statement_type": "Relational Condition",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Contrast of who notices what describes the attentiveness imbalance pattern.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0597",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expresses a relational desire to be relieved of the manager role.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0598",
+    "statement_type": "Emotion",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Foregrounds weariness ('tired of'); embedded reminding makes self-behavior/actionability unclear.",
+    "confidence": "Moderate",
+    "review_flag": true
+  },
+  {
+    "sid": "STM-0599",
+    "statement_type": "Experience",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Describes the felt experience of carrying emotional responsibility for both partners.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0600",
+    "statement_type": "Need",
+    "secondary_ec": 15,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expresses a desire for the partner to contribute more initiative; overlaps one-sided-initiation cluster.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0601",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "Expresses a relational desire to be met without having to teach a partner how to love.",
+    "confidence": "Moderate",
+    "review_flag": false
+  },
+  {
+    "sid": "STM-0602",
+    "statement_type": "Need",
+    "secondary_ec": null,
+    "behaviorally_actionable": false,
+    "mapping_rationale": "States a desire for an equal partner rather than someone to take care of.",
+    "confidence": "Moderate",
+    "review_flag": false
+  }
+]
