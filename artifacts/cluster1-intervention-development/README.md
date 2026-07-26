@@ -16,3 +16,16 @@ PE-1/PE-2 distinct-targets-shared-mechanism confirmation; PE-1 R1/R3 routing bou
 
 Governing: ../change-system (Final v1 rev v1.1) + ../intervention-development-standard (v1.0 FROZEN).
 Next phase after approval: Phase 2 — Technique Adjudication & RLC Intervention Authoring.
+
+---
+
+`phase1b-evidence-verification-and-adjudication.md` — **PHASE 1B** (evidence verification + technique
+adjudication). Verified every Phase-1 citation against primary sources; built a claim-level evidence matrix;
+adjudicated each mechanism/technique. Verification-driven changes: self-distancing = reasoning-only (PE-1
+Link 7 = RLC bridge); consider-the-opposite HELD (weak real-world debiasing); "behavioural experiments >
+verbal" removed (RCT parity); sunk-cost education → forward-value criterion; attribution re-scoping
+CONDITIONAL (global→specific only, exclude controllability); implementation intentions strongest but coupled
+to a pre-set evidence criterion; self-affirmation/compassion buffer-only (d≈0.41); BA held. No L4 invention;
+no new mechanisms. Every advancing technique ships Empirically-Supported(technique)/RLC-Theory-Derived
+(application) — none is Direct-to-target. Readiness: **READY** for Phase 2 (no hard blockers; Del-15 items are
+confirmations of downgrades). 16 deliverables + readiness test.
