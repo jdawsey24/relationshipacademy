@@ -1,5 +1,9 @@
 # Relationship Life Cycle™ Intervention Development Standard — Final Approval Candidate v1.1
 
+> **SUPERSEDED — preserved for audit.** Approved and frozen as **Version 1.0 (APPROVED 2026-07-26)** in
+> `rlc-intervention-development-standard-v1.0-FROZEN.md` after the final PE-1 adjudication (resolved as a
+> **Task-Supporting Intervention Target**). Read the frozen v1.0 for the current authority.
+
 **Status:** FINAL APPROVAL CANDIDATE for human sign-off. Supersedes
 `rlc-intervention-development-standard-draft-v1.md` (Draft v1, preserved for audit). **Targeted adjudication
 revision — not a redesign.** No Cluster 1 intervention development; no external literature review; no
