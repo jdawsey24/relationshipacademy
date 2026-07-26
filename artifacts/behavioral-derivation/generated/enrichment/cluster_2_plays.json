@@ -1,0 +1,20 @@
+[
+ {
+  "play_name": "See if a friendship goes both ways",
+  "behavioral_target": "Always being the one who reaches out first in a friendship.",
+  "trigger": "You want to talk to a friend or make plans with them.",
+  "old_play": "You reach out first, every time.",
+  "function_of_old_play": "Reaching out first keeps the friendship going from your side.",
+  "new_play": "Reach out when you want to. Then leave some space and see if they reach back before you reach again.",
+  "what_to_expect": "It might feel quiet for a while. You may learn a friend reaches back, or that they do not.",
+  "why_supports_task": "Seeing who reaches back helps you tell which friendships are shared and which are one-sided. This friendship work does not sit in one relationship phase.",
+  "supporting_competencies": ["None available (source gap)"],
+  "behavioral_source_ids": ["STM-0881"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": ["Always reaching out first"],
+  "context_limitations": "Reaching out first is fine sometimes. This is about when it is always you. A friend may also be going through a hard time.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase source gap: no competency maps and there is no single developmental task. The maintaining role is inferred from the one-sided-friendship context."
+ }
+]

@@ -1,0 +1,20 @@
+[
+ {
+  "play_name": "Let things unfold before you manage them",
+  "behavioral_target": "Trying to control the unknown by needing a plan for everything and bracing for disappointment early.",
+  "trigger": "Something about the relationship feels open, unknown, or like it could go wrong.",
+  "old_play": "You make a plan to feel in control, or you brace for the letdown before it comes.",
+  "function_of_old_play": "Both moves ease the not-knowing right now and help you feel safer.",
+  "new_play": "Name what feels unknown or what you fear. Then let one small thing stay open and watch what really happens instead of managing it ahead of time.",
+  "what_to_expect": "The open feeling is uncomfortable, and you may be let down for real. But you get to see how things actually go.",
+  "why_supports_task": "Sitting with some not-knowing lets you see the relationship as it really is, instead of steering or guarding it. This work does not sit in one relationship phase.",
+  "supporting_competencies": ["None available (source gap)"],
+  "behavioral_source_ids": ["STM-0949", "STM-0953"],
+  "contextual_source_ids": ["STM-0952"],
+  "maintaining_behaviors_consolidated": ["Always needing a plan", "Preparing for disappointment before it happens"],
+  "context_limitations": "Plans and caution are useful at times. This is about when you need control over everything and can't leave room to see how things unfold on their own.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase source gap: no competency maps and there is no single developmental task. STM-0952 is Insufficient Evidence, so it is contextual only, not behavioral evidence."
+ }
+]

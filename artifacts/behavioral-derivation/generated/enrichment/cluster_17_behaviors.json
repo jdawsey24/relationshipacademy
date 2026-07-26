@@ -1,0 +1,19 @@
+[
+ {
+  "sid": "STM-0819",
+  "trigger_or_context": "Something bothers you in a family relationship, and speaking up could cause tension.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Keeping the peace helps you avoid conflict and tension in the moment.",
+  "developmental_cost": "Your own feelings and needs stay hidden, so others never learn what really bothers you.",
+  "relevant_developmental_task": "Cross-Phase (no single task)",
+  "relevant_rlc_competency": "None available (source gap)",
+  "adaptive_alternative_1": "When something bothers you, say one true thing about how you feel. You do not have to fix it or fight. Just let your view be known.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "People get to know what you really think. You find out if the calm was real or just quiet.",
+  "expected_discomfort_or_cost": "Things may feel tense for a bit. Someone may not like hearing it.",
+  "context_conditions": "Keeping the peace is fine at times. This is about when you always do it and hide how you feel. If a home is not safe, staying quiet can be a way to stay safe.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase source gap: no competency cleanly maps and there is no single developmental task. This is a family context (Adult Children & Parents), so a safety condition is named."
+ }
+]

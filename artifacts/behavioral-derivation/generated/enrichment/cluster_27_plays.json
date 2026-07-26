@@ -1,0 +1,20 @@
+[
+ {
+  "play_name": "Let your guard down in small steps to see who is safe",
+  "behavioral_target": "Keeping your guard up all the way, with everyone, as a fixed rule.",
+  "trigger": "You are getting to know someone new. You feel the pull to stay closed off so you won't get used again.",
+  "old_play": "You keep your guard up fully, no matter what the person does.",
+  "function_of_old_play": "Staying guarded keeps you feeling safe from being used or hurt again.",
+  "new_play": "Notice when your guard is up. Let it down a little in small, safe ways. Then watch how the person treats you before you open more.",
+  "what_to_expect": "Opening up even a little may feel scary. You might feel unsure for a while. You may find out someone is safe, or that they are not.",
+  "why_supports_task": "It helps you tell safe people from unsafe people by watching what they actually do over time. That is the work of Discernment.",
+  "supporting_competencies": ["Trust → Reliability"],
+  "behavioral_source_ids": ["STM-1085"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": ["Keeping your guard up so you don't get taken advantage of again (STM-1085)"],
+  "context_limitations": "If someone has shown they hurt you, or your safety is at risk, keep your guard up. This is only for people who have not shown they are unsafe.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Built from one Context-Dependent behavior. Guardedness can be healthy pacing or a pattern-maintaining wall; the play stays conditional so it only applies where the person has not shown they are unsafe."
+ }
+]

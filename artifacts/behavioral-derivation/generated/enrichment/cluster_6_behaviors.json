@@ -1,0 +1,53 @@
+[
+ {
+  "sid": "STM-0273",
+  "trigger_or_context": "After you talk or text, you feel unsure what it really meant.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Reading it again is a way to look for an answer on your own instead of asking.",
+  "developmental_cost": "You spend time going over old words instead of getting new, real answers. The worry keeps going.",
+  "relevant_developmental_task": "Discernment",
+  "relevant_rlc_competency": "Communication → Clarification",
+  "adaptive_alternative_1": "When you catch yourself rereading, name the one thing you want to know. Then ask it in plain words, or wait and watch what they do next.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You get a real answer instead of guessing from old words.",
+  "expected_discomfort_or_cost": "You may have to sit with not knowing for a bit, or hear an answer you don't like.",
+  "context_conditions": "",
+  "confidence": "Moderate",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "sid": "STM-0420",
+  "trigger_or_context": "You are waiting to hear back, and you can see when they were last online.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Checking gives you a small piece of info when you don't have a real answer yet.",
+  "developmental_cost": "You watch their moves instead of getting real answers. The uneasy feeling keeps coming back.",
+  "relevant_developmental_task": "Discernment",
+  "relevant_rlc_competency": "Trust → Availability",
+  "adaptive_alternative_1": "When you want to check their online time, stop and notice something real instead: do they reach out to you and follow through? Let that be your answer.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You see if they really show up for you, not just whether they are online.",
+  "expected_discomfort_or_cost": "You give up the small hit of info. You may have to wait to see what they do.",
+  "context_conditions": "",
+  "confidence": "Moderate",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "sid": "STM-1054",
+  "trigger_or_context": "You are not sure you can count on this person, so you set up small tests.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Testing is a way to check if you can count on them without asking straight out.",
+  "developmental_cost": "Secret tests can give mixed results. The other person doesn't know what you need, so you may not learn the truth.",
+  "relevant_developmental_task": "Discernment",
+  "relevant_rlc_competency": "Trust → Dependability",
+  "adaptive_alternative_1": "Instead of setting up a test, name one real thing you need. Ask for it in plain words. Then watch, over time, if they come through.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You find out if they can really be counted on, based on real tries, not secret tests.",
+  "expected_discomfort_or_cost": "You have to say what you need out loud. They might not come through, and that tells you something too.",
+  "context_conditions": "",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Maintaining call rests on reading 'testing' as hidden tests, not plain observing; candidate-section item with a second cluster, so the framing could shift."
+ }
+]

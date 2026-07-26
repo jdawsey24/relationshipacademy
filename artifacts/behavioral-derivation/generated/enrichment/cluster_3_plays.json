@@ -1,0 +1,172 @@
+[
+  {
+    "play_name": "Let closeness build a little at a time",
+    "behavioral_target": "Shutting down, guarding, or backing away when someone starts to get close.",
+    "trigger": "Someone gets close, or a connection starts to feel real.",
+    "old_play": "You push the person away, keep your guard up, or pull back to make distance.",
+    "function_of_old_play": "Making distance keeps you from the risk of being close and being hurt right now.",
+    "new_play": "When you feel the urge to close off, pause. Share one small, true thing and watch how the person treats it before you pull back.",
+    "what_to_expect": "Staying close feels risky, and you might get hurt. It can feel exposing to be seen.",
+    "why_supports_task": "Opening up in small steps lets you see who is safe, which is the heart of Discernment in Exploration.",
+    "supporting_competencies": [
+      "Emotional Intimacy → Gradual Self-Disclosure",
+      "Conflict Management → Reflection"
+    ],
+    "behavioral_source_ids": [
+      "STM-0050",
+      "STM-0051",
+      "STM-0055",
+      "STM-0307",
+      "STM-0779"
+    ],
+    "contextual_source_ids": [
+      "STM-0053",
+      "STM-0054",
+      "STM-0057",
+      "STM-0058",
+      "STM-0059",
+      "STM-0188",
+      "STM-0194",
+      "STM-0195",
+      "STM-0306",
+      "STM-0308",
+      "STM-0309",
+      "STM-0310",
+      "STM-0311",
+      "STM-0312",
+      "STM-0315",
+      "STM-0783",
+      "STM-0056",
+      "STM-0777",
+      "STM-0786"
+    ],
+    "maintaining_behaviors_consolidated": "Pushing people away, blocking closeness, keeping a blanket guard up, and pulling away as closeness grows.",
+    "context_limitations": "If someone has shown they are truly unsafe, distance is wise. This play is about closing off with safe people too. STM-0055 is context-dependent, so lowering the guard only makes sense with someone who has felt safe.",
+    "confidence": "Moderate",
+    "review_flag": true,
+    "review_reason": "Includes one context-dependent behavior (STM-0055); safety must be ruled out before lowering distance."
+  },
+  {
+    "play_name": "Wait and watch before you leave first",
+    "behavioral_target": "Ending things first, or finding a reason to leave, to avoid being left.",
+    "trigger": "A relationship starts to feel real or serious and the fear of being left shows up.",
+    "old_play": "You leave first, or find a reason to leave, before they can leave you.",
+    "function_of_old_play": "Leaving first means you end it instead of waiting to be left.",
+    "new_play": "When you want to leave first, name the fear behind it. Ask if any reason is a real dealbreaker or just a way to make distance. Then wait and watch how they show up before you decide.",
+    "what_to_expect": "Waiting means sitting with the fear of being left, and with doubt.",
+    "why_supports_task": "Watching how someone actually shows up gives you real proof instead of a guess, which supports Discernment.",
+    "supporting_competencies": [
+      "Trust → Reliability",
+      "Conflict Management → Objectivity"
+    ],
+    "behavioral_source_ids": [
+      "STM-0052",
+      "STM-0314",
+      "STM-0782"
+    ],
+    "contextual_source_ids": [
+      "STM-0060",
+      "STM-0313",
+      "STM-0781"
+    ],
+    "maintaining_behaviors_consolidated": "Leaving before the other person can leave, and finding a reason to end things early.",
+    "context_limitations": "Some reasons to leave are real dealbreakers. This play is about telling those apart from fear-driven exits, not about staying no matter what.",
+    "confidence": "Moderate",
+    "review_flag": true,
+    "review_reason": "Context limitation: real dealbreakers must be separated from fear-driven leaving."
+  },
+  {
+    "play_name": "Ask straight out instead of testing",
+    "behavioral_target": "Testing the other person instead of asking for what you need.",
+    "trigger": "You are unsure how much the other person cares or whether they'll stay.",
+    "old_play": "You test them to see if they care or if they'll stay.",
+    "function_of_old_play": "A test gives you proof of their feelings without having to ask directly.",
+    "new_play": "Instead of testing, name what you're afraid of and ask for what you need out loud. Then watch how they respond to a real request.",
+    "what_to_expect": "Asking straight out risks a clear no.",
+    "why_supports_task": "A direct ask gives a real answer you can read, which is how Discernment works in Exploration.",
+    "supporting_competencies": [
+      "Communication → Emotional Expression",
+      "Communication → Transparency"
+    ],
+    "behavioral_source_ids": [
+      "STM-0660",
+      "STM-0780"
+    ],
+    "contextual_source_ids": [
+      "STM-0656",
+      "STM-0657",
+      "STM-0658",
+      "STM-0659",
+      "STM-0662",
+      "STM-0663"
+    ],
+    "maintaining_behaviors_consolidated": "Testing the other person to check if they care or if they will stay.",
+    "context_limitations": "A direct ask reveals how they respond; the answer may be warmth or distance, and either is useful information.",
+    "confidence": "Moderate",
+    "review_flag": false,
+    "review_reason": ""
+  },
+  {
+    "play_name": "Say one real thing instead of hiding it",
+    "behavioral_target": "Editing yourself or holding feelings in to avoid conflict or rejection.",
+    "trigger": "You have an honest thought or feeling that might cause conflict or feel unsafe to share.",
+    "old_play": "You edit yourself or keep your feelings to yourself.",
+    "function_of_old_play": "Holding back keeps the peace and avoids the risk of sharing for now.",
+    "new_play": "Try sharing one honest thought or feeling you would usually hold back. Watch how the person handles it.",
+    "what_to_expect": "Being honest may lead to conflict, and sharing feelings can feel exposing.",
+    "why_supports_task": "Letting the real you be seen shows whether you can be accepted as you are, which supports Discernment.",
+    "supporting_competencies": [
+      "Communication → Transparency",
+      "Communication → Emotional Expression",
+      "Emotional Intimacy → Authenticity"
+    ],
+    "behavioral_source_ids": [
+      "STM-0988",
+      "STM-0989"
+    ],
+    "contextual_source_ids": [
+      "STM-0987",
+      "STM-0990",
+      "STM-0991",
+      "STM-0992",
+      "STM-0993",
+      "STM-0995",
+      "STM-0996",
+      "STM-0994"
+    ],
+    "maintaining_behaviors_consolidated": "Editing yourself to avoid conflict, and keeping your feelings to yourself.",
+    "context_limitations": "Sharing more may reveal acceptance or a lack of it; both tell you something real about the connection.",
+    "confidence": "Moderate",
+    "review_flag": false,
+    "review_reason": ""
+  },
+  {
+    "play_name": "Decide by fit, not by fear",
+    "behavioral_target": "Staying in a relationship you already sense isn't right because of fear or avoidance.",
+    "trigger": "A relationship isn't right or isn't healthy, but leaving means being alone or facing what you already know.",
+    "old_play": "You stay anyway, to avoid being alone or to avoid acting on what you already see.",
+    "function_of_old_play": "Staying means you don't have to be alone or face a hard ending right now.",
+    "new_play": "When you notice you're staying out of fear, name that. Then look at whether the relationship is actually good for you, apart from the fear, and decide from what you see.",
+    "what_to_expect": "You may have to face being alone for a while, or a hard ending.",
+    "why_supports_task": "Choosing from fit instead of fear is what Discernment asks for in Exploration.",
+    "supporting_competencies": [
+      "Role Functioning → Intentionality",
+      "Conflict Management → Objectivity"
+    ],
+    "behavioral_source_ids": [
+      "STM-0655",
+      "STM-0661"
+    ],
+    "contextual_source_ids": [
+      "STM-0663",
+      "STM-0664",
+      "STM-0784",
+      "STM-0785"
+    ],
+    "maintaining_behaviors_consolidated": "Staying to avoid being alone, and staying even while knowing it isn't healthy.",
+    "context_limitations": "Both source statements are retrospective. Some concerns are real dealbreakers and some are fear; this play is about acting on what you honestly see.",
+    "confidence": "Moderate",
+    "review_flag": true,
+    "review_reason": "Retrospective source statements; one borders on outcome-level wording."
+  }
+]

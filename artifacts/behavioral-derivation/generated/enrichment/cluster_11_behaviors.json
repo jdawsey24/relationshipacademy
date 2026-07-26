@@ -1,0 +1,36 @@
+[
+ {
+  "sid": "STM-0689",
+  "trigger_or_context": "Something in the relationship is wrong or letting you down.",
+  "maintaining_role": "Context Dependent",
+  "short_term_function": "Waiting keeps the relationship going for now and lets you put off a hard choice.",
+  "developmental_cost": "You make choices based on what you hope for, not on what is really happening.",
+  "relevant_developmental_task": "Acceptance",
+  "relevant_rlc_competency": "Trust → Self-Trust",
+  "adaptive_alternative_1": "Look at what has really changed, not what you hope will change. Pick what you need to see, and by when. Then decide based on what really happened.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You find out if things are really getting better or if you are only hoping.",
+  "expected_discomfort_or_cost": "You may face a hard choice or a loss.",
+  "context_conditions": "Waiting is fine if you can see real, steady change. It keeps the pattern going if it is only hope.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Context-dependent: meaning turns on whether real change is visible; short-term function partly inferred from phase architecture."
+ },
+ {
+  "sid": "STM-0695",
+  "trigger_or_context": "The other person does something that lets you down or worries you.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Making excuses lets you keep seeing them in a good light instead of facing what they did.",
+  "developmental_cost": "You judge them by the story you tell, not by what they really do.",
+  "relevant_developmental_task": "Acceptance",
+  "relevant_rlc_competency": "Trust → Wise Trust",
+  "adaptive_alternative_1": "When you catch yourself explaining away what they did, name what actually happened first. Then decide what it means to you.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You see their actions clearly, based on what really happened.",
+  "expected_discomfort_or_cost": "Facing it plainly can hurt.",
+  "context_conditions": "",
+  "confidence": "Moderate",
+  "review_flag": false,
+  "review_reason": ""
+ }
+]

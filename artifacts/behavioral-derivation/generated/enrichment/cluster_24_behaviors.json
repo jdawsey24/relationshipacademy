@@ -1,0 +1,19 @@
+[
+ {
+  "sid": "STM-1039",
+  "trigger_or_context": "You are getting more serious with someone. You are not sure yet if it will last.",
+  "maintaining_role": "Context Dependent",
+  "short_term_function": "Waiting to see gives you more time before you have to fully invest or decide.",
+  "developmental_cost": "If you wait and never decide, you can stay stuck and never really commit.",
+  "relevant_developmental_task": "Intentional Investment",
+  "relevant_rlc_competency": "Trust → Consistency",
+  "adaptive_alternative_1": "If you notice you are just waiting, name what you need to see and by when. Keep showing up while you watch. Then decide.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You find out if the relationship is steady enough to invest in — or not.",
+  "expected_discomfort_or_cost": "You have to sit with not knowing, then make a real choice.",
+  "context_conditions": "Watching over time is healthy. It only becomes a problem if you wait so long that you never decide or invest.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Context-dependent: meaning depends on whether watching is active evaluation or an indefinite stall."
+ }
+]

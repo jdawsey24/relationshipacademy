@@ -1,0 +1,53 @@
+[
+ {
+  "sid": "STM-0949",
+  "trigger_or_context": "Something about the relationship feels open or unknown.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Having a plan helps you feel in control and eases the not-knowing right now.",
+  "developmental_cost": "You push for certainty faster than the relationship can give it, so you don't get to see how it goes on its own.",
+  "relevant_developmental_task": "Cross-Phase (no single task)",
+  "relevant_rlc_competency": "None available (source gap)",
+  "adaptive_alternative_1": "When you feel the pull to plan it all, name what feels unknown. Then let one small thing stay open and watch what happens.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You find out if you can sit with some not-knowing. You get to see how the other person acts on their own.",
+  "expected_discomfort_or_cost": "The open feeling is uncomfortable. You may not like not having an answer yet.",
+  "context_conditions": "Plans are useful at times. This is about when you need one for everything and can't leave room to see how things unfold.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase source gap: no competency cleanly maps and there is no single developmental task. The maintaining role fits the control pattern; alternative is observation/discernment-style."
+ },
+ {
+  "sid": "STM-0952",
+  "trigger_or_context": "A relationship is moving along at its own pace.",
+  "maintaining_role": "Insufficient Evidence",
+  "short_term_function": "",
+  "developmental_cost": "",
+  "relevant_developmental_task": "Cross-Phase (no single task)",
+  "relevant_rlc_competency": "",
+  "adaptive_alternative_1": "",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "",
+  "expected_discomfort_or_cost": "",
+  "context_conditions": "",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Names a difficulty, not a discrete alterable behavior. It describes the trouble letting things unfold but not what you actually do, so it is outcome-level."
+ },
+ {
+  "sid": "STM-0953",
+  "trigger_or_context": "Things are going okay, but you expect they could go wrong.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Bracing ahead of time softens the blow if things do go wrong, so it feels safer right now.",
+  "developmental_cost": "You stay guarded and hold back, so you don't let the relationship be what it really is.",
+  "relevant_developmental_task": "Cross-Phase (no single task)",
+  "relevant_rlc_competency": "None available (source gap)",
+  "adaptive_alternative_1": "When you catch yourself bracing, name what you are afraid will happen. Then watch what really happens instead of acting on the fear.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You find out if the worry is real or just a habit of guarding. You get to see how things actually go.",
+  "expected_discomfort_or_cost": "Staying open means you could be let down for real. That is a hard feeling to sit with.",
+  "context_conditions": "Some caution is wise. This is about when you brace before there is any real sign of trouble.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase source gap: no competency cleanly maps and there is no single developmental task. The maintaining role fits the control/self-protection pattern; alternative is observation-style."
+ }
+]

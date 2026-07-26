@@ -1,0 +1,900 @@
+[
+ {
+  "application_id": "APP-CP01-c2",
+  "core_play_id": "CP-01",
+  "experience_cluster": 2,
+  "rlc_phase": "Cross-Phase",
+  "cluster_framing": "Reach out to a new friend or match when you want to. Then leave some space and see if they reach back before you reach again.",
+  "play_function": [
+   "Observe",
+   "Decide"
+  ],
+  "behavioral_source_ids": [
+   "STM-0881"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Cross-Phase: no framework competency anchors this; the pacing task still holds.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single Cross-Phase source; competency is a framework gap."
+ },
+ {
+  "application_id": "APP-CP01-c4",
+  "core_play_id": "CP-01",
+  "experience_cluster": 4,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "When you match, watch to see if they actually write back and keep it going. Put your time into the ones who do. If a match stays quiet, let that tell you where not to spend more effort.",
+  "play_function": [
+   "Observe",
+   "Decide"
+  ],
+  "behavioral_source_ids": [
+   "STM-0289"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Communication → Reciprocity",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Depends on reading real back-and-forth; a quiet match is information, not a verdict on your worth.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Context-dependent behavior; meaning depends on the other person's response."
+ },
+ {
+  "application_id": "APP-CP01-c5",
+  "core_play_id": "CP-01",
+  "experience_cluster": 5,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "Notice how much the other person shows up — do they text back, keep plans, and treat you well? Give more only as they show more.",
+  "play_function": [
+   "Observe",
+   "Decide"
+  ],
+  "behavioral_source_ids": [
+   "STM-0042",
+   "STM-0395"
+  ],
+  "contextual_source_ids": [
+   "STM-0036",
+   "STM-0048"
+  ],
+  "supporting_competency": "Role Functioning → Reciprocity",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Someone steady may feel less exciting at first; no answer is also an answer.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Includes a context-dependent behavior (STM-0042); attraction still matters."
+ },
+ {
+  "application_id": "APP-CP01-c15",
+  "core_play_id": "CP-01",
+  "experience_cluster": 15,
+  "rlc_phase": "Exclusivity",
+  "cluster_framing": "Notice when you are always the one giving effort. Sometimes hold back and leave room. Match your giving to what comes back, and see if they reach out or give too.",
+  "play_function": [
+   "Observe",
+   "Decide"
+  ],
+  "behavioral_source_ids": [
+   "STM-0532",
+   "STM-0533",
+   "STM-0538"
+  ],
+  "contextual_source_ids": [
+   "STM-0534"
+  ],
+  "supporting_competency": "Role Functioning → Partnership",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Holding back is to observe reciprocity, not to punish or test; effort may or may not return.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "All three sources are context-dependent."
+ },
+ {
+  "application_id": "APP-CP02-c5",
+  "core_play_id": "CP-02",
+  "experience_cluster": 5,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "When you notice you are brushing off someone kind, stop before you count them out. Ask if it is really no spark, or just someone new and unfamiliar. Give it a little more time and a real look before you decide.",
+  "play_function": [
+   "Observe",
+   "Decide"
+  ],
+  "behavioral_source_ids": [
+   "STM-0396"
+  ],
+  "contextual_source_ids": [
+   "STM-0036",
+   "STM-0048"
+  ],
+  "supporting_competency": "Role Functioning → Intentionality",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Real attraction still matters; this is not about dating people you do not like.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single context-dependent, self-flagged source forming its own core play."
+ },
+ {
+  "application_id": "APP-CP03-c5",
+  "core_play_id": "CP-03",
+  "experience_cluster": 5,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "When something worries you, name exactly what you saw. Then watch it or ask about it before you get more serious.",
+  "play_function": [
+   "Observe",
+   "Clarify",
+   "Decide"
+  ],
+  "behavioral_source_ids": [
+   "STM-0037",
+   "STM-0553",
+   "STM-0554"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Conflict Management → Objectivity",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "If a warning is about your safety, get safe — do not test it.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Carries a safety context condition."
+ },
+ {
+  "application_id": "APP-CP04-c5",
+  "core_play_id": "CP-04",
+  "experience_cluster": 5,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "If you give another chance, name one real change you need to see, and by when. Then look at what actually happened.",
+  "play_function": [
+   "Decide",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0039",
+   "STM-0556"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Role Functioning → Boundaries",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Fixing things and just waiting are not the same; this depends on whether they own their part.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Both sources are context-dependent."
+ },
+ {
+  "application_id": "APP-CP04-c11",
+  "core_play_id": "CP-04",
+  "experience_cluster": 11,
+  "rlc_phase": "Expiration",
+  "cluster_framing": "Pick ahead of time what you need to see, and by when. Look at what has really changed, not what you hope will change. Then decide.",
+  "play_function": [
+   "Decide",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0689"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Trust → Self-Trust",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Staying is fine if real change is happening, not if it is only hope.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single context-dependent source."
+ },
+ {
+  "application_id": "APP-CP04-c14",
+  "core_play_id": "CP-04",
+  "experience_cluster": 14,
+  "rlc_phase": "Expansion",
+  "cluster_framing": "Pick ahead of time what you need to see, and by when. Then look at what really happened and decide.",
+  "play_function": [
+   "Decide",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0318"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Task supports a see-by-date, but no existing competency cleanly maps.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Competency is a framework gap; single context-dependent source."
+ },
+ {
+  "application_id": "APP-CP04-c24",
+  "core_play_id": "CP-04",
+  "experience_cluster": 24,
+  "rlc_phase": "Exclusivity",
+  "cluster_framing": "Name what you need to see and by when. Keep showing up while you watch. Then decide.",
+  "play_function": [
+   "Decide",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-1039"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Trust → Consistency",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Watching over time can reveal fit or its lack; either is a useful answer.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single context-dependent source at the invest-or-not decision point."
+ },
+ {
+  "application_id": "APP-CP05-c11",
+  "core_play_id": "CP-05",
+  "experience_cluster": 11,
+  "rlc_phase": "Expiration",
+  "cluster_framing": "When you catch yourself making an excuse for them, stop and name what actually happened first. Then decide what it means to you.",
+  "play_function": [
+   "Interrupt",
+   "Clarify"
+  ],
+  "behavioral_source_ids": [
+   "STM-0695"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Trust → Wise Trust",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Rests on one retrospective statement; a human should confirm the read.",
+  "confidence": "Moderate",
+  "review_flag": false,
+  "review_reason": "Approved; conservative — behavioral evidence limited but the protocol is developmentally coherent with Acceptance/Recovery."
+ },
+ {
+  "application_id": "APP-CP06-c1",
+  "core_play_id": "CP-06",
+  "experience_cluster": 1,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "Show a small true part of you — a real opinion, like, or need — and watch how the person takes it before you pull back.",
+  "play_function": [
+   "Replace",
+   "Increase",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0262"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Emotional Intimacy → Gradual Self-Disclosure",
+  "evidence_status": "Requires Human Adjudication",
+  "context_limitations": "The response may reveal a good fit or a poor one.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "UNRESOLVED: Core Play valid, but insufficient evidence that Graduated Self-Disclosure belongs in the Difficulty Feeling Chosen Playbook (only STM-0262). Pending evidence-gap decision."
+ },
+ {
+  "application_id": "APP-CP06-c3",
+  "core_play_id": "CP-06",
+  "experience_cluster": 3,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "When you feel the urge to close off or hide, pause. Share one small, true thing and watch how the person treats it before you pull back.",
+  "play_function": [
+   "Replace",
+   "Increase",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0050",
+   "STM-0051",
+   "STM-0055",
+   "STM-0307",
+   "STM-0779",
+   "STM-0988",
+   "STM-0989"
+  ],
+  "contextual_source_ids": [
+   "STM-0056",
+   "STM-0777",
+   "STM-0786",
+   "STM-0994"
+  ],
+  "supporting_competency": "Emotional Intimacy → Gradual Self-Disclosure",
+  "evidence_status": "Strongly Supported",
+  "context_limitations": "Sharing a true thing may show the person is safe or is not.",
+  "confidence": "High",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "application_id": "APP-CP06-c8",
+  "core_play_id": "CP-06",
+  "experience_cluster": 8,
+  "rlc_phase": "Expansion",
+  "cluster_framing": "When you notice you are on autopilot, pick one small moment to really show up. Name to yourself what you feel, then share one honest thing with your partner.",
+  "play_function": [
+   "Replace",
+   "Increase",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-1010"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Integration-phase task supports this, but no existing competency cleanly maps.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single source; competency is a framework gap."
+ },
+ {
+  "application_id": "APP-CP06-c14",
+  "core_play_id": "CP-06",
+  "experience_cluster": 14,
+  "rlc_phase": "Cross-Phase",
+  "cluster_framing": "Pick one true thing and say it to a safe person, in a calm and clear way. Then watch how they take it.",
+  "play_function": [
+   "Replace",
+   "Increase",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0448",
+   "STM-0449"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Cross-Phase: no framework competency anchors this.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase; competency is a framework gap; includes the STM-0449 generic-advice fix."
+ },
+ {
+  "application_id": "APP-CP06-c17",
+  "core_play_id": "CP-06",
+  "experience_cluster": 17,
+  "rlc_phase": "Cross-Phase",
+  "cluster_framing": "Say one true thing about how you feel to a safe person. You do not have to fix it or fight. Then watch how they take it.",
+  "play_function": [
+   "Replace",
+   "Increase",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0819"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Cross-Phase: no framework competency anchors this.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single Cross-Phase source; competency is a framework gap."
+ },
+ {
+  "application_id": "APP-CP06-c23",
+  "core_play_id": "CP-06",
+  "experience_cluster": 23,
+  "rlc_phase": "Cross-Phase",
+  "cluster_framing": "Name one true thing to one safe person, even if it is small. Watch how it feels and how they answer.",
+  "play_function": [
+   "Replace",
+   "Increase",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0985"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Cross-Phase: no framework competency anchors this.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single Cross-Phase source; competency is a framework gap."
+ },
+ {
+  "application_id": "APP-CP06-c27",
+  "core_play_id": "CP-06",
+  "experience_cluster": 27,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "Notice when your guard is up. Let it down a little in small, safe ways. Then watch how the person treats you before you open more.",
+  "play_function": [
+   "Replace",
+   "Increase",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-1085"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Emotional Intimacy → Gradual Self-Disclosure",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Let the guard down only in small, safe steps; watch before opening more.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Context-dependent source; competency normalized to Gradual Self-Disclosure."
+ },
+ {
+  "application_id": "APP-CP07-c3",
+  "core_play_id": "CP-07",
+  "experience_cluster": 3,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "When you want to leave first, stop. Name what is making you want to pull away, and whether any reason is a real dealbreaker or just a way to make distance. Then wait and watch how they show up before you decide.",
+  "play_function": [
+   "Interrupt",
+   "Observe",
+   "Decide"
+  ],
+  "behavioral_source_ids": [
+   "STM-0052",
+   "STM-0314",
+   "STM-0782"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Trust → Reliability",
+  "evidence_status": "Strongly Supported",
+  "context_limitations": "Waiting may show they stay or that they go — both are real information.",
+  "confidence": "High",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "application_id": "APP-CP08-c3",
+  "core_play_id": "CP-08",
+  "experience_cluster": 3,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "Instead of testing, name what you need and ask for it out loud. Then watch how they respond to a real request.",
+  "play_function": [
+   "Replace",
+   "Clarify",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0660",
+   "STM-0780"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Communication → Emotional Expression",
+  "evidence_status": "Strongly Supported",
+  "context_limitations": "A real request may be met or missed; either tells you something true.",
+  "confidence": "High",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "application_id": "APP-CP08-c6",
+  "core_play_id": "CP-08",
+  "experience_cluster": 6,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "Name one real thing you need. Ask for it in plain words. Then watch, over time, if they come through.",
+  "play_function": [
+   "Replace",
+   "Clarify",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-1054"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Trust → Dependability",
+  "evidence_status": "Requires Human Adjudication",
+  "context_limitations": "Their follow-through over time is the answer, not one moment.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "UNRESOLVED: source 'testing whether I can depend on them' does not establish covert testing/reassurance-seeking vs appropriate dependability observation. Do not infer maladaptive testing."
+ },
+ {
+  "application_id": "APP-CP09-c6",
+  "core_play_id": "CP-09",
+  "experience_cluster": 6,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "When you catch yourself checking, name the one thing you really want to know. Then ask it in plain words, or watch what they actually do next.",
+  "play_function": [
+   "Interrupt",
+   "Clarify",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0273",
+   "STM-0420"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Communication → Clarification",
+  "evidence_status": "Strongly Supported",
+  "context_limitations": "A plain question or steady watching gives a truer answer than checking.",
+  "confidence": "High",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "application_id": "APP-CP09-c16",
+  "core_play_id": "CP-09",
+  "experience_cluster": 16,
+  "rlc_phase": "Expiration",
+  "cluster_framing": "When you feel the urge to scan or search, pause. Name what you need to feel safe and say it out loud. Then let their real, day-to-day actions over time show you the answer.",
+  "play_function": [
+   "Interrupt",
+   "Clarify",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0357",
+   "STM-0358"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Trust → Wise Trust",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Watching real, steady actions over time can be wise; constant scanning keeps the pattern going.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Includes a context-dependent behavior (STM-0357); post-betrayal context."
+ },
+ {
+  "application_id": "APP-CP10-c16",
+  "core_play_id": "CP-10",
+  "experience_cluster": 16,
+  "rlc_phase": "Expiration",
+  "cluster_framing": "When you feel pulled to ask again or bring up the past, pause. Ask if there is one real thing that still needs to be worked out. If there is, name it plainly. If not, let it rest for now.",
+  "play_function": [
+   "Interrupt",
+   "Clarify"
+  ],
+  "behavioral_source_ids": [
+   "STM-0364",
+   "STM-0614"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Conflict Management → Restraint",
+  "evidence_status": "Strongly Supported",
+  "context_limitations": "Pausing may surface a real issue to name or show there is none left.",
+  "confidence": "High",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "application_id": "APP-CP11-c12",
+  "core_play_id": "CP-11",
+  "experience_cluster": 12,
+  "rlc_phase": "Recovery",
+  "cluster_framing": "When you feel the urge to check, name what you feel first. Then wait it out, or mute their page for a set time, and see how each day goes.",
+  "play_function": [
+   "Interrupt",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0230"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "None available (source gap)",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Recovery phase has no framework competencies (source gap).",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Recovery/grief context; competency is a source gap."
+ },
+ {
+  "application_id": "APP-CP11-c20",
+  "core_play_id": "CP-11",
+  "experience_cluster": 20,
+  "rlc_phase": "Recovery",
+  "cluster_framing": "Notice why the ring stays on right now. If it comforts you while you grieve, that is okay. If it keeps you from facing the loss, try setting it aside for a set time and watch how each day feels.",
+  "play_function": [
+   "Interrupt",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0751"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "None available (source gap)",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Recovery phase has no framework competencies (source gap); grief may make this adaptive.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Recovery/grief context; context-dependent; competency is a source gap."
+ },
+ {
+  "application_id": "APP-CP12-c7",
+  "core_play_id": "CP-12",
+  "experience_cluster": 7,
+  "rlc_phase": "Expansion",
+  "cluster_framing": "Say the pattern out loud: that you are often the only one who raises things. Then leave room to see if they start too.",
+  "play_function": [
+   "Preserve",
+   "Observe",
+   "Clarify"
+  ],
+  "behavioral_source_ids": [
+   "STM-0078"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Role Functioning → Shared Responsibility",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Leaving room is to observe shared effort, not to keep score.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Context-dependent source."
+ },
+ {
+  "application_id": "APP-CP12-c10",
+  "core_play_id": "CP-12",
+  "experience_cluster": 10,
+  "rlc_phase": "Expansion",
+  "cluster_framing": "Keep raising things that matter. But once, name the pattern out loud and say you'd like starting hard talks to be shared. Then leave room and watch if your partner ever starts one too.",
+  "play_function": [
+   "Preserve",
+   "Observe",
+   "Clarify"
+  ],
+  "behavioral_source_ids": [
+   "STM-0595"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Role Functioning → Shared Responsibility",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Leaving room shows whether shared effort can grow; it may or may not.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Context-dependent source."
+ },
+ {
+  "application_id": "APP-CP12-c14",
+  "core_play_id": "CP-12",
+  "experience_cluster": 14,
+  "rlc_phase": "Expansion",
+  "cluster_framing": "Do your part, then stop. Leave room for the other person to carry their share.",
+  "play_function": [
+   "Preserve",
+   "Observe",
+   "Clarify"
+  ],
+  "behavioral_source_ids": [
+   "STM-0317",
+   "STM-0321"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Role Functioning → Shared Responsibility",
+  "evidence_status": "Strongly Supported",
+  "context_limitations": "Leaving room reveals whether the other person carries their share.",
+  "confidence": "High",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "application_id": "APP-CP12-c15",
+  "core_play_id": "CP-12",
+  "experience_cluster": 15,
+  "rlc_phase": "Expansion",
+  "cluster_framing": "When something needs starting or fixing, pause before you jump in. Name it out loud and leave room for the other person to help.",
+  "play_function": [
+   "Preserve",
+   "Observe",
+   "Clarify"
+  ],
+  "behavioral_source_ids": [
+   "STM-0212",
+   "STM-0456"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Role Functioning → Shared Responsibility",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Pausing is to make room for shared effort, not to let things fail.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Includes a context-dependent behavior (STM-0212)."
+ },
+ {
+  "application_id": "APP-CP13-c7",
+  "core_play_id": "CP-13",
+  "experience_cluster": 7,
+  "rlc_phase": "Expansion",
+  "cluster_framing": "Pick a calm moment and one issue. Say what is wrong and one thing you need. Keep it short.",
+  "play_function": [
+   "Replace",
+   "Clarify"
+  ],
+  "behavioral_source_ids": [
+   "STM-0076",
+   "STM-0700",
+   "STM-0704"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Communication → Conflict Navigation",
+  "evidence_status": "Strongly Supported",
+  "context_limitations": "Naming it may open repair or reveal it does not shift — both are useful.",
+  "confidence": "High",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "application_id": "APP-CP13-c14",
+  "core_play_id": "CP-13",
+  "experience_cluster": 14,
+  "rlc_phase": "Cross-Phase",
+  "cluster_framing": "Pick one hard thing you have been avoiding. Say it in a calm, clear way, even when keeping the peace feels easier.",
+  "play_function": [
+   "Replace",
+   "Clarify"
+  ],
+  "behavioral_source_ids": [
+   "STM-0446"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Cross-Phase: no framework competency anchors this.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single Cross-Phase source; competency is a framework gap."
+ },
+ {
+  "application_id": "APP-CP13-c15",
+  "core_play_id": "CP-13",
+  "experience_cluster": 15,
+  "rlc_phase": "Expansion",
+  "cluster_framing": "When something feels unfair, name that one thing out loud soon after. Ask for what you need instead of storing it.",
+  "play_function": [
+   "Replace",
+   "Clarify"
+  ],
+  "behavioral_source_ids": [
+   "STM-0464"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Communication → Conflict Navigation",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Acceptable when resentment/inequity is being stored rather than communicated. Communicating the concern does not guarantee the other person changes their behavior.",
+  "confidence": "Moderate",
+  "review_flag": false,
+  "review_reason": "Single source; competency normalized to Conflict Navigation."
+ },
+ {
+  "application_id": "APP-CP14-c14",
+  "core_play_id": "CP-14",
+  "experience_cluster": 14,
+  "rlc_phase": "Cross-Phase",
+  "cluster_framing": "Pick one need or one no. Say it or ask for it in a calm, clear way, instead of going along with something you do not want.",
+  "play_function": [
+   "Increase",
+   "Clarify"
+  ],
+  "behavioral_source_ids": [
+   "STM-0444",
+   "STM-0319",
+   "STM-0450"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Sources span Integration and Cross-Phase; treated as Cross-Phase, so no competency cleanly maps.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Behaviors span phases (STM-0319 Integration vs STM-0444/STM-0450 Cross-Phase); phase treated as Cross-Phase."
+ },
+ {
+  "application_id": "APP-CP15-c14",
+  "core_play_id": "CP-15",
+  "experience_cluster": 14,
+  "rlc_phase": "Cross-Phase",
+  "cluster_framing": "Notice when you say sorry out of habit. Save 'sorry' for when you actually did something wrong. When it is not your fault, say what you mean instead.",
+  "play_function": [
+   "Interrupt"
+  ],
+  "behavioral_source_ids": [
+   "STM-0447"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Cross-Phase: no framework competency anchors this reduce-behavior play.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single Cross-Phase source; competency is a framework gap."
+ },
+ {
+  "application_id": "APP-CP16-c23",
+  "core_play_id": "CP-16",
+  "experience_cluster": 23,
+  "rlc_phase": "Cross-Phase",
+  "cluster_framing": "Pick one small step you can take now, even without feeling fully ready or sure. Check what you can, choose with what you have, and let the rest show itself over time.",
+  "play_function": [
+   "Decide"
+  ],
+  "behavioral_source_ids": [
+   "STM-0963",
+   "STM-0966"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Cross-Phase: no framework competency anchors this.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase; competency is a framework gap."
+ },
+ {
+  "application_id": "APP-CP17-c21",
+  "core_play_id": "CP-17",
+  "experience_cluster": 21,
+  "rlc_phase": "Expiration",
+  "cluster_framing": "Let the differences be real. Name them plainly, even though you care. Then look at whether you both can truly live with them.",
+  "play_function": [
+   "Clarify",
+   "Decide"
+  ],
+  "behavioral_source_ids": [
+   "STM-0511"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Trust → Self-Trust",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "Naming differences may show you can live with them or that you cannot.",
+  "confidence": "Moderate",
+  "review_flag": false,
+  "review_reason": "Developmentally coherent with Acceptance; behavioral evidence limited (single source)."
+ },
+ {
+  "application_id": "APP-CP18-c1",
+  "core_play_id": "CP-18",
+  "experience_cluster": 1,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "Notice if the break is a rest you chose or a way to avoid dating because it feels hopeless. Pick how long to rest, then check in with yourself.",
+  "play_function": [
+   "Decide",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0177"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Role Functioning → Intentionality",
+  "evidence_status": "Supported with Context Conditions",
+  "context_limitations": "A break can be healthy rest or avoidance; the difference is whether you chose it.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Context-dependent source."
+ },
+ {
+  "application_id": "APP-CP19-c22",
+  "core_play_id": "CP-19",
+  "experience_cluster": 22,
+  "rlc_phase": "Cross-Phase",
+  "cluster_framing": "Name what feels unknown or what you fear. Then let one small thing stay open and watch what really happens instead of managing it ahead of time.",
+  "play_function": [
+   "Preserve",
+   "Observe"
+  ],
+  "behavioral_source_ids": [
+   "STM-0949",
+   "STM-0953"
+  ],
+  "contextual_source_ids": [
+   "STM-0952"
+  ],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "evidence_status": "Task-Supported / Competency Gap",
+  "context_limitations": "Cross-Phase: no framework competency anchors this.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase; competency is a framework gap."
+ },
+ {
+  "application_id": "APP-CP20-c3",
+  "core_play_id": "CP-20",
+  "experience_cluster": 3,
+  "rlc_phase": "Exploration",
+  "cluster_framing": "When you notice you are staying even though part of you knows it isn't good for you, name that. Then look at whether the relationship is actually good for you, apart from that pull to stay, and decide from what you see.",
+  "play_function": [
+   "Observe",
+   "Decide"
+  ],
+  "behavioral_source_ids": [
+   "STM-0655",
+   "STM-0661"
+  ],
+  "contextual_source_ids": [],
+  "supporting_competency": "Conflict Management → Objectivity",
+  "evidence_status": "Strongly Supported",
+  "context_limitations": "Deciding by fit may point toward staying or toward ending.",
+  "confidence": "High",
+  "review_flag": false,
+  "review_reason": ""
+ }
+]

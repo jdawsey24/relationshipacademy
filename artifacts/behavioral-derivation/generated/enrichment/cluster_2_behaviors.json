@@ -1,0 +1,19 @@
+[
+ {
+  "sid": "STM-0881",
+  "trigger_or_context": "You want to talk to a friend or make plans with them.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Reaching out first keeps the friendship going from your side.",
+  "developmental_cost": "You never get to see if the friend would reach out too.",
+  "relevant_developmental_task": "Cross-Phase (no single task)",
+  "relevant_rlc_competency": "None available (source gap)",
+  "adaptive_alternative_1": "Reach out when you want to. Then leave some space and see if they reach back before you reach again.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You get to see if the friendship goes both ways, or only one way.",
+  "expected_discomfort_or_cost": "It might feel quiet for a while. You may learn a friend will not reach back.",
+  "context_conditions": "Reaching out first is fine sometimes. This is about when it is always you. A friend may also be going through a hard time.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase source gap: no competency cleanly maps. Maintaining role is inferred from the one-sided-friendship context, so function is stated only in its narrow, supported form."
+ }
+]

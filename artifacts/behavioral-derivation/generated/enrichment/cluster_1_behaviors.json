@@ -1,0 +1,36 @@
+[
+ {
+  "sid": "STM-0177",
+  "trigger_or_context": "After dating feels tiring or lets you down, you don't feel like getting the apps again.",
+  "maintaining_role": "Context Dependent",
+  "short_term_function": "Stepping back from the apps gives you a break from dating that feels hard right now.",
+  "developmental_cost": "If the break is really you giving up, you stop meeting new people and stay stuck feeling low about dating.",
+  "relevant_developmental_task": "Discernment",
+  "relevant_rlc_competency": "Role Functioning → Intentionality",
+  "adaptive_alternative_1": "Notice if not getting the apps is a rest you chose, or a way to avoid dating because it feels hopeless. Pick how long you want to rest, then check in with yourself.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You find out if you truly need a break or if you're just worn down, and you get to choose on purpose.",
+  "expected_discomfort_or_cost": "Sitting with the tired, let-down feeling instead of just avoiding it.",
+  "context_conditions": "Resting on purpose is healthy. Pulling back because you feel it's hopeless can keep you stuck.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Context-dependent and close to a feeling; meaning depends on whether the break is chosen rest or avoidance."
+ },
+ {
+  "sid": "STM-0262",
+  "trigger_or_context": "When you want someone to like you, you change who you are to match what they seem to want.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Changing yourself to fit them helps you fit in and keep them interested right now.",
+  "developmental_cost": "They meet a made-up version of you. You can't tell if you two really fit, and you lose track of what you want.",
+  "relevant_developmental_task": "Discernment",
+  "relevant_rlc_competency": "Emotional Intimacy → Authenticity",
+  "adaptive_alternative_1": "When you catch yourself about to change to fit them, show a small true part of you instead — a real opinion, like, or need. Then watch how they take it.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You learn if someone likes the real you, and if you two actually fit.",
+  "expected_discomfort_or_cost": "Showing the real you feels risky, and some people may step back.",
+  "context_conditions": "",
+  "confidence": "Moderate",
+  "review_flag": false,
+  "review_reason": ""
+ }
+]

@@ -1,0 +1,20 @@
+[
+ {
+  "play_name": "Put your energy where there's real back-and-forth",
+  "behavioral_target": "Keeping effort going toward matches who do not write back, instead of letting real responses guide where your time goes.",
+  "trigger": "You match with people on an app, but many never reply or the chat dies fast.",
+  "old_play": "You keep matching and keep trying with people who go quiet.",
+  "function_of_old_play": "It keeps you active in the dating pool and keeps you trying instead of stopping.",
+  "new_play": "When you match, watch to see if they actually write back and keep it going. Put your time into the ones who do. If a match stays quiet, let that tell you where not to spend more effort.",
+  "what_to_expect": "You may let go of quiet matches you hoped would come around. That can feel like a small loss each time. But you will spend less time on chats that go nowhere.",
+  "why_supports_task": "It helps you tell who really shows up from who does not. That is the kind of noticing Discernment is built on.",
+  "supporting_competencies": ["Communication → Reciprocity"],
+  "behavioral_source_ids": ["STM-0289"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Continuing to match with and put effort into people who never respond, rather than letting mutual back-and-forth guide where energy goes.",
+  "context_limitations": "Matching with a lot of people is normal on apps. This is not about matching less. It is about where you put your energy after you match.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Built from a single Context-Dependent behavior; 'who never respond' is partly an outcome the person does not control, so the maintaining read is conditional."
+ }
+]

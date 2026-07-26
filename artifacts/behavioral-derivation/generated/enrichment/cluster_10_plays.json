@@ -1,0 +1,20 @@
+[
+ {
+  "play_name": "Share who starts the hard talks",
+  "behavioral_target": "Always being the only one who brings up hard conversations.",
+  "trigger": "A hard or touchy thing comes up that needs to be talked about.",
+  "old_play": "You always jump in and bring it up yourself.",
+  "function_of_old_play": "The hard stuff gets talked about instead of being ignored.",
+  "new_play": "Keep raising things that matter. But once, name the pattern out loud and say you'd like starting hard talks to be shared. Then leave room and watch if your partner ever starts one too.",
+  "what_to_expect": "Some hard things may sit a bit longer while you wait. It can feel uncomfortable to hold back.",
+  "why_supports_task": "In Expansion, the task is Integration — building a shared life where both people carry the work. This lets you see if your partner can share the load of hard talks, or if it always falls on you.",
+  "supporting_competencies": ["Role Functioning → Shared Responsibility"],
+  "behavioral_source_ids": ["STM-0595"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": ["Always being the one to bring up hard conversations (STM-0595)"],
+  "context_limitations": "Bringing up hard things is healthy — this is not about going quiet. It is about whether you are always the only one. If a real problem needs raising now, raise it.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Context-dependent behavior with a conditional alternative; function and competency mapping needed judgment."
+ }
+]

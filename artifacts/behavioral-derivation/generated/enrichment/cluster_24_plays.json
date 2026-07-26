@@ -1,0 +1,20 @@
+[
+ {
+  "play_name": "Watch over time, then decide to invest",
+  "behavioral_target": "Waiting to see if the relationship holds up, without setting a point to decide.",
+  "trigger": "You are getting more serious but are not sure it will last.",
+  "old_play": "You keep waiting to see if it holds up over time.",
+  "function_of_old_play": "Waiting gives you more time before you have to fully invest or decide.",
+  "new_play": "Name what you need to see and by when. Keep showing up while you watch. Then decide.",
+  "what_to_expect": "You may have to sit with not knowing, then make a real choice — to invest more or to step back.",
+  "why_supports_task": "It turns waiting into real evaluation, so you can choose to invest on purpose.",
+  "supporting_competencies": ["Trust → Consistency"],
+  "behavioral_source_ids": ["STM-1039"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": ["Waiting to see if the relationship holds up over time"],
+  "context_limitations": "Watching over time is healthy. This only helps if waiting has become an endless stall with no decision.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single context-dependent behavior; alternative is conditional on waiting having become an indefinite stall."
+ }
+]

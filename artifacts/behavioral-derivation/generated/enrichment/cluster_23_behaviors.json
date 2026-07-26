@@ -1,0 +1,53 @@
+[
+ {
+  "sid": "STM-0963",
+  "trigger_or_context": "A step forward comes up, like dating again or getting closer to someone. You do not feel ready yet.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Waiting until you feel ready lets you put off a step that feels scary.",
+  "developmental_cost": "You stay in one place. You never find out how the step would really go.",
+  "relevant_developmental_task": "Cross-Phase (no single task)",
+  "relevant_rlc_competency": "None available (source gap)",
+  "adaptive_alternative_1": "Pick one small step you can take now, even if you do not feel all the way ready. Take it and watch what you learn.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You find out you can move before you feel fully ready. You learn from real steps, not just from waiting.",
+  "expected_discomfort_or_cost": "Acting before you feel ready feels uncomfortable.",
+  "context_conditions": "",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase behavior: no phase competency exists to ground the alternative (framework gap)."
+ },
+ {
+  "sid": "STM-0966",
+  "trigger_or_context": "You have a choice about moving forward. You are not sure how it will turn out.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Trying to be sure first lets you put off a choice that could go wrong.",
+  "developmental_cost": "You wait for a sure thing that may never come. So you do not move at all.",
+  "relevant_developmental_task": "Cross-Phase (no single task)",
+  "relevant_rlc_competency": "None available (source gap)",
+  "adaptive_alternative_1": "Notice that some things cannot be known ahead of time. Check what you can now, choose with what you have, and let the rest show itself over time.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You learn to move with 'enough' proof instead of waiting for perfect proof.",
+  "expected_discomfort_or_cost": "You have to move while some things are still unknown.",
+  "context_conditions": "",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase behavior: no phase competency exists to ground the alternative (framework gap)."
+ },
+ {
+  "sid": "STM-0985",
+  "trigger_or_context": "Things are not okay inside. Someone asks how you are, or you feel you should look fine.",
+  "maintaining_role": "Likely Maintains Pattern",
+  "short_term_function": "Acting okay lets you avoid showing the truth and having a hard talk about it.",
+  "developmental_cost": "Nothing gets worked on. No one can see the real you or help.",
+  "relevant_developmental_task": "Cross-Phase (no single task)",
+  "relevant_rlc_competency": "None available (source gap)",
+  "adaptive_alternative_1": "Try naming one true thing to one safe person, even if it is small. Watch how it feels and how they answer.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You find out if it is safe to be honest. You stop carrying it all by yourself.",
+  "expected_discomfort_or_cost": "Being honest can feel exposing at first.",
+  "context_conditions": "This is about being honest with a safe person, not telling everyone everything.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase behavior: no phase competency exists to ground the alternative (framework gap)."
+ }
+]

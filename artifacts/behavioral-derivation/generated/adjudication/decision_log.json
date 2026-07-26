@@ -1,0 +1,122 @@
+[
+ {
+  "change_type": "Split",
+  "target": "Cluster 5 / Play10 (\"Notice if they show up before you give more\")",
+  "description": "Split into CP-01 (pace effort to observed reciprocity: STM-0042, STM-0395) and CP-02 (don't dismiss available people before checking: STM-0396). STM-0396 is a distinct behavioral target (brushing off available people) and no longer belongs in the reciprocity-pacing play."
+ },
+ {
+  "change_type": "Split",
+  "target": "Cluster 11 / Play20 (\"Look at what is real, not what you hope for\")",
+  "description": "Split into CP-04 (set a see-by date, then decide: STM-0689) and CP-05 (name what actually happened before explaining it away: STM-0695). The see-by-date protocol and the excuse-interrupt protocol are separate behavioral targets."
+ },
+ {
+  "change_type": "Split",
+  "target": "Cluster 14 / Play22 (\"Say the honest thing instead of keeping the peace\")",
+  "description": "Split across CP-06 (disclosure to a safe person: STM-0448, STM-0449), CP-13 (name a hard thing: STM-0446), CP-14 (say no / ask for what you need: STM-0444, joined by STM-0319, STM-0450), and CP-15 (save sorry for real faults: STM-0447). The single 'honest thing' play contained four distinct behavioral targets."
+ },
+ {
+  "change_type": "Mechanism-Removal",
+  "target": "STM-0052, STM-0782 and CP-07 framing (\"Wait and watch before you leave first\")",
+  "description": "Replaced 'name the fear behind it / driving it' with 'name what is making you want to pull away, and whether any reason is a real dealbreaker or just a way to make distance.' Removes 'fear' as a presupposed motive; keeps the behavior observable."
+ },
+ {
+  "change_type": "Mechanism-Removal",
+  "target": "STM-0357 short_term_function (Cluster 16)",
+  "description": "Rewrote 'helps you feel like you are watching for danger instead of sitting with not knowing' to 'Searching keeps you doing something instead of waiting for their actions to show over time.' Removes inferred internal function; keeps it behavioral."
+ },
+ {
+  "change_type": "Mechanism-Removal",
+  "target": "STM-0655, STM-0661 and CP-20 framing (\"Decide by fit, not by fear\")",
+  "description": "Removed 'staying out of fear' as a presupposed motive. CP-20 framing now reads 'staying even though part of you knows it isn't good for you' (per STM-0661). STM-0655 keeps only what is stated ('didn't want to be alone'); residual 'fear' wording dropped from its alternative and supports fields."
+ },
+ {
+  "change_type": "Generic-Advice-Fix",
+  "target": "STM-0449 (Cluster 14)",
+  "description": "Replaced the generic 'just be honest / say so in a simple, honest way' alternative with the canonical CP-06 protocol: 'Pick one true thing and say it to a safe person. Watch how they take it.' Adds the conditional (safe person) and the observation step."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "Testing family → CP-08 (Ask directly instead of testing)",
+  "description": "Cluster 3 (STM-0660, STM-0780) and Cluster 6 (STM-1054) testing behaviors normalized into one core play, kept as separate per-cluster applications."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "Guardedness/disclosure family → CP-06 (Graduated self-disclosure with observation)",
+  "description": "Cluster 3 guardedness (STM-0050, STM-0051, STM-0055, STM-0307, STM-0779, STM-0988, STM-0989) and Cluster 27 guard-down (STM-1085), plus c1/c8/c14/c17/c23 disclosure behaviors, normalized into one disclosure protocol."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "Imbalance/over-functioning family → CP-12 (Do your part and leave room for their share)",
+  "description": "Cluster 7 (STM-0078) and Cluster 10 (STM-0595) imbalance behaviors, plus c14/c15, normalized into one shared-responsibility protocol as separate per-cluster applications."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "Reach-first/effort family → CP-01 (Pace effort to observed reciprocity)",
+  "description": "Cluster 2 (STM-0881) and Cluster 15 (STM-0532, STM-0533, STM-0538) reach-first / over-effort behaviors, plus c4/c5, normalized into one reciprocity-pacing protocol as separate per-cluster applications."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "See-by-date family → CP-04 (Set a see-by date, then decide)",
+  "description": "Cluster 5 (STM-0039, STM-0556), Cluster 11 (STM-0689), Cluster 14 (STM-0318), and Cluster 24 (STM-1039) see-by-date / give-another-chance behaviors normalized into one protocol as separate per-cluster applications."
+ },
+ {
+  "change_type": "Competency-Remap",
+  "target": "Disclosure competency → Emotional Intimacy → Gradual Self-Disclosure",
+  "description": "Where the same disclosure behavior received different competencies across clusters (e.g., STM-0055 vs STM-1085; STM-0262 Authenticity), normalized to Emotional Intimacy → Gradual Self-Disclosure for Exploration-phase CP-06 applications. Expansion (c8) and Cross-Phase (c14/c17/c23) applications keep a competency gap because no phase-correct disclosure competency exists."
+ },
+ {
+  "change_type": "Competency-Remap",
+  "target": "CP-13 competency → Communication → Conflict Navigation",
+  "description": "For 'name a hard thing instead of avoiding it', normalized the competency to Communication → Conflict Navigation for Expansion-phase applications (c7, c15). The Cross-Phase application (c14) has no clean competency and is marked Task-supported."
+ },
+ {
+  "change_type": "Zero-Play-Preserved",
+  "target": "Cluster 13 (\"Fear of Trying Again\")",
+  "description": "No application produced. Its only behavior (STM-1058) is Likely Adaptive Already; behavioral evidence does not support a change-play. Preserved intentionally as zero-application."
+ },
+ {
+  "change_type": "Zero-Play-Preserved",
+  "target": "Cluster 25 (\"Feeling Like No One Taught Me How to Do This\")",
+  "description": "No application produced. Its behavior (STM-1030) is Insufficient Evidence (outcome-level, no discrete alterable behavior). Preserved intentionally as zero-application; recorded only as context, never as behavioral evidence."
+ },
+ {
+  "change_type": "Human-Adjudication",
+  "target": "CP-05 / Cluster 11",
+  "description": "Supported with Context Conditions. Approved; conservative — behavioral evidence limited but the protocol is developmentally coherent with Acceptance/Recovery."
+ },
+ {
+  "change_type": "Human-Adjudication",
+  "target": "CP-06 / Cluster 1",
+  "description": "Requires Human Adjudication. UNRESOLVED: Core Play valid, but insufficient evidence that Graduated Self-Disclosure belongs in the Difficulty Feeling Chosen Playbook (only STM-0262). Pending evidence-gap decision."
+ },
+ {
+  "change_type": "Human-Adjudication",
+  "target": "CP-08 / Cluster 6",
+  "description": "Requires Human Adjudication. UNRESOLVED: source 'testing whether I can depend on them' does not establish covert testing/reassurance-seeking vs appropriate dependability observation. Do not infer maladaptive testing."
+ },
+ {
+  "change_type": "Human-Adjudication",
+  "target": "CP-13 / Cluster 15",
+  "description": "Supported with Context Conditions. Acceptable when resentment/inequity is being stored rather than communicated. Communicating the concern does not guarantee the other person changes their behavior."
+ },
+ {
+  "change_type": "Human-Adjudication",
+  "target": "CP-17 / Cluster 21",
+  "description": "Supported with Context Conditions. Developmentally coherent with Acceptance; behavioral evidence limited (single source)."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "Core Play Library (all 20)",
+  "description": "Internal names normalized to precise behavioral-protocol terminology (not consumer copy). E.g. 'Save sorry for real faults'→'Reduce Unnecessary Apology'; 'Let real differences count'→'Difference Acknowledgment and Evaluation'; 'Let things unfold...'→'Uncertainty Tolerance Through Observation'."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "Evidence Gap Analysis",
+  "description": "Classified all 27 clusters (4 Sufficient / 17 Limited / 6 Insufficient) by whether same-cluster Self-Behavior evidence supports meaningful, non-redundant behavioral guidance. ANALYSIS ONLY — no remapping, no new Plays, no cross-cluster rule established."
+ },
+ {
+  "change_type": "Normalization",
+  "target": "Cross-Cluster Candidates + Cluster 1 Deep Dive",
+  "description": "Identified defensible cross-cluster Self-Behavior candidates for Limited/Insufficient clusters (analysis only, not remapped). Cluster 1 prototype shows a governed cross-cluster evidence RULE (phenomenology->task->competency->behavior chain + human confirmation) could close its behavioral gap; content-specific clusters (9/18/19/26) have NO defensible candidates. Methodological decision deferred to owner."
+ }
+]

@@ -1,0 +1,20 @@
+[
+ {
+  "play_name": "Look at what is real, not what you hope for",
+  "behavioral_target": "Facing the relationship as it really is, instead of waiting for it to change or explaining away what the other person does.",
+  "trigger": "Something in the relationship is wrong or letting you down.",
+  "old_play": "You wait for things to get better, or you make excuses for them.",
+  "function_of_old_play": "This keeps the relationship going for now and lets you put off a hard choice.",
+  "new_play": "Look at what has really changed, not what you hope will change. When you catch yourself making an excuse, name what actually happened first. Then decide what it means to you.",
+  "what_to_expect": "Facing what is real can hurt, and you may have to make a hard choice or face a loss.",
+  "why_supports_task": "Seeing things clearly helps you accept what is real. Then you can decide based on facts, not hope.",
+  "supporting_competencies": ["Trust → Self-Trust", "Trust → Wise Trust"],
+  "behavioral_source_ids": ["STM-0689", "STM-0695"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Waiting for things to get better (STM-0689) and making excuses for the other person (STM-0695) both hold on to a hopeful story that blocks Acceptance.",
+  "context_limitations": "Waiting is fine if you can see real, steady change. It keeps the pattern going if it is only hope.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Consolidates one Context-Dependent and one Likely-Maintains behavior; the conditional (real change vs. only hope) must be preserved so the guidance is not applied as a universal rule."
+ }
+]

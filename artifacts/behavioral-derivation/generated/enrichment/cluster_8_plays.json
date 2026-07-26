@@ -1,0 +1,20 @@
+[
+ {
+  "play_name": "Show up for one real moment",
+  "behavioral_target": "Doing the relationship's daily actions without being emotionally present.",
+  "trigger": "You are with your partner but feel checked out, so you just do the usual routine on autopilot.",
+  "old_play": "You keep doing the day-to-day things but hold back the real you. You are there, but not really there.",
+  "function_of_old_play": "It keeps the relationship running as usual, so you don't have to stop and deal with what feels off.",
+  "new_play": "When you notice you're on autopilot, pick one small moment to really show up. Name to yourself what you feel, then share one honest thing with your partner.",
+  "what_to_expect": "Showing up for real can feel scary after being checked out. What you learn may be hard. Real closeness may come back, or you may see the gap is bigger.",
+  "why_supports_task": "Integration means building a shared life while staying truly yourself. You can't blend two real lives if one person is only going through the motions. One honest moment brings the real you back into the shared life.",
+  "supporting_competencies": [],
+  "behavioral_source_ids": ["STM-1010"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Going through the motions without emotional presence (STM-1010).",
+  "context_limitations": "A short tired stretch where you still show up is different from a long, settled disconnection. This play is about the long kind, and it is not about ignoring real safety.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "No Expansion competency cleanly maps to authentic emotional presence, so supporting_competencies is left empty; behavior is borderline between Likely Maintains and Context Dependent."
+ }
+]

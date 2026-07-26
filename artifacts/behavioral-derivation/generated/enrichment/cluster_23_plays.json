@@ -1,0 +1,38 @@
+[
+ {
+  "play_name": "Take a small step before you feel fully sure",
+  "behavioral_target": "Waiting to move forward until you feel ready or certain.",
+  "trigger": "A step forward comes up and you do not feel ready or sure how it will go.",
+  "old_play": "You wait until you feel ready, or you try to be certain first, before you move.",
+  "function_of_old_play": "Waiting lets you put off a step that feels scary or could go wrong.",
+  "new_play": "Pick one small step you can take now, even without feeling fully ready or sure. Check what you can, choose with what you have, and let the rest show itself over time.",
+  "what_to_expect": "Moving before you feel ready or sure feels uncomfortable. Some things will still be unknown.",
+  "why_supports_task": "You learn from real steps instead of staying stuck. You find out you can act with 'enough' proof, not perfect proof. No single phase task fits this cross-phase pattern.",
+  "supporting_competencies": "None available (source gap)",
+  "behavioral_source_ids": ["STM-0963", "STM-0966"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Waiting until you feel ready (STM-0963); looking for certainty before moving (STM-0966).",
+  "context_limitations": "Some steps really do need more information first. This is about steps you keep putting off, not rushing a truly big or unsafe choice.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase: no phase competency grounds the alternative (framework gap)."
+ },
+ {
+  "play_name": "Say one true thing to a safe person",
+  "behavioral_target": "Acting like everything is okay when it is not.",
+  "trigger": "Things are not okay inside, but someone asks or you feel you should look fine.",
+  "old_play": "You pretend everything is okay and hide what is really going on.",
+  "function_of_old_play": "Acting okay lets you avoid showing the truth and having a hard talk.",
+  "new_play": "Name one true thing to one safe person, even if it is small. Watch how it feels and how they answer.",
+  "what_to_expect": "Being honest can feel exposing at first.",
+  "why_supports_task": "You find out if it is safe to be honest, and you stop carrying it alone. No single phase task fits this cross-phase pattern.",
+  "supporting_competencies": "None available (source gap)",
+  "behavioral_source_ids": ["STM-0985"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Pretending everything is okay (STM-0985).",
+  "context_limitations": "This means being honest with a safe person, not telling everyone everything.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase: no phase competency grounds the alternative (framework gap)."
+ }
+]

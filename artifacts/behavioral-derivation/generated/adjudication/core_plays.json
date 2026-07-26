@@ -1,0 +1,336 @@
+[
+ {
+  "core_play_id": "CP-01",
+  "core_play_name_internal": "Reciprocity-Contingent Investment Pacing",
+  "behavioral_target": "Holding, pursuing, or over-giving from one side without checking whether effort is returned.",
+  "play_function": [
+   "Observe",
+   "Decide"
+  ],
+  "canonical_protocol": "Hold your effort back a little, watch how much the other person gives back, then match what you give to what they give.",
+  "developmental_tasks": [
+   "Discernment",
+   "Intentional Investment",
+   "Cross-Phase (no single task)"
+  ],
+  "supporting_competency": "Role Functioning → Reciprocity",
+  "notes": "Normalizes the reach-first / over-effort family (c2, c4, c5, c15) into one pacing protocol.",
+  "core_play_name_internal_prev": "Pace effort to observed reciprocity"
+ },
+ {
+  "core_play_id": "CP-02",
+  "core_play_name_internal": "Availability Re-Evaluation Before Dismissal",
+  "behavioral_target": "Brushing off kind, available people before giving them a real look.",
+  "play_function": [
+   "Observe",
+   "Decide"
+  ],
+  "canonical_protocol": "Before you count someone kind out, ask if it is really no spark or just someone new, and give it a little more time before you decide.",
+  "developmental_tasks": [
+   "Discernment"
+  ],
+  "supporting_competency": "Role Functioning → Intentionality",
+  "notes": "Split out of the c5 reciprocity play (Play10).",
+  "core_play_name_internal_prev": "Don't dismiss available people before checking"
+ },
+ {
+  "core_play_id": "CP-03",
+  "core_play_name_internal": "Concern Verification Before Decision",
+  "behavioral_target": "Pushing past a real worry or warning instead of checking it.",
+  "play_function": [
+   "Observe",
+   "Clarify",
+   "Decide"
+  ],
+  "canonical_protocol": "When something worries you, name what you saw, then watch it or ask about it before you get more serious.",
+  "developmental_tasks": [
+   "Discernment"
+  ],
+  "supporting_competency": "Conflict Management → Objectivity",
+  "notes": "Carries a safety context condition.",
+  "core_play_name_internal_prev": "Check a worry before deciding"
+ },
+ {
+  "core_play_id": "CP-04",
+  "core_play_name_internal": "Time-Bounded Observation-to-Decision",
+  "behavioral_target": "Staying or waiting on hope without a set point to look at what really changed.",
+  "play_function": [
+   "Decide",
+   "Observe"
+  ],
+  "canonical_protocol": "Pick ahead of time what you need to see, and by when, then look at what really happened and decide.",
+  "developmental_tasks": [
+   "Discernment",
+   "Acceptance",
+   "Integration",
+   "Intentional Investment"
+  ],
+  "supporting_competency": "Role Functioning → Boundaries",
+  "notes": "Normalizes the see-by-date / give-another-chance family (c5, c11, c14, c24).",
+  "core_play_name_internal_prev": "Set a see-by date, then decide"
+ },
+ {
+  "core_play_id": "CP-05",
+  "core_play_name_internal": "Fact Naming Before Rationalization",
+  "behavioral_target": "Making excuses for a partner instead of naming what really happened.",
+  "play_function": [
+   "Interrupt",
+   "Clarify"
+  ],
+  "canonical_protocol": "When you catch yourself making an excuse for them, stop and name what actually happened first.",
+  "developmental_tasks": [
+   "Acceptance"
+  ],
+  "supporting_competency": "Trust → Wise Trust",
+  "notes": "Split out of the c11 acceptance play (Play20).",
+  "core_play_name_internal_prev": "Name what actually happened before explaining it away"
+ },
+ {
+  "core_play_id": "CP-06",
+  "core_play_name_internal": "Graduated Self-Disclosure With Response Observation",
+  "behavioral_target": "Hiding, guarding, or acting fine instead of sharing a small true thing and watching the response.",
+  "play_function": [
+   "Replace",
+   "Increase",
+   "Observe"
+  ],
+  "canonical_protocol": "Share one small, true thing with a safe person, then watch how they take it before you share more.",
+  "developmental_tasks": [
+   "Discernment",
+   "Integration",
+   "Cross-Phase (no single task)"
+  ],
+  "supporting_competency": "Emotional Intimacy → Gradual Self-Disclosure",
+  "notes": "Normalizes the guardedness / hiding / acting-fine family (c1, c3, c8, c14, c17, c23, c27).",
+  "core_play_name_internal_prev": "Graduated self-disclosure with observation"
+ },
+ {
+  "core_play_id": "CP-07",
+  "core_play_name_internal": "Pre-emptive Exit Delay With Observation",
+  "behavioral_target": "Leaving first to avoid being left, before seeing how the other person shows up.",
+  "play_function": [
+   "Interrupt",
+   "Observe",
+   "Decide"
+  ],
+  "canonical_protocol": "When you want to leave first, name what is making you want to pull away, then wait and watch how they show up before you decide.",
+  "developmental_tasks": [
+   "Discernment"
+  ],
+  "supporting_competency": "Trust → Reliability",
+  "notes": "Mechanism fix applied (no presupposed 'fear').",
+  "core_play_name_internal_prev": "Wait and watch before leaving first"
+ },
+ {
+  "core_play_id": "CP-08",
+  "core_play_name_internal": "Direct Clarification In Place of Testing",
+  "behavioral_target": "Testing a partner instead of asking for what you need in plain words.",
+  "play_function": [
+   "Replace",
+   "Clarify",
+   "Observe"
+  ],
+  "canonical_protocol": "Instead of testing, ask for what you need in plain words, then watch how they answer.",
+  "developmental_tasks": [
+   "Discernment"
+  ],
+  "supporting_competency": "Communication → Emotional Expression",
+  "notes": "Normalizes the testing family (c3, c6).",
+  "core_play_name_internal_prev": "Ask directly instead of testing"
+ },
+ {
+  "core_play_id": "CP-09",
+  "core_play_name_internal": "Direct Clarification With Longitudinal Observation",
+  "behavioral_target": "Checking, scanning, or surveilling instead of asking and watching real actions over time.",
+  "play_function": [
+   "Interrupt",
+   "Clarify",
+   "Observe"
+  ],
+  "canonical_protocol": "Instead of checking, ask the one thing you want to know, then let their real actions over time show you the answer.",
+  "developmental_tasks": [
+   "Discernment",
+   "Acceptance"
+  ],
+  "supporting_competency": "Communication → Clarification",
+  "notes": "Spans reassurance-checking (c6) and post-betrayal scanning (c16).",
+  "core_play_name_internal_prev": "Get a real answer instead of checking; observe real actions over time"
+ },
+ {
+  "core_play_id": "CP-10",
+  "core_play_name_internal": "Restraint and Issue Triage Before Re-litigation",
+  "behavioral_target": "Reopening an old hurt on a loop instead of pausing to see if a real issue is left.",
+  "play_function": [
+   "Interrupt",
+   "Clarify"
+  ],
+  "canonical_protocol": "When you want to reopen an old hurt, pause and ask if one real thing is left to work out; if yes, name it plainly; if not, let it rest for now.",
+  "developmental_tasks": [
+   "Acceptance"
+  ],
+  "supporting_competency": "Conflict Management → Restraint",
+  "notes": "",
+  "core_play_name_internal_prev": "Pause before reopening an old hurt; name if there is a real issue"
+ },
+ {
+  "core_play_id": "CP-11",
+  "core_play_name_internal": "Time-Boxed Rumination-Checking Reduction",
+  "behavioral_target": "Checking an ex, or dwelling, as a grief/rumination urge with no time limit.",
+  "play_function": [
+   "Interrupt",
+   "Observe"
+  ],
+  "canonical_protocol": "When you feel the urge to check or dwell, name what you feel, then wait it out or set a time limit, and see how each day goes.",
+  "developmental_tasks": [
+   "Healing"
+  ],
+  "supporting_competency": "None available (source gap)",
+  "notes": "Recovery phase has no framework competencies (source gap).",
+  "core_play_name_internal_prev": "Time-box a grief or rumination checking urge"
+ },
+ {
+  "core_play_id": "CP-12",
+  "core_play_name_internal": "Over-Functioning Reduction and Shared-Responsibility Space",
+  "behavioral_target": "Carrying or starting everything instead of doing your part and leaving room for theirs.",
+  "play_function": [
+   "Preserve",
+   "Observe",
+   "Clarify"
+  ],
+  "canonical_protocol": "Do your part, then stop, and leave room for the other person to carry their share.",
+  "developmental_tasks": [
+   "Integration"
+  ],
+  "supporting_competency": "Role Functioning → Shared Responsibility",
+  "notes": "Normalizes the imbalance / over-functioning family (c7, c10, c14, c15).",
+  "core_play_name_internal_prev": "Do your part and leave room for their share"
+ },
+ {
+  "core_play_id": "CP-13",
+  "core_play_name_internal": "Direct Issue Raising (Avoidance Interruption)",
+  "behavioral_target": "Avoiding or going quiet on a hard thing instead of naming it.",
+  "play_function": [
+   "Replace",
+   "Clarify"
+  ],
+  "canonical_protocol": "Pick one hard thing you have been avoiding and say it in a calm, clear way instead of going quiet.",
+  "developmental_tasks": [
+   "Integration",
+   "Cross-Phase (no single task)"
+  ],
+  "supporting_competency": "Communication → Conflict Navigation",
+  "notes": "Competency normalized to Conflict Navigation where the phase has competencies.",
+  "core_play_name_internal_prev": "Name a hard thing instead of avoiding it"
+ },
+ {
+  "core_play_id": "CP-14",
+  "core_play_name_internal": "Boundary Assertion and Needs Expression",
+  "behavioral_target": "Going along with things instead of saying no and asking for what you need.",
+  "play_function": [
+   "Increase",
+   "Clarify"
+  ],
+  "canonical_protocol": "Pick one need or one no, and say it or ask for it in a calm, clear way.",
+  "developmental_tasks": [
+   "Integration",
+   "Cross-Phase (no single task)"
+  ],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "notes": "c14 behaviors span Integration and Cross-Phase; treated as Cross-Phase for competency.",
+  "core_play_name_internal_prev": "Say no and ask for what you need directly"
+ },
+ {
+  "core_play_id": "CP-15",
+  "core_play_name_internal": "Reduce Unnecessary Apology",
+  "behavioral_target": "Over-apologizing out of habit for things that are not your fault.",
+  "play_function": [
+   "Interrupt"
+  ],
+  "canonical_protocol": "Save 'sorry' for when you really did something wrong; when it is not your fault, say what you mean instead.",
+  "developmental_tasks": [
+   "Cross-Phase (no single task)"
+  ],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "notes": "Reduce-behavior play (Decrease) expressed as Interrupt.",
+  "core_play_name_internal_prev": "Save sorry for real faults"
+ },
+ {
+  "core_play_id": "CP-16",
+  "core_play_name_internal": "Action Under Residual Uncertainty",
+  "behavioral_target": "Waiting for full certainty instead of taking a small step and letting the rest show.",
+  "play_function": [
+   "Decide"
+  ],
+  "canonical_protocol": "Pick one small step you can take now, even without feeling fully sure, and let the rest show itself over time.",
+  "developmental_tasks": [
+   "Cross-Phase (no single task)"
+  ],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "notes": "",
+  "core_play_name_internal_prev": "Take a small step before feeling fully sure"
+ },
+ {
+  "core_play_id": "CP-17",
+  "core_play_name_internal": "Difference Acknowledgment and Evaluation",
+  "behavioral_target": "Minimizing real differences because you care, instead of letting them count.",
+  "play_function": [
+   "Clarify",
+   "Decide"
+  ],
+  "canonical_protocol": "Name real differences plainly, even when you care, then look at whether you both can truly live with them.",
+  "developmental_tasks": [
+   "Acceptance"
+  ],
+  "supporting_competency": "Trust → Self-Trust",
+  "notes": "",
+  "core_play_name_internal_prev": "Let real differences count"
+ },
+ {
+  "core_play_id": "CP-18",
+  "core_play_name_internal": "Intentional Disengagement (vs Avoidant Withdrawal)",
+  "behavioral_target": "Drifting out of dating from hopelessness instead of choosing a break on purpose.",
+  "play_function": [
+   "Decide",
+   "Observe"
+  ],
+  "canonical_protocol": "Notice if a dating break is a rest you chose or a way to avoid dating, then pick how long to rest and check in with yourself.",
+  "developmental_tasks": [
+   "Discernment"
+  ],
+  "supporting_competency": "Role Functioning → Intentionality",
+  "notes": "",
+  "core_play_name_internal_prev": "Choose dating breaks on purpose"
+ },
+ {
+  "core_play_id": "CP-19",
+  "core_play_name_internal": "Uncertainty Tolerance Through Observation",
+  "behavioral_target": "Managing or controlling ahead of time instead of letting things unfold and watching.",
+  "play_function": [
+   "Preserve",
+   "Observe"
+  ],
+  "canonical_protocol": "Let one small thing stay open and watch what really happens instead of managing it ahead of time.",
+  "developmental_tasks": [
+   "Cross-Phase (no single task)"
+  ],
+  "supporting_competency": "Task-supported; no competency cleanly maps",
+  "notes": "",
+  "core_play_name_internal_prev": "Let things unfold instead of managing ahead"
+ },
+ {
+  "core_play_id": "CP-20",
+  "core_play_name_internal": "Fit-Based Decision (vs Termination Avoidance)",
+  "behavioral_target": "Staying even when part of you knows it isn't good for you, instead of deciding by fit.",
+  "play_function": [
+   "Observe",
+   "Decide"
+  ],
+  "canonical_protocol": "When you notice you are staying even though part of you knows it isn't good for you, name that, then decide by fit, not by that pull to stay.",
+  "developmental_tasks": [
+   "Discernment"
+  ],
+  "supporting_competency": "Conflict Management → Objectivity",
+  "notes": "Mechanism fix applied ('staying out of fear' removed).",
+  "core_play_name_internal_prev": "Decide by fit, not by staying to avoid ending"
+ }
+]

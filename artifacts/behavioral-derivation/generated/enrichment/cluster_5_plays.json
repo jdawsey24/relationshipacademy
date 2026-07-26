@@ -1,0 +1,69 @@
+[
+{
+"play_name": "Notice if they show up before you give more",
+"behavioral_target": "Chasing people who don't show up, or passing over people who do.",
+"trigger": "You feel pulled toward someone who is hard to reach.",
+"old_play": "You chase people who don't show up, or skip people who do.",
+"function_of_old_play": "This keeps the chase going, but you don't learn if they'll show up for you.",
+"new_play": "Notice how much the other person shows up — do they text back, keep plans, and treat you well? Give more only as they show more.",
+"what_to_expect": "You find out sooner if someone can really meet you back — or can't.",
+"why_supports_task": "It uses what people actually do as your proof, so your choice is based on facts.",
+"supporting_competencies": "Role Functioning → Reciprocity; Trust → Availability",
+"behavioral_source_ids": [
+"STM-0042",
+"STM-0395",
+"STM-0396"
+],
+"contextual_source_ids": [
+"STM-0036"
+],
+"maintaining_behaviors_consolidated": "Chasing unavailable people; dating unavailable people; brushing off available people.",
+"context_limitations": "You still get to feel drawn to someone. This isn't about dating people you don't like.",
+"confidence": "Moderate",
+"review_flag": true,
+"review_reason": "Some sources have unclear function; consolidation spans selection + pursuit."
+},
+{
+"play_name": "Check a worry before you decide",
+"behavioral_target": "Pushing past a warning sign or a gut feeling.",
+"trigger": "Something early on worries you, or your gut says something is off.",
+"old_play": "When something feels off, you push the feeling away or stay anyway.",
+"function_of_old_play": "This keeps things going and skips a hard talk or a hard choice.",
+"new_play": "When something worries you, name exactly what you saw. Then watch it or ask about it before you get more serious.",
+"what_to_expect": "Some worries turn out to be nothing. Others turn out to be real. Either way, you learn the truth.",
+"why_supports_task": "You use your own eyes and gut as real facts again.",
+"supporting_competencies": "Conflict Management → Objectivity, Reflection; Trust → Congruence",
+"behavioral_source_ids": [
+"STM-0037",
+"STM-0553",
+"STM-0554"
+],
+"contextual_source_ids": [],
+"maintaining_behaviors_consolidated": "Ignoring red flags; ignoring intuition; staying after seeing red flags.",
+"context_limitations": "If a worry is about your safety, don't test it — get to a safe place.",
+"confidence": "Moderate",
+"review_flag": true,
+"review_reason": "0554 retrospective; safety carve-out needed."
+},
+{
+"play_name": "Give another chance only if things really change",
+"behavioral_target": "Giving open-ended chances or staying past your own judgment.",
+"trigger": "Someone lets you down, and you're deciding whether to keep going.",
+"old_play": "You give another chance, or stay longer, even when nothing is changing.",
+"function_of_old_play": "This keeps the relationship going for now.",
+"new_play": "If you give another chance, name one real change you need to see, and by when. Then look at what actually happened.",
+"what_to_expect": "You see if the change is real or just hoped for.",
+"why_supports_task": "It turns open-ended hope into a choice based on what you see.",
+"supporting_competencies": "Role Functioning → Boundaries; Trust → Accountability",
+"behavioral_source_ids": [
+"STM-0039",
+"STM-0556"
+],
+"contextual_source_ids": [],
+"maintaining_behaviors_consolidated": "Staying too long; giving one more chance.",
+"context_limitations": "Fixing things and just waiting are not the same. This depends on whether the other person owns their part and changes.",
+"confidence": "Moderate",
+"review_flag": true,
+"review_reason": "Repair-vs-enabling is context-heavy."
+}
+]

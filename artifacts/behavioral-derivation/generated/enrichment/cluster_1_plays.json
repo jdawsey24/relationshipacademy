@@ -1,0 +1,38 @@
+[
+ {
+  "play_name": "Show the real you and see who fits",
+  "behavioral_target": "Changing yourself to match what other people seem to want.",
+  "trigger": "When you want someone to like you.",
+  "old_play": "You shift who you are — your opinions, likes, and needs — to fit them.",
+  "function_of_old_play": "It helps you fit in and keep their interest right now.",
+  "new_play": "Show a small true part of you instead — a real opinion, like, or need — and watch how they take it.",
+  "what_to_expect": "It can feel risky, and some people may step back. That is real information.",
+  "why_supports_task": "Discernment means seeing clearly. When the other person meets the real you, you can tell if you two truly fit.",
+  "supporting_competencies": ["Emotional Intimacy → Authenticity"],
+  "behavioral_source_ids": ["STM-0262"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Changing yourself for other people to fit in and be liked.",
+  "context_limitations": "Small, steady steps are fine. This is not about oversharing with someone you don't trust yet.",
+  "confidence": "Moderate",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "play_name": "Choose your dating breaks on purpose",
+  "behavioral_target": "Not re-engaging with dating apps after feeling discouraged.",
+  "trigger": "After dating feels tiring or lets you down.",
+  "old_play": "You don't get the apps again because you don't feel like it.",
+  "function_of_old_play": "It gives you a break from dating that feels hard right now.",
+  "new_play": "Notice if the break is a rest you chose or a way to avoid dating because it feels hopeless. Pick how long to rest, then check in with yourself.",
+  "what_to_expect": "You may have to sit with the tired, let-down feeling instead of just avoiding it.",
+  "why_supports_task": "Discernment means choosing on purpose. A chosen rest helps you reset; drifting away by default can keep you stuck.",
+  "supporting_competencies": ["Role Functioning → Intentionality"],
+  "behavioral_source_ids": ["STM-0177"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Pulling back from dating apps when discouraged.",
+  "context_limitations": "Resting on purpose is healthy. This only becomes a problem if the pullback is avoidance you didn't really choose.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Single, near-feeling statement with a conditional alternative; meaning depends on whether the break is chosen rest or avoidance."
+ }
+]

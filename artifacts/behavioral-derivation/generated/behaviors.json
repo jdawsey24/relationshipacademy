@@ -1,0 +1,731 @@
+[
+ {
+  "sid": "STM-0036",
+  "statement": "I keep choosing the wrong people.",
+  "primary_ec": 5,
+  "phase": "Exploration",
+  "source_section": "Choosing People",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0037",
+  "statement": "I ignore red flags.",
+  "primary_ec": 5,
+  "phase": "Exploration",
+  "source_section": "Choosing People",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0039",
+  "statement": "I stay too long.",
+  "primary_ec": 5,
+  "phase": "Exploration",
+  "source_section": "Choosing People",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0042",
+  "statement": "I always date emotionally unavailable people.",
+  "primary_ec": 5,
+  "phase": "Exploration",
+  "source_section": "Choosing People",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0048",
+  "statement": "I keep repeating the same relationship.",
+  "primary_ec": 5,
+  "phase": "Exploration",
+  "source_section": "Choosing People",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0050",
+  "statement": "I push people away.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Emotional Availability",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0051",
+  "statement": "I don't let people get close.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Emotional Availability",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0052",
+  "statement": "I leave before they leave.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Emotional Availability",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0055",
+  "statement": "I keep my guard up.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Emotional Availability",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0056",
+  "statement": "I sabotage good relationships.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Emotional Availability",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0076",
+  "statement": "I avoid conflict.",
+  "primary_ec": 7,
+  "phase": "Expansion",
+  "source_section": "Communication",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0078",
+  "statement": "I always have to bring things up.",
+  "primary_ec": 7,
+  "phase": "Expansion",
+  "source_section": "Communication",
+  "track": "Expansion",
+  "secondary_ec": 15
+ },
+ {
+  "sid": "STM-0177",
+  "statement": "I don't even want to download the apps again.",
+  "primary_ec": 1,
+  "phase": "Exploration",
+  "source_section": "Hope & Discouragement",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0212",
+  "statement": "I always have to initiate.",
+  "primary_ec": 15,
+  "phase": "Expansion",
+  "source_section": "Relationship Dynamics",
+  "track": "Expansion",
+  "secondary_ec": 10
+ },
+ {
+  "sid": "STM-0230",
+  "statement": "I keep checking their social media.",
+  "primary_ec": 12,
+  "phase": "Recovery",
+  "source_section": "After a Breakup",
+  "track": "Recovery",
+  "secondary_ec": 6
+ },
+ {
+  "sid": "STM-0262",
+  "statement": "I keep changing myself for other people.",
+  "primary_ec": 1,
+  "phase": "Exploration",
+  "source_section": "Identity & Self-Worth",
+  "track": "Exploration",
+  "secondary_ec": 22
+ },
+ {
+  "sid": "STM-0273",
+  "statement": "I reread conversations over and over.",
+  "primary_ec": 6,
+  "phase": "Exploration",
+  "source_section": "Overthinking",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0289",
+  "statement": "I keep matching with people who never respond.",
+  "primary_ec": 4,
+  "phase": "Exploration",
+  "source_section": "Dating Apps",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0307",
+  "statement": "I don't know why I keep pulling away.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Avoidance",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0314",
+  "statement": "I always find a reason to leave.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Avoidance",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0317",
+  "statement": "I give too much.",
+  "primary_ec": 14,
+  "phase": "Expansion",
+  "source_section": "Boundaries",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0318",
+  "statement": "I stay longer than I should.",
+  "primary_ec": 14,
+  "phase": "Expansion",
+  "source_section": "Boundaries",
+  "track": "Expansion",
+  "secondary_ec": 5
+ },
+ {
+  "sid": "STM-0319",
+  "statement": "I ignore my own needs.",
+  "primary_ec": 14,
+  "phase": "Expansion",
+  "source_section": "Boundaries",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0321",
+  "statement": "I always end up doing everything.",
+  "primary_ec": 14,
+  "phase": "Expansion",
+  "source_section": "Boundaries",
+  "track": "Expansion",
+  "secondary_ec": 10
+ },
+ {
+  "sid": "STM-0357",
+  "statement": "I keep looking for signs they'll cheat.",
+  "primary_ec": 16,
+  "phase": "Expiration",
+  "source_section": "Infidelity & Betrayal",
+  "track": "Expiration",
+  "secondary_ec": 6
+ },
+ {
+  "sid": "STM-0358",
+  "statement": "I can't stop checking their phone.",
+  "primary_ec": 16,
+  "phase": "Expiration",
+  "source_section": "Infidelity & Betrayal",
+  "track": "Expiration",
+  "secondary_ec": 6
+ },
+ {
+  "sid": "STM-0364",
+  "statement": "I keep asking questions that don't bring peace.",
+  "primary_ec": 16,
+  "phase": "Expiration",
+  "source_section": "Infidelity & Betrayal",
+  "track": "Expiration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0395",
+  "statement": "I keep chasing unavailable people.",
+  "primary_ec": 5,
+  "phase": "Exploration",
+  "source_section": "Attraction & Chemistry",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0396",
+  "statement": "I ignore people who would probably treat me well.",
+  "primary_ec": 5,
+  "phase": "Exploration",
+  "source_section": "Attraction & Chemistry",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0420",
+  "statement": "I keep checking when they were last online.",
+  "primary_ec": 6,
+  "phase": "Exploration",
+  "source_section": "Social Media",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0444",
+  "statement": "I say yes when I want to say no.",
+  "primary_ec": 14,
+  "phase": "Cross-Phase",
+  "source_section": "People Pleasing",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0446",
+  "statement": "I avoid difficult conversations.",
+  "primary_ec": 14,
+  "phase": "Cross-Phase",
+  "source_section": "People Pleasing",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0447",
+  "statement": "I apologize too much.",
+  "primary_ec": 14,
+  "phase": "Cross-Phase",
+  "source_section": "People Pleasing",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0448",
+  "statement": "I keep the peace even when I'm unhappy.",
+  "primary_ec": 14,
+  "phase": "Cross-Phase",
+  "source_section": "People Pleasing",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0449",
+  "statement": "I pretend everything is okay.",
+  "primary_ec": 14,
+  "phase": "Cross-Phase",
+  "source_section": "People Pleasing",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0450",
+  "statement": "I don't ask for what I need.",
+  "primary_ec": 14,
+  "phase": "Cross-Phase",
+  "source_section": "People Pleasing",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0456",
+  "statement": "I always have to fix everything.",
+  "primary_ec": 15,
+  "phase": "Expansion",
+  "source_section": "Emotional Exhaustion",
+  "track": "Expansion",
+  "secondary_ec": 10
+ },
+ {
+  "sid": "STM-0461",
+  "statement": "I stopped trying.",
+  "primary_ec": 15,
+  "phase": "Expansion",
+  "source_section": "Emotional Exhaustion",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0464",
+  "statement": "I keep score.",
+  "primary_ec": 15,
+  "phase": "Expansion",
+  "source_section": "Resentment",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0511",
+  "statement": "I ignored our differences because I was in love.",
+  "primary_ec": 21,
+  "phase": "Expiration",
+  "source_section": "Faith & Values",
+  "track": "Expiration",
+  "secondary_ec": 5
+ },
+ {
+  "sid": "STM-0532",
+  "statement": "I always text first.",
+  "primary_ec": 15,
+  "phase": "Exclusivity",
+  "source_section": "Effort & Reciprocity",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0533",
+  "statement": "I'm always the one making plans.",
+  "primary_ec": 15,
+  "phase": "Exclusivity",
+  "source_section": "Effort & Reciprocity",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0534",
+  "statement": "I feel like I'm chasing people.",
+  "primary_ec": 15,
+  "phase": "Exclusivity",
+  "source_section": "Effort & Reciprocity",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0538",
+  "statement": "I keep giving more than I receive.",
+  "primary_ec": 15,
+  "phase": "Exclusivity",
+  "source_section": "Effort & Reciprocity",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0553",
+  "statement": "I ignore my intuition.",
+  "primary_ec": 5,
+  "phase": "Exploration",
+  "source_section": "Trusting Your Own Judgment",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0554",
+  "statement": "I saw the red flags but stayed anyway.",
+  "primary_ec": 5,
+  "phase": "Exploration",
+  "source_section": "Trusting Your Own Judgment",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0556",
+  "statement": "I always give people one more chance.",
+  "primary_ec": 5,
+  "phase": "Exploration",
+  "source_section": "Trusting Your Own Judgment",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0595",
+  "statement": "I always have to bring up the hard conversations.",
+  "primary_ec": 10,
+  "phase": "Expansion",
+  "source_section": "Emotional Labor",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0614",
+  "statement": "I keep bringing up the past.",
+  "primary_ec": 16,
+  "phase": "Expiration",
+  "source_section": "Forgiveness",
+  "track": "Expiration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0655",
+  "statement": "I stayed because I didn't want to be alone.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Hidden Thoughts",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0660",
+  "statement": "I tested them to see if they cared.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Hidden Thoughts",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0661",
+  "statement": "I knew it wasn't healthy, but I stayed anyway.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Hidden Thoughts",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0689",
+  "statement": "I keep waiting for things to get better.",
+  "primary_ec": 11,
+  "phase": "Expiration",
+  "source_section": "Hope vs Reality",
+  "track": "Expiration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0695",
+  "statement": "I keep making excuses for them.",
+  "primary_ec": 11,
+  "phase": "Expiration",
+  "source_section": "Hope vs Reality",
+  "track": "Expiration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0700",
+  "statement": "I stop talking because nothing changes.",
+  "primary_ec": 7,
+  "phase": "Expansion",
+  "source_section": "Communication Frustrations",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0704",
+  "statement": "I avoid difficult conversations because they're exhausting.",
+  "primary_ec": 7,
+  "phase": "Expansion",
+  "source_section": "Communication Frustrations",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0751",
+  "statement": "I still wear my ring.",
+  "primary_ec": 20,
+  "phase": "Recovery",
+  "source_section": "Grief & Loss",
+  "track": "Recovery",
+  "secondary_ec": 12
+ },
+ {
+  "sid": "STM-0777",
+  "statement": "I ruin good things before they can grow.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Self-Sabotage",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0779",
+  "statement": "I push people away when they get close.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Self-Sabotage",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0780",
+  "statement": "I test people to see if they'll stay.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Self-Sabotage",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0782",
+  "statement": "I leave before I can be left.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Self-Sabotage",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0786",
+  "statement": "I don't know how to stop getting in my own way.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Self-Sabotage",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0819",
+  "statement": "I'm always trying to keep the peace.",
+  "primary_ec": 17,
+  "phase": "Cross-Phase",
+  "source_section": "Adult Children & Parents",
+  "track": "Expansion",
+  "secondary_ec": 14
+ },
+ {
+  "sid": "STM-0881",
+  "statement": "I always reach out first.",
+  "primary_ec": 2,
+  "phase": "Cross-Phase",
+  "source_section": "Friendship",
+  "track": "Exploration",
+  "secondary_ec": 15
+ },
+ {
+  "sid": "STM-0949",
+  "statement": "I always need a plan.",
+  "primary_ec": 22,
+  "phase": "Cross-Phase",
+  "source_section": "Control",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0952",
+  "statement": "I have a hard time letting relationships unfold naturally.",
+  "primary_ec": 22,
+  "phase": "Cross-Phase",
+  "source_section": "Control",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0953",
+  "statement": "I prepare for disappointment before it happens.",
+  "primary_ec": 22,
+  "phase": "Cross-Phase",
+  "source_section": "Control",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0963",
+  "statement": "I keep waiting until I'm \"ready.\"",
+  "primary_ec": 23,
+  "phase": "Cross-Phase",
+  "source_section": "Perfectionism",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0966",
+  "statement": "I keep trying to find certainty before I move forward.",
+  "primary_ec": 23,
+  "phase": "Cross-Phase",
+  "source_section": "Perfectionism",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0985",
+  "statement": "I pretend everything is okay.",
+  "primary_ec": 23,
+  "phase": "Cross-Phase",
+  "source_section": "Shame",
+  "track": "Recovery",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0988",
+  "statement": "I edit myself to avoid conflict.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Emotional Safety",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0989",
+  "statement": "I keep my feelings to myself.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Emotional Safety",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-0994",
+  "statement": "I don't know how to stop wearing a mask.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Emotional Safety",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-1010",
+  "statement": "I go through the motions.",
+  "primary_ec": 8,
+  "phase": "Expansion",
+  "source_section": "Emotional Presence",
+  "track": "Expansion",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-1030",
+  "statement": "I'm trying to unlearn what I grew up with.",
+  "primary_ec": 25,
+  "phase": "Cross-Phase",
+  "source_section": "Learning",
+  "track": "Renewal",
+  "secondary_ec": 26
+ },
+ {
+  "sid": "STM-1039",
+  "statement": "I keep waiting to see if this holds up over time.",
+  "primary_ec": 24,
+  "phase": "Exclusivity",
+  "source_section": "Candidate — Exclusivity (Evaluate Sustained Investment)",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-1040",
+  "statement": "I'm sharing more of myself, but I don't know if it's safe yet.",
+  "primary_ec": 3,
+  "phase": "Exploration",
+  "source_section": "Candidate — Exclusivity (Evaluate Vulnerability)",
+  "track": "Exploration",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-1048",
+  "statement": "I'm watching to see if their actions match what they promised.",
+  "primary_ec": 5,
+  "phase": "Exclusivity",
+  "source_section": "Candidate — Exclusivity (Build and Evaluate Trust)",
+  "track": "Exclusivity",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-1054",
+  "statement": "I'm testing whether I can actually depend on them.",
+  "primary_ec": 6,
+  "phase": "Exploration",
+  "source_section": "Candidate — Exclusivity (Deepen Emotional Intimacy)",
+  "track": "Exploration",
+  "secondary_ec": 3
+ },
+ {
+  "sid": "STM-1058",
+  "statement": "I'm putting energy into my work again instead of just surviving.",
+  "primary_ec": 13,
+  "phase": "Renewal",
+  "source_section": "Candidate — Renewal (Career)",
+  "track": "Renewal",
+  "secondary_ec": null
+ },
+ {
+  "sid": "STM-1085",
+  "statement": "I keep my guard up so I don't get taken advantage of again.",
+  "primary_ec": 27,
+  "phase": "Exploration",
+  "source_section": "New Cluster — Fear of Being Used Again",
+  "track": "Exploration",
+  "secondary_ec": 3
+ }
+]

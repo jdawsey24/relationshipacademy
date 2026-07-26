@@ -1,0 +1,20 @@
+[
+ {
+  "play_name": "Step back from checking your ex's pages",
+  "behavioral_target": "Checking an ex's social media over and over after a breakup.",
+  "trigger": "After a breakup, you feel a strong pull to see what your ex is doing.",
+  "old_play": "You check their social media again and again.",
+  "function_of_old_play": "Checking keeps you connected to them in a small way, so it feels like you have not fully let go.",
+  "new_play": "When you feel the urge to check, name what you feel first. Then wait it out, or mute their page for a set time, and see how each day goes.",
+  "what_to_expect": "At first you may feel more anxious, like you are missing out on their life.",
+  "why_supports_task": "Giving the hurt room to fade helps you heal, which is the work of this phase.",
+  "supporting_competencies": "None available (source gap)",
+  "behavioral_source_ids": ["STM-0230"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Repeatedly checking an ex's social media after the breakup.",
+  "context_limitations": "If you must stay in touch for real reasons, like shared kids or money, keep only what you truly need.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Recovery phase has no competencies in the framework (source gap); the alternative is an observation/pacing move grounded only in the Healing task."
+ }
+]

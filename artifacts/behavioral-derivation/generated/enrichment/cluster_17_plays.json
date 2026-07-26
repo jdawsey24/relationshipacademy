@@ -1,0 +1,20 @@
+[
+ {
+  "play_name": "Let your real view be known",
+  "behavioral_target": "Always keeping the peace by hiding how you feel.",
+  "trigger": "Something bothers you, but speaking up could cause tension.",
+  "old_play": "You keep the peace and hold your feelings in.",
+  "function_of_old_play": "Keeping the peace helps you avoid conflict and tension in the moment.",
+  "new_play": "Say one true thing about how you feel. You do not have to fix it or fight.",
+  "what_to_expect": "Things may feel tense for a bit. You find out if the calm was real or just quiet.",
+  "why_supports_task": "Letting your real view be known helps others know you and helps you see if the peace is shared. This work does not sit in one relationship phase.",
+  "supporting_competencies": ["None available (source gap)"],
+  "behavioral_source_ids": ["STM-0819"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": ["Always keeping the peace"],
+  "context_limitations": "Keeping the peace is fine at times. This is about when you always do it and hide how you feel. If a home is not safe, staying quiet can be a way to stay safe.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Cross-Phase source gap: no competency maps and there is no single developmental task. The maintaining role fits the always-keeping-the-peace pattern in a family context."
+ }
+]

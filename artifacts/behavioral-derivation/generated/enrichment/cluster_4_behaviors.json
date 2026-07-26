@@ -1,0 +1,19 @@
+[
+ {
+  "sid": "STM-0289",
+  "trigger_or_context": "You are on a dating app. You match with people, but a lot of them never write back or the chat dies fast.",
+  "maintaining_role": "Context Dependent",
+  "short_term_function": "Matching keeps you active in the dating pool and keeps you trying instead of stopping.",
+  "developmental_cost": "When you keep putting effort into matches who do not write back, you learn almost nothing real about anyone. It also wears you down.",
+  "relevant_developmental_task": "Discernment",
+  "relevant_rlc_competency": "Communication → Reciprocity",
+  "adaptive_alternative_1": "When you match with someone, watch to see if they actually write back and keep the chat going. Put your time into the ones who do. If a match stays quiet, let that show you where not to spend more effort.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You find out who really shows up in a conversation. You spend your energy where there is real back-and-forth.",
+  "expected_discomfort_or_cost": "You may let go of quiet matches you were hoping would come around. That can feel like a small loss each time.",
+  "context_conditions": "Matching with a lot of people is normal on apps. This is not about matching less. It is about where you put your energy after you match.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Meaning is context dependent, and the short-term function needs some inference; the phrase 'who never respond' is partly an outcome the person does not control."
+ }
+]

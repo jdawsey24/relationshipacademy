@@ -1,0 +1,38 @@
+[
+ {
+  "play_name": "Let real actions over time answer your fears, not searching",
+  "behavioral_target": "Watching and searching for proof after a betrayal, instead of letting real behavior over time show whether trust can grow.",
+  "trigger": "After being cheated on, you feel afraid it will happen again.",
+  "old_play": "You look for signs they'll cheat and check their phone to find proof.",
+  "function_of_old_play": "This lets you feel like you are guarding against danger instead of sitting with not knowing.",
+  "new_play": "When you feel the urge to scan or search, pause. Name what you need to feel safe and say it out loud. Then let their real, day-to-day actions over time show you the answer.",
+  "what_to_expect": "Not checking can feel scary, and you have to sit with not knowing for a while.",
+  "why_supports_task": "Watching real actions over time helps you build wise trust and accept what is true, instead of staying stuck in searching.",
+  "supporting_competencies": ["Trust → Wise Trust"],
+  "behavioral_source_ids": ["STM-0357", "STM-0358"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Looking for signs they'll cheat (STM-0357) and checking their phone (STM-0358) are both ways of searching for proof that keep trust from settling.",
+  "context_limitations": "Watching real, steady actions over time can be wise. Constant scanning or searching for threat keeps the pattern going.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Consolidates one Context-Dependent (STM-0357) and one Likely-Maintains (STM-0358) behavior; the conditional (observing real change vs. anxious surveillance) must be kept so this is not applied as a rule to stop all watchfulness."
+ },
+ {
+  "play_name": "Pause before you reopen an old hurt",
+  "behavioral_target": "Going back to the betrayal again and again through questions or bringing up the past, instead of letting it rest or fixing what truly needs fixing.",
+  "trigger": "The hurt from the past is still on your mind and you want it to feel okay.",
+  "old_play": "You ask questions that don't bring peace and keep bringing up the past.",
+  "function_of_old_play": "This keeps you searching for an answer or keeps the hurt out in the open instead of letting it rest.",
+  "new_play": "When you feel pulled to ask again or bring up the past, pause. Ask if there is one real thing that still needs to be worked out. If there is, name it plainly. If not, let it rest for now.",
+  "what_to_expect": "Some questions may never be answered, and letting the past rest can feel like letting them off the hook.",
+  "why_supports_task": "Knowing which hurts need repair and which need to rest helps you accept what happened and stop re-living it.",
+  "supporting_competencies": ["Conflict Management → Restraint", "Communication → Reorientation"],
+  "behavioral_source_ids": ["STM-0364", "STM-0614"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Asking questions that don't bring peace (STM-0364) and bringing up the past (STM-0614) both keep re-opening the hurt, which blocks acceptance.",
+  "context_limitations": "Naming a real, unresolved problem is healthy. Repeating the same hurt over and over when nothing is left to solve keeps the pattern going.",
+  "confidence": "Moderate",
+  "review_flag": false,
+  "review_reason": ""
+ }
+]

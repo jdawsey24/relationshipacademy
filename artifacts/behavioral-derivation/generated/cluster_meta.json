@@ -1,0 +1,137 @@
+{
+"1": {
+"name": "Difficulty Feeling Chosen",
+"core_challenge": "I don't feel like anyone chooses me.",
+"description": "Self-worth colliding with repeated disappointment. These people aren't necessarily struggling to meet people or communicate — they keep experiencing rejection, invisibility, or being an option rather than a choice, and it's eroding how they see themselves."
+},
+"2": {
+"name": "Difficulty Creating Meaningful Connections",
+"core_challenge": "I don't know how to connect with people.",
+"description": "This isn't rejection — it's a skills-and-access gap. These people struggle to meet people, start conversations, flirt, or move past small talk, in dating and in friendship alike."
+},
+"3": {
+"name": "Fear of Being Fully Known",
+"core_challenge": "I push people away before they can really know me.",
+"description": "These people push people away, stop responding, test partners, or leave before they can be left. The block isn't opportunity — it's vulnerability. Note: in your source doc this content is filed under Exploration (“Emotional Availability”), but per the manual, guardedness under closeness is what Exclusivity's Purpose #5 is designed to test (“whether greater closeness can be tolerated and maintained”) — worth revisiting where this lives if you back-map clusters to phases."
+},
+"4": {
+"name": "Feeling Like You Don't Belong in Today's Dating World",
+"core_challenge": "Dating feels impossible today.",
+"description": "The cultural cluster. Apps, ghosting, breadcrumbing, red-pill/blue-pill language — these people feel like modern dating itself is the obstacle, not them personally."
+},
+"5": {
+"name": "Difficulty Trusting Your Own Judgment",
+"core_challenge": "I don't trust my own judgment anymore.",
+"description": "A pattern-level challenge, across relationships: red flags ignored, chemistry mistaken for compatibility, the same relationship repeating with a new face. Distinct from Cluster 24 — this is about the person's judgment in general, not their read on one specific relationship."
+},
+"6": {
+"name": "Feeling Like I Need Constant Reassurance",
+"core_challenge": "I need reassurance all the time.",
+"description": "Overthinking, jealousy, constant reassurance-seeking, social-media surveillance of a partner. The relationship may be fine — the nervous system isn't convinced."
+},
+"7": {
+"name": "Difficulty Communicating Without It Becoming a Fight",
+"core_challenge": "Every conversation turns into an argument.",
+"description": "The same argument on repeat, feeling unheard, shutting down or exploding, no ability to repair. A skills gap in an otherwise intact relationship."
+},
+"8": {
+"name": "Feeling Like We're Growing Apart",
+"core_challenge": "We feel like roommates.",
+"description": "Roommate syndrome. Partners who no longer feel like a team, don't spend real time together, and have quietly stopped being emotionally present to one another."
+},
+"9": {
+"name": "Difficulty Staying Physically Connected",
+"core_challenge": "We don't have sex anymore.",
+"description": "Desire discrepancy, avoided conversations about sex, feeling undesired or unattractive, physical affection that's disappeared."
+},
+"10": {
+"name": "Feeling Like I'm Carrying This Alone",
+"core_challenge": "Everything falls on me.",
+"description": "One partner doing the emotional and logistical labor of the relationship — parenting the partner, always the one to initiate, always the one who remembers."
+},
+"11": {
+"name": "Difficulty Accepting This Relationship Is Ending",
+"core_challenge": "I don't know if this is fixable.",
+"description": "Maps to Expiration's actual central question — “Can I accept what is happening?” The relationship hasn't ended; its current form is. This isn't grief (that's Recovery, Cluster 12) and it isn't first-stage discernment (that's Cluster 24) — it's resisting or working toward acceptance of a decline already underway. Includes long-distance viability doubt and hope-vs-reality hanging on, since both are forms of the same resistance."
+},
+"12": {
+"name": "Difficulty Letting Go of What's Already Over",
+"core_challenge": "I can't move on.",
+"description": "Recovery's central question. The relationship is over (Dissolution has occurred); the person is doing the work of healing — rumination, comparison to an ex, difficulty starting over, regret, embarrassment about how it ended."
+},
+"13": {
+"name": "Fear of Trying Again",
+"core_challenge": "I'm ready, but I want to do it right.",
+"description": "True Renewal-phase language, per the manual: not “dating again” specifically and not general self-improvement (see Cluster 25) — this is the broader reengagement with life, hope, and possibility that follows healing, carrying lessons forward rather than starting over."
+},
+"14": {
+"name": "Difficulty Saying No",
+"core_challenge": "I give too much and don't know how to stop.",
+"description": "Difficulty saying no, guilt around boundaries, chronic over-functioning for others at their own expense."
+},
+"15": {
+"name": "Feeling Like I'm Taken for Granted",
+"core_challenge": "I feel taken for granted.",
+"description": "Built-up bitterness from imbalance — unappreciated effort, one-sided initiation, exhaustion from carrying more than their share for too long."
+},
+"16": {
+"name": "Difficulty Trusting Again After Betrayal",
+"core_challenge": "I don't know if I can ever trust them again.",
+"description": "Infidelity, addiction relapse, broken promises — people rebuilding (or deciding whether to rebuild) trust after a specific violation."
+},
+"17": {
+"name": "Feeling Like I'm Behind Everyone Else",
+"core_challenge": "I feel behind everyone else.",
+"description": "Pressure and comparison from family, timelines, weddings, and social milestones — the felt judgment of being 'behind,' single, or unconventional."
+},
+"18": {
+"name": "Feeling Like Money and Work Are Pulling Us Apart",
+"core_challenge": "Money is causing constant tension.",
+"description": "Financial disagreement, career divergence, and ambition strain that shows up as relational conflict even though the root cause is external."
+},
+"19": {
+"name": "Feeling Like Parenting Changed Everything",
+"core_challenge": "Parenting has changed us.",
+"description": "Couples and co-parents navigating disagreement, exhaustion, or disconnection specifically introduced by raising children together (or apart)."
+},
+"20": {
+"name": "Difficulty Recognizing My Own Life",
+"core_challenge": "I don't recognize my life anymore.",
+"description": "Divorce, widowhood, illness, infertility, or caregiving that has upended someone's sense of self and forced them to rebuild an identity, not just a relationship status."
+},
+"21": {
+"name": "Feeling Like We Want Different Things",
+"core_challenge": "We love each other, but we want different lives.",
+"description": "Faith, culture, lifestyle, or life-goal misalignment — the relationship isn't broken, it's pointed in two different directions."
+},
+"22": {
+"name": "Fear of Losing Myself",
+"core_challenge": "I don't want to lose my independence.",
+"description": "People who equate commitment with losing autonomy, and who manage that fear through control, distance, or resistance to depending on anyone."
+},
+"23": {
+"name": "Fear of Making the Wrong Choice",
+"core_challenge": "I'm afraid of making the wrong decision.",
+"description": "Paralysis, self-criticism, and shame driven by a need to make the 'correct' relationship decision — not fear of the person, fear of the mistake."
+},
+"24": {
+"name": "Difficulty Knowing Whether to Invest",
+"core_challenge": "I don't know if I should lean in or walk away.",
+"description": "Sits exactly at the transition your manual names explicitly: “Exploration answers: Should we choose one another? Exclusivity answers: What happens when we do?” These are statements from the decision point itself — undefined status, hesitation to commit further, not knowing when to walk away or lean in — not Exclusivity's aftermath (which isn't separately represented in your source doc; see workbook note). Distinct from Cluster 5, which is a person's judgment pattern across relationships, not their read on this one."
+},
+"25": {
+"name": "Feeling Like No One Taught Me How to Do This",
+"core_challenge": "I never learned how to have healthy relationships.",
+"description": "A meta-level want for relationship literacy itself — not healing from a specific loss (Cluster 12) and not post-healing reengagement (Cluster 13). These people are naming a skills gap: love was present but the relationship still struggled because no one ever taught them how."
+},
+"26": {
+"name": "Fear of Repeating What I Inherited",
+"core_challenge": "I don't want my children to repeat my mistakes.",
+"description": "Distinct from Cluster 25 because the motivation is protective and future-facing — for children and what gets passed down, not primarily for the person's own growth."
+},
+"27": {
+"name": "Fear of Being Used Again",
+"core_challenge": "I feel used in relationships.",
+"description": "Being valued for what you provide instead of who you are, plus the fear of being disposable once you stop providing it. This is the underlying wound shared by both achievement/status-transactional dating narratives and invisible-emotional-labor narratives — different vocabulary, same fear: that connection was never really about you."
+}
+}

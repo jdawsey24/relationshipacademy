@@ -1,0 +1,19 @@
+[
+ {
+  "sid": "STM-0751",
+  "trigger_or_context": "The relationship has ended, but you still put your ring on.",
+  "maintaining_role": "Context Dependent",
+  "short_term_function": "Keeping the ring on keeps part of the bond close, so it feels like you have not fully let go.",
+  "developmental_cost": "A daily reminder can keep the loss feeling fresh, so letting go and healing may take longer.",
+  "relevant_developmental_task": "Healing",
+  "relevant_rlc_competency": "None available (source gap)",
+  "adaptive_alternative_1": "Notice why the ring stays on right now. If it brings you comfort while you grieve, that is okay. If it keeps you from facing the loss, try setting it aside for a set time and watch how each day feels.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You learn if the ring is helping you grieve or holding you back from healing.",
+  "expected_discomfort_or_cost": "Taking it off, even for a little while, can bring up sad or lonely feelings.",
+  "context_conditions": "There is no set clock for grief. Wearing a ring to honor someone you loved or lost can be healthy. This is about your own healing, not a rule.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Recovery phase has no competencies in the framework, so the alternative cannot map to an existing competency (source gap). Meaning is context dependent; the ring may comfort grief or delay letting go, and the move is grounded only in the Healing task."
+ }
+]

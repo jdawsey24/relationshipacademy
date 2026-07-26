@@ -1,0 +1,19 @@
+[
+ {
+  "sid": "STM-1085",
+  "trigger_or_context": "You are getting to know someone new. You feel a pull to stay closed off so you don't get used again.",
+  "maintaining_role": "Context Dependent",
+  "short_term_function": "Staying guarded keeps you feeling safe. You don't have to risk getting used or hurt again.",
+  "developmental_cost": "When your guard is always up, people never get a chance to show you who they really are. So you can't tell safe people from unsafe ones.",
+  "relevant_developmental_task": "Discernment",
+  "relevant_rlc_competency": "Trust → Reliability",
+  "adaptive_alternative_1": "Notice when your guard is up. Let it down a little in small, safe ways. Then watch how the person treats you before you open more.",
+  "adaptive_alternative_2": "",
+  "what_new_response_supports": "You get to see if this person is really safe, instead of guessing. You learn who has earned more of your trust.",
+  "expected_discomfort_or_cost": "Letting your guard down even a little can feel scary. You may feel unsure for a while.",
+  "context_conditions": "If someone has shown they hurt you, or your safety is at risk, keeping your guard up is smart. This is only about people who have not shown they are unsafe.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Context-dependent: guardedness can be healthy pacing or a wall that blocks real information. The meaning depends on whether it is calibrated to what the person actually shows, so the alternative stays conditional."
+ }
+]

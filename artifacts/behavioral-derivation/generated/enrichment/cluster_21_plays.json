@@ -1,0 +1,22 @@
+[
+ {
+  "play_name": "Let real differences count, even when you love someone",
+  "behavioral_target": "Pushing aside big differences, like values, faith, or future plans, because strong feelings feel more important.",
+  "trigger": "You feel strong love for someone, and you also notice you two want different things in important areas.",
+  "old_play": "You ignore the differences so you can keep loving them and keep the relationship going.",
+  "function_of_old_play": "Ignoring the differences protects the good feelings for now. You do not have to face that you may not fit.",
+  "new_play": "Let the differences be real. Name them plainly, even though you care. Then look at whether you both can truly live with them.",
+  "what_to_expect": "It can hurt to admit that love may not be enough. You may feel loss or have to make a hard choice.",
+  "why_supports_task": "You get an honest picture of what is true. That helps you accept what happened and stop loving past real facts.",
+  "supporting_competencies": ["Trust → Self-Trust"],
+  "behavioral_source_ids": ["STM-0511"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": ["Ignoring important differences because of strong feelings of love"],
+  "context_limitations": "Every couple has some differences. This is about not ignoring the big ones just because feelings are strong. If a difference is about your safety, take it seriously.",
+  "phase": "Expiration",
+  "developmental_task": "Acceptance",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Retrospective, past-tense wording; the alternative is a discernment-style derivation placed inside the Expiration/Acceptance task."
+ }
+]

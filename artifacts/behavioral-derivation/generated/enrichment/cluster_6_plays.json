@@ -1,0 +1,38 @@
+[
+ {
+  "play_name": "Stop checking and get a real answer",
+  "behavioral_target": "Checking old messages or their online status to feel sure, instead of getting real information.",
+  "trigger": "You feel unsure where things stand, so you reread the chat or check when they were last online.",
+  "old_play": "You go back over old words or watch their online time to look for an answer on your own.",
+  "function_of_old_play": "It gives you a small sense of an answer without having to ask or wait.",
+  "new_play": "When you catch yourself checking, name the one thing you really want to know. Then ask it in plain words, or watch what they actually do next.",
+  "what_to_expect": "You may have to sit with not knowing for a bit, and give up the small hit you get from checking. A real answer may be one you don't like.",
+  "why_supports_task": "Discernment means learning to read a person from real facts. Asking or watching real actions gives you facts. Rereading and status-checking only feed the worry.",
+  "supporting_competencies": ["Communication → Clarification", "Trust → Availability"],
+  "behavioral_source_ids": ["STM-0273", "STM-0420"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Rereading conversations over and over (STM-0273); checking when they were last online (STM-0420).",
+  "context_limitations": "This is about easing the worry-checking loop, not about ignoring real safety concerns.",
+  "confidence": "Moderate",
+  "review_flag": false,
+  "review_reason": ""
+ },
+ {
+  "play_name": "Ask for what you need instead of testing",
+  "behavioral_target": "Setting up secret tests to see if you can depend on someone.",
+  "trigger": "You are not sure you can count on this person, so you test them without telling them.",
+  "old_play": "You set up small tests and watch to see if they pass, instead of asking straight out.",
+  "function_of_old_play": "It lets you check if you can count on them without having to say what you need.",
+  "new_play": "Name one real thing you need. Ask for it in plain words. Then watch, over time, if they come through.",
+  "what_to_expect": "You have to say your need out loud, which can feel risky. They might not come through, and that answer tells you something too.",
+  "why_supports_task": "Discernment means finding out if someone is dependable from real tries. A clear need plus real follow-through gives you a true read; secret tests give mixed, unclear results.",
+  "supporting_competencies": ["Trust → Dependability"],
+  "behavioral_source_ids": ["STM-1054"],
+  "contextual_source_ids": [],
+  "maintaining_behaviors_consolidated": "Testing to see whether you can actually depend on them (STM-1054).",
+  "context_limitations": "Wanting to know if someone is dependable is healthy; this play only changes secret tests into a clear ask plus real observing.",
+  "confidence": "Moderate",
+  "review_flag": true,
+  "review_reason": "Rests on reading STM-1054 as contrived testing rather than plain observing; candidate-section item, so the maintaining call could shift on review."
+ }
+]
