@@ -4,7 +4,7 @@
 // order, collects the user's work into a draft, and assembles the executable output.
 // Screen kinds are a discriminated union; unknown kinds are skipped defensively.
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import type { Play, Screen } from "@/lib/playbook/contentSchema";
 import SortEngine from "@/components/playbook/SortEngine";
 
@@ -82,6 +82,157 @@ function ChipInput({ value, onChange, placeholder, suggestions }: { value: strin
 
 const nextBtn = "rounded-full bg-coral-rose px-6 py-3 font-ui text-sm font-medium text-white transition hover:opacity-90";
 
+// ---- Interaction registry ------------------------------------------------------
+// The universal, slotted walker renders each screen by looking up its kind in this
+// registry rather than a monolithic switch. This is the shared mechanism later Rev 3
+// walkers (Simulation / Mission / UseReview) reuse; the Rev 3 signature primitives
+// (evidenceTimeline, conclusionNarrowing) register here in a later step. Behavior is
+// identical to the prior switch (behavioral + persistence parity, §16 step 2).
+
+type Summary = { label: string; value: string }[];
+
+interface ScreenCtx {
+  play: Play;
+  i: number;
+  draft: Draft;
+  summary: Summary;
+  setField: (key: string, v: unknown) => void;
+  advance: () => void;
+  onExit: () => void;
+  onSaveOutput: (payload: Record<string, unknown>) => void;
+  onScreenText?: (text: string) => void;
+  onRoute?: (toPlayId: string) => void;
+}
+
+type ScreenRenderer<K extends Screen["kind"]> = (s: Extract<Screen, { kind: K }>, ctx: ScreenCtx) => ReactNode;
+
+const SCREEN_REGISTRY: { [K in Screen["kind"]]: ScreenRenderer<K> } = {
+  shift: (s, ctx) => (
+    <div className="space-y-6">
+      <Prose body={s.body} />
+      <button type="button" className={nextBtn} onClick={ctx.advance}>Continue</button>
+    </div>
+  ),
+  learn: (s, ctx) => (
+    <div className="space-y-6">
+      <Prose body={s.body} />
+      <button type="button" className={nextBtn} onClick={ctx.advance}>Continue</button>
+    </div>
+  ),
+  emotionBeat: (s, ctx) => (
+    <div className="space-y-6">
+      <Prose body={s.body} />
+      {ctx.play.routing && ctx.onRoute && (
+        <button type="button" onClick={() => ctx.onRoute!(ctx.play.routing!.toPlayId)} className="block font-ui text-sm text-midnight-navy underline">
+          {ctx.play.routing.label}
+        </button>
+      )}
+      <button type="button" className={nextBtn} onClick={ctx.advance}>Continue</button>
+    </div>
+  ),
+  literature: (s, ctx) => <LiteratureScreen l1={s.l1} l2={s.l2} l2Heading={s.l2Heading} onNext={ctx.advance} />,
+  scenarioSort: (s, ctx) => (
+    <ScenarioSortScreen
+      key={ctx.i}
+      data={s}
+      onDone={(assignments, evidence) => {
+        ctx.setField(`sort_${ctx.i}`, assignments);
+        if (evidence) ctx.setField(`evidence_${ctx.i}`, evidence);
+        ctx.advance();
+      }}
+    />
+  ),
+  ownTurn: (s, ctx) => (
+    <OwnTurnScreen key={ctx.i} data={s} draft={ctx.draft} setField={ctx.setField} onScreenText={ctx.onScreenText} onNext={ctx.advance} />
+  ),
+  sufficiency: (s, ctx) => (
+    <SufficiencyScreen
+      key={ctx.i}
+      data={s}
+      onDone={(res) => {
+        ctx.setField("sufficiency", res.choice);
+        if (res.needToKnow) ctx.setField("need_to_know", res.needToKnow);
+        if (res.observable) ctx.setField("observable_evidence", res.observable);
+        ctx.advance();
+      }}
+    />
+  ),
+  ruleBuilder: (s, ctx) => (
+    <RuleBuilderScreen
+      key={ctx.i}
+      data={s}
+      initialCondition={(ctx.draft["observable_evidence"] as string) ?? ""}
+      onDone={(rule) => {
+        ctx.setField("rule", rule);
+        ctx.advance();
+      }}
+    />
+  ),
+  sentenceBuilder: (s, ctx) => (
+    <SentenceBuilderScreen
+      key={ctx.i}
+      data={s}
+      initial=""
+      onDone={(sentence) => {
+        ctx.setField("narrowest_true_thing", sentence);
+        ctx.advance();
+      }}
+    />
+  ),
+  output: (s, ctx) => (
+    <div className="space-y-5">
+      <h2 className="font-display text-2xl text-midnight-navy">{s.heading}</h2>
+      {s.body && <p className="font-body text-[15px] text-charcoal/70">{s.body}</p>}
+      <dl className="space-y-3">
+        {ctx.summary.map((r, idx) => (
+          <div key={idx} className="rounded-xl bg-warm-ivory px-4 py-3">
+            <dt className="font-ui text-xs uppercase tracking-wide text-charcoal/50">{prettyLabel(r.label)}</dt>
+            <dd className="mt-1 font-body text-[15px] text-charcoal">{r.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <div className="flex flex-wrap gap-3">
+        <button type="button" className={nextBtn} onClick={() => { ctx.onSaveOutput({ ...ctx.draft }); ctx.advance(); }}>
+          Save to My Plays
+        </button>
+        <button type="button" className="rounded-full border border-midnight-navy px-6 py-3 font-ui text-sm text-midnight-navy" onClick={ctx.advance}>
+          Just take it with me
+        </button>
+      </div>
+    </div>
+  ),
+  portable: (s, ctx) => (
+    <div className="space-y-5">
+      <h2 className="font-display text-xl text-midnight-navy">{s.heading}</h2>
+      <ol className="space-y-2">
+        {s.steps.map((step, idx) => (
+          <li key={idx} className="flex gap-3 font-body text-[16px] text-charcoal/85">
+            <span className="font-ui text-coral-rose">{idx + 1}.</span> {step}
+          </li>
+        ))}
+      </ol>
+      <button type="button" className={nextBtn} onClick={ctx.advance}>Continue</button>
+    </div>
+  ),
+  realWorldUse: (s, ctx) => (
+    <div className="space-y-5">
+      <h2 className="font-display text-xl text-midnight-navy">Use it in real life</h2>
+      <p className="font-body text-[16px] text-charcoal/85"><span className="font-medium">Use this when</span> {s.useWhen}</p>
+      <p className="font-body text-[16px] text-charcoal/85"><span className="font-medium">Do:</span> {s.doThis}</p>
+      {s.safetyNote && (
+        <p className="rounded-2xl bg-amber-warm/15 px-4 py-3 font-body text-[15px] text-charcoal/85" role="note">{s.safetyNote}</p>
+      )}
+      <button type="button" className={nextBtn} onClick={ctx.onExit}>Done — back to board</button>
+    </div>
+  ),
+};
+
+/** Look up and render a screen by kind. Unknown kinds are skipped defensively. */
+function renderScreen(s: Screen, ctx: ScreenCtx): ReactNode {
+  const renderer = SCREEN_REGISTRY[s.kind] as ((s: Screen, ctx: ScreenCtx) => ReactNode) | undefined;
+  return renderer ? renderer(s, ctx) : null;
+}
+
 export default function PlayContainer({ play, onSaveOutput, onExit, onRoute, onScreenText }: PlayContainerProps) {
   const [i, setI] = useState(0);
   const [draft, setDraft] = useState<Draft>({});
@@ -90,8 +241,8 @@ export default function PlayContainer({ play, onSaveOutput, onExit, onRoute, onS
   const advance = () => setI((n) => Math.min(n + 1, play.screens.length));
   const setField = (key: string, v: unknown) => setDraft((d) => ({ ...d, [key]: v }));
 
-  const summary = useMemo(() => {
-    const rows: { label: string; value: string }[] = [];
+  const summary = useMemo<Summary>(() => {
+    const rows: Summary = [];
     for (const [k, v] of Object.entries(draft)) {
       if (typeof v === "string" && v.trim()) rows.push({ label: k, value: v });
       else if (Array.isArray(v) && v.length) rows.push({ label: k, value: (v as string[]).join(" · ") });
@@ -104,6 +255,8 @@ export default function PlayContainer({ play, onSaveOutput, onExit, onRoute, onS
     // Reached the end without an explicit output screen — exit.
     return null;
   }
+
+  const ctx: ScreenCtx = { play, i, draft, summary, setField, advance, onExit, onSaveOutput, onScreenText, onRoute };
 
   return (
     <div className="mx-auto max-w-2xl">
@@ -126,148 +279,10 @@ export default function PlayContainer({ play, onSaveOutput, onExit, onRoute, onS
       )}
 
       <div className="rounded-3xl bg-white/60 p-6 sm:p-8">
-        {renderScreen(screen)}
+        {renderScreen(screen, ctx)}
       </div>
     </div>
   );
-
-  function renderScreen(s: Screen) {
-    switch (s.kind) {
-      case "shift":
-      case "learn":
-        return (
-          <div className="space-y-6">
-            <Prose body={s.body} />
-            <button type="button" className={nextBtn} onClick={advance}>Continue</button>
-          </div>
-        );
-      case "emotionBeat":
-        return (
-          <div className="space-y-6">
-            <Prose body={s.body} />
-            {play.routing && onRoute && (
-              <button type="button" onClick={() => onRoute(play.routing!.toPlayId)} className="block font-ui text-sm text-midnight-navy underline">
-                {play.routing.label}
-              </button>
-            )}
-            <button type="button" className={nextBtn} onClick={advance}>Continue</button>
-          </div>
-        );
-      case "literature":
-        return <LiteratureScreen l1={s.l1} l2={s.l2} l2Heading={s.l2Heading} onNext={advance} />;
-      case "scenarioSort":
-        return (
-          <ScenarioSortScreen
-            key={i}
-            data={s}
-            onDone={(assignments, evidence) => {
-              setField(`sort_${i}`, assignments);
-              if (evidence) setField(`evidence_${i}`, evidence);
-              advance();
-            }}
-          />
-        );
-      case "ownTurn":
-        return (
-          <OwnTurnScreen
-            key={i}
-            data={s}
-            draft={draft}
-            setField={setField}
-            onScreenText={onScreenText}
-            onNext={advance}
-          />
-        );
-      case "sufficiency":
-        return (
-          <SufficiencyScreen
-            key={i}
-            data={s}
-            onDone={(res) => {
-              setField("sufficiency", res.choice);
-              if (res.needToKnow) setField("need_to_know", res.needToKnow);
-              if (res.observable) setField("observable_evidence", res.observable);
-              advance();
-            }}
-          />
-        );
-      case "ruleBuilder":
-        return (
-          <RuleBuilderScreen
-            key={i}
-            data={s}
-            initialCondition={(draft["observable_evidence"] as string) ?? ""}
-            onDone={(rule) => {
-              setField("rule", rule);
-              advance();
-            }}
-          />
-        );
-      case "sentenceBuilder":
-        return (
-          <SentenceBuilderScreen
-            key={i}
-            data={s}
-            initial=""
-            onDone={(sentence) => {
-              setField("narrowest_true_thing", sentence);
-              advance();
-            }}
-          />
-        );
-      case "output":
-        return (
-          <div className="space-y-5">
-            <h2 className="font-display text-2xl text-midnight-navy">{s.heading}</h2>
-            {s.body && <p className="font-body text-[15px] text-charcoal/70">{s.body}</p>}
-            <dl className="space-y-3">
-              {summary.map((r, idx) => (
-                <div key={idx} className="rounded-xl bg-warm-ivory px-4 py-3">
-                  <dt className="font-ui text-xs uppercase tracking-wide text-charcoal/50">{prettyLabel(r.label)}</dt>
-                  <dd className="mt-1 font-body text-[15px] text-charcoal">{r.value}</dd>
-                </div>
-              ))}
-            </dl>
-            <div className="flex flex-wrap gap-3">
-              <button type="button" className={nextBtn} onClick={() => { onSaveOutput({ ...draft }); advance(); }}>
-                Save to My Plays
-              </button>
-              <button type="button" className="rounded-full border border-midnight-navy px-6 py-3 font-ui text-sm text-midnight-navy" onClick={advance}>
-                Just take it with me
-              </button>
-            </div>
-          </div>
-        );
-      case "portable":
-        return (
-          <div className="space-y-5">
-            <h2 className="font-display text-xl text-midnight-navy">{s.heading}</h2>
-            <ol className="space-y-2">
-              {s.steps.map((step, idx) => (
-                <li key={idx} className="flex gap-3 font-body text-[16px] text-charcoal/85">
-                  <span className="font-ui text-coral-rose">{idx + 1}.</span> {step}
-                </li>
-              ))}
-            </ol>
-            <button type="button" className={nextBtn} onClick={advance}>Continue</button>
-          </div>
-        );
-      case "realWorldUse":
-        return (
-          <div className="space-y-5">
-            <h2 className="font-display text-xl text-midnight-navy">Use it in real life</h2>
-            <p className="font-body text-[16px] text-charcoal/85"><span className="font-medium">Use this when</span> {s.useWhen}</p>
-            <p className="font-body text-[16px] text-charcoal/85"><span className="font-medium">Do:</span> {s.doThis}</p>
-            {s.safetyNote && (
-              <p className="rounded-2xl bg-amber-warm/15 px-4 py-3 font-body text-[15px] text-charcoal/85" role="note">{s.safetyNote}</p>
-            )}
-            <button type="button" className={nextBtn} onClick={onExit}>Done — back to board</button>
-          </div>
-        );
-      default:
-        return null;
-    }
-  }
 }
 
 function prettyLabel(key: string): string {
