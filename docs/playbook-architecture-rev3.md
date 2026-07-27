@@ -1,186 +1,324 @@
 # Phase 7 — Relationship Playbook™ Product Architecture (Rev 3)
 
-**Status:** FOR REVIEW — not approved, not implemented.
+**Status:** FOR FINAL ARCHITECTURE REVIEW — decisions frozen by owner; not yet implemented.
 **Prototype cluster:** Cluster 1 "Difficulty Feeling Chosen" (consumer: *Moving Beyond Rejection*).
-**Constraint:** the currently deployed two-Play Playbook is a *functioning first iteration*. This plan **evolves** it. It is not a rollback, not a wholesale replacement, and nothing here ships until explicitly approved.
+**Posture:** the deployed v0 two-Play Playbook stays intact. Rev 3 is built behind isolation (feature flag), reviewed, and **not deployed and running no new production migration without explicit owner approval.** Attorney review remains **outstanding**; nothing here is attorney-reviewed or attorney-approved; the existing **Owner Risk Acceptance** remains the posture.
 
-> Nothing in this document is a change to Relationship Life Cycle™ theory. `UNDERSTAND → EXPERIENCE → PLAY → PRACTICE → INTEGRATE` and `Change Path` are **product-delivery concepts only**. The canonical framework is unchanged: **Phase → Developmental Task → Competencies → Developmental Application → Task Mastery.** The Playbook's job is to strengthen **Developmental Application** for the specific problem a cluster represents.
+> Nothing here changes Relationship Life Cycle™ theory. `Understand → Experience → Play → Practice → Integrate`, **Change Path**, and the `Exposure / Application / Fidelity / Integration` process states are **product-delivery concepts only.** The canonical framework is unchanged: **Phase → Developmental Task → Competencies → Developmental Application → Task Mastery.** The Playbook strengthens **Developmental Application** for the specific problem a cluster represents.
+
+This document incorporates the owner's frozen decisions (ledger in §16) and expands two sections in depth per request: the **Change Path decision model** (§4) and the **simulation/content object model** (§6).
 
 ---
 
-## 0. The core architectural move
+## 0. Core architectural move
 
-The deployed model is **Play-centric and linear.** Everything — literature, the sort exercise, the own-turn, the rule builder, the real-world-use note — is a `Screen` inside one `Play.screens[]`, walked in order by `PlayContainer`. Literature is a screen kind. Real-world use is a screen kind. Integration is a one-off "Keep / Update" dialog. There is no simulation-over-time, no mission object, and no orchestration.
+The deployed model is **Play-centric and linear**: literature, the sort exercise, the own-turn, the rule builder, and real-world-use are all `Screen`s inside one `Play.screens[]`, walked in order by `PlayContainer`. Rev 3 **decomposes the monolithic Play into five composable product-delivery objects, bound by an internal orchestrator (Change Path)** — while keeping the intervention core (which works) reusable.
 
-Rev 3 **decomposes the monolithic Play into five composable layer-objects bound by an orchestrator**, while keeping the Play's intervention core (the part that already works) reusable:
+| Object | Type | Replaces / extends in v0 |
+|---|---|---|
+| **Understand** | `LiteratureEntry` (scope: cluster / play / jit) | the single `literature` screen kind |
+| **Experience** | `Simulation` (deterministic scenario tree) | the static `scenarioSort` screen |
+| **Play** | `Play` (intervention core, largely as-is) | reused; literature extracted; now *follows* a Simulation |
+| **Practice** | `Mission` (+ authored progression) | the `realWorldUse` screen + the "I used this" flag |
+| **Integrate** | `IntegrationReview` | the "How did it go / Keep / Update" dialog |
+| *(orchestration, internal)* | **Change Path** | the board's "surface, never lock" logic |
 
-| Layer | New content object | What it is | Replaces / extends today |
+The five objects are **composable, not a mandatory five-step funnel.** A user is never forced through all five every time; Change Path surfaces the *next useful* node, literature is always optional, and "Explore Another Area" is always available.
+
+---
+
+## 1. Process-state model — Exposure / Application / Fidelity / Integration
+
+**This is the backbone of the whole architecture.** These are **product/process states, not RLC constructs.** They exist so the system never collapses *"completed a Play"* into *"improved,"* and so future product analytics and eventual RLC validation research can distinguish engagement from change.
+
+| State | Definition | What legitimately signals it (first-party functional data) | What it is NOT |
 |---|---|---|---|
-| **UNDERSTAND** | `LiteratureEntry` (scopes: cluster / play / jit) | Navigable, optional field-guide entries | the single `literature` screen kind |
-| **EXPERIENCE** | `Simulation` (deterministic scenario tree) | Unfolding moment → interpretation → evidence → decision → teach | the single static `scenarioSort` screen |
-| **PLAY** | `Play` (largely as-is) | The mechanism-specific intervention | reused; literature extracted; can follow a Simulation |
-| **PRACTICE** | `Mission` (+ progression ladder) | A behaviorally-specific real-world assignment | the `realWorldUse` screen + "I used this" flag |
-| **INTEGRATE** | `IntegrationReview` | A structured functional return | the "How did it go / Keep / Update" dialog |
-| *(orchestration)* | `Change Path` | Pure function over functional state → next-useful surface | the board's "recognition surfaces, never locks" logic |
+| **Exposure** | The user encountered / read / practiced-in-app a thing. | literature opened; simulation viewed; Play explored; screen reached. | Not improvement. Not competency. Reading ≠ change. |
+| **Application** | The user *attempted to use the operation* — in a simulation and/or the real world. | performed the Play operation; selected a mission; **reports** attempting/using the mission. | Not success. An attempt is not a correct use. |
+| **Fidelity** | The user used the operation **as intended** (mechanism-true, per the Play's authored fidelity model). | in-simulation: updated interpretation when new evidence appeared; structured fidelity-review responses ("performed as intended? yes/partly/no"); Keep vs Update after real-world use. | Not relationship outcome. High fidelity with an uncomfortable outcome is still fidelity. |
+| **Integration** | The user can **carry the operation forward or appropriately adjust it** across contexts. | applied across ≥1 new context/mission; Keep (still fits) or a *considered* Update; advances a mission progression when appropriate. | Not "done." Not mastery. Not a level. |
 
-A cluster's content becomes a **set of authored objects across these layers**, each addressed by a stable id and git-versioned — exactly the authoring discipline the current `Play` already uses. The universal engine reads the interfaces; per-cluster content is authored into them. No LLM at runtime.
-
----
-
-## 1. Revised consumer experience — entry through integration
-
-The five layers are **composable, not a forced funnel.** The user is never marched through them linearly; Change Path surfaces the *next useful* node, literature is always optional, and "Explore another area" is always present (the existing non-locking guarantee, generalized).
-
-Walked end-to-end for **Read It, Then Decide** (the prototype):
-
-1. **UNDERSTAND** *(optional, anytime).* Cluster literature — "what Difficulty Feeling Chosen actually is," "wanting to be chosen vs. using selection as evidence of worth," "seeing relational evidence vs. acting on what you know." Play literature — "why dating uncertainty is hard, and what uncertainty can and can't tell you" — is surfaced near the Play but never gates it.
-2. **EXPERIENCE.** The RD simulation *unfolds over time*: strong first date → "they want to see you again" → texts get shorter → **capture** ("what do you think the change means?" / "what are you tempted to do?") → **reveal** additional evidence (they message to set a concrete plan for next week) → **update** your interpretation → **teach** ("that gap between your first read and the new evidence is exactly the operation this Play trains"). No outcome is predicted; no branch is the "correct relationship answer."
-3. **PLAY.** The RD intervention (saw-it / guessing / don't-know-yet + a decision rule) — now framed as *"here is the operation you just felt,"* flowing naturally from the simulation instead of appearing as a standalone worksheet.
-4. **PRACTICE.** A real-world mission bound to the operation: *"On your next date, name what you're learning about the other person before you evaluate your own performance,"* or *"When ambiguity shows up, write what you actually know before deciding what it means."*
-5. **INTEGRATE.** On return: did you separate what you saw from what you guessed? What became clearer? Where did you still get stuck? Does your saved Play still fit? → Change Path updates the focus: *"You can name the evidence now — acting on what you know still seems to be the harder part,"* and surfaces a decision-under-ambiguity mission rather than telling you to repeat the same Play.
-
-**What It Actually Means** runs the same spine with a different signature (see §6): the simulation shows a single event *expanding* into global conclusions, and the intervention narrows it back to what the evidence establishes.
+**Rules the system enforces:**
+- **Exposure never advances a change claim.** Content engagement can *influence what is recommended next* but can never be treated as evidence a competency or application improved (owner decision 4).
+- Each Change Path recommendation is tagged internally with the **highest process-state legitimately supported by the data** — and phrased about *that demonstrated/reported context*, never about the person (§4.2).
+- These states map cleanly onto `playbook_events` (§10) so longitudinal, non-surveilling process signals accumulate for later validation.
 
 ---
 
-## 2. Information architecture — the Cluster 1 Playbook home
+## 2. Revised consumer experience — entry through integration
 
-Reconsidered around the richer product. Labels are **architecture concepts, not final copy.**
+Composable, not a forced funnel. Walked end-to-end for **Read It, Then Decide**:
 
-- **Understand This Pattern** — the field guide (cluster + play + surfaced JIT literature). Navigable, optional.
-- **Where You Might Start** — recognition-based suggestions (today's board), now also fed by Change Path.
-- **Experience / Practice** — the relevant simulations and Plays for the current focus.
+1. **Understand** *(optional, anytime).* Cluster literature ("what Difficulty Feeling Chosen actually is"; "wanting to be chosen vs. using selection as evidence of worth"; "seeing relational evidence vs. acting on what you know"). Play literature ("why dating uncertainty is hard, and what it can and can't tell you") is surfaced near the Play but never gates it. → **Exposure.**
+2. **Experience.** The RD simulation *unfolds over time* (§6): strong first date → "they want to see you again" → texts shorten → **capture interpretation & temptation** → **reveal** new evidence (a concrete plan for next week) → **update** interpretation → **teach** the evidence-to-decision operation. Updating the interpretation when evidence arrives is a **Fidelity** signal. → **Application / Fidelity (in-app).**
+3. **Play.** The RD intervention (saw-it / guessing / don't-know-yet + a decision rule), framed as *"here's the operation you just felt,"* flowing from the simulation, not a standalone worksheet. → **Application**, saved output = executable artifact.
+4. **Practice.** A behaviorally specific real-world mission bound to the operation ("On your next date, name what you're learning about the other person before evaluating your own performance"). → **Application (real world)** when the user reports attempting.
+5. **Integrate.** Structured return: did you separate what you saw from what you guessed? What became clearer? Where did you still get stuck? Does your saved Play still fit (Keep / Update)? → **Fidelity / Integration**, feeding Change Path.
+
+**What It Actually Means** runs the same spine with a *different signature interaction* (§6.4): the simulation shows a bounded event *expanding* into unsupported conclusions (everyone / the future / identity / worth), and the intervention narrows it back to what the event establishes.
+
+---
+
+## 3. Information architecture — the Cluster 1 Playbook home
+
+**Change Path is internal architecture, not a consumer-facing clinical plan.** The consumer home is organized around plain, non-clinical sections (labels are copy candidates, not frozen):
+
+- **Understand This Pattern** — deeper reading + relevant questions (the field guide).
+- **Where You Might Start** — recognition-based recommendations.
+- **Practice This** — the relevant simulation + Play for the current focus.
 - **What I'm Practicing** — the current real-world mission and its state.
-- **My Change Path** — the current application focus / next growth edge. **No scores, no %, no levels.** One plain-language functional line.
-- **My Plays** — portable saved tools (preserved exactly as today).
-- **Explore Another Area** — always available; the user is never hard-locked into one inferred pathway.
+- **Your Next Step** — the next useful application focus, generated *within the approved Change Path rules* (§4). One plain-language line. **No scores, %, levels, or "plan" framing.**
+- **My Plays** — portable saved tools (preserved exactly as v0).
+- **Explore Another Area** — always available; never hard-locked.
 
-This is a **hub**, not a course outline. The home renders what Change Path surfaces; every section is reachable directly.
-
----
-
-## 3. How the five layers work together
-
-The binding object is a **`Track`**: an *authored* association of `{ optional literature, a simulation, a play, a mission, an integration review }` around **one intervention operation**. A Track is a suggested ordering, **not a lock** — Change Path may enter at any node, skip literature, or jump straight to the Play.
-
-```
-        ┌──────────── Change Path (orchestrator, non-locking) ───────────┐
-        │                                                                │
-UNDERSTAND ──▶ EXPERIENCE ──▶ PLAY ──▶ PRACTICE ──▶ INTEGRATE ──▶ (loops back to
- literature     simulation   interv.   mission      review          Change Path)
- (optional)    (deterministic)         (real world) (functional)
-```
-
-- **UNDERSTAND feeds everything:** cluster literature stands alone; play literature supports a Play; JIT literature is surfaced *after* a specific simulation beat, decision, real-world use, or stuck point.
-- **EXPERIENCE precedes PLAY** so the user *feels the mechanism before being taught it.*
-- **PLAY follows naturally from EXPERIENCE** rather than reading as a worksheet.
-- **PRACTICE turns the Play into real-world Developmental Application.**
-- **INTEGRATE closes the loop functionally** and hands structured signals to **Change Path**, which decides the next useful node.
+**Returning-user state is preserved:** a returning user lands on their current focus + what they're practicing + My Plays — **not** the onboarding/opening every time. (v0 always starts at `view="opening"`; Rev 3 resumes from persisted current-state.)
 
 ---
 
-## 4. Change Path — decision logic and inferential boundaries
+## 4. Change Path — decision model *(expanded — Section A)*
 
-**What it is:** a pure, deterministic, product-level function. Input = the user's *functional interaction state*. Output = a prioritized surface of next-useful experiences + a single plain-language "current focus" line. It is recomputable from state; it stores no psychological profile.
+**What it is:** a pure, deterministic, **internal** orchestration function. Input = the user's functional interaction state. Output = a prioritized surface of next-useful experiences + one plain-language "Your Next Step" line. Recomputable from state; stores no psychological profile. **It is an orchestration system, not a hidden assessment.**
 
-**What it is NOT** (restating the boundaries): not a clinical treatment plan, not a diagnosis, not a new assessment, not a completion percentage, not a gamified level system, not an AI-generated formulation.
+### 4.1 Inferential boundary (frozen — owner decision 4)
 
-### 4.1 Legitimate inputs (the only ones)
-- recognized card ids;
-- literature entries opened **where meaningful** (e.g., a JIT entry surfaced at a stuck point);
-- play states: `explored | in_my_plays | used`;
-- mission states: `assigned | attempted | reviewed | advanced`;
-- **structured** integration answers — bounded selects such as *"performed the operation? yes / partly / no"* and *"hardest part? evidence / acting on it / the feeling"* — **not** free-text emotional narrative;
-- output presence and Keep-vs-Update signals.
+**May use — user-declared inputs:** recognition selections; explicit area/focus selections; user "this is what I want to work on" choices.
 
-### 4.2 The inference rule
-Change Path may state a **functional observation about the interaction**, never a trait attribution about the person.
+**May use — first-party functional interaction data:** simulation choices; whether an interpretation was updated when additional evidence was presented; Play operations performed; saved executable outputs; fidelity-review responses; real-world mission selected; whether the user reports attempting/using the mission; structured integration responses; Keep vs Update after real-world use; current and prior application focus; recency of relevant practice.
 
-- ✅ *"You appear able to identify the evidence now, but acting on what you know still seems hard — here's a decision-under-ambiguity mission."*
-- ❌ *"You have an anxious attachment style"* / *"You fear abandonment."*
+**May influence recommendations only (never a change claim):** content engagement — literature opened, saved, or revisited. **Reading something must never be treated as evidence a competency or application improved.**
+
+**Must NOT infer from:** relationship outcomes; whether another person pursued/committed/rejected/replied; mood; emotional intensity; presumed attachment style; personality or stable traits; partner motives; diagnosis; etiology; unrestricted free-text interpretation; number of completions alone; time spent in app; reading completion alone.
+
+### 4.2 Observation-not-trait rule (frozen)
+
+Every conclusion describes **what the user demonstrated or reported in a specific context**, not what kind of person they are, and never overstates capability from a single interaction.
+
+**Allowed** (context-bound, process-framed):
+- "In your recent practice, you separated what you observed from what you were assuming. Your next step can focus on deciding what to do with that information."
+- "You've practiced expressing a preference. A useful next stretch may be expressing a small need."
+- Framing: "Based on what you practiced here…" / "A useful next area may be…"
+
+**Not allowed** (trait/finding/etiology):
+- "You are good at reading people." · "You have trouble trusting yourself." · "You're an overthinker." · "You fear abandonment." · "You tend to choose emotionally unavailable people."
 
 ### 4.3 Absence is not evidence
-Not-yet-done ≠ can't-do. Absence surfaces an **invitation**, never a verdict. The user never has to complete every Play; Change Path recommends, it does not require.
+Not-yet-done ≠ can't-do. Absence surfaces an **invitation**, never a verdict. No user must complete every Play.
 
 ### 4.4 Success definition (unchanged)
-Intervention success = **reduced Functional Interference + stronger Developmental Application.** It is *never* measured by whether the relationship produced the desired outcome. Emotional discomfort may persist even when the operation was performed correctly — Change Path treats that as a success signal, not a failure.
+Success = **reduced Functional Interference + stronger Developmental Application** — never whether the relationship produced the desired outcome. Discomfort may persist alongside correct use, and Change Path treats that as a success signal.
+
+### 4.5 Three Cluster-1 walkthroughs
+
+Each shows the path, the **exact data read at the recommendation point**, the **process state** reached, and the **observation-not-trait** output.
 
 ---
 
-## 5. Content model — literature (UNDERSTAND)
+#### Pattern A — *Evidence-capable in-app, action-stuck in the real world* (RD track)
 
-First-class, navigable content objects (not a screen kind). Git-versioned TS, authored like `Play`.
+| Step | User action | Signals written |
+|---|---|---|
+| Recognition | taps "I can't always tell what someone's really doing…" | `recognized += rec-evidence` (declared input) |
+| Understand | opens "seeing evidence vs. acting on what you know" | event `literature_opened {object_id: lit-see-vs-act}` → **Exposure only** |
+| Experience | RD simulation; at the reveal, **updates** her interpretation from "losing interest" → "signal is ambiguous; the plan is real" | event `simulation_completed {updated_interpretation: true}` → **Fidelity (in-app)** |
+| Play | performs RD operation; saves rule "If I see the plan actually happen → keep things the same for now" | `outputs[read-and-decide]` saved; `play_states.read-and-decide = in_my_plays` → **Application** |
+| Practice | selects mission "name what you're learning about them before evaluating yourself"; later reports attempting | events `mission_selected`, `mission_attempt_reported` → **Application (real world)** |
+| Integrate | structured review: performed-as-intended = **partly**; hardest part = **acting on it**; Keep/Update = **Keep** | event `integration_reviewed {performed: partly, hardest: acting}` → **Fidelity signal, Integration incomplete** |
+
+**Recommendation point — data actually used:** `updated_interpretation=true` (in-app fidelity) **+** `hardest=acting` (reported) **+** `mission_attempt_reported=true` **+** recency of RD practice. The lit-open is present but **contributes nothing to the change claim** — only to what's surfaced.
+
+**Next Step (output):** *"Based on your recent practice, you separated what you observed from what you were assuming — that part is working. Your next step can focus on deciding what to do with the information once you have it."* → surfaces the **acting-on-evidence** focus (the T2b decision operation) / a decision-under-ambiguity mission — **not** "repeat the same Play."
+
+**Boundary check:** describes a demonstrated+reported context; no trait ("you're indecisive"), no outcome inference, no mastery claim.
+
+---
+
+#### Pattern B — *Bounded event globalizing to self-worth* (WM track)
+
+| Step | User action | Signals written |
+|---|---|---|
+| Recognition | taps "when things don't work out, I wonder what's wrong with me" | `recognized += rec-self-meaning` |
+| Understand | opens "rejection vs. a global verdict about yourself" | `literature_opened {lit-rejection-not-verdict}` → **Exposure** |
+| Experience | WM simulation (expansion/contraction, §6.4); chooses the branch that expands "one no" → "no one will ever choose me," sees the teaching beat, then **narrows** it back | `simulation_completed {narrowed: true, expansion_branch: identity}` → **Fidelity (in-app)** |
+| Play | performs WM operation; saves "smallest true thing: this one person didn't want to continue" | `outputs[what-it-actually-means]` saved → **Application** |
+| Practice | mission "when a letdown starts to feel like a fact about you, name what it actually shows before deciding what it means"; reports attempting | `mission_attempt_reported` → **Application (real world)** |
+| Integrate | structured review: performed-as-intended = **no**; hardest part = **the feeling / it still spiraled**; Keep/Update = **Update** | `integration_reviewed {performed: no, hardest: feeling}` → low real-world fidelity |
+
+**Recommendation point — data used:** in-app `narrowed=true` (can do it in-app) **but** reported `performed=no` + `hardest=feeling` in the real world → an **exposure/application gap**, not a trait. Plus: does a *real repeating pattern* exist in her inputs? Only her declared inputs/simulation choices — never partner behavior.
+
+**Next Step (output):** *"In the exercise you were able to bring a big conclusion back to what actually happened. In the moment it's still hard — a useful next practice may be a smaller, lower-pressure version before the full step."* → surfaces a **graded WM mission** + a targeted **just-in-time literature** entry on globalization ("everyone / forever / identity / worth"). If her own inputs indicate a genuine recurring pattern, offer the authored **route to Read It, Then Decide** (existing `Play.routing`) — *without inventing a cause.*
+
+**Layer-B (not crisis):** persistent self-worth heaviness surfaces the WM **support signpost** ("if this is bigger than a dating moment… a mental health professional can help"). **General self-worth language is never escalated to a Layer-A crisis event.**
+
+**Boundary check:** "in the exercise you were able to… in the moment it's still hard" is context-bound and process-framed; no "you have low self-esteem," no etiology, no diagnosis.
+
+---
+
+#### Pattern C — *Recognition-heavy, exploring, low application* (restraint pattern)
+
+| Step | User action | Signals written |
+|---|---|---|
+| Recognition | taps several, incl. "I'm just tired of being alone" (validate) and "I'm worn out by dating" | `recognized += rec-loneliness, rec-fatigue` |
+| Understand | opens "loneliness without pathologizing the desire for companionship"; revisits it once | `literature_opened` ×2 → **Exposure only** |
+| Experience/Play | none yet | — |
+
+**Recommendation point — data used:** declared recognition + **content engagement only.** There is **no** application or fidelity signal. Per the boundary, revisiting literature **cannot** be read as progress, and absence of a Play attempt **cannot** be read as inability.
+
+**Next Step (output):** *"There's no rush, and wanting a partner isn't a problem to fix. When you're ready, a low-pressure place to start is a short exercise on reading early-dating signals — or you can keep exploring."* → offers an **invitation** (a low-stakes entry + Explore), never a verdict, never a push. If she later selects **"this is what I want to work on"** (declared input), Change Path surfaces the matching track.
+
+**Boundary check:** no inference from absence; reading is not counted as improvement; the desire for companionship is normalized, not pathologized; the user is never hard-locked.
+
+---
+
+## 5. Literature content model + the 101-statement map
+
+First-class, navigable content objects (not a screen kind). Git-versioned TS, authored like `Play`. Optional and non-sequential.
 
 ```ts
 type LiteratureScope = "cluster" | "play" | "jit";
 
 interface LiteratureEntry {
-  id: string;                     // stable
-  version: number;                // R2 versioning
+  id: string;                 // stable
+  version: number;            // versioned content
   scope: LiteratureScope;
-  title: string;                  // often the lived-experience question, e.g. "Why do I always feel like the backup option?"
-  body: LiteratureBlock[];        // short field-guide prose blocks (authored at the ~5th-grade target, per PR #68)
-  playId?: string;                // scope="play": which intervention it supports
-  anchor?: string;                // scope="jit": what surfaces it (a simulation beat, decision, real-world-use, or difficulty tag)
-  related?: string[];             // ids of related entries — navigable, non-sequential
+  title: string;              // often the lived-experience question ("Why do I feel like the backup option?")
+  body: LiteratureBlock[];    // short field-guide prose; ~5th-grade readability, adult intelligent tone
+  playId?: string;            // scope="play"
+  anchor?: string;            // scope="jit": what surfaces it (a simulation beat, decision, use, or difficulty tag)
+  related?: string[];         // navigable cross-links
 }
 ```
 
-- **Three levels:** *cluster* (the overall problem), *play* (education directly supporting an intervention), *jit* (short, surfaced after a specific moment/decision/use/difficulty).
-- **The 101 statements become source material**, not 101 interventions. Each maps to recognition / education / normalization / contextualization — most resolve as `jit` or `cluster` entries ("Why does nobody choose me?", "What if I'm just not enough?", "Why do I keep caring more?"). Authoring which statements become literature vs. feed a Play is a **content task with its own review gate.**
-- **Optional and navigable**, never required sequential reading. Read-state is stored **only where useful** (e.g., "you've read this" to avoid re-surfacing a JIT entry) — not as progress-tracking or a completion metric.
-- **Boundary:** more literature does **not** turn the Playbook into the Academy. Every entry earns its place by helping the user understand/change *this cluster.*
+- **Three levels:** cluster (the overall problem), play (education supporting an intervention), jit (short, surfaced after a specific moment/decision/use/difficulty).
+- **Readability:** the ~5th-grade standard being handled in PR #68 applies, **while maintaining an adult, intelligent tone.** Plain language ≠ shallow content.
+- **Boundary:** more literature does **not** turn the Playbook into the Academy. Every entry helps understand/change *this cluster.*
+- **Read-state** is stored only where useful (avoid re-surfacing a JIT entry). It is **content engagement**, never a change signal (§4.1).
+
+### 5.1 Formal 101-statement content map (frozen — owner decision 7)
+
+The 101 cluster statements are a **phenomenological personalization asset, not 101 treatment targets.** A formal map assigns each statement one **or more** functions. This is a content deliverable with its own review gate.
+
+```ts
+type StatementFunction =
+  | "recognition"         // becomes/《feeds》 a recognition card
+  | "cluster_literature"  // deeper understanding of the whole problem
+  | "faq_literature"      // question-led entry ("Why do I keep caring more?")
+  | "play_literature"     // supports a specific Play
+  | "jit_teaching"        // surfaced after a moment/decision/use/difficulty
+  | "simulation_cue"      // seeds a scenario/moment
+  | "play_routing"        // routes toward a Play
+  | "support_signpost"    // Layer-B support (not crisis)
+  | "context_normalization" // normalize/contextualize (e.g., loneliness)
+  | "none";               // no further action
+
+interface StatementMapping {
+  statementId: string;
+  text: string;
+  functions: StatementFunction[];   // one or more
+  targets?: string[];               // ids of the literature/play/simulation objects it feeds
+}
+```
+
+Most statements resolve to recognition / literature / normalization; only some feed interventions. Authoring the full map is Step 3 of the sequence (§15).
 
 ---
 
-## 6. Authored simulation model (EXPERIENCE)
+## 6. Simulation / content object model *(expanded — Section B)*
 
-Deterministic scenario trees. **No LLM at runtime.** The point is experiential rehearsal of Discernment — not gamification, not outcome prediction.
+Deterministic authored scenario trees. **No LLM at runtime.** The purpose is experiential rehearsal of Discernment — **not gamification and not relationship-outcome scoring.**
+
+### 6.1 The non-scoring guarantee (design-enforced)
+
+Branches carry **educational feedback keyed to the operation**, never a predicted relationship result and never a "correct answer." The only *signal* persisted from a branch is **process-level** — e.g., *did the user update their interpretation when new evidence arrived* — which is a Fidelity signal about the discernment operation, **not** a judgment of whether the user "got the relationship right." There is no score, no points, no branch marked correct.
+
+### 6.2 Object structure
 
 ```ts
 interface Simulation {
   id: string;
-  version: number;
-  simulationSchemaVersion: number;
-  playId: string;                 // the Play this rehearses
-  signature: InteractionKind;     // e.g. "evidenceTimeline" | "conclusionNarrowing"
-  nodes: SimNode[];               // ordered, deterministic
+  version: number;                 // content version
+  simulationSchemaVersion: number; // shape version (for stored refs)
+  playId: string;                  // the Play this rehearses
+  signature: InteractionKind;      // "evidenceTimeline" | "conclusionNarrowing" | …
+  nodes: SimNode[];                // ordered, deterministic
 }
 
 type SimNode =
-  | { kind: "moment"; body: string[] }                    // something happens (unfolds over time)
-  | { kind: "capture"; prompt: string; field: CaptureField } // interpretation / temptation ("what do you think it means?")
-  | { kind: "reveal"; body: string[] }                    // new relational evidence appears
-  | { kind: "decision"; prompt: string; branches: Branch[] } // a choice point
-  | { kind: "update"; prompt: string }                    // re-interpret given the new evidence
-  | { kind: "teach"; body: string[]; toPlayId: string };  // hand off into the Play
+  | { id: string; kind: "moment";  body: string[] }                       // something happens (unfolds)
+  | { id: string; kind: "capture"; prompt: string; field: CaptureField }  // interpretation / temptation
+  | { id: string; kind: "decision"; prompt: string; options: SimOption[] }// a choice point (optional branches)
+  | { id: string; kind: "reveal";  body: string[] }                       // NEW relational evidence
+  | { id: string; kind: "update";  prompt: string; signals: ["updated_interpretation"] } // re-interpret
+  | { id: string; kind: "teach";   body: string[]; toPlayId: string };    // intervention handoff
 
-interface Branch {
+interface SimOption {
   id: string;
-  label: string;                  // a plausible choice — never "the correct one"
-  feedback: string[];             // EDUCATIONAL feedback, mechanism-focused
-  // NO outcome field. Branches must not encode a "right relationship answer."
+  label: string;                   // a plausible choice — never "the correct one"
+  feedback: string[];              // EDUCATIONAL, mechanism-focused
+  // NO outcome, NO score, NO isCorrect. Optionally a *process* tag only:
+  processTag?: "held_uncertainty" | "jumped_to_conclusion" | "sought_evidence";
 }
+
+type CaptureField =
+  | { kind: "choice"; options: string[] }     // bounded — preferred
+  | { kind: "shortText"; maxLen: number; purpose: string }; // only where the intervention needs user-authored content
 ```
 
-**Rules the model enforces by shape:**
-- Scenarios **unfold**: moment → interpretation → new evidence → decision → more evidence → reflection/teaching. Not "completed scenario then quiz."
-- Different choices may surface **different educational feedback**, but the engine offers **no simplistic correct-answer branch** and predicts no relationship outcome.
-- Reveals are **state-driven and user-advanced**, never timed/animated (accessibility, §13).
+- **Moments unfold**: moment → capture → (decision) → reveal → update → teach. Not "completed scenario then quiz."
+- **Reveals are state-driven and user-advanced** — never timed or animation-dependent (a11y, §6.5).
+- **Optional branches** may surface different *educational* feedback; they never fork into a right/wrong relationship answer and never predict an outcome.
+- **Intervention handoff:** the terminal `teach` node routes into `toPlayId`, so the Play reads as "the operation you just felt."
 
-### 6.1 Signature interactions (Plays should not all look the same)
-Add an **interaction primitive registry** (the generalization of today's `renderScreen` switch). A Play/Simulation declares its interaction kind; the engine renders the matching component:
+### 6.3 RD signature — `evidenceTimeline` (worked example)
 
-- **`evidenceTimeline`** — RD signature. Unfolding moments on a timeline; interpretation captured at each beat; evidence revealed; interpretation updatable.
-- **`conclusionNarrowing`** — WM signature. An event visually *expands* into unsupported global conclusions; the user narrows it back to what the evidence establishes. (Reuses `SortEngine`'s accessible tap-first assignment mechanic underneath, presented as expand→narrow rather than two static buckets.)
-- **Reused as-is:** `scenarioSort`, `ruleBuilder`, `sentenceBuilder`, `ownTurn`, `sufficiency`, `emotionBeat`.
-- **Future placeholders (NOT built here):** `communicationRehearsal` (authentic-presentation work), `investmentView` (over-investment work).
+Unfolding relational timeline; the user forms an interpretation on incomplete information, receives more evidence, and **practices updating before applying** the evidence-to-decision operation.
 
-The universal engine supports these differences through the registry **without** forcing every Play into the same form.
+```
+moment   "Great first date. Easy. They say they'd love to see you again."
+moment   "Over four days, their texts get shorter."
+capture  "What do you think the shorter texts mean?"      → choice: [losing interest | busy week | just how they text | not sure]
+capture  "What are you tempted to do?"                    → choice: [pull back | double-text | wait and watch | end it]
+reveal   "Day 5: they message to set up a concrete plan for next week."
+update   "Given the plan, how do you read the shorter texts now?"   → signals updated_interpretation
+teach    "The gap between your first read and the new evidence is exactly what this Play trains." → toPlayId: read-and-decide
+```
+
+Underlying interaction: unfolding beats on a timeline; interpretation captured per beat via bounded choices; evidence revealed; interpretation updatable. Reuses `SortEngine`'s accessible tap-first mechanic where sorting is involved.
+
+### 6.4 WM signature — `conclusionNarrowing` (expansion/contraction)
+
+A bounded event **expands** into unsupported global conclusions along four axes — **everyone / the future / identity / worth** — then the user **narrows** it back to what the event actually establishes.
+
+```
+moment    "After a few good dates: 'I had a great time, but I don't think we're a match.'"
+capture   "What did that turn into in your head?"  → choice surfaces expansions (everyone / forever / who-I-am / worth)
+decision  "Which of these does the event actually prove?"  → options tagged held_uncertainty | jumped_to_conclusion
+reveal    "What the event establishes: this one person didn't want to continue. That's it."
+update    "Narrow it back to the smallest true thing."   → signals updated_interpretation (narrowed)
+teach     "Keeping the size of the story to the size of the facts is the operation." → toPlayId: what-it-actually-means
+```
+
+Underlying interaction is **visually distinct** from RD (expand→narrow, not a timeline) while running on the same universal engine via the interaction registry. Owner decision 6: *the engine is universal; the intervention experience is technique-specific.* Both reuse the accessible tap-first assignment underneath.
+
+### 6.5 Accessibility fallback
+- **Tap-first and keyboard-operable**; **no drag-only** interaction. The `evidenceTimeline` and `conclusionNarrowing` both degrade to tap/select + focus-managed corrections (the existing `SortEngine` `role="status"` pattern).
+- **Reveals are user-advanced and state-driven**, not timed/animated; reduced-motion honored (existing `matchMedia`/`setReducedMotion`). New evidence announced via `aria-live` so screen-reader order matches the unfolding.
+- Every control labeled; the existing jsdom `axe` harness extends to the new primitives (serious/critical = 0). jsdom axe is **not** proof of visual contrast — that's verified separately.
+
+### 6.6 Persisted vs. ephemeral
+
+| Persisted (functional, version-stamped) | Ephemeral (never stored) |
+|---|---|
+| that the simulation was completed (`simulation_completed` event + current-state ref) | intermediate per-node draft text |
+| `updated_interpretation: true/false` (Fidelity signal) | which exact wording the user typed in a bounded capture, beyond what the intervention output needs |
+| optional `processTag` from the decision node (aggregate process signal) | scratch/undo history within the simulation |
+| the resulting Play handoff / saved output (if the Play is completed) | any relationship-event detail not required by the operation |
+| `simulationSchemaVersion`, `object_version` on stored refs | — |
+
+Persist the **minimum functional payload** needed to resume, to support fidelity, and to feed Change Path — nothing more (owner decisions 2 & 5).
 
 ---
 
-## 7. Practice / mission model (PRACTICE)
+## 7. Practice / mission model
 
 Repeating a Play in-app is not behavior change. Missions carry the operation into the real world.
 
@@ -192,170 +330,162 @@ interface Mission {
   instruction: string;            // behaviorally specific
   linkToOperation: string;        // explicit tie to the intervention
   suitability?: string;           // safety/appropriateness boundary where needed
-  ladder?: MissionRung[];         // progressive Developmental Application (NOT consumer "levels")
+  progression?: MissionRung[];    // progressive Developmental Application — authored, NOT levels
 }
-
 interface MissionRung { id: string; instruction: string; }  // e.g. preference → opinion → small need → reasonable boundary
-
 type MissionState = "assigned" | "attempted" | "reviewed" | "advanced";
 ```
 
-**Constraints enforced by design:**
-- Behaviorally specific; explicit relationship to the underlying intervention.
-- **No arbitrary streaks or completion quotas.** No prescribing relationship outcomes.
-- Appropriate for self-guided use; includes safety/suitability boundaries where needed.
-- **Progression = progressive Developmental Application**, surfaced only when the intervention supports it (e.g., authentic presentation: preference → opinion → small need → reasonable boundary). It is **not** a gamified level system and is never shown as "Level 2."
-- Mission design must **avoid prompting partner surveillance** (privacy, §14).
+- Behaviorally specific; explicit relationship to the intervention; appropriate for self-guided use; safety/suitability boundaries where needed.
+- **No levels, XP, streaks, ranks, badges, or completion percentages** (owner decision 8). Progression is **authored within the intervention design** and offered only when theoretically and safety appropriate (e.g., Authentic Presentation: preference → opinion → small need → reasonable boundary — a *future* Play, not built here).
+- The system may recommend a next stretch from **demonstrated/reported application**, but must **not claim mastery** from completion.
+- **Consumer copy:** "Try this next." / "Ready to stretch this a little further?" / "A useful next practice may be…" (internally: progressive Developmental Application).
+- **No partner-surveillance** prompts (§15).
 
 ---
 
-## 8. Integration / return model (INTEGRATE)
+## 8. Integration / return model
 
-Expands the current "How did it go? / Keep / Update" dialog into a genuine — but **functional, not journaling** — loop.
+Structured choices + **minimal, bounded, purpose-specific free text** — never journaling (owner decision 5).
 
 ```ts
 interface IntegrationReview {
-  id: string;
-  version: number;
-  playId: string;
+  id: string; version: number; playId: string;
   prompts: {
-    didDifferently: StructuredPrompt;   // what did I actually do differently?
-    performedOperation: StructuredPrompt;// did I perform the operation as intended? (yes/partly/no)
-    becameClearer: StructuredPrompt;    // what became clearer?
-    stuckWhere: StructuredPrompt;       // where did I still get stuck? (bounded options)
-    stillFits: "keep" | "update";       // does my saved Play still fit? (reuses today's Keep/Update)
+    didDifferently:     StructuredPrompt;   // bounded choices
+    performedOperation: StructuredPrompt;   // yes / partly / no  (Fidelity)
+    becameClearer:      StructuredPrompt;   // bounded
+    stuckWhere:         StructuredPrompt;   // bounded (evidence / acting / the feeling / …)
+    stillFits:          "keep" | "update";  // reuses v0 Keep/Update
   };
-  // Output: structured functional signals → Change Path. Minimal free text (§14).
 }
 ```
 
-- Answers the six questions the owner specified, but through **structured selects** wherever possible so signals are legitimate Change-Path inputs and we store less sensitive data.
-- **Does not measure relationship outcome.** Reinforces: skill used correctly + discomfort remaining = still a success.
-- The **Keep / Update** branch is preserved and folded in (reuses `recordOutput(..., keepState=true)` and the narrow `OutputEditor`).
+- Collects only what supports **fidelity, behavioral transfer, updating the saved Play, and selecting the next focus.**
+- Free text only where the **intervention itself** requires user-authored content (e.g., the WM "smallest true thing"). No asking users to recount relationship events in detail to personalize the system.
+- **Does not measure relationship outcome.** Correct use + remaining discomfort = still a success. The **Keep / Update** branch reuses `recordOutput(..., keepState=true)` + the narrow `OutputEditor`.
 
 ---
 
 ## 9. Technical component / schema changes
 
-### 9.1 Content schema (git-versioned TS, additive)
-Add to `lib/playbook/contentSchema.ts`: `LiteratureEntry`, `Simulation` (+ `SimNode`, `Branch`), `Mission` (+ `MissionRung`), `IntegrationReview`, `Track`, and an `InteractionKind` registry type. `PlaybookContent` gains `literature[]`, `simulations[]`, `missions[]`, `integrationReviews[]`, `tracks[]`. `Play` keeps its `screens[]` core; its embedded `literature` screen migrates out to `LiteratureEntry`, and `realWorldUse` graduates into `Mission`.
-
-### 9.2 Engine
-- **Interaction registry:** refactor `PlayContainer`'s `renderScreen` switch into a **component registry keyed by interaction kind**, consumed by the Play walker *and* the new Simulation/Mission/Integration walkers. No behavior change for the two existing Plays (regression-tested).
-- **New views in `ExperienceShell`:** `understand` (field guide), `experience` (simulation), `practice` (mission), `integrate` (review), plus a Change-Path-driven home. The `opening → recognition → board → gate → play → myplays` machine is extended, not rewritten.
-- **`lib/playbook/changePath.ts`** (new): pure function `changePath(state) → { focusLine, surfaced[] }`, with the §4 inputs and boundaries, fully unit-testable.
-- **New pure reducers** in the `progressActions.ts` style for literature-read, mission state, and integration signals — version-stamped, functional-only.
-
-### 9.3 Persistence (see §12 for the migration)
-- **Current-state:** extend `playbook_progress` **additively** with jsonb columns `literature_state`, `missions`, `integration`, `change_path_focus`. Preserves the proven single-row, `unique(user_id, playbook_key)`, RLS-own-row, current-state-only model and stays migration-compatible.
-- **History:** finally create the **designed-but-deferred append-only `playbook_events`** (R3) — Practice and Integrate genuinely need an event history (missions attempted over time, reviews over time) that current-state jsonb can't represent. Metadata-only, RLS own-row, no raw emotional text.
-
-### 9.4 Safety
-- **Layer A (crisis)** — `lib/playbook/crisisSafety.ts` over the frozen Safety V2 engine — **unchanged**, and extended to screen any free-text capture in simulations/missions/integration. Still metadata-only; still non-blocking.
-- **Layer B (Play-specific signposts)** generalizes to per-Simulation and per-Mission signposts (e.g., a boundary-themed mission surfaces suitability guidance).
+- **Content schema** (`lib/playbook/contentSchema.ts`, additive): add `LiteratureEntry`, `Simulation` (+ `SimNode`, `SimOption`, `CaptureField`), `Mission` (+ `MissionRung`), `IntegrationReview`, `Track`, `StatementMapping`, and an `InteractionKind` registry type. `PlaybookContent` gains `literature[]`, `simulations[]`, `missions[]`, `integrationReviews[]`, `tracks[]`, `statementMap[]`. `Play` keeps `screens[]`; its `literature` screen migrates to `LiteratureEntry`; `realWorldUse` graduates into `Mission`.
+- **Interaction registry:** refactor `PlayContainer`'s `renderScreen` switch into a **component registry keyed by interaction kind**, consumed by the Play walker *and* the Simulation/Mission/Integration walkers. **Byte-parity regression for the two existing Plays.**
+- **New views in `ExperienceShell`:** `understand`, `experience`, `practice`, `integrate`, and a Change-Path-driven home that **resumes** (§3). The v0 `opening → recognition → board → gate → play → myplays` machine is extended, not rewritten.
+- **`lib/playbook/changePath.ts`** (new): pure `changePath(state) → { nextStep, surfaced[] }` implementing §4, fully unit-testable (incl. boundary tests: reading-not-progress, absence-not-inability, observation-not-trait).
+- **New pure reducers** (in the `progressActions.ts` style) for literature-read, simulation completion, mission state, and integration signals — version-stamped, functional-only.
+- **Process-state tagging** utility mapping signals → Exposure/Application/Fidelity/Integration (§1), used by both Change Path and the event writer.
 
 ---
 
-## 10. What can be reused from the deployed implementation
+## 10. Persistence & state objects (frozen — owner decisions 2 & 3)
 
-**Reused unchanged**
-- `playbook_progress` table, RLS policies, `unique(user_id, playbook_key)` (extended additively).
-- `lib/playbook/keys.ts` — `playbook_key ↔ cluster_id`, `INTERACTIVE_PLAYBOOK_KEYS`.
-- `lib/playbook/crisisSafety.ts` + Safety V2 engine (Layer A).
-- Entitlement/commerce: `ownsPlaybook`, `playbook_entitlements`, `/api/playbook/[key]/access`, `PlaybookCta`, RSC gating in `app/playbook/[key]/page.tsx`.
-- `SortEngine.tsx` accessible tap-first assignment (drives `scenarioSort` and, underneath, `conclusionNarrowing`).
-- Version-stamping discipline (`StoredOutput`), `sanitize.ts` (server-authoritative key/version), `useProgress` autosave, `outputSummary.deriveUserLine`.
-- **My Plays** — preserved exactly (schema and UI).
+Two stores, cleanly separated.
 
-**Generalized**
-- `PlayContainer` linear walker → interaction registry serving multiple walkers.
-- `ExperienceShell` state machine → additional layer views + Change-Path home; the "recognition surfaces, never locks" logic becomes the Change Path surface.
-- `Screen` union → intervention screens stay on `Play`; literature/real-world-use/integration graduate into their own objects.
-- Recognition cards → retained, now also routable to **literature** (recognition/education/normalization), matching "not every statement becomes an intervention," and feeding Change Path inputs.
+### 10.1 `playbook_progress` — current state / resume state (additive, **separated versioned state objects**, NOT one catch-all)
+Extend with clearly separated, individually version-stamped jsonb objects:
 
-**New**
-- `LiteratureEntry` (+ optional read-state), `Simulation` engine, `Mission` engine (+ ladder + states), `IntegrationReview`, `Track`, `changePath.ts`, interaction primitives (`evidenceTimeline`, `conclusionNarrowing`), `playbook_events` (eventual).
+```
+literature_state    { version, … }   -- read-where-useful, saved
+simulation_state    { version, … }   -- resume position, updated_interpretation flags
+practice_state      { version, … }   -- mission assignment + MissionState
+integration_state   { version, … }   -- last structured review signals
+change_path_state   { version, … }   -- current + prior application focus
+```
+Each object is designed so it can **later be extracted into a sibling table without changing product identity or IDs** if scale/query needs justify normalization. Existing `recognized / play_states / outputs / my_plays` are unchanged.
+
+### 10.2 `playbook_events` — append-only longitudinal functional-use history (own normalized table)
+Supports future **process validation without becoming surveillance.** Store **only the minimum functional payload.** No unrestricted narratives, no partner-monitoring data, no raw sensitive disclosures. Fields (frozen list):
+
+```
+id            uuid pk
+user_id       uuid  -> auth.users on delete cascade
+playbook_key      text      -- stable
+playbook_version  integer
+object_type       text      -- 'literature' | 'simulation' | 'play' | 'mission' | 'integration'
+object_id         text
+object_version    integer
+event_type        text      -- 'literature_opened' | 'simulation_completed' | 'operation_performed' | 'mission_selected' | 'mission_attempt_reported' | 'integration_reviewed' | 'focus_changed' | …
+schema_version    integer   -- event payload shape version
+payload           jsonb      -- MINIMUM functional payload only (e.g. { updated_interpretation: true })
+created_at        timestamptz
+```
+RLS own-row **select + insert only**; **no update/delete** (append-only). Layer A still screens any bounded free text before an event is written; events carry metadata, not raw disclosures.
 
 ---
 
-## 11. What must change
+## 11. Reuse audit (grounded in the deployed code)
 
-- Extract in-Play literature into first-class, navigable `LiteratureEntry` objects.
-- Author cluster/play/JIT literature for Cluster 1 from the 101 statements (content task, own review gate; authored at the ~5th-grade target of PR #68).
-- Introduce the Simulation layer *before* the Play so the mechanism is felt before taught.
-- Add the two signature interactions so RD ≠ WM visually.
-- Add Missions (with the two existing Plays' real-world operations) + progression where supported.
-- Replace the Keep/Update dialog with the structured `IntegrationReview`.
-- Add the Change Path orchestrator + the new home/IA.
-- Additive persistence changes + the `playbook_events` table.
+**Reused unchanged:** `playbook_progress` table + RLS + `unique(user_id, playbook_key)` (extended additively); `lib/playbook/keys.ts`; `lib/playbook/crisisSafety.ts` + Safety V2 (Layer A); entitlement/commerce (`ownsPlaybook`, `playbook_entitlements`, `/api/playbook/[key]/access`, `PlaybookCta`, RSC gating in `app/playbook/[key]/page.tsx`); `SortEngine.tsx` accessible tap-first mechanic; version-stamping (`StoredOutput`), `sanitize.ts`, `useProgress` autosave, `outputSummary.deriveUserLine`; **My Plays** (schema + UI) preserved.
 
-**Explicitly NOT changing:** the two Plays' *intervention logic*; the remaining four Cluster-1 Plays are **not** authored/implemented here (they still need their approved Phase 5/5B design); Snapshot/scoring; the RLC framework; entitlement/commerce; stable `playbook_key`/`play_id`; RLS; no-LLM-runtime; no-gamification.
+**Generalized:** `PlayContainer` linear walker → interaction registry serving multiple walkers; `ExperienceShell` state machine → additional layer views + resuming Change-Path home; `Screen` union → intervention screens stay on `Play`, literature/real-world-use/integration graduate into their own objects; recognition cards retained, now routable to literature (not only Plays) and feeding Change Path inputs.
+
+**New:** `LiteratureEntry` (+ read-state), `Simulation` engine, `Mission` engine (+ progression + states), `IntegrationReview`, `Track`, `StatementMapping`, `changePath.ts`, process-state tagger, interaction primitives (`evidenceTimeline`, `conclusionNarrowing`), `playbook_events` table.
 
 ---
 
-## 12. Database migration (described — NOT written, NOT run)
+## 12. What must change vs. must not
 
-Eventual migration (owner-run when we reach that build step):
+**Must change:** extract in-Play literature to `LiteratureEntry`; author Cluster-1 literature + the 101-statement map (content gate); add the Simulation layer *before* the Play; build the two signature interactions; add Missions (+ authored progression where supported); replace Keep/Update with structured `IntegrationReview`; add Change Path + the resuming home/IA; additive current-state objects + the `playbook_events` table; add the process-state model throughout.
 
-1. **`playbook_progress` (additive):** add nullable jsonb columns `literature_state`, `missions`, `integration`, `change_path_focus`, each `default '{}'`/`'[]'`. No backfill; existing rows read as empty. Fully compatible with deployed data.
-2. **`playbook_events` (new, append-only):** `id`, `user_id → auth.users on delete cascade`, `playbook_key text`, `event_type text` (e.g. `mission_attempted`, `integration_reviewed`, `literature_opened`), `play_id text null`, `ref_id text null` (mission/simulation/entry id), `payload jsonb` (**functional metadata only**), `created_at timestamptz`. RLS own-row select/insert; **no update/delete** (append-only). `notify pgrst`.
+**Must NOT change:** the two Plays' *intervention logic*; the remaining **four Cluster-1 Plays are not authored/implemented here** (they still require approved Phase 5/5B design); Snapshot/scoring; the RLC framework; entitlement/commerce; stable `playbook_key`/`play_id`; RLS; no-LLM-runtime; no gamification.
+
+---
+
+## 13. Database migration (described — NOT written, NOT run)
+
+Eventual migration, **owner-run only after explicit approval:**
+1. `playbook_progress` (additive): add nullable jsonb `literature_state`, `simulation_state`, `practice_state`, `integration_state`, `change_path_state`, each defaulting empty; no backfill; existing rows read as empty; compatible with deployed data.
+2. `playbook_events` (new, append-only): the §10.2 shape; RLS own-row select/insert; no update/delete; `notify pgrst`.
 3. **No changes** to `playbook_entitlements`, `quiz_*`, or any Snapshot/scoring table.
 
-I will **not** write or run this until the architecture is approved and we reach that step.
+No migration is written or run in this pass.
 
 ---
 
-## 13. Accessibility implications
-
-- New interaction primitives (`evidenceTimeline`, `conclusionNarrowing`) must preserve SortEngine's **tap-first, keyboard-operable, focus-managed, `role="status"` correction** pattern. No drag-only interactions.
-- Simulation "unfolding over time" is **state-driven and user-advanced** — never timed or animation-dependent; reduced-motion honored (the existing `matchMedia`/`setReducedMotion` handling extends). Reveals use `aria-live` for screen-reader order.
-- Missions and integration reviews are forms → same labeled-field discipline; the existing `axe` jsdom harness extends to every new component (serious/critical = 0).
-- The documented jsdom color-contrast limitation still stands: jsdom axe is **not** proof of visual contrast; visual contrast is checked separately.
-- Fully responsive/mobile (the experience is a PWA-style consumer flow).
+## 14. Accessibility implications
+Tap-first, keyboard-operable, focus-managed, `role="status"` corrections preserved in the new primitives; **no drag-only** interactions; unfolding is **user-advanced/state-driven**, reduced-motion honored, reveals via `aria-live`; missions and integration are labeled forms; the jsdom `axe` harness extends to every new component (serious/critical = 0); jsdom axe ≠ visual-contrast proof (checked separately); fully responsive/mobile.
 
 ---
 
-## 14. Safety / privacy implications
-
-- **Two-layer separation preserved.** Layer A (crisis) stays the shared, frozen, metadata-only engine; Layer B (Play/Simulation/Mission signposts) stays content-driven. **General self-worth language ("I'm not enough") must not become a crisis event** — Safety V2 already distinguishes; keep that boundary.
-- **Data minimization.** Store functional product state — states, structured selects, version-stamped outputs, event metadata — **not** unrestricted emotional narratives and **not** partner-surveillance data. Integration favors structured selects over free text precisely to store less and infer legitimately.
-- **Mission design** must avoid prompting partner monitoring or evidence-collection-about-a-partner.
-- **Change Path** stores only a small functional "focus" record, recomputable from state; it is never a stored psychological profile.
-- **Standing item (owner-owed):** attorney review of the Playbook/Companion remains **NOT performed**; this evolution does not change that status and should not ship without the owner's explicit risk decision.
+## 15. Safety / privacy implications
+Two-layer separation preserved: **Layer A (crisis)** stays the frozen, shared, metadata-only engine, extended to screen any bounded free text in simulations/missions/integration; **Layer B (per-Play/Simulation/Mission signposts)** stays content-driven. **General self-worth language never becomes a crisis event.** Data minimization: functional product state, structured selects, version-stamped outputs, minimal event payloads — **never** unrestricted emotional narratives or partner-surveillance data. Mission design avoids partner-monitoring. Change Path stores only a small functional focus record, recomputable from state, never a psychological profile. **Attorney review outstanding; nothing represented as attorney-approved; Owner Risk Acceptance is the posture.**
 
 ---
 
-## 15. Implementation sequence (proposed — build only after approval, each step its own gate)
+## 16. Implementation sequence (build only after approval; each step its own gate; behind a feature flag)
 
-0. **Approve this architecture.**
-1. **Schema/type layer** — add content types + versioning; extend `PlaybookProgress` additively; author the `playbook_events` migration (owner-run); stage behind the existing playbook flag.
-2. **Interaction registry** — refactor `PlayContainer` → registry; **regression-test the two current Plays to byte-parity behavior.**
-3. **UNDERSTAND** — literature objects + navigable field-guide IA; migrate in-Play literature; author Cluster-1 literature from the 101 statements *(content review gate)*.
-4. **EXPERIENCE** — Simulation engine + RD `evidenceTimeline` + WM `conclusionNarrowing` *(content review gate)*.
-5. **PLAY** — wire the two Plays to follow their simulation; extract their literature.
-6. **PRACTICE** — Mission engine + RD/WM missions + ladders; mission states.
-7. **INTEGRATE** — `IntegrationReview` replacing/extending Keep/Update; structured signals.
-8. **CHANGE PATH** — orchestrator + home/IA + inferential-boundary tests.
-9. **Full a11y + safety regression → owner walkthrough → separate deploy decision.**
+0. **Approved architecture (this document).**
+1. Schema/type layer + separated current-state objects + author the `playbook_events` migration (owner-run) + process-state tagger; flag-isolated.
+2. Interaction registry refactor — **byte-parity regression** for the two current Plays.
+3. Understand: literature objects + navigable field guide + the **101-statement content map** *(content gate)*.
+4. Experience: Simulation engine + RD `evidenceTimeline` + WM `conclusionNarrowing` *(content gate)*.
+5. Play: wire the two Plays to follow their simulation; extract literature.
+6. Practice: Mission engine + RD/WM missions + authored progression where supported.
+7. Integrate: structured `IntegrationReview` replacing Keep/Update.
+8. Change Path: orchestrator + resuming home/IA + boundary tests.
+9. Full a11y + safety regression → owner walkthrough → **separate deploy decision**.
 
-No production change and no deploy at any step without explicit approval.
+No production change and no deploy at any step without explicit owner approval.
 
 ---
 
-## 16. Decisions requiring owner approval before any coding
+## 17. Frozen decisions ledger
 
-1. **Decompose `Play` into five layer-objects + `Track` binding** (vs. keep Play-centric and bolt features on). — *Recommend: decompose.*
-2. **Create `playbook_events` now** (append-only functional history) vs. stay current-state-only. — *Recommend: create; Practice/Integrate need history; metadata-only.*
-3. **Extend `playbook_progress` with additive jsonb columns** vs. sibling tables for the new current-state. — *Recommend: additive columns.*
-4. **Change Path inferential boundary** — approve the exact allowed inputs (§4.1), the "functional observation, never trait" output rule (§4.2), absence-is-not-evidence (§4.3), and the hard exclusions.
-5. **Integration = structured selects, minimal free text** (privacy-first) vs. richer free-text review. — *Recommend: structured.*
-6. **Build the two signature interactions now** (`evidenceTimeline`, `conclusionNarrowing`) — only for the two shipped Plays. — *Recommend: yes.*
-7. **Literature scope model** (cluster / play / jit) and mapping the 101 statements to recognition/education/normalization (not all → interventions). — *Recommend: approve; authoring is a separate content gate.*
-8. **Mission progression = progressive Developmental Application** (not levels); approve the no-streaks / no-quotas / outcome-neutral constraints + suitability boundaries.
-9. **IA / home** around Understand · Where You Might Start · Experience/Practice · What I'm Practicing · My Change Path · My Plays · Explore Another Area (copy TBD). — *Recommend: approve as architecture.*
-10. **Deployment posture** — build behind the existing playbook flag; **do not deploy** until a later explicit approval; attorney review still outstanding.
+1. **Decompose into five composable objects** (Understand→Experience→Play→Practice→Integrate) — **APPROVED.**
+2. **Create `playbook_events` now** (append-only longitudinal history; progress = current/resume state; minimum functional payload; stable IDs + version stamps: `playbook_key`, `playbook_version`, `object_type`, `object_id`, `object_version`, `event_type`, `schema_version`, timestamp) — **APPROVED.**
+3. **Additive current state as separated versioned state objects; events in their own normalized table; no catch-all JSONB; extractable to sibling tables later without changing identity/IDs** — **APPROVED.**
+4. **Change Path inputs + observation-not-trait rule** (exact allowed / content-influence-only / forbidden lists; context-bound process phrasing; no overstating from one interaction; orchestration not assessment) — **APPROVED.**
+5. **Integration = structured choices + minimal bounded free text; not journaling; no relationship-event recounting** — **APPROVED.**
+6. **Two signature interactions** (RD unfolding evidence timeline; WM expansion/contraction) — universal engine, technique-specific experience — **APPROVED.**
+7. **Literature scope model + formal 101-statement content map** (multi-function; phenomenological asset, not 101 targets; ~5th-grade readability with adult, intelligent tone) — **APPROVED.**
+8. **Mission progression = progressive Developmental Application** (no levels/XP/streaks/ranks/badges/%; authored; no mastery claim from completion; "try this next" copy) — **APPROVED.**
+9. **IA / home** with Change Path as *internal* architecture; consumer sections Understand This Pattern · Where You Might Start · Practice This · What I'm Practicing · Your Next Step · My Plays · Explore Another Area; **preserve returning-user state** — **APPROVED (labels are copy candidates).**
+10. **Deployment posture** — v0 intact; Rev 3 behind isolation; no deploy and no new production migration without explicit approval; attorney review outstanding; Owner Risk Acceptance posture — **APPROVED.**
+
+**Additional architecture requirement — process-state model** (Exposure / Application / Fidelity / Integration; product/process states, not RLC constructs; never collapse "completed a Play" into "improved"; matters for analytics + eventual RLC validation) — **INCORPORATED (§1, and enforced throughout §4, §6, §8, §10).**
 
 ---
 
 ### Scope guardrails honored
-Prototype is **Cluster 1 only**; the architecture is designed to *eventually* support the other Playbooks but does **not** generalize or implement all 27 clusters. The remaining four Cluster-1 Plays are **not** authored here. No code, no migration, no production change, no deploy in this pass.
+Prototype is **Cluster 1 only**; the architecture is designed to *eventually* support the other Playbooks but does **not** generalize or implement all 27 clusters, and the remaining four Cluster-1 Plays are **not** authored here. No code, no migration, no production change, no deploy in this pass. Branch held local pending final architecture approval.
