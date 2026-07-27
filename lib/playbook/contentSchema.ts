@@ -236,18 +236,27 @@ export type InteractionKind =
 // ---- Understand: literature (§5) ----------------------------------------------
 
 export type LiteratureScope = "cluster" | "play" | "jit";
-export interface LiteratureBlock {
-  heading?: string;
-  body: string[];
-}
+
+/** Parsimonious authored block model (content gate). NOT a course builder — a small,
+ *  fixed set of block kinds for substantive-but-readable field-guide entries. */
+export type LiteratureBlock =
+  | { kind: "paragraph"; heading?: string; body: string[] } // prose; optional section heading (multi-section Core Guides)
+  | { kind: "distinction"; label: string; body: string[] } // key distinction / callout
+  | { kind: "list"; label?: string; items: string[] } // bullets / "what this can look like"
+  | { kind: "example"; body: string[] } // brief relational example
+  | { kind: "guardrail"; body: string[] }; // keep-in-mind / guardrail
+
 export interface LiteratureEntry {
   id: string;
   version: number;
   scope: LiteratureScope;
+  /** Within cluster scope: "core" = substantive multi-section guide; "question" = focused
+   *  answer to a lived-experience question. Omitted for play/jit. */
+  depth?: "core" | "question";
   title: string;
   body: LiteratureBlock[];
   playId?: string; // scope="play"
-  anchor?: string; // scope="jit": what surfaces it
+  anchor?: string; // scope="jit": what surfaces it (JIT is surfaced contextually, not browsed by default)
   related?: string[]; // navigable cross-links
 }
 
@@ -329,7 +338,10 @@ export type StatementFunction =
   | "jit_teaching"
   | "simulation_cue"
   | "play_routing"
-  | "support_signpost"
+  // NOT a trigger. Only makes a statement ELIGIBLE for a structured persistence/
+  // pervasiveness gate (§4.5); a single mapped statement never surfaces a Layer-B
+  // signpost on its own. Ordinary fatigue/loneliness/worry must not carry this.
+  | "support_signpost_candidate"
   | "context_normalization"
   | "none";
 export interface StatementMapping {
