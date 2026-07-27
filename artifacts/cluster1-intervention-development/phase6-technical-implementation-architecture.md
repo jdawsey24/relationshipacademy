@@ -1,7 +1,20 @@
-# Relationship Playbook™ · Difficulty Feeling Chosen — Phase 6
+# Relationship Playbook™ · Difficulty Feeling Chosen — Phase 6 (Rev 2)
 ## Technical Implementation Architecture & Build Specification
 
-**Status:** PHASE 6 build specification for human review. **Specification only — no code, migrations, or
+## 0. REV 2 — REQUIRED ARCHITECTURAL REVISIONS (applied before build; authoritative)
+Approved with the following required revisions; each is applied in the sections noted.
+| # | Revision | Applied in |
+|---|---|---|
+| **R1** | **Stable string identifiers** independent of numeric cluster IDs: **`playbook_key`** (e.g. `"difficulty-feeling-chosen"`) keys content/routing/progress; **`play_id`** (e.g. `"read-and-decide"`, `"what-it-actually-means"`) keys each Play — never technique codes, ordinals, or the numeric cluster. **The numeric `cluster_id` stays ONLY as the entitlement/commerce link** (a `cluster_id ↔ playbook_key` map lives in `lib/snapshot/playbooks.ts`). | §1, §3, §4, §5, §8 |
+| **R2** | **Versioning** on three things: **`playbook_version`** (content module), per-Play **`play_version`**, and **`output_schema_version`** (stamped on every stored output). Stored progress records the versions under which its data was produced, so content/output-shape can evolve additively. | §3, §4, §5 |
+| **R3** | **Keep current-state persistence for MVP** (`playbook_progress` snapshot), **and design (do NOT build) a clean future path for an append-only intervention-use / process-event log** (`playbook_events`). The seam is reserved now; MVP writes current-state only. | §3, §10 |
+| **R4** | **Separate two safety layers explicitly:** (a) **Crisis Safety Detection** — a shared, cross-Play/cross-cluster service (Safety V2 engine on free-text → crisis resources); (b) **Play-specific support/signpost** — content-driven routing per Play (e.g. T1a severe-self-worth signpost, T3a unsafe-relationship exclusion). Independent modules, independent triggers; both may fire. | §9 |
+| **R5** | **First implementation = ONLY the two screen-complete Plays** (`read-and-decide`, `what-it-actually-means`) + the universal engine. | §13, §14 |
+| **R6** | **The other four Plays must complete the same full content/design + human-approval process (Phase-5/5B depth) before any implementation.** Until then they are light-spec only and are **not built.** | §13, §14 |
+| **R7** | **Interactive + PDF coexist for MVP**, with **interactive as the PRIMARY experience** and **PDF as a supporting/offline artifact** (resolves prior open decision #1). | §2, §15 |
+| **R8** | **All standing constraints retained:** no production deploy without explicit instruction · owner runs migrations · no Snapshot/scoring/commerce/framework/intervention change · the 333 records untouched · not attorney-reviewed (Owner Risk Acceptance only). | §12, §14, Readiness |
+
+**Status:** PHASE 6 build specification for human review — **Rev 2 (approved-with-revisions).** **Specification only — no code, migrations, or
 deploy in this phase** (consistent with the staged pattern; code lands on a branch in the implementation step,
 never straight to production). Governing design: frozen Intervention Architecture v1.0; Phase 4 (L1–L6);
 Phase 5 + 5B (two screen-complete prototype Plays + universal slotted container + shared sort engine).
@@ -45,23 +58,34 @@ Module** (authored). Access piggybacks on the existing entitlement; commerce is 
 - **Auth requirement rationale:** persistence (My Plays, outputs, states) must attach to an account — the
   experience is not usable anonymously if progress is to be saved. (A read-only "preview" of Play 1 without
   save could be a future teaser; not MVP.)
+- **(R7) Interactive is PRIMARY; PDF is a supporting artifact.** For owners, the interactive experience is the
+  primary way to use the playbook; the existing gated PDF **coexists** as a supporting/offline artifact (and
+  fallback). Owner entry points (post-purchase, account, `/playbooks/[slug]`) lead to the interactive
+  experience first, with the PDF offered as "also available." No commerce/PDF code changes.
+- **(R1) Identifier boundary:** the numeric **`cluster_id` is used ONLY for entitlement/commerce** (unchanged
+  `playbook_entitlements`). Everything else — content, routing, progress, analytics — keys on the stable
+  **`playbook_key`** resolved via a `cluster_id ↔ playbook_key` map in `lib/snapshot/playbooks.ts`
+  (`cluster_id 1 ↔ "difficulty-feeling-chosen"`).
 
 ## 3. Data / Persistence — migration `0052_playbook_progress.sql` (proposed; additive, RLS-locked)
-**Principle (Phase 4 D14): functional data only — no emotional journaling.** One row per (user, cluster);
-per-play state + user-authored *outputs* stored as typed JSON.
+**Principle (Phase 4 D14): functional data only — no emotional journaling.** **Current-state persistence for
+MVP (R3):** one row per (user, `playbook_key`); per-play state + user-authored *outputs* keyed by **`play_id`**
+(R1) and version-stamped (R2).
 ```sql
 create table public.playbook_progress (
-  id            uuid primary key default gen_random_uuid(),
-  user_id       uuid not null references auth.users(id) on delete cascade,
-  cluster_id    integer not null,
-  recognized    jsonb not null default '[]',   -- pathway ids the user tapped ("sounds like me")
-  play_states   jsonb not null default '{}',   -- { playId: 'available'|'explored'|'in_my_plays'|'used' }
-  outputs       jsonb not null default '{}',   -- { playId: <executable output payload> } (bounded conclusion, evidence map, if-then rule, ...)
-  my_plays      jsonb not null default '[]',   -- ordered saved Plays (5-field cards)
-  updated_at    timestamptz not null default now(),
-  created_at    timestamptz not null default now(),
-  unique (user_id, cluster_id)
+  id                 uuid primary key default gen_random_uuid(),
+  user_id            uuid not null references auth.users(id) on delete cascade,
+  playbook_key       text not null,                 -- R1: stable key, e.g. 'difficulty-feeling-chosen' (NOT cluster_id)
+  playbook_version   integer not null default 1,    -- R2: content module version this row was produced under
+  recognized         jsonb not null default '[]',   -- pathway ids the user tapped ("sounds like me")
+  play_states        jsonb not null default '{}',   -- { play_id: 'available'|'explored'|'in_my_plays'|'used' }   (R1 keys)
+  outputs            jsonb not null default '{}',   -- { play_id: { output_schema_version, play_version, payload } }   (R2)
+  my_plays           jsonb not null default '[]',   -- ordered saved Plays (5-field cards; each carries its play_id + versions)
+  updated_at         timestamptz not null default now(),
+  created_at         timestamptz not null default now(),
+  unique (user_id, playbook_key)
 );
+create index if not exists idx_playbook_progress_user on public.playbook_progress (user_id, playbook_key);
 alter table public.playbook_progress enable row level security;
 -- own-row read + write (the experience writes the user's own progress; no cross-user access)
 create policy "own progress select" on public.playbook_progress for select using (auth.uid() = user_id);
@@ -69,27 +93,43 @@ create policy "own progress upsert" on public.playbook_progress for insert with 
 create policy "own progress update" on public.playbook_progress for update using (auth.uid() = user_id);
 notify pgrst, 'reload schema';
 ```
-- **What is NOT stored:** free-form reflection, mood, partner identity/tracking, "how did that feel" text. The
-  short free-text fields (event description, situation) are stored **only** as part of a functional output
-  (e.g., inside a bounded conclusion) — never as a diary.
-- **Output payloads are typed** (Section 5) and validated server-side before persist.
-- **Owner-scoped writes via RLS** (own-row) — unlike the studio public endpoints, this is authenticated user
-  data, so RLS own-row is correct (mirrors `companion_user_entries` posture, not the service-role public path).
+- **(R2) Versioning:** every stored output carries `{ output_schema_version, play_version, payload }`, and the
+  row carries `playbook_version`. Content/output-shape can evolve additively; readers migrate old payloads by
+  version. No numeric `cluster_id` column here — the entitlement gate (Section 2) resolves ownership; progress
+  is keyed by `playbook_key`.
+- **(R3) Future append-only events — DESIGNED, NOT BUILT.** A later, additive migration would add
+  **`playbook_events`** (`id, user_id, playbook_key, play_id, event_type, output_schema_version, occurred_at,
+  metadata jsonb`) — an **immutable, append-only** log of intervention-use / process events (Play opened,
+  output saved, used-in-real-life, fidelity self-mark) seeding the Phase 2/3 process measures. **MVP does NOT
+  create it.** The seam: the progress API's write path is structured so it *could* later also emit an event
+  without reshaping current-state persistence. This keeps current state simple now and the research path clean
+  later.
+- **What is NOT stored (now or in events):** free-form reflection, mood logs, partner identity/tracking, "how
+  did that feel" prose. Short free-text (event/situation) persists **only** inside a functional output, never as
+  a diary; events (future) would store **metadata**, not raw emotional content.
+- **Payloads are typed** (Section 5) and validated server-side before persist. **RLS own-row** (authenticated
+  user data; mirrors `companion_user_entries`, not the service-role public path).
 
 ## 4. Content Model — typed, git-versioned, no DB dependency (MVP)
 Cluster-1 content is **authored as typed TS modules** (frozen design → code), not DB-authored, for MVP:
 - Rationale: content is **frozen** (Phase 5/5B), single cluster, must be reviewable in PRs, and has **no
   runtime authoring need**. DB/Studio authoring is a **future** scale concern (27 clusters), added without
   changing the engine (the engine reads the content *interface*, not the source).
-- **Content schema (types in `lib/playbook/contentSchema.ts`):**
-  - `PlaybookContent` = `{ clusterId, opening, recognitionCards[], plays[], education[], recognitionContext[], safetySignpost }`
-  - `RecognitionCard` = `{ id, pathwayId|null, headline, secondaryExamples[], role: 'route'|'validate'|'signpost' }`
-  - `Play` = `{ id, name, positioning, recognitionGate, shift, literatureL1, literatureL2, screens[], executableOutput, portable, fidelity, myPlaysTemplate, routing, prerequisites[] }`
-  - `Screen` = a discriminated union: `shift | literature | learn | scenarioSort | ownTurn | ruleBuilder | emotionBeat | output | portable | realWorldUse | signpost` — each with its own typed props.
-  - `SortScreen` = `{ prompt, situation, items: {id,text,correctBucket?}[], buckets: {id,label,icon}[], accuracyFeedback?, hints? }` — **N buckets** (Read & Decide = 3, What It Actually Means = 2).
-- **Cluster-1 content file** `content/playbook/cluster-1/*.ts` holds the exact Phase 5/5B copy (opening,
-  7 recognition cards + expanders, the 6 MVP Plays; Read & Decide + What It Actually Means fully authored;
-  the other four to the light-spec level → fully authored as a content task, not an engine change).
+- **Content schema (types in `lib/playbook/contentSchema.ts`) — R1 keys + R2 versions:**
+  - `PlaybookContent` = `{ playbookKey, playbookVersion, opening, recognitionCards[], plays[], education[], recognitionContext[] }`
+    — keyed by **`playbookKey`** (not clusterId); carries **`playbookVersion`**.
+  - `RecognitionCard` = `{ id, pathwayPlayId|null, headline, secondaryExamples[], role: 'route'|'validate'|'signpost' }`
+    — routes to a **`play_id`**, not a technique code.
+  - `Play` = `{ playId, playVersion, outputSchemaVersion, name, positioning, recognitionGate, shift, literatureL1, literatureL2, screens[], executableOutput, portable, fidelity, myPlaysTemplate, routing, prerequisites[], supportSignposts[] }`
+    — stable **`playId`** + **`playVersion`** + **`outputSchemaVersion`**; `supportSignposts[]` are Play-specific (R4-b).
+  - `Screen` = discriminated union: `shift | literature | learn | scenarioSort | ownTurn | ruleBuilder | emotionBeat | output | portable | realWorldUse | signpost`.
+  - `SortScreen` = `{ prompt, situation, items:{id,text,correctBucket?}[], buckets:{id,label,icon}[], accuracyFeedback?, hints? }` — **N buckets**.
+- **Registry:** `lib/snapshot/playbooks.ts` gains a `cluster_id ↔ playbook_key` map (`1 ↔ "difficulty-feeling-chosen"`)
+  so entitlement (numeric) and experience (string key) stay decoupled (R1).
+- **Cluster-1 content file** `content/playbook/difficulty-feeling-chosen/*.ts` (named by **`playbook_key`**, R1)
+  holds the exact Phase 5/5B copy. **First implementation authors ONLY the two screen-complete Plays**
+  (`read-and-decide`, `what-it-actually-means`) — R5. The other four Plays are **not authored/built** until they
+  complete the same Phase-5/5B design + approval (R6).
 
 ## 5. Executable Output Types (typed payloads persisted per Play)
 | Play | Output type (TS) |
@@ -100,7 +140,10 @@ Cluster-1 content is **authored as typed TS modules** (frozen design → code), 
 | How Much to Put In | `{ investmentKinds:string[], currentEvidence:string[], forwardDecision, spaceCheck }` |
 | Say the Real Thing | `{ expression, prediction, outcome?, learning? }` |
 | Rest, or Giving Up? | `{ mode:'choice'|'automatic', valueServed, decision, reentrySignal }` |
-Each `→ my_plays[]` card via the Play's `myPlaysTemplate` (5 consumer fields). Server validates shape on save.
+Each `→ my_plays[]` card via the Play's `myPlaysTemplate` (5 consumer fields). **Every persisted output is
+wrapped `{ output_schema_version, play_version, payload }` (R2)**; server validates the payload against the
+`play_id`'s current schema and stamps versions. Outputs are keyed by **`play_id`** (R1). Readers migrate older
+`output_schema_version` payloads forward additively.
 
 ## 6. Component Architecture (Universal Engine + Cluster Content)
 **Universal (build once — `components/playbook/`):**
@@ -146,17 +189,31 @@ interaction, add a component; the container's slot model absorbs it.
   the user can be dropped into cold. (Revisit for shareable Play links in V1.1.)
 - `dynamic = 'force-dynamic'` on the gate (per-user); `runtime = 'nodejs'` on the API.
 
-## 9. Safety Integration (reuse the frozen Safety V2 engine)
-- The Playbook has a small number of **short free-text fields** (the event/situation the user types). Run these
-  through the **existing deterministic Safety V2 engine** (`lib/` safety modules; migration `0048`) at submit
-  time — **metadata-only, no raw disclosure logging** (consistent with its live posture).
-- On a crisis/immediacy signal → surface the **support signpost** (`SupportSignpost`) + resources, and do **not**
-  block the Play (non-punitive), exactly as the Companion does.
-- The T1a **severe/chronic self-worth signpost** (Phase 5B S-WM-15) is content-driven (gate + language),
-  independent of the crisis engine; both can fire.
-- **No new safety theory** — reuse only. *(Attorney review status is unchanged and NOT performed; the Playbook
-  ships under the same documented Owner Risk Acceptance as the rest of the live surface — must not be
-  represented as attorney-approved.)*
+## 9. Safety — TWO EXPLICITLY SEPARATE LAYERS (R4)
+The prior draft blurred these; they are now **architecturally distinct modules with independent triggers**.
+Both may fire; neither depends on the other.
+
+**Layer A — Crisis Safety Detection (shared, cross-Play, cross-cluster, engine-driven).**
+- A single shared service wrapping the **frozen deterministic Safety V2 engine** (`lib/` safety modules;
+  migration `0048`), run on the Playbook's short free-text at submit time — **metadata-only, no raw disclosure
+  logging** (its live posture).
+- On a crisis/immediacy signal → surface **crisis resources**, non-punitive, non-blocking (as the Companion
+  does). This layer is **content-agnostic** — identical behavior regardless of which Play or cluster the user
+  is in. Implemented as `lib/playbook/crisisSafety.ts` calling the existing engine; **not** authored per Play.
+
+**Layer B — Play-specific Support / Signpost (content-driven, per-Play routing).**
+- Declared in each Play's content (`supportSignposts[]`), independent of the crisis engine: e.g. **T1a
+  severe/chronic self-worth signpost** (Phase 5B S-WM-15, triggered by the situational-only gate + language),
+  **T3a unsafe/coercive-relationship exclusion** (do-not-run + route out), **PE-6 accurate-expectancy**
+  recognition. These are **developmental/context routing**, not crisis detection.
+- Implemented as content + the `SupportSignpost` component; each Play declares its own signposts and their
+  triggers.
+
+**Separation contract:** Layer A is a global safety service (one implementation, all Plays); Layer B is
+per-Play content. A crisis signal (A) fires regardless of Play; a Play signpost (B) fires from that Play's
+rules. They compose — a user can hit both. **No new safety theory** — Layer A reuses Safety V2 only.
+*(Attorney review unchanged and NOT performed; the Playbook ships under the same documented Owner Risk
+Acceptance as the rest of the live surface — never represented as attorney-approved.)*
 
 ## 10. State, Analytics, and the "no gamification" constraint
 - Four states + optional Used (Phase 4 D13): `available → relevant → explored → in_my_plays` (+ `used`), stored
@@ -184,33 +241,51 @@ interaction, add a component; the container's slot model absorbs it.
   entitlement/commerce untouched. **Owner runs `0052`.** **Do NOT deploy to production without explicit
   instruction; build on a branch, open a PR.**
 
-## 13. MVP Build Sequence (branch: `playbook-dfc-interactive`)
-1. **Migration `0052`** (owner-run) + `playbook_progress` types + `ownsPlaybook()` + progress API (with RLS +
-   shape validation).
-2. **Universal engine:** `contentSchema`, `ExperienceShell` state machine, `PlaybookGate`, `useProgress`.
+## 13. First-Implementation Build Sequence (branch: `playbook-dfc-interactive`) — R5/R6
+**Scope = the universal engine + the TWO screen-complete Plays only** (`read-and-decide`,
+`what-it-actually-means`). The other four Plays are **out of this build** (R6).
+1. **Migration `0052`** (owner-run) + `playbook_progress` types (R1 keys, R2 versions) + `ownsPlaybook()` +
+   `cluster_id ↔ playbook_key` registry + progress API (RLS + shape/version validation).
+2. **Universal engine:** `contentSchema` (playbookKey/playVersion/outputSchemaVersion), `ExperienceShell`
+   state machine, `PlaybookGate`, `useProgress`.
 3. **SortEngine** (N-bucket, tap-first, accessible) + `SentenceBuilder`/`RuleBuilder`/`ChipList` +
-   `LiteratureBlock`/`MyPlaysCard`/`UsedReview`/`SupportSignpost`/`HealthyMarker`.
-4. **Cluster-1 content module** — opening, recognition (7 cards + expanders), board, **Read & Decide** +
-   **What It Actually Means** (screen-complete), + the other four Plays authored from their light specs.
-5. **Safety hook** (Safety V2 on free-text) + signposts.
-6. **Recognition → board → play → return-home → exit** wiring + "Explore another area."
-7. **Tests + a11y pass**; `tsc`/build; PR. *(No deploy without instruction.)*
+   `LiteratureBlock`/`MyPlaysCard`/`UsedReview`/`HealthyMarker`; **Layer-A** `crisisSafety` service +
+   **Layer-B** `SupportSignpost` component (R4).
+4. **Cluster content module** `difficulty-feeling-chosen` — opening, recognition (7 cards + expanders),
+   board, and **only** `read-and-decide` + `what-it-actually-means`, screen-complete from Phase 5/5B.
+5. **Wiring:** recognition → board → play → return-home → exit + "Explore another area" (the board surfaces
+   only the two built Plays as pathways; recognition prompts for not-yet-built pathways are shown as
+   "coming soon / not yet available," never as broken routes).
+6. **Tests + a11y pass** (Section 12); `tsc`/build green; **PR** on the branch. *(No prod deploy without
+   explicit instruction; owner runs `0052`.)*
+**Later (each gated on its own approval, R6):** author + deep-design each remaining Play (`is-this-right-for-
+you`, `how-much-to-put-in`, `say-the-real-thing`, `rest-or-giving-up`) through the full Phase-5/5B process →
+human approval → add its content module + any technique-specific component → surface its pathway. No engine
+change required to add a Play (that's the point of the shell).
 
-## 14. What NOT to build (MVP) / Defer
-- **No T2d** Play (V1.1). **No** LLM at runtime. **No** DB/Studio content authoring (typed modules for MVP).
+## 14. What NOT to build (first implementation) / Defer
+- **(R5/R6) The four not-yet-approved Plays are NOT built** — `is-this-right-for-you`, `how-much-to-put-in`,
+  `say-the-real-thing`, `rest-or-giving-up` each require the full Phase-5/5B content/design + human approval
+  first. **No T2d** Play (V1.1). Only `read-and-decide` + `what-it-actually-means` ship in the first build.
+- **(R3) The append-only `playbook_events` log is NOT built** — designed/reserved only; MVP writes current-state.
+- **No** LLM at runtime. **No** DB/Studio content authoring (typed modules for the first build).
 - **No** gamification, journaling engine, partner tracking, always-on chat, shareable Play URLs, or Companion
   deep-linking beyond the optional exit handoff link.
-- **No** Snapshot/scoring/commerce/framework/intervention changes. **No** rewrite of the 333 records.
-- **No** new safety theory (reuse Safety V2 only).
+- **(R8) No** Snapshot/scoring/commerce/framework/intervention changes. **No** rewrite of the 333 records.
+  **No** production deploy without explicit instruction; **owner runs migrations.**
+- **No** new safety theory (Layer A reuses Safety V2 only).
 
 ## 15. Risks / Open Technical Decisions
-1. **Interactive vs PDF for owners** — does the interactive experience *replace* the PDF download for cluster 1,
-   or coexist? (Recommend coexist in MVP; PDF is the fallback/offline artifact.) **Owner decision.**
-2. **Content source** — typed modules (recommended MVP) vs Studio/DB authoring (future). Confirm MVP = code.
-3. **Anonymous preview** — allow a no-save teaser of Play 1 pre-purchase? (Defer; auth+entitlement for MVP.)
-4. **Analytics scope** — confirm coarse non-gamified event logging is acceptable, and where it lives.
-5. **Safety engine coupling** — confirm reuse of the live Safety V2 engine on Playbook free-text (recommended).
+1. ~~Interactive vs PDF~~ → **RESOLVED (R7): coexist; interactive PRIMARY, PDF supporting/offline artifact.**
+2. **Content source** — typed modules (first build) vs Studio/DB authoring (future). Confirmed = typed modules.
+3. **Anonymous preview** — no-save teaser of Play 1 pre-purchase? (Defer; auth+entitlement for first build.)
+4. **Analytics scope** — confirm coarse non-gamified event logging is acceptable, and where it lives (also the
+   natural place the future `playbook_events` seam attaches — R3).
+5. **Safety engine coupling (Layer A)** — confirm reuse of the live Safety V2 engine on Playbook free-text
+   (recommended).
 6. **Migration number** — `0052` assumes no intervening migration lands first; reconcile at PR time.
+7. **`playbook_key` value** — confirm `"difficulty-feeling-chosen"` as the canonical key (must match the
+   marketing slug used by `/playbooks/[slug]`).
 
 ## 16. Decision Log
 | # | Decision | Basis |
@@ -226,16 +301,22 @@ interaction, add a component; the container's slot model absorbs it.
 | P6-D9 | Single entitlement-gated route + internal state machine; commerce/PDF untouched | §8 |
 | P6-D10 | **Spec only this phase**; code on branch `playbook-dfc-interactive`, PR, **no prod deploy without instruction**; owner runs 0052 | standing constraints |
 | P6-D11 | **Attorney review unchanged (NOT performed)**; ships under existing Owner Risk Acceptance; not attorney-approved | standing constraint |
+| **P6-D12 (Rev 2)** | **Stable `playbook_key` + `play_id`** decouple content/routing/progress from numeric `cluster_id` (which stays entitlement-only) | R1 |
+| **P6-D13 (Rev 2)** | **Versioning** — `playbook_version` · `play_version` · `output_schema_version` stamped on stored data | R2 |
+| **P6-D14 (Rev 2)** | **Current-state persistence for MVP**; **append-only `playbook_events` designed but NOT built** | R3 |
+| **P6-D15 (Rev 2)** | **Two separate safety layers** — A crisis detection (shared engine service) vs B Play-specific signposts (content) | R4 |
+| **P6-D16 (Rev 2)** | **First build = 2 screen-complete Plays only**; other 4 gated on full design + approval | R5/R6 |
+| **P6-D17 (Rev 2)** | **Interactive PRIMARY, PDF supporting**; coexist in MVP | R7 |
 
 ---
 
 ## READINESS
-**READY FOR IMPLEMENTATION (build step).** The spec is concrete enough that implementation *translates* it:
-data model (0052), entitlement reuse, typed content schema + Cluster-1 content, the universal engine +
-slotted container + shared SortEngine, routes + progress API, safety reuse, a11y/mobile, tests, and a build
-sequence — with **no product/therapeutic/interaction logic left to invent.** Open items (Section 15) are
-owner/product decisions (interactive-vs-PDF coexistence, analytics scope, anonymous preview), not architecture
-gaps.
+**READY FOR FIRST-IMPLEMENTATION BUILD (Rev 2).** All 8 required revisions (R1–R8) are applied. The spec now
+translates directly: R1 stable keys, R2 versioning, R3 current-state-now / events-designed-later, R4 two
+separate safety layers, R5 build only the two screen-complete Plays, R6 gate the other four on their own
+approvals, R7 interactive-primary/PDF-supporting, R8 all constraints retained — with **no product/therapeutic/
+interaction logic left to invent.** Remaining Section-15 items are owner/product confirmations (content-source,
+analytics scope, anonymous preview, migration number, `playbook_key` value), not architecture gaps.
 
 **Hard constraints reaffirmed for the build step:** work on branch `playbook-dfc-interactive`; **owner runs
 migration 0052**; **do not deploy to production without explicit instruction**; leave Snapshot/scoring/commerce/
