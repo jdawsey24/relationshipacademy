@@ -14,7 +14,8 @@ import { useState } from "react";
 import type { PlaybookContent, Play, FidelityOutcome } from "@/lib/playbook/contentSchema";
 import SimulationPlayer from "@/components/playbook/SimulationPlayer";
 import PlayContainer from "@/components/playbook/PlayContainer";
-import { simulationForPlay, screensWithoutLiterature } from "@/lib/playbook/rev3Flow";
+import { simulationForPlay } from "@/lib/playbook/rev3Flow";
+import { rev3Play } from "@/content/playbook/moving-beyond-rejection-rev3-copy";
 
 export interface PlaySequenceProps {
   content: PlaybookContent;
@@ -58,7 +59,7 @@ export default function PlaySequence({
     );
   }
 
-  const playForRev3: Play = { ...play, screens: screensWithoutLiterature(play) };
+  const playForRev3: Play = rev3Play(play);
   return (
     <PlayContainer play={playForRev3} onSaveOutput={onSaveOutput} onExit={onExit} onRoute={onRoute} onScreenText={onScreenText} />
   );

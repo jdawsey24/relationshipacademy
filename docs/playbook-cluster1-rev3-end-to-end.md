@@ -7,13 +7,23 @@ This renders the **actual** Rev 3 journey the user experiences, in order:
 **Entry (board → gate) → Experience (Simulation) → handoff → Play (intervention, literature extracted).**
 The in-Play `literature` screen is removed on the Rev 3 path (extracted to first-class entries + the simulation does the felt teaching); v0 keeps it.
 
-### Readability (measured, Flesch–Kincaid grade)
+### Readability (measured, Flesch–Kincaid grade) — after the Rev 3 copy pass
 | Segment | RD | WM |
 |---|---|---|
 | Simulation | 4.5 | 4.6 |
-| Play screens (literature extracted) | 5.0 | 5.3 |
+| Play screens (v0, unchanged) | 5.1 | 5.4 |
+| **Play screens (Rev 3, tightened)** | **3.4** | **4.6** |
 
-At/near the 5th-grade target across the whole Rev 3 path. (The old dense `literature` screens — grade 10+ — are exactly what extraction removes; the ~5th-grade play-scope literature authored in Step 3 replaces them, surfaced via the field guide / JIT.)
+The Rev 3 copy pass tightens sentence length / cognitive load in Shift, teaching feedback,
+scenario notes, real-world-use, safety, and the Rule Builder guardrail — **wording only**
+(no structure, ids, `correctBucket`, buckets, actions, fidelity, scenarios, or meaning
+changed). It is applied by a flag-gated transform (`rev3Play`) on the Rev 3 path only; the
+shared v0 content is untouched (all v0 tests pass unchanged). The Play copy shown below is
+the **Rev 3 tightened** version.
+
+**Two content decisions in this pass:**
+- **RD evidence phrasing kept as “What would actually tell me?”** (not “What would help me know?”). In context the sufficiency construct is “what evidence would answer my question”; “tell me” maps directly to “give me the answer”, reads faster on mobile, and the original is clearer — so per instruction it was not changed.
+- **Rule Builder guardrail made unmistakable:** “This is a plan for what YOU do, based on what you actually see. It's not a way to control them, make them chase, or set a secret deadline.”
 
 ### Confirmations for this gate
 - **No premature "Read the Result" / real-life logic in the simulation.** The sim ends at the `teach` handoff; the read-the-result step (`output` screen) and real-world application (`realWorldUse` screen) live only in the Play, after the handoff.
@@ -62,46 +72,46 @@ At/near the 5th-grade target across the whole Rev 3 path. (The old dense `litera
 *The user lands directly on the operation they just felt. (The old “Why this matters / Show me how” literature screen is gone on this path.)*
 
 **Shift**
-> Right now, an unclear signal can turn into a whole story fast — and the story decides what you do.
-> This helps you do something different: tell what you've actually seen from what you're guessing, notice what you still don't know, and set a clear next move — so your decision follows the evidence, not the fear or the hope.
+> Right now, one unclear signal can turn into a whole story fast. And the story decides what you do.
+> This helps you do something different. Tell what you've seen from what you're guessing. Notice what you still don't know. Then pick a clear next move — so your choice follows the evidence, not the fear or the hope.
 
 **Learn**
-> Three buckets. When something happens and a story starts forming, sort it:
-> Saw it — what actually happened. Guessing — what you think it means (could be right; still a guess). Don't know yet — what this doesn't tell you.
+> Three buckets. When a story starts forming, sort it:
+> Saw it — what actually happened. Guessing — what you think it means (might be right; still a guess). Don't know yet — what this can't tell you.
 > Then one question: what would actually tell me?
 
-**Scenario sort 1** — “Let's try it on someone else's situation first. Sort each piece into a bucket.”
+**Scenario sort 1** — “Try it on someone else's situation first. Put each piece in a bucket.”
 > You had a great date — easy conversation, they said they'd love to do it again. Over the next four days their texts got shorter. Then they messaged suggesting a specific plan for next week.
-Buckets: Saw it · Guessing · Don't know yet. Items include “They're losing interest” → correction: *“That's a guess, not something you saw. The shorter texts are what you saw — what it means is still open.”*
-Note: *“Notice: the only ‘losing interest’ evidence is shorter texts — and they just made a concrete plan. The story ran ahead of what you actually saw.”*
+Buckets: Saw it · Guessing · Don't know yet. Item “They're losing interest” → correction: *“That's a guess, not something you saw. The shorter texts are what you saw. What they mean is still open.”*
+Note: *“See it? The only ‘losing interest’ evidence is shorter texts. And they just made a real plan. The story ran ahead of what you saw.”*
 Evidence question: “What would actually tell you?” → How they are on the plan they suggested · Re-reading the old texts · Asking a friend
 
 **Scenario sort 2** — words vs. actions
 > They keep saying they really like you — but they dodge making actual plans.
-Note: *“When what someone says and what they repeatedly do don't line up, that mismatch is itself important information. It doesn't mean their words are meaningless — it means the gap is worth watching.”* *(congruence — not “actions beat words”)*
+Note: *“When someone's words and their actions don't line up, that gap is information. It doesn't mean their words are fake. It means the gap is worth watching.”* *(congruence — not “actions beat words”)*
 
-**Own turn** — “Now a real situation of yours. Keep it to one specific thing.”
+**Own turn** — “Now a real one of yours. Keep it to one specific thing.”
 Fields: the question (“e.g. Is this going somewhere, or am I filling in the blanks?”) · Saw it · Guessing · Don't know yet · What would actually tell you? (one thing)
 
 **Sufficiency** — “Do you already have enough to answer your question?”
 > [ I already have enough — let me decide ] · [ I need more information first ]
-Need-more: *“Good — ‘I need more information’ is a real answer. Name the one thing that would actually move this forward, so it doesn't turn into waiting forever.”*
+Need-more: *“Good — ‘I need more information’ is a real answer. Name the one thing that would move this forward. That keeps it from turning into waiting forever.”*
 
-**Rule builder** — “Now turn that into a move — decided now, so you're not deciding in the moment from fear or hope.”
+**Rule builder** — “Now turn that into a move. Decide it now, so you're not deciding in the moment from fear or hope.”
 > If I see… (the thing you'll watch for) → …then I will [choose an action]
-Control check: *“This is about what you choose to invest based on what you're seeing — not a way to get them to chase, and not a deadline.”*
+Control check *(guardrail — unmistakable)*: *“This is a plan for what YOU do, based on what you actually see. It's not a way to control them, make them chase, or set a secret deadline.”*
 
 **Read the Result** (`output`)
-> **Your Read & Decide** — Here's what you've got — keep it, or save it to My Plays.
+> **Your Read & Decide** — Here's what you've got. Keep it, or save it to My Plays.
 > **[ Save to My Plays ]** · [ Just take it with me ]
 
 **Take it with you** (`portable`)
 > What did I actually see? · What am I guessing? · What don't I know yet? · What would tell me? · If I see ___, I'll ___.
 
 **Use it in real life** (`realWorldUse`)
-> *Use this when* a text or a change in how they're acting starts turning into a story — or when you're unsure whether to keep going, ask, ease off, or walk away.
+> *Use this when* a text or a change in how they act starts turning into a story — or when you're not sure whether to stay, ask, ease off, or leave.
 > *Do:* Run the five lines before you react. Then watch for the one thing that would actually tell you.
-> *Safety:* If what you're ‘waiting to be sure about’ is whether someone is treating you badly or unsafely — you don't need more evidence for that. Trust it.
+> *Safety:* If what you're ‘waiting to be sure about’ is whether someone is treating you badly or unsafely — you don't need more proof. Trust it.
 
 ---
 
@@ -144,33 +154,35 @@ Control check: *“This is about what you choose to invest based on what you're 
 ## 4 · Play (intervention) — literature screen extracted
 
 **Shift**
-> When a date or a relationship doesn't work out, your mind can do something quick and unfair: it takes one thing that happened and turns it into a verdict about you. One person's choice becomes “I'm not enough.”
-> This Play helps you keep the conclusion the size of the actual evidence — so a hard moment stays a hard moment, instead of becoming a definition of you. It won't make the sting go away. It just stops the sting from writing a story it doesn't have the evidence for.
+> When something doesn't work out, your mind can do something quick and unfair. It takes one thing that happened and turns it into a verdict about you. One person's ‘no’ becomes ‘I'm not enough.’
+> This Play keeps the conclusion the size of the evidence. A hard moment stays a hard moment — not a definition of you. It won't make the sting go away. It just stops the sting from writing a story the evidence doesn't back.
 
 **Learn**
-> When a letdown starts becoming a verdict, run it through three questions:
+> When a letdown starts becoming a verdict, ask three things:
 > What does this actually establish? What does it not establish? What's the narrowest true thing I can say?
-> The trick is separating this happened from this is who I am. Let's try it on someone else's situation first.
+> The trick is separating this happened from this is who I am. Let's try one on someone else first.
 
 **Scenario sort 1** — “Sort each statement: does the event support it, or can it not prove it?”
 > After a few good dates, they said: “I had a really good time, but I don't think we're the right match.” / Thought: “Something must be wrong with me.”
 “I'm not enough” → correction: *“That's the story, not the evidence. What did the event actually show? That this one person didn't want to continue. The rest is the leap we're catching.”*
+Note: *“A hint on each: is this about this one person, or everyone? This time, or forever? What happened, or who you are?”*
 
-**Scenario sort 2** (went quiet) — bounding the global claim, not the feeling.
-Note: *“Your reaction is valid. We're bounding only the global claim, not the feeling.”*
+**Scenario sort 2** (went quiet) — checking the big claim, not the feeling.
+“Nobody ever stays interested” → correction: *“‘Nobody’ and ‘ever’ are the leap. One person going quiet can't prove a rule about everyone.”*
+Note: *“Your reaction is valid. We're checking only the big claim here, not the feeling.”*
 
-**Scenario sort 3** (possible real pattern) — “There might be a real pattern. We won't tell you it's imaginary. Two things are getting tangled; sort them.”
-Buckets: **An observation to keep** · **A verdict to drop.** Note: *“Keep the observation, drop the verdict. A real pattern is worth looking at — separately, as evidence.”*
+**Scenario sort 3** (possible real pattern) — “This one's different. There might be a real pattern — we won't tell you it's imaginary. Two things are getting tangled; sort them.”
+Buckets: **An observation to keep** · **A verdict to drop.** Note: *“Keep the observation. Drop the verdict. A real pattern is worth looking at — on its own, as evidence.”* *(the pattern is real; only the global self-verdict is dropped)*
 
 **Own turn** — “Now one of yours. Keep it to one specific thing — not a whole era.”
 Fields: What happened? · What did you turn it into? · What does it actually establish? · What does it NOT establish? (suggestions: about everyone / forever / who I am)
 
 **Sentence builder** — “The narrowest true thing”
-> Build it from what the event actually establishes. Specific and honest — not flattering.
+> Build it from what the event actually establishes. Keep it true, not flattering.
 
 **Emotion beat**
-> Bounding the conclusion doesn't mean you're fine, or that you didn't want it, or that it didn't matter.
-> You can hold both: your narrowest true thing — and this can still hurt. You just did the hard part: you kept the fact and dropped the verdict.
+> Bounding the conclusion doesn't mean you're fine. It doesn't mean you didn't want it, or that it didn't matter.
+> You can hold both: your narrowest true thing — and this can still hurt. You just did the hard part. You kept the fact and dropped the verdict.
 
 **Read the Result** (`output`)
 > **Your Bounded Conclusion** — Keep it, or save it to My Plays.
@@ -179,9 +191,9 @@ Fields: What happened? · What did you turn it into? · What does it actually es
 > What does this actually establish? · What does it NOT establish? · What's the narrowest true thing?
 
 **Use it in real life** (`realWorldUse`)
-> *Use this when* a dating letdown starts turning into a sentence about you — ‘what's wrong with me,’ ‘this always happens,’ ‘I'm not enough.’
-> *Do:* Run the three questions before the story hardens. Keep the fact, drop the verdict, keep the feeling.
-> *Safety:* If this feels bigger than a dating moment — a belief about yourself that follows you everywhere, or something that's been heavy for a long time — that's real, and it deserves more than a dating tool. Talking it through with a mental health professional can genuinely help.
+> *Use this when* a letdown starts turning into a sentence about you — ‘what's wrong with me,’ ‘this always happens,’ ‘I'm not enough.’
+> *Do:* Run the three questions before the story hardens. Keep the fact. Drop the verdict. Keep the feeling.
+> *Safety:* If this feels bigger than a dating moment — a belief about yourself that follows you everywhere, or something that's been heavy a long time — that's real. It deserves more than a dating tool. Talking with a mental health professional can genuinely help.
 
 *(WM also offers, after the emotion beat, a cross-route: “That pattern's worth looking at → Read It, Then Decide.”)*
 
