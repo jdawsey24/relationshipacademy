@@ -44,3 +44,19 @@ Every intervention: Empirically-Supported Technique / RLC-Theory-Derived Applica
 Full specs + fidelity/success/safety matrices + coverage audit (all 8 PEs) + outcome model + gaps + research
 needs + adjudication queue. 19 deliverables. Portfolio test: Partially Sufficient (credible, bounded; entrenched
 PE-1 = R3 referral). Staged for review. Next: consumer translation (Literature -> Plays -> Practices -> ...).
+
+---
+
+`phase2b-intervention-depth-and-technique-expansion.md` — **PHASE 2B** (depth & technique expansion).
+Optimization reframed from "minimum" to "sufficient-depth" (parsimony subordinate to change sufficiency).
+101-statement coverage stress test (generated/generated_coverage_matrix.json; 101/101 verified): 46 non-
+targets (18 experience-remains + 28 recognition), 53 changeable (37 existing-technique + 16 need-added-
+technique), 2 R3-clinical. Derived architecture: **4 Families / 9 techniques (6 Foundational + 3 Conditional)
++ 4 Practices + 5 Education + 2 Recognition/Context** — by saturation, not a cap.
+- Family 1 Perspective: T1a Bounded Reflection (PE-1) + T1c Mutual-Fit/Evaluator (PE-2) + T1b Pattern Re-Scope
+- Family 2 Evidence-to-Decision: T2a Discrimination -> T2b Decision Rule (sequenced, PE-5) + T2c Investment/
+  Forward-Value (PE-4) + T2d Expectation-Calibration (PE-6-distorted)
+- Family 3 Authentic Experiment: T3a + graded content variants (PE-3), R1/R2/Excluded
+- Family 4 Intentional Engagement: T4a phased (PE-7)
+Includes Task-Supporting Intervention Target Governance Rule Draft v1 (9 criteria; no framework change).
+Saturation: YES. Ready for final specification. Staged for review.
