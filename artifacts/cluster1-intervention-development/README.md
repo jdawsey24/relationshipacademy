@@ -116,3 +116,18 @@ feedback (5 errors incl. partner-diagnosis), used-in-real-life return, My Plays 
 (no diagnosis), L1/L2 literature (honest evidence status), a11y + mobile. Comparison + universal container
 stress test (slotted container + shared sort engine) + universal/technique-specific matrix + revised $29 value
 (two full Plays span interpretive AND behavioral change). READY FOR TECHNICAL IMPLEMENTATION PLANNING. Staged.
+
+---
+
+`phase6-technical-implementation-architecture.md` — **PHASE 6** (technical build spec; NO code/migration/deploy).
+Grounded in the real stack (Next 15 App Router, React 19, Supabase 2.45, Tailwind 3.4) and the existing
+playbook commerce (playbook_entitlements, migration 0042; checkout+PDF download). Thesis: the interactive
+Playbook is a NEW DELIVERY MODE of the existing entitlement (cluster_id=1) - reuse entitlement, no new commerce.
+Spec covers: universal engine + Cluster-1 content-module split; typed TS content schema (no DB/LLM at runtime);
+proposed migration 0052 playbook_progress (functional-data-only, RLS own-row); executable-output types; shared
+N-bucket accessible SortEngine (tap-first) powering both prototype Plays; slotted PlayContainer; routes +
+progress API; reuse of the frozen Safety V2 engine on short free-text (metadata-only) + support signposts;
+4-state model, no gamification (coarse non-gamified analytics only); a11y/mobile; testing + verification plan;
+MVP build sequence (branch playbook-dfc-interactive); do-not-build list; risks; decision log. READY FOR
+IMPLEMENTATION. Standing constraints reaffirmed: owner runs 0052; no prod deploy without instruction; Snapshot/
+commerce/framework untouched; NOT attorney-reviewed (Owner Risk Acceptance only). Staged for review.
