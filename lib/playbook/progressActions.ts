@@ -1,7 +1,7 @@
 // Pure progress reducers (unit-testable, no React). ExperienceShell applies these
 // through useProgress().update(). Functional data only; version-stamped (R2).
 
-import type { FidelityOutcome, Play, PlaybookProgress, SavedPlayCard } from "@/lib/playbook/contentSchema";
+import type { FidelityOutcome, MissionReport, MissionState, Play, PlaybookProgress, SavedPlayCard } from "@/lib/playbook/contentSchema";
 import { deriveUserLine } from "@/lib/playbook/outputSummary";
 
 export function toggleRecognized(p: PlaybookProgress, cardId: string): PlaybookProgress {
@@ -30,28 +30,42 @@ export function recordSimulationComplete(p: PlaybookProgress, simId: string, fid
 }
 
 // ---- Practice / mission state (Rev 3 Step 6; additive, functional-only) ----------
+// Factual states only; no developmental claim is encoded here. Progression is NOT
+// advanced here — that decision belongs to Use Review + Change Path (Steps 7/8).
 
-function withMission(p: PlaybookProgress, missionId: string, patch: { state?: "assigned" | "attempted" | "reviewed" | "advanced"; rungId?: string }): PlaybookProgress {
+/** The reader picked up the mission → it becomes the ONE current practice focus (state selected).
+ *  Never downgrades an already attempted/reviewed mission. */
+export function recordMissionSelected(p: PlaybookProgress, missionId: string): PlaybookProgress {
   const prev = p.practice_state ?? { version: 1 };
   const missions = { ...(prev.missions ?? {}) };
-  const cur = missions[missionId] ?? { state: "assigned" as const };
-  missions[missionId] = { ...cur, ...patch };
-  return { ...p, practice_state: { version: prev.version ?? 1, missions } };
+  const cur = missions[missionId];
+  const state: MissionState = cur?.state === "attempted" || cur?.state === "reviewed" ? cur.state : "selected";
+  missions[missionId] = { ...(cur ?? {}), state };
+  return { ...p, practice_state: { version: prev.version ?? 1, currentMissionId: missionId, missions } };
 }
 
-/** The reader picked up the mission → assigned. */
-export function recordMissionSelected(p: PlaybookProgress, missionId: string): PlaybookProgress {
-  return withMission(p, missionId, { state: "assigned" });
-}
-
-/** The reader reports having tried it in real life → attempted (Attempt, not success). */
-export function recordMissionAttempted(p: PlaybookProgress, missionId: string): PlaybookProgress {
-  return withMission(p, missionId, { state: "attempted" });
-}
-
-/** Move to the next authored stretch → advanced (only offered after a reported attempt). */
-export function advanceMissionRung(p: PlaybookProgress, missionId: string, rungId: string): PlaybookProgress {
-  return withMission(p, missionId, { state: "advanced", rungId });
+/** The reader reports what happened. `attempted` advances the state (an Attempt — NOT
+ *  success/fidelity). The non-attempt outcomes (no_opportunity / opportunity_not_taken /
+ *  unsuitable) are recorded factually and DO NOT advance the state or count as failure.
+ *  `stretchEligible` records only that an authored next stretch exists after a reported
+ *  attempt — eligibility for consideration, never a recommendation. */
+export function recordMissionReport(
+  p: PlaybookProgress,
+  missionId: string,
+  report: MissionReport,
+  opts: { stretchEligible?: boolean } = {},
+): PlaybookProgress {
+  const prev = p.practice_state ?? { version: 1 };
+  const missions = { ...(prev.missions ?? {}) };
+  const cur = missions[missionId] ?? { state: "selected" as MissionState };
+  const state: MissionState = report === "attempted" ? "attempted" : cur.state;
+  missions[missionId] = {
+    ...cur,
+    state,
+    lastReport: report,
+    ...(opts.stretchEligible !== undefined ? { stretchEligible: opts.stretchEligible } : {}),
+  };
+  return { ...p, practice_state: { version: prev.version ?? 1, currentMissionId: prev.currentMissionId, missions } };
 }
 
 function cardFor(play: Play, payload: Record<string, unknown>): SavedPlayCard {

@@ -339,7 +339,12 @@ export interface Simulation {
 
 // ---- Practice: missions (§7) --------------------------------------------------
 
-export type MissionState = "assigned" | "attempted" | "reviewed" | "advanced";
+/** Factual mission states — no developmental claim is encoded by moving between them.
+ *  (The decision to repeat/adjust/change focus/offer a stretch belongs to Use Review + Change Path.) */
+export type MissionState = "selected" | "attempted" | "reviewed";
+/** Return outcomes. Step 7 Use Review distinguishes all four; absence of an attempt is
+ *  NEVER interpreted as inability or avoidance. */
+export type MissionReport = "attempted" | "no_opportunity" | "opportunity_not_taken" | "unsuitable";
 export interface MissionRung {
   id: string;
   instruction: string;
@@ -348,10 +353,12 @@ export interface Mission {
   id: string;
   version: number;
   playId: string;
+  title: string;
   instruction: string;
   linkToOperation: string;
+  attemptMeaning?: string; // consumer-facing: what counts as trying it
   suitability?: string; // safety/appropriateness boundary
-  progression?: MissionRung[]; // progressive Developmental Application — NOT levels
+  progression?: MissionRung[]; // authored next stretch(es); CONTENT ORDERING ONLY (see nextRung) — not levels
 }
 
 // ---- Integrate: structured use-review (§8) ------------------------------------
@@ -414,9 +421,16 @@ export interface SimulationState {
   version: number;
   runs?: Record<string, SimulationRunState>;
 }
+export interface MissionRunState {
+  state: MissionState;
+  rungId?: string; // the current authored rung (content position), stored SEPARATELY from state
+  stretchEligible?: boolean; // an authored next stretch exists AND an attempt was reported — ELIGIBILITY only, never a recommendation
+  lastReport?: MissionReport;
+}
 export interface PracticeState {
   version: number;
-  missions?: Record<string, { state: MissionState; rungId?: string }>;
+  currentMissionId?: string; // ONE active real-world practice focus at a time (never accumulate homework)
+  missions?: Record<string, MissionRunState>;
 }
 export interface UseReviewState {
   version: number;
