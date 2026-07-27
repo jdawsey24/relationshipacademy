@@ -35,13 +35,12 @@ test("shows title, instruction, what-counts-as-an-attempt, link, and suitability
 
 test("selected state: attempt distinct from success; suitability + opportunity are actionable (no failure)", () => {
   const calls = mount({ state: "selected" });
-  // attempt
+  // all four return outcomes are reportable, none framed as failure
   fireEvent.click(screen.getByRole("button", { name: /i tried this in real life/i }));
-  // suitability actionable — "didn't feel right" is available and not framed as failure
   fireEvent.click(screen.getByRole("button", { name: /it didn't feel right or safe for this/i }));
-  // opportunity absence is reportable and not failure
   fireEvent.click(screen.getByRole("button", { name: /the right moment hasn't come up yet/i }));
-  assert.deepEqual(calls.reports, ["attempted", "unsuitable", "no_opportunity"]);
+  fireEvent.click(screen.getByRole("button", { name: /it came up, but i didn't try it/i }));
+  assert.deepEqual(calls.reports, ["attempted", "unsuitable", "no_opportunity", "opportunity_not_taken"]);
 });
 
 test("a non-attempt report reads as 'not a miss', not a failure", () => {

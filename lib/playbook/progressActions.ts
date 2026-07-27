@@ -1,7 +1,7 @@
 // Pure progress reducers (unit-testable, no React). ExperienceShell applies these
 // through useProgress().update(). Functional data only; version-stamped (R2).
 
-import type { FidelityOutcome, MissionReport, MissionState, Play, PlaybookProgress, SavedPlayCard } from "@/lib/playbook/contentSchema";
+import type { FidelityOutcome, MissionReport, MissionState, Play, PlaybookProgress, SavedPlayCard, UseReviewSignals } from "@/lib/playbook/contentSchema";
 import { deriveUserLine } from "@/lib/playbook/outputSummary";
 
 export function toggleRecognized(p: PlaybookProgress, cardId: string): PlaybookProgress {
@@ -66,6 +66,26 @@ export function recordMissionReport(
     ...(opts.stretchEligible !== undefined ? { stretchEligible: opts.stretchEligible } : {}),
   };
   return { ...p, practice_state: { version: prev.version ?? 1, currentMissionId: prev.currentMissionId, missions } };
+}
+
+/** Mark a mission's practice reviewed (state → reviewed), after its Use Review. */
+export function markMissionReviewed(p: PlaybookProgress, missionId: string): PlaybookProgress {
+  const prev = p.practice_state ?? { version: 1 };
+  const missions = { ...(prev.missions ?? {}) };
+  const cur = missions[missionId] ?? { state: "selected" as MissionState };
+  missions[missionId] = { ...cur, state: "reviewed" };
+  return { ...p, practice_state: { version: prev.version ?? 1, currentMissionId: prev.currentMissionId, missions } };
+}
+
+// ---- Integrate: structured Use Review signals (Rev 3 Step 7; additive) ------------
+
+/** Persist the structured functional signals from a Use Review into use_review_state.
+ *  Bounded selects only (no journaling). Feeds Change Path (Step 8). */
+export function recordUseReview(p: PlaybookProgress, playId: string, signals: UseReviewSignals): PlaybookProgress {
+  const prev = p.use_review_state ?? { version: 1 };
+  const reviews = { ...(prev.reviews ?? {}) };
+  reviews[playId] = { ...(reviews[playId] ?? {}), ...signals };
+  return { ...p, use_review_state: { version: prev.version ?? 1, reviews } };
 }
 
 function cardFor(play: Play, payload: Record<string, unknown>): SavedPlayCard {

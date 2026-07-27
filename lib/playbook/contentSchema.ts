@@ -432,10 +432,20 @@ export interface PracticeState {
   currentMissionId?: string; // ONE active real-world practice focus at a time (never accumulate homework)
   missions?: Record<string, MissionRunState>;
 }
+/** Structured functional signals from a Use Review (§8). Bounded selects only — no
+ *  journaling. `performed` is the Technique-Fidelity signal; kept/updated are tool-review
+ *  signals (NOT Transfer). These feed Change Path (Step 8). */
+export interface UseReviewSignals {
+  performed?: "yes" | "partly" | "no";
+  didDifferently?: string;
+  becameClearer?: string;
+  stuck?: string;
+  kept?: boolean;
+  updated?: boolean;
+}
 export interface UseReviewState {
   version: number;
-  /** Last structured review per play; Keep/Update is a tool-review signal, NOT Transfer. */
-  reviews?: Record<string, { performed?: "yes" | "partly" | "no"; stuck?: string; kept?: boolean; updated?: boolean }>;
+  reviews?: Record<string, UseReviewSignals>;
 }
 export interface ChangePathState {
   version: number;
