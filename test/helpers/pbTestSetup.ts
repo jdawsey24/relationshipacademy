@@ -34,9 +34,11 @@ setReducedMotion(false);
 export const net = {
   calls: [] as { url: string; method?: string; body?: unknown }[],
   crisis: { interrupt: false, heading: null as string | null, message: null as string | null, resources: [] as { label: string; value: string }[] },
+  access: { signedIn: false, interactive: false, owned: false },
   reset() {
     this.calls = [];
     this.crisis = { interrupt: false, heading: null, message: null, resources: [] };
+    this.access = { signedIn: false, interactive: false, owned: false };
   },
 };
 
@@ -48,7 +50,8 @@ export const net = {
     body = init?.body;
   }
   net.calls.push({ url: String(url), method: init?.method, body });
-  const respond = String(url).includes("/screen") ? net.crisis : { ok: true };
+  const u = String(url);
+  const respond = u.includes("/screen") ? net.crisis : u.includes("/access") ? net.access : { ok: true };
   return { ok: true, json: async () => respond };
 };
 
