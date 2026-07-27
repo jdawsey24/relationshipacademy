@@ -29,6 +29,31 @@ export function recordSimulationComplete(p: PlaybookProgress, simId: string, fid
   return { ...p, simulation_state: { version: prev.version ?? 1, runs } };
 }
 
+// ---- Practice / mission state (Rev 3 Step 6; additive, functional-only) ----------
+
+function withMission(p: PlaybookProgress, missionId: string, patch: { state?: "assigned" | "attempted" | "reviewed" | "advanced"; rungId?: string }): PlaybookProgress {
+  const prev = p.practice_state ?? { version: 1 };
+  const missions = { ...(prev.missions ?? {}) };
+  const cur = missions[missionId] ?? { state: "assigned" as const };
+  missions[missionId] = { ...cur, ...patch };
+  return { ...p, practice_state: { version: prev.version ?? 1, missions } };
+}
+
+/** The reader picked up the mission → assigned. */
+export function recordMissionSelected(p: PlaybookProgress, missionId: string): PlaybookProgress {
+  return withMission(p, missionId, { state: "assigned" });
+}
+
+/** The reader reports having tried it in real life → attempted (Attempt, not success). */
+export function recordMissionAttempted(p: PlaybookProgress, missionId: string): PlaybookProgress {
+  return withMission(p, missionId, { state: "attempted" });
+}
+
+/** Move to the next authored stretch → advanced (only offered after a reported attempt). */
+export function advanceMissionRung(p: PlaybookProgress, missionId: string, rungId: string): PlaybookProgress {
+  return withMission(p, missionId, { state: "advanced", rungId });
+}
+
 function cardFor(play: Play, payload: Record<string, unknown>): SavedPlayCard {
   const t = play.myPlaysTemplate;
   return {

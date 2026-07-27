@@ -12,10 +12,11 @@ import PlayContainer from "@/components/playbook/PlayContainer";
 import PlaySequence from "@/components/playbook/PlaySequence";
 import OutputEditor from "@/components/playbook/OutputEditor";
 import * as actions from "@/lib/playbook/progressActions";
+import MissionCard from "@/components/playbook/MissionCard";
 import { PLAYBOOK_REV3_ENABLED } from "@/lib/playbook/rev3";
-import { simulationForPlay } from "@/lib/playbook/rev3Flow";
+import { simulationForPlay, missionForPlay } from "@/lib/playbook/rev3Flow";
 
-type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays";
+type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays" | "practice";
 
 export interface ExperienceShellProps {
   content: PlaybookContent;
@@ -34,10 +35,12 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
   const [healthyFor, setHealthyFor] = useState<string | null>(null);
   const [usedReviewFor, setUsedReviewFor] = useState<string | null>(null);
   const [editingOutputFor, setEditingOutputFor] = useState<string | null>(null);
+  const [practicePlayId, setPracticePlayId] = useState<string | null>(null);
 
   const playById = (id: string | null): Play | undefined => content.plays.find((p) => p.playId === id);
   const activePlay = playById(activePlayId);
   const usedReviewPlay = playById(usedReviewFor);
+  const practiceMission = practicePlayId ? missionForPlay(content, practicePlayId) : undefined;
 
   function toggleRecognized(cardId: string) {
     update((p) => actions.toggleRecognized(p, cardId));
@@ -232,6 +235,9 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                         {(state === "explored" || state === "in_my_plays") && (
                           <button type="button" onClick={() => setUsedReviewFor(card.pathwayPlayId as string)} className="font-ui text-xs text-slate-blue underline">I used this in real life</button>
                         )}
+                        {rev3 && (state === "explored" || state === "in_my_plays" || state === "used") && missionForPlay(content, card.pathwayPlayId as string) && (
+                          <button type="button" onClick={() => { setPracticePlayId(card.pathwayPlayId as string); setView("practice"); }} className="font-ui text-xs text-slate-blue underline">Practice this →</button>
+                        )}
                       </div>
                     </>
                   ) : (
@@ -290,6 +296,22 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
             onExit={() => setView("board")}
             onRoute={(id) => openPlay(id)}
             onScreenText={screen}
+          />
+        );
+      })()}
+
+      {view === "practice" && practiceMission && (() => {
+        const mid = practiceMission.id;
+        const ms = progress.practice_state?.missions?.[mid];
+        return (
+          <MissionCard
+            mission={practiceMission}
+            state={ms?.state}
+            rungId={ms?.rungId}
+            onSelect={() => update((p) => actions.recordMissionSelected(p, mid))}
+            onAttempt={() => update((p) => actions.recordMissionAttempted(p, mid))}
+            onAdvance={(rungId) => update((p) => actions.advanceMissionRung(p, mid, rungId))}
+            onExit={() => setView("board")}
           />
         );
       })()}

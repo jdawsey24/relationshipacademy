@@ -18,6 +18,12 @@ function enterPlay() {
   fireEvent.click(screen.getByRole("button", { name: /start/i }));
   fireEvent.click(screen.getByRole("button", { name: /yes, this happens/i }));
 }
+function toBoard() {
+  fireEvent.click(screen.getByRole("button", { name: /see what sounds like me/i }));
+  fireEvent.click(screen.getByText(/can't always tell what their behavior/i).closest("button")!);
+  fireEvent.click(screen.getByRole("button", { name: /show me where to start/i }));
+}
+const explored: PlaybookProgress = { ...emptyProgress(KEY, 1), play_states: { "read-and-decide": "explored" } };
 
 test("flag ON: entering a Play runs its simulation first", () => {
   mount(true);
@@ -42,4 +48,20 @@ test("flag ON: a completed simulation is not repeated on re-entry", () => {
   enterPlay();
   assert.ok(screen.getByText(/one unclear signal can turn into a whole story/i), "goes straight to the Play (Rev 3 copy)");
   assert.equal(screen.queryByText(/great first date/i), null, "completed sim not repeated");
+});
+
+test("flag ON: an explored Play surfaces a Practice mission from the board", () => {
+  mount(true, explored);
+  toBoard();
+  fireEvent.click(screen.getByRole("button", { name: /practice this/i }));
+  assert.ok(screen.getByText(/write down what you actually saw/i), "mission opens");
+  assert.ok(screen.getByText(/this is for ambiguity, not safety/i), "suitability shown");
+  fireEvent.click(screen.getByRole("button", { name: /try this next/i }));
+  assert.ok(screen.getByRole("button", { name: /i tried this in real life/i }), "assigned → can report an attempt");
+});
+
+test("flag OFF (v0): no Practice affordance on the board", () => {
+  mount(false, explored);
+  toBoard();
+  assert.equal(screen.queryByRole("button", { name: /practice this/i }), null, "no practice surface in v0");
 });
