@@ -1,0 +1,254 @@
+[
+ {
+  "competency_id": "CON-EXPL-001",
+  "name": "Emotional Regulation",
+  "phase": "Exploration",
+  "domain": "Conflict Management",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "CON-EXPL-002",
+  "name": "Objectivity",
+  "phase": "Exploration",
+  "domain": "Conflict Management",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "CON-EXPL-003",
+  "name": "Reflection",
+  "phase": "Exploration",
+  "domain": "Conflict Management",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "CON-EXPL-004",
+  "name": "Accountability",
+  "phase": "Exploration",
+  "domain": "Conflict Management",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "CON-EXPL-005",
+  "name": "Delivery",
+  "phase": "Exploration",
+  "domain": "Conflict Management",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "CON-EXPL-006",
+  "name": "Receptivity",
+  "phase": "Exploration",
+  "domain": "Conflict Management",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "ROL-EXPL-001",
+  "name": "Role Awareness",
+  "phase": "Exploration",
+  "domain": "Role Functioning",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "ROL-EXPL-002",
+  "name": "Intentionality",
+  "phase": "Exploration",
+  "domain": "Role Functioning",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "ROL-EXPL-003",
+  "name": "Congruence",
+  "phase": "Exploration",
+  "domain": "Role Functioning",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "ROL-EXPL-004",
+  "name": "Reciprocity",
+  "phase": "Exploration",
+  "domain": "Role Functioning",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "ROL-EXPL-005",
+  "name": "Boundaries",
+  "phase": "Exploration",
+  "domain": "Role Functioning",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "ROL-EXPL-006",
+  "name": "Role Alignment",
+  "phase": "Exploration",
+  "domain": "Role Functioning",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "PHY-EXPL-001",
+  "name": "Boundaries",
+  "phase": "Exploration",
+  "domain": "Physical Intimacy",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "COM-EXPL-001",
+  "name": "Curiosity",
+  "phase": "Exploration",
+  "domain": "Communication",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "COM-EXPL-002",
+  "name": "Active Listening",
+  "phase": "Exploration",
+  "domain": "Communication",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "COM-EXPL-003",
+  "name": "Perspective Taking",
+  "phase": "Exploration",
+  "domain": "Communication",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "COM-EXPL-004",
+  "name": "Transparency",
+  "phase": "Exploration",
+  "domain": "Communication",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "COM-EXPL-005",
+  "name": "Emotional Expression",
+  "phase": "Exploration",
+  "domain": "Communication",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "COM-EXPL-006",
+  "name": "Reciprocity",
+  "phase": "Exploration",
+  "domain": "Communication",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "COM-EXPL-007",
+  "name": "Clarification",
+  "phase": "Exploration",
+  "domain": "Communication",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "TRU-EXPL-001",
+  "name": "Dependability",
+  "phase": "Exploration",
+  "domain": "Trust",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "TRU-EXPL-002",
+  "name": "Availability",
+  "phase": "Exploration",
+  "domain": "Trust",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "TRU-EXPL-003",
+  "name": "Congruence",
+  "phase": "Exploration",
+  "domain": "Trust",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "TRU-EXPL-004",
+  "name": "Accountability",
+  "phase": "Exploration",
+  "domain": "Trust",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "TRU-EXPL-005",
+  "name": "Psychological Safety",
+  "phase": "Exploration",
+  "domain": "Trust",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "TRU-EXPL-006",
+  "name": "Reliability",
+  "phase": "Exploration",
+  "domain": "Trust",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "PHY-EXPL-002",
+  "name": "Consent",
+  "phase": "Exploration",
+  "domain": "Physical Intimacy",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "PHY-EXPL-003",
+  "name": "Self-Awareness",
+  "phase": "Exploration",
+  "domain": "Physical Intimacy",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "PHY-EXPL-004",
+  "name": "Sexual Integrity",
+  "phase": "Exploration",
+  "domain": "Physical Intimacy",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "PHY-EXPL-005",
+  "name": "Respect",
+  "phase": "Exploration",
+  "domain": "Physical Intimacy",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "TRU-EXPL-007",
+  "name": "Transparency",
+  "phase": "Exploration",
+  "domain": "Trust",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "EMI-EXPL-001",
+  "name": "Gradual Self-Disclosure",
+  "phase": "Exploration",
+  "domain": "Emotional Intimacy",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "EMI-EXPL-002",
+  "name": "Values and Beliefs Exchange",
+  "phase": "Exploration",
+  "domain": "Emotional Intimacy",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "EMI-EXPL-003",
+  "name": "Appropriate Emotional Expression",
+  "phase": "Exploration",
+  "domain": "Emotional Intimacy",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "EMI-EXPL-004",
+  "name": "Curiosity and Empathy",
+  "phase": "Exploration",
+  "domain": "Emotional Intimacy",
+  "developmental_task": "Discernment"
+ },
+ {
+  "competency_id": "EMI-EXPL-005",
+  "name": "Authenticity",
+  "phase": "Exploration",
+  "domain": "Emotional Intimacy",
+  "developmental_task": "Discernment"
+ }
+]
