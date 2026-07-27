@@ -5,7 +5,7 @@
 // ("Explore another area" always available). No gamification.
 
 import { useState } from "react";
-import type { PlaybookContent, Play, PlaybookProgress } from "@/lib/playbook/contentSchema";
+import type { PlaybookContent, Play, PlaybookProgress, Mission } from "@/lib/playbook/contentSchema";
 import type { CrisisScreenResult } from "@/lib/playbook/types";
 import { useProgress } from "@/components/playbook/useProgress";
 import PlayContainer from "@/components/playbook/PlayContainer";
@@ -15,6 +15,8 @@ import * as actions from "@/lib/playbook/progressActions";
 import MissionCard from "@/components/playbook/MissionCard";
 import { PLAYBOOK_REV3_ENABLED } from "@/lib/playbook/rev3";
 import { simulationForPlay, missionForPlay } from "@/lib/playbook/rev3Flow";
+import { nextRung } from "@/lib/playbook/mission";
+import { buildPlaybookEvent, emitPlaybookEvent } from "@/lib/playbook/clientEvents";
 
 type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays" | "practice";
 
@@ -82,6 +84,21 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
 
   function markUsed(playId: string) {
     update((p) => actions.markUsed(p, playId));
+  }
+
+  // Emit a validated, idempotent longitudinal event (best-effort; lands when the endpoint
+  // + migration are live). Minimal functional payload only.
+  function emitMissionEvent(eventType: "mission_selected" | "mission_attempt_reported", mission: Mission, rungId?: string) {
+    const ev = buildPlaybookEvent({
+      playbookKey,
+      playbookVersion: content.playbookVersion,
+      objectType: "mission",
+      objectId: mission.id,
+      objectVersion: mission.version,
+      eventType,
+      payload: rungId ? { rung_id: rungId } : {},
+    });
+    if (ev) void emitPlaybookEvent(playbookKey, ev);
   }
 
   const routeCards = content.recognitionCards.filter((c) => c.role === "route");
@@ -301,16 +318,23 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
       })()}
 
       {view === "practice" && practiceMission && (() => {
-        const mid = practiceMission.id;
-        const ms = progress.practice_state?.missions?.[mid];
+        const m = practiceMission;
+        const ms = progress.practice_state?.missions?.[m.id];
         return (
           <MissionCard
-            mission={practiceMission}
+            mission={m}
             state={ms?.state}
             rungId={ms?.rungId}
-            onSelect={() => update((p) => actions.recordMissionSelected(p, mid))}
-            onAttempt={() => update((p) => actions.recordMissionAttempted(p, mid))}
-            onAdvance={(rungId) => update((p) => actions.advanceMissionRung(p, mid, rungId))}
+            lastReport={ms?.lastReport}
+            onSelect={() => {
+              update((p) => actions.recordMissionSelected(p, m.id));
+              emitMissionEvent("mission_selected", m);
+            }}
+            onReport={(report) => {
+              const stretchEligible = report === "attempted" ? Boolean(nextRung(m, ms?.rungId)) : undefined;
+              update((p) => actions.recordMissionReport(p, m.id, report, { stretchEligible }));
+              if (report === "attempted") emitMissionEvent("mission_attempt_reported", m, ms?.rungId);
+            }}
             onExit={() => setView("board")}
           />
         );

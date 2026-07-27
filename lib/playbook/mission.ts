@@ -10,7 +10,9 @@ export function currentInstruction(mission: Mission, rungId?: string): string {
   return mission.progression?.find((r) => r.id === rungId)?.instruction ?? mission.instruction;
 }
 
-/** The next authored stretch after the current rung, or undefined if there is none. */
+/** CONTENT ORDERING ONLY. Answers "what is the authored next stretch?" — NOT "is this
+ *  reader ready for it?". Readiness/recommendation logic lives outside this pure helper
+ *  (Use Review + Change Path). Returns undefined if there is no further authored stretch. */
 export function nextRung(mission: Mission, rungId?: string): MissionRung | undefined {
   const prog = mission.progression ?? [];
   if (prog.length === 0) return undefined;

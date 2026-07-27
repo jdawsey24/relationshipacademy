@@ -4,17 +4,18 @@ import assert from "node:assert/strict";
 import { render, screen, fireEvent, h } from "./helpers/pbTestSetup";
 import MissionCard from "../components/playbook/MissionCard";
 import { MBR_MISSIONS } from "../content/playbook/moving-beyond-rejection-missions";
+import type { MissionReport } from "../lib/playbook/contentSchema";
 
 const RD = MBR_MISSIONS.find((m) => m.playId === "read-and-decide")!;
 
 function mount(over: Record<string, unknown> = {}) {
-  const calls = { select: 0, attempt: 0, advance: [] as string[] };
+  const calls = { select: 0, reports: [] as MissionReport[], review: 0 };
   render(
     h(MissionCard, {
       mission: RD,
       onSelect: () => (calls.select += 1),
-      onAttempt: () => (calls.attempt += 1),
-      onAdvance: (id: string) => calls.advance.push(id),
+      onReport: (r: MissionReport) => calls.reports.push(r),
+      onReview: undefined,
       onExit: () => {},
       ...over,
     }),
@@ -22,35 +23,51 @@ function mount(over: Record<string, unknown> = {}) {
   return calls;
 }
 
-test("shows the assignment, its link to the operation, and a suitability boundary", () => {
+test("shows title, instruction, what-counts-as-an-attempt, link, and suitability boundary", () => {
   mount();
-  assert.ok(screen.getByText(/write down what you actually saw/i), "behaviorally specific instruction");
+  assert.ok(screen.getByText(/read it before you react/i), "title");
+  assert.ok(screen.getByText(/write down what you actually saw/i), "instruction");
+  assert.ok(screen.getByText(/what counts as trying it/i), "attempt meaning");
   assert.ok(screen.getByText(/how it connects/i));
-  assert.ok(screen.getByText(/this is for ambiguity, not safety/i), "suitability boundary shown");
-});
-
-test("select → attempt → optional stretch; no mastery claim, no gamification", () => {
-  const calls = mount();
+  assert.ok(screen.getByText(/this is for ambiguity, not safety/i), "suitability boundary");
   fireEvent.click(screen.getByRole("button", { name: /try this next/i }));
-  assert.equal(calls.select, 1);
 });
 
-test("assigned state offers 'I tried this'; attempted acknowledges the attempt and offers the next stretch", () => {
-  const calls = mount({ state: "assigned" });
+test("selected state: attempt distinct from success; suitability + opportunity are actionable (no failure)", () => {
+  const calls = mount({ state: "selected" });
+  // attempt
   fireEvent.click(screen.getByRole("button", { name: /i tried this in real life/i }));
-  assert.equal(calls.attempt, 1);
-
-  const calls2 = mount({ state: "attempted" });
-  assert.ok(screen.getByText(/that's the point — trying the move, not getting it perfect/i), "no mastery/perfection claim");
-  assert.ok(screen.getByText(/ready to stretch this a little further/i), "consumer-copy next stretch");
-  const next = RD.progression![0];
-  fireEvent.click(screen.getByRole("button", { name: /try the next one/i }));
-  assert.deepEqual(calls2.advance, [next.id]);
+  // suitability actionable — "didn't feel right" is available and not framed as failure
+  fireEvent.click(screen.getByRole("button", { name: /it didn't feel right or safe for this/i }));
+  // opportunity absence is reportable and not failure
+  fireEvent.click(screen.getByRole("button", { name: /the right moment hasn't come up yet/i }));
+  assert.deepEqual(calls.reports, ["attempted", "unsuitable", "no_opportunity"]);
 });
 
-test("no gamification words render", () => {
+test("a non-attempt report reads as 'not a miss', not a failure", () => {
+  mount({ state: "selected", lastReport: "unsuitable" });
+  assert.ok(screen.getByText(/that's not a miss/i), "non-failure framing");
+  // still able to try it
+  assert.ok(screen.getByRole("button", { name: /i tried this in real life/i }));
+});
+
+test("attempted leads into the review (Step 7), NOT a progression recommendation", () => {
   mount({ state: "attempted" });
-  for (const re of [/\blevel\b/i, /\bxp\b/i, /streak/i, /badge/i, /\d+%/, /leaderboard/i, /\d+ points/i]) {
-    assert.ok(!screen.queryByText(re), `no gamification: ${re}`);
+  assert.ok(screen.getByText(/now we can look at what happened in the practice itself/i), "leads into use review");
+  assert.equal(screen.queryByText(/ready to stretch/i), null, "no stretch recommendation here");
+  assert.equal(screen.queryByRole("button", { name: /try the next one/i }), null, "no advance action");
+});
+
+test("attempted with onReview wired shows the review CTA", () => {
+  const calls = mount({ state: "attempted", onReview: () => (calls.review += 1) });
+  const btn = screen.getByRole("button", { name: /look at how it went/i });
+  fireEvent.click(btn);
+  assert.equal(calls.review, 1);
+});
+
+test("no gamification words render, and no mastery/perfection claim", () => {
+  mount({ state: "attempted" });
+  for (const re of [/\blevel\b/i, /\bxp\b/i, /streak/i, /badge/i, /\d+%/, /leaderboard/i, /mastered|perfect\b/i]) {
+    assert.ok(!screen.queryByText(re), `unwanted: ${re}`);
   }
 });

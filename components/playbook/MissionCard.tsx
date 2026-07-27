@@ -1,81 +1,102 @@
 "use client";
 
-// Rev 3 Step 6 — Practice layer. Presents a real-world mission tied to a Play's operation,
-// and tracks its state (assigned → attempted → advanced). NO gamification: no levels, XP,
-// streaks, ranks, badges, or completion %. Progression is an authored "next stretch", never
-// a mastery claim. Flag-gated at the call site; not used by v0.
+// Rev 3 Step 6 — Practice layer. Presents ONE real-world mission tied to a Play's operation
+// and records what happened, factually. NO gamification, NO mastery claim, and NO progression
+// recommendation here — a reported attempt LEADS INTO Use Review (Step 7), which (with Change
+// Path) owns the decision to repeat / adjust / change focus / offer a stretch. Suitability is
+// actionable: the reader can say a situation wasn't appropriate without it being a failure.
+// Flag-gated at the call site; not used by v0.
 
-import type { Mission, MissionState } from "@/lib/playbook/contentSchema";
-import { currentInstruction, nextRung } from "@/lib/playbook/mission";
+import type { Mission, MissionState, MissionReport } from "@/lib/playbook/contentSchema";
+import { currentInstruction } from "@/lib/playbook/mission";
 
 const primaryBtn = "rounded-full bg-coral-rose px-6 py-3 font-ui text-sm font-medium text-white transition hover:opacity-90";
 const ghostBtn = "rounded-full border border-midnight-navy px-5 py-2 font-ui text-sm text-midnight-navy";
+const linkBtn = "font-ui text-sm text-charcoal/55 underline hover:text-charcoal";
 
 export interface MissionCardProps {
   mission: Mission;
   state?: MissionState;
   rungId?: string;
+  lastReport?: MissionReport;
   onSelect: () => void;
-  onAttempt: () => void;
-  onAdvance: (rungId: string) => void;
+  onReport: (report: MissionReport) => void;
+  onReview?: () => void; // Step 7 Use Review (may be absent until wired)
   onExit?: () => void;
 }
 
-export default function MissionCard({ mission, state, rungId, onSelect, onAttempt, onAdvance, onExit }: MissionCardProps) {
+export default function MissionCard({ mission, state, rungId, lastReport, onSelect, onReport, onReview, onExit }: MissionCardProps) {
   const instruction = currentInstruction(mission, rungId);
-  const next = nextRung(mission, rungId);
-  const selected = state === "assigned" || state === "attempted" || state === "advanced" || state === "reviewed";
+  const selected = state === "selected";
+  const attempted = state === "attempted";
+  const nonAttemptReport = selected && lastReport && lastReport !== "attempted";
 
   return (
     <section className="mx-auto max-w-2xl px-5 py-8" aria-label="Practice this">
       <div className="mb-4 flex items-center justify-between">
         {onExit && <button type="button" onClick={onExit} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">← Back</button>}
-        <span className="font-ui text-xs uppercase tracking-wide text-charcoal/45">Practice this</span>
+        <span className="font-ui text-xs uppercase tracking-wide text-charcoal/45">What I'm practicing</span>
       </div>
 
       <div className="rounded-3xl bg-white/60 p-6 sm:p-8 space-y-5">
+        <h2 className="font-display text-xl text-midnight-navy">{mission.title}</h2>
         <p className="font-body text-[17px] leading-relaxed text-charcoal/85">{instruction}</p>
 
         <p className="rounded-2xl bg-warm-ivory px-4 py-3 font-body text-[14px] text-charcoal/75">
           <span className="font-medium">How it connects:</span> {mission.linkToOperation}
         </p>
-
+        {mission.attemptMeaning && (
+          <p className="font-body text-[14px] text-charcoal/70"><span className="font-medium">What counts as trying it:</span> {mission.attemptMeaning}</p>
+        )}
         {mission.suitability && (
           <p className="rounded-2xl bg-amber-warm/15 px-4 py-3 font-body text-[14px] text-charcoal/85" role="note">{mission.suitability}</p>
         )}
 
-        {/* State-driven actions ------------------------------------------------ */}
-        {!selected && (
+        {/* Not yet the current focus */}
+        {!state && (
           <button type="button" className={primaryBtn} onClick={onSelect}>Try this next</button>
         )}
 
-        {(state === "assigned" || state === "advanced") && (
-          <div className="flex flex-wrap items-center gap-3">
-            <button type="button" className={primaryBtn} onClick={onAttempt}>I tried this in real life</button>
-            {onExit && <button type="button" className="font-ui text-sm text-charcoal/55 underline" onClick={onExit}>Not yet</button>}
+        {/* Current focus — report what happened (attempt, or a no-fault outcome) */}
+        {selected && (
+          <div className="space-y-3">
+            {nonAttemptReport && (
+              <p className="rounded-2xl bg-warm-ivory px-4 py-3 font-body text-[14px] text-charcoal/75" role="status">
+                Got it — this one didn't fit this time. That's not a miss. Keep it, or explore another area whenever you like.
+              </p>
+            )}
+            <div className="flex flex-wrap items-center gap-3">
+              <button type="button" className={primaryBtn} onClick={() => onReport("attempted")}>I tried this in real life</button>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1">
+              <button type="button" className={linkBtn} onClick={() => onReport("no_opportunity")}>The right moment hasn't come up yet</button>
+              {mission.suitability && (
+                <button type="button" className={linkBtn} onClick={() => onReport("unsuitable")}>It didn't feel right or safe for this</button>
+              )}
+              {onExit && <button type="button" className={linkBtn} onClick={onExit}>Not now</button>}
+            </div>
           </div>
         )}
 
-        {state === "attempted" && (
-          <div className="space-y-4">
-            <p className="rounded-2xl bg-sage-green/12 px-4 py-3 font-body text-[15px] text-charcoal/85" role="status">
-              You took it into the real world. That's the point — trying the move, not getting it perfect.
+        {/* Reported an attempt — this leads into the review, not a stretch recommendation */}
+        {attempted && (
+          <div className="space-y-4" role="status">
+            <p className="rounded-2xl bg-sage-green/12 px-4 py-3 font-body text-[15px] text-charcoal/85">
+              You tried this in real life. Now we can look at what happened in the practice itself.
             </p>
-            {next && (
-              <div className="border-t border-light-gray pt-4">
-                <p className="font-body text-[15px] text-charcoal/85">Ready to stretch this a little further?</p>
-                <p className="mt-1 font-body text-[14px] text-charcoal/70">A useful next practice may be:</p>
-                <p className="mt-2 font-body text-[15px] text-charcoal">{next.instruction}</p>
-                <div className="mt-3 flex flex-wrap gap-3">
-                  <button type="button" className={ghostBtn} onClick={() => onAdvance(next.id)}>Try the next one</button>
-                  {onExit && <button type="button" className="font-ui text-sm text-charcoal/55 underline" onClick={onExit}>Maybe later</button>}
-                </div>
-              </div>
-            )}
-            {!next && onExit && (
-              <button type="button" className={ghostBtn} onClick={onExit}>Done for now</button>
-            )}
+            <div className="flex flex-wrap items-center gap-3">
+              {onReview ? (
+                <button type="button" className={primaryBtn} onClick={onReview}>Look at how it went →</button>
+              ) : (
+                <span className="font-body text-[14px] italic text-charcoal/60">A short review comes next.</span>
+              )}
+              {onExit && <button type="button" className={ghostBtn} onClick={onExit}>Done for now</button>}
+            </div>
           </div>
+        )}
+
+        {state === "reviewed" && (
+          <p className="font-body text-[14px] text-charcoal/70" role="status">You've reviewed this practice.</p>
         )}
       </div>
     </section>
