@@ -16,9 +16,19 @@ test("each built Play has a structured Use Review (bounded selects, no journalin
       assert.ok(prompt.label.trim().length > 0, `${r.id} prompt has a label`);
       assert.ok(prompt.options.length >= 2, `${r.id} prompt is a bounded select`);
     }
-    // performedOperation is the yes/partly/no fidelity signal
-    assert.deepEqual(r.performedOperation.options, ["Yes", "Partly", "Not really"]);
+    // multi where more than one response can apply; single, prioritized friction point
+    assert.equal(r.didDifferently.multi, true, `${r.id} did-differently is multi-select`);
+    assert.equal(r.becameClearer.multi, true, `${r.id} became-clearer is multi-select`);
+    assert.notEqual(r.stuckWhere.multi, true, `${r.id} stuck is single-select (prioritized)`);
+    assert.match(r.stuckWhere.label, /stuck most/i, `${r.id} asks where stuck MOST`);
+    // non-evaluative fidelity prompt; consumer options still map to yes/partly/no
+    assert.match(r.performedOperation.label, /how closely did you use the move/i);
+    assert.deepEqual(r.performedOperation.options, ["Pretty closely", "Some of it", "Not really this time"]);
   }
+  // RD: Discernment isn't equated with passive waiting
+  const rd = MBR_USE_REVIEWS.find((r) => r.playId === "read-and-decide")!;
+  assert.ok(rd.didDifferently.options.includes("I figured out what would actually tell me more"));
+  assert.ok(!rd.didDifferently.options.some((o) => /waited/i.test(o)), "no passive-waiting option");
   assert.equal(useReviewForPlay(C, "read-and-decide")?.id, "review-read-and-decide");
 });
 

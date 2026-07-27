@@ -366,6 +366,7 @@ export interface Mission {
 export interface StructuredPrompt {
   label: string;
   options: string[]; // bounded choices
+  multi?: boolean; // bounded MULTI-select ("choose any that fit") — never a checklist score
 }
 export interface UseReview {
   id: string;
@@ -436,12 +437,14 @@ export interface PracticeState {
  *  journaling. `performed` is the Technique-Fidelity signal; kept/updated are tool-review
  *  signals (NOT Transfer). These feed Change Path (Step 8). */
 export interface UseReviewSignals {
-  performed?: "yes" | "partly" | "no";
-  didDifferently?: string;
-  becameClearer?: string;
-  stuck?: string;
-  kept?: boolean;
-  updated?: boolean;
+  performed?: "yes" | "partly" | "no"; // Technique-Fidelity signal (single-select)
+  didDifferently?: string[]; // bounded multi-select
+  becameClearer?: string[]; // bounded multi-select
+  stuck?: string; // single-select — a prioritized friction point for Change Path
+  // Tool-review signals — tracked SEPARATELY; NONE independently constitutes Transfer.
+  kept?: boolean; // tool_retained
+  updated?: boolean; // tool_updated
+  saved?: boolean; // tool_saved_after_use (no saved Play existed before the review)
 }
 export interface UseReviewState {
   version: number;
