@@ -157,6 +157,7 @@ export default function SimulationPlayer({ simulation, onComplete, onExit, onScr
         {(node.kind === "decision" || node.kind === "reconsider") && (
           <div className="space-y-4">
             <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-body text-[16px] text-charcoal/85 focus:outline-none">{node.prompt}</p>
+            <JitLink node={node} onSurfaceJit={onSurfaceJit} />
             <div className="space-y-2">
               {node.options.map((opt) => {
                 const selected = selections[node.id] === opt.id;
