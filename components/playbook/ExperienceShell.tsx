@@ -367,8 +367,12 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
           <UseReviewFlow
             review={reviewContent}
             hasSavedOutput={Boolean(progress.outputs[pid])}
+            // Submit only — the mission is marked `reviewed` here, never when the review merely opens.
             onComplete={(signals, action) => {
               update((p) => actions.recordUseReview(p, pid, signals));
+              // "Save this Play" when none existed: add the My Plays card (tool_saved_after_use).
+              const play = playById(pid);
+              if (action === "save" && play) update((p) => actions.recordOutput(p, play, {}));
               update((p) => actions.markUsed(p, pid));
               if (reviewFromMission) update((p) => actions.markMissionReviewed(p, reviewFromMission));
               const rev = useReviewForPlay(content, pid);
@@ -384,6 +388,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                   ...(signals.stuck ? { stuck: signals.stuck } : {}),
                   ...(signals.kept ? { kept: true } : {}),
                   ...(signals.updated ? { updated: true } : {}),
+                  ...(signals.saved ? { saved: true } : {}),
                 },
               });
               if (ev) void emitPlaybookEvent(playbookKey, ev);

@@ -77,8 +77,8 @@ test("flag ON: 'I used this in real life' opens the STRUCTURED Use Review (not t
   toBoard();
   fireEvent.click(screen.getByRole("button", { name: /i used this in real life/i }));
   assert.ok(screen.getByText(/what did you actually do differently/i), "structured review opens");
-  assert.ok(screen.getByText(/did you run the move the way it's meant to work/i), "fidelity prompt");
-  fireEvent.click(screen.getByLabelText(/^partly$/i));
+  assert.ok(screen.getByText(/how closely did you use the move/i), "non-evaluative fidelity prompt");
+  fireEvent.click(screen.getByLabelText(/^some of it$/i));
   fireEvent.click(screen.getByRole("button", { name: /keep it/i }));
   assert.ok(screen.getByRole("heading", { name: /where you might start/i }), "returns to board after review");
 });
@@ -89,4 +89,25 @@ test("flag OFF (v0): 'I used this in real life' keeps the original Keep/Update d
   fireEvent.click(screen.getByRole("button", { name: /i used this in real life/i }));
   assert.ok(screen.getByText(/doing it right looks like/i), "v0 fidelity dialog");
   assert.equal(screen.queryByText(/what did you actually do differently/i), null, "no structured review in v0");
+});
+
+test("item 1: opening the review does NOT mark the mission reviewed; submitting does", () => {
+  mount(true, savedRD);
+  toBoard();
+  fireEvent.click(screen.getByRole("button", { name: /practice this/i }));
+  fireEvent.click(screen.getByRole("button", { name: /try this next/i }));
+  fireEvent.click(screen.getByRole("button", { name: /i tried this in real life/i }));
+  // open the review, then leave WITHOUT submitting
+  fireEvent.click(screen.getByRole("button", { name: /look at how it went/i }));
+  assert.ok(screen.getByText(/what did you actually do differently/i), "review opened");
+  fireEvent.click(screen.getByRole("button", { name: /back/i }));
+  // reopen practice — still 'attempted', NOT reviewed
+  fireEvent.click(screen.getByRole("button", { name: /practice this/i }));
+  assert.ok(screen.getByRole("button", { name: /look at how it went/i }), "still attempted");
+  assert.equal(screen.queryByText(/you've reviewed this practice/i), null, "not reviewed on open");
+  // now submit the review
+  fireEvent.click(screen.getByRole("button", { name: /look at how it went/i }));
+  fireEvent.click(screen.getByRole("button", { name: /keep it/i }));
+  fireEvent.click(screen.getByRole("button", { name: /practice this/i }));
+  assert.ok(screen.getByText(/you've reviewed this practice/i), "reviewed only after submit");
 });

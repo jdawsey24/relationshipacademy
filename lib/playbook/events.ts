@@ -79,11 +79,12 @@ export const EVENT_REGISTRY: Record<PlaybookEventType, EventDef> = {
     // structured selects only; "performed" is the fidelity signal; kept/updated are tool-review
     validatePayload: (p) =>
       isObj(p) &&
-      onlyKeys(p, ["performed", "stuck", "kept", "updated"]) &&
+      onlyKeys(p, ["performed", "stuck", "kept", "updated", "saved"]) &&
       optional(p.performed, (v) => v === "yes" || v === "partly" || v === "no") &&
       optional(p.stuck, isStr) &&
       optional(p.kept, isBool) &&
-      optional(p.updated, isBool),
+      optional(p.updated, isBool) &&
+      optional(p.saved, isBool),
   },
   focus_changed: {
     objectType: "play",

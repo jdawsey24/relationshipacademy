@@ -1,11 +1,14 @@
 "use client";
 
 // Rev 3 Step 7 — Integrate layer. The structured return after a real-world attempt.
-// Bounded selects only (NO journaling). Captures functional signals — what the reader did
-// differently, whether the operation was performed as intended (Technique Fidelity), what
-// got clearer, where they got stuck — then the Keep/Update decision (does the saved Play
-// still fit?). The only user-authored free text lives in the Keep/Update editor (the Play's
-// own output), not here. Flag-gated at the call site; v0 keeps its Keep/Update dialog.
+// Bounded selects only (NO journaling, NOT a checklist score). Captures functional signals:
+// what the reader did differently (multi), whether the operation was used as intended
+// (single — Technique Fidelity), what got clearer (multi), where they got stuck MOST
+// (single — a prioritized friction point), then a tool decision:
+//   • saved Play exists → Keep it / Update it (tool_retained / tool_updated)
+//   • no saved Play     → Save this Play / Not right now (tool_saved_after_use)
+// None of these independently constitutes Transfer. The only user-authored free text is in
+// the Keep/Update editor (the Play's own output). Flag-gated; v0 keeps its Keep/Update dialog.
 
 import { useState } from "react";
 import type { UseReview, UseReviewSignals, StructuredPrompt } from "@/lib/playbook/contentSchema";
@@ -13,9 +16,13 @@ import type { UseReview, UseReviewSignals, StructuredPrompt } from "@/lib/playbo
 const primaryBtn = "rounded-full bg-coral-rose px-6 py-3 font-ui text-sm font-medium text-white transition hover:opacity-90";
 const ghostBtn = "rounded-full border border-midnight-navy px-5 py-2 font-ui text-sm text-midnight-navy";
 
-const PERFORMED_MAP: Record<string, "yes" | "partly" | "no"> = { Yes: "yes", Partly: "partly", "Not really": "no" };
+const PERFORMED_MAP: Record<string, "yes" | "partly" | "no"> = {
+  "Pretty closely": "yes",
+  "Some of it": "partly",
+  "Not really this time": "no",
+};
 
-function Choice({ prompt, name, value, onChange }: { prompt: StructuredPrompt; name: string; value?: string; onChange: (v: string) => void }) {
+function SingleChoice({ prompt, name, value, onChange }: { prompt: StructuredPrompt; name: string; value?: string; onChange: (v: string) => void }) {
   return (
     <fieldset className="space-y-2">
       <legend className="font-body text-[15px] font-medium text-charcoal">{prompt.label}</legend>
@@ -29,25 +36,42 @@ function Choice({ prompt, name, value, onChange }: { prompt: StructuredPrompt; n
   );
 }
 
+function MultiChoice({ prompt, values, onToggle }: { prompt: StructuredPrompt; values: string[]; onToggle: (v: string) => void }) {
+  return (
+    <fieldset className="space-y-2">
+      <legend className="font-body text-[15px] font-medium text-charcoal">{prompt.label}</legend>
+      {prompt.options.map((opt) => (
+        <label key={opt} className="flex items-center gap-3 rounded-2xl bg-white/70 px-4 py-2.5 font-body text-[15px] text-charcoal">
+          <input type="checkbox" value={opt} checked={values.includes(opt)} onChange={() => onToggle(opt)} />
+          {opt}
+        </label>
+      ))}
+    </fieldset>
+  );
+}
+
 export interface UseReviewFlowProps {
   review: UseReview;
-  /** Whether a saved output exists — drives Keep/Update vs. a plain finish. */
+  /** Whether a saved output exists — drives Keep/Update vs. a save decision. */
   hasSavedOutput: boolean;
-  onComplete: (signals: UseReviewSignals, action: "keep" | "update" | "none") => void;
+  onComplete: (signals: UseReviewSignals, action: "keep" | "update" | "save" | "none") => void;
   onExit?: () => void;
 }
 
 export default function UseReviewFlow({ review, hasSavedOutput, onComplete, onExit }: UseReviewFlowProps) {
-  const [didDifferently, setDidDifferently] = useState<string>();
+  const [didDifferently, setDidDifferently] = useState<string[]>([]);
   const [performed, setPerformed] = useState<string>();
-  const [becameClearer, setBecameClearer] = useState<string>();
+  const [becameClearer, setBecameClearer] = useState<string[]>([]);
   const [stuck, setStuck] = useState<string>();
+
+  const toggle = (list: string[], set: (v: string[]) => void, v: string) =>
+    set(list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
 
   function signals(extra: Partial<UseReviewSignals> = {}): UseReviewSignals {
     return {
-      ...(didDifferently ? { didDifferently } : {}),
+      ...(didDifferently.length ? { didDifferently } : {}),
       ...(performed ? { performed: PERFORMED_MAP[performed] } : {}),
-      ...(becameClearer ? { becameClearer } : {}),
+      ...(becameClearer.length ? { becameClearer } : {}),
       ...(stuck ? { stuck } : {}),
       ...extra,
     };
@@ -65,10 +89,10 @@ export default function UseReviewFlow({ review, hasSavedOutput, onComplete, onEx
           A quick, honest look at the practice itself — no score, and a hard moment isn't a failure here.
         </p>
 
-        <Choice prompt={review.didDifferently} name="rv-did" value={didDifferently} onChange={setDidDifferently} />
-        <Choice prompt={review.performedOperation} name="rv-perf" value={performed} onChange={setPerformed} />
-        <Choice prompt={review.becameClearer} name="rv-clear" value={becameClearer} onChange={setBecameClearer} />
-        <Choice prompt={review.stuckWhere} name="rv-stuck" value={stuck} onChange={setStuck} />
+        <MultiChoice prompt={review.didDifferently} values={didDifferently} onToggle={(v) => toggle(didDifferently, setDidDifferently, v)} />
+        <SingleChoice prompt={review.performedOperation} name="rv-perf" value={performed} onChange={setPerformed} />
+        <MultiChoice prompt={review.becameClearer} values={becameClearer} onToggle={(v) => toggle(becameClearer, setBecameClearer, v)} />
+        <SingleChoice prompt={review.stuckWhere} name="rv-stuck" value={stuck} onChange={setStuck} />
 
         <div className="border-t border-light-gray pt-5">
           {hasSavedOutput ? (
@@ -80,7 +104,13 @@ export default function UseReviewFlow({ review, hasSavedOutput, onComplete, onEx
               </div>
             </>
           ) : (
-            <button type="button" className={primaryBtn} onClick={() => onComplete(signals(), "none")}>Done</button>
+            <>
+              <p className="font-body text-[15px] text-charcoal/85">Would this be useful to keep for next time?</p>
+              <div className="mt-3 flex flex-wrap gap-3">
+                <button type="button" className={primaryBtn} onClick={() => onComplete(signals({ saved: true }), "save")}>Save this Play</button>
+                <button type="button" className={ghostBtn} onClick={() => onComplete(signals(), "none")}>Not right now</button>
+              </div>
+            </>
           )}
         </div>
       </div>
