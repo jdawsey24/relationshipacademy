@@ -60,7 +60,7 @@ test("full walkthrough produces a correct executable output; rule builder is gat
   const condition = screen.getByRole("textbox");
   fireEvent.change(condition, { target: { value: "they keep cancelling" } });
   const action = screen.getByRole("combobox") as HTMLSelectElement;
-  fireEvent.change(action, { target: { value: "invest a little less for now" } });
+  fireEvent.change(action, { target: { value: "put in a little less for now" } });
   assert.equal(looksRight.disabled, true, "still gated until control-check");
   fireEvent.click(screen.getByRole("checkbox"));
   assert.equal(looksRight.disabled, false, "enabled once condition + action + control-check");
@@ -71,7 +71,7 @@ test("full walkthrough produces a correct executable output; rule builder is gat
   const out = saved[0] as { question?: string; rule?: { condition: string; action: string } };
   assert.equal(out.question, "Is this going somewhere?");
   assert.equal(out.rule?.condition, "they keep cancelling");
-  assert.equal(out.rule?.action, "invest a little less for now");
+  assert.equal(out.rule?.action, "put in a little less for now");
 });
 
 // Reach the sufficiency step (ownTurn → Continue).
@@ -97,7 +97,7 @@ test("sufficiency branch A ('I already have enough') goes straight to the decisi
 test("sufficiency branch B ('need more information') requires a real evidence condition (no indefinite waiting), then prefills the rule", () => {
   mount();
   toSufficiency();
-  fireEvent.click(screen.getByRole("button", { name: /i need more information/i }));
+  fireEvent.click(screen.getByRole("button", { name: /i need more info/i }));
   const cont2 = () => screen.getByRole("button", { name: /^continue$/i }) as HTMLButtonElement;
   assert.equal(cont2().disabled, true, "cannot proceed with an empty condition (no default-empty waiting)");
   const [needToKnow, observable] = screen.getAllByRole("textbox");
@@ -115,10 +115,10 @@ test("the if/then action set is user-controlled and non-gamey (no scorekeeping/m
   const rb = RD.screens.find((s) => s.kind === "ruleBuilder");
   assert.ok(rb && rb.kind === "ruleBuilder");
   const actions = (rb as { actions: string[] }).actions.join(" | ").toLowerCase();
-  assert.ok(actions.includes("invest a little less"), "user-choice investment option present");
+  assert.ok(actions.includes("put in a little less"), "user-choice investment option present");
   for (const banned of ["pull back", "stop texting first", "mirror", "match their", "give less"]) {
     assert.ok(!actions.includes(banned), `banned dating-game phrasing absent: ${banned}`);
   }
   // control-check keeps it about the user's own move, not controlling the other person
-  assert.match((rb as { controlCheck: string }).controlCheck, /not a way to get them to chase/i);
+  assert.match((rb as { controlCheck: string }).controlCheck, /not a way to make them chase/i);
 });

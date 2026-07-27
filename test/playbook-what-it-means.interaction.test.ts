@@ -54,10 +54,10 @@ test("full walkthrough builds a bounded conclusion; emotion beat + pattern route
   completeSort(); // B
   completeSort(); // C (pattern)
   // ownTurn
-  const event = screen.getByPlaceholderText(/one specific event/i);
+  const event = screen.getByPlaceholderText(/one real event/i);
   fireEvent.change(event, { target: { value: "They said not a match" } });
   fireEvent.blur(event);
-  const conclusion = screen.getByPlaceholderText(/the conclusion about you/i);
+  const conclusion = screen.getByPlaceholderText(/what you turned it into/i);
   fireEvent.change(conclusion, { target: { value: "I'm the problem" } });
   fireEvent.blur(conclusion);
   cont(); // ownTurn → Continue

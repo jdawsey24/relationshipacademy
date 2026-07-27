@@ -28,7 +28,7 @@ function mount() {
 }
 function toWMOwnTurn() {
   fireEvent.click(byName(/see what sounds like me/i));
-  clickText(/wondering what's wrong with me/i);
+  clickText(/what's wrong with me/i);
   fireEvent.click(byName(/show me where to start/i));
   fireEvent.click(byName(/start/i));
   fireEvent.click(byName(/yes, this happens/i));
@@ -44,7 +44,7 @@ test("Layer A: a crisis signal in free-text surfaces crisis resources and preser
   net.crisis = { interrupt: true, heading: "If you're in immediate danger", message: "Reach out now.", resources: [{ label: "988", value: "Call or text 988" }] };
   mount();
   toWMOwnTurn();
-  const event = screen.getByPlaceholderText(/one specific event/i) as HTMLInputElement;
+  const event = screen.getByPlaceholderText(/one real event/i) as HTMLInputElement;
   fireEvent.change(event, { target: { value: "sensitive text" } });
   fireEvent.blur(event); // → onScreenText → POST /screen (Layer A)
 
@@ -70,7 +70,7 @@ test("persistence sends only functional keys — no raw free-text journaling cha
   mount();
   // any progress-changing action triggers a debounced PUT
   fireEvent.click(byName(/see what sounds like me/i));
-  clickText(/wondering what's wrong with me/i);
+  clickText(/what's wrong with me/i);
   await new Promise((r) => setTimeout(r, 900)); // let the debounce flush
   const puts = net.calls.filter((c) => c.url.includes("/progress") && c.method === "PUT");
   assert.ok(puts.length >= 1, "a progress PUT fired");

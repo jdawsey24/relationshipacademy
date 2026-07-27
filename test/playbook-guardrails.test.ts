@@ -32,7 +32,7 @@ test("investment/decision language is user-choice, never scorekeeping or mirrori
     assert.ok(!actions.includes(banned), `no dating-game phrasing in the action options: ${banned}`);
   }
   // scorekeeping may appear ONLY to disclaim it — never as an instruction
-  assert.ok(textOf(RD).includes("isn't suspicion or scorekeeping"), "RD explicitly disclaims scorekeeping");
+  assert.ok(textOf(RD).includes("not about keeping score"), "RD explicitly disclaims scorekeeping");
   assert.ok(!textOf(RD).includes("tit-for-tat"), "no tit-for-tat framing");
 });
 
@@ -46,14 +46,14 @@ test("the user can remain sad/disappointed and still complete T1a (feeling ≠ f
   assert.ok(WM.screens.some((s) => s.kind === "emotionBeat"), "T1a has an emotion-acknowledgment beat");
   const beat = WM.screens.find((s): s is Extract<Screen, { kind: "emotionBeat" }> => s.kind === "emotionBeat")!;
   assert.ok(beat.body.join(" ").toLowerCase().includes("can still hurt"), "keeps the hurt");
-  assert.match(WM.fidelity.correct, /doesn't require you to feel better|does not require you to feel better/i);
+  assert.match(WM.fidelity.correct, /doesn't (require|need) you to feel better|does not (require|need) you to feel better/i);
 });
 
 test("T1a pattern branch preserves the observed pattern and routes without inventing a cause", () => {
   assert.equal(WM.routing?.toPlayId, "read-and-decide");
   // the pattern scenario keeps the recurrence as an observation to KEEP (not a verdict)
   const patternSort = WM.screens.find(
-    (s): s is Extract<Screen, { kind: "scenarioSort" }> => s.kind === "scenarioSort" && /became less available/i.test(s.situation),
+    (s): s is Extract<Screen, { kind: "scenarioSort" }> => s.kind === "scenarioSort" && /pulled away/i.test(s.situation),
   )!;
   assert.ok(patternSort.buckets.some((b) => /observation to keep/i.test(b.label)), "recurrence preserved as an observation");
   assert.ok(patternSort.buckets.some((b) => /verdict to drop/i.test(b.label)), "global verdict is what gets dropped");
