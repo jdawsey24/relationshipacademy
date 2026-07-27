@@ -85,3 +85,18 @@ L1/L2; My Plays; skill-focused return loop; 4-state model (no gamification); fun
 Companion/Academy boundaries; MVP scope; 3 user journeys; $29 value test (defensible-but-flagged);
 too-much/not-a-course/not-a-journal/change-vs-content audits all PASS. READY for consumer copy + UX. Product
 decisions open: T2d MVP-vs-V1.1, T3a default routing, board naming, recognition depth. Staged for review.
+
+---
+
+`phase5-consumer-content-and-ux.md` — **PHASE 5** (consumer content + detailed UX). Production-quality draft
+copy for the opening + short recognition pass + personalized board; consumer terminology map; 6 MVP Play names
+(what-you-learn-to-do, no internal terms). Prototype selected = **Read It, Then Decide (T2a->T2b)**, fully
+authored to the screen (S-RD-1..13: recognition gate, the shift, L1/L2 literature, learn-the-move, 2 do-it-
+with-me sorting scenarios, your-turn output, if-then rule builder, executable output, portable 5-line tool,
+use-in-real-life + safety signpost, Used-in-real-life fidelity return, My Plays card, error/empty states,
+accessibility, mobile). Light specs for the other 5 Plays. Full screen inventory, a11y + mobile specs,
+20-statement routing QA, multi-problem/low-match/already-do-this journeys, and comprehension/actionability/
+generic-advice/outcome/$29-value audits. My Plays = 5 consumer fields; sorting tap-first/drag-optional;
+loneliness = validation only; severe self-worth = support signpost; success never a relationship outcome;
+honest evidence status in-product. READY FOR IMPLEMENTATION (Read & Decide spec'd to the screen; open items are
+copy-final/product choices). No code/DB/deploy/framework change. Staged for review.
