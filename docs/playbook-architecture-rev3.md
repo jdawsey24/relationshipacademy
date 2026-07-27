@@ -1,6 +1,6 @@
 # Phase 7 — Relationship Playbook™ Product Architecture (Rev 3, final)
 
-**Status:** FINAL ARCHITECTURE FOR APPROVAL — direction approved; owner adjudications (Rev 3.0 → 3.1) incorporated. Not yet implemented.
+**Status:** ✅ APPROVED FOR IMPLEMENTATION (Phase 7 Rev 3) — owner adjudications through Rev 3.2 incorporated. Implementation is authorized **Step 1 only** (§16) behind a feature flag; the owner-run migration and a separate deploy remain gated on explicit owner approval.
 **Prototype cluster:** Cluster 1 "Difficulty Feeling Chosen" (consumer: *Moving Beyond Rejection*).
 **Posture:** the deployed v0 two-Play Playbook stays intact. Rev 3 is built behind a feature flag, reviewed, and **not deployed, and runs no new production migration, without explicit owner approval.** Attorney review remains **outstanding**; nothing here is attorney-reviewed or attorney-approved; the existing **Owner Risk Acceptance** remains the posture.
 
@@ -44,6 +44,7 @@ The five objects are **composable, not a mandatory five-step funnel.** A user is
 - **Exposure never advances a change claim.** Content engagement (literature opened/saved/revisited) may *influence what is recommended next* but is never evidence a competency or enactment improved.
 - **Technique Fidelity is not "changed my mind."** It is reconsidering an interpretation **in light of evidence** and revising it **when warranted**. The system does not reward reversal, optimism, or change itself (adjudication 2).
 - **Keep/Update is not Transfer by itself** (adjudication 4). It is evidence the user *reviewed* the saved tool against experience and then *retained* it (`tool_retained`) or *revised* it (`tool_updated`). Transfer additionally requires a **reported attempt to use the operation in an authentic context beyond the original rehearsal** (`used_in_another_context`). These are tracked as **separate signals** (see below) and may inform Change Path differently.
+- **Advancing an authored mission progression is not Transfer by itself.** Progression-advance contributes Transfer evidence **only when it follows reported real-world enactment** — never mere progression within the product.
 - **Developmental Application (canonical RLC) is not a product state.** It retains its canonical meaning and is interpreted **only where evidence legitimately supports authentic-context enactment** — which, in product terms, requires real-context Transfer evidence, not in-app Attempt/Fidelity alone.
 - Each Change Path recommendation is tagged internally with the **highest process-state legitimately supported by the data** and phrased about *that demonstrated/reported context*, never about the person (§4.2).
 
@@ -164,7 +165,7 @@ Each shows the path, the **exact data read at the recommendation point**, the **
 
 **Next Step (output):** *"In the exercise you brought a big conclusion back to what actually happened. In the moment it's still hard — a useful next practice may be a smaller, lower-pressure version before the full step."* → surfaces a **graded WM mission** + a targeted **just-in-time literature** entry on globalization ("everyone / forever / identity / worth"). Only if she **explicitly reports recurrence via an approved structured real-world input** may the system treat a recurring pattern as present and offer the authored **route to Read It, Then Decide** (existing `Play.routing`) — *without inventing a cause.* (In-app simulation behavior alone may still surface teaching or a pathway *suggestion*, but does not establish recurrence.)
 
-**Layer-B (not crisis):** the WM **support signpost** ("if this is bigger than a dating moment… a mental health professional can help") is surfaced when the user **explicitly reports, through an approved structured input, that this extends beyond a single dating moment** — not inferred from simulation behavior or from a presumption of persistence. **General self-worth language is never escalated to a Layer-A crisis event.**
+**Layer-B (not crisis):** persistence/pervasiveness is **never inferred from a single recognition response** (or from simulation behavior). The WM **support signpost** ("if this is bigger than a dating moment… a mental health professional can help") depends on an **explicit structured persistence/pervasiveness self-report** — a dedicated bounded input (e.g., *"Does this show up beyond dating, or has it been present for a long time?"*, `persistence_pervasiveness`) that the user affirms. Absent that explicit input, the signpost is not shown. **General self-worth language is never escalated to a Layer-A crisis event.**
 
 **Boundary check:** "in the exercise you… in the moment it's still hard" is context-bound and process-framed; no "you have low self-esteem," no etiology, no diagnosis.
 
@@ -354,7 +355,7 @@ type MissionState = "assigned" | "attempted" | "reviewed" | "advanced";
 
 - Behaviorally specific; explicit tie to the intervention; appropriate for self-guided use; safety/suitability boundaries where needed.
 - **No levels, XP, streaks, ranks, badges, or completion percentages** (decision 8). Progression is **authored within the intervention design** and offered only when theoretically and safety appropriate (e.g., Authentic Presentation: preference → opinion → small need → reasonable boundary — a *future* Play, not built here).
-- The system may recommend a next stretch from **demonstrated/reported enactment**, but must **not claim mastery** from completion.
+- The system may recommend a next stretch from **demonstrated/reported enactment**, but must **not claim mastery** from completion. Advancing a rung **contributes Transfer evidence only when it follows reported real-world enactment** (§1) — never mere progression within the product.
 - **Consumer copy:** "Try this next." / "Ready to stretch this a little further?" / "A useful next practice may be…" (internally: progressive Developmental Application).
 - **No partner-surveillance** prompts (§15).
 
@@ -482,7 +483,7 @@ Tap-first, keyboard-operable, focus-managed, `role="status"` corrections preserv
 ---
 
 ## 15. Safety / privacy implications
-Two-layer separation preserved: **Layer A (crisis)** stays the frozen, shared, metadata-only engine, extended to screen any bounded free text in simulations/missions/use-reviews; **Layer B (per-Play/Simulation/Mission signposts)** stays content-driven. **General self-worth language never becomes a crisis event.** Data minimization: functional product state, structured selects, version-stamped outputs, minimal **server-validated** event payloads — **never** unrestricted emotional narratives or partner-surveillance data. Mission design avoids partner-monitoring. Change Path stores only a small functional focus record, recomputable from state, never a psychological profile. **Attorney review outstanding; nothing represented as attorney-approved; Owner Risk Acceptance is the posture.**
+Two-layer separation preserved: **Layer A (crisis)** stays the frozen, shared, metadata-only engine, extended to screen any bounded free text in simulations/missions/use-reviews; **Layer B (per-Play/Simulation/Mission signposts)** stays content-driven, and any signpost that depends on persistence/pervasiveness requires an **explicit structured self-report** (`persistence_pervasiveness`, §4.5), never inference from a single recognition response or from simulation behavior. **General self-worth language never becomes a crisis event.** Data minimization: functional product state, structured selects, version-stamped outputs, minimal **server-validated** event payloads — **never** unrestricted emotional narratives or partner-surveillance data. Mission design avoids partner-monitoring. Change Path stores only a small functional focus record, recomputable from state, never a psychological profile. **Attorney review outstanding; nothing represented as attorney-approved; Owner Risk Acceptance is the posture.**
 
 ---
 
@@ -529,8 +530,8 @@ No production change and no deploy at any step without explicit owner approval.
 
 ### 18.1 Rev 3.2 refinements — incorporated
 
-1. **Transfer tightened** — Transfer = evidence the user **attempted to carry the operation into at least one authentic context beyond the original in-app rehearsal**. Tool-review split into distinct signals `tool_reviewed` / `tool_retained` / `tool_updated`; `used_in_another_context` and `technique_fidelity_in_context` are the Transfer signals; "advancing a progression when appropriate" is no longer treated as a Transfer signal. — **§1, §4.1, §8.**
-2. **Recurrence cannot be inferred from simulation choices** — a real recurring pattern is treated as present **only when the user explicitly reports recurrence through an approved structured real-world input**; simulation behavior may inform in-app teaching / pathway suggestions but cannot establish recurrence outside the simulation. The WM support signpost is likewise surfaced only on an explicit structured report, not inferred persistence. — **§4.5 (Pattern B).**
+1. **Transfer tightened** — Transfer = evidence the user **attempted to carry the operation into at least one authentic context beyond the original in-app rehearsal** ("appropriately adjusted it" removed from the definition). Tool-review split into distinct signals `tool_reviewed` / `tool_retained` / `tool_updated` (useful Change Path signals, **not** Transfer); `used_in_another_context` and `technique_fidelity_in_context` are the Transfer signals; **advancing a mission progression contributes Transfer evidence only when it follows reported real-world enactment**, never mere product progression. — **§1, §4.1, §7, §8.**
+2. **Recurrence cannot be inferred from simulation choices** — a real recurring pattern is treated as present **only when the user explicitly reports recurrence through an approved structured real-world input**; simulation behavior may inform teaching / pathway suggestions only within that simulation. **Persistence/pervasiveness is never inferred from a single recognition response** — any Layer-B support signpost that depends on persistence requires an **explicit structured `persistence_pervasiveness` self-report.** — **§4.5 (Pattern B), §15.**
 3. **Event idempotency from day one** — `playbook_events` carries a client-generated `action_id` with **`unique (user_id, action_id)`**; the server writer collapses retries to one event and validates, in order: authenticated user · current entitlement · valid registered object id · object belongs to that playbook/version · event allowed for that object type · payload matches the registered schema · idempotency key not already consumed. — **§9, §10.2, §13.**
 4. **Wording** — "The Playbook **is designed to** strengthen Developmental Application…" (top blockquote).
 
