@@ -268,6 +268,9 @@ export interface LiteratureEntry {
 export type FidelityState = "demonstrated" | "not_demonstrated" | "not_applicable";
 export type FidelityDimension = "evidence_reconsidered" | "interpretation_response_appropriate";
 
+/** GUARDRAIL 3 (approved): process tags are narrowly BEHAVIORAL/OPERATIONAL only.
+ *  They describe what the reader did with the evidence in THIS moment — never
+ *  personality, attachment style, diagnosis, etiology, or any stable-trait conclusion. */
 export type SimProcessTag = "held_uncertainty" | "jumped_to_conclusion" | "sought_evidence";
 
 export type CaptureField =
@@ -287,10 +290,11 @@ export interface SimOption {
   next?: string;
 }
 
-/** A reconsider response. Fidelity is authored PER RESPONSE as explicit states, so the
- *  engine never treats mere change-of-mind as the target. All responses that engage the
- *  weighing typically set evidence_reconsidered = "demonstrated"; interpretation_response_
- *  appropriate is demonstrated for the evidence-appropriate response (revise OR hold). */
+/** A reconsider response. GUARDRAIL 1 (approved): fidelity is authored PER NODE/RESPONSE
+ *  from the evidence in THAT specific scenario — never derived from the simulation
+ *  signature. "Hold" vs "revise" is not fixed by signature: holding is evidence-appropriate
+ *  in RD (ambiguity remains) and not in WM (the global verdict outruns one event).
+ *  The engine never treats mere change-of-mind as the target. */
 export interface FidelityOutcome {
   evidence_reconsidered: FidelityState;
   interpretation_response_appropriate: FidelityState;
@@ -306,8 +310,11 @@ export interface ReconsiderOption {
 /** Nodes form an authored GRAPH (startNodeId + per-node/option `next`), not a linear
  *  array walk. Options may route to short teaching branches that rejoin the main path.
  *  Branching changes what TEACHING/rehearsal the user receives — NEVER what the dating
- *  partner does. `role` drives signature presentation; `jitLiteratureId` lets the engine
- *  surface authored just-in-time literature contextually (id only, never inlined). */
+ *  partner does. `role` drives signature presentation.
+ *  GUARDRAIL 2 (approved): `jitLiteratureId` surfaces authored just-in-time literature by
+ *  id only (never inlined). Opening it is Exposure / content engagement ONLY — it can never
+ *  independently contribute to Technique Fidelity or Transfer (fidelity comes solely from
+ *  authored reconsider responses; see aggregateFidelity, which takes no literature input). */
 export type SimNodeBase = { id: string; role?: SimDisplayRole; jitLiteratureId?: string };
 export type SimNode = SimNodeBase &
   (

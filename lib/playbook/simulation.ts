@@ -57,7 +57,9 @@ export function pathBefore(sim: Simulation, currentId: string, selections: Recor
 
 /** Aggregate the reader's reconsider selections into an explicit fidelity outcome.
  *  Default is not_applicable (dimension not exercised); each answered reconsider sets
- *  the authored states for that response (last answered reconsider wins). */
+ *  the authored states for that response (last answered reconsider wins).
+ *  GUARDRAILS: fidelity is read ONLY from authored reconsider responses (never inferred
+ *  from signature — G1) and takes NO literature/JIT input (JIT is Exposure-only — G2). */
 export function aggregateFidelity(sim: Simulation, selections: Record<string, string>): FidelityOutcome {
   let out: FidelityOutcome = { ...NOT_APPLICABLE };
   for (const n of sim.nodes) {
