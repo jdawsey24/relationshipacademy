@@ -1,40 +1,58 @@
-# Cluster 1 — Change Path + Home (Step 8)
+# Cluster 1 — Change Path + Home (Step 8, final)
 
 **Status:** FOR REVIEW. Flag-gated; v0 unchanged. No deploy, no migration.
 **Source of truth:** `lib/playbook/changePath.ts` (orchestrator) + `components/playbook/ChangePathHome.tsx` (home).
 
-Change Path is the **internal** orchestrator that ties the five layers together. It reads only first-party functional state and returns a prioritized surface + one plain "Your Next Step" line. It is **not** a hidden assessment, and the consumer home presents it plainly — never as a clinical plan.
+Change Path is the **internal** orchestrator. Rev 3 is **composable** — there is no global developmental ladder. Each operation is described by **independent functional signals**; a routing helper picks a focus by a **frozen priority** and routes from those signals **and the Use-Review contents**. `reviewed` is never "more developed" than `attempted`, and reaching review never auto-advances anything. Output is non-authoritative.
 
-## Inferential boundary (enforced in code + tests)
-- **Uses only:** recognition selections; declared focus; simulation completion + fidelity states; play operations performed (outputs/play_states); mission selection + reported attempt; structured Use-Review responses; Keep/Update/Save (tool review); current/prior focus.
-- **Content engagement (literature read) is NOT read** — reading never advances a stage or a change claim (regression-tested: identical result with/without `literature_state.read`).
-- **Never infers from** relationship outcomes, mood, emotional intensity, traits/personality/attachment, partner motives, diagnosis, etiology, free text, completions-alone, or time.
-- **Observation-not-trait:** every next-step line describes what was demonstrated/reported in a specific context; a regression test rejects trait/etiology constructions and prescriptive verdicts. **Absence is an invitation, never inability/avoidance.** No mastery claims.
+## Independent functional signals (per operation)
+`recognized · simulationExposed · inAppOperationAttempted · savedOutput · missionSelected · missionAttempted · missionReviewed · techniqueFidelity(yes/partly/no) · transferEvidence(attemptCount ≥ 2) · reviewStuck · lastMissionReport` — all derived independently; none implies the others.
 
-## Stages (derived only from functional state)
-`unrecognized → recognized → in_progress → practiced_in_app → attempted → reviewed` — a play advances only as functional signals accrue (recognition → simulation completed / explored → operation performed in app → mission attempt reported → Use Review submitted).
+## Frozen focus priority (item 6)
+1. **explicit** current-focus selection (`change_path_state.currentFocus`, if the op is engaged)
+2. **active real-world mission** (selected, not yet attempted)
+3. **pending Use Review** (attempted, not reviewed)
+4. **recent deliberate exploration** (simulation/explored/saved/**reviewed**)
+5. **recognition-based** recommendation
 
-## "Your Next Step" (exact lines)
-- **recognized:** "A good place to start is “[Play].”" *(invitation)*
-- **in_progress:** "You started “[Play].” Picking it back up is the next step."
-- **practiced_in_app:** "You've worked through “[Play].” A useful next step is taking it into real life."
-- **attempted:** "You tried this in real life. A quick, honest look at how it went is the next step."
-- **reviewed + Pattern A (RD, partly, stuck-on-acting):** "In your recent practice, you separated what you observed from what you were assuming. A useful next step may be deciding what to do with that information."
-- **reviewed (RD, other friction):** "In your recent practice, you were working the read. A useful next practice may be another round — separating what you saw from what you're guessing."
-- **reviewed (WM, feeling-made-it-true):** "In your recent practice, you named the fact; the feeling made it loud. A useful next practice may be holding the fact while the feeling stays."
-- **reviewed + performed=yes:** "You've been using “[Play]” in real life. When you're ready, a useful next area may be another pattern to work on — or keep this one going."
-- **nothing done yet:** *null* (no verdict).
+Explore Another Area never silently changes the focus (focus is recorded only when the reader follows the next-step CTA).
 
-## Focus selection
-The furthest-along **incomplete recognized** area is the focus; a **declared** focus wins if still active. `recordChangePathFocus` stores `current`/`prior` focus (moved to `change_path_state`) when the reader follows the CTA.
+## Decision table (exact next-step lines, non-authoritative)
+
+| Focus signals | "Your Next Step" |
+|---|---|
+| recognized only | "Based on what sounded familiar, you might start with “[Play].”" |
+| simulation exposed only | "You've seen how “[Play]” works. You might try it on a real situation of yours." |
+| in-app operation / saved output | "You've worked through “[Play].” You might take it into real life when a moment comes up." |
+| mission selected (no report) | "Your practice is set. You might give it a try when a fitting moment comes up." |
+| mission selected + `no_opportunity` | "No chance to try it yet — that's completely fine. It's ready whenever a moment comes up." |
+| mission selected + `opportunity_not_taken` | "A moment came up and you didn't take it — no problem at all. You might rehearse it once more…" |
+| mission selected + `unsuitable` | "You judged it wasn't the right moment — that's the skill working… meanwhile you might explore another area." *(primary = Explore)* |
+| mission attempted (not reviewed) | "You tried this in real life — you might take a quick, honest look at how it went." |
+| reviewed · stuck = **acting** (RD) | "…you separated what you saw from what you were assuming. A useful next step might be deciding what to do with that information." |
+| reviewed · **feeling** loud · fidelity **shown** | "You used the move closely, and the feeling was still loud — that's expected, and it doesn't undo the work. You might keep using it as the feeling settles." *(forward — never backward)* |
+| reviewed · **feeling** loud · fidelity not shown | "You named the fact, and the feeling made it loud. You might practice holding the fact while the feeling stays." |
+| reviewed · stuck = reading/naming · fidelity not shown | "The reading part is where it caught this time. You might run another round — separating what you saw from what you're guessing." |
+| reviewed · fidelity **yes** · **first** attempt | "Based on what you practiced, the move is working for you. You might take it into the next situation when one comes up." |
+| reviewed · fidelity **yes** · **Transfer** (≥2 contexts) | "…you've used “[Play]” in more than one real situation. You might stretch it a little further — or bring your attention to another pattern when you're ready." |
+| nothing started | *null* (no verdict) |
+
+## Boundary (enforced in code + tests)
+- **Composable:** signals independent; `reviewed` is tier-4, never above an active mission (tier 2) or pending review (tier 3) of another op; a lone reviewed op does not auto-jump to another play.
+- **Route from review contents,** not merely `reviewed=true` — three materially different recs are tested (closely+acting → the acting step; not-really+reading → re-practice the read; feeling-loud+closely → forward, never backward).
+- **Transfer explicit:** first Attempt (`attemptCount 1`) vs accumulating use (`≥2`) are distinguished; Transfer informs a stretch, never a mastery/trait claim.
+- **Non-attempt outcomes distinct & no-fault:** `no_opportunity` neutral · `opportunity_not_taken` invitation to rehearse (never inability/avoidance) · `unsuitable` respected (never "just repeat it").
+- **Literature engagement → surfacing only:** reading never advances a stage/fidelity/Transfer/claim; it only steers which read is surfaced (avoids the already-read one).
+- **Non-authoritative** phrasing ("a useful next step", "you might", "based on what you practiced"); Explore always offered.
+- **Fail-soft:** saved output with incomplete play state, historic/v0 output, mission/review version mismatch, missing focus, and obsolete content references never crash, are never read as negatives, and never discard saved work.
+- Observation-not-trait; absence is an invitation, never inability/avoidance.
 
 ## Home / IA (resuming, non-clinical)
-A returning reader (any functional state) **resumes on the home**, not the onboarding opening (first-time users still see the opening). The home shows:
-- **Your next step** (the line above) + a single CTA into the surfaced experience.
-- **What I'm practicing** — the one current mission (hidden once reviewed; one active focus at a time).
-- Entry points: **Understand this pattern** (field guide, now surfaced), **Where you might start** (board), **My Plays**, **Explore another area** (always available; never locked).
+Returning readers resume on the **home** (first-time users still see the opening). It shows **Your Next Step** + a single CTA, **What I'm Practicing** (one active focus, hidden once reviewed), and non-clinical entry points — **Understand this pattern** (field guide), **Where you might start**, **My Plays**, **Explore another area** (always available). Flag OFF → the v0 opening flow is unchanged.
 
-Flag OFF → the v0 opening → recognition → board flow is completely unchanged (a test asserts a returning user in v0 still lands on the opening).
+## Remaining product ambiguity (surfaced, not resolved)
+- **Recency tie-break:** priority-4 ("most recent deliberate exploration") currently tie-breaks by content order — no per-op timestamps are stored, so "most recent" is approximated deterministically. If true recency matters, it needs a timestamp on the state objects (a schema addition) — flagged for a later decision, not assumed.
+- **Transfer capture is minimal:** Transfer is inferred from repeated reported attempts (`attemptCount ≥ 2`, capturable via "I used this again in another situation"). A richer, explicitly-authentic-context capture would strengthen eventual validation — deferred.
 
 ## Gates
-No gamification, no mastery claim, no partner surveillance, no diagnosis/plan framing; no deploy; no migration; no Snapshot/scoring/commerce/framework changes; remaining four Plays not authored.
+No gamification/mastery/surveillance/diagnosis/plan framing; no deploy; no migration; no Snapshot/scoring/commerce/framework changes; remaining four Plays not authored.

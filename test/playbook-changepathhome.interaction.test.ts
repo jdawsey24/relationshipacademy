@@ -37,7 +37,7 @@ test("shows 'Your next step' and routes the primary CTA to the surfaced item", (
   const calls = mount(practiced);
   assert.ok(screen.getByText(/welcome back/i));
   assert.ok(screen.getByText(/your next step/i));
-  assert.ok(screen.getByText(/taking it into real life/i), "context-bound next step");
+  assert.ok(screen.getByText(/take it into real life/i), "context-bound next step");
   fireEvent.click(screen.getByRole("button", { name: /practice this in real life/i }));
   assert.equal(calls.surfaced.length, 1);
   assert.equal(calls.surfaced[0].kind, "practice");

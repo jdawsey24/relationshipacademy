@@ -97,7 +97,11 @@ export default function MissionCard({ mission, state, rungId, lastReport, onSele
         )}
 
         {state === "reviewed" && (
-          <p className="font-body text-[14px] text-charcoal/70" role="status">You've reviewed this practice.</p>
+          <div className="space-y-3" role="status">
+            <p className="font-body text-[14px] text-charcoal/70">You've reviewed this practice.</p>
+            {/* Using it again in another real situation is a Transfer signal — no mastery implied. */}
+            <button type="button" className={ghostBtn} onClick={() => onReport("attempted")}>I used this again in another situation</button>
+          </div>
         )}
       </div>
     </section>
