@@ -100,3 +100,19 @@ generic-advice/outcome/$29-value audits. My Plays = 5 consumer fields; sorting t
 loneliness = validation only; severe self-worth = support signpost; success never a relationship outcome;
 honest evidence status in-product. READY FOR IMPLEMENTATION (Read & Decide spec'd to the screen; open items are
 copy-final/product choices). No code/DB/deploy/framework change. Staged for review.
+
+---
+
+`phase5b-t1a-deep-design-and-ux-corrections.md` — **PHASE 5B** (Part A UX corrections + Part B second
+prototype). Part A: broadened opening (beyond "Do they want me?"), 7 recognition cards + expandable bank
+examples + statement-to-recognition content map, congruence-principle replaces "actions>words", non-gamey
+investment language (removed pull-back/mirror/create-space), removed time estimates + social-proof hinting,
+FROZE 5-field My Plays, confirmed T2d=V1.1, "Explore another area" permanent; corrected Read & Decide
+accordingly. Part B: fully designed **"What It Actually Means" (T1a)** to the screen — signature interaction =
+Evidence Boundary sort (supports / can't prove) scaffolded by zoom-dimension + claim-check; S-WM-1..15 incl.
+3 scenarios (clear rejection / ghosting / repeated-pattern branch routing to Read & Decide), the "And this can
+still hurt" emotion beat (success != feeling better), bounded-conclusion output, 3-question portable, fidelity
+feedback (5 errors incl. partner-diagnosis), used-in-real-life return, My Plays card, R3 support signpost
+(no diagnosis), L1/L2 literature (honest evidence status), a11y + mobile. Comparison + universal container
+stress test (slotted container + shared sort engine) + universal/technique-specific matrix + revised $29 value
+(two full Plays span interpretive AND behavioral change). READY FOR TECHNICAL IMPLEMENTATION PLANNING. Staged.
