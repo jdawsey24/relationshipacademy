@@ -77,6 +77,13 @@ export function markMissionReviewed(p: PlaybookProgress, missionId: string): Pla
   return { ...p, practice_state: { version: prev.version ?? 1, currentMissionId: prev.currentMissionId, missions } };
 }
 
+/** Record the current application focus (Change Path); moves the old one to prior. Additive. */
+export function recordChangePathFocus(p: PlaybookProgress, focusPlayId: string): PlaybookProgress {
+  const prev = p.change_path_state ?? { version: 1 };
+  if (prev.currentFocus === focusPlayId) return p;
+  return { ...p, change_path_state: { version: prev.version ?? 1, currentFocus: focusPlayId, priorFocus: prev.currentFocus } };
+}
+
 // ---- Integrate: structured Use Review signals (Rev 3 Step 7; additive) ------------
 
 /** Persist the structured functional signals from a Use Review into use_review_state.

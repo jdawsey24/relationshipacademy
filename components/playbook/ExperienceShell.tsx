@@ -14,12 +14,25 @@ import OutputEditor from "@/components/playbook/OutputEditor";
 import * as actions from "@/lib/playbook/progressActions";
 import MissionCard from "@/components/playbook/MissionCard";
 import UseReviewFlow from "@/components/playbook/UseReviewFlow";
+import ChangePathHome from "@/components/playbook/ChangePathHome";
+import FieldGuide from "@/components/playbook/FieldGuide";
+import type { SurfacedItem } from "@/lib/playbook/changePath";
 import { PLAYBOOK_REV3_ENABLED } from "@/lib/playbook/rev3";
 import { simulationForPlay, missionForPlay, useReviewForPlay } from "@/lib/playbook/rev3Flow";
 import { nextRung } from "@/lib/playbook/mission";
 import { buildPlaybookEvent, emitPlaybookEvent } from "@/lib/playbook/clientEvents";
 
-type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays" | "practice" | "review";
+/** A returning reader has functional state to resume from — land on the home, not onboarding. */
+function isReturning(p: PlaybookProgress): boolean {
+  return (
+    p.recognized.length > 0 ||
+    Object.keys(p.play_states).length > 0 ||
+    p.my_plays.length > 0 ||
+    Boolean(p.simulation_state || p.practice_state || p.use_review_state)
+  );
+}
+
+type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays" | "practice" | "review" | "home" | "understand";
 
 export interface ExperienceShellProps {
   content: PlaybookContent;
@@ -31,7 +44,7 @@ export interface ExperienceShellProps {
 
 export default function ExperienceShell({ content, playbookKey, initialProgress, rev3 = PLAYBOOK_REV3_ENABLED }: ExperienceShellProps) {
   const { progress, update, saving } = useProgress(playbookKey, initialProgress);
-  const [view, setView] = useState<View>("opening");
+  const [view, setView] = useState<View>(rev3 && isReturning(initialProgress) ? "home" : "opening");
   const [exploreAll, setExploreAll] = useState(false);
   const [activePlayId, setActivePlayId] = useState<string | null>(null);
   const [crisis, setCrisis] = useState<CrisisScreenResult | null>(null);
@@ -52,6 +65,21 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
     setReviewFor(playId);
     setReviewFromMission(fromMissionId ?? null);
     setView("review");
+  }
+
+  // Route a Change-Path-surfaced item to its experience (records the current focus).
+  function handleSurfaced(item: SurfacedItem) {
+    if (item.playId) update((p) => actions.recordChangePathFocus(p, item.playId as string));
+    if (item.kind === "experience" && item.playId) openPlay(item.playId);
+    else if (item.kind === "practice" && item.playId) {
+      setPracticePlayId(item.playId);
+      setView("practice");
+    } else if (item.kind === "review" && item.playId) openReview(item.playId);
+    else if (item.kind === "understand") setView("understand");
+    else {
+      setExploreAll(true);
+      setView("board");
+    }
   }
 
   function toggleRecognized(cardId: string) {
@@ -235,7 +263,10 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
 
       {view === "board" && (
         <section className="mx-auto max-w-2xl">
-          <div className="flex items-center justify-between">
+          {rev3 && isReturning(progress) && (
+            <button type="button" onClick={() => setView("home")} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">← Home</button>
+          )}
+          <div className="mt-2 flex items-center justify-between">
             <h2 className="font-display text-2xl text-midnight-navy">Where you might start</h2>
             {progress.my_plays.length > 0 && (
               <button type="button" onClick={() => setView("myplays")} className="font-ui text-sm text-midnight-navy underline">My Plays ({progress.my_plays.length})</button>
@@ -399,6 +430,26 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
           />
         );
       })()}
+
+      {view === "home" && (
+        <ChangePathHome
+          content={content}
+          progress={progress}
+          displayName={content.displayName}
+          onSurfaced={handleSurfaced}
+          onUnderstand={() => setView("understand")}
+          onWhereToStart={() => setView("board")}
+          onMyPlays={() => setView("myplays")}
+          onExplore={() => { setExploreAll(true); setView("board"); }}
+        />
+      )}
+
+      {view === "understand" && (
+        <FieldGuide
+          entries={content.literature ?? []}
+          onExit={() => setView(rev3 && isReturning(progress) ? "home" : "board")}
+        />
+      )}
 
       {view === "myplays" && (
         <section className="mx-auto max-w-2xl">
