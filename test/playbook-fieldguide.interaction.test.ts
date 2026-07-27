@@ -9,32 +9,42 @@ function mount() {
   return render(h(FieldGuide, { entries: MBR_LITERATURE }));
 }
 
-test("browse view lists topics under scope sections; nothing is required", () => {
+test("browse view splits Core Guides and Common Questions; JIT is not a browse section", () => {
   mount();
   assert.ok(screen.getByText(/read whatever pulls at you/i), "optional, non-sequential framing");
-  assert.ok(screen.getByText(/the big picture/i), "cluster section header");
-  assert.ok(screen.getByRole("button", { name: /what .difficulty feeling chosen. really is/i }));
-  // no sequential 'continue'/'next' control in a field guide
+  assert.ok(screen.getByText(/core guides/i));
+  assert.ok(screen.getByText(/common questions/i));
+  assert.ok(screen.getByText(/behind the tools/i));
+  // no JIT browse section and no JIT entry surfaced as a top-level topic
+  assert.equal(screen.queryByText(/quick reads/i), null);
+  assert.equal(screen.queryByRole("button", { name: /when one thing becomes everything/i }), null, "JIT not browseable by default");
+  // no sequential control in a field guide
   assert.equal(screen.queryByRole("button", { name: /^(continue|next)$/i }), null);
 });
 
-test("opening an entry shows its body and a back-to-topics control", () => {
+test("opening an entry renders its blocks and moves focus to the heading", () => {
   mount();
-  fireEvent.click(screen.getByRole("button", { name: /a .no. is not a verdict on you/i }));
-  assert.ok(screen.getByRole("article", { name: /a .no. is not a verdict on you/i }));
-  assert.ok(screen.getByText(/one person saying .not a match. is one person/i));
+  fireEvent.click(screen.getByRole("button", { name: /a .no. is information, not a verdict/i }));
+  assert.ok(screen.getByRole("article", { name: /a .no. is information, not a verdict/i }));
+  // distinction + guardrail blocks render
+  assert.ok(screen.getByText(/event vs\. claim/i), "distinction block");
+  assert.ok(screen.getByText(/one data point/i), "guardrail content");
+  // focus management: the article heading receives focus on entry
+  const active = document.activeElement;
+  assert.equal(active?.tagName, "H1");
+  assert.match(active?.textContent ?? "", /a .no. is information, not a verdict/i);
   assert.ok(screen.getByRole("button", { name: /all topics/i }));
 });
 
-test("related links navigate to another entry (navigable, non-sequential)", () => {
+test("related links navigate to another entry, then back returns (and refocuses) the index", () => {
   mount();
-  fireEvent.click(screen.getByRole("button", { name: /a .no. is not a verdict on you/i }));
-  // related nav present; follow one
+  fireEvent.click(screen.getByRole("button", { name: /a .no. is information, not a verdict/i }));
   const relNav = screen.getByRole("navigation", { name: /related reading/i });
   assert.ok(relNav);
   fireEvent.click(screen.getByRole("button", { name: /behind .what it actually means./i }));
-  assert.ok(screen.getByRole("article", { name: /behind .what it actually means./i }), "navigated to the related entry");
-  // back returns to the index
+  assert.ok(screen.getByRole("article", { name: /behind .what it actually means./i }), "navigated to related entry");
   fireEvent.click(screen.getByRole("button", { name: /all topics/i }));
-  assert.ok(screen.getByText(/read whatever pulls at you/i));
+  assert.ok(screen.getByText(/read whatever pulls at you/i), "back to index");
+  // returning to the index refocuses its heading
+  assert.equal(document.activeElement?.tagName, "H1");
 });
