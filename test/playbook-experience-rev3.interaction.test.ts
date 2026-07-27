@@ -23,7 +23,7 @@ test("flag ON: entering a Play runs its simulation first", () => {
   mount(true);
   enterPlay();
   assert.ok(screen.getByText(/great first date/i), "simulation runs before the Play");
-  assert.equal(screen.queryByText(/an unclear signal can turn into a whole story/i), null, "Play intervention not shown yet");
+  assert.equal(screen.queryByText(/one unclear signal can turn into a whole story/i), null, "Play intervention not shown yet");
 });
 
 test("flag OFF (v0 default): entering a Play goes straight to the Play — unchanged", () => {
@@ -40,6 +40,6 @@ test("flag ON: a completed simulation is not repeated on re-entry", () => {
   };
   mount(true, progress);
   enterPlay();
-  assert.ok(screen.getByText(/an unclear signal can turn into a whole story/i), "goes straight to the Play");
+  assert.ok(screen.getByText(/one unclear signal can turn into a whole story/i), "goes straight to the Play (Rev 3 copy)");
   assert.equal(screen.queryByText(/great first date/i), null, "completed sim not repeated");
 });

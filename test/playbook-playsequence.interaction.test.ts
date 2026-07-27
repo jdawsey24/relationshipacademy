@@ -11,7 +11,7 @@ const cont = () => fireEvent.click(screen.getByRole("button", { name: /^continue
 test("the Play FOLLOWS its simulation: the sim runs first, the Play is not shown yet", () => {
   render(h(PlaySequence, { content: C, play: RD, onSaveOutput: () => {}, onExit: () => {} }));
   assert.ok(screen.getByText(/great first date/i), "simulation runs first");
-  assert.equal(screen.queryByText(/an unclear signal can turn into a whole story/i), null, "Play intervention not shown yet");
+  assert.equal(screen.queryByText(/one unclear signal can turn into a whole story/i), null, "Play intervention not shown yet");
 });
 
 test("finishing the simulation records completion and hands into the Play (no literature screen)", () => {
@@ -33,7 +33,7 @@ test("finishing the simulation records completion and hands into the Play (no li
 
   assert.deepEqual(completed, [{ simId: "sim-rd-shorter-texts" }], "simulation completion recorded");
   // now inside the Play, starting at its intervention (shift), NOT a literature screen
-  assert.ok(screen.getByText(/an unclear signal can turn into a whole story/i), "entered the Play intervention");
+  assert.ok(screen.getByText(/one unclear signal can turn into a whole story/i), "entered the Play intervention");
   fireEvent.click(screen.getByRole("button", { name: /^continue$/i }));
   assert.equal(screen.queryByRole("button", { name: /show me how/i }), null, "in-Play literature screen extracted");
   assert.ok(screen.getByText(/three buckets/i), "advances straight to the learn screen");
@@ -41,6 +41,6 @@ test("finishing the simulation records completion and hands into the Play (no li
 
 test("resume: with the sim already completed, it goes straight to the Play", () => {
   render(h(PlaySequence, { content: C, play: RD, onSaveOutput: () => {}, onExit: () => {}, simCompleted: true }));
-  assert.ok(screen.getByText(/an unclear signal can turn into a whole story/i), "skips the sim on resume");
+  assert.ok(screen.getByText(/one unclear signal can turn into a whole story/i), "skips the sim on resume");
   assert.equal(screen.queryByText(/great first date/i), null);
 });
