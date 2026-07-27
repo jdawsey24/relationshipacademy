@@ -25,9 +25,11 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
   const [activePlayId, setActivePlayId] = useState<string | null>(null);
   const [crisis, setCrisis] = useState<CrisisScreenResult | null>(null);
   const [healthyFor, setHealthyFor] = useState<string | null>(null);
+  const [usedReviewFor, setUsedReviewFor] = useState<string | null>(null);
 
   const playById = (id: string | null): Play | undefined => content.plays.find((p) => p.playId === id);
   const activePlay = playById(activePlayId);
+  const usedReviewPlay = playById(usedReviewFor);
 
   function toggleRecognized(cardId: string) {
     update((p) => ({
@@ -117,6 +119,25 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
         </div>
       )}
 
+      {usedReviewPlay && (
+        <div className="mx-auto mb-6 max-w-2xl rounded-2xl border border-sage-green/30 bg-white p-5" role="dialog" aria-label="How did it go?">
+          <h3 className="font-display text-lg text-midnight-navy">How did it go with “{usedReviewPlay.name}”?</h3>
+          <p className="mt-2 font-body text-[14px] text-charcoal/70">A quick honesty check — no score, and a date ending isn't a failure here.</p>
+          <p className="mt-3 rounded-xl bg-sage-green/12 px-3 py-2 font-body text-[14px] text-charcoal/85"><span className="font-medium">Doing it right looks like:</span> {usedReviewPlay.fidelity.correct}</p>
+          <div className="mt-3">
+            <p className="font-ui text-xs uppercase tracking-wide text-charcoal/50">Watch you didn't slip into</p>
+            <ul className="mt-1 list-disc space-y-1 pl-5 font-body text-[14px] text-charcoal/80">
+              {usedReviewPlay.fidelity.misuse.map((m, idx) => <li key={idx}>{m}</li>)}
+            </ul>
+          </div>
+          <p className="mt-3 font-body text-[13px] italic text-charcoal/60">{usedReviewPlay.fidelity.notMeaning}</p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <button type="button" onClick={() => { markUsed(usedReviewPlay.playId); setUsedReviewFor(null); }} className="rounded-full bg-midnight-navy px-5 py-2 font-ui text-sm text-warm-ivory">Mark as used</button>
+            <button type="button" onClick={() => setUsedReviewFor(null)} className="font-ui text-sm text-charcoal/55 underline">Not yet</button>
+          </div>
+        </div>
+      )}
+
       {view === "opening" && (
         <section className="mx-auto max-w-2xl">
           <h1 className="font-display text-4xl font-semibold text-midnight-navy">{content.opening.title}</h1>
@@ -150,7 +171,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
                   <button
                     type="button"
                     aria-pressed={selected}
-                    onClick={() => (card.role === "route" ? toggleRecognized(card.id) : toggleRecognized(card.id))}
+                    onClick={() => toggleRecognized(card.id)}
                     className={"w-full rounded-2xl p-4 text-left transition " + (selected ? "bg-midnight-navy text-warm-ivory" : "bg-white/70 text-charcoal hover:bg-white")}
                   >
                     <span className="font-body text-[16px] leading-relaxed">{selected ? "✓ " : ""}{card.headline}</span>
@@ -200,7 +221,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
                         </button>
                         {state && <span className="font-ui text-xs uppercase tracking-wide text-charcoal/45">{state.replace(/_/g, " ")}</span>}
                         {(state === "explored" || state === "in_my_plays") && (
-                          <button type="button" onClick={() => markUsed(card.pathwayPlayId as string)} className="font-ui text-xs text-slate-blue underline">I used this in real life</button>
+                          <button type="button" onClick={() => setUsedReviewFor(card.pathwayPlayId as string)} className="font-ui text-xs text-slate-blue underline">I used this in real life</button>
                         )}
                       </div>
                     </>
@@ -228,9 +249,14 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
           <div className="mt-4 flex flex-col gap-3">
             <button type="button" onClick={startActivePlay} className="rounded-full bg-coral-rose px-6 py-3 font-ui text-sm font-medium text-white">Yes, this happens</button>
             <button type="button" onClick={() => setView("board")} className="rounded-full border border-midnight-navy px-6 py-3 font-ui text-sm text-midnight-navy">Not really me</button>
-            <button type="button" onClick={() => { setHealthyFor(activePlay.name); setView("board"); }} className="font-ui text-sm text-charcoal/55 underline">I handle this okay</button>
+            <button type="button" onClick={() => setHealthyFor(activePlay.name)} className="font-ui text-sm text-charcoal/55 underline">I handle this okay</button>
           </div>
-          {healthyFor && <p className="mt-4 font-body text-sm text-sage-green">Nice — that's a real strength. Keep it.</p>}
+          {healthyFor && (
+            <div className="mt-4 rounded-xl bg-sage-green/12 px-4 py-3">
+              <p className="font-body text-sm text-charcoal/85">Nice — that's a real strength, and worth keeping. You can still open it anytime, or head back to the board.</p>
+              <button type="button" onClick={() => setView("board")} className="mt-2 font-ui text-sm text-midnight-navy underline">Back to the board</button>
+            </div>
+          )}
         </section>
       )}
 
