@@ -1,7 +1,24 @@
 # Difficulty Feeling Chosen — Phase 4
-## Part A: Intervention Freeze · Part B: Playbook Translation Architecture v1
+## Part A: Intervention Freeze · Part B: Playbook Translation Architecture v1 — **APPROVED / LOCKED**
 
-**Status:** PHASE 4 architecture for human review. **Not** final consumer copy, detailed storyboard, screen
+## ✅ APPROVAL & FINAL PRODUCT DECISIONS (LOCKED — human-approved)
+**Approved as architecture:** hybrid recognition-first model · dynamic 2–4 pathway board · 8 techniques → 7
+consumer Plays · T2a→T2b as one two-stage Play · conditional surfacing of T2c/T2d · progressive literature ·
+My Plays · real-world return loop · functional-data-only persistence · Companion/Academy boundaries.
+**Decisions locked:**
+| # | Decision | Effect on architecture |
+|---|---|---|
+| L1 | **T2d → V1.1** | T2d Expectation Calibration is **not in MVP**; MVP ships **6 Plays** (T1a, T1c, Read&Decide, T2c, T3a, T4a). PE-6's *accurate/evidence-supported* subset is still served in MVP via **RC-02 recognition**; the *distorted-expectancy* intervention (T2d) is deferred to V1.1 (validation priority). |
+| L2 | **T3a → R1 default + safety gate** | Authentic-Presentation Experiment ships **R1 by default** with the pre-experiment safety/risk gate; **R2** only for genuinely complex/high-activation cases; **Excluded** if coercion/abuse/threats/danger. No longer R2-lean. |
+| L3 | **Strategy-board interaction, not publicly named** | Internally a "strategy/change board"; **no consumer-facing board label** — the UI presents "what sounds like you?" pathways without naming the metaphor. |
+| L4 | **Recognition pass is short, not a quiz** | The entry recognition is a brief "which of these sound like you?" pass (a handful of lived-language prompts), **not** a long questionnaire; enough to surface 2–4 pathways, no scoring/quiz feel. |
+| L5 | **"Used in real life" → MVP** | The optional **self-marked "Used" state is in MVP** (part of the four-state model + return loop). |
+| L6 | **Add "Explore another area"** | The dynamic board **must always** offer *Explore another area* → the full pathway set remains discoverable by choice. **Recognition surfaces, it never locks** — a user can open any pathway even if the recognition pass didn't surface it. Non-deterministic routing is preserved and made explicit. |
+
+**Status:** PHASE 4 architecture — **APPROVED**; open product decisions resolved (Deliverable 25 closed).
+Original review record retained below.
+
+**Status (original):** PHASE 4 architecture for human review. **Not** final consumer copy, detailed storyboard, screen
 design, React, animation, DB migration, marketing, or assessment/framework change. Governing: frozen Standard
 v1.0, Change System v1.1, approved Phase 1/1B/2/2B/3. Supersedes the early pre-evidence
 `cluster-1-playbook-architecture-v2.md` (that Play-Board sketch predates intervention development; this is the
@@ -153,11 +170,12 @@ No interpretation of *why* the old move happens.
 did I perform the technique correctly (fidelity self-check) · what I'll do next. Emotional reflection may be
 present but must not dominate; open text supports the technique, never replaces it.
 
-## DELIVERABLE 13 — State / Progress Model (no gamification)
-**Four states:** `Available → Relevant` (user indicated it resonates) `→ Explored` (opened/learned/practiced)
-`→ In My Plays` (saved), with an **optional self-marked "Used in real life."** **Dropped** as unnecessary: "In
-Progress" and "Practiced" (fold into Explored). **Prohibited:** completion %, streaks, scores, badges, mastery
-claims. Completion is never required to "finish/heal."
+## DELIVERABLE 13 — State / Progress Model (no gamification) — *LOCKED*
+**States:** `Available → Relevant` (user indicated it resonates) `→ Explored` (opened/learned/practiced) `→ In
+My Plays` (saved) `→ Used in real life` (**optional self-mark — in MVP, per L5**). **Dropped:** "In Progress"
+and "Practiced" (fold into Explored). **Prohibited:** completion %, streaks, scores, badges, mastery claims.
+Completion is never required to "finish/heal." **Per L6:** every board state also exposes **"Explore another
+area"** — recognition surfaces pathways but never locks them; the full set stays discoverable by choice.
 
 ## DELIVERABLE 14 — Data Persistence Recommendation (functional only; no schema)
 **Save (functional):** selected relevant pathways · Play states · **executable outputs** (bounded conclusions,
@@ -177,15 +195,15 @@ bridge into Companion use.
 problem with **standalone $29 value** — no Academy enrollment required. Optional "learn more" links may point
 to Academy for depth, but the Playbook must work fully without it.
 
-## DELIVERABLE 17 — MVP / V1.1 / Future Scope
-- **MVP (needed for meaningful change):** entry + recognition layer; **Foundational Plays** T1a, T1c, Read &
-  Decide (T2a→T2b), T3a, T4a; **conditional** T2c (over-investment is a signature DFC dynamic); My Plays;
-  real-world return loop; Level-1 literature; first-party gates; four-state model. **Active ingredients are
-  MVP-mandatory** (prediction-before-action in T3a; criterion-before-if-then in Read & Decide; forward-value in
-  T2c).
-- **V1.1:** T2d (provisional — validate first, or ship clearly-flagged) *(product decision, Deliverable 25)*;
-  Level-2 literature expansions; richer T3a graded variants; "Used in real life" analytics; SP practices as
-  standalone reminders.
+## DELIVERABLE 17 — MVP / V1.1 / Future Scope — *LOCKED*
+- **MVP (needed for meaningful change):** entry + **short recognition pass** (L4); **Foundational Plays** T1a,
+  T1c, Read & Decide (T2a→T2b), T3a *(R1 default + safety gate, L2)*, T4a; **conditional** T2c (over-investment
+  is a signature DFC dynamic); My Plays; real-world return loop; **Used-in-real-life self-mark (L5)**; Level-1
+  literature; first-party gates; **"Explore another area" (L6)**; five-state model; RC-01/RC-02 recognition.
+  **= 6 Plays.** **Active ingredients are MVP-mandatory** (prediction-before-action in T3a; criterion-before-
+  if-then in Read & Decide; forward-value in T2c).
+- **V1.1:** **T2d Expectation Calibration (L1 — deferred; validation priority)**, shipping distorted-expectancy
+  coverage; Level-2 literature expansions; richer T3a graded variants; SP practices as standalone reminders.
 - **Future:** cross-cluster shell reuse; advanced recognition personalization; process-measure research;
   Companion deep-linking.
 - **Do NOT cut active ingredients for MVP; do NOT add complexity because it's buildable.**
@@ -261,14 +279,15 @@ Snapshot Result: Difficulty Feeling Chosen
  → Additional Pathway (by choice) or Exit ("I have tools I know how to use")
 ```
 
-## DELIVERABLE 25 — Remaining Product Decisions
-1. **T2d in MVP or V1.1?** — PE-6 is the 2nd-largest expression (14 statements) so leaving it uncovered is a
-   real gap, but T2d is the weakest-evidence technique. *Recommend: MVP with a clear provisional posture + the
-   accuracy-fork guardrail, OR V1.1 if we prefer to validate first.* **Your call.**
-2. **T3a default routing** — ship R1 (self-guided, safe low-risk) with the safety gate, or R2-lean for launch?
-3. **Board naming/metaphor** — confirm "personal change board / strategy deck," lived-language cards.
-4. **How much recognition** — how many lived prompts in the entry pass (enough to personalize, not a quiz).
-5. **"Used in real life" self-marking** — MVP or V1.1?
+## DELIVERABLE 25 — Remaining Product Decisions — **RESOLVED (see Approval box)**
+1. ~~T2d in MVP or V1.1?~~ → **V1.1** (L1). PE-6 distorted-expectancy deferred; accurate subset served by RC-02
+   in MVP.
+2. ~~T3a default routing?~~ → **R1 default + safety gate** (L2); R2 complex; Excluded unsafe.
+3. ~~Board naming/metaphor?~~ → **strategy-board interaction, not publicly named** (L3).
+4. ~~How much recognition?~~ → **short pass, not a quiz** (L4).
+5. ~~"Used in real life" self-marking?~~ → **MVP** (L5).
+6. **(added)** → **"Explore another area" in MVP** so recommendations never lock routing (L6).
+**All product decisions resolved.**
 
 ## DELIVERABLE 26 — Decision Log
 | # | Decision | Basis |
@@ -285,6 +304,7 @@ Snapshot Result: Difficulty Feeling Chosen
 | P4-D10 | **Active ingredients are MVP-mandatory**; T2c in MVP, T2d flagged for decision | Deliverable 17/25 |
 | P4-D11 | Metaphor = **personal change board / strategy deck**, not quiz-show/gamified | §26 |
 | P4-D12 | Honest promise preserved; no "be chosen/healed" claims | Deliverable 19/§24 |
+| P4-D13 | **APPROVED + LOCKED** (L1–L6): T2d→V1.1 · T3a R1-default+gate · unnamed strategy-board · short recognition pass · "Used" in MVP · "Explore another area" (recognition never locks routing) | human approval |
 
 ---
 
