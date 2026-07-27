@@ -178,11 +178,25 @@ export default function PlayContainer({ play, onSaveOutput, onExit, onRoute, onS
             onNext={advance}
           />
         );
+      case "sufficiency":
+        return (
+          <SufficiencyScreen
+            key={i}
+            data={s}
+            onDone={(res) => {
+              setField("sufficiency", res.choice);
+              if (res.needToKnow) setField("need_to_know", res.needToKnow);
+              if (res.observable) setField("observable_evidence", res.observable);
+              advance();
+            }}
+          />
+        );
       case "ruleBuilder":
         return (
           <RuleBuilderScreen
             key={i}
             data={s}
+            initialCondition={(draft["observable_evidence"] as string) ?? ""}
             onDone={(rule) => {
               setField("rule", rule);
               advance();
@@ -353,14 +367,42 @@ function OwnTurnScreen({ data, draft, setField, onScreenText, onNext }: { data: 
           )}
         </div>
       ))}
-      {data.sufficiencyPrompt && <p className="font-body text-[15px] text-charcoal/70">{data.sufficiencyPrompt}</p>}
       <button type="button" className={nextBtn} onClick={onNext}>Continue</button>
     </div>
   );
 }
 
-function RuleBuilderScreen({ data, onDone }: { data: Extract<Screen, { kind: "ruleBuilder" }>; onDone: (rule: { condition: string; action: string }) => void }) {
-  const [condition, setCondition] = useState("");
+function SufficiencyScreen({ data, onDone }: { data: Extract<Screen, { kind: "sufficiency" }>; onDone: (r: { choice: "enough" | "need-more"; needToKnow?: string; observable?: string }) => void }) {
+  const [needMore, setNeedMore] = useState(false);
+  const [needToKnow, setNeedToKnow] = useState("");
+  const [observable, setObservable] = useState("");
+  if (needMore) {
+    const ready = needToKnow.trim() && observable.trim();
+    return (
+      <div className="space-y-5">
+        {data.needMoreIntro && <p className="font-body text-[16px] text-charcoal/85">{data.needMoreIntro}</p>}
+        <label className="block font-ui text-sm font-medium text-charcoal">{data.needToKnowLabel}</label>
+        <input value={needToKnow} onChange={(e) => setNeedToKnow(e.target.value)} className="w-full rounded-2xl border border-light-gray bg-white px-4 py-3 font-body text-[15px] text-charcoal outline-none focus:border-midnight-navy" />
+        <label className="block font-ui text-sm font-medium text-charcoal">{data.observableLabel}</label>
+        <input value={observable} onChange={(e) => setObservable(e.target.value)} className="w-full rounded-2xl border border-light-gray bg-white px-4 py-3 font-body text-[15px] text-charcoal outline-none focus:border-midnight-navy" />
+        <button type="button" disabled={!ready} onClick={() => onDone({ choice: "need-more", needToKnow, observable })} className={nextBtn + " disabled:opacity-40"}>Continue</button>
+        {!ready && <p className="font-body text-sm text-charcoal/55">Name both — this keeps “more information” from turning into waiting forever.</p>}
+      </div>
+    );
+  }
+  return (
+    <div className="space-y-4">
+      <p className="font-body text-[16px] text-charcoal/85">{data.prompt}</p>
+      <div className="flex flex-col gap-3">
+        <button type="button" className={nextBtn} onClick={() => onDone({ choice: "enough" })}>{data.enoughLabel}</button>
+        <button type="button" className="rounded-full border border-midnight-navy px-6 py-3 font-ui text-sm text-midnight-navy" onClick={() => setNeedMore(true)}>{data.needMoreLabel}</button>
+      </div>
+    </div>
+  );
+}
+
+function RuleBuilderScreen({ data, initialCondition = "", onDone }: { data: Extract<Screen, { kind: "ruleBuilder" }>; initialCondition?: string; onDone: (rule: { condition: string; action: string }) => void }) {
+  const [condition, setCondition] = useState(initialCondition);
   const [action, setAction] = useState("");
   const [checked, setChecked] = useState(false);
   const ready = condition.trim() && action && checked;

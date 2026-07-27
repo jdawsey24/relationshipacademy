@@ -9,6 +9,7 @@ const SCREEN_KINDS = new Set<Screen["kind"]>([
   "learn",
   "scenarioSort",
   "ownTurn",
+  "sufficiency",
   "ruleBuilder",
   "sentenceBuilder",
   "emotionBeat",

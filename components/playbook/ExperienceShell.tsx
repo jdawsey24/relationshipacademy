@@ -9,6 +9,7 @@ import type { PlaybookContent, Play, PlaybookProgress } from "@/lib/playbook/con
 import type { CrisisScreenResult } from "@/lib/playbook/types";
 import { useProgress } from "@/components/playbook/useProgress";
 import PlayContainer from "@/components/playbook/PlayContainer";
+import OutputEditor from "@/components/playbook/OutputEditor";
 import * as actions from "@/lib/playbook/progressActions";
 
 type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays";
@@ -27,6 +28,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
   const [crisis, setCrisis] = useState<CrisisScreenResult | null>(null);
   const [healthyFor, setHealthyFor] = useState<string | null>(null);
   const [usedReviewFor, setUsedReviewFor] = useState<string | null>(null);
+  const [editingOutputFor, setEditingOutputFor] = useState<string | null>(null);
 
   const playById = (id: string | null): Play | undefined => content.plays.find((p) => p.playId === id);
   const activePlay = playById(activePlayId);
@@ -107,10 +109,36 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
             </ul>
           </div>
           <p className="mt-3 font-body text-[13px] italic text-charcoal/60">{usedReviewPlay.fidelity.notMeaning}</p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <button type="button" onClick={() => { markUsed(usedReviewPlay.playId); setUsedReviewFor(null); }} className="rounded-full bg-midnight-navy px-5 py-2 font-ui text-sm text-warm-ivory">Mark as used</button>
-            <button type="button" onClick={() => setUsedReviewFor(null)} className="font-ui text-sm text-charcoal/55 underline">Not yet</button>
-          </div>
+          {progress.outputs[usedReviewPlay.playId] ? (
+            <div className="mt-4 border-t border-light-gray pt-4">
+              <p className="font-body text-[15px] text-charcoal/85">Does the Play you saved still fit what you learned?</p>
+              <div className="mt-3 flex flex-wrap gap-3">
+                <button type="button" onClick={() => { markUsed(usedReviewPlay.playId); setUsedReviewFor(null); }} className="rounded-full bg-midnight-navy px-5 py-2 font-ui text-sm text-warm-ivory">Keep it</button>
+                <button type="button" onClick={() => { markUsed(usedReviewPlay.playId); setEditingOutputFor(usedReviewPlay.playId); setUsedReviewFor(null); }} className="rounded-full border border-midnight-navy px-5 py-2 font-ui text-sm text-midnight-navy">Update it</button>
+                <button type="button" onClick={() => setUsedReviewFor(null)} className="font-ui text-sm text-charcoal/55 underline">Not yet</button>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-4 flex flex-wrap gap-3">
+              <button type="button" onClick={() => { markUsed(usedReviewPlay.playId); setUsedReviewFor(null); }} className="rounded-full bg-midnight-navy px-5 py-2 font-ui text-sm text-warm-ivory">Mark as used</button>
+              <button type="button" onClick={() => setUsedReviewFor(null)} className="font-ui text-sm text-charcoal/55 underline">Not yet</button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {editingOutputFor && playById(editingOutputFor)?.outputEditor && (
+        <div className="mb-6">
+          <OutputEditor
+            play={playById(editingOutputFor)!}
+            initial={(progress.outputs[editingOutputFor]?.payload as Record<string, unknown>) ?? {}}
+            onSave={(payload) => {
+              const pl = playById(editingOutputFor)!;
+              update((p) => actions.recordOutput(p, pl, payload, true)); // keepState: stays "used"
+              setEditingOutputFor(null);
+            }}
+            onCancel={() => setEditingOutputFor(null)}
+          />
         </div>
       )}
 
@@ -257,6 +285,9 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
               {progress.my_plays.map((c) => (
                 <li key={c.play_id} className="rounded-2xl bg-white/70 p-5">
                   <h3 className="font-display text-lg text-midnight-navy">{c.name}</h3>
+                  {c.userLine && (
+                    <p className="mt-2 rounded-xl bg-sage-green/12 px-3 py-2 font-body text-[14px] text-charcoal"><span className="font-ui text-xs uppercase tracking-wide text-charcoal/50">Your saved answer</span><br />{c.userLine}</p>
+                  )}
                   <dl className="mt-3 space-y-2 font-body text-[14px] text-charcoal/85">
                     <div><dt className="font-ui text-xs uppercase tracking-wide text-charcoal/50">When this comes up</dt><dd>{c.when}</dd></div>
                     <div><dt className="font-ui text-xs uppercase tracking-wide text-charcoal/50">My move</dt><dd>{c.move}</dd></div>

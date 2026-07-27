@@ -113,6 +113,47 @@ test("'Used in real life' opens the fidelity return/review with the Play's guida
   assert.equal(screen.queryByRole("button", { name: /i used this in real life/i }), null);
 });
 
+function withSavedRD(): PlaybookProgress {
+  return {
+    ...emptyProgress(KEY, 1),
+    recognized: ["rec-evidence"],
+    play_states: { "read-and-decide": "in_my_plays" },
+    outputs: { "read-and-decide": { output_schema_version: 1, play_version: 1, payload: { evidence: "how they act on the plan", rule: { condition: "they keep cancelling", action: "invest a little less for now" } } } },
+    my_plays: [{ play_id: "read-and-decide", play_version: 1, name: "Read It, Then Decide", when: "w", move: "m", lookingFor: "l", watchOut: "wo", remember: "r", userLine: "how they act on the plan · If they keep cancelling → invest a little less for now" }],
+  };
+}
+
+test("Used → Keep preserves the saved output unchanged and stays 'Used'", () => {
+  mount(withSavedRD());
+  toBoard();
+  fireEvent.click(screen.getByRole("button", { name: /i used this in real life/i }));
+  assert.ok(screen.getByText(/does the play you saved still fit/i), "keep/update prompt appears (saved output exists)");
+  fireEvent.click(screen.getByRole("button", { name: /keep it/i }));
+  // stays used (the 'I used this' affordance is gone), output unchanged
+  assert.equal(screen.queryByRole("button", { name: /i used this in real life/i }), null, "state is now Used");
+  fireEvent.click(screen.getByRole("button", { name: /my plays/i }));
+  assert.ok(screen.getByText(/they keep cancelling/i), "saved answer preserved unchanged");
+});
+
+test("Used → Update opens the prefilled editor; the change propagates to My Plays; stays 'Used'", () => {
+  mount(withSavedRD());
+  toBoard();
+  fireEvent.click(screen.getByRole("button", { name: /i used this in real life/i }));
+  fireEvent.click(screen.getByRole("button", { name: /update it/i }));
+  // editor is the narrow output editor, prefilled
+  assert.ok(screen.getByRole("form", { name: /update your read & move/i }), "output editor opened");
+  const condition = screen.getByLabelText(/if i see/i) as HTMLInputElement;
+  assert.equal(condition.value, "they keep cancelling", "editor prefilled from the saved output");
+  fireEvent.change(condition, { target: { value: "they follow through consistently" } });
+  fireEvent.change(screen.getByLabelText(/then i will/i), { target: { value: "put in a little more" } });
+  fireEvent.click(screen.getByRole("button", { name: /save changes/i }));
+  // still Used, and the updated output propagates to My Plays
+  assert.equal(screen.queryByRole("button", { name: /i used this in real life/i }), null, "remains Used after Update");
+  fireEvent.click(screen.getByRole("button", { name: /my plays/i }));
+  assert.ok(screen.getByText(/they follow through consistently/i), "updated output propagated to My Plays");
+  assert.equal(screen.queryByText(/they keep cancelling/i), null, "old value replaced");
+});
+
 test("axe: no serious/critical violations on the recognition + board states", async () => {
   const { container } = mount();
   fireEvent.click(screen.getByRole("button", { name: /see what sounds like me/i }));

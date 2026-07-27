@@ -5,6 +5,22 @@
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 
+// User-choice investment/decision actions for Read & Decide (shared by the rule
+// builder and the Update editor). Non-gamey: never mirroring/scorekeeping/deadlines.
+const RD_ACTIONS = [
+  "keep watching a little longer",
+  "ask directly / get clarity",
+  "keep things where they are for now",
+  "put in a little more",
+  "invest a little less for now",
+  "stop adding extra effort that isn't being met",
+  "let it show me more",
+  "step away",
+  "revisit soon",
+];
+const RD_CONTROL_CHECK =
+  "This is about what you choose to invest based on what you're seeing — not a way to get them to chase, and not a deadline.";
+
 export const MOVING_BEYOND_REJECTION: PlaybookContent = {
   playbookKey: "moving-beyond-rejection",
   playbookVersion: 1,
@@ -184,26 +200,24 @@ export const MOVING_BEYOND_REJECTION: PlaybookContent = {
             { id: "unknown", label: "Don't know yet", input: "chips" },
             { id: "evidence", label: "What would actually tell you? (one thing)", input: "text" },
           ],
-          sufficiencyPrompt: "Do you already have enough to answer your question, or will you watch for that one thing?",
+        },
+        {
+          kind: "sufficiency",
+          prompt: "Do you already have enough to answer your question?",
+          enoughLabel: "I already have enough — let me decide",
+          needMoreLabel: "I need more information first",
+          needMoreIntro:
+            "Good — “I need more information” is a real answer. Name the one thing that would actually move this forward, so it doesn't turn into waiting forever.",
+          needToKnowLabel: "What do I still need to know?",
+          observableLabel: "What observable thing would answer it?",
         },
         {
           kind: "ruleBuilder",
           intro: "Now turn that into a move — decided now, so you're not deciding in the moment from fear or hope.",
           conditionLabel: "If I see… (the thing you'll watch for)",
           thenLabel: "…then I will",
-          actions: [
-            "keep watching a little longer",
-            "ask directly / get clarity",
-            "keep things where they are for now",
-            "put in a little more",
-            "invest a little less for now",
-            "stop adding extra effort that isn't being met",
-            "let it show me more",
-            "step away",
-            "revisit soon",
-          ],
-          controlCheck:
-            "This is about what you choose to invest based on what you're seeing — not a way to get them to chase, and not a deadline.",
+          actions: RD_ACTIONS,
+          controlCheck: RD_CONTROL_CHECK,
         },
         { kind: "output", heading: "Your Read & Decide", body: "Here's what you've got — keep it, or save it to My Plays." },
         {
@@ -247,6 +261,13 @@ export const MOVING_BEYOND_REJECTION: PlaybookContent = {
           "A rule that's a countdown, or a way to make them chase.",
         ],
         notMeaning: "This isn't playing it cool, keeping score, testing them, or needing 100% certainty before you act.",
+      },
+      outputEditor: {
+        heading: "Update your read & move",
+        fields: [
+          { id: "evidence", label: "What would tell you?", input: "text" },
+          { id: "rule", label: "Your move", input: "rule", actions: RD_ACTIONS, controlCheck: RD_CONTROL_CHECK },
+        ],
       },
     },
 
@@ -398,6 +419,10 @@ export const MOVING_BEYOND_REJECTION: PlaybookContent = {
         },
       ],
       routing: { toPlayId: "read-and-decide", label: "That pattern's worth looking at → Read It, Then Decide" },
+      outputEditor: {
+        heading: "Update your bounded conclusion",
+        fields: [{ id: "narrowest_true_thing", label: "The narrowest true thing", input: "text", placeholder: "the narrowest true thing the evidence supports" }],
+      },
     },
   ],
 };

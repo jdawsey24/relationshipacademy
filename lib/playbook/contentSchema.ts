@@ -69,7 +69,16 @@ export type Screen =
       items: SortItem[];
       evidenceQuestion?: EvidenceQuestion;
     }
-  | { kind: "ownTurn"; intro?: string; fields: OwnTurnField[]; sufficiencyPrompt?: string }
+  | { kind: "ownTurn"; intro?: string; fields: OwnTurnField[] }
+  | {
+      kind: "sufficiency";
+      prompt: string;
+      enoughLabel: string;
+      needMoreLabel: string;
+      needMoreIntro?: string;
+      needToKnowLabel: string;
+      observableLabel: string;
+    }
   | {
       kind: "ruleBuilder";
       intro?: string;
@@ -94,6 +103,20 @@ export interface MyPlaysTemplate {
   lookingFor: string;
   watchOut: string;
   remember: string;
+}
+
+/** Narrow, per-Play editor for the corrective-learning "Update" loop (not a general editor). */
+export interface OutputEditorField {
+  id: string; // payload key
+  label: string;
+  input: "text" | "rule";
+  placeholder?: string;
+  actions?: string[]; // input="rule"
+  controlCheck?: string; // input="rule"
+}
+export interface OutputEditor {
+  heading: string;
+  fields: OutputEditorField[];
 }
 
 export interface Fidelity {
@@ -128,6 +151,8 @@ export interface Play {
   supportSignposts?: PlaySupportSignpost[];
   /** Optional cross-Play route (e.g. T1a pattern branch → Read & Decide). */
   routing?: PlayRouting;
+  /** Narrow editor reopened by the "Update" corrective-learning loop. */
+  outputEditor?: OutputEditor;
 }
 
 // ---- Persisted shapes (R2 version-stamped) ------------------------------------
@@ -148,6 +173,8 @@ export interface SavedPlayCard {
   lookingFor: string;
   watchOut: string;
   remember: string;
+  /** The user's own key output (derived from the Play's outputEditor), shown in My Plays. */
+  userLine?: string;
 }
 
 export interface PlaybookProgress {

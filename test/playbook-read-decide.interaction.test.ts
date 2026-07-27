@@ -52,7 +52,8 @@ test("full walkthrough produces a correct executable output; rule builder is gat
   const q = screen.getByPlaceholderText(/is this going somewhere/i);
   fireEvent.change(q, { target: { value: "Is this going somewhere?" } });
   fireEvent.blur(q);
-  cont(); // ownTurn → Continue
+  cont(); // ownTurn → Continue → sufficiency
+  fireEvent.click(screen.getByRole("button", { name: /i already have enough/i })); // sufficiency A → ruleBuilder
   // ruleBuilder: gated until condition + action + control-check
   const looksRight = screen.getByRole("button", { name: /looks right/i }) as HTMLButtonElement;
   assert.equal(looksRight.disabled, true, "rule disabled with nothing set");
@@ -71,6 +72,43 @@ test("full walkthrough produces a correct executable output; rule builder is gat
   assert.equal(out.question, "Is this going somewhere?");
   assert.equal(out.rule?.condition, "they keep cancelling");
   assert.equal(out.rule?.action, "invest a little less for now");
+});
+
+// Reach the sufficiency step (ownTurn → Continue).
+function toSufficiency() {
+  cont(); // shift
+  cont(/show me how/i); // literature
+  cont(); // learn
+  completeScenario(); // scenario 1
+  completeScenario(); // scenario 2
+  const q = screen.getByPlaceholderText(/is this going somewhere/i);
+  fireEvent.change(q, { target: { value: "Where do I stand?" } });
+  fireEvent.blur(q);
+  cont(); // ownTurn → sufficiency
+}
+
+test("sufficiency branch A ('I already have enough') goes straight to the decision rule", () => {
+  mount();
+  toSufficiency();
+  fireEvent.click(screen.getByRole("button", { name: /i already have enough/i }));
+  assert.ok(screen.getByRole("button", { name: /looks right/i }), "advanced to the rule builder");
+});
+
+test("sufficiency branch B ('need more information') requires a real evidence condition (no indefinite waiting), then prefills the rule", () => {
+  mount();
+  toSufficiency();
+  fireEvent.click(screen.getByRole("button", { name: /i need more information/i }));
+  const cont2 = () => screen.getByRole("button", { name: /^continue$/i }) as HTMLButtonElement;
+  assert.equal(cont2().disabled, true, "cannot proceed with an empty condition (no default-empty waiting)");
+  const [needToKnow, observable] = screen.getAllByRole("textbox");
+  fireEvent.change(needToKnow, { target: { value: "whether they actually want to meet" } });
+  assert.equal(cont2().disabled, true, "still blocked until the observable evidence is named");
+  fireEvent.change(observable, { target: { value: "whether they follow through on the plan they suggested" } });
+  assert.equal(cont2().disabled, false, "enabled once both are named");
+  fireEvent.click(cont2());
+  // rule builder is prefilled with the observable evidence as the condition
+  const condition = screen.getByRole("textbox") as HTMLInputElement;
+  assert.match(condition.value, /follow through on the plan/i, "rule condition prefilled from the observable evidence");
 });
 
 test("the if/then action set is user-controlled and non-gamey (no scorekeeping/mirroring)", () => {

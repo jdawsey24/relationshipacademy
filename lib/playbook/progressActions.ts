@@ -2,6 +2,7 @@
 // through useProgress().update(). Functional data only; version-stamped (R2).
 
 import type { Play, PlaybookProgress, SavedPlayCard } from "@/lib/playbook/contentSchema";
+import { deriveUserLine } from "@/lib/playbook/outputSummary";
 
 export function toggleRecognized(p: PlaybookProgress, cardId: string): PlaybookProgress {
   const has = p.recognized.includes(cardId);
@@ -19,7 +20,7 @@ export function markUsed(p: PlaybookProgress, playId: string): PlaybookProgress 
   return { ...p, play_states: { ...p.play_states, [playId]: "used" } };
 }
 
-function cardFor(play: Play): SavedPlayCard {
+function cardFor(play: Play, payload: Record<string, unknown>): SavedPlayCard {
   const t = play.myPlaysTemplate;
   return {
     play_id: play.playId,
@@ -30,14 +31,28 @@ function cardFor(play: Play): SavedPlayCard {
     lookingFor: t.lookingFor,
     watchOut: t.watchOut,
     remember: t.remember,
+    userLine: deriveUserLine(play, payload),
   };
 }
 
-/** Save a play's executable output: version-stamp it, set state, add the My Plays card idempotently. */
-export function recordOutput(p: PlaybookProgress, play: Play, payload: Record<string, unknown>): PlaybookProgress {
+/**
+ * Save (or re-save via Update) a play's executable output: version-stamp it, set
+ * state, and upsert its My Plays card so an updated output's userLine propagates.
+ * `keepState` preserves an existing terminal state (e.g. "used") on Update.
+ */
+export function recordOutput(
+  p: PlaybookProgress,
+  play: Play,
+  payload: Record<string, unknown>,
+  keepState = false,
+): PlaybookProgress {
+  const card = cardFor(play, payload);
+  const exists = p.my_plays.some((c) => c.play_id === play.playId);
+  const priorState = p.play_states[play.playId];
+  const nextState = keepState && priorState ? priorState : "in_my_plays";
   return {
     ...p,
-    play_states: { ...p.play_states, [play.playId]: "in_my_plays" },
+    play_states: { ...p.play_states, [play.playId]: nextState },
     outputs: {
       ...p.outputs,
       [play.playId]: {
@@ -46,6 +61,6 @@ export function recordOutput(p: PlaybookProgress, play: Play, payload: Record<st
         payload,
       },
     },
-    my_plays: p.my_plays.some((c) => c.play_id === play.playId) ? p.my_plays : [...p.my_plays, cardFor(play)],
+    my_plays: exists ? p.my_plays.map((c) => (c.play_id === play.playId ? card : c)) : [...p.my_plays, card],
   };
 }
