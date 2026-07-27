@@ -9,8 +9,11 @@ import type { PlaybookContent, Play, PlaybookProgress } from "@/lib/playbook/con
 import type { CrisisScreenResult } from "@/lib/playbook/types";
 import { useProgress } from "@/components/playbook/useProgress";
 import PlayContainer from "@/components/playbook/PlayContainer";
+import PlaySequence from "@/components/playbook/PlaySequence";
 import OutputEditor from "@/components/playbook/OutputEditor";
 import * as actions from "@/lib/playbook/progressActions";
+import { PLAYBOOK_REV3_ENABLED } from "@/lib/playbook/rev3";
+import { simulationForPlay } from "@/lib/playbook/rev3Flow";
 
 type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays";
 
@@ -18,9 +21,11 @@ export interface ExperienceShellProps {
   content: PlaybookContent;
   playbookKey: string;
   initialProgress: PlaybookProgress;
+  /** Rev 3 flag seam — defaults to the feature flag so v0 is unchanged when it's off. */
+  rev3?: boolean;
 }
 
-export default function ExperienceShell({ content, playbookKey, initialProgress }: ExperienceShellProps) {
+export default function ExperienceShell({ content, playbookKey, initialProgress, rev3 = PLAYBOOK_REV3_ENABLED }: ExperienceShellProps) {
   const { progress, update, saving } = useProgress(playbookKey, initialProgress);
   const [view, setView] = useState<View>("opening");
   const [exploreAll, setExploreAll] = useState(false);
@@ -264,15 +269,30 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
         </section>
       )}
 
-      {view === "play" && activePlay && (
-        <PlayContainer
-          play={activePlay}
-          onSaveOutput={saveOutput}
-          onExit={() => setView("board")}
-          onRoute={(id) => openPlay(id)}
-          onScreenText={screen}
-        />
-      )}
+      {view === "play" && activePlay && (() => {
+        // Rev 3 (flag on): the Play follows its simulation. v0 (flag off): the Play alone.
+        const sim = rev3 ? simulationForPlay(content, activePlay.playId) : undefined;
+        return sim ? (
+          <PlaySequence
+            content={content}
+            play={activePlay}
+            onSaveOutput={saveOutput}
+            onExit={() => setView("board")}
+            onRoute={(id) => openPlay(id)}
+            onScreenText={screen}
+            onSimComplete={(simId, fidelity) => update((p) => actions.recordSimulationComplete(p, simId, fidelity))}
+            simCompleted={Boolean(progress.simulation_state?.runs?.[sim.id]?.completed)}
+          />
+        ) : (
+          <PlayContainer
+            play={activePlay}
+            onSaveOutput={saveOutput}
+            onExit={() => setView("board")}
+            onRoute={(id) => openPlay(id)}
+            onScreenText={screen}
+          />
+        );
+      })()}
 
       {view === "myplays" && (
         <section className="mx-auto max-w-2xl">

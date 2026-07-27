@@ -1,7 +1,7 @@
 // Pure progress reducers (unit-testable, no React). ExperienceShell applies these
 // through useProgress().update(). Functional data only; version-stamped (R2).
 
-import type { Play, PlaybookProgress, SavedPlayCard } from "@/lib/playbook/contentSchema";
+import type { FidelityOutcome, Play, PlaybookProgress, SavedPlayCard } from "@/lib/playbook/contentSchema";
 import { deriveUserLine } from "@/lib/playbook/outputSummary";
 
 export function toggleRecognized(p: PlaybookProgress, cardId: string): PlaybookProgress {
@@ -18,6 +18,15 @@ export function markExplored(p: PlaybookProgress, playId: string): PlaybookProgr
 
 export function markUsed(p: PlaybookProgress, playId: string): PlaybookProgress {
   return { ...p, play_states: { ...p.play_states, [playId]: "used" } };
+}
+
+/** Record a completed simulation run into the separated simulation_state (Rev 3; additive).
+ *  Functional/minimal: completion flag + the explicit fidelity outcome only. */
+export function recordSimulationComplete(p: PlaybookProgress, simId: string, fidelity: FidelityOutcome): PlaybookProgress {
+  const prev = p.simulation_state ?? { version: 1 };
+  const runs = { ...(prev.runs ?? {}) };
+  runs[simId] = { ...(runs[simId] ?? {}), completed: true, fidelity };
+  return { ...p, simulation_state: { version: prev.version ?? 1, runs } };
 }
 
 function cardFor(play: Play, payload: Record<string, unknown>): SavedPlayCard {
