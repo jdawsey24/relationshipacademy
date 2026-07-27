@@ -72,3 +72,16 @@ T3a routing widened to R1(safe)/R2/Excluded. 17 change operations (count correct
 (A-G), 101-statement post-spec audit (0 actionability gaps), two-week/next-situation/ideal-adherence tests all
 pass. Final saturation: SATURATED. READY for Playbook translation. Adjudication queue: approve T1b
 consolidation, T2d posture, T3a R1. Staged for review.
+
+---
+
+`phase4-intervention-freeze-and-playbook-translation.md` — **PHASE 4** (Part A freeze + Part B translation).
+Part A: **Intervention Architecture v1.0 FROZEN** — 8 techniques (T1b consolidated; T2d Conditional/Provisional
+w/ mandatory accuracy fork; T3a R1/R2/Excluded; T2c anti-scorekeeping guardrail) + 4 practices + 5 education +
+2 recognition/context. Part B: Playbook Translation Architecture — recommends a **Hybrid, recognition-first
+board** (lived-language cards, dynamic to what the user recognizes, first-party gates); **8 techniques -> 7
+Plays** (T2a+T2b = one two-stage Play); universal shell vs cluster-specific split; Play container; literature
+L1/L2; My Plays; skill-focused return loop; 4-state model (no gamification); functional-data-only persistence;
+Companion/Academy boundaries; MVP scope; 3 user journeys; $29 value test (defensible-but-flagged);
+too-much/not-a-course/not-a-journal/change-vs-content audits all PASS. READY for consumer copy + UX. Product
+decisions open: T2d MVP-vs-V1.1, T3a default routing, board naming, recognition depth. Staged for review.
