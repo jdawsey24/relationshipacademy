@@ -6,6 +6,7 @@
 
 import { useState } from "react";
 import type { SortBucket, SortItem } from "@/lib/playbook/contentSchema";
+import { correctionFor, allAssigned as allAssignedFn } from "@/lib/playbook/sortLogic";
 
 export interface SortEngineProps {
   buckets: SortBucket[];
@@ -18,19 +19,17 @@ export interface SortEngineProps {
 export default function SortEngine({ buckets, items, note, onComplete, continueLabel = "Continue" }: SortEngineProps) {
   const [assign, setAssign] = useState<Record<string, string>>({});
   const [corrections, setCorrections] = useState<Record<string, string>>({});
-  const allAssigned = items.every((it) => assign[it.id]);
+  const allAssigned = allAssignedFn(items, assign);
 
   function place(item: SortItem, bucketId: string) {
     setAssign((prev) => ({ ...prev, [item.id]: bucketId }));
-    if (item.correctBucket && item.correction && bucketId !== item.correctBucket) {
-      setCorrections((prev) => ({ ...prev, [item.id]: item.correction as string }));
-    } else {
-      setCorrections((prev) => {
-        const next = { ...prev };
-        delete next[item.id];
-        return next;
-      });
-    }
+    const correction = correctionFor(item, bucketId);
+    setCorrections((prev) => {
+      const next = { ...prev };
+      if (correction) next[item.id] = correction;
+      else delete next[item.id];
+      return next;
+    });
   }
 
   return (

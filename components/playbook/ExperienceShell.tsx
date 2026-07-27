@@ -9,6 +9,7 @@ import type { PlaybookContent, Play, PlaybookProgress } from "@/lib/playbook/con
 import type { CrisisScreenResult } from "@/lib/playbook/types";
 import { useProgress } from "@/components/playbook/useProgress";
 import PlayContainer from "@/components/playbook/PlayContainer";
+import * as actions from "@/lib/playbook/progressActions";
 
 type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays";
 
@@ -32,10 +33,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
   const usedReviewPlay = playById(usedReviewFor);
 
   function toggleRecognized(cardId: string) {
-    update((p) => ({
-      ...p,
-      recognized: p.recognized.includes(cardId) ? p.recognized.filter((x) => x !== cardId) : [...p.recognized, cardId],
-    }));
+    update((p) => actions.toggleRecognized(p, cardId));
   }
 
   function openPlay(id: string) {
@@ -48,7 +46,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
 
   function startActivePlay() {
     if (!activePlayId) return;
-    update((p) => ({ ...p, play_states: { ...p.play_states, [activePlayId]: p.play_states[activePlayId] === "in_my_plays" || p.play_states[activePlayId] === "used" ? p.play_states[activePlayId] : "explored" } }));
+    update((p) => actions.markExplored(p, activePlayId));
     setView("play");
   }
 
@@ -69,33 +67,11 @@ export default function ExperienceShell({ content, playbookKey, initialProgress 
   function saveOutput(payload: Record<string, unknown>) {
     if (!activePlay) return;
     const play = activePlay;
-    update((p) => ({
-      ...p,
-      play_states: { ...p.play_states, [play.playId]: "in_my_plays" },
-      outputs: {
-        ...p.outputs,
-        [play.playId]: { output_schema_version: play.outputSchemaVersion, play_version: play.playVersion, payload },
-      },
-      my_plays: p.my_plays.some((c) => c.play_id === play.playId)
-        ? p.my_plays
-        : [
-            ...p.my_plays,
-            {
-              play_id: play.playId,
-              play_version: play.playVersion,
-              name: play.name,
-              when: play.myPlaysTemplate.when,
-              move: play.myPlaysTemplate.move,
-              lookingFor: play.myPlaysTemplate.lookingFor,
-              watchOut: play.myPlaysTemplate.watchOut,
-              remember: play.myPlaysTemplate.remember,
-            },
-          ],
-    }));
+    update((p) => actions.recordOutput(p, play, payload));
   }
 
   function markUsed(playId: string) {
-    update((p) => ({ ...p, play_states: { ...p.play_states, [playId]: "used" } }));
+    update((p) => actions.markUsed(p, playId));
   }
 
   const routeCards = content.recognitionCards.filter((c) => c.role === "route");
