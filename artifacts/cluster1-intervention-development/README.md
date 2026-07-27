@@ -60,3 +60,15 @@ technique), 2 R3-clinical. Derived architecture: **4 Families / 9 techniques (6 
 - Family 4 Intentional Engagement: T4a phased (PE-7)
 Includes Task-Supporting Intervention Target Governance Rule Draft v1 (9 criteria; no framework change).
 Saturation: YES. Ready for final specification. Staged for review.
+
+---
+
+`phase3-final-intervention-specification.md` — **PHASE 3** (final specification & actionability validation).
+Fully specified every technique against the actionability standard (executable output, portable real-world
+form, self-correction, use/not-use, worked example). Redundancy analysis CONSOLIDATED T1b -> T1a (pattern
+branch + T2a handoff) -> **derived final count = 8 techniques** (6 Foundational: T1a, T1c, T2a, T2b, T3a, T4a;
+2 Conditional: T2c, T2d). All 8 PASS actionability. T2d flagged weakest-evidence (accuracy-fork guardrail);
+T3a routing widened to R1(safe)/R2/Excluded. 17 change operations (count corrected). Scenario stress test
+(A-G), 101-statement post-spec audit (0 actionability gaps), two-week/next-situation/ideal-adherence tests all
+pass. Final saturation: SATURATED. READY for Playbook translation. Adjudication queue: approve T1b
+consolidation, T2d posture, T3a R1. Staged for review.
