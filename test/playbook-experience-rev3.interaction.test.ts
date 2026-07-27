@@ -65,3 +65,28 @@ test("flag OFF (v0): no Practice affordance on the board", () => {
   toBoard();
   assert.equal(screen.queryByRole("button", { name: /practice this/i }), null, "no practice surface in v0");
 });
+
+const savedRD: PlaybookProgress = {
+  ...emptyProgress(KEY, 1),
+  play_states: { "read-and-decide": "in_my_plays" },
+  outputs: { "read-and-decide": { output_schema_version: 1, play_version: 1, payload: { evidence: "x", rule: { condition: "y", action: "z" } } } },
+};
+
+test("flag ON: 'I used this in real life' opens the STRUCTURED Use Review (not the v0 dialog)", () => {
+  mount(true, savedRD);
+  toBoard();
+  fireEvent.click(screen.getByRole("button", { name: /i used this in real life/i }));
+  assert.ok(screen.getByText(/what did you actually do differently/i), "structured review opens");
+  assert.ok(screen.getByText(/did you run the move the way it's meant to work/i), "fidelity prompt");
+  fireEvent.click(screen.getByLabelText(/^partly$/i));
+  fireEvent.click(screen.getByRole("button", { name: /keep it/i }));
+  assert.ok(screen.getByRole("heading", { name: /where you might start/i }), "returns to board after review");
+});
+
+test("flag OFF (v0): 'I used this in real life' keeps the original Keep/Update dialog", () => {
+  mount(false, savedRD);
+  toBoard();
+  fireEvent.click(screen.getByRole("button", { name: /i used this in real life/i }));
+  assert.ok(screen.getByText(/doing it right looks like/i), "v0 fidelity dialog");
+  assert.equal(screen.queryByText(/what did you actually do differently/i), null, "no structured review in v0");
+});

@@ -13,12 +13,13 @@ import PlaySequence from "@/components/playbook/PlaySequence";
 import OutputEditor from "@/components/playbook/OutputEditor";
 import * as actions from "@/lib/playbook/progressActions";
 import MissionCard from "@/components/playbook/MissionCard";
+import UseReviewFlow from "@/components/playbook/UseReviewFlow";
 import { PLAYBOOK_REV3_ENABLED } from "@/lib/playbook/rev3";
-import { simulationForPlay, missionForPlay } from "@/lib/playbook/rev3Flow";
+import { simulationForPlay, missionForPlay, useReviewForPlay } from "@/lib/playbook/rev3Flow";
 import { nextRung } from "@/lib/playbook/mission";
 import { buildPlaybookEvent, emitPlaybookEvent } from "@/lib/playbook/clientEvents";
 
-type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays" | "practice";
+type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays" | "practice" | "review";
 
 export interface ExperienceShellProps {
   content: PlaybookContent;
@@ -38,11 +39,20 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
   const [usedReviewFor, setUsedReviewFor] = useState<string | null>(null);
   const [editingOutputFor, setEditingOutputFor] = useState<string | null>(null);
   const [practicePlayId, setPracticePlayId] = useState<string | null>(null);
+  const [reviewFor, setReviewFor] = useState<string | null>(null);
+  const [reviewFromMission, setReviewFromMission] = useState<string | null>(null);
 
   const playById = (id: string | null): Play | undefined => content.plays.find((p) => p.playId === id);
   const activePlay = playById(activePlayId);
   const usedReviewPlay = playById(usedReviewFor);
   const practiceMission = practicePlayId ? missionForPlay(content, practicePlayId) : undefined;
+  const reviewContent = reviewFor ? useReviewForPlay(content, reviewFor) : undefined;
+
+  function openReview(playId: string, fromMissionId?: string) {
+    setReviewFor(playId);
+    setReviewFromMission(fromMissionId ?? null);
+    setView("review");
+  }
 
   function toggleRecognized(cardId: string) {
     update((p) => actions.toggleRecognized(p, cardId));
@@ -250,7 +260,17 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                         </button>
                         {state && <span className="font-ui text-xs uppercase tracking-wide text-charcoal/45">{state.replace(/_/g, " ")}</span>}
                         {(state === "explored" || state === "in_my_plays") && (
-                          <button type="button" onClick={() => setUsedReviewFor(card.pathwayPlayId as string)} className="font-ui text-xs text-slate-blue underline">I used this in real life</button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const pid = card.pathwayPlayId as string;
+                              if (rev3 && useReviewForPlay(content, pid)) openReview(pid);
+                              else setUsedReviewFor(pid);
+                            }}
+                            className="font-ui text-xs text-slate-blue underline"
+                          >
+                            I used this in real life
+                          </button>
                         )}
                         {rev3 && (state === "explored" || state === "in_my_plays" || state === "used") && missionForPlay(content, card.pathwayPlayId as string) && (
                           <button type="button" onClick={() => { setPracticePlayId(card.pathwayPlayId as string); setView("practice"); }} className="font-ui text-xs text-slate-blue underline">Practice this →</button>
@@ -334,6 +354,41 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
               const stretchEligible = report === "attempted" ? Boolean(nextRung(m, ms?.rungId)) : undefined;
               update((p) => actions.recordMissionReport(p, m.id, report, { stretchEligible }));
               if (report === "attempted") emitMissionEvent("mission_attempt_reported", m, ms?.rungId);
+            }}
+            onReview={useReviewForPlay(content, m.playId) ? () => openReview(m.playId, m.id) : undefined}
+            onExit={() => setView("board")}
+          />
+        );
+      })()}
+
+      {view === "review" && reviewContent && reviewFor && (() => {
+        const pid = reviewFor;
+        return (
+          <UseReviewFlow
+            review={reviewContent}
+            hasSavedOutput={Boolean(progress.outputs[pid])}
+            onComplete={(signals, action) => {
+              update((p) => actions.recordUseReview(p, pid, signals));
+              update((p) => actions.markUsed(p, pid));
+              if (reviewFromMission) update((p) => actions.markMissionReviewed(p, reviewFromMission));
+              const rev = useReviewForPlay(content, pid);
+              const ev = rev && buildPlaybookEvent({
+                playbookKey,
+                playbookVersion: content.playbookVersion,
+                objectType: "use_review",
+                objectId: rev.id,
+                objectVersion: rev.version,
+                eventType: "use_reviewed",
+                payload: {
+                  ...(signals.performed ? { performed: signals.performed } : {}),
+                  ...(signals.stuck ? { stuck: signals.stuck } : {}),
+                  ...(signals.kept ? { kept: true } : {}),
+                  ...(signals.updated ? { updated: true } : {}),
+                },
+              });
+              if (ev) void emitPlaybookEvent(playbookKey, ev);
+              if (action === "update") setEditingOutputFor(pid);
+              setView("board");
             }}
             onExit={() => setView("board")}
           />

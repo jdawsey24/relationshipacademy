@@ -70,6 +70,7 @@ export default function MissionCard({ mission, state, rungId, lastReport, onSele
             </div>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1">
               <button type="button" className={linkBtn} onClick={() => onReport("no_opportunity")}>The right moment hasn't come up yet</button>
+              <button type="button" className={linkBtn} onClick={() => onReport("opportunity_not_taken")}>It came up, but I didn't try it</button>
               {mission.suitability && (
                 <button type="button" className={linkBtn} onClick={() => onReport("unsuitable")}>It didn't feel right or safe for this</button>
               )}

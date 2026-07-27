@@ -7,6 +7,7 @@ import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { MBR_LITERATURE, MBR_STATEMENT_MAP } from "@/content/playbook/moving-beyond-rejection-literature";
 import { MBR_SIMULATIONS } from "@/content/playbook/moving-beyond-rejection-simulations";
 import { MBR_MISSIONS } from "@/content/playbook/moving-beyond-rejection-missions";
+import { MBR_USE_REVIEWS } from "@/content/playbook/moving-beyond-rejection-usereviews";
 
 // User-choice investment/decision actions for Read & Decide (shared by the rule
 // builder and the Update editor). Non-gamey: never mirroring/scorekeeping/deadlines.
@@ -34,6 +35,7 @@ export const MOVING_BEYOND_REJECTION: PlaybookContent = {
   statementMap: MBR_STATEMENT_MAP,
   simulations: MBR_SIMULATIONS,
   missions: MBR_MISSIONS,
+  useReviews: MBR_USE_REVIEWS,
   opening: {
     title: "Moving Beyond Rejection",
     body: [
