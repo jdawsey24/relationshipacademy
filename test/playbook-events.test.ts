@@ -11,14 +11,14 @@ function base(over: Partial<IncomingEvent>): IncomingEvent {
     object_id: "sim-rd",
     object_version: 1,
     event_type: "simulation_completed",
-    payload: { evidence_reconsidered: true },
+    payload: { evidence_reconsidered: "demonstrated" },
     ...over,
   };
 }
 
 test("valid event passes and returns the registry schema_version", () => {
   const r = validateEvent(base({}));
-  assert.deepEqual(r, { ok: true, schema_version: 1 });
+  assert.deepEqual(r, { ok: true, schema_version: 2 });
 });
 
 test("missing action_id is rejected (idempotency key required)", () => {
