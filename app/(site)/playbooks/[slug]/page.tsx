@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getPlaybookBySlug, PLAYBOOK_SLUGS, PLAYBOOK_PRICE_DISPLAY } from "@/lib/playbookMarketing";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
-import PlaybookBuyButton from "@/components/site/PlaybookBuyButton";
+import PlaybookCta from "@/components/site/PlaybookCta";
 
 export const revalidate = 300;
 
@@ -22,7 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function PlaybookDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const p = await getPlaybookBySlug((await params).slug);
+  const { slug } = await params;
+  const p = await getPlaybookBySlug(slug);
   if (!p) notFound();
 
   return (
@@ -34,7 +35,7 @@ export default async function PlaybookDetailPage({ params }: { params: Promise<{
         <SectionLabel>The Relationship Playbook&trade;</SectionLabel>
         <h1 className="mt-3 text-balance font-display text-4xl font-semibold leading-tight text-midnight-navy sm:text-[44px]">{p.subtitle}</h1>
         {p.corePattern && <p className="mt-5 text-balance font-body text-lg leading-relaxed text-charcoal/75">{p.corePattern}</p>}
-        <div className="mt-8"><PlaybookBuyButton clusterId={p.clusterId} label={`Get this Playbook — ${PLAYBOOK_PRICE_DISPLAY}`} className="!justify-start" /></div>
+        <div className="mt-8"><PlaybookCta clusterId={p.clusterId} slug={slug} buyLabel={`Get this Playbook — ${PLAYBOOK_PRICE_DISPLAY}`} className="!justify-start" /></div>
         <p className="mt-3 font-body text-sm text-charcoal/50">One-time purchase · instant access · yours to keep · by Janelle Dawsey, LMFT</p>
       </section>
 
@@ -91,7 +92,7 @@ export default async function PlaybookDetailPage({ params }: { params: Promise<{
       <section className="mt-14 text-center">
         <h2 className="font-display text-2xl font-semibold text-midnight-navy">Ready to dig in?</h2>
         <div className="mt-6 flex flex-col items-center gap-3">
-          <PlaybookBuyButton clusterId={p.clusterId} label={`Get this Playbook — ${PLAYBOOK_PRICE_DISPLAY}`} />
+          <PlaybookCta clusterId={p.clusterId} slug={slug} buyLabel={`Get this Playbook — ${PLAYBOOK_PRICE_DISPLAY}`} />
           <Link href="/snapshot" className="font-ui text-sm text-midnight-navy/70 underline underline-offset-4 hover:text-midnight-navy">Not sure this is the one? Take the free Snapshot</Link>
         </div>
       </section>
