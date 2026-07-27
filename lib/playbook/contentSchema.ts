@@ -271,7 +271,7 @@ export type FidelityDimension = "evidence_reconsidered" | "interpretation_respon
 /** GUARDRAIL 3 (approved): process tags are narrowly BEHAVIORAL/OPERATIONAL only.
  *  They describe what the reader did with the evidence in THIS moment — never
  *  personality, attachment style, diagnosis, etiology, or any stable-trait conclusion. */
-export type SimProcessTag = "held_uncertainty" | "jumped_to_conclusion" | "sought_evidence";
+export type SimProcessTag = "held_uncertainty" | "jumped_to_conclusion" | "sought_evidence" | "bounded_to_evidence";
 
 export type CaptureField =
   | { kind: "choice"; options: string[] } // bounded — preferred

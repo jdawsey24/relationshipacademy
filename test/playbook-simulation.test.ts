@@ -46,9 +46,11 @@ test("fidelity aggregation is explicit-state and revision-agnostic", () => {
   assert.deepEqual(aggregateFidelity(RD, { rc1: "hold-open" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
   // RD: ignoring the concrete plan is weighed-but-not-appropriate
   assert.deepEqual(aggregateFidelity(RD, { rc1: "keep" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
-  // WM: narrowing appropriate; holding the global verdict is NOT (context differs from RD)
+  // WM: narrowing appropriate; naming the fact WHILE the feeling persists is also appropriate
+  // (cognitive fidelity ≠ emotional persistence); still treating it as a self-verdict is not.
   assert.deepEqual(aggregateFidelity(WM, { rc1: "narrow" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
-  assert.deepEqual(aggregateFidelity(WM, { rc1: "hold-big" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
+  assert.deepEqual(aggregateFidelity(WM, { rc1: "narrow-with-feeling" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
+  assert.deepEqual(aggregateFidelity(WM, { rc1: "still-wrong" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
   // unexercised → not_applicable, not a false "positive"
   assert.deepEqual(aggregateFidelity(RD, {}), { evidence_reconsidered: "not_applicable", interpretation_response_appropriate: "not_applicable" });
 });
@@ -70,9 +72,22 @@ test("graph routing includes teaching branches that rejoin the main path", () =>
   assert.equal(nextNodeId(d1, "small"), "r1");
 });
 
-test("pathBefore reconstructs the taken path (resume-safe)", () => {
-  const path = pathBefore(RD, "rc1", { c1: "I'm not sure yet", c2: "Wait and watch a bit" }).map((n) => n.id);
-  assert.deepEqual(path, ["m1", "m2", "c1", "c2", "r1"]);
+test("pathBefore reconstructs the taken path incl. teaching branch (resume-safe)", () => {
+  const path = pathBefore(RD, "rc1", { c2: "wait" }).map((n) => n.id);
+  assert.deepEqual(path, ["m1", "m2", "c1", "c2", "note-c2-wait", "r1"]);
+});
+
+test("every decision teaches (inline feedback or a teaching-note route); expansion nodes are exempt", () => {
+  for (const sim of MBR_SIMULATIONS) {
+    const map = nodeMap(sim);
+    for (const nd of sim.nodes) {
+      if (nd.kind !== "decision" || nd.role === "expansion") continue; // expansion = first-read capture
+      for (const o of nd.options) {
+        const routesToNote = map.get(o.next ?? "")?.kind === "note";
+        assert.ok((o.feedback?.length ?? 0) > 0 || routesToNote, `${sim.id}/${nd.id}/${o.id}: must teach (feedback or note)`);
+      }
+    }
+  }
 });
 
 test("NON-SCORING: no option carries score/correct/outcome keys", () => {

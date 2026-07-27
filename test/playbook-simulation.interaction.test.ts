@@ -10,25 +10,29 @@ const RD = MBR_SIMULATIONS.find((s) => s.signature === "evidenceTimeline")!;
 const WM = MBR_SIMULATIONS.find((s) => s.signature === "conclusionNarrowing")!;
 const cont = () => fireEvent.click(screen.getByRole("button", { name: /^continue$/i }));
 
-test("evidenceTimeline: 'keep' routes through a teaching branch; fidelity is explicit, not positive-only", () => {
+test("evidenceTimeline: temptation choices earn teaching beats and rejoin the same reveal", () => {
   const calls: { payload: unknown; toPlayId: string }[] = [];
   render(h(SimulationPlayer, { simulation: RD, onComplete: (payload: unknown, toPlayId: string) => calls.push({ payload, toPlayId }) }));
 
   assert.ok(screen.getByText(/great first date/i));
   cont();
-  assert.ok(screen.getByLabelText(/what you've seen so far/i), "timeline chrome trail");
+  assert.ok(screen.getByLabelText(/what you've seen so far/i), "timeline trail");
   cont();
-  fireEvent.click(screen.getByLabelText(/i'm not sure yet/i));
+  fireEvent.click(screen.getByLabelText(/i'm not sure yet/i)); // interpretation capture
   cont();
-  fireEvent.click(screen.getByLabelText(/wait and watch a bit/i));
+  // temptation is a real decision — "wait and watch" earns the not-indefinite teaching beat
+  fireEvent.click(screen.getByRole("button", { name: /wait and watch a bit/i }));
   cont();
-  assert.ok(screen.getByText(/^new evidence$/i), "authored reveal label");
+  assert.ok(screen.getByText(/gathering more information isn't the same as waiting forever/i), "wait teaching beat");
+  cont();
+  // ...and rejoins the SAME Day-5 reveal
+  assert.ok(screen.getByText(/^new evidence$/i));
   assert.ok(screen.getByText(/set up a real plan/i));
   cont();
-  fireEvent.click(screen.getByRole("button", { name: /i still read it as losing interest/i }));
+  // reconsider: holding the fearful read while discarding the plan is weighed-but-not-appropriate
+  fireEvent.click(screen.getByRole("button", { name: /the shorter texts tell me they're losing interest/i }));
   cont();
-  // teaching branch (a note) appears and rejoins toward the handoff
-  assert.ok(screen.getByText(/that's evidence too, not only the shorter texts/i), "teaching branch content");
+  assert.ok(screen.getByText(/both things are real evidence/i), "teaching branch: neither evidence is discarded");
   cont();
   assert.ok(screen.getByText(/exactly what this tool trains/i));
   fireEvent.click(screen.getByRole("button", { name: /open the tool/i }));
@@ -37,62 +41,109 @@ test("evidenceTimeline: 'keep' routes through a teaching branch; fidelity is exp
   assert.deepEqual(calls[0].payload, { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
 });
 
-test("evidenceTimeline: holding 'not sure yet' open is evidence-appropriate (revision is not the target)", () => {
+test("evidenceTimeline: acting-before-clear beat; holding 'not enough yet' is evidence-appropriate", () => {
   const calls: { payload: unknown }[] = [];
   render(h(SimulationPlayer, { simulation: RD, onComplete: (payload: unknown) => calls.push({ payload }) }));
-  cont(); cont(); // past moments
+  cont(); cont(); // moments
   fireEvent.click(screen.getByLabelText(/that's just how they text/i));
   cont();
-  fireEvent.click(screen.getByLabelText(/wait and watch a bit/i));
-  cont(); cont(); // capture2 → reveal → reconsider
-  fireEvent.click(screen.getByRole("button", { name: /i'll hold it open and keep watching/i }));
+  fireEvent.click(screen.getByRole("button", { name: /pull back to protect myself/i }));
+  cont();
+  assert.ok(screen.getByText(/a move made before you have enough to go on/i), "acting-before-clear beat");
+  cont(); // → reveal
+  cont(); // → reconsider
+  fireEvent.click(screen.getByRole("button", { name: /losing interest is still possible, but i don't have enough/i }));
   cont();
   fireEvent.click(screen.getByRole("button", { name: /open the tool/i }));
   assert.deepEqual(calls[0].payload, { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
 });
 
-test("conclusionNarrowing: jump routes to a teaching note; narrowing shows the expand→narrow chrome", () => {
+test("conclusionNarrowing: globalizing read expands, jump routes to a note, narrowing credits fidelity", () => {
   const calls: { payload: unknown; toPlayId: string }[] = [];
   render(h(SimulationPlayer, { simulation: WM, onComplete: (payload: unknown, toPlayId: string) => calls.push({ payload, toPlayId }) }));
 
   assert.ok(screen.getByText(/i don't think we're a match/i));
   cont();
   assert.ok(screen.getByText(/^what happened$/i), "event pinned");
-  fireEvent.click(screen.getByLabelText(/something's wrong with me/i));
+  fireEvent.click(screen.getByRole("button", { name: /^something's wrong with me$/i })); // first read (expansion)
   cont();
-  assert.ok(screen.getByText(/grew into/i), "expansion visual");
-  // decision — choose the jump → teaching note branch
+  assert.ok(screen.getByText(/grew into/i), "red expansion chip for a globalizing read");
+  // establish-check: choose a jump → teaching note
   fireEvent.click(screen.getByRole("button", { name: /that something's wrong with me/i }));
   cont();
-  assert.ok(screen.getByText(/one event can't establish a claim about everyone/i), "teaching branch");
+  assert.ok(screen.getByText(/one event can't establish a claim about everyone/i), "teaching note");
   cont();
-  assert.ok(screen.getByText(/what this actually establishes/i), "authored WM reveal label");
+  // evidence-bounded reveal
+  assert.ok(screen.getByText(/what this actually establishes/i));
+  assert.ok(screen.getByText(/what it can't establish/i), "states what it cannot establish");
   cont();
-  fireEvent.click(screen.getByRole("button", { name: /this one person didn't want to keep dating me/i }));
-  assert.ok(screen.getByText(/^narrowed to$/i), "contraction visual");
+  fireEvent.click(screen.getByRole("button", { name: /this one person didn't want to keep dating me\. that's what the event shows/i }));
+  assert.ok(screen.getByText(/^narrowed to$/i), "contraction chip");
   cont();
   fireEvent.click(screen.getByRole("button", { name: /open the tool/i }));
-
   assert.equal(calls[0].toPlayId, "what-it-actually-means");
   assert.deepEqual(calls[0].payload, { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
 });
 
+test("conclusionNarrowing: a bounded first read is acknowledged, not treated as a problem", () => {
+  render(h(SimulationPlayer, { simulation: WM, onComplete: () => {} }));
+  cont(); // event → first read
+  fireEvent.click(screen.getByRole("button", { name: /it hurt, but i didn't make it mean something bigger about me/i }));
+  cont();
+  assert.ok(screen.getByText(/you kept it from turning into a verdict about you/i), "bounded acknowledgment branch");
+  assert.ok(screen.getByText(/and you kept it bounded/i), "neutral chip, not a red expansion");
+  assert.equal(screen.queryByText(/grew into/i), null, "no globalization manufactured");
+});
+
+test("conclusionNarrowing: naming the fact while the feeling persists is Technique Fidelity", () => {
+  const calls: { payload: unknown }[] = [];
+  render(h(SimulationPlayer, { simulation: WM, onComplete: (payload: unknown) => calls.push({ payload }) }));
+  cont();
+  fireEvent.click(screen.getByRole("button", { name: /this will happen with everyone/i }));
+  cont();
+  fireEvent.click(screen.getByRole("button", { name: /only that this one person didn't want to continue/i }));
+  cont(); // → reveal
+  cont(); // → narrowing
+  fireEvent.click(screen.getByRole("button", { name: /even though the bigger story still feels true right now/i }));
+  assert.ok(screen.getByText(/the feeling doesn't have to disappear/i), "feeling ≠ evidence teaching");
+  cont();
+  fireEvent.click(screen.getByRole("button", { name: /open the tool/i }));
+  assert.deepEqual(calls[0].payload, { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
+});
+
+test("conclusionNarrowing: 'still proves something is wrong' separates real pain from the unsupported conclusion", () => {
+  const calls: { payload: unknown }[] = [];
+  render(h(SimulationPlayer, { simulation: WM, onComplete: (payload: unknown) => calls.push({ payload }) }));
+  cont();
+  fireEvent.click(screen.getByRole("button", { name: /i'm not worth choosing/i }));
+  cont();
+  fireEvent.click(screen.getByRole("button", { name: /only that this one person didn't want to continue/i }));
+  cont();
+  cont();
+  fireEvent.click(screen.getByRole("button", { name: /i still think this proves something is wrong with me/i }));
+  cont();
+  assert.ok(screen.getByText(/keep the pain; drop the verdict/i), "distinguishes pain from conclusion");
+  cont();
+  fireEvent.click(screen.getByRole("button", { name: /open the tool/i }));
+  assert.deepEqual(calls[0].payload, { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
+});
+
 test("focus moves to the new node's prompt on transition", () => {
   render(h(SimulationPlayer, { simulation: RD, onComplete: () => {} }));
-  cont(); // m1 → m2
+  cont();
   assert.match(document.activeElement?.textContent ?? "", /texts get shorter/i);
 });
 
-test("resume: initialState seeds the run at a mid-graph node", () => {
-  render(h(SimulationPlayer, { simulation: RD, onComplete: () => {}, initialState: { nodeId: "r1", selections: {}, captures: { c1: "I'm not sure yet", c2: "Wait and watch a bit" } } }));
-  assert.ok(screen.getByText(/set up a real plan/i), "resumed at the reveal node");
-  assert.ok(screen.getByLabelText(/what you've seen so far/i), "trail reconstructed from the recorded path");
+test("resume: initialState seeds the run mid-graph and reconstructs the trail", () => {
+  render(h(SimulationPlayer, { simulation: RD, onComplete: () => {}, initialState: { nodeId: "r1", selections: { c2: "wait" }, captures: { c1: "I'm not sure yet" } } }));
+  assert.ok(screen.getByText(/set up a real plan/i), "resumed at the reveal");
+  assert.ok(screen.getByLabelText(/what you've seen so far/i), "trail reconstructed");
 });
 
 test("JIT hook surfaces literature by id (never inlined)", () => {
   const surfaced: string[] = [];
   render(h(SimulationPlayer, { simulation: WM, onComplete: () => {}, onSurfaceJit: (id: string) => surfaced.push(id) }));
-  cont(); // to the expansion capture
+  cont(); // to the expansion first-read
   fireEvent.click(screen.getByRole("button", { name: /related read/i }));
   assert.deepEqual(surfaced, ["lit-jit-globalizing"]);
 });
@@ -108,12 +159,11 @@ test("bounded free text updates immediately and screens at advance (not on blur)
   };
   render(h(SimulationPlayer, { simulation: sim, onComplete: () => {}, onScreenText: (t: string) => screened.push(t) }));
   const ta = screen.getByRole("textbox");
-  // Continue is disabled until there is text; typing updates immediately (no blur needed)
   assert.equal((screen.getByRole("button", { name: /^continue$/i }) as HTMLButtonElement).disabled, true);
   fireEvent.change(ta, { target: { value: "is this going anywhere" } });
   assert.equal((screen.getByRole("button", { name: /^continue$/i }) as HTMLButtonElement).disabled, false);
   cont();
-  assert.deepEqual(screened, ["is this going anywhere"], "screened at advance time");
+  assert.deepEqual(screened, ["is this going anywhere"]);
 });
 
 test("no option is presented as the single correct relationship answer", () => {

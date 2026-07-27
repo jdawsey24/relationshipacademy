@@ -13,10 +13,10 @@ test("G1: fidelity is authored per-scenario, never hardcoded by signature", () =
   // Same behavioural concept ("hold the read") — OPPOSITE fidelity across scenarios,
   // because the appropriateness depends on THAT scenario's evidence, not the signature.
   const rdHold = aggregateFidelity(RD, { rc1: "hold-open" }).interpretation_response_appropriate;
-  const wmHold = aggregateFidelity(WM, { rc1: "hold-big" }).interpretation_response_appropriate;
-  assert.equal(rdHold, "demonstrated", "holding is evidence-appropriate in RD (ambiguity remains)");
-  assert.equal(wmHold, "not_demonstrated", "holding the global verdict is not appropriate in WM");
-  assert.notEqual(rdHold, wmHold, "fidelity of 'hold' is not fixed by signature");
+  const wmHoldVerdict = aggregateFidelity(WM, { rc1: "still-wrong" }).interpretation_response_appropriate;
+  assert.equal(rdHold, "demonstrated", "holding an open read is evidence-appropriate in RD (ambiguity remains)");
+  assert.equal(wmHoldVerdict, "not_demonstrated", "holding the global verdict is not appropriate in WM");
+  assert.notEqual(rdHold, wmHoldVerdict, "fidelity of 'hold' is not fixed by signature — it depends on the scenario's evidence");
 });
 
 test("G2: JIT literature exposure never contributes to fidelity (it is not an input)", () => {
@@ -32,7 +32,7 @@ test("G2: JIT literature exposure never contributes to fidelity (it is not an in
 });
 
 test("G3: process tags stay narrowly behavioural/operational (no trait/etiology language)", () => {
-  const allowed = new Set(["held_uncertainty", "jumped_to_conclusion", "sought_evidence"]);
+  const allowed = new Set(["held_uncertainty", "jumped_to_conclusion", "sought_evidence", "bounded_to_evidence"]);
   const banned = /(attachment|anxious|avoidant|personality|trait|diagnos|etiolog|disorder|insecure|abandon)/i;
   for (const sim of MBR_SIMULATIONS as Simulation[]) {
     for (const n of sim.nodes) {

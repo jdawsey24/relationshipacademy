@@ -44,14 +44,21 @@ const EvidenceTimelineChrome: FunctionComponent<SignatureChromeProps> = ({ visit
 };
 
 // ---- conclusionNarrowing: one event expands, then narrows ---------------------
-const ConclusionNarrowingChrome: FunctionComponent<SignatureChromeProps> = ({ simulation, visited, captures, selections }) => {
+const ConclusionNarrowingChrome: FunctionComponent<SignatureChromeProps> = ({ simulation, visited, selections }) => {
   const eventNode = roleNode(simulation, "event");
   const expansionNode = roleNode(simulation, "expansion");
   const narrowingNode = roleNode(simulation, "narrowing");
   const eventSeen = eventNode && visited.some((n) => n.id === eventNode.id);
   if (!eventNode || !eventSeen) return null;
 
-  const grewInto = expansionNode ? captures[expansionNode.id] : undefined;
+  // The reader's first read (from the expansion decision). A globalizing read shows as a
+  // red "…grew into"; a bounded read shows as a neutral "…and you kept it bounded" — we
+  // never frame a non-globalizing read as an expansion.
+  const firstRead =
+    expansionNode && expansionNode.kind === "decision"
+      ? expansionNode.options.find((o) => o.id === selections[expansionNode.id])
+      : undefined;
+  const bounded = firstRead?.processTag === "bounded_to_evidence";
   const narrowedLabel =
     narrowingNode && narrowingNode.kind === "reconsider"
       ? narrowingNode.options.find(
@@ -65,10 +72,16 @@ const ConclusionNarrowingChrome: FunctionComponent<SignatureChromeProps> = ({ si
         <p className="font-ui text-xs uppercase tracking-wide text-charcoal/45">What happened</p>
         <p className="mt-1 font-body text-[15px] text-charcoal/85">{(eventNode as Extract<SimNode, { kind: "moment" }>).body.join(" ")}</p>
       </div>
-      {grewInto && (
+      {firstRead && !bounded && (
         <div className="rounded-2xl border border-deep-red/30 bg-deep-red/5 px-4 py-3">
           <p className="font-ui text-xs uppercase tracking-wide text-deep-red/80">…grew into</p>
-          <p className="mt-1 font-body text-[16px] font-medium text-charcoal">“{grewInto}”</p>
+          <p className="mt-1 font-body text-[16px] font-medium text-charcoal">“{firstRead.label}”</p>
+        </div>
+      )}
+      {firstRead && bounded && (
+        <div className="rounded-2xl border border-sage-green/40 bg-sage-green/12 px-4 py-3">
+          <p className="font-ui text-xs uppercase tracking-wide text-charcoal/50">…and you kept it bounded</p>
+          <p className="mt-1 font-body text-[15px] text-charcoal/85">“{firstRead.label}”</p>
         </div>
       )}
       {narrowedLabel && (
