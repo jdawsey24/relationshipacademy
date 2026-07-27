@@ -4,6 +4,7 @@
 // here until they complete their own Phase-5/5B design + approval (R6).
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
+import { MBR_LITERATURE, MBR_STATEMENT_MAP } from "@/content/playbook/moving-beyond-rejection-literature";
 
 // User-choice investment/decision actions for Read & Decide (shared by the rule
 // builder and the Update editor). Non-gamey: never mirroring/scorekeeping/deadlines.
@@ -25,6 +26,10 @@ export const MOVING_BEYOND_REJECTION: PlaybookContent = {
   playbookKey: "moving-beyond-rejection",
   playbookVersion: 1,
   displayName: "Moving Beyond Rejection",
+  // Rev 3 Understand layer (Step 3) — additive; consumed by the flag-gated field
+  // guide, not by the v0 delivery path.
+  literature: MBR_LITERATURE,
+  statementMap: MBR_STATEMENT_MAP,
   opening: {
     title: "Moving Beyond Rejection",
     body: [
