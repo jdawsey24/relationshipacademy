@@ -32,6 +32,7 @@ export interface EventDef {
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
 const isBool = (v: unknown) => typeof v === "boolean";
 const isStr = (v: unknown) => typeof v === "string";
+const isFidelityState = (v: unknown) => v === "demonstrated" || v === "not_demonstrated" || v === "not_applicable";
 const optional = (v: unknown, check: (x: unknown) => boolean) => v === undefined || check(v);
 /** Reject any key not in the allow-list (keeps payloads minimal + functional). */
 const onlyKeys = (p: Record<string, unknown>, keys: string[]) => Object.keys(p).every((k) => keys.includes(k));
@@ -49,12 +50,13 @@ export const EVENT_REGISTRY: Record<PlaybookEventType, EventDef> = {
   },
   simulation_completed: {
     objectType: "simulation",
-    schemaVersion: 1,
+    schemaVersion: 2,
+    // Explicit fidelity STATES (not positive-only booleans). Revision is not the target.
     validatePayload: (p) =>
       isObj(p) &&
-      onlyKeys(p, ["evidence_reconsidered", "interpretation_revised_when_warranted"]) &&
-      optional(p.evidence_reconsidered, isBool) &&
-      optional(p.interpretation_revised_when_warranted, isBool),
+      onlyKeys(p, ["evidence_reconsidered", "interpretation_response_appropriate"]) &&
+      optional(p.evidence_reconsidered, isFidelityState) &&
+      optional(p.interpretation_response_appropriate, isFidelityState),
   },
   operation_performed: {
     objectType: "play",

@@ -262,28 +262,63 @@ export interface LiteratureEntry {
 
 // ---- Experience: deterministic simulation (§6) --------------------------------
 
-/** Persisted process-level fidelity signals — evidence-anchored, never "changed my mind". */
-export type SimFidelitySignal = "evidence_reconsidered" | "interpretation_revised_when_warranted";
+/** Fidelity is recorded as an explicit applicability/performance STATE — never a
+ *  positive-only boolean. Revision is not the target: an evidence-responsive user may
+ *  appropriately revise OR appropriately hold, depending on the authored evidence. */
+export type FidelityState = "demonstrated" | "not_demonstrated" | "not_applicable";
+export type FidelityDimension = "evidence_reconsidered" | "interpretation_response_appropriate";
+
 export type SimProcessTag = "held_uncertainty" | "jumped_to_conclusion" | "sought_evidence";
 
 export type CaptureField =
   | { kind: "choice"; options: string[] } // bounded — preferred
   | { kind: "shortText"; maxLen: number; purpose: string };
 
+/** Authored display role — how a signature chrome should present this node. NEVER
+ *  inferred from node order (e.g. "the first moment"); always explicitly authored. */
+export type SimDisplayRole = "event" | "expansion" | "narrowing" | "beat" | "evidence";
+
 export interface SimOption {
   id: string;
-  label: string; // a plausible choice — NEVER "the correct one"
+  label: string; // a plausible choice — NEVER "the correct one"; NO score/outcome fields
   feedback: string[]; // educational, mechanism-focused (no outcome, no score)
   processTag?: SimProcessTag;
+  /** Route to a short teaching branch; if omitted, advance to the node's `next`. */
+  next?: string;
 }
 
-export type SimNode =
-  | { id: string; kind: "moment"; body: string[] }
-  | { id: string; kind: "capture"; prompt: string; field: CaptureField }
-  | { id: string; kind: "decision"; prompt: string; options: SimOption[] }
-  | { id: string; kind: "reveal"; body: string[] }
-  | { id: string; kind: "reconsider"; prompt: string; signals: SimFidelitySignal[] }
-  | { id: string; kind: "teach"; body: string[]; toPlayId: string };
+/** A reconsider response. Fidelity is authored PER RESPONSE as explicit states, so the
+ *  engine never treats mere change-of-mind as the target. All responses that engage the
+ *  weighing typically set evidence_reconsidered = "demonstrated"; interpretation_response_
+ *  appropriate is demonstrated for the evidence-appropriate response (revise OR hold). */
+export interface FidelityOutcome {
+  evidence_reconsidered: FidelityState;
+  interpretation_response_appropriate: FidelityState;
+}
+export interface ReconsiderOption {
+  id: string;
+  label: string;
+  feedback?: string[];
+  next?: string;
+  fidelity: FidelityOutcome;
+}
+
+/** Nodes form an authored GRAPH (startNodeId + per-node/option `next`), not a linear
+ *  array walk. Options may route to short teaching branches that rejoin the main path.
+ *  Branching changes what TEACHING/rehearsal the user receives — NEVER what the dating
+ *  partner does. `role` drives signature presentation; `jitLiteratureId` lets the engine
+ *  surface authored just-in-time literature contextually (id only, never inlined). */
+export type SimNodeBase = { id: string; role?: SimDisplayRole; jitLiteratureId?: string };
+export type SimNode = SimNodeBase &
+  (
+    | { kind: "moment"; body: string[]; next?: string }
+    | { kind: "note"; body: string[]; next?: string } // short teaching-branch content (rejoins)
+    | { kind: "capture"; prompt: string; field: CaptureField; next?: string }
+    | { kind: "decision"; prompt: string; options: SimOption[]; next?: string }
+    | { kind: "reveal"; body: string[]; label?: string; next?: string } // authored/contextual label
+    | { kind: "reconsider"; prompt: string; options: ReconsiderOption[]; next?: string }
+    | { kind: "teach"; body: string[]; toPlayId: string } // terminal handoff (no `next`)
+  );
 
 export interface Simulation {
   id: string;
@@ -291,6 +326,7 @@ export interface Simulation {
   simulationSchemaVersion: number;
   playId: string;
   signature: InteractionKind;
+  startNodeId: string;
   nodes: SimNode[];
 }
 
@@ -358,10 +394,18 @@ export interface LiteratureState {
   version: number;
   read?: string[]; // entry ids opened where useful (content engagement, NOT a change signal)
 }
+/** Resume-ready per-simulation run state. `nodeId` is the resume position; captures/
+ *  selections replay the reader's inputs; `fidelity` is the explicit-state outcome. */
+export interface SimulationRunState {
+  completed?: boolean;
+  nodeId?: string;
+  captures?: Record<string, string>;
+  selections?: Record<string, string>;
+  fidelity?: FidelityOutcome;
+}
 export interface SimulationState {
   version: number;
-  /** Per-simulation resume + evidence-anchored fidelity signals (never "changed my mind"). */
-  runs?: Record<string, { completed?: boolean; nodeId?: string; signals?: SimFidelitySignal[] }>;
+  runs?: Record<string, SimulationRunState>;
 }
 export interface PracticeState {
   version: number;
