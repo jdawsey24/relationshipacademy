@@ -4,7 +4,7 @@
 // fully keyboard-operable; no color-only cues; one optional gentle correction per
 // item (accuracy criterion), otherwise no right/wrong.
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { SortBucket, SortItem } from "@/lib/playbook/contentSchema";
 import { correctionFor, allAssigned as allAssignedFn } from "@/lib/playbook/sortLogic";
 
@@ -19,7 +19,15 @@ export interface SortEngineProps {
 export default function SortEngine({ buckets, items, note, onComplete, continueLabel = "Continue" }: SortEngineProps) {
   const [assign, setAssign] = useState<Record<string, string>>({});
   const [corrections, setCorrections] = useState<Record<string, string>>({});
+  const [focusId, setFocusId] = useState<string | null>(null);
   const allAssigned = allAssignedFn(items, assign);
+
+  // Move focus to a correction when it appears (a11y: user is told why, in place).
+  useEffect(() => {
+    if (!focusId) return;
+    const el = typeof document !== "undefined" ? document.getElementById(`pb-correction-${focusId}`) : null;
+    el?.focus();
+  }, [focusId]);
 
   function place(item: SortItem, bucketId: string) {
     setAssign((prev) => ({ ...prev, [item.id]: bucketId }));
@@ -30,6 +38,8 @@ export default function SortEngine({ buckets, items, note, onComplete, continueL
       else delete next[item.id];
       return next;
     });
+    if (correction) setFocusId(item.id);
+    else setFocusId((prev) => (prev === item.id ? null : prev));
   }
 
   return (
@@ -63,7 +73,12 @@ export default function SortEngine({ buckets, items, note, onComplete, continueL
                 })}
               </div>
               {corrections[item.id] && (
-                <p className="mt-3 rounded-xl bg-soft-coral/20 px-3 py-2 font-body text-sm text-charcoal" role="status">
+                <p
+                  id={`pb-correction-${item.id}`}
+                  tabIndex={-1}
+                  className="mt-3 rounded-xl bg-soft-coral/20 px-3 py-2 font-body text-sm text-charcoal outline-none"
+                  role="status"
+                >
                   {corrections[item.id]}
                 </p>
               )}
