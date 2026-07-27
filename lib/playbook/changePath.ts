@@ -1,159 +1,222 @@
 // Rev 3 Step 8 — Change Path orchestrator (pure, deterministic, no I/O, no LLM).
 //
-// Reads ONLY first-party functional interaction state and returns a prioritized surface of
-// next-useful experiences + one plain-language "Your Next Step" line. It is an internal
-// orchestration system, NOT a hidden assessment. See docs/playbook-architecture-rev3.md §4.
+// Internal orchestration — NOT an assessment. It reads only first-party functional state and
+// returns a prioritized surface + one NON-AUTHORITATIVE "Your Next Step" line. See §4.
 //
-// INFERENTIAL BOUNDARY (enforced here):
-//  • Uses only: recognition selections; declared focus; simulation completion + fidelity
-//    states; play operations performed (outputs/play_states); mission selection + reported
-//    attempt; structured Use-Review responses (performed/stuck/…); Keep/Update/Save (tool
-//    review); current/prior focus.
-//  • Content engagement (literature read) is NOT read here — reading never advances a stage
-//    or a change claim.
-//  • NEVER infers from: relationship outcomes, mood, emotional intensity, traits/personality,
-//    attachment, partner motives, diagnosis, etiology, free text, completions-alone, time.
-//  • OUTPUT is observation-not-trait: it describes what was demonstrated/reported in a
-//    specific context, never what kind of person the reader is, and never overstates
-//    capability from one interaction (no mastery claims). Absence is an invitation, not a verdict.
+// Rev 3 is COMPOSABLE: there is no global developmental ladder. Each focus/operation is
+// described by INDEPENDENT functional signals; a routing helper picks a focus by a frozen
+// priority and routes from those signals + the Use-Review contents. "reviewed" is NOT "more
+// developed" than "attempted", and reaching review never auto-advances anything.
+//
+// BOUNDARY (enforced + tested):
+//  • Uses only: recognition; declared focus; simulation exposure + fidelity; in-app operation
+//    + saved output; mission selected/attempted/reviewed + attempt count (Transfer); Use-Review
+//    responses; tool review; current/prior focus.
+//  • Literature engagement influences LITERATURE SURFACING ONLY — never advances process state,
+//    Technique Fidelity, Transfer, or any change claim.
+//  • Never infers from outcomes, mood, emotional intensity, traits, attachment, motives,
+//    diagnosis, etiology, free text, completions-alone, or time.
+//  • Observation-not-trait; absence is an invitation, never inability/avoidance; no mastery.
+//  • Fail-soft: missing/stale/obsolete state never crashes, and is never read as a negative.
 
-import type { PlaybookContent, PlaybookProgress, UseReviewSignals } from "@/lib/playbook/contentSchema";
-import { simulationForPlay, missionForPlay } from "@/lib/playbook/rev3Flow";
+import type { PlaybookContent, PlaybookProgress, MissionReport, UseReviewSignals } from "@/lib/playbook/contentSchema";
+import { simulationForPlay, missionForPlay, useReviewForPlay } from "@/lib/playbook/rev3Flow";
 
-export type PlayStage = "unrecognized" | "recognized" | "in_progress" | "practiced_in_app" | "attempted" | "reviewed";
+export type FocusReason = "declared" | "active_mission" | "pending_review" | "recent_exploration" | "recognition";
 
-const STAGE_RANK: Record<PlayStage, number> = {
-  unrecognized: 0,
-  recognized: 1,
-  in_progress: 2,
-  practiced_in_app: 3,
-  attempted: 4,
-  reviewed: 5,
-};
+/** Independent functional signals for one operation (NOT a single ordered stage). */
+export interface OperationSignals {
+  playId: string;
+  recognized: boolean;
+  simulationExposed: boolean;
+  inAppOperationAttempted: boolean;
+  savedOutput: boolean;
+  missionSelected: boolean;
+  missionAttempted: boolean;
+  missionReviewed: boolean;
+  techniqueFidelity?: "yes" | "partly" | "no"; // from the Use Review (performed)
+  transferEvidence: boolean; // used across >1 authentic context (attemptCount ≥ 2)
+  reviewStuck?: string;
+  lastMissionReport?: MissionReport;
+}
 
 export interface SurfacedItem {
   kind: "experience" | "practice" | "review" | "understand" | "explore";
   playId?: string;
+  literatureId?: string;
   label: string;
 }
 
 export interface ChangePathResult {
   focusPlayId: string | null;
-  /** The one "Your Next Step" line — context-bound, observation-not-trait; null when there's nothing to say yet. */
+  focusReason: FocusReason | null;
+  /** Non-authoritative next-step line; null when there's nothing to say yet. */
   nextStep: string | null;
   surfaced: SurfacedItem[];
-}
-
-/** A play's journey stage, derived ONLY from functional interaction state. */
-export function playStage(content: PlaybookContent, progress: PlaybookProgress, playId: string): PlayStage {
-  const recognizedPlay = content.recognitionCards.some((c) => c.pathwayPlayId === playId && progress.recognized.includes(c.id));
-  const sim = simulationForPlay(content, playId);
-  const simDone = sim ? Boolean(progress.simulation_state?.runs?.[sim.id]?.completed) : false;
-  const ps = progress.play_states[playId];
-  const performedInApp = ps === "in_my_plays" || ps === "used" || Boolean(progress.outputs[playId]);
-  const mission = missionForPlay(content, playId);
-  const ms = mission ? progress.practice_state?.missions?.[mission.id] : undefined;
-  const attempted = ms?.state === "attempted";
-  const reviewed = Boolean(progress.use_review_state?.reviews?.[playId]) || ms?.state === "reviewed";
-
-  if (reviewed) return "reviewed";
-  if (attempted) return "attempted";
-  if (performedInApp) return "practiced_in_app";
-  if (simDone || ps === "explored") return "in_progress";
-  if (recognizedPlay) return "recognized";
-  return "unrecognized";
 }
 
 function playName(content: PlaybookContent, playId: string): string {
   return content.plays.find((p) => p.playId === playId)?.name ?? playId;
 }
 
-/** Context-bound next-step line after a submitted Use Review. Observation-not-trait. */
-function reviewedNextStep(content: PlaybookContent, playId: string, s: UseReviewSignals): string {
-  const name = playName(content, playId);
-  if (s.performed === "yes") {
-    return `You've been using “${name}” in real life. When you're ready, a useful next area may be another pattern to work on — or keep this one going.`;
-  }
-  // partly / no / unset → point at the reported friction, as a next *practice*, never a verdict
-  if (playId === "read-and-decide") {
-    if (s.stuck === "Acting on what I already saw") {
-      return "In your recent practice, you separated what you observed from what you were assuming. A useful next step may be deciding what to do with that information.";
-    }
-    return "In your recent practice, you were working the read. A useful next practice may be another round — separating what you saw from what you're guessing.";
-  }
-  // what-it-actually-means
-  if (s.stuck === "The feeling made it feel true") {
-    return "In your recent practice, you named the fact; the feeling made it loud. A useful next practice may be holding the fact while the feeling stays.";
-  }
-  return "In your recent practice, you were working the move. A useful next practice may be another round — naming the narrowest true thing.";
+/** Derive the INDEPENDENT signals for one operation. Fail-soft: every read is guarded. */
+export function operationSignals(content: PlaybookContent, progress: PlaybookProgress, playId: string): OperationSignals {
+  const recognized = content.recognitionCards.some((c) => c.pathwayPlayId === playId && progress.recognized?.includes(c.id));
+  const sim = simulationForPlay(content, playId);
+  const simulationExposed = sim ? Boolean(progress.simulation_state?.runs?.[sim.id]?.completed) : false;
+  const ps = progress.play_states?.[playId];
+  const savedOutput = Boolean(progress.outputs?.[playId]); // independent of play_state (historic/v0 ok)
+  const inAppOperationAttempted = ps === "explored" || ps === "in_my_plays" || ps === "used" || savedOutput;
+  const mission = missionForPlay(content, playId);
+  const ms = mission ? progress.practice_state?.missions?.[mission.id] : undefined;
+  const missionSelected = Boolean(ms);
+  const missionAttempted = ms?.state === "attempted";
+  const review = useReviewForPlay(content, playId);
+  const rv: UseReviewSignals | undefined = progress.use_review_state?.reviews?.[playId];
+  const missionReviewed = ms?.state === "reviewed" || Boolean(rv && review);
+  const transferEvidence = (ms?.attemptCount ?? 0) >= 2;
+  return {
+    playId,
+    recognized,
+    simulationExposed,
+    inAppOperationAttempted,
+    savedOutput,
+    missionSelected,
+    missionAttempted,
+    missionReviewed,
+    techniqueFidelity: rv?.performed,
+    transferEvidence,
+    reviewStuck: rv?.stuck,
+    lastMissionReport: ms?.lastReport,
+  };
 }
 
-/** The prioritized surface + "Your Next Step" for the current functional state. */
+/** Frozen focus priority (item 6). Higher tier wins; explicit selection outranks inference. */
+function focusTier(s: OperationSignals, declared?: string): { t: number; reason: FocusReason | null } {
+  const engaged = s.recognized || s.simulationExposed || s.inAppOperationAttempted || s.savedOutput || s.missionSelected || s.missionReviewed;
+  if (declared === s.playId && engaged) return { t: 5, reason: "declared" };
+  if (s.missionSelected && !s.missionAttempted && !s.missionReviewed) return { t: 4, reason: "active_mission" };
+  if (s.missionAttempted && !s.missionReviewed) return { t: 3, reason: "pending_review" };
+  if (s.inAppOperationAttempted || s.savedOutput || s.simulationExposed || s.missionReviewed) return { t: 2, reason: "recent_exploration" };
+  if (s.recognized) return { t: 1, reason: "recognition" };
+  return { t: 0, reason: null };
+}
+
+interface Routed { nextStep: string; primary?: SurfacedItem }
+
+/** Non-attempt mission outcomes are handled distinctly — never a generic failure branch. */
+function nonAttemptRouting(s: OperationSignals, name: string): Routed {
+  switch (s.lastMissionReport) {
+    case "no_opportunity":
+      return { nextStep: "No chance to try it yet — that's completely fine. It's ready whenever a moment comes up.", primary: { kind: "practice", playId: s.playId, label: "Open my practice" } };
+    case "opportunity_not_taken":
+      return { nextStep: "A moment came up and you didn't take it — no problem at all. You might rehearse it once more, so it feels a little readier next time.", primary: { kind: "experience", playId: s.playId, label: `Rehearse “${name}”` } };
+    case "unsuitable":
+      return { nextStep: "You judged it wasn't the right moment — that's the skill working. When a fitting one comes, it's here; meanwhile you might explore another area.", primary: { kind: "explore", label: "Explore another area" } };
+    default:
+      return { nextStep: "Your practice is ready whenever you are.", primary: { kind: "practice", playId: s.playId, label: "Open my practice" } };
+  }
+}
+
+/** Route from the Use-Review CONTENTS (not merely reviewed=true). Remaining discomfort never
+ *  routes backward when Technique Fidelity was demonstrated. Transfer may inform a stretch. */
+function reviewedRouting(content: PlaybookContent, s: OperationSignals, name: string): Routed {
+  const rd = s.playId === "read-and-decide";
+  const feeling = s.reviewStuck === "The feeling got loud" || s.reviewStuck === "The feeling made it feel true";
+  const fidelityShown = s.techniqueFidelity === "yes";
+  const other = content.plays.find((p) => p.playId !== s.playId)?.playId;
+
+  // 1) The reported FRICTION drives the next practice, regardless of overall fidelity.
+  if (rd && s.reviewStuck === "Acting on what I already saw") {
+    return { nextStep: "In your recent practice, you separated what you saw from what you were assuming. A useful next step might be deciding what to do with that information.", primary: { kind: "practice", playId: s.playId, label: "Practice deciding from the evidence" } };
+  }
+  if (feeling) {
+    // Remaining discomfort NEVER routes backward when Technique Fidelity was demonstrated.
+    if (fidelityShown) {
+      return { nextStep: "You used the move closely, and the feeling was still loud — that's expected, and it doesn't undo the work. You might keep using it as the feeling settles.", primary: { kind: "practice", playId: s.playId, label: "Keep practicing" } };
+    }
+    return rd
+      ? { nextStep: "You did the read, and the feeling got loud. You might pair it with naming the narrowest true thing next time.", primary: { kind: "practice", playId: s.playId, label: "Keep practicing" } }
+      : { nextStep: "You named the fact, and the feeling made it loud. You might practice holding the fact while the feeling stays.", primary: { kind: "practice", playId: s.playId, label: "Practice holding the fact" } };
+  }
+  if (!fidelityShown && (s.reviewStuck === "Reading it — telling saw-it from guessing" || s.reviewStuck === "Catching the story before it hardened" || s.reviewStuck === "Naming the narrowest true thing")) {
+    return rd
+      ? { nextStep: "The reading part is where it caught this time. You might run another round — separating what you saw from what you're guessing.", primary: { kind: "experience", playId: s.playId, label: `Rehearse “${name}”` } }
+      : { nextStep: "Naming the smallest true thing is where it caught this time. You might run another round of it.", primary: { kind: "experience", playId: s.playId, label: `Rehearse “${name}”` } };
+  }
+
+  // 2) Fidelity shown, no blocking friction.
+  if (fidelityShown) {
+    if (s.transferEvidence) {
+      return {
+        nextStep: `Based on what you've practiced, you've used “${name}” in more than one real situation. You might stretch it a little further — or bring your attention to another pattern when you're ready.`,
+        primary: other ? { kind: "experience", playId: other, label: `Look at “${playName(content, other)}”` } : { kind: "practice", playId: s.playId, label: "Keep practicing" },
+      };
+    }
+    return { nextStep: "Based on what you practiced, the move is working for you. You might take it into the next situation when one comes up.", primary: { kind: "practice", playId: s.playId, label: "Practice it again" } };
+  }
+
+  // 3) Partly / not really, no specific friction named → a gentle forward re-practice.
+  return { nextStep: `You've had a first go at “${name}.” You might run the move again when a moment comes up.`, primary: { kind: "practice", playId: s.playId, label: "Practice it again" } };
+}
+
+/** Route for one operation from its independent signals (used for any chosen focus). */
+function routeForOp(content: PlaybookContent, s: OperationSignals): Routed {
+  const name = playName(content, s.playId);
+  // A reported non-attempt outcome on a selected (not-yet-attempted) mission takes precedence.
+  if (s.missionSelected && !s.missionAttempted && !s.missionReviewed && s.lastMissionReport && s.lastMissionReport !== "attempted") {
+    return nonAttemptRouting(s, name);
+  }
+  if (s.missionReviewed) return reviewedRouting(content, s, name);
+  if (s.missionAttempted) return { nextStep: "You tried this in real life — you might take a quick, honest look at how it went.", primary: { kind: "review", playId: s.playId, label: "Look at how it went" } };
+  if (s.missionSelected) return { nextStep: "Your practice is set. You might give it a try when a fitting moment comes up.", primary: { kind: "practice", playId: s.playId, label: "Open my practice" } };
+  if (s.savedOutput || s.inAppOperationAttempted) return { nextStep: `You've worked through “${name}.” You might take it into real life when a moment comes up.`, primary: { kind: "practice", playId: s.playId, label: "Practice this in real life" } };
+  if (s.simulationExposed) return { nextStep: `You've seen how “${name}” works. You might try it on a real situation of yours.`, primary: { kind: "experience", playId: s.playId, label: `Continue “${name}”` } };
+  if (s.recognized) return { nextStep: `Based on what sounded familiar, you might start with “${name}.”`, primary: { kind: "experience", playId: s.playId, label: `Start “${name}”` } };
+  return { nextStep: "" };
+}
+
+/** Literature surfacing uses ONLY read-state to avoid re-recommending the same read (item 5).
+ *  It never advances any process state. Returns an unread, relevant entry id (or undefined). */
+function surfacedLiterature(content: PlaybookContent, progress: PlaybookProgress, focusPlayId: string | null): string | undefined {
+  const read = new Set(progress.literature_state?.read ?? []);
+  const lit = content.literature ?? [];
+  const relevant = focusPlayId ? lit.filter((e) => e.scope === "play" && e.playId === focusPlayId) : [];
+  const pool = [...relevant, ...lit.filter((e) => e.scope === "cluster")];
+  return pool.find((e) => !read.has(e.id))?.id ?? pool[0]?.id;
+}
+
 export function changePath(content: PlaybookContent, progress: PlaybookProgress): ChangePathResult {
-  const built = content.plays.map((p) => p.playId);
-  const stages = built.map((pid) => ({ pid, stage: playStage(content, progress, pid) }));
+  const declared = progress.change_path_state?.currentFocus;
+  const ops = content.plays.map((p) => operationSignals(content, progress, p.playId));
+  const tiered = ops.map((s) => ({ s, ...focusTier(s, declared) }));
+
+  const best = tiered.filter((x) => x.t > 0).sort((a, b) => b.t - a.t)[0]; // ties keep content order
 
   const understand: SurfacedItem = { kind: "understand", label: "Understand this pattern" };
+  const litId = surfacedLiterature(content, progress, best?.s.playId ?? null);
+  if (litId) understand.literatureId = litId;
   const explore: SurfacedItem = { kind: "explore", label: "Explore another area" };
 
-  // Prefer an incomplete, engaged focus (furthest along); a declared focus wins if still active.
-  const active = stages.filter((s) => s.stage !== "unrecognized" && s.stage !== "reviewed");
-  const declared = progress.change_path_state?.currentFocus;
-  const declaredActive = declared ? active.find((a) => a.pid === declared) : undefined;
-  const focus =
-    declaredActive ??
-    [...active].sort((a, b) => STAGE_RANK[b.stage] - STAGE_RANK[a.stage])[0] ??
-    undefined;
-
-  if (focus) {
-    const name = playName(content, focus.pid);
-    switch (focus.stage) {
-      case "recognized":
-        return {
-          focusPlayId: focus.pid,
-          nextStep: `A good place to start is “${name}.”`,
-          surfaced: [{ kind: "experience", playId: focus.pid, label: `Start “${name}”` }, understand, explore],
-        };
-      case "in_progress":
-        return {
-          focusPlayId: focus.pid,
-          nextStep: `You started “${name}.” Picking it back up is the next step.`,
-          surfaced: [{ kind: "experience", playId: focus.pid, label: `Continue “${name}”` }, understand, explore],
-        };
-      case "practiced_in_app":
-        return {
-          focusPlayId: focus.pid,
-          nextStep: `You've worked through “${name}.” A useful next step is taking it into real life.`,
-          surfaced: [{ kind: "practice", playId: focus.pid, label: "Practice this in real life" }, understand, explore],
-        };
-      case "attempted":
-        return {
-          focusPlayId: focus.pid,
-          nextStep: "You tried this in real life. A quick, honest look at how it went is the next step.",
-          surfaced: [{ kind: "review", playId: focus.pid, label: "Look at how it went" }, explore],
-        };
-    }
+  if (!best) {
+    // Nothing recognized/started — an INVITATION, never a verdict.
+    return {
+      focusPlayId: null,
+      focusReason: null,
+      nextStep: progress.recognized?.length ? "There's no wrong place to start — pick whichever area pulls at you." : null,
+      surfaced: [{ kind: "explore", label: "See where you might start" }, understand],
+    };
   }
 
-  // No active focus. If a play has been reviewed, speak from its structured signals.
-  const reviewed = stages.find((s) => s.stage === "reviewed");
-  if (reviewed) {
-    const signals = progress.use_review_state?.reviews?.[reviewed.pid] ?? {};
-    const other = built.find((pid) => pid !== reviewed.pid && playStage(content, progress, pid) !== "reviewed");
-    const surfaced: SurfacedItem[] = [];
-    if (other && playStage(content, progress, other) !== "unrecognized") {
-      surfaced.push({ kind: "experience", playId: other, label: `Start “${playName(content, other)}”` });
-    }
-    surfaced.push(understand, explore);
-    return { focusPlayId: reviewed.pid, nextStep: reviewedNextStep(content, reviewed.pid, signals), surfaced };
-  }
+  const routed = routeForOp(content, best.s);
+  const surfaced: SurfacedItem[] = [];
+  if (routed.primary) surfaced.push(routed.primary);
+  surfaced.push(understand, explore);
 
-  // Nothing recognized/started yet — an INVITATION, never a verdict, never "you can't".
   return {
-    focusPlayId: null,
-    nextStep: progress.recognized.length
-      ? "When you're ready, pick whichever area pulls at you — there's no wrong place to start."
-      : null,
-    surfaced: [{ kind: "explore", label: "See where you might start" }, understand],
+    focusPlayId: best.s.playId,
+    focusReason: best.reason,
+    nextStep: routed.nextStep || null,
+    surfaced,
   };
 }

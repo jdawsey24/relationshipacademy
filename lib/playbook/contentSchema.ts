@@ -427,6 +427,9 @@ export interface MissionRunState {
   rungId?: string; // the current authored rung (content position), stored SEPARATELY from state
   stretchEligible?: boolean; // an authored next stretch exists AND an attempt was reported — ELIGIBILITY only, never a recommendation
   lastReport?: MissionReport;
+  /** Count of reported real-world attempts. 1 = first Attempt; ≥2 = accumulating evidence of
+   *  use in another authentic context (a Transfer signal). Never a mastery/trait claim. */
+  attemptCount?: number;
 }
 export interface PracticeState {
   version: number;

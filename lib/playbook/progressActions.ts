@@ -59,10 +59,14 @@ export function recordMissionReport(
   const missions = { ...(prev.missions ?? {}) };
   const cur = missions[missionId] ?? { state: "selected" as MissionState };
   const state: MissionState = report === "attempted" ? "attempted" : cur.state;
+  // A reported real-world attempt increments the count; ≥2 is Transfer evidence (used across
+  // more than the first authentic context). This does NOT auto-advance developmental status.
+  const attemptCount = report === "attempted" ? (cur.attemptCount ?? 0) + 1 : cur.attemptCount;
   missions[missionId] = {
     ...cur,
     state,
     lastReport: report,
+    ...(attemptCount !== undefined ? { attemptCount } : {}),
     ...(opts.stretchEligible !== undefined ? { stretchEligible: opts.stretchEligible } : {}),
   };
   return { ...p, practice_state: { version: prev.version ?? 1, currentMissionId: prev.currentMissionId, missions } };
