@@ -4,7 +4,7 @@
 **Prototype cluster:** Cluster 1 "Difficulty Feeling Chosen" (consumer: *Moving Beyond Rejection*).
 **Posture:** the deployed v0 two-Play Playbook stays intact. Rev 3 is built behind a feature flag, reviewed, and **not deployed, and runs no new production migration, without explicit owner approval.** Attorney review remains **outstanding**; nothing here is attorney-reviewed or attorney-approved; the existing **Owner Risk Acceptance** remains the posture.
 
-> Nothing here changes Relationship Life Cycle™ theory. The consumer product functions `Understand → Experience → Play → Practice → Integrate`, the internal orchestrator **Change Path**, and the internal process states `Exposure → Attempt → Technique Fidelity → Transfer` are **product-delivery concepts only.** The canonical framework is unchanged: **Phase → Developmental Task → Competencies → Developmental Application → Task Mastery.** The Playbook strengthens **Developmental Application** for the specific problem a cluster represents.
+> Nothing here changes Relationship Life Cycle™ theory. The consumer product functions `Understand → Experience → Play → Practice → Integrate`, the internal orchestrator **Change Path**, and the internal process states `Exposure → Attempt → Technique Fidelity → Transfer` are **product-delivery concepts only.** The canonical framework is unchanged: **Phase → Developmental Task → Competencies → Developmental Application → Task Mastery.** The Playbook is designed to strengthen **Developmental Application** for the specific problem a cluster represents.
 
 This document incorporates the owner's frozen decisions (§17) and the six adjudications + two document-wide requirements (§18) with the two expanded sections requested earlier: the **Change Path decision model** (§4) and the **simulation/content object model** (§6).
 
@@ -38,17 +38,17 @@ The five objects are **composable, not a mandatory five-step funnel.** A user is
 | **Exposure** | Encountered / read / practiced-in-app a thing. | literature opened; simulation viewed; Play explored; screen reached. | Not improvement, competency, or change. Reading ≠ change. |
 | **Attempt** | Tried to use the operation — in a simulation and/or the real world. | performed the Play operation; selected a mission; **reports** attempting/using the mission. | Not success. An attempt is not a correct use. |
 | **Technique Fidelity** | Used the operation **as intended** (mechanism-true, per the Play's authored fidelity model). | in-sim: `evidence_reconsidered`, and where the authored interaction supports it `interpretation_revised_when_warranted`; structured fidelity-review responses (performed-as-intended? yes/partly/no). | Not relationship outcome. **Not change-of-mind, reversal, or optimism itself** (§2/§6.1). |
-| **Transfer** | Carried the operation forward — used it in **another context** and/or appropriately adjusted it. | evidence of use in ≥1 new context; a *considered* retain/revise of the saved tool; advancing an authored progression when appropriate. | Not "done," mastery, or a level. **Accumulating evidence of transfer — never proof of stable integration.** |
+| **Transfer** | **Evidence that the user attempted to carry the operation into at least one authentic context beyond the original in-app rehearsal.** | `used_in_another_context` (reported attempt to enact it in a real context beyond the original rehearsal); `technique_fidelity_in_context` (reported/structured evidence it was enacted as intended in that context). | Not "done," mastery, or a level. **Accumulating evidence of transfer — never proof of stable integration.** Tool-review signals (below) are *not* Transfer. |
 
 **Rules the system enforces:**
 - **Exposure never advances a change claim.** Content engagement (literature opened/saved/revisited) may *influence what is recommended next* but is never evidence a competency or enactment improved.
 - **Technique Fidelity is not "changed my mind."** It is reconsidering an interpretation **in light of evidence** and revising it **when warranted**. The system does not reward reversal, optimism, or change itself (adjudication 2).
-- **Keep/Update is not Transfer by itself** (adjudication 4). It is evidence the user *reviewed* the saved tool against experience and *retained or revised* it. Transfer additionally requires **evidence of use in another context.** These are tracked as **separate signals** (see below) and may inform Change Path differently.
+- **Keep/Update is not Transfer by itself** (adjudication 4). It is evidence the user *reviewed* the saved tool against experience and then *retained* it (`tool_retained`) or *revised* it (`tool_updated`). Transfer additionally requires a **reported attempt to use the operation in an authentic context beyond the original rehearsal** (`used_in_another_context`). These are tracked as **separate signals** (see below) and may inform Change Path differently.
 - **Developmental Application (canonical RLC) is not a product state.** It retains its canonical meaning and is interpreted **only where evidence legitimately supports authentic-context enactment** — which, in product terms, requires real-context Transfer evidence, not in-app Attempt/Fidelity alone.
 - Each Change Path recommendation is tagged internally with the **highest process-state legitimately supported by the data** and phrased about *that demonstrated/reported context*, never about the person (§4.2).
 
 **Separately tracked signals (never conflated):**
-`attempt` · `technique_fidelity` · `tool_reviewed` · `tool_retained_or_updated` · `used_in_another_context`.
+`attempt` · `technique_fidelity` *(in-app)* · `tool_reviewed` · `tool_retained` · `tool_updated` · `used_in_another_context` · `technique_fidelity_in_context`.
 
 ### 1.1 Research boundary (required)
 
@@ -100,7 +100,7 @@ The objects are bound by **object-to-operation mapping** — each `Simulation`, 
 
 **May use — user-declared inputs:** recognition selections; explicit area/focus selections; user "this is what I want to work on" choices.
 
-**May use — first-party functional interaction data:** simulation choices; whether the interpretation was **reconsidered in light of evidence (and revised when warranted)**; Play operations performed; saved executable outputs; fidelity-review responses; real-world mission selected; whether the user reports attempting/using the mission; structured integration responses; whether the user chose Keep or Update after real-world use *(as a tool-review signal, not Transfer)*; current and prior application focus; recency of relevant practice; **evidence of use in another context** *(the Transfer signal)*.
+**May use — first-party functional interaction data:** simulation choices; whether the interpretation was **reconsidered in light of evidence (and revised when warranted)**; Play operations performed; saved executable outputs; fidelity-review responses; real-world mission selected; whether the user reports attempting/using the mission; structured integration responses; whether the user chose Keep or Update after real-world use *(as a tool-review signal, not Transfer)*; current and prior application focus; recency of relevant practice; **a reported attempt to use the operation in an authentic context beyond the original rehearsal** (`used_in_another_context`) and reported/structured **in-context fidelity** (`technique_fidelity_in_context`) *(the Transfer signals)*.
 
 **May influence recommendations only (never a change claim):** content engagement — literature opened, saved, or revisited. **Reading is never evidence a competency or enactment improved.**
 
@@ -160,11 +160,11 @@ Each shows the path, the **exact data read at the recommendation point**, the **
 | Practice | mission "when a letdown starts to feel like a fact about you, name what it actually shows before deciding what it means"; reports attempting | `mission_attempt_reported` → **Attempt (real world)** |
 | Integrate | structured review: performed-as-intended = **no**; hardest part = **the feeling / it still spiraled**; Keep/Update = **Update** | `integration_reviewed {performed: no, hardest: feeling}` → low real-world fidelity; `tool_reviewed`/`tool_updated` |
 
-**Recommendation point — data used:** in-app `interpretation_revised_when_warranted=true` (can do it in-app) **but** reported `performed=no` + `hardest=feeling` in the real world → an **exposure/attempt gap**, not a trait. Update is logged as tool-review + revise, **not** Transfer. Whether a *real recurring pattern* exists is read only from her **declared inputs/simulation choices** — never partner behavior.
+**Recommendation point — data used:** in-app `interpretation_revised_when_warranted=true` (can do it in-app) **but** reported `performed=no` + `hardest=feeling` in the real world → an **exposure/attempt gap**, not a trait. Update is logged as `tool_reviewed` + `tool_updated`, **not** Transfer. **A real recurring pattern may only be treated as present when the user explicitly reports recurrence through an approved structured real-world input.** Simulation behavior may inform in-app teaching or pathway suggestions, but **cannot establish recurrence outside the simulation** — and never partner behavior.
 
-**Next Step (output):** *"In the exercise you brought a big conclusion back to what actually happened. In the moment it's still hard — a useful next practice may be a smaller, lower-pressure version before the full step."* → surfaces a **graded WM mission** + a targeted **just-in-time literature** entry on globalization ("everyone / forever / identity / worth"). If her own inputs indicate a genuine recurring pattern, offer the authored **route to Read It, Then Decide** (existing `Play.routing`) — *without inventing a cause.*
+**Next Step (output):** *"In the exercise you brought a big conclusion back to what actually happened. In the moment it's still hard — a useful next practice may be a smaller, lower-pressure version before the full step."* → surfaces a **graded WM mission** + a targeted **just-in-time literature** entry on globalization ("everyone / forever / identity / worth"). Only if she **explicitly reports recurrence via an approved structured real-world input** may the system treat a recurring pattern as present and offer the authored **route to Read It, Then Decide** (existing `Play.routing`) — *without inventing a cause.* (In-app simulation behavior alone may still surface teaching or a pathway *suggestion*, but does not establish recurrence.)
 
-**Layer-B (not crisis):** persistent self-worth heaviness surfaces the WM **support signpost** ("if this is bigger than a dating moment… a mental health professional can help"). **General self-worth language is never escalated to a Layer-A crisis event.**
+**Layer-B (not crisis):** the WM **support signpost** ("if this is bigger than a dating moment… a mental health professional can help") is surfaced when the user **explicitly reports, through an approved structured input, that this extends beyond a single dating moment** — not inferred from simulation behavior or from a presumption of persistence. **General self-worth language is never escalated to a Layer-A crisis event.**
 
 **Boundary check:** "in the exercise you… in the moment it's still hard" is context-bound and process-framed; no "you have low self-esteem," no etiology, no diagnosis.
 
@@ -379,7 +379,7 @@ interface UseReview {            // authored object; internal state key: use_rev
 
 - Collects only what supports **fidelity, behavioral transfer, updating the saved Play, and selecting the next focus.**
 - Free text only where the **intervention itself** requires user-authored content (e.g., the WM "smallest true thing"). No asking users to recount relationship events in detail to personalize the system.
-- **Keep/Update is logged as `tool_reviewed` + `tool_retained_or_updated`** — separate from `used_in_another_context` (adjudication 4). Reuses `recordOutput(..., keepState=true)` + the narrow `OutputEditor`.
+- **Keep/Update is logged as `tool_reviewed` plus either `tool_retained` or `tool_updated`** — all separate from `used_in_another_context` and `technique_fidelity_in_context` (adjudication 4). Reuses `recordOutput(..., keepState=true)` + the narrow `OutputEditor`.
 - **Does not measure relationship outcome.** Correct use + remaining discomfort = still a success.
 
 ---
@@ -390,7 +390,7 @@ interface UseReview {            // authored object; internal state key: use_rev
 - **Interaction registry:** refactor `PlayContainer`'s `renderScreen` switch into a **component registry keyed by interaction kind**, consumed by the Play walker *and* the Simulation/Mission/UseReview walkers.
 - **New views in `ExperienceShell`:** `understand`, `experience`, `practice`, `integrate`, and a Change-Path-driven home that **resumes** (§3). The v0 `opening → recognition → board → gate → play → myplays` machine is extended, not rewritten.
 - **`lib/playbook/changePath.ts`** (new): pure `changePath(state) → { nextStep, surfaced[] }` implementing §4, fully unit-testable (incl. boundary tests: reading-not-progress, absence-not-inability, observation-not-trait, Keep/Update-not-Transfer).
-- **Server-side event registry** (`lib/playbook/events.ts`, new): a **type-safe registry** defining allowed `object_type`, allowed `event_type`, a **payload schema per event**, and a `schema_version` — the single validated path that writes `playbook_events` (§10.2).
+- **Server-side event registry** (`lib/playbook/events.ts`, new): a **type-safe registry** defining allowed `object_type`, allowed `event_type`, a **payload schema per event**, and a `schema_version` — the single validated, **idempotent** path that writes `playbook_events` (§10.2). The client generates a stable `action_id` per logical product action; the server treats it as an **idempotency key** so retries collapse to one event.
 - **New pure reducers** (in the `progressActions.ts` style) for literature-read, simulation completion, mission state, and use-review signals — version-stamped, functional-only.
 - **Process-state tagger** mapping signals → Exposure/Attempt/Technique-Fidelity/Transfer (§1), used by Change Path and the event writer.
 
@@ -418,6 +418,7 @@ Supports future **product-process analysis and research design without becoming 
 ```
 id                uuid pk
 user_id           uuid  -> auth.users on delete cascade
+action_id         text        -- client-generated idempotency key for one logical product action
 playbook_key      text        -- stable
 playbook_version  integer
 object_type       text        -- registry-constrained: 'literature'|'simulation'|'play'|'mission'|'use_review'
@@ -427,9 +428,20 @@ event_type        text        -- registry-constrained: 'literature_opened'|'simu
 schema_version    integer     -- event payload shape version (from the registry)
 payload           jsonb        -- MINIMUM functional payload, validated against the per-event schema
 created_at        timestamptz
+--
+unique (user_id, action_id)   -- idempotency: one logical action → one event, retry-safe
 ```
 
-- **Write path:** an authenticated API route validates `(object_type, event_type, payload)` against the registry, stamps `schema_version`, and inserts via the server/service-role client — mirroring the `/api/score` server-write posture. The client never inserts directly.
+- **Idempotency (adjudication 3).** This is an append-only longitudinal stream, so it is **retry-safe from the first build.** The client generates a stable `action_id` for each logical product action; the server upserts on `(user_id, action_id)` and **ignores duplicates**, so a single tap that the network retries produces **one** event, not two — protecting process analytics from inflation.
+- **Write path — the server writer validates, in order, before inserting:**
+  1. **authenticated user**;
+  2. **current entitlement** to the `playbook_key`;
+  3. **valid registered `object_id`** (exists in content);
+  4. the **object belongs to that `playbook_key` / `playbook_version`**;
+  5. the **`event_type` is allowed for that `object_type`** (per the registry);
+  6. the **`payload` matches the registered per-event schema**;
+  7. the **`action_id` has not already been consumed** (idempotency).
+  On success it stamps `schema_version` and inserts via the server/service-role client — mirroring the `/api/score` server-write posture. The client never inserts directly.
 - **RLS:** own-row **select**; **no client insert/update/delete** policy (inserts are server-only; the table is append-only — never updated or deleted).
 - Layer A still screens any bounded free text *before* an event is written; events carry metadata, not raw disclosures.
 
@@ -457,7 +469,7 @@ created_at        timestamptz
 
 Eventual migration, **owner-run only after explicit approval:**
 1. `playbook_progress` (additive): add nullable jsonb `literature_state`, `simulation_state`, `practice_state`, `use_review_state`, `change_path_state`, each defaulting empty; no backfill; existing rows read as empty; compatible with deployed data.
-2. `playbook_events` (new, append-only, **server-written**): the §10.2 shape; RLS own-row **select only** (no client insert/update/delete); inserts via the validated server route/service-role client; `notify pgrst`.
+2. `playbook_events` (new, append-only, **server-written**): the §10.2 shape, including `action_id` and a **`unique (user_id, action_id)`** idempotency constraint; RLS own-row **select only** (no client insert/update/delete); inserts via the validated server route/service-role client; `notify pgrst`.
 3. **No changes** to `playbook_entitlements`, `quiz_*`, or any Snapshot/scoring table.
 
 No migration is written or run in this pass.
@@ -509,11 +521,18 @@ No production change and no deploy at any step without explicit owner approval.
 1. **Process-state terminology revised** to **Exposure → Attempt → Technique Fidelity → Transfer** (no `Application`, no internal `Integration`). Consumer function `Integrate` retained; internal persistence uses `use_review_state`, process state uses `Transfer`. Developmental Application retains canonical meaning, interpreted only where evidence supports authentic-context enactment. — **§0, §1, throughout.**
 2. **Simulation fidelity signal tightened** to `evidence_reconsidered` / `interpretation_revised_when_warranted`; the blanket `updated_interpretation` is removed; reversal/optimism/change-of-mind is not rewarded. — **§1, §6.1–6.4, §6.6.**
 3. **Change Path claims tightened** — context-bound ("in this exercise…") replaces "that part is working"; cross-context evidence is *accumulating evidence of Transfer*, not proof of stable integration/mastery. — **§4.2, §4.5.**
-4. **Keep/Update is not Transfer by itself** — tracked as `tool_reviewed` + `tool_retained_or_updated`, separate from `used_in_another_context`; `attempt`, `technique_fidelity`, tool-review, and cross-context use are distinct signals informing Change Path differently. — **§1, §4.1, §8.**
+4. **Keep/Update is not Transfer by itself** — tracked as `tool_reviewed` + (`tool_retained` | `tool_updated`), separate from `used_in_another_context` and `technique_fidelity_in_context`; `attempt`, `technique_fidelity`, tool-review, and cross-context use are distinct signals informing Change Path differently. — **§1, §4.1, §8.**
 5. **`playbook_events` is server-written and schema-validated** via a type-safe registry (allowed `object_type`/`event_type`, per-event payload schema, `schema_version`); no arbitrary client insertion; minimal functional payloads. — **§9, §10.2, §13.**
 6. **`Track` removed** under the parsimony rule (no unique function beyond `playId` mappings + the five-layer sequence + Change Path). — **§3.1, §9, §11.**
 7. **Research boundary added** — telemetry supports product-process analysis / feasibility / hypothesis generation / research design, but is **not by itself RLC-validation evidence**; validation requires an appropriate protocol and study design. — **§1.1.**
 8. **"Byte-parity" replaced** with **behavioral and persistence parity** — the goal is proving flag-gated Rev 3 does not alter deployed v0 outside the flag, not a brittle byte-level constraint. (Literal byte equality is required only if/where a specifically named serialized artifact demands it; none is named here.) — **§16 step 2.**
+
+### 18.1 Rev 3.2 refinements — incorporated
+
+1. **Transfer tightened** — Transfer = evidence the user **attempted to carry the operation into at least one authentic context beyond the original in-app rehearsal**. Tool-review split into distinct signals `tool_reviewed` / `tool_retained` / `tool_updated`; `used_in_another_context` and `technique_fidelity_in_context` are the Transfer signals; "advancing a progression when appropriate" is no longer treated as a Transfer signal. — **§1, §4.1, §8.**
+2. **Recurrence cannot be inferred from simulation choices** — a real recurring pattern is treated as present **only when the user explicitly reports recurrence through an approved structured real-world input**; simulation behavior may inform in-app teaching / pathway suggestions but cannot establish recurrence outside the simulation. The WM support signpost is likewise surfaced only on an explicit structured report, not inferred persistence. — **§4.5 (Pattern B).**
+3. **Event idempotency from day one** — `playbook_events` carries a client-generated `action_id` with **`unique (user_id, action_id)`**; the server writer collapses retries to one event and validates, in order: authenticated user · current entitlement · valid registered object id · object belongs to that playbook/version · event allowed for that object type · payload matches the registered schema · idempotency key not already consumed. — **§9, §10.2, §13.**
+4. **Wording** — "The Playbook **is designed to** strengthen Developmental Application…" (top blockquote).
 
 ---
 
