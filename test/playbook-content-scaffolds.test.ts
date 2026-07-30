@@ -13,6 +13,9 @@ import { FINDING_YOUR_WAY_BACK } from "../content/playbook/finding-your-way-back
 import { REBUILDING_PHYSICAL_CONNECTION } from "../content/playbook/rebuilding-physical-connection";
 import { BUILDING_A_TRUE_PARTNERSHIP } from "../content/playbook/building-a-true-partnership";
 import { LEAN_IN_OR_LET_GO } from "../content/playbook/lean-in-or-let-go";
+import { LEARNING_TO_SAY_NO } from "../content/playbook/learning-to-say-no";
+import { FEELING_SEEN } from "../content/playbook/feeling-seen";
+import { STAYING_CONNECTED } from "../content/playbook/staying-connected";
 import { getPlaybookContent } from "../content/playbook";
 import { clusterIdForKey, hasInteractivePlaybook } from "../lib/playbook/keys";
 
@@ -77,6 +80,24 @@ const SCAFFOLDS = [
     content: LEAN_IN_OR_LET_GO,
     playIds: ["just-ask-what-this-is", "my-actual-terms", "what-would-i-need-to-see"],
     litCount: 11,
+  },
+  {
+    key: "learning-to-say-no",
+    content: LEARNING_TO_SAY_NO,
+    playIds: ["ask-for-one-thing", "the-half-second", "the-smaller-true-thing", "what-this-is-costing-me"],
+    litCount: 9,
+  },
+  {
+    key: "feeling-seen",
+    content: FEELING_SEEN,
+    playIds: ["one-specific-thing", "the-ledger", "what-forgiving-would-take", "what-i-stopped"],
+    litCount: 11,
+  },
+  {
+    key: "staying-connected",
+    content: STAYING_CONNECTED,
+    playIds: ["are-we-building-the-same-thing", "season-or-arrangement", "the-money-conversation"],
+    litCount: 12, // 11 + shared SAFETY_GUIDE
   },
 ] as const;
 
