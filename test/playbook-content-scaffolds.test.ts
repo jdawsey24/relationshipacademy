@@ -9,6 +9,10 @@ import { LETTING_SOMEONE_IN } from "../content/playbook/letting-someone-in";
 import { TRUSTING_WHAT_YOU_SEE } from "../content/playbook/trusting-what-you-see";
 import { FINDING_SECURITY } from "../content/playbook/finding-security";
 import { BREAKING_THE_CYCLE } from "../content/playbook/breaking-the-cycle";
+import { FINDING_YOUR_WAY_BACK } from "../content/playbook/finding-your-way-back";
+import { REBUILDING_PHYSICAL_CONNECTION } from "../content/playbook/rebuilding-physical-connection";
+import { BUILDING_A_TRUE_PARTNERSHIP } from "../content/playbook/building-a-true-partnership";
+import { LEAN_IN_OR_LET_GO } from "../content/playbook/lean-in-or-let-go";
 import { getPlaybookContent } from "../content/playbook";
 import { clusterIdForKey, hasInteractivePlaybook } from "../lib/playbook/keys";
 
@@ -48,6 +52,30 @@ const SCAFFOLDS = [
     key: "breaking-the-cycle",
     content: BREAKING_THE_CYCLE,
     playIds: ["going-back-afterwards", "not-always-me", "raise-it-anyway", "when-it-starts-turning"],
+    litCount: 11,
+  },
+  {
+    key: "finding-your-way-back",
+    content: FINDING_YOUR_WAY_BACK,
+    playIds: ["have-i-stopped-reaching", "one-thing-back", "the-closest-word", "what-i-want-instead"],
+    litCount: 13, // 12 + shared SAFETY_GUIDE
+  },
+  {
+    key: "rebuilding-physical-connection",
+    content: REBUILDING_PHYSICAL_CONNECTION,
+    playIds: ["saying-it-out-loud", "the-difference-conversation", "what-you-actually-miss"],
+    litCount: 9,
+  },
+  {
+    key: "building-a-true-partnership",
+    content: BUILDING_A_TRUE_PARTNERSHIP,
+    playIds: ["hand-one-thing-over", "leave-the-gap", "the-invisible-list"],
+    litCount: 9,
+  },
+  {
+    key: "lean-in-or-let-go",
+    content: LEAN_IN_OR_LET_GO,
+    playIds: ["just-ask-what-this-is", "my-actual-terms", "what-would-i-need-to-see"],
     litCount: 11,
   },
 ] as const;
