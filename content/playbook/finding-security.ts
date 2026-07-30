@@ -525,9 +525,9 @@ export const FINDING_SECURITY: PlaybookContent = {
         },
         {
           kind: "ruleBuilder",
-          intro: "Take one thing back, and give the time somewhere to go.",
-          conditionLabel: "Where the time goes instead",
-          thenLabel: "The one I'll take back first",
+          intro: "Name when it happens, and what you'll do instead.",
+          conditionLabel: "When I catch myself doing it",
+          thenLabel: "I'll",
           actions: [
             "Check once a day rather than whenever",
             "Read it once and close it",
