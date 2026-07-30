@@ -327,9 +327,9 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         },
         {
           kind: "ruleBuilder",
-          intro: "Decide now what you'll watch for in their response.",
-          conditionLabel: "After I've said it",
-          thenLabel: "I'll pay attention to",
+          intro: "Name the person, then decide what you'll watch for.",
+          conditionLabel: "Who I'll say it to",
+          thenLabel: "I'll watch for",
           actions: [
             "Whether they stayed with it or moved past it",
             "Whether they asked anything about it",
