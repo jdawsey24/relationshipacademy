@@ -6,6 +6,9 @@ import assert from "node:assert/strict";
 import { validatePlaybookContent } from "../lib/playbook/contentValidate";
 import { DATING_WITHOUT_LOSING_HOPE } from "../content/playbook/dating-without-losing-hope";
 import { LETTING_SOMEONE_IN } from "../content/playbook/letting-someone-in";
+import { TRUSTING_WHAT_YOU_SEE } from "../content/playbook/trusting-what-you-see";
+import { FINDING_SECURITY } from "../content/playbook/finding-security";
+import { BREAKING_THE_CYCLE } from "../content/playbook/breaking-the-cycle";
 import { getPlaybookContent } from "../content/playbook";
 import { clusterIdForKey, hasInteractivePlaybook } from "../lib/playbook/keys";
 
@@ -21,6 +24,31 @@ const SCAFFOLDS = [
     content: LETTING_SOMEONE_IN,
     playIds: ["before-you-go", "is-this-right-for-me", "just-ask", "one-true-thing", "when-closeness-costs"],
     litCount: 13,
+  },
+  {
+    key: "trusting-what-you-see",
+    content: TRUSTING_WHAT_YOU_SEE,
+    playIds: [
+      "check-it-dont-bury-it",
+      "do-my-standards-fit-me",
+      "give-it-a-second-look",
+      "how-long-am-i-giving-this",
+      "where-my-effort-goes",
+      "wise-or-scared",
+    ],
+    litCount: 13,
+  },
+  {
+    key: "finding-security",
+    content: FINDING_SECURITY,
+    playIds: ["ask-then-watch", "insecure-or-accurate", "what-this-is-costing", "when-it-doesnt-land"],
+    litCount: 13,
+  },
+  {
+    key: "breaking-the-cycle",
+    content: BREAKING_THE_CYCLE,
+    playIds: ["going-back-afterwards", "not-always-me", "raise-it-anyway", "when-it-starts-turning"],
+    litCount: 11,
   },
 ] as const;
 
