@@ -63,7 +63,7 @@ export default async function PlaybookDetailPage({ params }: { params: Promise<{
             {p.pillars.map((pillar, i) => (
               <li key={pillar} className="flex items-start gap-4 rounded-2xl border border-midnight-navy/10 bg-white p-4">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-ui text-sm font-semibold" style={{ backgroundColor: `${hue}1f`, color: hue }}>{i + 1}</span>
-                <span className="font-body text-[16px] leading-relaxed text-charcoal/80">{pillar}</span>
+                <span className="font-body text-base leading-relaxed text-charcoal/80">{pillar}</span>
               </li>
             ))}
           </ol>
@@ -81,7 +81,7 @@ export default async function PlaybookDetailPage({ params }: { params: Promise<{
           ].map((f) => (
             <div key={f.t}>
               <h3 className="font-display text-lg font-semibold text-midnight-navy">{f.t}</h3>
-              <p className="mt-1.5 font-body text-[14px] leading-relaxed text-charcoal/70">{f.b}</p>
+              <p className="mt-1.5 font-body text-sm leading-relaxed text-charcoal/70">{f.b}</p>
             </div>
           ))}
         </div>

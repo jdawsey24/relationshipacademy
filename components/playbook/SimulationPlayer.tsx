@@ -120,7 +120,7 @@ export default function SimulationPlayer({ simulation, onComplete, onExit, onScr
                 </dl>
               )}
               {rv.summary && (
-                <p className="rounded-2xl bg-sage-green/12 px-4 py-3 font-body text-[16px] leading-relaxed text-charcoal/90">{rv.summary}</p>
+                <p className="rounded-2xl bg-sage-green/12 px-4 py-3 font-body text-base leading-relaxed text-charcoal/90">{rv.summary}</p>
               )}
               {rv.reactions.length > 0 && (
                 <ul className="space-y-2">

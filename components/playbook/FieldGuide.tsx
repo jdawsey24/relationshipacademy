@@ -23,7 +23,7 @@ function Block({ block }: { block: LiteratureBlock }) {
         <section className="space-y-3">
           {block.heading && <h2 className="font-ui text-sm font-semibold uppercase tracking-wide text-charcoal/55">{block.heading}</h2>}
           {block.body.map((p, j) => (
-            <p key={j} className="font-body text-[16px] leading-relaxed text-charcoal/85">{p}</p>
+            <p key={j} className="font-body text-base leading-relaxed text-charcoal/85">{p}</p>
           ))}
         </section>
       );

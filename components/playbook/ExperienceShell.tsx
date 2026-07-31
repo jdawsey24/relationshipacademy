@@ -326,7 +326,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                     onClick={() => toggleRecognized(card.id)}
                     className={"w-full rounded-2xl p-4 text-left transition " + (selected ? "bg-midnight-navy text-warm-ivory" : "bg-white/70 text-charcoal hover:bg-white")}
                   >
-                    <span className="font-body text-[16px] leading-relaxed">{selected ? "✓ " : ""}{card.headline}</span>
+                    <span className="font-body text-base leading-relaxed">{selected ? "✓ " : ""}{card.headline}</span>
                     {card.secondaryExamples && card.secondaryExamples.length > 0 && (
                       <span className={"mt-1 block font-body text-micro " + (selected ? "text-warm-ivory/70" : "text-charcoal/55")}>
                         {card.secondaryExamples.join("  ·  ")}
@@ -369,7 +369,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
               const lastLogged = loggedUses.length ? fmtLoggedDate(loggedUses[loggedUses.length - 1]?.at) : null;
               return (
                 <li key={card.id} className="rounded-2xl bg-white/70 p-5">
-                  <p className="font-body text-[16px] leading-relaxed text-charcoal">{card.headline}</p>
+                  <p className="font-body text-base leading-relaxed text-charcoal">{card.headline}</p>
                   {built && play ? (
                     <>
                       <p className="mt-1 font-body text-[14px] text-charcoal/60">You'll learn to: {play.positioning}</p>
@@ -595,8 +595,8 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
               return (
                 <li key={play.playId} className="rounded-2xl bg-white/70 p-5">
                   <h3 className="font-display text-lg text-midnight-navy">{play.name}</h3>
-                  <p className="mt-3 font-body text-[14px] leading-relaxed text-charcoal/85"><span className="font-ui text-xs uppercase tracking-wide text-charcoal/50">When it helps</span><br />{play.recognitionGate.prompt}</p>
-                  <p className="mt-2 font-body text-[14px] leading-relaxed text-charcoal/85"><span className="font-ui text-xs uppercase tracking-wide text-charcoal/50">What it helps you do</span><br />{play.positioning}</p>
+                  <p className="mt-3 font-body text-sm leading-relaxed text-charcoal/85"><span className="font-ui text-xs uppercase tracking-wide text-charcoal/50">When it helps</span><br />{play.recognitionGate.prompt}</p>
+                  <p className="mt-2 font-body text-sm leading-relaxed text-charcoal/85"><span className="font-ui text-xs uppercase tracking-wide text-charcoal/50">What it helps you do</span><br />{play.positioning}</p>
                   <div className="mt-3 flex items-center gap-3">
                     <button type="button" onClick={() => { setBackTo("tools"); openPlay(play.playId); }} className="rounded-full bg-midnight-navy px-5 py-2 font-ui text-sm text-warm-ivory">{state === "in_my_plays" || state === "used" ? "Revisit →" : "Start →"}</button>
                     {explored && <span className="font-ui text-xs uppercase tracking-wide text-charcoal/45">{state === "in_my_plays" ? "saved" : state === "used" ? "used" : "explored"}</span>}

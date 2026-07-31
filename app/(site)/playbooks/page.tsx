@@ -69,7 +69,7 @@ async function Landing() {
           {WHATS_INSIDE.map((f) => (
             <div key={f.title} className="rounded-2xl border border-midnight-navy/10 bg-white p-5">
               <h3 className="font-display text-lg font-semibold text-midnight-navy">{f.title}</h3>
-              <p className="mt-2 font-body text-[14px] leading-relaxed text-charcoal/70">{f.body}</p>
+              <p className="mt-2 font-body text-sm leading-relaxed text-charcoal/70">{f.body}</p>
             </div>
           ))}
         </div>
@@ -95,7 +95,7 @@ async function Landing() {
                 <h3 className="mt-4 font-display text-xl font-semibold leading-tight text-midnight-navy">{p.subtitle}</h3>
                 {p.corePattern && <p className="mt-2 font-body text-body text-charcoal/70">{p.corePattern}</p>}
                 {p.keyTakeaway && (
-                  <p className="mt-3 flex-1 border-l-2 pl-3 font-body text-[14px] italic leading-relaxed text-charcoal/60" style={{ borderColor: `${hue}66` }}>
+                  <p className="mt-3 flex-1 border-l-2 pl-3 font-body text-sm italic leading-relaxed text-charcoal/60" style={{ borderColor: `${hue}66` }}>
                     &ldquo;{p.keyTakeaway}&rdquo;
                   </p>
                 )}

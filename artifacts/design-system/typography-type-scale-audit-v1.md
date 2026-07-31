@@ -114,7 +114,14 @@ Ordered by value / safety:
    `text-[13px] leading-relaxed` and 1 `leading-snug` — here the calculus inverts from step 2:
    `text-micro`'s 1.5 LH is *tighter* than `leading-relaxed` (1.625), so migrating those would tighten
    them; the explicit-leading variants keep their intended leading.
-4. **Redundancy cleanup (F4).** Case-by-case; only where the named step's line-height matches intent.
+4. ~~**Redundancy cleanup (F4).**~~ **DONE (2026-07-31).** Migrated the 30 bracket sizes that
+   duplicate a named step *and* carry an explicit `leading-*` (which overrides the step's default
+   line-height, so the swap is pixel-identical): `text-[14px] leading-relaxed`→`text-sm` (9),
+   `text-[16px] leading-relaxed`→`text-base` (16), `text-[18px] leading-snug`→`text-lg` (2),
+   `text-[36px] leading-[1.08]`→`text-4xl` (3). Each class pair was probed to identical computed
+   `font-size`/`line-height` before editing. **Left as-is:** the 42 *bare* `text-[12px]`/`[14px]`/
+   `[16px]` (no explicit leading — a named step would impose its default line-height, loosening any
+   multi-line ones), same principle as the bare `text-[15px]` left in step 2.
 5. **Secondary hero tiers.** Consider tokens for the 36px (`contact`) and 30→40px (`results`,
    `library`) tiers if they proliferate.
 

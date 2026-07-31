@@ -86,7 +86,7 @@ function BlockingInterstitial({ payload, onClose }: { payload: SafetyPayload; on
       <div className="mx-auto max-w-md px-6 py-12 text-center">
         <HeartMark />
         <h1 id="safety-title" className="mt-5 font-display text-2xl font-semibold leading-tight text-midnight-navy">{payload.heading ?? "Support is available"}</h1>
-        <p className="mt-3 whitespace-pre-line font-body text-[16px] leading-relaxed text-charcoal/80">{payload.message}</p>
+        <p className="mt-3 whitespace-pre-line font-body text-base leading-relaxed text-charcoal/80">{payload.message}</p>
 
         {/* Immediate-danger addendum — emphasized, only when the API flag is true. */}
         {payload.immediate_notice && (

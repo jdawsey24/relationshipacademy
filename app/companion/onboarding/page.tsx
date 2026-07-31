@@ -44,7 +44,7 @@ export default function CompanionOnboardingPage() {
 
       {step === 0 && (
         <Section eyebrow="Welcome" title="A private space to process" onNext={() => setStep(1)} nextLabel="Get started">
-          <p className="text-balance font-body text-[16px] leading-relaxed text-charcoal/75">The Relationship Companion is a private, judgment-free space to think through whatever you&apos;re navigating — so you can move at your own pace and make choices that feel intentional. It isn&apos;t therapy, and there&apos;s nothing to keep up with. Come as often, or as rarely, as you need.</p>
+          <p className="text-balance font-body text-base leading-relaxed text-charcoal/75">The Relationship Companion is a private, judgment-free space to think through whatever you&apos;re navigating — so you can move at your own pace and make choices that feel intentional. It isn&apos;t therapy, and there&apos;s nothing to keep up with. Come as often, or as rarely, as you need.</p>
         </Section>
       )}
 

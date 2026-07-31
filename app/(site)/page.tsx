@@ -83,7 +83,7 @@ export default async function HomePage() {
           <p className="mt-3 font-body text-lg text-charcoal/90">
             {get(content, "home.problem.subhead", "It's trying to solve today's problems with yesterday's expectations.")}
           </p>
-          <p className="mx-auto mt-6 max-w-[640px] font-body text-[16px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-6 max-w-[640px] font-body text-base leading-relaxed text-charcoal">
             {get(content, "home.problem.body", "We're surrounded by relationship advice. Communication tips. Attachment styles. Conflict strategies. Love languages. Most of it is good. But good advice applied at the wrong moment — or the wrong stage — can make things harder, not easier. The Relationship Life Cycle™ doesn't replace what you already know about relationships. It gives it context.")}
           </p>
         </div>
@@ -157,7 +157,7 @@ export default async function HomePage() {
       <section className="bg-[#F2F5F2] px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "home.pros.heading", "A framework built for clinical practice.")}</h2>
-          <p className="mx-auto mt-4 max-w-[680px] font-body text-[16px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-4 max-w-[680px] font-body text-base leading-relaxed text-charcoal">
             {get(content, "home.pros.body", "Therapists, coaches, attorneys, healthcare providers, and organizations are using the Relationship Life Cycle™ Framework to bring developmental clarity to the relationships they support. Professional resources, CE courses, and certification are in development.")}
           </p>
           <div className="mt-8"><CtaButton href="/professionals" variant="secondary">Explore Professional Resources</CtaButton></div>

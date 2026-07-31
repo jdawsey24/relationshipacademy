@@ -130,7 +130,7 @@ export default async function AssessmentPage() {
       <section className="px-6 py-16">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "assessment.cred.heading", "Built on something real.")}</h2>
-          <p className="mx-auto mt-4 max-w-[600px] font-body text-[16px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-4 max-w-[600px] font-body text-base leading-relaxed text-charcoal">
             {get(content, "assessment.cred.body", "The Relationship Snapshot™ is built on the Relationship Life Cycle™ Framework — a developmental model that views relationships as growing and changing over time rather than simply being healthy or unhealthy. It was developed by Janelle Dawsey, LMFT, and is designed to provide developmental insight, not a diagnosis or a score.")}
           </p>
           <Link href="/framework" className="mt-6 inline-flex items-center gap-1 font-ui text-sm font-medium text-midnight-navy transition-all hover:gap-2">

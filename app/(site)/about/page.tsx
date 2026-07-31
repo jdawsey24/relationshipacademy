@@ -56,13 +56,13 @@ export default async function AboutPage() {
         <div className="mx-auto grid max-w-3xl gap-10 sm:grid-cols-2">
           <div>
             <h2 className="font-display text-2xl font-semibold text-midnight-navy">{get(content, "about.mission.heading", "Mission")}</h2>
-            <p className="mt-3 font-body text-[16px] leading-relaxed text-charcoal">
+            <p className="mt-3 font-body text-base leading-relaxed text-charcoal">
               {get(content, "about.mission.body", "To give every person a developmental map for their relationships — so that where they are makes sense, what they need becomes clear, and the path forward feels possible.")}
             </p>
           </div>
           <div>
             <h2 className="font-display text-2xl font-semibold text-midnight-navy">{get(content, "about.vision.heading", "Vision")}</h2>
-            <p className="mt-3 font-body text-[16px] leading-relaxed text-charcoal">
+            <p className="mt-3 font-body text-base leading-relaxed text-charcoal">
               {get(content, "about.vision.body", "A world where relationship development is understood, not assumed — where individuals and couples have access to the language, tools, and frameworks they need to navigate every phase of the relational journey.")}
             </p>
           </div>
@@ -75,7 +75,7 @@ export default async function AboutPage() {
           <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "about.janelle.heading", "About Janelle Dawsey, LMFT")}</h2>
           <div className="mt-6 flex flex-col gap-8 sm:flex-row sm:items-start">
             <Image src="/janelle-about.jpg" alt="Portrait of Janelle Dawsey, LMFT, creator of the Relationship Life Cycle™ Framework" width={220} height={330} sizes="220px" className="h-auto w-full max-w-[220px] rounded-2xl object-cover shadow-sm" />
-            <div className="flex-1 space-y-4 font-body text-[16px] leading-relaxed text-charcoal">
+            <div className="flex-1 space-y-4 font-body text-base leading-relaxed text-charcoal">
               <p>Janelle Dawsey became a therapist because she believed relationships could change people&apos;s lives — and that the right support at the right moment could make all the difference. What she didn&apos;t expect was how clearly clinical practice would reveal the gap: not in the quality of people&apos;s intentions, but in their access to a developmental map for the journey they were on.</p>
               <p>The Relationship Life Cycle™ is her attempt to close that gap.</p>
               <p>Janelle is a Licensed Marriage and Family Therapist (License No. MFT001614), certified matchmaker, author, and the founder and CEO of Symmetricly — a multi-clinician relationship wellness firm based in Smyrna, Georgia. She holds a Master of Science in Marriage and Family Therapy from Mercer University and is the author of <em>The Real Mommy Makeover</em> and <em>Healing After Heartbreak</em>.</p>
@@ -113,7 +113,7 @@ export default async function AboutPage() {
       <section className="bg-[#FBF9F5] px-6 py-16">
         <div className="mx-auto max-w-2xl">
           <h2 className="font-display text-2xl font-semibold text-midnight-navy">{get(content, "about.media.heading", "Media & Press")}</h2>
-          <p className="mt-3 font-body text-[16px] leading-relaxed text-charcoal">
+          <p className="mt-3 font-body text-base leading-relaxed text-charcoal">
             For media inquiries, interview requests, or press kit access, please contact{" "}
             <a href="mailto:info@symmetricly.co" className="text-midnight-navy underline underline-offset-4">info@symmetricly.co</a>.
           </p>

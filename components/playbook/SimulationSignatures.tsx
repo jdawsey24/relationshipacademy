@@ -33,7 +33,7 @@ const EvidenceTimelineChrome: FunctionComponent<SignatureChromeProps> = ({ visit
       {beats.map((n) => (
         <li key={n.id} className="relative">
           <span aria-hidden="true" className="absolute -left-[21px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-blue/60" />
-          <p className="font-body text-[14px] leading-relaxed text-charcoal/70">
+          <p className="font-body text-sm leading-relaxed text-charcoal/70">
             {n.kind === "reveal" && n.label && <span className="mr-1 font-ui text-xs font-semibold uppercase text-slate-blue">{n.label}</span>}
             {((n as Extract<SimNode, { kind: "moment" | "reveal" }>).body ?? []).join(" ")}
           </p>

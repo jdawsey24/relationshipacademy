@@ -14,11 +14,11 @@ function BlockView({ block }: { block: Block }) {
   if (Array.isArray(block)) {
     return (
       <ul className="mt-2 list-disc space-y-1 pl-5">
-        {block.map((li, i) => <li key={i} className="font-body text-[14px] leading-relaxed text-charcoal/80">{li}</li>)}
+        {block.map((li, i) => <li key={i} className="font-body text-sm leading-relaxed text-charcoal/80">{li}</li>)}
       </ul>
     );
   }
-  return <p className="mt-2 font-body text-[14px] leading-relaxed text-charcoal/80">{block}</p>;
+  return <p className="mt-2 font-body text-sm leading-relaxed text-charcoal/80">{block}</p>;
 }
 
 export default function DisclosureScreen({ onAccepted }: { onAccepted: () => void }) {
@@ -52,7 +52,7 @@ export default function DisclosureScreen({ onAccepted }: { onAccepted: () => voi
 
         {/* Full disclosure. */}
         <h2 className="mt-7 font-display text-lg font-semibold text-midnight-navy">{DISCLOSURE_TITLE}</h2>
-        <p className="mt-2 font-body text-[14px] leading-relaxed text-charcoal/75">{DISCLOSURE_INTRO}</p>
+        <p className="mt-2 font-body text-sm leading-relaxed text-charcoal/75">{DISCLOSURE_INTRO}</p>
 
         <div className="mt-4 space-y-5">
           {DISCLOSURE_SECTIONS.map((s) => (
