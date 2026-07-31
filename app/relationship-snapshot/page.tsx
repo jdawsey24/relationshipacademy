@@ -6,9 +6,9 @@ import QuestionMock from "@/components/landing/QuestionMock";
 import FaqAccordion, { type Faq } from "@/components/landing/FaqAccordion";
 
 export const metadata = {
-  title: "The Relationship Snapshot™ — How's your relationship, really?",
+  title: "The Relationship Snapshot™ — How's your relationship life, really?",
   description:
-    "It's easy to know your relationship status. It's harder to know how your relationship is actually doing. Take the free Relationship Snapshot™ — a 5-minute assessment that shows what's working, where to grow, and what to focus on next.",
+    "It's easy to name your relationship status. It's harder to see what's actually shaping your relationship life. Take the free Relationship Snapshot™ — a 5-minute assessment that names the pattern you're in, what's working, and what to focus on next. Single, dating, or years in.",
 };
 
 const START = "/snapshot";
@@ -27,7 +27,7 @@ const STEPS = [
 ];
 
 const COMPARE = [
-  ["Focuses on personality or compatibility", "Focuses on how the relationship is functioning"],
+  ["Focuses on personality or compatibility", "Focuses on the pattern you're in"],
   ["Gives a general type or label", "Identifies strengths and growth opportunities"],
   ["Offers one broad result", "Provides a clearer next step"],
   ["Treats relationships as static", "Recognizes that relationships change over time"],
@@ -64,12 +64,12 @@ export default function RelationshipSnapshotLanding() {
           <div className="text-center lg:text-left">
             <SectionLabel className="mb-4">The Relationship Snapshot&trade;</SectionLabel>
             <h1 className="text-balance font-display text-hero font-semibold text-midnight-navy sm:text-6xl">
-              How&apos;s your relationship, really?
+              How&apos;s your relationship life, really?
             </h1>
             <div className="mx-auto mt-6 max-w-[520px] space-y-3 font-body text-lg leading-relaxed text-charcoal/80 lg:mx-0">
-              <p>It&apos;s easy to know your relationship status.</p>
-              <p>It&apos;s harder to know how your relationship is actually doing.</p>
-              <p>The Relationship Snapshot&trade; helps you see what&apos;s going well, where you may need more attention, and what to focus on next.</p>
+              <p>It&apos;s easy to name your relationship status.</p>
+              <p>It&apos;s harder to see what&apos;s actually shaping your relationship life.</p>
+              <p>The Relationship Snapshot&trade; helps you see the pattern you&apos;re in, what&apos;s going well, and what to focus on next — whether you&apos;re single, dating, or years in.</p>
             </div>
             <div className="mt-8 flex flex-col items-center gap-3 lg:items-start">
               <CtaButton href={START}>Take My Relationship Snapshot</CtaButton>
@@ -90,10 +90,10 @@ export default function RelationshipSnapshotLanding() {
             <div className="mt-6 space-y-4 font-body text-lg leading-relaxed text-charcoal/80">
               <p>We learn math, science, history, and how to prepare for a career.</p>
               <p>But when it comes to relationships, most of us are left to figure things out through experience, advice from other people, social media, and a whole lot of trial and error.</p>
-              <p>So even when a relationship looks fine from the outside, it can still be difficult to answer simple questions like:</p>
+              <p>So even when things look fine from the outside, it can still be hard to answer simple questions like:</p>
             </div>
             <ul className="mt-5 space-y-2.5">
-              {["Are we growing together?", "Are the same problems keeping us stuck?", "Are we building something strong?", "What should we be paying more attention to?"].map((q) => (
+              {["Are my relationships actually growing?", "Do the same problems keep showing up?", "Am I building toward something that lasts?", "What should I be paying more attention to?"].map((q) => (
                 <li key={q} className="flex gap-3 font-body text-lg text-charcoal/85">
                   <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-coral-rose" aria-hidden="true" />
                   <span>{q}</span>
@@ -101,7 +101,7 @@ export default function RelationshipSnapshotLanding() {
               ))}
             </ul>
             <p className="mt-6 font-body text-lg font-medium leading-relaxed text-midnight-navy">
-              You should not have to wait for a crisis to understand your relationship.
+              You should not have to wait for a crisis to understand your relationship life.
             </p>
           </div>
         </div>
@@ -123,7 +123,7 @@ export default function RelationshipSnapshotLanding() {
             <p>It means knowing what is happening gives you the chance to be more intentional about what happens next.</p>
           </div>
           <blockquote className="mx-auto mt-10 max-w-2xl border-t border-white/15 pt-8 font-display text-2xl font-medium leading-snug text-white sm:text-[28px]">
-            You may know what your relationship is called. The Snapshot helps you understand how it is going.
+            You may know your relationship status. The Snapshot helps you understand the pattern underneath it.
           </blockquote>
         </div>
       </section>
@@ -135,8 +135,8 @@ export default function RelationshipSnapshotLanding() {
             <SectionLabel className="mb-4">A clearer picture in about five minutes</SectionLabel>
             <h2 className="text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-4xl">Meet the Relationship Snapshot&trade;</h2>
             <div className="mt-6 space-y-4 font-body text-lg leading-relaxed text-charcoal/80">
-              <p>The Relationship Snapshot&trade; is a brief, guided assessment designed to help you better understand your current relationship.</p>
-              <p>Your responses are used to create a personalized overview of what appears to be supporting your relationship, where there may be room to grow, and what may deserve your attention next.</p>
+              <p>The Relationship Snapshot&trade; is a brief, guided assessment designed to help you understand your relationship life — wherever you are in it.</p>
+              <p>Your responses are used to create a personalized overview: the pattern you&apos;re in, what&apos;s already working for you, and what may deserve your attention next.</p>
               <p>This is not a pass-or-fail test. It is a starting point for greater clarity.</p>
             </div>
             <div className="mt-8"><CtaButton href={START}>Start My Snapshot</CtaButton></div>
@@ -153,7 +153,7 @@ export default function RelationshipSnapshotLanding() {
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-4xl">Walk away knowing what matters most.</h2>
-            <p className="mt-5 font-body text-lg leading-relaxed text-charcoal/80">Your results are designed to help you understand your relationship without overwhelming you with scores, jargon, or labels.</p>
+            <p className="mt-5 font-body text-lg leading-relaxed text-charcoal/80">Your results are designed to help you understand your relationship life without overwhelming you with scores, jargon, or labels.</p>
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {OUTCOMES.map((o) => (
@@ -195,7 +195,7 @@ export default function RelationshipSnapshotLanding() {
             <h2 className="text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-4xl">More than a compatibility quiz.</h2>
             <div className="mt-6 space-y-4 font-body text-lg leading-relaxed text-charcoal/80">
               <p>Many relationship quizzes focus on personality, preferences, or whether two people are a good match.</p>
-              <p className="font-medium text-midnight-navy">The Relationship Snapshot&trade; looks at something different: how your relationship is functioning and whether it is keeping pace with the relationship you are building.</p>
+              <p className="font-medium text-midnight-navy">The Relationship Snapshot&trade; looks at something different: the pattern shaping how you show up — and whether it&apos;s helping you build what you actually want.</p>
               <p>It is informed by the Relationship Life Cycle&trade; Framework, which examines how relationships develop, change, face challenges, and require different skills over time.</p>
               <p>The goal is not to tell you whether to stay or leave. The goal is to help you see more clearly.</p>
             </div>
@@ -230,7 +230,7 @@ export default function RelationshipSnapshotLanding() {
               ))}
             </ul>
             <p className="mt-6 rounded-xl bg-warm-ivory p-4 font-body text-body text-charcoal/75">
-              The Snapshot can be completed by one person. Your partner does not need to participate for you to receive meaningful insight.
+              You take the Snapshot on your own. If you&apos;re with someone, they don&apos;t need to take part for your results to be meaningful.
             </p>
           </div>
         </div>
@@ -277,10 +277,10 @@ export default function RelationshipSnapshotLanding() {
         </div>
         <div className="relative mx-auto max-w-3xl">
           <h2 className="text-balance font-display text-4xl font-semibold leading-[1.08] text-midnight-navy sm:text-5xl">
-            You know your relationship status. Now understand how your relationship is doing.
+            You know your relationship status. Now understand the pattern underneath it.
           </h2>
           <p className="mx-auto mt-6 max-w-xl font-body text-lg leading-relaxed text-charcoal/80">
-            Take five minutes to see what is working, what may need more attention, and what to focus on next.
+            Take five minutes to see the pattern you&apos;re in, what&apos;s working, and what to focus on next.
           </p>
           <div className="mt-9 flex flex-col items-center gap-3">
             <CtaButton href={START}>Take My Relationship Snapshot</CtaButton>
