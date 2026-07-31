@@ -17,7 +17,7 @@ export async function generateMetadata() {
 const FEATURES = [
   { n: 1, icon: "phases", title: "Six relationship phases", body: "From the earliest stages of connection to rebuilding after loss." },
   { n: 2, icon: "domains", title: "Six areas of focus", body: "Every relationship expresses itself through six key areas, measured throughout every phase." },
-  { n: 3, icon: "assessment", title: "A free developmental assessment", body: "See exactly where your relationship is functioning right now." },
+  { n: 3, icon: "assessment", title: "A free developmental assessment", body: "See the pattern shaping your relationship life right now." },
 ] as const;
 
 function FeatureIcon({ kind }: { kind: string }) {
@@ -134,12 +134,12 @@ export default async function HomePage() {
       {/* Assessment */}
       <section className="bg-warm-ivory px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.assess.heading", "See where your relationship is right now.")}</h2>
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.assess.heading", "See where you are right now.")}</h2>
           <p className="mx-auto mt-4 max-w-[680px] font-body text-reading text-charcoal">
-            {get(content, "home.assess.body", "The Relationship Snapshot™ is a free assessment that shows you how your relationship is functioning today — and what it might need next.")}
+            {get(content, "home.assess.body", "The Relationship Snapshot™ is a free assessment that names the pattern shaping your relationship life today — and what to focus on next.")}
           </p>
           <ul className="mx-auto mt-8 flex max-w-md flex-col gap-3 text-left">
-            {["Understand where your relationship is", "Discover what's already going well", "See what to focus on next"].map((b) => (
+            {["Understand the pattern you're in", "Discover what's already going well", "See what to focus on next"].map((b) => (
               <li key={b} className="flex items-center gap-3 font-body text-charcoal">
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage-green/20 text-sage-green">✓</span>
                 {b}

@@ -127,7 +127,7 @@ export default async function PhaseDetailPage({ params }: { params: Promise<{ ph
         <div className="mx-auto max-w-xl">
           <h2 className="font-display text-2xl font-semibold">Take the Relationship Snapshot™</h2>
           <p className="mx-auto mt-3 max-w-md font-body text-white/85">
-            See how your relationship is functioning right now across all six domains.
+            See the pattern shaping your relationship life right now — in about five minutes.
           </p>
           <div className="mt-6">
             <CtaButton href="/snapshot" variant="accent">Start the Free Snapshot</CtaButton>
