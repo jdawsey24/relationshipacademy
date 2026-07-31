@@ -13,8 +13,14 @@
  *    better, not that they will meet someone.
  *  - Never characterise men or women as a group.
  *
- * ⚠ OPEN ITEM 4 — every entry marked STAT: requires a citation and a review
- *   date before publish. Figures are accurate as authored but unsourced here.
+ * OPEN ITEM 4 — CITATIONS ATTACHED 2026-07-31, verified against primary sources
+ *   (see the CITATION comment on each figure). Six of seven figures confirmed
+ *   accurate as authored.
+ *   ⚠ ONE OPEN: the "~three-quarters ghosted or ghosted someone" figure below is
+ *     NOT confirmed against the cited 2024 survey (which reports 41% BEEN ghosted).
+ *     Owner to confirm the 2023 (n=5,000) source or adjust the copy before publish.
+ *   ⚠ TIME-SENSITIVE: the Match Group litigation STATUS and Tinder payer counts
+ *     change — re-check both at each review before publish.
  */
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
@@ -74,7 +80,15 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         ],
       },
       {
-        // STAT: Forbes Health/OnePoll 2024 (n=1,000) + 2023 (n=5,000). CITATION REQUIRED.
+        // CITATION [verified 2026-07-31]:
+        //   "Worn out": Forbes Health / OnePoll, dating-app fatigue survey, 2024
+        //     (n=1,000 US adults who used a dating app in the past year; fieldwork
+        //     27 Mar–1 Apr 2024) — 78% feel fatigued sometimes/often/always.
+        //     https://www.forbes.com/health/dating/dating-app-fatigue/
+        //   ⚠ "Ghosted or ghosted someone (~three-quarters)": NOT confirmed against
+        //     the 2024 survey, which reports 41% have BEEN ghosted. This union figure
+        //     needs its primary source confirmed (Forbes Health 2023, n=5,000?) or the
+        //     copy adjusted. OWNER TO CONFIRM before publish.
         kind: "list",
         label: "What the numbers actually say",
         items: [
@@ -128,7 +142,12 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         ],
       },
       {
-        // STAT: Tinder/Opinium 2024 (n=8,000, 18-34). CITATION REQUIRED.
+        // CITATION [verified 2026-07-31]:
+        //   Tinder, "The Green Flags Study" / Opinium, 2024 (n=8,000 single, actively
+        //     dating 18–34; UK/US/Canada/Australia; fieldwork 3–18 Jun 2024) — 68% of
+        //     women and 53% of men said they want a romantic relationship.
+        //     https://www.tinderpressroom.com/The-Green-Flags-Study
+        //     Note: 4-country sample (not US-only); "single & actively dating."
         kind: "example",
         body: [
           "One thing worth knowing, since it cuts against the strongest version of the read: when people in their twenties and thirties are actually asked, most say they want a relationship — around two-thirds of women, around half of men.",
@@ -240,7 +259,13 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         ],
       },
       {
-        // STAT: 2024 US class action re Match Group. Allegation only; denied. CITATION REQUIRED.
+        // CITATION [verified 2026-07-31]:
+        //   Putative class action v. Match Group, Inc., N.D. Cal., filed 14 Feb 2024 —
+        //     alleges Tinder/Hinge/The League are designed to be "addictive"/gamified.
+        //     Match Group calls the suit "ridiculous" with "zero merit."
+        //     ALLEGATION ONLY; denied; unresolved as authored.
+        //     https://sfstandard.com/2024/02/15/hinge-tinder-dating-app-addicts-lawsuit/
+        //   ⚠ Litigation status changes — RE-CHECK the case status at each review.
         kind: "example",
         body: [
           "There's active litigation in the US alleging that some major platforms use these mechanics deliberately to keep people searching rather than finding. The companies deny it. We're not going to tell you how that resolves.",
@@ -276,7 +301,12 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         ],
       },
       {
-        // STAT: Pronk & Denissen 2020, Soc Psych & Personality Science 11(3). CITATION REQUIRED.
+        // CITATION [verified 2026-07-31]:
+        //   Pronk, T. M., & Denissen, J. J. A. (2020). A Rejection Mind-Set: Choice
+        //     Overload in Online Dating. Social Psychological and Personality Science,
+        //     11(3), 388–396. https://doi.org/10.1177/1948550619866189 — across a
+        //     session, chance of acceptance fell ~27% from first to last option
+        //     (copy's "roughly a quarter").
         kind: "example",
         body: [
           "When researchers watched people go through profiles in a single sitting, something consistent happened. People got more rejecting as they went. By the end of a session they were saying no far more often than at the start \u2014 roughly a quarter less likely to accept anyone.",
@@ -313,7 +343,13 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         body: ["Straight answer, because it's a straight question."],
       },
       {
-        // STAT: Rosenfeld, Thomas & Hausen, PNAS 2019 (HCMST). CITATION REQUIRED.
+        // CITATION [verified 2026-07-31]:
+        //   Rosenfeld, M. J., Thomas, R. J., & Hausen, S. (2019). Disintermediating
+        //     your friends: How online dating in the United States displaces other
+        //     ways of meeting. PNAS, 116(36), 17753–17758 (HCMST data).
+        //     https://doi.org/10.1073/pnas.1908630116 — for US heterosexual couples,
+        //     meeting online became the single most common way couples meet ~2013;
+        //     ~39% by 2017.
         kind: "example",
         body: [
           "Meeting online overtook meeting through friends around 2013. Roughly four in ten couples now meet that way, and it's the single most common route.",
@@ -429,7 +465,13 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         ],
       },
       {
-        // STAT: Pew Research Center 2023. CITATION REQUIRED.
+        // CITATION [verified 2026-07-31]:
+        //   Pew Research Center (2 Feb 2023), "From Looking for Love to Swiping the
+        //     Field: Online Dating in the U.S." — among recent online daters, 54% of
+        //     women vs ~25% of men felt overwhelmed by the number of messages; 64% of
+        //     men vs ~40% of women felt insecure about too few. Describes divergent
+        //     EXPERIENCES, consistent with the drowning/invisible split below.
+        //     https://www.pewresearch.org/internet/2023/02/02/from-looking-for-love-to-swiping-the-field-online-dating-in-the-u-s/
         // ⚠ GENDER GUARDRAIL: describes EXPERIENCES, never groups. Do not
         //   rewrite into "men are" / "women are" framing under any edit.
         kind: "distinction",
@@ -469,7 +511,11 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         ],
       },
       {
-        // STAT: Match Group reporting, declining payer counts. CITATION REQUIRED.
+        // CITATION [verified 2026-07-31]:
+        //   Match Group Q4 2024 results — Tinder direct-revenue payers fell ~5% YoY to
+        //     9.5M, declining for multiple consecutive quarters through 2024.
+        //     https://s203.q4cdn.com/993464185/files/doc_financials/2024/q4/Q4-2024-Executive-Commentary_vF.pdf
+        //   ⚠ Time-sensitive figure — refresh to the latest quarter at each review.
         kind: "distinction",
         label: "Both true at once",
         body: [
