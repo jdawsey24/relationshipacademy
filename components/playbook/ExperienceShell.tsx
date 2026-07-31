@@ -255,7 +255,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
               {usedReviewPlay.fidelity.misuse.map((m, idx) => <li key={idx}>{m}</li>)}
             </ul>
           </div>
-          <p className="mt-3 font-body text-[13px] italic text-charcoal/60">{usedReviewPlay.fidelity.notMeaning}</p>
+          <p className="mt-3 font-body text-micro italic text-charcoal/60">{usedReviewPlay.fidelity.notMeaning}</p>
           {progress.outputs[usedReviewPlay.playId] ? (
             <div className="mt-4 border-t border-light-gray pt-4">
               <p className="font-body text-[15px] text-charcoal/85">Does the Play you saved still fit what you learned?</p>
@@ -328,7 +328,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                   >
                     <span className="font-body text-[16px] leading-relaxed">{selected ? "✓ " : ""}{card.headline}</span>
                     {card.secondaryExamples && card.secondaryExamples.length > 0 && (
-                      <span className={"mt-1 block font-body text-[13px] " + (selected ? "text-warm-ivory/70" : "text-charcoal/55")}>
+                      <span className={"mt-1 block font-body text-micro " + (selected ? "text-warm-ivory/70" : "text-charcoal/55")}>
                         {card.secondaryExamples.join("  ·  ")}
                       </span>
                     )}
@@ -404,7 +404,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                             <button type="button" onClick={() => { setBackTo("board"); openHistory(card.pathwayPlayId as string); }} className="text-slate-blue underline">View all</button>
                           </p>
                           {loggedUses[loggedUses.length - 1]?.experience && (
-                            <p className="mt-1 font-body text-[13px] italic text-charcoal/60">“{loggedUses[loggedUses.length - 1]!.experience}”</p>
+                            <p className="mt-1 font-body text-micro italic text-charcoal/60">“{loggedUses[loggedUses.length - 1]!.experience}”</p>
                           )}
                         </>
                       )}
@@ -665,7 +665,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                               <button type="button" onClick={() => { setBackTo("myplays"); openHistory(c.play_id); }} className="text-slate-blue underline">View all</button>
                             </p>
                             {entries[entries.length - 1]?.experience && (
-                              <p className="mt-1 font-body text-[13px] italic text-charcoal/60">“{entries[entries.length - 1]!.experience}”</p>
+                              <p className="mt-1 font-body text-micro italic text-charcoal/60">“{entries[entries.length - 1]!.experience}”</p>
                             )}
                           </>
                         )}
@@ -700,10 +700,10 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                     </div>
                     {e.experience && <p className="mt-2 font-body text-[15px] italic text-charcoal/85">“{e.experience}”</p>}
                     {e.didDifferently?.length ? (
-                      <p className="mt-2 font-body text-[13px] text-charcoal/60"><span className="font-ui uppercase tracking-wide text-charcoal/45">What I did:</span> {e.didDifferently.join(" · ")}</p>
+                      <p className="mt-2 font-body text-micro text-charcoal/60"><span className="font-ui uppercase tracking-wide text-charcoal/45">What I did:</span> {e.didDifferently.join(" · ")}</p>
                     ) : null}
                     {e.stuck && (
-                      <p className="mt-1 font-body text-[13px] text-charcoal/60"><span className="font-ui uppercase tracking-wide text-charcoal/45">Where I got stuck:</span> {e.stuck}</p>
+                      <p className="mt-1 font-body text-micro text-charcoal/60"><span className="font-ui uppercase tracking-wide text-charcoal/45">Where I got stuck:</span> {e.stuck}</p>
                     )}
                   </li>
                 ))}

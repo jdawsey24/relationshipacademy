@@ -84,7 +84,7 @@ export default function DisclosureScreen({ onAccepted }: { onAccepted: () => voi
       {/* Sticky acceptance bar. */}
       <div className="fixed inset-x-0 bottom-0 z-20 border-t border-light-gray bg-white/95 backdrop-blur">
         <div className="mx-auto max-w-md px-5 py-3">
-          {err && <p className="mb-2 font-body text-[13px] text-coral-rose">{err}</p>}
+          {err && <p className="mb-2 font-body text-micro text-coral-rose">{err}</p>}
           <label className="flex items-start gap-2.5">
             <input type="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} className="mt-0.5 h-4 w-4 flex-none" aria-describedby="disclosure-title" />
             <span className="font-body text-[13px] leading-relaxed text-charcoal/80">{ACCEPT_LABEL}</span>

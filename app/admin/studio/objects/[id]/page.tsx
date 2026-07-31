@@ -196,7 +196,7 @@ export default function StudioObjectPage() {
             {fields.map((f) => (
               <Field key={f.key} label={f.label}>
                 {f.multiline
-                  ? <textarea disabled={!editable} value={body[f.key] ?? ""} onChange={(e) => setBody((b) => ({ ...b, [f.key]: e.target.value }))} rows={f.key === "content" ? 12 : 2} className={` font-mono text-[13px]`} />
+                  ? <textarea disabled={!editable} value={body[f.key] ?? ""} onChange={(e) => setBody((b) => ({ ...b, [f.key]: e.target.value }))} rows={f.key === "content" ? 12 : 2} className={` font-mono text-micro`} />
                   : <input disabled={!editable} value={body[f.key] ?? ""} onChange={(e) => setBody((b) => ({ ...b, [f.key]: e.target.value }))} className={INPUT} />}
               </Field>
             ))}

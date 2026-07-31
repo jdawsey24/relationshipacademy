@@ -61,7 +61,7 @@ function Field({ field, value, onChange }: { field: OutputEditorField; value: un
           <option value="">…then I will</option>
           {(field.actions ?? []).map((a) => <option key={a} value={a}>{a}</option>)}
         </select>
-        {field.controlCheck && <p className="rounded-xl bg-warm-ivory px-4 py-2 font-body text-[13px] text-charcoal/70">{field.controlCheck}</p>}
+        {field.controlCheck && <p className="rounded-xl bg-warm-ivory px-4 py-2 font-body text-micro text-charcoal/70">{field.controlCheck}</p>}
       </div>
     );
   }

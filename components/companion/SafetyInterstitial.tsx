@@ -132,7 +132,7 @@ function InlineNotice({ payload, onClose }: { payload: SafetyPayload; onClose: (
             <p className="font-display text-[15px] font-semibold text-midnight-navy">{payload.heading ?? "Support is available."}</p>
             <p className="mt-0.5 font-body text-[13px] leading-relaxed text-charcoal/70">{payload.message}</p>
             {payload.resources.length > 0 && (
-              <button onClick={() => setOpen((o) => !o)} className="mt-2 font-ui text-[13px] font-semibold text-coral-rose">
+              <button onClick={() => setOpen((o) => !o)} className="mt-2 font-ui text-micro font-semibold text-coral-rose">
                 {open ? "Hide support options" : "View support options"}
               </button>
             )}

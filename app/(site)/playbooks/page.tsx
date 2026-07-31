@@ -164,7 +164,7 @@ async function Library({ userId, purchaseSuccess }: { userId: string; purchaseSu
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block font-display text-lg font-semibold leading-tight text-midnight-navy">{names.get(id) ?? "Your Playbook"}</span>
-                  <span className="mt-0.5 block font-body text-[13px] text-charcoal/55">Interactive Playbook</span>
+                  <span className="mt-0.5 block font-body text-micro text-charcoal/55">Interactive Playbook</span>
                 </span>
                 {key ? (
                   <Link href={`/playbook/${key}`}

@@ -36,7 +36,7 @@ export default function PhaseMappingPanel() {
       {rows && rows.length > 0 && (
         <div className="overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
-            <thead><tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal"><th className="px-3 py-1">Item</th><th className="px-3 py-1">Option</th><th className="px-3 py-1">Phase</th><th className="px-3 py-1">Score</th><th className="px-3 py-1">Context</th><th className="px-3 py-1"></th></tr></thead>
+            <thead><tr className="bg-light-gray text-left text-micro uppercase text-charcoal"><th className="px-3 py-1">Item</th><th className="px-3 py-1">Option</th><th className="px-3 py-1">Phase</th><th className="px-3 py-1">Score</th><th className="px-3 py-1">Context</th><th className="px-3 py-1"></th></tr></thead>
             <tbody>{rows.map((r, i) => <tr key={r.id} className={i % 2 ? "bg-[#F9F9F9]" : "bg-white"}><td className="px-3 py-1 font-mono text-xs">{r.item_id}</td><td className="px-3 py-1">{r.response_option_id}</td><td className="px-3 py-1">{r.phase_code}</td><td className="px-3 py-1">{r.score_value ?? "—"}</td><td className="px-3 py-1">{r.structural_context_condition ?? "Any"}</td><td className="px-3 py-1"><button onClick={() => del(r.id)} className="text-coral-rose">✕</button></td></tr>)}</tbody>
           </table>
         </div>

@@ -80,7 +80,7 @@ export default function ResultRecommendationsPage() {
         <div className="overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+              <tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
                 <th className="px-3 py-2 font-semibold">Trigger</th>
                 <th className="px-3 py-2 font-semibold">Recommendation</th>
                 <th className="px-3 py-2 font-semibold">Next step</th>

@@ -87,7 +87,7 @@ export default function UsersPage() {
       {status === "ok" && rows && (
         <div className="overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
-            <thead><tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+            <thead><tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
               <th className="px-3 py-2 font-semibold">Email</th><th className="px-3 py-2 font-semibold">Role</th>
               <th className="px-3 py-2 font-semibold">Last login</th><th className="px-3 py-2 font-semibold">2FA</th><th className="px-3 py-2 font-semibold">Status</th>
               <th className="px-3 py-2 font-semibold">Actions</th>

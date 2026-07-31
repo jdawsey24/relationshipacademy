@@ -108,7 +108,12 @@ Ordered by value / safety:
    ~1.3px/line — better reading measure). **Left as-is:** the 57 bare `text-[15px]` and 3 bare
    `text-[17px]` (single-line labels/list-items on `normal` leading — migrating would loosen the
    multi-line ones), and the 3 `leading-snug` variants (intentional tight leading).
-3. **Micro text → `text-micro`.** `text-[13px]` → `text-micro`.
+3. ~~**Micro text → `text-micro`.**~~ **DONE (2026-07-31).** Migrated the 44 bare `text-[13px]`
+   meta/helper labels (36 files) → `text-micro`. Verified live: 13px / 19.5px LH — pixel-identical
+   (bare 13px already inherited a 1.5 line-height = the token's). **Left as-is:** the 4
+   `text-[13px] leading-relaxed` and 1 `leading-snug` — here the calculus inverts from step 2:
+   `text-micro`'s 1.5 LH is *tighter* than `leading-relaxed` (1.625), so migrating those would tighten
+   them; the explicit-leading variants keep their intended leading.
 4. **Redundancy cleanup (F4).** Case-by-case; only where the named step's line-height matches intent.
 5. **Secondary hero tiers.** Consider tokens for the 36px (`contact`) and 30→40px (`results`,
    `library`) tiers if they proliferate.

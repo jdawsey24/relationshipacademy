@@ -38,7 +38,7 @@ export default function CompanionPlannerList() {
         <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/15"><Glyph paths={["M12 5v14", "M5 12h14"]} size={21} /></span>
         <span className="flex-1">
           <span className="block font-display text-lg font-semibold">Plan a new conversation</span>
-          <span className="mt-0.5 block font-body text-[13px] text-white/70">Start a private, guided plan.</span>
+          <span className="mt-0.5 block font-body text-micro text-white/70">Start a private, guided plan.</span>
         </span>
         <span className="text-white/50" aria-hidden="true">→</span>
       </button>

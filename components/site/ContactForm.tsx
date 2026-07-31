@@ -107,7 +107,7 @@ export default function ContactForm() {
             <button type="submit" disabled={status === "submitting"} className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-midnight-navy px-8 font-ui text-base font-medium text-white transition-colors hover:bg-midnight-navy/90 disabled:opacity-50">
               {status === "submitting" ? "Sending…" : "Send Message"}
             </button>
-            <p className="font-body text-[13px] text-charcoal/60">We typically respond within two business days.</p>
+            <p className="font-body text-micro text-charcoal/60">We typically respond within two business days.</p>
           </>
         )}
       </form>

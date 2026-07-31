@@ -155,7 +155,7 @@ export default function RelationshipCompanionPage() {
         <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Before you begin</p>
         <nav className="mx-auto mt-3 flex max-w-2xl flex-wrap justify-center gap-x-5 gap-y-1.5">
           {COMPANION_LEGAL.map((item) => (
-            <Link key={item.href} href={item.href} className="font-ui text-[13px] text-midnight-navy/70 underline underline-offset-2 hover:text-midnight-navy">
+            <Link key={item.href} href={item.href} className="font-ui text-micro text-midnight-navy/70 underline underline-offset-2 hover:text-midnight-navy">
               {item.label}
             </Link>
           ))}

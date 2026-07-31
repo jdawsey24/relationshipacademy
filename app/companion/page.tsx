@@ -57,7 +57,7 @@ export default function CompanionHome() {
         </span>
         <span className="flex-1">
           <span className="block font-display text-lg font-semibold">Plan a conversation</span>
-          <span className="mt-0.5 block font-body text-[13px] text-white/70">Prepare for something you need to say.</span>
+          <span className="mt-0.5 block font-body text-micro text-white/70">Prepare for something you need to say.</span>
         </span>
         <span className="text-white/50" aria-hidden="true">→</span>
       </Link>
@@ -72,7 +72,7 @@ export default function CompanionHome() {
           <>
             <SituationList situations={situations.slice(0, HOME_SUGGESTIONS)} />
             <Link href="/companion/process"
-              className="mt-3 flex items-center justify-center gap-1.5 rounded-2xl border border-light-gray/70 py-3 font-ui text-[13px] font-semibold text-midnight-navy/75 transition-colors hover:bg-white hover:text-midnight-navy">
+              className="mt-3 flex items-center justify-center gap-1.5 rounded-2xl border border-light-gray/70 py-3 font-ui text-micro font-semibold text-midnight-navy/75 transition-colors hover:bg-white hover:text-midnight-navy">
               Browse all situations
               <span aria-hidden="true">→</span>
             </Link>

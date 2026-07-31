@@ -17,7 +17,7 @@ export default function SituationCard({ id, title, need, categoryId }: {
       </IconTile>
       <span className="min-w-0 flex-1">
         <span className="block font-display text-[19px] font-semibold leading-tight text-midnight-navy">{title}</span>
-        {need && <span className="mt-0.5 block truncate font-body text-[13px] text-charcoal/60">{need}</span>}
+        {need && <span className="mt-0.5 block truncate font-body text-micro text-charcoal/60">{need}</span>}
       </span>
       <span className="shrink-0 text-lg text-charcoal/25 transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
     </Link>

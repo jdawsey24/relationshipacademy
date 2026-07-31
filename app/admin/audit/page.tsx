@@ -68,7 +68,7 @@ export default function AuditPage() {
       {filtered.length > 0 && (
         <div className="overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
-            <thead><tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+            <thead><tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
               <th className="px-3 py-2 font-semibold">When</th>
               <th className="px-3 py-2 font-semibold">Actor</th>
               <th className="px-3 py-2 font-semibold">Action</th>

@@ -41,7 +41,7 @@ function ScoreTable({ head, rows }: { head: [string, string, string]; rows: { a:
     <div className="overflow-x-auto rounded-md border border-light-gray">
       <table className="w-full border-collapse text-sm">
         <thead>
-          <tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+          <tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
             <th className="px-3 py-2 font-semibold">{head[0]}</th>
             <th className="px-3 py-2 font-semibold">{head[1]}</th>
             <th className="px-3 py-2 font-semibold">{head[2]}</th>
@@ -137,7 +137,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ session_i
               <div className="mt-2 overflow-x-auto rounded-md border border-light-gray">
                 <table className="w-full border-collapse text-sm">
                   <thead>
-                    <tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+                    <tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
                       <th className="px-3 py-2 font-semibold">ID</th>
                       <th className="px-3 py-2 font-semibold">Question</th>
                       <th className="px-3 py-2 font-semibold">Raw</th>

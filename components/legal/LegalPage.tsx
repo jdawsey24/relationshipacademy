@@ -32,7 +32,7 @@ export default function LegalPage({ title, effectiveDate, lastUpdated, markdown,
       {related && related.length > 0 && (
         <nav className="mt-5 flex flex-wrap gap-x-4 gap-y-1.5 border-y border-light-gray py-3">
           {related.map((r) => (
-            <Link key={r.href} href={r.href} className="font-ui text-[13px] text-midnight-navy/70 underline underline-offset-2 hover:text-midnight-navy">
+            <Link key={r.href} href={r.href} className="font-ui text-micro text-midnight-navy/70 underline underline-offset-2 hover:text-midnight-navy">
               {r.label}
             </Link>
           ))}
