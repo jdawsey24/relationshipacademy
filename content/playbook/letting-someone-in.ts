@@ -600,7 +600,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           id: "signpost-c3-mistreatment-fit",
           heading: "If something has actually happened",
           body:
-            "If part of what doesn't work is that you're being treated badly — pressure, contempt, being frightened, being controlled — that isn't a fit question. Fit assumes two people are both able to choose freely. If you're not sure that's where you are, please talk to someone who can help you look at it properly.",
+            "If part of what doesn't work is that you're being treated badly — pressure, contempt, being frightened, being controlled — that isn't a fit question, and it isn't something to solve through better communication. Fit assumes two people are both able to choose freely. If any of that fits, speak privately with a domestic-abuse service, or another qualified professional trained in relationship abuse — they can help you understand what's happening and make a safety plan based on your circumstances. You don't have to be certain before asking.",
         },
       ],
     },

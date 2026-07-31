@@ -2,7 +2,7 @@
 
 **56 items · REVISED per owner clinical review 2026-07-31 · still publish-held pending final owner + licensed-clinician + legal sign-off.** Regenerated from current source in `content/playbook/`.
 
-Grouped by clinical priority. Crisis escalation single-sourced from `CRISIS_ESCALATION`; abuse guide is `lit-shared-if-you-dont-feel-safe`. Shared items appear once with all consuming Playbooks. NOTE: `signpost-c3-mistreatment-fit` (de-duped from `signpost-c3-mistreatment`) is newly surfaced — its copy has NOT yet had its own review pass.
+Grouped by clinical priority. Crisis escalation single-sourced from `CRISIS_ESCALATION`; abuse guide is `lit-shared-if-you-dont-feel-safe`. Shared items appear once with all consuming Playbooks.
 
 > Working document. Nothing ships until final sign-off.
 
@@ -190,7 +190,7 @@ The "if you don't feel safe" family — DV, coercion, control, harm, addiction.
 
 > If something has actually happened
 >
-> If part of what doesn't work is that you're being treated badly — pressure, contempt, being frightened, being controlled — that isn't a fit question. Fit assumes two people are both able to choose freely. If you're not sure that's where you are, please talk to someone who can help you look at it properly.
+> If part of what doesn't work is that you're being treated badly — pressure, contempt, being frightened, being controlled — that isn't a fit question, and it isn't something to solve through better communication. Fit assumes two people are both able to choose freely. If any of that fits, speak privately with a domestic-abuse service, or another qualified professional trained in relationship abuse — they can help you understand what's happening and make a safety plan based on your circumstances. You don't have to be certain before asking.
 
 **Decision:** 
 
