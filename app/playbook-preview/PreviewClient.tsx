@@ -10,6 +10,7 @@
 
 import { useState } from "react";
 import ExperienceShell from "@/components/playbook/ExperienceShell";
+import RelatedPlaybooks from "@/components/playbook/RelatedPlaybooks";
 import { getPlaybookContent, listPlaybookKeys } from "@/content/playbook";
 import { emptyProgress, type PlaybookProgress } from "@/lib/playbook/contentSchema";
 
@@ -104,7 +105,14 @@ export default function PreviewClient({ state: initialState }: { state: string }
         </div>
       )}
       {content && progress ? (
-        <ExperienceShell key={`${key}:${isC1 ? state : "first"}`} content={content} playbookKey={key} initialProgress={progress} rev3 />
+        <>
+          <ExperienceShell key={`${key}:${isC1 ? state : "first"}`} content={content} playbookKey={key} initialProgress={progress} rev3 />
+          {/* Cross-Playbook routing scaffold — in-app this becomes hrefFor={`/playbook/${to}`}
+              once targets are publish-wired; here it switches the preview. */}
+          <div className="px-5 pb-16">
+            <RelatedPlaybooks fromKey={key} titleFor={(k) => getPlaybookContent(k)?.displayName} onSelect={setKey} />
+          </div>
+        </>
       ) : (
         <div className="mx-auto max-w-2xl px-5 pt-8 font-body text-charcoal/60">No content registered for “{key}”.</div>
       )}
