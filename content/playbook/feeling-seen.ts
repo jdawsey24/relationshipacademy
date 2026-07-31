@@ -36,7 +36,7 @@ import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C15_LITERATURE } from "./feeling-seen-literature";
 
 export const FEELING_SEEN: PlaybookContent = {
-  playbookKey: "feeling-seen-and-appreciated", // ⚠ CONFIRM canonical slug
+  playbookKey: "feeling-seen",
   playbookVersion: 1,
   displayName: "Feeling Seen and Appreciated",
 

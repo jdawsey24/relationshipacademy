@@ -32,7 +32,7 @@ import { SAFETY_RECOGNITION_CARD } from "./shared/safety-not-safe";
 import { C18_LITERATURE } from "./staying-connected-literature";
 
 export const STAYING_CONNECTED: PlaybookContent = {
-  playbookKey: "staying-connected-through-pressure", // ⚠ CONFIRM canonical slug
+  playbookKey: "staying-connected",
   playbookVersion: 1,
   displayName: "Staying Connected Through Life's Pressures",
 

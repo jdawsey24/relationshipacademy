@@ -3,8 +3,7 @@
 // from the authored content modules (which carry the same intent as prose in their
 // signpost cards). Source: the handoff README "Cross-Playbook routing" table.
 //
-// Endpoints are playbook_keys (REGISTRY keys in content/playbook/index.ts), NOT
-// slugs — note feeling-seen-and-appreciated / staying-connected-through-pressure.
+// Endpoints are playbook_keys (REGISTRY keys in content/playbook/index.ts).
 
 export interface CrossPlaybookRoute {
   /** Source playbook_key. */
@@ -22,7 +21,7 @@ export const CROSS_PLAYBOOK_ROUTES: CrossPlaybookRoute[] = [
   { from: "moving-forward", to: "letting-go", reason: "If you're not there yet — still letting go of the last one." },
   { from: "moving-forward", to: "opening-your-heart-again", reason: "“Doing it differently this time” is covered more fully there." },
   { from: "moving-forward", to: "trusting-what-you-see", reason: "“Doing it differently this time” is covered more fully there." },
-  { from: "feeling-seen-and-appreciated", to: "lean-in-or-let-go", reason: "If this is early-stage chasing rather than long-term resentment." },
+  { from: "feeling-seen", to: "lean-in-or-let-go", reason: "If this is early-stage chasing rather than long-term resentment." },
   { from: "rebuilding-physical-connection", to: "finding-your-way-back", reason: "If the emotional connection has to come first." },
   { from: "building-a-shared-future", to: "asking-better-questions", reason: "If you're still dating rather than already together." },
   { from: "asking-better-questions", to: "building-a-shared-future", reason: "If you're already together rather than still dating." },

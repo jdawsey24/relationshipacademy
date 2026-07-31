@@ -50,7 +50,7 @@ Copy that names suicidal thinking, hopelessness, or a feeling "bigger/heavier th
 ### 4. `signpost-c15-numbness`
 
 - [ ] Reviewed
-- *Type:* in-play support signpost · play `what-i-stopped` · in `feeling-seen-and-appreciated`
+- *Type:* in-play support signpost · play `what-i-stopped` · in `feeling-seen`
 
 > If the flatness has spread
 >
@@ -188,7 +188,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 ### 16. `lit-shared-if-you-dont-feel-safe` — SHARED
 
 - [ ] Reviewed
-- *Type:* literature entry · **Appears in:** `breaking-the-cycle`, `finding-your-way-back`, `staying-connected-through-pressure`
+- *Type:* literature entry · **Appears in:** `breaking-the-cycle`, `finding-your-way-back`, `staying-connected`
 
 > If you don't feel safe
 >
@@ -234,7 +234,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 ### 18. `signpost-c18-financial-control`
 
 - [ ] Reviewed
-- *Type:* in-play support signpost · play `the-money-conversation` · in `staying-connected-through-pressure`
+- *Type:* in-play support signpost · play `the-money-conversation` · in `staying-connected`
 
 > If money is being controlled rather than disagreed about
 >
@@ -289,7 +289,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 ### 23. `rec-shared-not-safe` — SHARED
 
 - [ ] Reviewed
-- *Type:* recognition card (signpost) · **Appears in:** `breaking-the-cycle`, `finding-your-way-back`, `staying-connected-through-pressure`
+- *Type:* recognition card (signpost) · **Appears in:** `breaking-the-cycle`, `finding-your-way-back`, `staying-connected`
 
 > I don't feel safe enough to be honest with them.
 >
@@ -712,7 +712,7 @@ Play-level "notice this / it's common" support cards that don't escalate to a pr
 ### 50. `rec-c15-still-chasing`
 
 - [ ] Reviewed
-- *Type:* recognition card (signpost) · in `feeling-seen-and-appreciated`
+- *Type:* recognition card (signpost) · in `feeling-seen`
 
 > I'm always the one texting first. I don't want to convince someone to choose me.
 >

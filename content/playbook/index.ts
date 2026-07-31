@@ -66,8 +66,8 @@ const REGISTRY: Record<string, PlaybookContent> = {
   "rebuilding-physical-connection": REBUILDING_PHYSICAL_CONNECTION,
   "building-a-true-partnership": BUILDING_A_TRUE_PARTNERSHIP,
   "learning-to-say-no": LEARNING_TO_SAY_NO,
-  "feeling-seen-and-appreciated": FEELING_SEEN,
-  "staying-connected-through-pressure": STAYING_CONNECTED,
+  "feeling-seen": FEELING_SEEN,
+  "staying-connected": STAYING_CONNECTED,
   // Expiration
   "accepting-what-is": ACCEPTING_WHAT_IS,
   "rebuilding-trust": REBUILDING_TRUST,
