@@ -597,7 +597,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       supportSignposts: [
         {
-          id: "signpost-c3-mistreatment",
+          id: "signpost-c3-mistreatment-fit",
           heading: "If something has actually happened",
           body:
             "If part of what doesn't work is that you're being treated badly — pressure, contempt, being frightened, being controlled — that isn't a fit question. Fit assumes two people are both able to choose freely. If you're not sure that's where you are, please talk to someone who can help you look at it properly.",

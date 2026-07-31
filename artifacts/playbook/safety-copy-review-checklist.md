@@ -1,8 +1,8 @@
 # Playbook Safety Copy — Clinical Review Checklist
 
-**55 items · REVISED per owner clinical review 2026-07-31 · still publish-held pending final owner + licensed-clinician + legal sign-off.** Regenerated from the current source in `content/playbook/`.
+**56 items · REVISED per owner clinical review 2026-07-31 · still publish-held pending final owner + licensed-clinician + legal sign-off.** Regenerated from current source in `content/playbook/`.
 
-Every piece of safety/support copy across the 30 Playbooks + add-ons, grouped by clinical priority. Crisis escalation is single-sourced from `CRISIS_ESCALATION` (shared/safety-not-safe.ts); the abuse guide is `lit-shared-if-you-dont-feel-safe`. Shared items appear once with all consuming Playbooks.
+Grouped by clinical priority. Crisis escalation single-sourced from `CRISIS_ESCALATION`; abuse guide is `lit-shared-if-you-dont-feel-safe`. Shared items appear once with all consuming Playbooks. NOTE: `signpost-c3-mistreatment-fit` (de-duped from `signpost-c3-mistreatment`) is newly surfaced — its copy has NOT yet had its own review pass.
 
 > Working document. Nothing ships until final sign-off.
 
@@ -10,7 +10,7 @@ Every piece of safety/support copy across the 30 Playbooks + add-ons, grouped by
 
 ## P1 · Crisis & mental-health escalation  (14)
 
-Copy that names suicidal thinking, hopelessness, or a feeling "bigger/heavier than a tool," and escalates to a GP, therapist, crisis line, or helpline. Crisis escalation is single-sourced from CRISIS_ESCALATION (shared/safety-not-safe.ts).
+Suicidal thinking, hopelessness, or "bigger/heavier than a tool," escalating to a GP/therapist/crisis line. Crisis escalation single-sourced from CRISIS_ESCALATION (shared/safety-not-safe.ts).
 
 ### 1. `severe-self-worth`
 
@@ -168,9 +168,9 @@ Copy that names suicidal thinking, hopelessness, or a feeling "bigger/heavier th
 
 ---
 
-## P2 · Safety, abuse & control (incl. the shared safety guide)  (11)
+## P2 · Safety, abuse & control (incl. the shared safety guide)  (12)
 
-The "if you don't feel safe" family — DV, coercion, financial control, harm, addiction. Shared card + guide cover 3 Playbooks at once.
+The "if you don't feel safe" family — DV, coercion, control, harm, addiction.
 
 ### 15. `signpost-c3-mistreatment`
 
@@ -183,7 +183,18 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 **Decision:** 
 
-### 16. `signpost-c5-safety-concern`
+### 16. `signpost-c3-mistreatment-fit`
+
+- [ ] Final sign-off
+- *Type:* in-play support signpost · play `is-this-right-for-me` · in `letting-someone-in`
+
+> If something has actually happened
+>
+> If part of what doesn't work is that you're being treated badly — pressure, contempt, being frightened, being controlled — that isn't a fit question. Fit assumes two people are both able to choose freely. If you're not sure that's where you are, please talk to someone who can help you look at it properly.
+
+**Decision:** 
+
+### 17. `signpost-c5-safety-concern`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `check-it-dont-bury-it` · in `trusting-what-you-see`
@@ -194,7 +205,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 **Decision:** 
 
-### 17. `signpost-c5-cant-tell-anything`
+### 18. `signpost-c5-cant-tell-anything`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `wise-or-scared` · in `trusting-what-you-see`
@@ -205,7 +216,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 **Decision:** 
 
-### 18. `rec-shared-not-safe` — SHARED
+### 19. `rec-shared-not-safe` — SHARED
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · **Appears in:** `breaking-the-cycle`, `finding-your-way-back`, `staying-connected`
@@ -216,7 +227,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 **Decision:** 
 
-### 19. `signpost-c7-not-safe`
+### 20. `signpost-c7-not-safe`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `raise-it-anyway` · in `breaking-the-cycle`
@@ -227,7 +238,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 **Decision:** 
 
-### 20. `lit-shared-if-you-dont-feel-safe` — SHARED
+### 21. `lit-shared-if-you-dont-feel-safe` — SHARED
 
 - [ ] Final sign-off
 - *Type:* literature entry · **Appears in:** `breaking-the-cycle`, `finding-your-way-back`, `staying-connected`
@@ -274,7 +285,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 **Decision:** 
 
-### 21. `signpost-c9-pressure`
+### 22. `signpost-c9-pressure`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `the-difference-conversation` · in `rebuilding-physical-connection`
@@ -285,7 +296,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 **Decision:** 
 
-### 22. `signpost-c18-financial-control`
+### 23. `signpost-c18-financial-control`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `the-money-conversation` · in `staying-connected`
@@ -296,7 +307,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 **Decision:** 
 
-### 23. `rec-c16-addiction`
+### 24. `rec-c16-addiction`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `rebuilding-trust`
@@ -307,7 +318,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 **Decision:** 
 
-### 24. `signpost-c16-pressure`
+### 25. `signpost-c16-pressure`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `which-question-am-i-asking` · in `rebuilding-trust`
@@ -318,7 +329,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 **Decision:** 
 
-### 25. `signpost-c26-harm`
+### 26. `signpost-c26-harm`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `the-specific-thing` · in `a-different-legacy`
@@ -335,7 +346,7 @@ The "if you don't feel safe" family — DV, coercion, financial control, harm, a
 
 Grief / fertility / pregnancy-loss material.
 
-### 26. `rec-c12-bereaved`
+### 27. `rec-c12-bereaved`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `letting-go`
@@ -346,7 +357,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 27. `rec-c20-bereaved`
+### 28. `rec-c20-bereaved`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `finding-yourself-again`
@@ -357,7 +368,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 28. `lit-c20-the-future`
+### 29. `lit-c20-the-future`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `finding-yourself-again`
@@ -378,7 +389,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 29. `lit-bereave-what-this-is`
+### 30. `lit-bereave-what-this-is`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-losing-a-partner`
@@ -397,7 +408,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 30. `lit-bereave-nobody-understands`
+### 31. `lit-bereave-nobody-understands`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-losing-a-partner`
@@ -416,7 +427,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 31. `lit-bereave-guilt`
+### 32. `lit-bereave-guilt`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-losing-a-partner`
@@ -437,7 +448,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 32. `lit-bereave-still-we`
+### 33. `lit-bereave-still-we`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-losing-a-partner`
@@ -458,7 +469,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 33. `lit-bereave-companionship`
+### 34. `lit-bereave-companionship`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-losing-a-partner`
@@ -479,7 +490,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 34. `lit-bereave-changes`
+### 35. `lit-bereave-changes`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-losing-a-partner`
@@ -498,7 +509,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 35. `lit-bereave-faq-ready`
+### 36. `lit-bereave-faq-ready`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-losing-a-partner`
@@ -515,7 +526,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 36. `rec-grievediff-the-grief`
+### 37. `rec-grievediff-the-grief`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `addon-grieving-differently`
@@ -526,7 +537,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 37. `signpost-grievediff-outside`
+### 38. `signpost-grievediff-outside`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `two-ways-of-grieving` · in `addon-grieving-differently`
@@ -537,7 +548,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 38. `lit-grievediff-what-this-is`
+### 39. `lit-grievediff-what-this-is`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-grieving-differently`
@@ -554,7 +565,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 39. `lit-grievediff-two-ways`
+### 40. `lit-grievediff-two-ways`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-grieving-differently`
@@ -573,7 +584,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 40. `lit-grievediff-supporting`
+### 41. `lit-grievediff-supporting`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-grieving-differently`
@@ -592,7 +603,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 41. `lit-grievediff-different-now`
+### 42. `lit-grievediff-different-now`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-grieving-differently`
@@ -611,7 +622,7 @@ Grief / fertility / pregnancy-loss material.
 
 **Decision:** 
 
-### 42. `lit-grievediff-the-question`
+### 43. `lit-grievediff-the-question`
 
 - [ ] Final sign-off
 - *Type:* literature entry · in `addon-grieving-differently`
@@ -636,7 +647,7 @@ Grief / fertility / pregnancy-loss material.
 
 Play-level support cards that don't escalate to a professional.
 
-### 43. `signpost-self-worth`
+### 44. `signpost-self-worth`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `whos-actually-here` · in `dating-without-losing-hope`
@@ -647,7 +658,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 44. `signpost-c7-always-repairing`
+### 45. `signpost-c7-always-repairing`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `going-back-afterwards` · in `breaking-the-cycle`
@@ -658,7 +669,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 45. `signpost-c20-practical`
+### 46. `signpost-c20-practical`
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost · play `the-shape-of-a-life` · in `finding-yourself-again`
@@ -673,9 +684,9 @@ Play-level support cards that don't escalate to a professional.
 
 ## P5 · Scope-redirect cards (lower clinical risk)  (10)
 
-"This Playbook isn't the fit — look for a paired Playbook about X" cards.
+"Look for a paired Playbook about X" cards.
 
-### 46. `rec-c24-already-committed`
+### 47. `rec-c24-already-committed`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `lean-in-or-let-go`
@@ -686,7 +697,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 47. `rec-c21b-already-together`
+### 48. `rec-c21b-already-together`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `asking-better-questions`
@@ -697,7 +708,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 48. `rec-c15-still-chasing`
+### 49. `rec-c15-still-chasing`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `feeling-seen`
@@ -708,7 +719,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 49. `rec-c21-still-dating`
+### 50. `rec-c21-still-dating`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `building-a-shared-future`
@@ -719,7 +730,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 50. `rec-c12-ready-to-date`
+### 51. `rec-c12-ready-to-date`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `letting-go`
@@ -730,7 +741,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 51. `rec-c23-expectations`
+### 52. `rec-c23-expectations`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `making-confident-decisions`
@@ -741,7 +752,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 52. `rec-c12b-still-in-it`
+### 53. `rec-c12b-still-in-it`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `moving-forward`
@@ -752,7 +763,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 53. `rec-c12b-differently`
+### 54. `rec-c12b-differently`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `moving-forward`
@@ -763,7 +774,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 54. `rec-care-other-side`
+### 55. `rec-care-other-side`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `addon-caregiving`
@@ -774,7 +785,7 @@ Play-level support cards that don't escalate to a professional.
 
 **Decision:** 
 
-### 55. `rec-ill-other-side`
+### 56. `rec-ill-other-side`
 
 - [ ] Final sign-off
 - *Type:* recognition card (signpost) · in `addon-living-with-illness`
