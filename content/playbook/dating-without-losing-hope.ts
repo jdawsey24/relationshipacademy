@@ -28,6 +28,7 @@
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C4_LITERATURE } from "./dating-without-losing-hope-literature";
+import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
 export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
   playbookKey: "dating-without-losing-hope",
@@ -264,7 +265,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
           id: "signpost-generalised-hopelessness",
           heading: "This sounds bigger than one person",
           body:
-            "Some of what you've written sounds bigger than one person or one app. When the feeling stops being about dating and starts being about you — whether you're worth it, whether anything will work — that's worth saying out loud to someone. A therapist, a GP, a friend who'll actually sit with it. Not because something's wrong with you. Because that's heavier than a tool like this is built for.",
+            `Some of what you've written sounds bigger than one person or one app. When the feeling stops being about dating and starts being about you — whether you're worth it, whether anything will work — it can help to say it out loud to someone. A therapist, a GP, a friend who'll actually sit with it. Not because something's wrong with you — because that's heavier than a tool like this is built for. ${CRISIS_ESCALATION}`,
         },
       ],
     },
@@ -432,7 +433,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
           id: "signpost-self-worth",
           heading: "Their silence isn't a verdict on you",
           body:
-            "Some of what you've written reads like their silence is telling you something about you. Mostly it's telling you about them — and often it isn't telling you much at all. If that's a familiar feeling and it doesn't shift, it's worth talking to someone about, separately from any of this.",
+            "Some of what you've written reads like their silence is telling you something about you. Their silence doesn't establish your worth. It may reflect their interest, their capacity, their circumstances, their communication habits, or something you can't know from silence alone. If that's a familiar feeling and it doesn't shift, it can help to talk it through with someone, separately from any of this.",
         },
       ],
     },

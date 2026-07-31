@@ -34,6 +34,7 @@
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C15_LITERATURE } from "./feeling-seen-literature";
+import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
 export const FEELING_SEEN: PlaybookContent = {
   playbookKey: "feeling-seen",
@@ -504,7 +505,7 @@ export const FEELING_SEEN: PlaybookContent = {
           id: "signpost-c15-numbness",
           heading: "If the flatness has spread",
           body:
-            "If it isn't only this relationship — if most things feel flat, or you've stopped expecting anything to improve anywhere, or you've thought that you don't want to keep living like this — please talk to someone. A GP or a therapist. That last sentence in particular is worth saying out loud to a person rather than carrying. Not instead of this. Alongside it.",
+            `If it isn't only this relationship — if most things feel flat, or you've stopped expecting anything to improve anywhere — it can help to talk to a GP or another professional, alongside this rather than instead of it. And if you've had thoughts of suicide, or of hurting yourself, please treat that as urgent. ${CRISIS_ESCALATION}`,
         },
       ],
     },

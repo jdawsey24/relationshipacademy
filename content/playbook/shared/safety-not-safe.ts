@@ -42,6 +42,22 @@
 
 import type { LiteratureEntry, RecognitionCard } from "@/lib/playbook/contentSchema";
 
+/**
+ * SHARED CRISIS ESCALATION — the one place suicide / self-harm / "can't stay
+ * safe" escalation is worded, so it reads identically everywhere and is changed
+ * once. Append to any supportSignpost/literature whose copy reaches a suicide or
+ * immediate-safety threshold.
+ *
+ * ⚠ COUNTRY-AWARENESS: this static copy names 988 as a UNITED STATES resource and
+ *   points non-US readers to their own country's crisis service. Rendering the
+ *   actual local service dynamically (by locale) is a separate product/engineering
+ *   task — see the owner-approval note in the change log. Do NOT present 988 as a
+ *   worldwide number. "Crisis service" (support) is distinguished from "emergency
+ *   services" (immediate danger) on purpose.
+ */
+export const CRISIS_ESCALATION =
+  "If you're thinking about suicide, harming yourself, or you don't feel able to stay safe, please seek immediate support now. Contact your local crisis service or emergency services, or go to the nearest emergency department. In the United States, you can call or text 988. If you're elsewhere, use the crisis service for your country. If you can, tell someone you trust and stay with them while you connect with support.";
+
 export const SAFETY_RECOGNITION_CARD: RecognitionCard = {
   id: "rec-shared-not-safe",
   role: "signpost",
@@ -81,18 +97,41 @@ export const SAFETY_GUIDE: LiteratureEntry = {
       label: "None of the following is a communication problem",
       items: [
         "Being frightened of how they'll react.",
-        "Changing what you say to manage their temper.",
+        "Changing what you say to manage their temper or their mood.",
         "Being made to feel small, stupid, or unstable on purpose.",
-        "Being blamed for things that happened to you.",
+        "Being blamed for things that were done to you.",
         "Having your access to money, people, or leaving controlled.",
-        "Being pressured into anything physical.",
-        "Anything physical, ever.",
+        "Being pressured, coerced, or forced into sexual contact.",
+        "Being threatened with harm — to you, to someone you love, or to a pet.",
+        "Physical aggression: being hit or pushed, restrained, blocked from leaving, choked or strangled, or having property broken to frighten you.",
+        "Any other unwanted physical aggression.",
       ],
     },
     {
       kind: "guardrail",
       body: [
-        "Every tool in this Playbook asks you to raise difficult things and stay in the conversation. If any of the above is happening, that is the wrong instruction and following it could make things worse. Please talk to someone who can help you look at it properly — a domestic abuse service, a GP, or a therapist. You don't have to be certain it's serious to ask.",
+        "Every tool in this Playbook asks you to raise difficult things and stay in the conversation. If any of the above is happening, that instruction can be the wrong one, and following it could make things worse. This isn't something to solve together through better communication.",
+      ],
+    },
+    {
+      kind: "paragraph",
+      heading: "If you're in immediate danger",
+      body: [
+        "Contact your local emergency services or get to a place you feel safe. In the United States, that's 911; elsewhere, use your country's emergency number.",
+      ],
+    },
+    {
+      kind: "paragraph",
+      heading: "Where to find the right support",
+      body: [
+        "A domestic-abuse service, or a professional trained specifically in relationship abuse, can help you understand what's happening and think it through — privately, at your own pace. A general couples counsellor isn't the right place for this, and joint counselling can be unsafe when one person is frightened of the other. You don't have to be certain, or have a word for it, before reaching out.",
+        "They can also help you make a safety plan that fits your circumstances — what you'd do, where you'd go, who you'd tell — whether or not you're thinking about any change right now.",
+      ],
+    },
+    {
+      kind: "guardrail",
+      body: [
+        "One practical note: phone and internet activity can sometimes be seen by someone else. If that's a worry, you might reach out from a device they don't have access to, or from a public computer.",
       ],
     },
     {

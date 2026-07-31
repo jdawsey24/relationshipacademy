@@ -581,7 +581,7 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
           id: "signpost-c7-always-repairing",
           heading: "If you're always the one going back",
           body:
-            "If repair is only ever coming from you, and it's been that way a long time, that's worth taking seriously rather than doing more of. A pattern where one person does all the reconnecting isn't a communication problem — it's an imbalance, and it usually needs both of you in a room with someone. Read 'Should we see someone?'",
+            "If repair is only ever coming from you, and it's been that way a long time, that's worth taking seriously rather than doing more of. A pattern where one person does all the reconnecting isn't a communication problem — it's an imbalance. If both people can take part safely and freely, a qualified couples professional may help. If there's fear, control, retaliation, or pressure, seek individual support first rather than entering joint counselling. Read 'Should we see someone?'",
         },
       ],
     },

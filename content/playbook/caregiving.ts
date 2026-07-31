@@ -66,7 +66,7 @@ export const ADDON_CAREGIVING: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm the one who's ill, not the one caring.",
       validationCopy:
-        "Then this is written from the wrong side. There's a companion piece for the person living with the illness — about feeling like a burden, about not wanting them to feel trapped, about staying connected when everything has changed. That's the one for you. If you're both reading, reading each other's is often more useful than reading your own.",
+        "Then this is written from the wrong side. There's a paired Playbook for the person living with the illness — about feeling like a burden, about not wanting them to feel trapped, about staying connected when everything has changed. That's the one for you. If both of you want to, reading the paired piece may help you understand the other's perspective. Share or discuss only what each of you is comfortable sharing.",
       secondaryExamples: [
         "I feel like a burden.",
         "I don't want them to feel trapped.",

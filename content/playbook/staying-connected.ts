@@ -210,7 +210,7 @@ export const STAYING_CONNECTED: PlaybookContent = {
           id: "signpost-c18-financial-control",
           heading: "If money is being controlled rather than disagreed about",
           body:
-            "If you don't have access to money, or you have to account for what you spend, or financial decisions are made and then told to you — that isn't a compatibility disagreement and this tool doesn't apply. Financial control is a recognised form of abuse. Please read 'If you don't feel safe', and consider talking to a domestic abuse service or a GP. You don't have to be certain to ask.",
+            "Sharing a budget, talking over big purchases, or agreeing how you'll handle money together is ordinary — this isn't about that. But if you're denied access to money, stopped from working, monitored or punished for what you spend, have money taken without agreement, are kept in the dark about the finances, or decisions are made over you under pressure or threat — that isn't a compatibility disagreement, and this tool doesn't apply. Financial control can be a form of abuse. Please read 'If you don't feel safe', and consider talking to a domestic-abuse service. You don't have to be certain to ask.",
         },
       ],
     },

@@ -726,7 +726,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
           id: "signpost-c5-cant-tell-anything",
           heading: "If this is bigger than dating",
           body:
-            "If you don't trust your judgement about anything — work, friends, what you're seeing generally — or if the sense of not being able to tell what's real has spread beyond relationships, that's worth taking to someone. A GP or a therapist. It isn't a dating problem at that point.",
+            "If you don't trust your judgement about anything — work, friends, what you're seeing generally — or if the sense of not being able to tell what's real has spread beyond relationships, it can help to take that to someone. A GP or another professional. And if it's tipping further than that — if you're feeling unsafe, unable to get through an ordinary day, or genuinely unable to tell what's real — please treat that as a reason to reach out sooner rather than later: a GP, an urgent-care or crisis service, or someone you trust. It isn't a dating problem at that point.",
         },
       ],
     },

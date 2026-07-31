@@ -508,7 +508,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
           id: "signpost-c23-alone",
           heading: "If there's no one",
           body:
-            "Some people work through this and find there isn't anyone \u2014 the relationship took the friendships with it, or there was never much of a network. That's common and it isn't a failure of yours. A therapist is a reasonable first person to tell, precisely because there's no history to manage and nothing gets passed on. So is a helpline, if that's easier to start with.",
+            "Some people work through this and find there isn't anyone \u2014 the relationship took the friendships with it, or there was never much of a network. That's common and it isn't a failure of yours. A therapist can be a reasonable first person to tell, precisely because there's no history to manage and nothing gets passed on. So can a mental-health support line, or a bereavement line if the loss is what's heaviest \u2014 whichever is easier to start with.",
         },
       ],
     },

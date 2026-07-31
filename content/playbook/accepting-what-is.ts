@@ -31,6 +31,7 @@
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C11_LITERATURE } from "./accepting-what-is-literature";
+import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
 export const ACCEPTING_WHAT_IS: PlaybookContent = {
   playbookKey: "accepting-what-is",
@@ -543,7 +544,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
           id: "signpost-c11-flatness",
           heading: "If it isn't only this",
           body:
-            "If the flatness has spread past the relationship — if most things feel this way, or you've stopped expecting anything to improve anywhere — that's worth mentioning to a GP or a therapist. It's separate from this decision, and it makes the decision much harder to make well.",
+            `If the flatness has spread past the relationship — if most things feel this way, or you've stopped expecting anything to improve anywhere — it can help to talk it through with a GP or another professional. It's separate from this decision, and it can make the decision harder to make well. ${CRISIS_ESCALATION}`,
         },
       ],
     },

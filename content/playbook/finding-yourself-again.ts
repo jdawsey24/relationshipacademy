@@ -77,7 +77,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       pathwayPlayId: null,
       headline: "My partner died.",
       validationCopy:
-        "This Playbook is for people whose relationship ended while both are still living, and some of it would land badly on you — the tools assume someone made a choice. Losing a partner to death is a different injury with different questions: whether moving forward means leaving them behind, how to want companionship without it feeling like a betrayal. There's a Playbook for that, and it's the right one.",
+        "This Playbook is for people whose relationship ended while both are still living, and some of it would land badly on you — the tools assume someone made a choice. Losing a partner to death is a different injury with different questions: whether continuing your life means leaving them behind, how to want companionship without it feeling like a betrayal. There's a paired Playbook for that, and it's the right one.",
       secondaryExamples: [
         "Dating again feels like I'm betraying them.",
         "I don't want to replace them.",

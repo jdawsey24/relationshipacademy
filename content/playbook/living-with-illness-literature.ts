@@ -64,7 +64,7 @@ export const ADDON_ILLNESS_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "Nothing here is medical, makes any assumption about your condition, or has a view on what you're capable of. There is also a companion piece written from your partner's side. If you're both reading, reading each other's is often more useful than reading your own.",
+          "Nothing here is medical, makes any assumption about your condition, or has a view on what you're capable of. There is also a paired Playbook written from your partner's side. If both of you want to, reading the paired piece may help you understand the other's perspective — share or discuss only what each of you is comfortable sharing.",
         ],
       },
     ],

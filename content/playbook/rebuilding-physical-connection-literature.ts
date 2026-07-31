@@ -63,7 +63,7 @@ export const C9_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "If any of these might apply — to either of you — please see a GP before you put six months into working on the relationship. Not because the relationship doesn't matter. Because if the cause is physical, no amount of connection work will touch it, and you'll conclude something untrue about the two of you in the meantime.",
+          "If any of these might apply — to either of you — it's worth seeing a GP or another healthcare professional, alongside looking at the relationship rather than instead of it. Changes in desire can be physical, medication-related, hormonal, emotional, relational, or a combination. Finding a physical contributor doesn't mean the relationship side is irrelevant — or the other way round — and neither has to be settled before the other is looked at.",
         ],
       },
       {

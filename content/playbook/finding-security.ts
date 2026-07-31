@@ -31,6 +31,7 @@
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C6_LITERATURE } from "./finding-security-literature";
+import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
 export const FINDING_SECURITY: PlaybookContent = {
   playbookKey: "finding-security", // ⚠ CONFIRM canonical slug
@@ -335,7 +336,7 @@ export const FINDING_SECURITY: PlaybookContent = {
           id: "signpost-c6-worth-contingent",
           heading: "If it isn't only about them",
           body:
-            "Some of what people write here is less about the relationship and more about whether they're worth anything at all — where being wanted is the only thing that settles it. If that's nearer the mark for you, that's worth taking to someone who can stay with it. A therapist or a GP. It's a bigger question than a dating tool can hold, and it deserves more than this.",
+            `Some of what people write here is less about the relationship and more about whether they're worth anything at all — where being wanted is the only thing that settles it. If that's nearer the mark for you, it can help to take it to someone who can stay with it — a therapist, a GP, or another professional. It's a bigger question than a dating tool can hold. ${CRISIS_ESCALATION}`,
         },
       ],
     },

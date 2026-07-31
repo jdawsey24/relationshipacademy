@@ -376,7 +376,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
           id: "signpost-c25-the-why",
           heading: "If you want the why",
           body:
-            "Wanting to understand where it comes from is legitimate, and a therapist is the right place for it \u2014 someone who knows your history, can be wrong out loud with you, and can revise it as you go. That's a different thing from a text that has to guess, and it's worth having if the question matters to you.",
+            "Wanting to understand where it comes from is legitimate, and a therapist can provide an appropriate place to explore it \u2014 someone who knows your history, can be wrong out loud with you, and can revise it as you go. That's a different thing from a text that has to guess, and it can be worth having if the question matters to you.",
         },
       ],
     },

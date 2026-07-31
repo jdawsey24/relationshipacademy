@@ -71,7 +71,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm the one providing the care.",
       validationCopy:
-        "Then this is written from the wrong side. There's a companion piece for the person caring — about the partnership receding, about the guilt of wanting a break, about being alone while together. That's the one for you. If you're both reading, reading each other's is often more useful than reading your own.",
+        "Then this is written from the wrong side. There's a paired Playbook for the person caring — about the partnership receding, about the guilt of wanting a break, about being alone while together. That's the one for you. If both of you want to, reading the paired piece may help you understand the other's perspective. Share or discuss only what each of you is comfortable sharing.",
       secondaryExamples: [
         "I'm exhausted.",
         "I feel guilty wanting a break.",

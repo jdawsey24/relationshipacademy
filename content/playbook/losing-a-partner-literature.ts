@@ -71,7 +71,7 @@ export const ADDON_BEREAVEMENT_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "Nothing here will suggest you move on, and nothing will put a timeline on anything \u2014 in either direction. \u201cTake all the time you need\u201d is also a claim, and it can read as permission to stop.",
+          "Nothing here will suggest you move on, and nothing will put a timeline on anything \u2014 in either direction. There's no schedule you're meant to be keeping, and no single way you're supposed to be doing this.",
         ],
       },
     ],
@@ -93,10 +93,10 @@ export const ADDON_BEREAVEMENT_LITERATURE: LiteratureEntry[] = [
       },
       {
         kind: "distinction",
-        label: "It's substantially accurate",
+        label: "Why it can feel that way",
         body: [
-          "The available scripts are built for divorce. People offer them because they're what exists \u2014 you'll be better off, you'll find someone, it takes about a year.",
-          "None of those are aimed at what's happened. So people who genuinely care produce things that land as though they haven't understood, because in a specific sense they haven't.",
+          "Many of the available scripts are built for divorce. People offer them because they're what exists \u2014 you'll be better off, you'll find someone, it takes about a year.",
+          "None of those are aimed at what's happened to you. So people who genuinely care can say things that land as though they haven't understood \u2014 even when they're trying to. That doesn't mean no one can understand, or that you're alone in it; some people who've been through something similar may come closer than you'd expect.",
         ],
       },
       {
@@ -126,15 +126,15 @@ export const ADDON_BEREAVEMENT_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI feel guilty for laughing again.\u201d \u201cI don't know if I'm allowed to be happy.\u201d \u201cI'm afraid moving forward means leaving them behind.\u201d",
-          "These are close to universal and they're rarely said out loud, because they sound irrational and they don't feel irrational.",
+          "These are common and they're rarely said out loud, because they sound irrational and they don't feel irrational.",
         ],
       },
       {
         kind: "distinction",
-        label: "What the guilt is doing",
+        label: "What the guilt can be doing",
         body: [
-          "Grief is one of the few remaining forms of contact. While it's acute, they're still present in the day.",
-          "So anything that reduces it can feel like a second loss \u2014 not a relief but a further separation. That's why being all right for an afternoon can produce something that feels like betrayal.",
+          "For some people, grief becomes one of the few remaining forms of contact \u2014 while it's acute, they're still present in the day.",
+          "So anything that reduces it can feel like a second loss \u2014 not a relief but a further separation. That can be why being all right for an afternoon sometimes produces something that feels like betrayal.",
         ],
       },
       {
@@ -210,13 +210,13 @@ export const ADDON_BEREAVEMENT_LITERATURE: LiteratureEntry[] = [
         label: "Replacing and adding are different",
         body: [
           "Replacement assumes a single slot \u2014 that a new person would occupy the place the last one had, and therefore displace them.",
-          "Most people who do this find it doesn't work like that. The new relationship occupies its own place, and the previous one isn't vacated. People routinely hold both.",
+          "Some people who do this find it doesn't work like that. The new relationship occupies its own place, and the previous one isn't vacated. Many people find they can hold both.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know how to love someone new while honouring my past\u201d is the right question, and the answer most people arrive at is unglamorous: by not hiding it. Relationships that begin with the previous one acknowledged tend to hold both more easily than ones where it's managed around.",
+          "\u201cI don't know how to love someone new while honouring my past\u201d is the right question, and one answer people arrive at is unglamorous: by not hiding it. When the previous relationship is acknowledged rather than managed around, some people find both are easier to hold \u2014 though there's no single right way to do this.",
         ],
       },
       {
@@ -260,7 +260,7 @@ export const ADDON_BEREAVEMENT_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "\u201cMy world changed overnight\u201d is worth naming as its own thing. Sudden loss and expected loss are different experiences, and people who had no warning often find that the shock and the grief are two separate processes running at different speeds.",
+          "\u201cMy world changed overnight\u201d is worth naming as its own thing. Sudden loss and expected loss are different experiences, and people who had no warning often find that the shock and the grief can feel like overlapping experiences, moving at different speeds.",
         ],
       },
     ],
@@ -277,7 +277,7 @@ export const ADDON_BEREAVEMENT_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "There's no threshold, and the people who tell you there is are guessing. Some people are ready in months and some never want to be, and neither says anything about the marriage.",
+          "There is no universal readiness threshold, and the people who tell you there is are guessing. Some people are ready in months and some never want to be, and neither says anything about the marriage.",
         ],
       },
       {

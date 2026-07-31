@@ -251,7 +251,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           id: "signpost-c3-mistreatment",
           heading: "If something has actually happened",
           body:
-            "If what you're describing is someone treating you badly — pressure, contempt, being frightened, being controlled — that isn't a pattern to examine and this isn't the tool. Leaving is the correct response and you don't need a gap. If you're not sure, that uncertainty is worth taking to someone who can talk it through with you properly.",
+            "If what you're describing involves fear, pressure, control, contempt, threats, or harm, this isn't a pattern for you to solve through better communication. Pause this tool and speak privately with a domestic-abuse service, or another qualified professional trained in relationship abuse. They can help you understand what's happening and make a safety plan based on your circumstances. You don't have to be certain before asking.",
         },
       ],
     },
@@ -355,7 +355,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           id: "signpost-c3-heavier-material",
           heading: "If the true thing is a heavy one",
           body:
-            "If what you're carrying is bigger than a preference or an opinion — something from your history, something you've never told anyone — this isn't the place to try it first. That deserves somewhere it can be met properly, with someone whose job it is. Start here with something smaller.",
+            "If what you're carrying is bigger than a preference or an opinion — something from your history, something you've never told anyone — this particular exercise isn't built to hold it safely. It's not that such things have to be handed to a professional before anything else; it's that this specific step isn't designed for traumatic or highly distressing material. If and when you want to bring it somewhere, a setting made for that can meet it properly. Here, you might start with something smaller.",
         },
       ],
     },

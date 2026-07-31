@@ -82,7 +82,7 @@ export const MOVING_FORWARD: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm not there yet — I still can't stop thinking about them.",
       validationCopy:
-        "Then this is the wrong half. There's a companion for the part before this — the checking, the replaying, working out what was actually yours. This one assumes that's at least underway, and reading it first tends to feel like being hurried. Plenty of people move between the two, and going back isn't losing ground.",
+        "Then this is the wrong half. There's a paired Playbook for the part before this — the checking, the replaying, working out what was actually yours. You don't have to have finished that before reading this one, and going back to it isn't losing ground — plenty of people move between the two.",
       secondaryExamples: [
         "I keep checking their social media.",
         "I keep replaying everything.",

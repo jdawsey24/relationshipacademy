@@ -192,7 +192,7 @@ export const C20_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "It isn't sentimentality. Losing an assumed future is a recognised part of this and it accounts for a great deal of the disorientation. \u201cI don't know what my future looks like anymore\u201d is a fair description rather than a failure of imagination.",
+          "It isn't sentimentality. Losing an assumed future is a commonly described form of loss, and it accounts for a great deal of the disorientation. \u201cI don't know what my future looks like anymore\u201d is a fair description rather than a failure of imagination.",
         ],
       },
     ],

@@ -72,7 +72,7 @@ export const ADDON_GRIEVING_DIFFERENTLY: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I don't know how to grieve what never happened.",
       validationCopy:
-        "That, and \u201cmy body has failed me\u201d, and the way an announcement can take an afternoon out of you — those are the heaviest parts of this and they need more than anything written generally can offer. Fertility counsellors and pregnancy loss services exist specifically for it, and they are considerably better at it than we would be. We'd rather point you there than half-help in the place where half-helping matters most. What's here is only the part about the two of you.",
+        "That, and \u201cmy body has failed me\u201d, and the way an announcement can take an afternoon out of you — those are the heaviest parts of this, and they need more than anything written generally can offer. One thing worth saying plainly, though: pregnancy or fertility loss is not evidence that you have failed. Fertility counsellors and pregnancy loss services exist specifically for it, and they can hold it far better than we could. We'd rather point you there than half-help in the place where half-helping matters most. What's here is only the part about the two of you.",
       secondaryExamples: [
         "My body has failed me.",
         "Every pregnancy announcement hurts.",
@@ -85,7 +85,7 @@ export const ADDON_GRIEVING_DIFFERENTLY: PlaybookContent = {
       pathwayPlayId: "two-ways-of-grieving",
       headline: "We don't grieve the same way.",
       explanation:
-        "Both of you are usually wrong about what the other's way means — and each response confirms the other's reading.",
+        "Each of you may be misreading what the other's way means — and each response can seem to confirm the other's reading.",
       secondaryExamples: [
         "Our relationship feels different now.",
         "I feel alone in this experience.",
@@ -121,7 +121,7 @@ export const ADDON_GRIEVING_DIFFERENTLY: PlaybookContent = {
             "Grieving differently isn't the problem. What each of you concludes from the other's way usually is.",
             "The one who talks about it hears the silence as not caring, or as having moved on.",
             "The one who doesn't hears the talking as being unable to let it rest — and often stays quiet specifically to avoid making it worse.",
-            "Both are usually wrong, and both are behaving reasonably given what they think is happening.",
+            "Each is often reading the other without enough to go on, and both are behaving reasonably given what they think is happening.",
           ],
         },
         {
@@ -218,7 +218,7 @@ export const ADDON_GRIEVING_DIFFERENTLY: PlaybookContent = {
           id: "signpost-grievediff-outside",
           heading: "You may not be able to do this for each other",
           body:
-            "Two people grieving the same loss are both depleted, and sometimes the support has to come from outside. That isn't a failure of the relationship — it's arithmetic. A fertility counsellor or a pregnancy loss service can hold what neither of you currently has spare, and couples who use one often find it takes pressure off rather than adding a problem.",
+            "Two people grieving the same loss are both depleted, and sometimes the support has to come from outside. That isn't a failure of the relationship. A fertility counsellor or a pregnancy loss service can hold what neither of you may have spare right now, and for some couples that eases the pressure rather than adding a problem.",
         },
       ],
     },

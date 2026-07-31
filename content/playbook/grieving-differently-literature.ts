@@ -104,7 +104,7 @@ export const ADDON_GRIEVING_DIFFERENTLY_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Both are usually wrong about the other, and both are behaving reasonably given what they think is happening. Which is why it compounds \u2014 each response confirms the other's reading.",
+          "Each may be reading the other without enough to go on, and both are behaving reasonably given what they think is happening. Which is why it can compound \u2014 each response seems to confirm the other's reading.",
         ],
       },
       {
@@ -177,7 +177,7 @@ export const ADDON_GRIEVING_DIFFERENTLY_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "Worth separating, because they don't move together",
         body: [
-          "The grief changes on its own timescale and doesn't respond to effort.",
+          "The grief changes on its own timescale — it can't be forced or scheduled — though support and the ways you look after yourself may affect how it's carried.",
           "The misreading is the part that responds to anything, and it's the part this can work on.",
         ],
       },

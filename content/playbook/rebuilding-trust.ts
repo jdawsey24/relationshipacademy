@@ -116,7 +116,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I don't know where support ends and enabling begins.",
       validationCopy:
-        "This Playbook is the wrong instrument for that, and we'd rather say so than half-help. Support-versus-enabling is a real and specific question with a body of knowledge behind it — Al-Anon or a similar family group, or a therapist who works with families affected by addiction rather than a couples therapist. If the worrying is affecting your sleep or your health, your GP. Some of what's here will still apply, but that question needs people who know the territory.",
+        "This Playbook is the wrong instrument for that, and we'd rather say so than half-help. Support-versus-enabling is a real and specific question with a body of knowledge behind it. Depending on what fits, that might be an addiction-informed therapist, a family-support service, or a peer-support group such as Al-Anon; if the worry is affecting your health, a GP can help. And if there's ever fear, coercion, or violence in it, a domestic-abuse service — or emergency services, if you're in immediate danger — comes first. Couples work can be part of the picture later, but it isn't the place to start when safety or coercion is involved. Some of what's here will still apply, but that question needs people who know the territory.",
       secondaryExamples: [
         "I'm exhausted from worrying.",
         "Recovery has changed our relationship.",
@@ -364,7 +364,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
           id: "signpost-c16-intrusive",
           heading: "If the images are constant",
           body:
-            "If you're not sleeping, or the images arrive as though it's happening now, or they're there most of the day — that's worth taking to a therapist rather than managing alone. It's a recognised response to this kind of injury and there is specific help for it. It doesn't mean anything has gone wrong with you.",
+            "If you're not sleeping, or the images arrive as though it's happening now, or they're there most of the day — it can help to take that to a therapist rather than managing it alone. Experiences like this can occur after a painful breach of trust, and there is specific help for them. It doesn't mean anything has gone wrong with you.",
         },
       ],
     },

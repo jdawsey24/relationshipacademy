@@ -57,7 +57,7 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
       pathwayPlayId: null,
       headline: "Something's changed and I don't know why.",
       validationCopy:
-        "Start by ruling out the physical. Antidepressants, perimenopause, thyroid, chronic pain, the first year or two after a baby — these are common causes of changed desire and they are frequently missed. If any might apply to either of you, see a GP before putting six months into the relationship side. If it's physical, no amount of connection work will touch it, and you'll conclude something untrue about the two of you meanwhile.",
+        "Changes in desire can have physical, medication-related, hormonal, emotional, relational, or combined causes. Antidepressants and other medications, pregnancy or the postpartum period, perimenopause or menopause, thyroid conditions, pain, stress, and relationship difficulties may all contribute. A GP or appropriate healthcare professional can help rule out or treat medical factors while you consider the relationship context. Finding a physical contributor doesn't mean the relational experience is irrelevant — or the other way round.",
       secondaryExamples: [
         "This started fairly suddenly.",
         "One of us is on medication or has had a health change.",
@@ -441,7 +441,7 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
           id: "signpost-c9-pressure",
           heading: "If they've already said no",
           body:
-            "If your partner has told you they don't want to, the answer isn't a better approach. Wanting more than your partner does is genuinely painful and it isn't something you can fix on your own — and continuing to try turns into pressure, whatever the intention. This is one of the things sex therapy is actually good at, and it's a reasonable thing to want help with rather than keep working at alone.",
+            "If your partner has told you they don't want to, the answer isn't a better approach. Wanting more than your partner does is genuinely painful, and it isn't something you can fix on your own — and continuing to try turns into pressure, whatever the intention. A qualified sex therapist can help partners explore desire differences without ever treating consent as negotiable, and it's a reasonable thing to want help with rather than keep working at alone. Where there's fear, coercion, or retaliation, joint work isn't the right setting — individual support comes first.",
         },
       ],
     },

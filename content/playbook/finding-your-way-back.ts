@@ -27,7 +27,7 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { SAFETY_RECOGNITION_CARD } from "./shared/safety-not-safe";
+import { SAFETY_RECOGNITION_CARD, CRISIS_ESCALATION } from "./shared/safety-not-safe";
 import { C8_LITERATURE } from "./finding-your-way-back-literature";
 
 export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
@@ -562,7 +562,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
           id: "signpost-c8-self-disconnection",
           heading: "If it isn't only about them",
           body:
-            "Some of what people write here isn't really about the relationship — feeling disconnected from yourself, not remembering the last time anything felt exciting, not feeling like yourself anymore. If that's nearer the mark, it's worth mentioning to a GP or a therapist. Not instead of this. Alongside it, because that part isn't a relationship problem and won't be fixed by one.",
+            `Some of what people write here isn't really about the relationship — feeling disconnected from yourself, not remembering the last time anything felt exciting, not feeling like yourself anymore. If that's nearer the mark, it can help to mention it to a GP or another professional — alongside this, not instead of it, because that part isn't a relationship problem and won't be fixed by one. ${CRISIS_ESCALATION}`,
         },
       ],
     },

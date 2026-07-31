@@ -39,6 +39,7 @@
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C12_LITERATURE } from "./letting-go-literature";
+import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
 export const LETTING_GO: PlaybookContent = {
   playbookKey: "letting-go",
@@ -81,7 +82,7 @@ export const LETTING_GO: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm thinking about dating again and don't know how.",
       validationCopy:
-        "That's the next part rather than this one. Working out how much of your past to share, when to mention what happened, whether you're ready — those need different tools, and they assume the letting go is at least underway. Look for the Playbook about moving forward. You can come back to this one; plenty of people move between them.",
+        "That's the next part rather than this one. The paired Playbook about moving forward covers disclosure, comparison, pacing, and working out what you're ready to explore. You don't have to be completely \"over\" the earlier relationship before reading it, and you may move between both Playbooks.",
       secondaryExamples: [
         "I don't know how to date anymore.",
         "Dating apps weren't around last time I was single.",
@@ -631,7 +632,7 @@ export const LETTING_GO: PlaybookContent = {
           id: "signpost-c12-not-coping",
           heading: "If it's more than grief",
           body:
-            "Losing a relationship this way can tip into something that needs more than time. If most things feel like this rather than just the relationship — if it's affecting your sleep, your eating, or your ability to get through a day, or it's been like this for a long stretch without moving at all — please talk to a GP. That's not a comment on how you're grieving. It's a different thing that often arrives alongside it and responds to different help. And if you've had thoughts about not being here, please talk to someone today — a GP, a crisis line, or someone you trust.",
+            `Losing a relationship this way can tip into something that needs more than time. If most things feel like this rather than just the relationship — if it's affecting your sleep, your eating, or your ability to get through a day, or it's been like this for a long stretch without lifting — it may help to talk to a GP or another healthcare professional. That isn't a comment on how you're grieving; it's a different thing that can arrive alongside it and can respond to different kinds of help. ${CRISIS_ESCALATION}`,
         },
       ],
     },
