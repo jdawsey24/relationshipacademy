@@ -3,6 +3,7 @@ import Logo from "@/components/Logo";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import PhaseCard from "@/components/site/PhaseCard";
+import FrameworkCycle from "@/components/site/FrameworkCycle";
 import { getSiteContentMap, get, applyPhaseOverrides, buildPageMetadata } from "@/lib/siteContent";
 
 // ISR: page is cached and regenerated periodically so CMS edits appear within
@@ -32,22 +33,31 @@ export default async function HomePage() {
   return (
     <main>
       {/* Hero */}
-      <section className="flex min-h-screen flex-col items-center justify-center bg-warm-ivory px-6 pt-24 text-center">
-        <Logo variant="full" className="mb-10 h-16 sm:h-20" />
-        <SectionLabel tone="sage" className="mb-4">
-          {get(content, "home.hero.eyebrow", "The Relationship Life Cycle™")}
-        </SectionLabel>
-        <h1 className="font-display text-[40px] font-semibold leading-[1.05] text-midnight-navy sm:text-6xl">
-          {get(content, "home.hero.headline", "Every relationship has a season.")}
-        </h1>
-        <p className="mt-6 max-w-[580px] font-body text-lg leading-relaxed text-charcoal sm:text-xl">
-          {get(content, "home.hero.subhead", "Every relationship has different needs at different points in its journey. The first step is understanding where you are.")}
-        </p>
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <CtaButton href="/framework" variant="primary">Explore the Framework</CtaButton>
-          <CtaButton href="/snapshot" variant="secondary">Take the Free Assessment</CtaButton>
+      <section className="relative flex min-h-screen items-center bg-warm-ivory px-6 pb-20 pt-24">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-16">
+          {/* Copy */}
+          <div className="text-center lg:text-left">
+            <Logo variant="full" className="mx-auto mb-8 h-14 sm:h-16 lg:mx-0" />
+            <SectionLabel tone="sage" className="mb-4">
+              {get(content, "home.hero.eyebrow", "The Relationship Life Cycle™")}
+            </SectionLabel>
+            <h1 className="text-balance font-display text-[40px] font-semibold leading-[1.05] text-midnight-navy sm:text-6xl">
+              {get(content, "home.hero.headline", "Every relationship has a season.")}
+            </h1>
+            <p className="mx-auto mt-6 max-w-[540px] font-body text-lg leading-relaxed text-charcoal sm:text-xl lg:mx-0">
+              {get(content, "home.hero.subhead", "Every relationship has different needs at different points in its journey. The first step is understanding where you are.")}
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+              <CtaButton href="/framework" variant="primary">Explore the Framework</CtaButton>
+              <CtaButton href="/snapshot" variant="secondary">Take the Free Assessment</CtaButton>
+            </div>
+          </div>
+          {/* The framework, living */}
+          <div className="mx-auto w-full max-w-[360px] px-2 lg:max-w-[460px]">
+            <FrameworkCycle />
+          </div>
         </div>
-        <span className="mt-16 animate-bounce text-midnight-navy/40" aria-hidden="true">
+        <span className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-midnight-navy/40" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6" /></svg>
         </span>
       </section>
