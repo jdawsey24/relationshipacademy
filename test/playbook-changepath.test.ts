@@ -17,7 +17,7 @@ const recognizeRD = (p: PlaybookProgress): PlaybookProgress => ({ ...p, recogniz
 const reviewedRD = (performed: "yes" | "partly" | "no", stuck?: string, attemptCount = 1): PlaybookProgress => ({
   ...base(),
   practice_state: { version: 1, missions: { [RD_M]: { state: "reviewed", attemptCount } } },
-  use_review_state: { version: 1, reviews: { [RD]: { performed, ...(stuck ? { stuck } : {}) } } },
+  use_review_state: { version: 1, reviews: { [RD]: [{ performed, ...(stuck ? { stuck } : {}) }] } },
 });
 const selectedRD = (lastReport?: "no_opportunity" | "opportunity_not_taken" | "unsuitable"): PlaybookProgress => ({
   ...base(),

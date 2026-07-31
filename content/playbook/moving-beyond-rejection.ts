@@ -1,13 +1,18 @@
 // Cluster 1 "Difficulty Feeling Chosen" — consumer playbook "Moving Beyond Rejection".
-// Authored content (Phase 5/5B). FIRST BUILD = the two screen-complete Plays only
-// (read-and-decide, what-it-actually-means). The other four Plays are NOT authored
-// here until they complete their own Phase-5/5B design + approval (R6).
+// Authored content (Phase 5/5B). All six Cluster-1 Plays + Experiences are now built:
+// the two original (read-and-decide, what-it-actually-means) plus the four approved slices
+// (is-this-right-for-you, rest-or-giving-up, how-much-to-put-in, say-the-real-thing). Each slice
+// lives in its own file and is spread in below; all behind PLAYBOOK_REV3_ENABLED.
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { MBR_LITERATURE, MBR_STATEMENT_MAP } from "@/content/playbook/moving-beyond-rejection-literature";
 import { MBR_SIMULATIONS } from "@/content/playbook/moving-beyond-rejection-simulations";
 import { MBR_MISSIONS } from "@/content/playbook/moving-beyond-rejection-missions";
 import { MBR_USE_REVIEWS } from "@/content/playbook/moving-beyond-rejection-usereviews";
+import { ITR_PLAY, ITR_SIMULATION, ITR_JIT } from "@/content/playbook/is-this-right-for-you";
+import { RGU_PLAY, RGU_SIMULATION, RGU_JIT } from "@/content/playbook/rest-or-giving-up";
+import { HMP_PLAY, HMP_SIMULATION, HMP_JIT } from "@/content/playbook/how-much-to-put-in";
+import { STT_PLAY, STT_SIMULATION, STT_JIT } from "@/content/playbook/say-the-real-thing";
 
 // User-choice investment/decision actions for Read & Decide (shared by the rule
 // builder and the Update editor). Non-gamey: never mirroring/scorekeeping/deadlines.
@@ -28,16 +33,16 @@ const RD_CONTROL_CHECK =
 export const MOVING_BEYOND_REJECTION: PlaybookContent = {
   playbookKey: "moving-beyond-rejection",
   playbookVersion: 1,
-  displayName: "Moving Beyond Rejection",
+  displayName: "Believing You're Worth Being Chosen",
   // Rev 3 Understand layer (Step 3) — additive; consumed by the flag-gated field
   // guide, not by the v0 delivery path.
-  literature: MBR_LITERATURE,
+  literature: [...MBR_LITERATURE, ...ITR_JIT, ...RGU_JIT, ...HMP_JIT, ...STT_JIT],
   statementMap: MBR_STATEMENT_MAP,
-  simulations: MBR_SIMULATIONS,
+  simulations: [...MBR_SIMULATIONS, ITR_SIMULATION, RGU_SIMULATION, HMP_SIMULATION, STT_SIMULATION],
   missions: MBR_MISSIONS,
   useReviews: MBR_USE_REVIEWS,
   opening: {
-    title: "Moving Beyond Rejection",
+    title: "Believing You're Worth Being Chosen",
     body: [
       "Wanting to be chosen is human — everyone wants to feel wanted. That's not the problem.",
       "This is about what happens when being chosen starts carrying too much weight — quietly shaping how you see yourself, how you read a relationship, how you show up, how much you put in, and what you decide.",
@@ -66,7 +71,7 @@ export const MOVING_BEYOND_REJECTION: PlaybookContent = {
     {
       id: "rec-selection",
       role: "route",
-      pathwayPlayId: "is-this-right-for-you", // not built in first release → shown as "coming soon"
+      pathwayPlayId: "is-this-right-for-you", // built (dualAttention slice)
       headline: "I spend more time wondering if they want me than asking whether I want this.",
       secondaryExamples: ["“I feel like the backup option.”", "“I feel like I'm waiting for them to choose me.”"],
     },
@@ -84,21 +89,21 @@ export const MOVING_BEYOND_REJECTION: PlaybookContent = {
     {
       id: "rec-over-invest",
       role: "route",
-      pathwayPlayId: "how-much-to-put-in", // not built in first release
+      pathwayPlayId: "how-much-to-put-in", // built (investmentView slice)
       headline: "I keep putting more into it even when I'm not getting much back.",
       secondaryExamples: ["“I always care more than they do.”", "“I'm tired of being almost enough.”"],
     },
     {
       id: "rec-self-edit",
       role: "route",
-      pathwayPlayId: "say-the-real-thing", // not built in first release
+      pathwayPlayId: "say-the-real-thing", // built (communicationRehearsal slice)
       headline: "I edit myself so they'll keep liking me.",
       secondaryExamples: ["“I keep changing myself for other people.”", "“I don't know if people like the real me.”"],
     },
     {
       id: "rec-fatigue",
       role: "route",
-      pathwayPlayId: "rest-or-giving-up", // not built in first release
+      pathwayPlayId: "rest-or-giving-up", // built (decisionRoom slice)
       headline: "I'm worn out by dating, and I can't tell if I need a break or I'm just done.",
       secondaryExamples: ["“I don't even want to download the apps again.”", "“I'm exhausted by dating.”"],
     },
@@ -435,5 +440,25 @@ export const MOVING_BEYOND_REJECTION: PlaybookContent = {
         fields: [{ id: "narrowest_true_thing", label: "The narrowest true thing", input: "text", placeholder: "the narrowest true thing the evidence supports" }],
       },
     },
+
+    // -------------------------------------------------------------------------
+    // IS THIS RIGHT FOR YOU?  (dualAttention vertical slice)
+    // -------------------------------------------------------------------------
+    ITR_PLAY,
+
+    // -------------------------------------------------------------------------
+    // REST, OR GIVING UP?  (decisionRoom vertical slice)
+    // -------------------------------------------------------------------------
+    RGU_PLAY,
+
+    // -------------------------------------------------------------------------
+    // HOW MUCH TO PUT IN?  (investmentView vertical slice)
+    // -------------------------------------------------------------------------
+    HMP_PLAY,
+
+    // -------------------------------------------------------------------------
+    // SAY THE REAL THING  (communicationRehearsal vertical slice)
+    // -------------------------------------------------------------------------
+    STT_PLAY,
   ],
 };

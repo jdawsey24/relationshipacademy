@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { listAssessments } from "@/lib/snapshot/data";
 import { MarkerMark, markerHue } from "@/components/site/MarkerMark";
+import { IconTile, CARD_HOVER } from "@/components/site/IconTile";
 
 export const dynamic = "force-dynamic";
 
@@ -40,9 +41,9 @@ export default async function QuizPickerPage() {
             style={{ "--hue": "#6B7C97" } as CSSProperties}
             className="group overflow-hidden rounded-2xl border border-light-gray bg-white transition-all open:border-slate-blue/40 has-[summary:hover]:-translate-y-0.5 has-[summary:hover]:border-[var(--hue)] has-[summary:hover]:shadow-[0_10px_30px_-16px_var(--hue)] [&_summary]:list-none">
             <summary className="flex cursor-pointer items-center gap-4 px-5 py-4 [&::-webkit-details-marker]:hidden">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: "#6B7C971f" }}>
-                <MarkerMark id="single" className="h-[26px] w-[26px]" style={{ color: "#6B7C97" }} />
-              </span>
+              <IconTile hue="#6B7C97">
+                <MarkerMark id="single" className="h-[26px] w-[26px]" />
+              </IconTile>
               <span className="min-w-0 flex-1">
                 <span className="block font-display text-lg font-semibold text-midnight-navy">Single</span>
                 <span className="mt-0.5 block font-body text-[15px] leading-relaxed text-charcoal/75">You&apos;re not in a relationship right now — which fits?</span>
@@ -71,15 +72,15 @@ function MarkerRow({ a, label, sub }: { a: { id: string; display_name: string; e
     <Link
       href={`/snapshot/${a.id}`}
       style={{ "--hue": hue } as CSSProperties}
-      className={`group flex items-center gap-4 border transition-all hover:-translate-y-0.5 hover:border-[var(--hue)] ${
+      className={`group flex items-center gap-4 border ${
         sub
-          ? "rounded-xl border-transparent bg-[#FBF9F5] px-4 py-3.5 hover:bg-white"
-          : "rounded-2xl border-light-gray bg-white px-5 py-4 hover:shadow-[0_10px_30px_-16px_var(--hue)]"
+          ? "rounded-xl border-transparent bg-[#FBF9F5] px-4 py-3.5 transition-all hover:-translate-y-0.5 hover:border-[var(--hue)] hover:bg-white"
+          : `rounded-2xl border-light-gray bg-white px-5 py-4 ${CARD_HOVER}`
       }`}
     >
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: `${hue}1f` }}>
-        <MarkerMark id={a.id} className="h-[26px] w-[26px]" style={{ color: hue }} />
-      </span>
+      <IconTile hue={hue}>
+        <MarkerMark id={a.id} className="h-[26px] w-[26px]" />
+      </IconTile>
       <span className="min-w-0 flex-1">
         <span className="block font-display text-lg font-semibold text-midnight-navy">{label ?? a.display_name}</span>
         <span className="mt-0.5 block font-body text-[15px] leading-relaxed text-charcoal/75">{a.entry_prompt}</span>

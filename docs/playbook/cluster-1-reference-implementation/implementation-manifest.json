@@ -1,0 +1,139 @@
+{
+  "cluster": {
+    "clusterKey": "moving-beyond-rejection",
+    "clusterId": 1,
+    "snapshotClusterName": "Difficulty Feeling Chosen",
+    "consumerProductTitle": "Believing You're Worth Being Chosen",
+    "marketingLegacyName": "Moving Beyond Rejection",
+    "playbookVersion": 1
+  },
+  "featureFlag": {
+    "constant": "PLAYBOOK_REV3_ENABLED",
+    "file": "lib/playbook/rev3.ts",
+    "envVar": "NEXT_PUBLIC_PLAYBOOK_REV3",
+    "enabledWhen": "NEXT_PUBLIC_PLAYBOOK_REV3 === \"true\"",
+    "defaultEnabled": false,
+    "productionEnabled": false
+  },
+  "migrations": {
+    "0052_playbook_progress": {
+      "file": "supabase/migrations/0052_playbook_progress.sql",
+      "table": "playbook_progress",
+      "status": "committed"
+    },
+    "0053_playbook_events": {
+      "file": "supabase/migrations/0053_playbook_events.sql",
+      "addsColumns": ["literature_state", "simulation_state", "practice_state", "use_review_state", "change_path_state"],
+      "addsTable": "playbook_events",
+      "fileHeaderSays": "AUTHORED, NOT RUN",
+      "ownerConfirmedRun": true,
+      "discrepancy": "file header not updated after owner ran it"
+    }
+  },
+  "persistenceColumns": {
+    "playbook_progress": ["id", "user_id", "playbook_key", "playbook_version", "recognized", "play_states", "outputs", "my_plays", "literature_state", "simulation_state", "practice_state", "use_review_state", "change_path_state", "updated_at", "created_at"],
+    "revThreeStateColumns": ["literature_state", "simulation_state", "practice_state", "use_review_state", "change_path_state"],
+    "eventsTable": "playbook_events",
+    "eventsWritePathLive": false
+  },
+  "sourceFiles": {
+    "schemaAndEngine": ["lib/playbook/contentSchema.ts", "lib/playbook/contentValidate.ts", "lib/playbook/simulation.ts", "lib/playbook/processState.ts", "lib/playbook/changePath.ts", "lib/playbook/rev3Flow.ts", "lib/playbook/mission.ts", "lib/playbook/progressActions.ts", "lib/playbook/sanitize.ts", "lib/playbook/progress.ts", "lib/playbook/events.ts", "lib/playbook/clientEvents.ts", "lib/playbook/crisisSafety.ts", "lib/playbook/keys.ts", "lib/playbook/rev3.ts", "lib/playbook/types.ts", "lib/playbook/outputSummary.ts", "lib/playbook/sortLogic.ts"],
+    "components": ["components/playbook/ExperienceShell.tsx", "components/playbook/ChangePathHome.tsx", "components/playbook/SimulationPlayer.tsx", "components/playbook/SimulationSignatures.tsx", "components/playbook/PlayContainer.tsx", "components/playbook/PlaySequence.tsx", "components/playbook/OutputEditor.tsx", "components/playbook/MissionCard.tsx", "components/playbook/UseReviewFlow.tsx", "components/playbook/FieldGuide.tsx", "components/playbook/SortEngine.tsx", "components/playbook/useProgress.ts"],
+    "content": ["content/playbook/moving-beyond-rejection.ts", "content/playbook/is-this-right-for-you.ts", "content/playbook/rest-or-giving-up.ts", "content/playbook/how-much-to-put-in.ts", "content/playbook/say-the-real-thing.ts", "content/playbook/moving-beyond-rejection-literature.ts", "content/playbook/moving-beyond-rejection-simulations.ts", "content/playbook/moving-beyond-rejection-missions.ts", "content/playbook/moving-beyond-rejection-usereviews.ts", "content/playbook/moving-beyond-rejection-rev3-copy.ts", "content/playbook/index.ts"],
+    "api": ["app/api/playbook/[key]/progress/route.ts", "app/api/playbook/[key]/screen/route.ts", "app/api/playbook/[key]/access/route.ts"],
+    "registry": "content/playbook/index.ts"
+  },
+  "pathways": [
+    {"consumerName": "What It Actually Means", "playId": "what-it-actually-means", "simulationId": "sim-wm-not-a-match", "signature": "conclusionNarrowing", "useReviewId": "review-what-it-actually-means", "missionId": "mission-wm-narrowest-true-thing", "recognitionCardId": "rec-self-meaning", "hasOutputEditor": true, "sourceFile": "content/playbook/moving-beyond-rejection.ts"},
+    {"consumerName": "Read It, Then Decide", "playId": "read-and-decide", "simulationId": "sim-rd-shorter-texts", "signature": "evidenceTimeline", "useReviewId": "review-read-and-decide", "missionId": "mission-rd-read-before-react", "recognitionCardId": "rec-evidence", "hasOutputEditor": true, "sourceFile": "content/playbook/moving-beyond-rejection.ts"},
+    {"consumerName": "Is This Right for You?", "playId": "is-this-right-for-you", "simulationId": "sim-itr-evaluator-stance", "signature": "dualAttention", "useReviewId": "review-is-this-right-for-you", "missionId": null, "recognitionCardId": "rec-selection", "hasOutputEditor": false, "sourceFile": "content/playbook/is-this-right-for-you.ts"},
+    {"consumerName": "Rest, or Giving Up?", "playId": "rest-or-giving-up", "simulationId": "sim-rgu-decision-room", "signature": "decisionRoom", "useReviewId": "review-rest-or-giving-up", "missionId": null, "recognitionCardId": "rec-fatigue", "hasOutputEditor": true, "sourceFile": "content/playbook/rest-or-giving-up.ts"},
+    {"consumerName": "How Much to Put In", "playId": "how-much-to-put-in", "simulationId": "sim-hmp-investment-view", "signature": "investmentView", "useReviewId": "review-how-much-to-put-in", "missionId": null, "recognitionCardId": "rec-over-invest", "hasOutputEditor": true, "sourceFile": "content/playbook/how-much-to-put-in.ts"},
+    {"consumerName": "Say the Real Thing", "playId": "say-the-real-thing", "simulationId": "sim-stt-rehearsal", "signature": "communicationRehearsal", "useReviewId": "review-say-the-real-thing", "missionId": null, "recognitionCardId": "rec-self-edit", "hasOutputEditor": true, "sourceFile": "content/playbook/say-the-real-thing.ts"}
+  ],
+  "interactionSignatures": ["evidenceTimeline", "conclusionNarrowing", "dualAttention", "decisionRoom", "investmentView", "communicationRehearsal"],
+  "fidelityFields": {
+    "evidenceTimeline": ["evidence_reconsidered", "interpretation_response_appropriate"],
+    "conclusionNarrowing": ["evidence_reconsidered", "interpretation_response_appropriate"],
+    "dualAttention": ["evaluator_stance_held", "fit_information_kept_in_view"],
+    "decisionRoom": ["intentional_stance_selected", "discouragement_distinguished_from_conclusion", "chosen_stance"],
+    "investmentView": ["investment_evidence_tied", "effort_without_new_evidence_noticed"],
+    "communicationRehearsal": ["preference_expressed_clearly", "unnecessary_self_erasure_avoided"]
+  },
+  "fidelityStates": ["demonstrated", "not_demonstrated", "not_applicable"],
+  "chosenStanceEnum": ["rest", "not_now", "lightly_open", "return_later", "pause_decision"],
+  "revealResolvers": ["dualAttentionFocus", "decisionRoomStance", "communicationRehearsalRecap"],
+  "literatureIds": {
+    "coreGuides": ["lit-what-is-dfc", "lit-being-chosen-weight", "lit-want-vs-worth", "lit-wanted-vs-compatible", "lit-rejection-not-verdict", "lit-uncertainty", "lit-kinds-of-signal", "lit-see-vs-act", "lit-over-investing", "lit-self-editing", "lit-fatigue", "lit-loneliness", "lit-healthier"],
+    "questionReads": ["lit-faq-why-nobody-chooses", "lit-faq-not-enough", "lit-faq-backup-option", "lit-faq-are-they-interested", "lit-faq-care-more", "lit-faq-tired-of-dating"],
+    "playScope": ["lit-play-rd", "lit-play-wm"],
+    "jit": ["lit-jit-globalizing", "lit-jit-ambiguity-spiral", "lit-jit-waiting-to-be-chosen", "lit-jit-hope-vs-hurt", "lit-jit-wanted-vs-compatible", "lit-jit-respect-vs-fit", "lit-jit-liking-vs-choosing", "lit-jit-fatigue-not-verdict", "lit-jit-loneliness-signal", "lit-jit-rest-not-giving-up", "lit-jit-mutual-signal", "lit-jit-effort-outruns-evidence", "lit-jit-relational-space", "lit-jit-self-editing", "lit-jit-answer-is-information", "lit-jit-kind-and-clear"]
+  },
+  "missionIds": ["mission-rd-read-before-react", "mission-wm-narrowest-true-thing"],
+  "useReviewIds": {
+    "ownerApprovedAndImplemented": ["review-read-and-decide", "review-what-it-actually-means"],
+    "authoredForReviewNotOwnerApproved": ["review-is-this-right-for-you", "review-rest-or-giving-up", "review-how-much-to-put-in", "review-say-the-real-thing"]
+  },
+  "recognitionCards": [
+    {"id": "rec-self-meaning", "role": "route", "pathwayPlayId": "what-it-actually-means"},
+    {"id": "rec-selection", "role": "route", "pathwayPlayId": "is-this-right-for-you"},
+    {"id": "rec-evidence", "role": "route", "pathwayPlayId": "read-and-decide"},
+    {"id": "rec-over-invest", "role": "route", "pathwayPlayId": "how-much-to-put-in"},
+    {"id": "rec-self-edit", "role": "route", "pathwayPlayId": "say-the-real-thing"},
+    {"id": "rec-fatigue", "role": "route", "pathwayPlayId": "rest-or-giving-up"},
+    {"id": "rec-loneliness", "role": "validate", "pathwayPlayId": null}
+  ],
+  "events": {
+    "objectTypes": ["literature", "simulation", "play", "mission", "use_review"],
+    "eventTypes": ["literature_opened", "simulation_completed", "operation_performed", "mission_selected", "mission_attempt_reported", "use_reviewed", "focus_changed"],
+    "simulationCompletedSchemaVersion": 3,
+    "otherEventSchemaVersion": 1,
+    "producerRouteWired": false
+  },
+  "testFiles": ["test/playbook-a11y.test.ts", "test/playbook-changepath.test.ts", "test/playbook-changepathhome.interaction.test.ts", "test/playbook-clientevents.test.ts", "test/playbook-communicationrehearsal.test.ts", "test/playbook-content.test.ts", "test/playbook-cta.interaction.test.ts", "test/playbook-decisionroom.test.ts", "test/playbook-dualattention.test.ts", "test/playbook-events.test.ts", "test/playbook-experience-rev3.interaction.test.ts", "test/playbook-experience.interaction.test.ts", "test/playbook-fieldguide.interaction.test.ts", "test/playbook-guardrails.test.ts", "test/playbook-investmentview.test.ts", "test/playbook-literature.test.ts", "test/playbook-mission.test.ts", "test/playbook-missioncard.interaction.test.ts", "test/playbook-playsequence.interaction.test.ts", "test/playbook-processstate.test.ts", "test/playbook-progress.test.ts", "test/playbook-read-decide.interaction.test.ts", "test/playbook-rev3copy.test.ts", "test/playbook-rev3flow.test.ts", "test/playbook-safety.interaction.test.ts", "test/playbook-simulation-guardrails.test.ts", "test/playbook-simulation.interaction.test.ts", "test/playbook-simulation.test.ts", "test/playbook-sort.test.ts", "test/playbook-sortengine.interaction.test.ts", "test/playbook-usereview.test.ts", "test/playbook-usereviewflow.interaction.test.ts", "test/playbook-what-it-means.interaction.test.ts"],
+  "testStatus": {
+    "reportedTotal": 376,
+    "reportedPassing": 376,
+    "tscClean": true,
+    "buildGreen": true,
+    "sourceDecisionLogEntries": [52, 53]
+  },
+  "status": {
+    "designComplete": true,
+    "designCompleteException": "four new Plays' Use Reviews authored FOR REVIEW, not owner-approved (DECISION-LOG #49)",
+    "implementationComplete": true,
+    "implementationCommitted": false,
+    "headCommit": "9429246",
+    "headMeaning": "Step 8 orchestration corrections (original two-Experience build)",
+    "migrationRunPerOwner": true,
+    "automatedValidationComplete": true,
+    "ownerE2eNonAuthenticated": "PASS",
+    "ownerE2eAuthenticatedRoundTrip": "NOT_VERIFIED",
+    "deployed": false,
+    "productionFlagEnabled": false,
+    "attorneyReview": "not_evidenced_in_repo"
+  },
+  "knownOwnerGates": [
+    "authenticated DB save/reload round-trip not verified",
+    "four new Plays' Use Reviews are FOR REVIEW (copy not owner-approved)",
+    "no Missions for the four new Plays",
+    "playbook_events producer route not wired (longitudinal events deferred)",
+    "0053 migration file header still says AUTHORED NOT RUN",
+    "working tree uncommitted on main",
+    "deployment not approved",
+    "production flag not enabled",
+    "attorney review not evidenced",
+    "manual screen-reader/mobile a11y sweep of the four new pathways not evidenced"
+  ],
+  "boundaries": {
+    "neverPersisted": ["crisis-screen free text", "raw relationship narrative", "journaling", "mood", "partner or other-person data", "surveillance data"],
+    "boundedFreeTextPersisted": "use_review_state.experience (max 2000 chars, crisis-screened, never in event log)",
+    "noScore": true,
+    "noDiagnosis": true,
+    "noAttachmentClassification": true,
+    "noMotiveOrEtiologyInference": true,
+    "noPartnerMonitoring": true,
+    "transferRequiresRealWorldEnactmentBeyondRehearsal": true
+  },
+  "documentationChangedRuntimeCode": false
+}

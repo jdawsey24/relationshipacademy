@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 import { useParams } from "next/navigation";
 import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
+import { IconTile } from "@/components/site/IconTile";
 
 interface Primary {
   id: number; name: string; result_title: string; core_pattern: string;
@@ -49,9 +50,9 @@ export default function ResultsPage() {
 
       {/* Hero — the pattern, revealed */}
       <section className="mt-7 flex flex-col items-center text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-2xl" style={{ backgroundColor: `${hue}1f` }}>
-          <PlaybookMark clusterId={p.id} className="h-9 w-9" style={{ color: hue }} />
-        </span>
+        <IconTile hue={hue} size="lg">
+          <PlaybookMark clusterId={p.id} className="h-9 w-9" />
+        </IconTile>
         <h1 className="mt-5 text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-[40px]">{title}</h1>
         {p.core_pattern && <p className="mx-auto mt-4 max-w-xl text-balance font-body text-lg leading-relaxed text-charcoal/70">{p.core_pattern}</p>}
       </section>

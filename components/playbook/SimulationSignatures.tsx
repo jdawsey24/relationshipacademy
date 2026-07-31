@@ -35,7 +35,7 @@ const EvidenceTimelineChrome: FunctionComponent<SignatureChromeProps> = ({ visit
           <span aria-hidden="true" className="absolute -left-[21px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-blue/60" />
           <p className="font-body text-[14px] leading-relaxed text-charcoal/70">
             {n.kind === "reveal" && n.label && <span className="mr-1 font-ui text-xs font-semibold uppercase text-slate-blue">{n.label}</span>}
-            {(n as Extract<SimNode, { kind: "moment" | "reveal" }>).body.join(" ")}
+            {((n as Extract<SimNode, { kind: "moment" | "reveal" }>).body ?? []).join(" ")}
           </p>
         </li>
       ))}
@@ -62,7 +62,7 @@ const ConclusionNarrowingChrome: FunctionComponent<SignatureChromeProps> = ({ si
   const narrowedLabel =
     narrowingNode && narrowingNode.kind === "reconsider"
       ? narrowingNode.options.find(
-          (o) => o.id === selections[narrowingNode.id] && o.fidelity.interpretation_response_appropriate === "demonstrated",
+          (o) => o.id === selections[narrowingNode.id] && o.fidelity?.interpretation_response_appropriate === "demonstrated",
         )?.label
       : undefined;
 
@@ -97,6 +97,10 @@ const ConclusionNarrowingChrome: FunctionComponent<SignatureChromeProps> = ({ si
 export const SIGNATURE_TITLE: Record<string, string> = {
   evidenceTimeline: "Reading the signals over time",
   conclusionNarrowing: "How big did the story get?",
+  dualAttention: "Holding both questions",
+  decisionRoom: "Rest, or giving up?",
+  investmentView: "How much to put in",
+  communicationRehearsal: "Say the real thing",
 };
 
 /** Registry: signature → context chrome. Adding an interaction type = register a chrome. */

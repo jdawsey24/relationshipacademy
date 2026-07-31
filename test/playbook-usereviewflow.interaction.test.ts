@@ -8,13 +8,45 @@ import type { UseReviewSignals } from "../lib/playbook/contentSchema";
 
 const RD = MBR_USE_REVIEWS.find((r) => r.playId === "read-and-decide")!;
 
-test("structured selects only — no free-text journaling; non-evaluative fidelity prompt", () => {
+test("bounded selects PLUS one optional free-text 'what was the experience' field; non-evaluative fidelity prompt", () => {
   render(h(UseReviewFlow, { review: RD, hasSavedOutput: true, onComplete: () => {} }));
+  assert.ok(screen.getByText(/what was the experience/i), "optional free-text description");
+  assert.equal(screen.getAllByRole("textbox").length, 1, "exactly one free-text field (the description)");
   assert.ok(screen.getByText(/what did you actually do differently/i));
   assert.ok(screen.getByText(/how closely did you use the move/i), "non-evaluative fidelity prompt");
   assert.ok(screen.getByText(/what got clearer/i));
   assert.ok(screen.getByText(/where did you get stuck most/i), "prioritized single friction point");
-  assert.equal(screen.queryByRole("textbox"), null, "no free-text field (not journaling)");
+});
+
+test("the optional description is passed to onComplete and is crisis-screened on blur", () => {
+  const calls: { a: string; exp?: string }[] = [];
+  const screened: string[] = [];
+  render(h(UseReviewFlow, {
+    review: RD,
+    hasSavedOutput: true,
+    onScreenText: (t: string) => screened.push(t),
+    onComplete: (_s: UseReviewSignals, a: string, exp?: string) => calls.push({ a, exp }),
+  }));
+  const box = screen.getByRole("textbox");
+  fireEvent.change(box, { target: { value: "we talked and I said the real thing" } });
+  fireEvent.blur(box);
+  assert.deepEqual(screened, ["we talked and I said the real thing"], "free text routed to Layer A screening on blur");
+  fireEvent.click(screen.getByRole("button", { name: /keep it/i }));
+  assert.equal(calls[0].exp, "we talked and I said the real thing", "description passed to onComplete");
+});
+
+test("an empty description is not screened and is passed as undefined", () => {
+  const calls: { exp?: string }[] = [];
+  const screened: string[] = [];
+  render(h(UseReviewFlow, {
+    review: RD,
+    hasSavedOutput: true,
+    onScreenText: (t: string) => screened.push(t),
+    onComplete: (_s: UseReviewSignals, _a: string, exp?: string) => calls.push({ exp }),
+  }));
+  fireEvent.click(screen.getByRole("button", { name: /keep it/i }));
+  assert.equal(screened.length, 0, "nothing screened when the field is empty");
+  assert.equal(calls[0].exp, undefined, "no description → undefined");
 });
 
 test("multi-select where more than one response applies; single-select for fidelity + stuck", () => {

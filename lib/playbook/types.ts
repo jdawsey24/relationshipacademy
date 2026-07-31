@@ -1,7 +1,17 @@
 // Shared runtime types for the Playbook engine (client + server safe: no imports
 // that pull server-only modules).
 
-import type { PlaybookProgress, PlayStateValue, StoredOutput, SavedPlayCard } from "@/lib/playbook/contentSchema";
+import type {
+  PlaybookProgress,
+  PlayStateValue,
+  StoredOutput,
+  SavedPlayCard,
+  LiteratureState,
+  SimulationState,
+  PracticeState,
+  UseReviewState,
+  ChangePathState,
+} from "@/lib/playbook/contentSchema";
 
 export type { PlaybookProgress, PlayStateValue, StoredOutput, SavedPlayCard };
 
@@ -13,6 +23,12 @@ export interface PlaybookProgressRow {
   play_states: Record<string, PlayStateValue> | null;
   outputs: Record<string, StoredOutput> | null;
   my_plays: SavedPlayCard[] | null;
+  // Rev 3 separated state columns (0053; jsonb, default '{}' — empty on v0 rows).
+  literature_state: LiteratureState | null;
+  simulation_state: SimulationState | null;
+  practice_state: PracticeState | null;
+  use_review_state: UseReviewState | null;
+  change_path_state: ChangePathState | null;
 }
 
 /** Layer-A crisis screen result surfaced to the client (metadata only, no raw text). */

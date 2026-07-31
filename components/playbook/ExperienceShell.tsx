@@ -32,7 +32,39 @@ function isReturning(p: PlaybookProgress): boolean {
   );
 }
 
-type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays" | "practice" | "review" | "home" | "understand";
+type View = "opening" | "recognition" | "board" | "gate" | "play" | "myplays" | "practice" | "review" | "history" | "home" | "understand" | "experiences" | "tools";
+
+/** Format a logged-experience ISO timestamp for display, or null if absent/unparseable. */
+function fmtLoggedDate(iso?: string): string | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? null : d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+}
+
+/** Fuller date (with year) for the history list. */
+function fmtFullDate(iso?: string): string | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? null : d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+}
+
+/** How the reader rated their use of the move, in plain words (from the Technique-Fidelity signal). */
+const PERFORMED_LABEL: Record<string, string> = {
+  yes: "Used it closely",
+  partly: "Used some of it",
+  no: "Didn't really use it this time",
+};
+
+// Consumer one-liners for the Experience ("See it play out") library — keyed by the
+// simulation's interaction signature so no internal term ("simulation") is ever shown.
+const EXPERIENCE_BLURB: Record<string, string> = {
+  evidenceTimeline: "An unfolding dating scenario where the evidence keeps changing — practice reading it before you react.",
+  conclusionNarrowing: "A letdown that starts turning into a bigger story — practice narrowing it back to what the moment actually shows.",
+  dualAttention: "A few dates with someone easy to like — practice keeping both questions open: are they into you, and is this what you want.",
+  decisionRoom: "A low, done-for-now dating night — practice choosing a stance on purpose, for right now, instead of letting a hard week decide.",
+  investmentView: "A few weeks of talking to someone — practice tying how much you put in to what you can actually see, not the quiet.",
+  communicationRehearsal: "A few small, low-risk moments — practice saying the real thing clearly and kindly, and seeing what you learn.",
+};
 
 export interface ExperienceShellProps {
   content: PlaybookContent;
@@ -54,10 +86,31 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
   const [practicePlayId, setPracticePlayId] = useState<string | null>(null);
   const [reviewFor, setReviewFor] = useState<string | null>(null);
   const [reviewFromMission, setReviewFromMission] = useState<string | null>(null);
+  const [historyFor, setHistoryFor] = useState<string | null>(null); // Play whose logged-experience history is open
+  const [surfacedLit, setSurfacedLit] = useState<string | null>(null); // JIT literature surfaced in-context
+  // JIT reads the reader has surfaced in-context this session — become browseable in the Field
+  // Guide ("Previously surfaced" reads). Session-scoped UI state (not hydrated from persistence).
+  const [surfacedJitIds, setSurfacedJitIds] = useState<string[]>([]);
+  // Where a sub-view (gate/play/practice/review/myplays) returns on Back — the launch VIEW,
+  // so opening a layer from the Home returns to the Home, from the tool library to the tool
+  // library, etc. Set at each entry. Defaults to the board (the only launch base in v0).
+  const [backTo, setBackTo] = useState<View>("board");
+  // My Plays launches its OWN sub-views (edit/log/history) which set `backTo` to "myplays" so they
+  // return here — so My Plays' own Back needs a separate origin, set when My Plays is opened.
+  const [myplaysReturn, setMyplaysReturn] = useState<View>("home");
+
+  function surfaceJit(litId: string) {
+    setSurfacedLit(litId);
+    setSurfacedJitIds((ids) => (ids.includes(litId) ? ids : [...ids, litId]));
+  }
 
   const playById = (id: string | null): Play | undefined => content.plays.find((p) => p.playId === id);
   const activePlay = playById(activePlayId);
   const usedReviewPlay = playById(usedReviewFor);
+  // The output editor is MODAL — while it's open it replaces the current view (nothing to navigate
+  // past), so it can't be left pinned over another screen after you edit and move on.
+  const editingPlay = editingOutputFor ? playById(editingOutputFor) : undefined;
+  const isEditing = Boolean(editingPlay?.outputEditor);
   const practiceMission = practicePlayId ? missionForPlay(content, practicePlayId) : undefined;
   const reviewContent = reviewFor ? useReviewForPlay(content, reviewFor) : undefined;
 
@@ -67,14 +120,22 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
     setView("review");
   }
 
+  function openHistory(playId: string) {
+    setHistoryFor(playId);
+    setView("history");
+  }
+
   // Route a Change-Path-surfaced item to its experience (records the current focus).
+  // Every item here is launched from the Home, so its Back returns to the Home.
   function handleSurfaced(item: SurfacedItem) {
+    setBackTo("home");
     if (item.playId) update((p) => actions.recordChangePathFocus(p, item.playId as string));
     if (item.kind === "experience" && item.playId) openPlay(item.playId);
     else if (item.kind === "practice" && item.playId) {
       setPracticePlayId(item.playId);
       setView("practice");
     } else if (item.kind === "review" && item.playId) openReview(item.playId);
+    else if (item.kind === "history" && item.playId) openHistory(item.playId);
     else if (item.kind === "understand") setView("understand");
     else {
       setExploreAll(true);
@@ -97,6 +158,15 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
   function startActivePlay() {
     if (!activePlayId) return;
     update((p) => actions.markExplored(p, activePlayId));
+    setView("play");
+  }
+
+  // "See it play out" — enter a chosen scenario directly (the library already gave context,
+  // so no recognition gate). Returns to the experience library on Back.
+  function startExperience(playId: string) {
+    if (!playById(playId)) return;
+    setActivePlayId(playId);
+    setBackTo("experiences");
     setView("play");
   }
 
@@ -145,6 +215,20 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
 
   return (
     <div className="min-h-screen bg-warm-ivory px-5 py-10">
+      {/* JIT literature surfaced in-context (e.g. from a simulation) — overlay keeps the
+          underlying experience mounted, so no state is lost. */}
+      {surfacedLit && (
+        <div className="fixed inset-0 z-50 overflow-auto bg-warm-ivory/97 pt-[env(safe-area-inset-top)]" role="dialog" aria-label="Related reading" aria-modal="true">
+          <FieldGuide
+            entries={content.literature ?? []}
+            availableJitIds={[surfacedLit]}
+            initialEntryId={surfacedLit}
+            title="Related reading"
+            onExit={() => setSurfacedLit(null)}
+          />
+        </div>
+      )}
+
       {crisis && (
         <div className="mx-auto mb-6 max-w-2xl rounded-2xl border border-deep-red/30 bg-white p-5" role="alert">
           <h3 className="font-display text-lg text-deep-red">{crisis.heading ?? "If you're in danger or crisis"}</h3>
@@ -190,20 +274,21 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
         </div>
       )}
 
-      {editingOutputFor && playById(editingOutputFor)?.outputEditor && (
-        <div className="mb-6">
+      {isEditing ? (
+        <div className="mx-auto max-w-2xl">
           <OutputEditor
-            play={playById(editingOutputFor)!}
-            initial={(progress.outputs[editingOutputFor]?.payload as Record<string, unknown>) ?? {}}
+            play={editingPlay!}
+            initial={(progress.outputs[editingOutputFor!]?.payload as Record<string, unknown>) ?? {}}
             onSave={(payload) => {
-              const pl = playById(editingOutputFor)!;
-              update((p) => actions.recordOutput(p, pl, payload, true)); // keepState: stays "used"
+              update((p) => actions.recordOutput(p, editingPlay!, payload, true)); // keepState: stays "used"
               setEditingOutputFor(null);
             }}
             onCancel={() => setEditingOutputFor(null)}
           />
         </div>
-      )}
+      ) : (
+        <>
+
 
       {view === "opening" && (
         <section className="mx-auto max-w-2xl">
@@ -269,7 +354,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
           <div className="mt-2 flex items-center justify-between">
             <h2 className="font-display text-2xl text-midnight-navy">Where you might start</h2>
             {progress.my_plays.length > 0 && (
-              <button type="button" onClick={() => setView("myplays")} className="font-ui text-sm text-midnight-navy underline">My Plays ({progress.my_plays.length})</button>
+              <button type="button" onClick={() => { setMyplaysReturn("board"); setView("myplays"); }} className="font-ui text-sm text-midnight-navy underline">My Plays ({progress.my_plays.length})</button>
             )}
           </div>
           <p className="mt-2 font-body text-[15px] text-charcoal/70">Based on what sounded familiar, here's where you might start. These are suggestions — not a diagnosis, not a to-do list. Start with whichever one pulls at you.</p>
@@ -279,6 +364,9 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
               const built = Boolean(playById(card.pathwayPlayId));
               const play = playById(card.pathwayPlayId);
               const state = card.pathwayPlayId ? progress.play_states[card.pathwayPlayId] : undefined;
+              // Rev 3: real-life uses accumulate — the log stays available and shows how many times.
+              const loggedUses = rev3 && card.pathwayPlayId ? actions.reviewEntries(progress, card.pathwayPlayId) : [];
+              const lastLogged = loggedUses.length ? fmtLoggedDate(loggedUses[loggedUses.length - 1]?.at) : null;
               return (
                 <li key={card.id} className="rounded-2xl bg-white/70 p-5">
                   <p className="font-body text-[16px] leading-relaxed text-charcoal">{card.headline}</p>
@@ -286,27 +374,40 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                     <>
                       <p className="mt-1 font-body text-[14px] text-charcoal/60">You'll learn to: {play.positioning}</p>
                       <div className="mt-3 flex items-center gap-3">
-                        <button type="button" onClick={() => openPlay(card.pathwayPlayId as string)} className="rounded-full bg-midnight-navy px-5 py-2 font-ui text-sm text-warm-ivory">
+                        <button type="button" onClick={() => { setBackTo("board"); openPlay(card.pathwayPlayId as string); }} className="rounded-full bg-midnight-navy px-5 py-2 font-ui text-sm text-warm-ivory">
                           {state === "in_my_plays" || state === "used" ? "Revisit" : "Start"}
                         </button>
                         {state && <span className="font-ui text-xs uppercase tracking-wide text-charcoal/45">{state.replace(/_/g, " ")}</span>}
-                        {(state === "explored" || state === "in_my_plays") && (
+                        {(state === "explored" || state === "in_my_plays" || (rev3 && state === "used")) && (
                           <button
                             type="button"
                             onClick={() => {
+                              setBackTo("board");
                               const pid = card.pathwayPlayId as string;
                               if (rev3 && useReviewForPlay(content, pid)) openReview(pid);
                               else setUsedReviewFor(pid);
                             }}
                             className="font-ui text-xs text-slate-blue underline"
                           >
-                            I used this in real life
+                            {rev3 ? (loggedUses.length ? "Log another real-life experience" : "Log a real-life experience") : "I used this in real life"}
                           </button>
                         )}
                         {rev3 && (state === "explored" || state === "in_my_plays" || state === "used") && missionForPlay(content, card.pathwayPlayId as string) && (
-                          <button type="button" onClick={() => { setPracticePlayId(card.pathwayPlayId as string); setView("practice"); }} className="font-ui text-xs text-slate-blue underline">Practice this →</button>
+                          <button type="button" onClick={() => { setBackTo("board"); setPracticePlayId(card.pathwayPlayId as string); setView("practice"); }} className="font-ui text-xs text-slate-blue underline">Practice this →</button>
                         )}
                       </div>
+                      {loggedUses.length > 0 && (
+                        <>
+                          <p className="mt-2 font-ui text-xs text-charcoal/45">
+                            Logged {loggedUses.length} experience{loggedUses.length > 1 ? "s" : ""} in real life{lastLogged ? ` · last ${lastLogged}` : ""}
+                            {" · "}
+                            <button type="button" onClick={() => { setBackTo("board"); openHistory(card.pathwayPlayId as string); }} className="text-slate-blue underline">View all</button>
+                          </p>
+                          {loggedUses[loggedUses.length - 1]?.experience && (
+                            <p className="mt-1 font-body text-[13px] italic text-charcoal/60">“{loggedUses[loggedUses.length - 1]!.experience}”</p>
+                          )}
+                        </>
+                      )}
                     </>
                   ) : (
                     <p className="mt-2 inline-block rounded-full bg-light-gray/60 px-3 py-1 font-ui text-xs text-charcoal/60">Coming soon</p>
@@ -325,19 +426,19 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
 
       {view === "gate" && activePlay && (
         <section className="mx-auto max-w-2xl">
-          <button type="button" onClick={() => setView("board")} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">← Back to board</button>
+          <button type="button" onClick={() => setView(backTo)} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">{backTo === "board" ? "← Back to board" : "← Back"}</button>
           <h2 className="mt-6 font-display text-2xl text-midnight-navy">{activePlay.name}</h2>
           <p className="mt-4 rounded-2xl bg-white/70 p-5 font-body text-[17px] italic leading-relaxed text-charcoal/85">“{activePlay.recognitionGate.prompt}”</p>
           <p className="mt-4 font-body text-[15px] text-charcoal/70">Does this happen for you?</p>
           <div className="mt-4 flex flex-col gap-3">
             <button type="button" onClick={startActivePlay} className="rounded-full bg-coral-rose px-6 py-3 font-ui text-sm font-medium text-white">Yes, this happens</button>
-            <button type="button" onClick={() => setView("board")} className="rounded-full border border-midnight-navy px-6 py-3 font-ui text-sm text-midnight-navy">Not really me</button>
+            <button type="button" onClick={() => setView(backTo)} className="rounded-full border border-midnight-navy px-6 py-3 font-ui text-sm text-midnight-navy">Not really me</button>
             <button type="button" onClick={() => setHealthyFor(activePlay.name)} className="font-ui text-sm text-charcoal/55 underline">I handle this okay</button>
           </div>
           {healthyFor && (
             <div className="mt-4 rounded-xl bg-sage-green/12 px-4 py-3">
-              <p className="font-body text-sm text-charcoal/85">Nice — that's a real strength, and worth keeping. You can still open it anytime, or head back to the board.</p>
-              <button type="button" onClick={() => setView("board")} className="mt-2 font-ui text-sm text-midnight-navy underline">Back to the board</button>
+              <p className="font-body text-sm text-charcoal/85">Nice — that's a real strength, and worth keeping. You can still open it anytime, or {backTo === "board" ? "head back to the board." : "head back."}</p>
+              <button type="button" onClick={() => setView(backTo)} className="mt-2 font-ui text-sm text-midnight-navy underline">{backTo === "board" ? "Back to the board" : "Go back"}</button>
             </div>
           )}
         </section>
@@ -351,17 +452,18 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
             content={content}
             play={activePlay}
             onSaveOutput={saveOutput}
-            onExit={() => setView("board")}
+            onExit={() => setView(backTo)}
             onRoute={(id) => openPlay(id)}
             onScreenText={screen}
             onSimComplete={(simId, fidelity) => update((p) => actions.recordSimulationComplete(p, simId, fidelity))}
+            onSurfaceJit={surfaceJit}
             simCompleted={Boolean(progress.simulation_state?.runs?.[sim.id]?.completed)}
           />
         ) : (
           <PlayContainer
             play={activePlay}
             onSaveOutput={saveOutput}
-            onExit={() => setView("board")}
+            onExit={() => setView(backTo)}
             onRoute={(id) => openPlay(id)}
             onScreenText={screen}
           />
@@ -387,7 +489,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
               if (report === "attempted") emitMissionEvent("mission_attempt_reported", m, ms?.rungId);
             }}
             onReview={useReviewForPlay(content, m.playId) ? () => openReview(m.playId, m.id) : undefined}
-            onExit={() => setView("board")}
+            onExit={() => setView(backTo)}
           />
         );
       })()}
@@ -398,9 +500,10 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
           <UseReviewFlow
             review={reviewContent}
             hasSavedOutput={Boolean(progress.outputs[pid])}
+            onScreenText={screen}
             // Submit only — the mission is marked `reviewed` here, never when the review merely opens.
-            onComplete={(signals, action) => {
-              update((p) => actions.recordUseReview(p, pid, signals));
+            onComplete={(signals, action, experience) => {
+              update((p) => actions.recordUseReview(p, pid, signals, new Date().toISOString(), experience));
               // "Save this Play" when none existed: add the My Plays card (tool_saved_after_use).
               const play = playById(pid);
               if (action === "save" && play) update((p) => actions.recordOutput(p, play, {}));
@@ -424,9 +527,9 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
               });
               if (ev) void emitPlaybookEvent(playbookKey, ev);
               if (action === "update") setEditingOutputFor(pid);
-              setView("board");
+              setView(backTo);
             }}
-            onExit={() => setView("board")}
+            onExit={() => setView(backTo)}
           />
         );
       })()}
@@ -438,8 +541,9 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
           displayName={content.displayName}
           onSurfaced={handleSurfaced}
           onUnderstand={() => setView("understand")}
-          onWhereToStart={() => setView("board")}
-          onMyPlays={() => setView("myplays")}
+          onSeeItPlayOut={() => setView("experiences")}
+          onUseATool={() => setView("tools")}
+          onMyPlays={() => { setMyplaysReturn("home"); setView("myplays"); }}
           onExplore={() => { setExploreAll(true); setView("board"); }}
         />
       )}
@@ -447,13 +551,66 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
       {view === "understand" && (
         <FieldGuide
           entries={content.literature ?? []}
+          availableJitIds={surfacedJitIds}
           onExit={() => setView(rev3 && isReturning(progress) ? "home" : "board")}
         />
       )}
 
+      {/* See it play out — the Experience library. The reader picks a scenario WITH context
+          first; picking one steps straight into it (no recognition gate). */}
+      {view === "experiences" && (
+        <section className="mx-auto max-w-2xl">
+          <button type="button" onClick={() => setView("home")} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">← Home</button>
+          <h2 className="mt-6 font-display text-2xl text-midnight-navy">See it play out</h2>
+          <p className="mt-2 font-body text-[15px] text-charcoal/70">Step through a realistic situation and practice noticing what happens — before you decide anything. Pick one to step into.</p>
+          <ul className="mt-6 space-y-3">
+            {(content.simulations ?? []).map((sim) => {
+              const play = playById(sim.playId);
+              if (!play) return null;
+              const done = Boolean(progress.simulation_state?.runs?.[sim.id]?.completed);
+              return (
+                <li key={sim.id} className="rounded-2xl bg-white/70 p-5">
+                  <h3 className="font-display text-lg text-midnight-navy">{play.name}</h3>
+                  <p className="mt-1 font-body text-[15px] text-charcoal/75">{EXPERIENCE_BLURB[sim.signature] ?? "Step through a realistic situation and practice noticing what happens."}</p>
+                  {done && <p className="mt-1 font-ui text-xs uppercase tracking-wide text-charcoal/45">You've been through this</p>}
+                  <button type="button" onClick={() => startExperience(sim.playId)} className="mt-3 rounded-full bg-midnight-navy px-5 py-2 font-ui text-sm text-warm-ivory">{done ? "Step through it again →" : "Step into it →"}</button>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+
+      {/* Use a tool — the Play library. Only APPROVED, built Plays appear (others stay hidden
+          until approved). Each card: when it helps · what it does · whether it's been explored. */}
+      {view === "tools" && (
+        <section className="mx-auto max-w-2xl">
+          <button type="button" onClick={() => setView("home")} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">← Home</button>
+          <h2 className="mt-6 font-display text-2xl text-midnight-navy">Use a tool</h2>
+          <p className="mt-2 font-body text-[15px] text-charcoal/70">These are the moves you can use when a moment comes up. Open one to learn it, or revisit one you've saved. More tools for this pattern are on the way.</p>
+          <ul className="mt-6 space-y-3">
+            {content.plays.map((play) => {
+              const state = progress.play_states[play.playId];
+              const explored = state === "explored" || state === "in_my_plays" || state === "used";
+              return (
+                <li key={play.playId} className="rounded-2xl bg-white/70 p-5">
+                  <h3 className="font-display text-lg text-midnight-navy">{play.name}</h3>
+                  <p className="mt-3 font-body text-[14px] leading-relaxed text-charcoal/85"><span className="font-ui text-xs uppercase tracking-wide text-charcoal/50">When it helps</span><br />{play.recognitionGate.prompt}</p>
+                  <p className="mt-2 font-body text-[14px] leading-relaxed text-charcoal/85"><span className="font-ui text-xs uppercase tracking-wide text-charcoal/50">What it helps you do</span><br />{play.positioning}</p>
+                  <div className="mt-3 flex items-center gap-3">
+                    <button type="button" onClick={() => { setBackTo("tools"); openPlay(play.playId); }} className="rounded-full bg-midnight-navy px-5 py-2 font-ui text-sm text-warm-ivory">{state === "in_my_plays" || state === "used" ? "Revisit →" : "Start →"}</button>
+                    {explored && <span className="font-ui text-xs uppercase tracking-wide text-charcoal/45">{state === "in_my_plays" ? "saved" : state === "used" ? "used" : "explored"}</span>}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+
       {view === "myplays" && (
         <section className="mx-auto max-w-2xl">
-          <button type="button" onClick={() => setView("board")} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">← Back to board</button>
+          <button type="button" onClick={() => setView(myplaysReturn)} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">{myplaysReturn === "board" ? "← Back to board" : "← Back"}</button>
           <h2 className="mt-6 font-display text-2xl text-midnight-navy">My Plays</h2>
           {progress.my_plays.length === 0 ? (
             <p className="mt-4 font-body text-[15px] text-charcoal/70">Nothing saved yet — when you finish a Play, it lands here as a quick reminder you can pull up anytime.</p>
@@ -472,11 +629,90 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                     <div><dt className="font-ui text-xs uppercase tracking-wide text-charcoal/50">Watch out for</dt><dd>{c.watchOut}</dd></div>
                     <div><dt className="font-ui text-xs uppercase tracking-wide text-charcoal/50">Remember</dt><dd>{c.remember}</dd></div>
                   </dl>
+                  {rev3 && (() => {
+                    // Real-life uses accumulate here too — log again anytime, with a running count.
+                    const entries = actions.reviewEntries(progress, c.play_id);
+                    const lastLogged = entries.length ? fmtLoggedDate(entries[entries.length - 1]?.at) : null;
+                    return (
+                      <div className="mt-4 border-t border-light-gray pt-3">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                          {playById(c.play_id)?.outputEditor && (
+                            <button
+                              type="button"
+                              onClick={() => { setBackTo("myplays"); setEditingOutputFor(c.play_id); }}
+                              className="font-ui text-xs text-slate-blue underline"
+                            >
+                              Edit this Play
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setBackTo("myplays");
+                              if (useReviewForPlay(content, c.play_id)) openReview(c.play_id);
+                              else setUsedReviewFor(c.play_id);
+                            }}
+                            className="font-ui text-xs text-slate-blue underline"
+                          >
+                            {entries.length ? "Log another real-life experience" : "Log a real-life experience"}
+                          </button>
+                        </div>
+                        {entries.length > 0 && (
+                          <>
+                            <p className="mt-2 font-ui text-xs text-charcoal/45">
+                              Logged {entries.length} experience{entries.length > 1 ? "s" : ""} in real life{lastLogged ? ` · last ${lastLogged}` : ""}
+                              {" · "}
+                              <button type="button" onClick={() => { setBackTo("myplays"); openHistory(c.play_id); }} className="text-slate-blue underline">View all</button>
+                            </p>
+                            {entries[entries.length - 1]?.experience && (
+                              <p className="mt-1 font-body text-[13px] italic text-charcoal/60">“{entries[entries.length - 1]!.experience}”</p>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    );
+                  })()}
                 </li>
               ))}
             </ul>
           )}
         </section>
+      )}
+
+      {view === "history" && historyFor && rev3 && (() => {
+        const pid = historyFor;
+        const play = playById(pid);
+        const ordered = [...actions.reviewEntries(progress, pid)].reverse(); // newest first
+        return (
+          <section className="mx-auto max-w-2xl">
+            <button type="button" onClick={() => setView(backTo)} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">{backTo === "board" ? "← Back to board" : backTo === "myplays" ? "← Back to My Plays" : "← Back"}</button>
+            <h2 className="mt-6 font-display text-2xl text-midnight-navy">Real-life experiences</h2>
+            {play && <p className="mt-1 font-body text-[15px] text-charcoal/60">{play.name}</p>}
+            {ordered.length === 0 ? (
+              <p className="mt-6 font-body text-[15px] text-charcoal/70">No experiences logged yet — when you log one, it lands here.</p>
+            ) : (
+              <ul className="mt-6 space-y-4">
+                {ordered.map((e, i) => (
+                  <li key={i} className="rounded-2xl bg-white/70 p-5">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <span className="font-ui text-xs uppercase tracking-wide text-charcoal/50">{fmtFullDate(e.at) ?? "Logged"}</span>
+                      {e.performed && <span className="font-ui text-xs text-charcoal/55">{PERFORMED_LABEL[e.performed]}</span>}
+                    </div>
+                    {e.experience && <p className="mt-2 font-body text-[15px] italic text-charcoal/85">“{e.experience}”</p>}
+                    {e.didDifferently?.length ? (
+                      <p className="mt-2 font-body text-[13px] text-charcoal/60"><span className="font-ui uppercase tracking-wide text-charcoal/45">What I did:</span> {e.didDifferently.join(" · ")}</p>
+                    ) : null}
+                    {e.stuck && (
+                      <p className="mt-1 font-body text-[13px] text-charcoal/60"><span className="font-ui uppercase tracking-wide text-charcoal/45">Where I got stuck:</span> {e.stuck}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        );
+      })()}
+        </>
       )}
     </div>
   );

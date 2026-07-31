@@ -127,6 +127,6 @@ test("not every statement is an intervention — many resolve to recognition/lit
 });
 
 test("content module exposes the Understand layer", () => {
-  assert.equal(C.literature?.length, MBR_LITERATURE.length);
+  assert.ok((C.literature?.length ?? 0) >= MBR_LITERATURE.length, "exposes at least the cluster literature (+ slice JIT)");
   assert.equal(C.statementMap?.length, 101);
 });

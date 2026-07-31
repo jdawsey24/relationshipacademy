@@ -8,6 +8,7 @@ import { keyForClusterId } from "@/lib/playbook/keys";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
+import { IconTile, CARD_HOVER } from "@/components/site/IconTile";
 import type { CSSProperties } from "react";
 
 export const dynamic = "force-dynamic";
@@ -87,10 +88,10 @@ async function Landing() {
             return (
               <Link key={p.slug} href={`/playbooks/${p.slug}`}
                 style={{ "--hue": hue } as CSSProperties}
-                className="group flex flex-col rounded-2xl border border-midnight-navy/10 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-[var(--hue)] hover:shadow-[0_10px_30px_-16px_var(--hue)]">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl" style={{ backgroundColor: `${hue}1f` }}>
-                  <PlaybookMark clusterId={p.clusterId} className="h-[26px] w-[26px]" style={{ color: hue }} />
-                </span>
+                className={`group flex flex-col rounded-2xl border border-midnight-navy/10 bg-white p-6 ${CARD_HOVER}`}>
+                <IconTile hue={hue}>
+                  <PlaybookMark clusterId={p.clusterId} className="h-[26px] w-[26px]" />
+                </IconTile>
                 <h3 className="mt-4 font-display text-xl font-semibold leading-tight text-midnight-navy">{p.subtitle}</h3>
                 {p.corePattern && <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/70">{p.corePattern}</p>}
                 {p.keyTakeaway && (

@@ -6,6 +6,7 @@ import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import PlaybookCta from "@/components/site/PlaybookCta";
 import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
+import { IconTile } from "@/components/site/IconTile";
 import type { CSSProperties } from "react";
 
 export const revalidate = 300;
@@ -35,9 +36,9 @@ export default async function PlaybookDetailPage({ params }: { params: Promise<{
 
       {/* Hero */}
       <section className="mt-6">
-        <span className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl" style={{ backgroundColor: `${hue}1f` }}>
-          <PlaybookMark clusterId={p.clusterId} className="h-9 w-9" style={{ color: hue }} />
-        </span>
+        <IconTile hue={hue} size="lg" className="mb-6">
+          <PlaybookMark clusterId={p.clusterId} className="h-9 w-9" />
+        </IconTile>
         <SectionLabel>The Relationship Playbook&trade;</SectionLabel>
         <h1 className="mt-3 text-balance font-display text-4xl font-semibold leading-tight text-midnight-navy sm:text-[44px]">{p.subtitle}</h1>
         {p.corePattern && <p className="mt-5 text-balance font-body text-lg leading-relaxed text-charcoal/75">{p.corePattern}</p>}

@@ -11,14 +11,14 @@ function base(over: Partial<IncomingEvent>): IncomingEvent {
     object_id: "sim-rd",
     object_version: 1,
     event_type: "simulation_completed",
-    payload: { evidence_reconsidered: "demonstrated" },
+    payload: { signature: "evidenceTimeline", evidence_reconsidered: "demonstrated" },
     ...over,
   };
 }
 
 test("valid event passes and returns the registry schema_version", () => {
   const r = validateEvent(base({}));
-  assert.deepEqual(r, { ok: true, schema_version: 2 });
+  assert.deepEqual(r, { ok: true, schema_version: 3 });
 });
 
 test("missing action_id is rejected (idempotency key required)", () => {
@@ -38,9 +38,11 @@ test("event_type must match its registered object_type", () => {
 });
 
 test("payload must match the per-event schema; unknown keys rejected (minimal payloads)", () => {
-  assert.equal(validateEvent(base({ payload: { evidence_reconsidered: "yes" } })).ok, false, "wrong type");
-  assert.equal(validateEvent(base({ payload: { partner_name: "x" } })).ok, false, "extra/surveillance key rejected");
-  assert.equal(validateEvent(base({ payload: {} })).ok, true, "all-optional payload is fine");
+  assert.equal(validateEvent(base({ payload: { signature: "evidenceTimeline", evidence_reconsidered: "yes" } })).ok, false, "wrong type");
+  assert.equal(validateEvent(base({ payload: { signature: "evidenceTimeline", partner_name: "x" } })).ok, false, "extra/surveillance key rejected");
+  assert.equal(validateEvent(base({ payload: { signature: "evidenceTimeline" } })).ok, true, "minimal payload (signature only) is fine");
+  assert.equal(validateEvent(base({ payload: {} })).ok, false, "signature is required (discriminant)");
+  assert.equal(validateEvent(base({ payload: { signature: "made_up_signature" } })).ok, false, "unknown signature rejected");
 });
 
 test("use_reviewed accepts only bounded structured values", () => {

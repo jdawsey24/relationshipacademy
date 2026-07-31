@@ -10,9 +10,9 @@ test("shipped content module is structurally valid", () => {
   assert.deepEqual(errs, [], "content errors: " + errs.join("; "));
 });
 
-test("first build ships exactly the two screen-complete plays (R5)", () => {
+test("shipped plays are the approved, screen-complete set (RD, WM + implemented slices)", () => {
   const ids = MOVING_BEYOND_REJECTION.plays.map((p) => p.playId).sort();
-  assert.deepEqual(ids, ["read-and-decide", "what-it-actually-means"]);
+  assert.deepEqual(ids, ["how-much-to-put-in", "is-this-right-for-you", "read-and-decide", "rest-or-giving-up", "say-the-real-thing", "what-it-actually-means"]);
 });
 
 test("every play produces an executable output (output screen + portable form)", () => {
