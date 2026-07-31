@@ -4,15 +4,18 @@ import { getMember } from "@/lib/academyAuth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getOwnedPlaybookClusterIds } from "@/lib/snapshot/playbookGrants";
 import { getPlaybookMarketing, PLAYBOOK_PRICE_DISPLAY } from "@/lib/playbookMarketing";
+import { keyForClusterId } from "@/lib/playbook/keys";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
+import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
+import type { CSSProperties } from "react";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "The Relationship Playbook™ | Relationship Life Cycle™",
   description:
-    "Focused, therapist-developed guides for the exact pattern you're navigating in dating and relationships. Each Relationship Playbook™ meets you where you are.",
+    "Focused, therapist-developed interactive experiences for the exact pattern you're navigating in dating and relationships. Each Relationship Playbook™ meets you where you are and walks you through it.",
 };
 
 // Dual-state: a signed-in member sees their library; everyone else sees the
@@ -44,7 +47,7 @@ async function Landing() {
           Go deep on the one pattern you keep running into
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-balance font-body text-lg leading-relaxed text-charcoal/75">
-          Each Relationship Playbook&trade; is a focused, therapist-developed guide to a single real pattern in dating and relationships — feeling unchosen, guarding your heart, needing constant reassurance, knowing whether to stay. Not generic dating tips: a clear, compassionate way to understand what&apos;s happening and what to do next.
+          Each Relationship Playbook&trade; is a focused, therapist-developed experience that walks you through a single real pattern in dating and relationships — feeling unchosen, guarding your heart, needing constant reassurance, knowing whether to stay. Not generic dating tips, and not a PDF to skim: an interactive, compassionate way to see what&apos;s happening and practice what to do next.
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
           <CtaButton href="#playbooks">Browse the Playbooks</CtaButton>
@@ -59,7 +62,7 @@ async function Landing() {
           A Playbook meets you exactly where you&apos;re stuck — and walks you through it.
         </p>
         <p className="mt-4 max-w-2xl font-body text-lg leading-relaxed text-charcoal/75">
-          Where generic advice stays on the surface, each Playbook goes deep on one pattern: why it happens, how it&apos;s shaping your relationships, and the specific shifts that actually help. Written by Janelle Dawsey, LMFT, and grounded in the Relationship Life Cycle&trade; framework. A focused read you keep and return to at your own pace.
+          Where generic advice stays on the surface, each Playbook goes deep on one pattern: why it happens, how it&apos;s shaping your relationships, and the specific shifts that actually help. Written by Janelle Dawsey, LMFT, and grounded in the Relationship Life Cycle&trade; framework. A guided experience you work through at your own pace — and come back to whenever you need it.
         </p>
         <div className="mt-8 grid gap-5 sm:grid-cols-3">
           {WHATS_INSIDE.map((f) => (
@@ -76,27 +79,33 @@ async function Landing() {
         <div className="text-center">
           <SectionLabel>The Playbooks</SectionLabel>
           <h2 className="mt-3 font-display text-3xl font-semibold text-midnight-navy">Find the one that fits what you&apos;re navigating</h2>
-          <p className="mx-auto mt-3 max-w-lg font-body text-charcoal/65">Each goes deep on a single pattern. Read the one that sounds like you.</p>
+          <p className="mx-auto mt-3 max-w-lg font-body text-charcoal/65">Each goes deep on a single pattern. Open the one that sounds like you.</p>
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {playbooks.map((p) => (
-            <Link key={p.slug} href={`/playbooks/${p.slug}`}
-              className="group flex flex-col rounded-2xl border border-midnight-navy/10 bg-white p-6 transition-all hover:-translate-y-px hover:border-midnight-navy/30 hover:shadow-[0_3px_18px_rgba(28,53,87,0.07)]">
-              <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal/45">Relationship Playbook&trade;</p>
-              <h3 className="mt-2 font-display text-xl font-semibold leading-tight text-midnight-navy">{p.subtitle}</h3>
-              {p.corePattern && <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/70">{p.corePattern}</p>}
-              {p.keyTakeaway && (
-                <p className="mt-3 flex-1 border-l-2 border-coral-rose/40 pl-3 font-body text-[14px] italic leading-relaxed text-charcoal/60">
-                  &ldquo;{p.keyTakeaway}&rdquo;
-                </p>
-              )}
-              <span className="mt-4 inline-flex items-center gap-1 font-ui text-sm font-semibold text-midnight-navy">
-                Read this Playbook <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
-              </span>
-            </Link>
-          ))}
+          {playbooks.map((p) => {
+            const hue = playbookHue(p.clusterId);
+            return (
+              <Link key={p.slug} href={`/playbooks/${p.slug}`}
+                style={{ "--hue": hue } as CSSProperties}
+                className="group flex flex-col rounded-2xl border border-midnight-navy/10 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-[var(--hue)] hover:shadow-[0_10px_30px_-16px_var(--hue)]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl" style={{ backgroundColor: `${hue}1f` }}>
+                  <PlaybookMark clusterId={p.clusterId} className="h-[26px] w-[26px]" style={{ color: hue }} />
+                </span>
+                <h3 className="mt-4 font-display text-xl font-semibold leading-tight text-midnight-navy">{p.subtitle}</h3>
+                {p.corePattern && <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/70">{p.corePattern}</p>}
+                {p.keyTakeaway && (
+                  <p className="mt-3 flex-1 border-l-2 pl-3 font-body text-[14px] italic leading-relaxed text-charcoal/60" style={{ borderColor: `${hue}66` }}>
+                    &ldquo;{p.keyTakeaway}&rdquo;
+                  </p>
+                )}
+                <span className="mt-4 inline-flex items-center gap-1.5 font-ui text-sm font-semibold text-midnight-navy">
+                  Open this Playbook <span aria-hidden="true" style={{ color: hue }} className="transition-transform group-hover:translate-x-0.5">→</span>
+                </span>
+              </Link>
+            );
+          })}
         </div>
-        <p className="mt-6 text-center font-body text-sm text-charcoal/50">{PLAYBOOK_PRICE_DISPLAY} each · one-time purchase · delivered instantly, yours to keep</p>
+        <p className="mt-6 text-center font-body text-sm text-charcoal/50">{PLAYBOOK_PRICE_DISPLAY} each · one-time purchase · instant access, yours in your library</p>
       </section>
 
       {/* Not sure which? — the Snapshot, now a helper, not the pitch */}
@@ -145,21 +154,30 @@ async function Library({ userId, purchaseSuccess }: { userId: string; purchaseSu
         </div>
       ) : (
         <div className="mt-7 space-y-2.5">
-          {clusterIds.map((id) => (
-            <div key={id} className="flex items-center gap-3.5 rounded-2xl border border-light-gray bg-white p-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-coral-rose/10 text-coral-rose" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width={20} height={20} fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="M6 4h9l4 4v12H6z" /><path d="M14 4v5h5" /></svg>
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block font-display text-lg font-semibold leading-tight text-midnight-navy">{names.get(id) ?? "Your Playbook"}</span>
-                <span className="mt-0.5 block font-body text-[13px] text-charcoal/55">Relationship Playbook (PDF)</span>
-              </span>
-              <a href={`/api/playbooks/${id}/download`} target="_blank" rel="noopener noreferrer"
-                className="shrink-0 rounded-full bg-midnight-navy px-5 py-2.5 font-ui text-sm font-semibold text-white transition-opacity hover:opacity-95">
-                Open
-              </a>
-            </div>
-          ))}
+          {clusterIds.map((id) => {
+            const key = keyForClusterId(id);
+            return (
+              <div key={id} className="flex items-center gap-3.5 rounded-2xl border border-light-gray bg-white p-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-coral-rose/10 text-coral-rose" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width={20} height={20} fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M10 9l5 3-5 3z" /></svg>
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-display text-lg font-semibold leading-tight text-midnight-navy">{names.get(id) ?? "Your Playbook"}</span>
+                  <span className="mt-0.5 block font-body text-[13px] text-charcoal/55">Interactive Playbook</span>
+                </span>
+                {key ? (
+                  <Link href={`/playbook/${key}`}
+                    className="shrink-0 rounded-full bg-midnight-navy px-5 py-2.5 font-ui text-sm font-semibold text-white transition-opacity hover:opacity-95">
+                    Open
+                  </Link>
+                ) : (
+                  <span className="shrink-0 rounded-full border border-light-gray px-5 py-2.5 font-ui text-sm font-semibold text-charcoal/45">
+                    Coming soon
+                  </span>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </main>
