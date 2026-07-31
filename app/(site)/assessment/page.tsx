@@ -82,10 +82,10 @@ export default async function AssessmentPage() {
         <div className="mx-auto max-w-3xl">
           <SectionLabel className="mb-4">{get(content, "assessment.hero.eyebrow", "The Relationship Snapshot™")}</SectionLabel>
           <h1 className="font-display text-hero font-semibold text-midnight-navy sm:text-5xl">
-            {get(content, "assessment.hero.headline", "Understand where your relationship is — and what it needs next.")}
+            {get(content, "assessment.hero.headline", "Understand where you are — and what to focus on next.")}
           </h1>
           <p className="mx-auto mt-6 max-w-[600px] font-body text-lg leading-relaxed text-charcoal">
-            {get(content, "assessment.hero.subhead", "The Relationship Snapshot™ is a free assessment designed to help you better understand your relationship, recognize what's going well, and identify opportunities for growth.")}
+            {get(content, "assessment.hero.subhead", "The Relationship Snapshot™ is a free assessment that helps you see the pattern you're in, what's already working, and what to focus on next — whether you're single, dating, or years in.")}
           </p>
           <div className="mt-8"><CtaButton href="/snapshot">Take the Free Assessment</CtaButton></div>
         </div>
