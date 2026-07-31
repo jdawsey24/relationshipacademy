@@ -24,7 +24,7 @@ export default async function FrameworkPage() {
       <section className="px-6 pt-36 pb-16 text-center">
         <div className="mx-auto max-w-3xl">
           <SectionLabel className="mb-4">{get(content, "framework.hero.eyebrow", "The Relationship Life Cycle™ Framework")}</SectionLabel>
-          <h1 className="font-display text-[44px] font-semibold leading-[1.05] text-midnight-navy sm:text-6xl">
+          <h1 className="font-display text-hero font-semibold text-midnight-navy sm:text-6xl">
             {get(content, "framework.hero.headline", "Relationships have seasons. This is the map.")}
           </h1>
           <p className="mx-auto mt-6 max-w-[560px] font-body text-lg leading-relaxed text-charcoal">

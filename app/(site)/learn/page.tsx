@@ -25,7 +25,7 @@ export default async function LearnPage() {
     <main className="bg-warm-ivory">
       <section className="px-6 pt-36 pb-14 text-center">
         <div className="mx-auto max-w-3xl">
-          <h1 className="font-display text-[40px] font-semibold leading-[1.05] text-midnight-navy sm:text-5xl">
+          <h1 className="font-display text-hero font-semibold text-midnight-navy sm:text-5xl">
             The Relationship Life Cycle™ Learning Center
           </h1>
           <p className="mx-auto mt-6 max-w-[600px] font-body text-lg leading-relaxed text-charcoal">

@@ -66,7 +66,7 @@ export default async function AssessmentPage() {
       <section className="px-6 pt-36 pb-16 text-center">
         <div className="mx-auto max-w-3xl">
           <SectionLabel className="mb-4">{get(content, "assessment.hero.eyebrow", "The Relationship Snapshot™")}</SectionLabel>
-          <h1 className="font-display text-[40px] font-semibold leading-[1.05] text-midnight-navy sm:text-5xl">
+          <h1 className="font-display text-hero font-semibold text-midnight-navy sm:text-5xl">
             {get(content, "assessment.hero.headline", "Understand where your relationship is — and what it needs next.")}
           </h1>
           <p className="mx-auto mt-6 max-w-[600px] font-body text-lg leading-relaxed text-charcoal">

@@ -61,7 +61,7 @@ export default function RelationshipSnapshotLanding() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
           <div className="text-center lg:text-left">
             <SectionLabel className="mb-4">The Relationship Snapshot&trade;</SectionLabel>
-            <h1 className="text-balance font-display text-[42px] font-semibold leading-[1.05] text-midnight-navy sm:text-6xl">
+            <h1 className="text-balance font-display text-hero font-semibold text-midnight-navy sm:text-6xl">
               How&apos;s your relationship, really?
             </h1>
             <div className="mx-auto mt-6 max-w-[520px] space-y-3 font-body text-lg leading-relaxed text-charcoal/80 lg:mx-0">

@@ -41,7 +41,7 @@ export default async function HomePage() {
             <SectionLabel tone="sage" className="mb-4">
               {get(content, "home.hero.eyebrow", "The Relationship Life Cycle™")}
             </SectionLabel>
-            <h1 className="text-balance font-display text-[40px] font-semibold leading-[1.05] text-midnight-navy sm:text-6xl">
+            <h1 className="text-balance font-display text-hero font-semibold text-midnight-navy sm:text-6xl">
               {get(content, "home.hero.headline", "Every relationship has a season.")}
             </h1>
             <p className="mx-auto mt-6 max-w-[540px] font-body text-lg leading-relaxed text-charcoal sm:text-xl lg:mx-0">
