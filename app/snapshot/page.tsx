@@ -1,5 +1,7 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { listAssessments } from "@/lib/snapshot/data";
+import { MarkerMark, markerHue } from "@/components/site/MarkerMark";
 
 export const dynamic = "force-dynamic";
 
@@ -21,19 +23,26 @@ export default async function QuizPickerPage() {
       </p>
 
       <div className="mt-10 space-y-3 text-left">
-        {assessments.map((a) => (
-          <Link
-            key={a.id}
-            href={`/snapshot/${a.id}`}
-            className="group flex items-center justify-between gap-4 rounded-2xl border border-light-gray bg-white px-5 py-4 transition-colors hover:border-midnight-navy/50"
-          >
-            <span>
-              <span className="block font-display text-lg font-semibold text-midnight-navy">{a.display_name}</span>
-              <span className="mt-0.5 block font-body text-[15px] leading-relaxed text-charcoal/75">{a.entry_prompt}</span>
-            </span>
-            <span className="shrink-0 text-xl text-midnight-navy/40 transition-transform group-hover:translate-x-0.5 group-hover:text-midnight-navy" aria-hidden="true">→</span>
-          </Link>
-        ))}
+        {assessments.map((a) => {
+          const hue = markerHue(a.id);
+          return (
+            <Link
+              key={a.id}
+              href={`/snapshot/${a.id}`}
+              style={{ "--hue": hue } as CSSProperties}
+              className="group flex items-center gap-4 rounded-2xl border border-light-gray bg-white px-5 py-4 transition-all hover:-translate-y-0.5 hover:border-[var(--hue)] hover:shadow-[0_10px_30px_-16px_var(--hue)]"
+            >
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: `${hue}1f` }}>
+                <MarkerMark id={a.id} className="h-[26px] w-[26px]" style={{ color: hue }} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-display text-lg font-semibold text-midnight-navy">{a.display_name}</span>
+                <span className="mt-0.5 block font-body text-[15px] leading-relaxed text-charcoal/75">{a.entry_prompt}</span>
+              </span>
+              <span className="shrink-0 text-xl transition-transform group-hover:translate-x-0.5" style={{ color: hue }} aria-hidden="true">→</span>
+            </Link>
+          );
+        })}
       </div>
 
       <p className="mt-8 font-ui text-sm text-charcoal/50">Free · about 3 minutes · no account needed</p>
