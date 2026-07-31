@@ -130,7 +130,7 @@ values
   ('DOMAIN-TRUST', 'domain', 'trust', 'Trust', 'The degree to which partners demonstrate reliability, honesty, accountability, and emotional safety over time.', array['consumer','academy','institute'], 120, 'active'),
   ('DOMAIN-EMOTIONAL-INTIMACY', 'domain', 'emotional_intimacy', 'Emotional Intimacy', 'The depth of emotional connection, vulnerability, and mutual understanding between partners.', array['consumer','academy','institute'], 130, 'active'),
   ('DOMAIN-CONFLICT-MANAGEMENT', 'domain', 'conflict_management', 'Conflict Management', 'The ability to navigate disagreement constructively, repair relational ruptures, and use conflict as a source of growth.', array['consumer','academy','institute'], 140, 'active'),
-  ('DOMAIN-RELATIONAL-FUNCTIONING', 'domain', 'relational_functioning', 'Relational Functioning', 'How well partners coordinate shared responsibilities, expectations, and roles within the relationship.', array['consumer','academy','institute'], 150, 'active'),
+  ('DOMAIN-RELATIONAL-FUNCTIONING', 'domain', 'relational_functioning', 'Role Functioning', 'How well partners coordinate shared responsibilities, expectations, and roles within the relationship.', array['consumer','academy','institute'], 150, 'active'),
   ('DOMAIN-PHYSICAL-INTIMACY', 'domain', 'physical_intimacy', 'Physical Intimacy', 'The presence, quality, and communication surrounding physical connection and affection.', array['consumer','academy','institute'], 160, 'active')
 on conflict (code) do nothing;
 

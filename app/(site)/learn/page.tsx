@@ -91,7 +91,7 @@ export default async function LearnPage() {
               {[
                 { title: "Understanding the Exploration Phase", body: "What discernment really looks like in the earliest phase of a relationship." },
                 { title: "Developmental Mismatch, Explained", body: "Why good relationships struggle when phases and expectations don't align." },
-                { title: "The Six Universal Domains", body: "How relational functioning is measured across every phase." },
+                { title: "The Six Universal Domains", body: "How role functioning is measured across every phase." },
               ].map((a) => (
                 <div key={a.title} className="flex flex-col rounded-xl border border-light-gray bg-white p-6">
                   <span className="mb-3 inline-flex w-fit rounded-full bg-light-gray px-3 py-1 font-ui text-[11px] uppercase tracking-wide text-charcoal/60">Coming soon</span>

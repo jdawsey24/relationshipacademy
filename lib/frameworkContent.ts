@@ -342,7 +342,7 @@ export const DOMAINS_CONTENT: FrameworkDomain[] = [
   { slug: "trust", name: "Trust", description: "The degree to which partners demonstrate reliability, honesty, accountability, and emotional safety over time." },
   { slug: "emotional-intimacy", name: "Emotional Intimacy", description: "The depth of emotional connection, vulnerability, and mutual understanding between partners." },
   { slug: "conflict-management", name: "Conflict Management", description: "The ability to navigate disagreement constructively, repair relational ruptures, and use conflict as a source of growth." },
-  { slug: "relational-functioning", name: "Relational Functioning", description: "How well partners coordinate shared responsibilities, expectations, and roles within the relationship." },
+  { slug: "relational-functioning", name: "Role Functioning", description: "How well partners coordinate shared responsibilities, expectations, and roles within the relationship." },
   { slug: "physical-intimacy", name: "Physical Intimacy", description: "The presence, quality, and communication surrounding physical connection and affection." },
 ];
 
