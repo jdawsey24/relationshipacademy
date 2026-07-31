@@ -20,7 +20,7 @@ const COMING: { title: string; desc: string; icon: string[]; accent: string }[] 
 export default function CompanionLibrary() {
   return (
     <CompanionChrome active="library">
-      <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Library</p>
+      <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Library</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy">Your library</h1>
       <p className="mt-1 font-body text-sm leading-relaxed text-charcoal/60">Playbooks, unlocked experiences, and saved resources — all in one private place.</p>
 

@@ -62,7 +62,7 @@ export default function CompanionSettings() {
   return (
     <CompanionChrome active="none">
       {installOpen && <InstallGuide open onClose={() => setInstallOpen(false)} />}
-      <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Settings</p>
+      <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Settings</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy">Settings</h1>
       {msg && <p className="mt-3 rounded-2xl border border-light-gray bg-white p-3.5 font-body text-sm leading-relaxed text-charcoal/70">{msg}</p>}
 

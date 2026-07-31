@@ -46,7 +46,7 @@ export default function ResultsPage() {
 
   return (
     <main className="mx-auto max-w-2xl px-6 pb-24 pt-8" style={{ "--hue": hue } as CSSProperties}>
-      <p className="text-center font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Your Relationship Snapshot&trade;</p>
+      <p className="text-center font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Your Relationship Snapshot&trade;</p>
 
       {/* Hero — the pattern, revealed */}
       <section className="mt-7 flex flex-col items-center text-center">
@@ -72,7 +72,7 @@ export default function ResultsPage() {
       {/* The heart of it — key takeaway, given a moment */}
       {p.key_takeaway && (
         <section className="mt-12 rounded-3xl px-8 py-10 text-center" style={{ backgroundColor: `${hue}12`, border: `1px solid ${hue}33` }}>
-          <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em]" style={{ color: hue }}>The heart of it</p>
+          <p className="font-ui text-eyebrow font-semibold uppercase" style={{ color: hue }}>The heart of it</p>
           <p className="mx-auto mt-3 max-w-xl text-balance font-display text-2xl font-medium italic leading-snug text-midnight-navy">{p.key_takeaway}</p>
         </section>
       )}

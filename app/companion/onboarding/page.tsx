@@ -119,7 +119,7 @@ function Section({ eyebrow, title, subtitle, children, onNext, nextLabel = "Cont
 }) {
   return (
     <div className="flex flex-1 flex-col">
-      {eyebrow && <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">{eyebrow}</p>}
+      {eyebrow && <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">{eyebrow}</p>}
       <h1 className="mt-1.5 text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy">{title}</h1>
       {subtitle && <p className="mt-2 font-body text-sm leading-relaxed text-charcoal/60">{subtitle}</p>}
       <div className="mt-6 flex-1">{children}</div>

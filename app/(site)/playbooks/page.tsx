@@ -136,7 +136,7 @@ async function Library({ userId, purchaseSuccess }: { userId: string; purchaseSu
   }
   return (
     <main className="mx-auto max-w-2xl px-6 pb-24 pt-10">
-      <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">The Relationship Playbook&trade;</p>
+      <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">The Relationship Playbook&trade;</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-4xl">Your playbooks</h1>
       <p className="mt-2 font-body text-charcoal/70">Everything you&apos;ve unlocked, ready whenever you need it.</p>
 

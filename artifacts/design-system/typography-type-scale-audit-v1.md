@@ -92,9 +92,13 @@ here — they render identically; migrating them is cosmetic-consistency work, n
 
 Ordered by value / safety:
 
-1. **Eyebrows → `SectionLabel` or `text-eyebrow`.** Replace the 146 inline
-   `text-[11px] … tracking-[0.15em]` sites. Highest consistency payoff; near-zero risk (identical
-   render). Best done surface-by-surface (playbooks → snapshot → companion → academy → marketing).
+1. ~~**Eyebrows → `text-eyebrow`.**~~ **DONE (2026-07-31).** Migrated the 25 files / 30 sites whose
+   eyebrow was the canonical `text-[11px] … tracking-[0.15em]` (snapshot, companion, playbooks
+   landing, shared components) to `text-eyebrow`, dropping the redundant size + tracking classes.
+   Verified live: 11px / 13.2px LH / 1.65px tracking — identical render. **Left as-is:** the 12px
+   `text-xs … tracking-[0.15em]` eyebrow tier used in institute/academy account panels (a deliberately
+   larger eyebrow — migrating would shrink it 12→11px), and admin status-pills / variant-tracking
+   labels (0.12/0.14/0.2/0.22em) which are not the canonical eyebrow.
 2. **Body copy → `text-body` / `text-reading`.** Migrate `text-[15px] leading-relaxed` → `text-body`
    and `text-[17px]` → `text-reading`, dropping the now-redundant `leading-*`. Do per-surface and
    eyeball each — a few `text-[15px]` sites use non-relaxed leading intentionally.

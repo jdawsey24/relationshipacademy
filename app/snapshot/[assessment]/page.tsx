@@ -83,7 +83,7 @@ export default function QuizPage() {
   if (tiebreak) {
     return (
       <main className="mx-auto max-w-xl px-6 pb-24 pt-10">
-        <p className="text-center font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">One more</p>
+        <p className="text-center font-ui text-eyebrow font-semibold uppercase text-charcoal/45">One more</p>
         <h2 className="mt-2 text-balance text-center font-display text-2xl font-semibold text-midnight-navy">Which feels more true right now?</h2>
         <div className="mt-7 space-y-2.5">
           {tiebreak.options.map((o) => (

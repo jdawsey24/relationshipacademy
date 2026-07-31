@@ -26,7 +26,7 @@ export default async function QuizPickerPage() {
   const others = assessments.filter((a) => !SINGLE_IDS.includes(a.id));
   return (
     <main className="mx-auto max-w-3xl px-6 pb-24 pt-14 text-center sm:pt-20">
-      <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">The Relationship Snapshot&trade;</p>
+      <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">The Relationship Snapshot&trade;</p>
       <h1 className="mx-auto mt-3 max-w-2xl text-balance font-display text-4xl font-semibold leading-[1.08] text-midnight-navy sm:text-5xl">
         Where are you right now?
       </h1>

@@ -54,7 +54,7 @@ export default function CompanionPlannerEdit() {
         <span className="font-ui text-xs text-charcoal/40">{state === "saving" ? "Saving…" : state === "saved" ? "Saved" : ""}</span>
       </div>
 
-      <p className="mt-4 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Conversation Planner</p>
+      <p className="mt-4 font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Conversation Planner</p>
       <h1 className="mt-1.5 font-display text-3xl font-semibold leading-tight text-midnight-navy">Plan the conversation</h1>
       <p className="mt-1 font-body text-sm leading-relaxed text-charcoal/55">Work through what you want to say, at your own pace. Everything saves privately as you go.</p>
 

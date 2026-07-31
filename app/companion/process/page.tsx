@@ -36,7 +36,7 @@ export default function CompanionProcess() {
 
   return (
     <CompanionChrome active="process">
-      <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Process</p>
+      <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Process</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy">Find your moment</h1>
       <p className="mt-1 font-body text-sm text-charcoal/60">What are you working through right now?</p>
       <PreviewToggle staff={isStaff} asUser={asUser} onToggle={toggleView} />

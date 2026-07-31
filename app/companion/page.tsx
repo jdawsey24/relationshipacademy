@@ -37,7 +37,7 @@ export default function CompanionHome() {
     <CompanionChrome active="home">
       <InstallGuide />
       <div className="flex items-center justify-between">
-        <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
+        <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Relationship Companion</p>
         <Link href="/companion/settings" aria-label="Settings" className="text-lg text-charcoal/40 hover:text-charcoal">⚙</Link>
       </div>
       <h1 className="mt-2 text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy">What are you navigating right now?</h1>

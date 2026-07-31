@@ -85,7 +85,7 @@ export default function CompanionSession() {
         <div className="h-full rounded-full bg-midnight-navy transition-all duration-300" style={{ width: `${pct}%` }} />
       </div>
 
-      <p className="mt-5 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Guided reflection</p>
+      <p className="mt-5 font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Guided reflection</p>
       <h1 className="mt-1 text-balance font-display text-2xl font-semibold leading-tight text-midnight-navy">{data.experience.title}</h1>
 
       <div className="mt-5 space-y-3">

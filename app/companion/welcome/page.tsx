@@ -27,7 +27,7 @@ export default async function CompanionWelcomePage({ searchParams }: { searchPar
     return (
       <main className="flex min-h-screen items-center justify-center bg-warm-ivory px-6 text-center">
         <div className="max-w-sm">
-          <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
+          <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Relationship Companion</p>
           <h1 className="mt-2 font-display text-3xl font-semibold text-midnight-navy">Coming soon</h1>
           <p className="mt-3 font-body leading-relaxed text-charcoal/70">The Relationship Companion isn&apos;t available yet. Check back soon.</p>
           <Link href="/" className="mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full bg-midnight-navy px-6 font-ui text-sm font-semibold text-white">Back to Relationship Life Cycle</Link>
@@ -42,7 +42,7 @@ export default async function CompanionWelcomePage({ searchParams }: { searchPar
         {success ? (
           <>
             <Medallion tone="success" paths={["M9 12l2 2 4-4", "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"]} />
-            <p className="mt-5 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
+            <p className="mt-5 font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Relationship Companion</p>
             <h1 className="mt-2 font-display text-3xl font-semibold text-midnight-navy">You&apos;re all set</h1>
             <p className="mt-3 font-body leading-relaxed text-charcoal/70">Your access is active and everything&rsquo;s ready. The Companion opens right here in your browser — add it to your Home Screen and it works just like an app, always a tap away.</p>
             <Link href="/companion" className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-midnight-navy px-8 font-ui text-sm font-semibold text-white transition-opacity hover:opacity-95">Open My Relationship Companion</Link>
@@ -51,7 +51,7 @@ export default async function CompanionWelcomePage({ searchParams }: { searchPar
         ) : (
           <>
             <Medallion paths={["M8 11V8a4 4 0 0 1 8 0", "M6 11h12v9H6z", "M12 15v2"]} />
-            <p className="mt-5 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
+            <p className="mt-5 font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Relationship Companion</p>
             <h1 className="mt-2 font-display text-3xl font-semibold text-midnight-navy">Unlock your Relationship Companion</h1>
             <p className="mt-3 font-body leading-relaxed text-charcoal/70">The Relationship Companion is a one-time purchase. Once you&apos;ve unlocked it, it opens right here — no app store, no download.</p>
             <BuyCompanionButton />

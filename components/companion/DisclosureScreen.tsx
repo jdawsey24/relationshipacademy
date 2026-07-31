@@ -42,7 +42,7 @@ export default function DisclosureScreen({ onAccepted }: { onAccepted: () => voi
   return (
     <div className="min-h-screen overflow-y-auto bg-warm-ivory">
       <div className="mx-auto max-w-md px-5 pb-40 pt-8">
-        <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">The Relationship Companion&trade;</p>
+        <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">The Relationship Companion&trade;</p>
         <h1 className="mt-1 font-display text-2xl font-semibold leading-tight text-midnight-navy">Before you begin</h1>
 
         {/* Prominent summary of the material points. */}

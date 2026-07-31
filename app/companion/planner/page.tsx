@@ -29,7 +29,7 @@ export default function CompanionPlannerList() {
     <CompanionChrome active="none">
       <Link href="/companion" className="flex items-center gap-1 font-ui text-sm text-charcoal/55 hover:text-charcoal"><span aria-hidden="true">←</span> Home</Link>
 
-      <p className="mt-4 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Conversation Planner</p>
+      <p className="mt-4 font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Conversation Planner</p>
       <h1 className="mt-1.5 font-display text-3xl font-semibold leading-tight text-midnight-navy">Plan a conversation</h1>
       <p className="mt-1 font-body text-sm leading-relaxed text-charcoal/60">Prepare for a conversation that matters — privately, at your own pace.</p>
 

@@ -73,7 +73,7 @@ export default function AssessFlow({ slug, resultsHref }: { slug: string; result
 
       {step === "intro" && (
         <section className="mx-auto flex min-h-[68vh] max-w-xl flex-col items-center justify-center text-center">
-          <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Free relationship assessment</p>
+          <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Free relationship assessment</p>
           <h1 className="mt-3 text-balance font-display text-4xl font-semibold text-midnight-navy sm:text-5xl">{data.instrument.name}</h1>
           <p className="mx-auto mt-4 max-w-md font-body text-lg leading-relaxed text-charcoal/75">A few quiet minutes to see how your relationship is really doing — what&apos;s working, where there&apos;s room to grow, and what to focus on next.</p>
 
@@ -100,7 +100,7 @@ export default function AssessFlow({ slug, resultsHref }: { slug: string; result
 
       {step === "context" && (
         <section className="mx-auto flex min-h-[68vh] max-w-md flex-col justify-center">
-          <p className="text-center font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">A little context</p>
+          <p className="text-center font-ui text-eyebrow font-semibold uppercase text-charcoal/45">A little context</p>
           <h2 className="mt-2 text-balance text-center font-display text-3xl font-semibold text-midnight-navy">Where are you in your relationship?</h2>
           <p className="mt-2 text-center font-body text-charcoal/60">This helps us interpret your results.</p>
           <div className="mt-7 space-y-2.5">
@@ -147,7 +147,7 @@ export default function AssessFlow({ slug, resultsHref }: { slug: string; result
 
       {step === "capture" && (
         <section className="mx-auto flex min-h-[68vh] max-w-md flex-col justify-center">
-          <p className="text-center font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Almost there</p>
+          <p className="text-center font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Almost there</p>
           <h2 className="mt-2 text-balance text-center font-display text-3xl font-semibold text-midnight-navy">Where should we send your results?</h2>
           <p className="mx-auto mt-2 max-w-sm text-center font-body text-charcoal/60">We&apos;ll email your results, plus a few short follow-ups to help you put them into practice. Unsubscribe anytime.</p>
           <div className="mt-7 space-y-3">
