@@ -5,9 +5,10 @@ import type { CSSProperties, ReactNode } from "react";
 // system. Each marker is a life-cycle phase, and its glyph gestures at that
 // relationship stage. Keyed by assessment id, with a neutral fallback.
 
-type GlyphKey = "meeting" | "bond" | "linked" | "apart" | "renew" | "default";
+type GlyphKey = "single" | "meeting" | "bond" | "linked" | "apart" | "renew" | "default";
 
 const VISUALS: Record<string, { hue: string; glyph: GlyphKey }> = {
+  single: { hue: "#6B7C97", glyph: "single" }, //                    umbrella for the two "single" states
   single_but_dating: { hue: "#D9777D", glyph: "meeting" }, //        Exploration — coral
   in_a_relationship: { hue: "#6B7C97", glyph: "bond" }, //           Exclusivity — slate-blue
   married_or_long_term: { hue: "#8A9D8F", glyph: "linked" }, //      Expansion — sage
@@ -20,6 +21,13 @@ export function markerHue(id: string): string {
 }
 
 const GLYPHS: Record<GlyphKey, ReactNode> = {
+  // one — the umbrella "single" state
+  single: (
+    <>
+      <circle cx="12" cy="8.5" r="3.3" />
+      <path d="M6 19a6 6 0 0 1 12 0" />
+    </>
+  ),
   // two, approaching — dating / exploring
   meeting: (
     <>
