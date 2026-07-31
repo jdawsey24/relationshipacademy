@@ -36,7 +36,9 @@ export default async function QuizPickerPage() {
       <div className="mt-10 space-y-3 text-left">
         {/* Single — one choice up front, then which kind of single */}
         {singles.length > 0 && (
-          <details className="group overflow-hidden rounded-2xl border border-light-gray bg-white transition-colors open:border-slate-blue/40 [&_summary]:list-none">
+          <details
+            style={{ "--hue": "#6B7C97" } as CSSProperties}
+            className="group overflow-hidden rounded-2xl border border-light-gray bg-white transition-all open:border-slate-blue/40 has-[summary:hover]:-translate-y-0.5 has-[summary:hover]:border-[var(--hue)] has-[summary:hover]:shadow-[0_10px_30px_-16px_var(--hue)] [&_summary]:list-none">
             <summary className="flex cursor-pointer items-center gap-4 px-5 py-4 [&::-webkit-details-marker]:hidden">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: "#6B7C971f" }}>
                 <MarkerMark id="single" className="h-[26px] w-[26px]" style={{ color: "#6B7C97" }} />
