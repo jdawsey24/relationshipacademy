@@ -14,15 +14,15 @@ export const metadata = {
 const START = "/snapshot";
 
 const OUTCOMES = [
-  { title: "What's working", body: "Recognize the habits and strengths that are helping your relationship move forward." },
-  { title: "Where you may be stuck", body: "Notice patterns or areas that may need more attention." },
-  { title: "Whether you're moving together", body: "See whether the relationship you have matches what your current level of commitment requires." },
-  { title: "What to focus on next", body: "Receive a practical next step based on your responses." },
+  { title: "The pattern you're in", body: "See the pattern shaping how you show up right now — named in plain language, without jargon." },
+  { title: "What's working", body: "Recognize the habits and strengths that are already helping you." },
+  { title: "Where you may be stuck", body: "Notice the blind spots or patterns that may need more attention." },
+  { title: "What to focus on next", body: "Get a practical next step, matched to the pattern you're in." },
 ];
 
 const STEPS = [
-  { n: "1", title: "Answer honestly", body: "Respond to a short set of questions about your relationship and how it currently functions." },
-  { n: "2", title: "See your results", body: "Receive a personalized overview of your relationship's strengths, growth opportunities, and overall direction." },
+  { n: "1", title: "Answer honestly", body: "Pick the statement that fits best across a short set of questions about how things actually feel right now." },
+  { n: "2", title: "See your results", body: "Receive a personalized overview: the pattern you're in, your strengths, and where there's room to grow." },
   { n: "3", title: "Take your next step", body: "Use your results to decide what deserves more attention, conversation, or intentional effort." },
 ];
 
@@ -34,19 +34,21 @@ const COMPARE = [
 ];
 
 const FOR = [
+  "Thinking about dating again",
   "Dating and wondering where things are headed",
   "In a committed relationship",
   "Engaged and preparing for marriage",
   "Married and wanting to stay connected",
+  "Rebuilding after a breakup or divorce",
   "Experiencing distance or uncertainty",
-  "Trying to understand what your relationship needs next",
+  "Trying to understand what you need next",
 ];
 
 const FAQS: Faq[] = [
   { q: "Is the Relationship Snapshot™ free?", a: "Yes. The Relationship Snapshot™ is free to complete." },
   { q: "How long does it take?", a: "Most people finish in about five minutes." },
   { q: "Do we have to take it together?", a: "No. One person can complete the Snapshot and receive personalized results based on their experience." },
-  { q: "Is this only for married couples?", a: "No. It is designed for people who are dating, committed, engaged, or married." },
+  { q: "Is this only for married couples?", a: "No. It meets you wherever you are — thinking about dating, actively dating, in a committed or engaged relationship, married, or rebuilding after a breakup." },
   { q: "Will it tell me whether I should stay or leave?", a: "No. The Snapshot does not make decisions for you. It helps you understand what may be happening so you can make more informed choices." },
   { q: "Is this therapy?", a: "No. The Relationship Snapshot™ is an educational assessment and does not replace therapy, clinical evaluation, or professional advice." },
   { q: "Will I receive a score?", a: "Your results will focus on understandable insights, strengths, growth opportunities, and next steps rather than presenting a confusing page of numbers." },
