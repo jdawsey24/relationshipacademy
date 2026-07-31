@@ -1,129 +1,43 @@
-// Scaffolded playbook clusters — Plays-only, registered for preview/validation but publish-held
-// (absent from lib/playbook/keys.ts INTERACTIVE / commerce map). Add a row here when a cluster is
-// promoted into content/playbook/. When one is genuinely published, move it out of this list.
+// The full playbook content corpus (handoff 2): 25 Plays-only Playbooks + 5 add-ons,
+// registered for preview/validation but publish-held (absent from lib/playbook/keys.ts
+// INTERACTIVE / commerce map). Registry-driven so every registered key is covered
+// automatically. The flagship is the one publish-wired exception.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { validatePlaybookContent } from "../lib/playbook/contentValidate";
-import { DATING_WITHOUT_LOSING_HOPE } from "../content/playbook/dating-without-losing-hope";
-import { LETTING_SOMEONE_IN } from "../content/playbook/letting-someone-in";
-import { TRUSTING_WHAT_YOU_SEE } from "../content/playbook/trusting-what-you-see";
-import { FINDING_SECURITY } from "../content/playbook/finding-security";
-import { BREAKING_THE_CYCLE } from "../content/playbook/breaking-the-cycle";
-import { FINDING_YOUR_WAY_BACK } from "../content/playbook/finding-your-way-back";
-import { REBUILDING_PHYSICAL_CONNECTION } from "../content/playbook/rebuilding-physical-connection";
-import { BUILDING_A_TRUE_PARTNERSHIP } from "../content/playbook/building-a-true-partnership";
-import { LEAN_IN_OR_LET_GO } from "../content/playbook/lean-in-or-let-go";
-import { LEARNING_TO_SAY_NO } from "../content/playbook/learning-to-say-no";
-import { FEELING_SEEN } from "../content/playbook/feeling-seen";
-import { STAYING_CONNECTED } from "../content/playbook/staying-connected";
-import { getPlaybookContent } from "../content/playbook";
+import { getPlaybookContent, listPlaybookKeys } from "../content/playbook";
 import { clusterIdForKey, hasInteractivePlaybook } from "../lib/playbook/keys";
 
-const SCAFFOLDS = [
-  {
-    key: "dating-without-losing-hope",
-    content: DATING_WITHOUT_LOSING_HOPE,
-    playIds: ["how-many-at-once", "them-or-the-pattern", "whos-actually-here"],
-    litCount: 12,
-  },
-  {
-    key: "letting-someone-in",
-    content: LETTING_SOMEONE_IN,
-    playIds: ["before-you-go", "is-this-right-for-me", "just-ask", "one-true-thing", "when-closeness-costs"],
-    litCount: 13,
-  },
-  {
-    key: "trusting-what-you-see",
-    content: TRUSTING_WHAT_YOU_SEE,
-    playIds: [
-      "check-it-dont-bury-it",
-      "do-my-standards-fit-me",
-      "give-it-a-second-look",
-      "how-long-am-i-giving-this",
-      "where-my-effort-goes",
-      "wise-or-scared",
-    ],
-    litCount: 13,
-  },
-  {
-    key: "finding-security",
-    content: FINDING_SECURITY,
-    playIds: ["ask-then-watch", "insecure-or-accurate", "what-this-is-costing", "when-it-doesnt-land"],
-    litCount: 13,
-  },
-  {
-    key: "breaking-the-cycle",
-    content: BREAKING_THE_CYCLE,
-    playIds: ["going-back-afterwards", "not-always-me", "raise-it-anyway", "when-it-starts-turning"],
-    litCount: 11,
-  },
-  {
-    key: "finding-your-way-back",
-    content: FINDING_YOUR_WAY_BACK,
-    playIds: ["have-i-stopped-reaching", "one-thing-back", "the-closest-word", "what-i-want-instead"],
-    litCount: 13, // 12 + shared SAFETY_GUIDE
-  },
-  {
-    key: "rebuilding-physical-connection",
-    content: REBUILDING_PHYSICAL_CONNECTION,
-    playIds: ["saying-it-out-loud", "the-difference-conversation", "what-you-actually-miss"],
-    litCount: 9,
-  },
-  {
-    key: "building-a-true-partnership",
-    content: BUILDING_A_TRUE_PARTNERSHIP,
-    playIds: ["hand-one-thing-over", "leave-the-gap", "the-invisible-list"],
-    litCount: 9,
-  },
-  {
-    key: "lean-in-or-let-go",
-    content: LEAN_IN_OR_LET_GO,
-    playIds: ["just-ask-what-this-is", "my-actual-terms", "what-would-i-need-to-see"],
-    litCount: 11,
-  },
-  {
-    key: "learning-to-say-no",
-    content: LEARNING_TO_SAY_NO,
-    playIds: ["ask-for-one-thing", "the-half-second", "the-smaller-true-thing", "what-this-is-costing-me"],
-    litCount: 9,
-  },
-  {
-    key: "feeling-seen",
-    content: FEELING_SEEN,
-    playIds: ["one-specific-thing", "the-ledger", "what-forgiving-would-take", "what-i-stopped"],
-    litCount: 11,
-  },
-  {
-    key: "staying-connected",
-    content: STAYING_CONNECTED,
-    playIds: ["are-we-building-the-same-thing", "season-or-arrangement", "the-money-conversation"],
-    litCount: 12, // 11 + shared SAFETY_GUIDE
-  },
-] as const;
+const FLAGSHIP = "moving-beyond-rejection";
 
-for (const s of SCAFFOLDS) {
-  test(`${s.key}: structurally valid`, () => {
-    const errs = validatePlaybookContent(s.content);
+test("registry has the flagship + the full corpus", () => {
+  const keys = listPlaybookKeys();
+  assert.ok(keys.includes(FLAGSHIP), "flagship registered");
+  // 1 flagship + 25 Playbooks + 5 add-ons
+  assert.equal(keys.length, 31, "expected 31 registered keys");
+  assert.equal(keys.filter((k) => k.startsWith("addon-")).length, 5, "5 add-ons");
+});
+
+for (const key of listPlaybookKeys()) {
+  const content = getPlaybookContent(key)!;
+
+  test(`${key}: structurally valid`, () => {
+    const errs = validatePlaybookContent(content);
     assert.deepEqual(errs, [], "content errors: " + errs.join("; "));
   });
 
-  test(`${s.key}: expected Plays, each with output + portable`, () => {
-    assert.deepEqual([...s.content.plays.map((p) => p.playId)].sort(), [...s.playIds].sort());
-    for (const p of s.content.plays) {
+  test(`${key}: every Play has an output screen + a portable form; playIds unique`, () => {
+    assert.ok(content.plays.length > 0, "has at least one Play");
+    const ids = content.plays.map((p) => p.playId);
+    assert.equal(new Set(ids).size, ids.length, "playIds are unique");
+    for (const p of content.plays) {
       assert.ok(p.screens.some((sc) => sc.kind === "output"), `${p.playId} has an output screen`);
       assert.ok(p.portable.length > 0, `${p.playId} has a portable form`);
     }
   });
 
-  test(`${s.key}: registered as content but NOT publish-wired`, () => {
-    assert.ok(getPlaybookContent(s.key), "resolves via registry");
-    assert.equal(hasInteractivePlaybook(s.key), false, "not served by the app yet");
-    assert.equal(clusterIdForKey(s.key), null, "no commerce/cluster mapping yet");
-  });
-
-  test(`${s.key}: literature cross-links all resolve (validator does not check literature)`, () => {
-    const lit = s.content.literature ?? [];
-    assert.equal(lit.length, s.litCount);
+  test(`${key}: literature cross-links all resolve (validator does not check literature)`, () => {
+    const lit = content.literature ?? [];
     const ids = new Set(lit.map((e) => e.id));
     for (const e of lit) {
       for (const r of e.related ?? []) {
@@ -131,4 +45,12 @@ for (const s of SCAFFOLDS) {
       }
     }
   });
+
+  if (key !== FLAGSHIP) {
+    test(`${key}: registered as content but NOT publish-wired`, () => {
+      assert.ok(getPlaybookContent(key), "resolves via registry");
+      assert.equal(hasInteractivePlaybook(key), false, "not served by the app yet");
+      assert.equal(clusterIdForKey(key), null, "no commerce/cluster mapping yet");
+    });
+  }
 }

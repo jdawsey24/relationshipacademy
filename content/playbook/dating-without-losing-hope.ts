@@ -2,37 +2,26 @@
  * Cluster 4 — "Feeling Like You Don't Belong in Today's Dating World"
  * The Relationship Playbook™ · Learning to Date Without Losing Hope
  *
- * Authored 29 Jul 2026. §0 DECISION: PLAYS-ONLY. No `simulations[]`,
- * no `exposureLoad`, no engine change. Ships under the amended invariant
- * permitting a Play without a paired Experience (PD-9, owner-approved).
+ * REWRITTEN 30 Jul 2026 against playbook-content-authoring-schema.md.
+ * The prior version was authored against an assumed schema and would not have
+ * compiled. Superseded copy retained at _superseded/ for diff.
  *
- * SCHEMA-CONFORMED by Claude Code, 29 Jul 2026, against contentSchema.ts +
- * contentValidate.ts. Corrections from the authored draft:
- *   - shift/learn screens: removed non-existent `heading` (no slot; body only).
- *   - scenarioSort: added required `situation`.
- *   - ownTurn: `heading` → `intro`; the Play-3 post-answer `note` became a
- *     short `learn` beat (ownTurn has no `note`).
- *   - ruleBuilder: real primitive is `actions: string[]` + `controlCheck: string`.
- *     The draft's two object-lists were reshaped — the "what counts as evidence"
- *     / "limit + cadence" selections moved to `ownTurn` chips/text screens; the
- *     ruleBuilder now carries the response moves (`actions`) + one guardrail
- *     (`controlCheck`). `heading` → `intro`.
- *   - output.body: string[] → single string.
- *   - portable screen: filled required `heading` + `steps` (mirrors the Play's
- *     top-level portable[]).
- *   - outputEditor: DEFERRED (was `true`, not a valid OutputEditor object) —
- *     the Keep/Update loop uses the v0 path; add per-Play editors in a follow-up.
+ * Plays-only. No `simulations[]`.
  *
- * Derived against Framework Version 1.9 (Manual Lag Rule applied).
+ * Derived against Framework Version 1.9.
  *   PE-1 / PE-3 → Perceptual Lens (RLC-FR-001)
- *   PE-2        → Developmental Lens, 5 competencies (Resolution A)
+ *   PE-2        → Developmental Lens, five competencies (Resolution A)
  *   PE-4        → Personal Capacity Regulation (RLC-FR-002) — NOT a competency
  *
  * ⚠ CLAIM SCOPE. May claim: tell whether someone is actually engaged; stop
  *   spending where they are not; understand why people vanish; decide whether
  *   to keep going. MUST NOT claim: that dating improves, that the reader will
- *   feel more positive, that they will meet someone, that the problem is their
- *   attitude. No copy may imply the reader lacks judgement — PE-4 is capacity.
+ *   feel more positive, that they will meet someone, or that the problem is
+ *   their attitude. No copy may imply the reader lacks judgement — PE-4 is a
+ *   capacity matter, not a competency one.
+ *
+ * ⚠ `engagementMode` removed — not a field in contentSchema.ts. The mapping is
+ *   retained in Standing_Rule_Tool_Engagement_Mode.md (all three SOLO here).
  *
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
@@ -41,7 +30,6 @@ import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C4_LITERATURE } from "./dating-without-losing-hope-literature";
 
 export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
-  // ── §1 top level ───────────────────────────────────────────────
   playbookKey: "dating-without-losing-hope",
   playbookVersion: 1,
   displayName: "Learning to Date Without Losing Hope",
@@ -53,10 +41,15 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
       "What we're going to do is separate two things that have started running together: what you've noticed about dating in general, and what any particular person has actually done.",
       "Nothing here will tell you to be more positive.",
     ],
-    cta: "See what sounds like me",
+    manifestations: [
+      "Dating apps are exhausting.",
+      "Nobody wants a relationship anymore.",
+      "Every conversation dies.",
+      "I'm tired of starting over.",
+    ],
+    cta: "Start with what's actually true",
   },
 
-  // ── §2 recognition ─────────────────────────────────────────────
   recognitionCards: [
     {
       id: "rec-not-imagining-it",
@@ -88,7 +81,8 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
       id: "rec-who-is-serious",
       role: "route",
       pathwayPlayId: "whos-actually-here",
-      headline: "I can't tell who's actually interested and who's just being pleasant.",
+      headline:
+        "I can't tell who's actually interested and who's just being pleasant.",
       explanation:
         "Warmth and effort read the same on a screen. They aren't the same signal.",
       secondaryExamples: [
@@ -111,9 +105,8 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
     },
   ],
 
-  // ── §3 plays ───────────────────────────────────────────────────
   plays: [
-    // ─────────────────────────────── 3a ──
+    // ───────────────────────────────────────────── Play 1 ──
     {
       playId: "them-or-the-pattern",
       playVersion: 1,
@@ -147,7 +140,8 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
           kind: "scenarioSort",
           prompt: "Put each of these on the right side.",
           situation:
-            "Here are things that might go through your head while you're talking to someone new.",
+            "You matched three weeks ago. It's been fine — a bit slow, one cancelled plan, one long conversation you genuinely enjoyed.",
+          thought: "I already know where this goes.",
           buckets: [
             { id: "general", label: "A read about people in general" },
             { id: "specific", label: "Something this person did" },
@@ -185,7 +179,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
               text: "This always ends the same way",
               correctBucket: "general",
               correction:
-                "“Always” is the giveaway — that's a read across many people.",
+                "\u201cAlways\u201d is the giveaway — that's a read across many people.",
             },
             {
               id: "sort-p1-cancelled-twice",
@@ -202,15 +196,15 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
           fields: [
             {
               id: "general-read",
-              input: "text",
               label: "What's your general read telling you about how this goes?",
+              input: "text",
               placeholder: "The thing you already expect…",
             },
             {
               id: "actual-facts",
-              input: "text",
               label:
                 "What has this person actually done? Just the facts — what happened, not what it meant.",
+              input: "text",
               placeholder: "Replied on Tuesday. Suggested a time, then went quiet…",
             },
           ],
@@ -229,11 +223,12 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
         {
           kind: "output",
           heading: "What I actually know",
-          body: "Your general read stays where it is. This is just what's true about one person.",
+          body:
+            "Your general read stays where it is. This is just what's true about one person.",
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "The read is about the pool. This person is a separate question.",
             "If I already know how it goes, I've stopped watching.",
@@ -268,12 +263,13 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
         {
           id: "signpost-generalised-hopelessness",
           heading: "This sounds bigger than one person",
-          body: "Some of what you've written sounds bigger than one person or one app. When the feeling stops being about dating and starts being about you — whether you're worth it, whether anything will work — that's worth saying out loud to someone. A therapist, a GP, a friend who'll actually sit with it. Not because something's wrong with you. Because that's heavier than a tool like this is built for.",
+          body:
+            "Some of what you've written sounds bigger than one person or one app. When the feeling stops being about dating and starts being about you — whether you're worth it, whether anything will work — that's worth saying out loud to someone. A therapist, a GP, a friend who'll actually sit with it. Not because something's wrong with you. Because that's heavier than a tool like this is built for.",
         },
       ],
     },
 
-    // ─────────────────────────────── 3b ──
+    // ───────────────────────────────────────────── Play 2 ──
     {
       playId: "whos-actually-here",
       playVersion: 1,
@@ -295,7 +291,6 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "Warmth is cheap. Effort is expensive.",
             "Most people read warmth. Warmth is cheap — nearly everyone can produce it, and it's genuinely pleasant, which makes it hard to discount.",
             "Effort is expensive. Effort means doing something that costs time or attention, and doing it when you didn't prompt them.",
             "Effort is the more useful signal. Not because warm people are lying, but because warmth tells you about their manner and effort tells you about their intent.",
@@ -304,7 +299,8 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
         {
           kind: "scenarioSort",
           prompt: "Which of these is effort you can see?",
-          situation: "Someone you've been talking to says and does a mix of things.",
+          situation:
+            "Two weeks of talking. They're lovely in every message. You've made every plan so far.",
           buckets: [
             { id: "warmth", label: "Warmth" },
             { id: "effort", label: "Effort" },
@@ -312,7 +308,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
           items: [
             {
               id: "sort-p2-so-glad",
-              text: "“You're amazing, I'm so glad we matched”",
+              text: "\u201cYou're amazing, I'm so glad we matched\u201d",
               correctBucket: "warmth",
               correction:
                 "That's about how they made you feel. What did they actually do?",
@@ -326,9 +322,10 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
             },
             {
               id: "sort-p2-drink-sometime",
-              text: "“We should definitely get a drink sometime”",
+              text: "\u201cWe should definitely get a drink sometime\u201d",
               correctBucket: "warmth",
-              correction: "“Sometime” isn't a plan. That's a pleasant sentence.",
+              correction:
+                "\u201cSometime\u201d isn't a plan. That's a pleasant sentence.",
             },
             {
               id: "sort-p2-confirmed-thursday",
@@ -338,7 +335,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
             },
             {
               id: "sort-p2-thinking-of-you",
-              text: "“I've been thinking about you all day”",
+              text: "\u201cI've been thinking about you all day\u201d",
               correctBucket: "warmth",
               correction: "Lovely to hear. Doesn't tell you what they'll do.",
             },
@@ -346,51 +343,58 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
               id: "sort-p2-remembered",
               text: "Remembered the thing you were nervous about",
               correctBucket: "effort",
-              correction:
-                "Remembering takes attention. That's effort, not manner.",
+              correction: "Remembering takes attention. That's effort, not manner.",
             },
           ],
         },
         {
           kind: "ownTurn",
-          intro: "What I'll treat as evidence with this person.",
+          intro:
+            "Think of one person you're currently talking to. What have you actually seen?",
           fields: [
             {
-              id: "evidence",
+              id: "effort-seen",
+              label: "Effort you can point at",
               input: "chips",
-              label: "Pick the ones that count for you",
               suggestions: [
-                "They start conversations sometimes, not just respond",
-                "What they said would happen, happened",
-                "We've moved toward actually meeting",
-                "It's held up across more than one week",
+                "They started a conversation",
+                "They made a plan and kept it",
+                "They followed up on something I said",
+                "It's happened more than once",
+                "None of these yet",
               ],
+            },
+            {
+              id: "words-unbacked",
+              label: "Words that haven't been backed up yet",
+              input: "text",
+              placeholder: "Things they said would happen and haven't.",
             },
           ],
         },
         {
           kind: "ruleBuilder",
-          intro:
-            "And if I'm not seeing it, decide the move now — not in the moment.",
-          conditionLabel: "When I'm not seeing that evidence",
-          thenLabel: "I'll",
+          intro: "Set what you'll treat as evidence with this person.",
+          conditionLabel: "What I'll treat as evidence from here",
+          thenLabel: "And if I'm not seeing it, I'll",
           actions: [
-            "Ask directly",
+            "Ask them directly",
             "Keep my effort matched to theirs",
             "Give it one more week, then decide",
             "Let it go",
           ],
           controlCheck:
-            "This is about weighing what they do over how they make me feel — not scorekeeping, and not testing them.",
+            "I'm pacing my effort against what's actually returned — not going quiet to see what they do.",
         },
         {
           kind: "output",
           heading: "My read",
-          body: "This is about whether they're showing up now. It isn't a prediction.",
+          body:
+            "This is about whether they're showing up now. It isn't a prediction.",
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Warmth is manner. Effort is intent.",
             "Did they do it, or did they say it?",
@@ -406,9 +410,11 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
       myPlaysTemplate: {
         when: "When I can't tell if someone's actually interested",
         move: "Weigh effort and follow-through above warmth and stated intent",
-        lookingFor: "Do they start things? Does what they said match what they did?",
+        lookingFor:
+          "Do they start things? Does what they said match what they did?",
         watchOut: "Letting warmth stand in for evidence because it feels good",
-        remember: "This tells me if they're showing up. It doesn't tell me how it ends.",
+        remember:
+          "This tells me if they're showing up. It doesn't tell me how it ends.",
       },
       fidelity: {
         correct:
@@ -425,12 +431,13 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
         {
           id: "signpost-self-worth",
           heading: "Their silence isn't a verdict on you",
-          body: "Some of what you've written reads like their silence is telling you something about you. Mostly it's telling you about them — and often it isn't telling you much at all. If that's a familiar feeling and it doesn't shift, it's worth talking to someone about, separately from any of this.",
+          body:
+            "Some of what you've written reads like their silence is telling you something about you. Mostly it's telling you about them — and often it isn't telling you much at all. If that's a familiar feeling and it doesn't shift, it's worth talking to someone about, separately from any of this.",
         },
       ],
     },
 
-    // ─────────────────────────────── 3c ──
+    // ───────────────────────────────────────────── Play 3 ──
     {
       playId: "how-many-at-once",
       playVersion: 1,
@@ -453,7 +460,6 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "There's a number, and it's smaller than you think.",
             "There's a number of people you can actually pay attention to. Above it, they stop being individuals and become a queue.",
             "That number is smaller than most people think, and it isn't the same for everyone. It's also not fixed — it drops when the rest of your life is heavy.",
             "The point of naming it is that once everyone's a queue, you're not really choosing. You're processing.",
@@ -461,33 +467,39 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
         },
         {
           kind: "ownTurn",
-          intro: "The honest count.",
+          intro: "The honest count. Roughly is fine — most people underestimate.",
           fields: [
             {
               id: "count-open",
+              label: "How many people are you actively talking to right now?",
               input: "text",
-              label:
-                "How many people are you actively talking to or evaluating right now?",
               placeholder: "A number, or roughly",
             },
             {
               id: "count-specific",
-              input: "text",
               label:
-                "Of those, how many could you tell me something specific about — something that's actually theirs?",
+                "Of those, how many could you say something specific about — something that's actually theirs?",
+              input: "text",
               placeholder: "A number, or roughly",
+            },
+            {
+              id: "what-id-drop",
+              label: "If you had to close some out, which would go first?",
+              input: "chips",
+              suggestions: [
+                "The ones who've gone quiet",
+                "The ones I've never met",
+                "The ones I keep forgetting about",
+                "The ones I'm keeping as backup",
+                "I don't know yet",
+              ],
             },
           ],
         },
         {
-          kind: "learn",
-          body: [
-            "If the second number is smaller, that gap is the thing. Not a failing — just the honest count.",
-          ],
-        },
-        {
           kind: "sufficiency",
-          prompt: "How many do you think you can actually pay attention to properly?",
+          prompt:
+            "How many do you think you can actually pay attention to properly?",
           enoughLabel: "I know my number",
           needMoreLabel: "I'm not sure yet",
           needMoreIntro:
@@ -496,28 +508,10 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
           observableLabel: "Something I'd actually notice",
         },
         {
-          kind: "ownTurn",
-          intro: "Set your limit — chosen now, on purpose.",
-          fields: [
-            {
-              id: "limit",
-              input: "text",
-              label: "My limit, for now",
-              placeholder: "A number",
-            },
-            {
-              id: "cadence",
-              input: "chips",
-              label: "I'll look at this again",
-              suggestions: ["In a week", "In a month", "When something changes"],
-            },
-          ],
-        },
-        {
           kind: "ruleBuilder",
-          intro: "Decide what you'll do when you hit it.",
-          conditionLabel: "When I hit that limit",
-          thenLabel: "I'll",
+          intro: "Set the limit yourself. It isn't a rule you can fail.",
+          conditionLabel: "My limit, for now, is",
+          thenLabel: "When I hit it, I'll",
           actions: [
             "Close out the ones that have gone quiet",
             "Stop swiping until something resolves",
@@ -525,7 +519,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
             "Pause the whole thing for a bit",
           ],
           controlCheck:
-            "This is a limit I chose to protect my attention — not a rule I've failed if I go over.",
+            "This is a number I chose to protect my attention — not a target, and not something I can fail at.",
         },
         {
           kind: "output",
@@ -534,7 +528,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "It gets harsher the longer I scroll. That's the volume, not them.",
             "Above my number, I'm processing — not choosing.",
@@ -565,20 +559,11 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
         notMeaning:
           "It does not mean fewer is better, that you should keep going, or that stopping is failure.",
       },
-      supportSignposts: [
-        {
-          id: "signpost-generalised-hopelessness",
-          heading: "There's a difference worth checking",
-          body: "There's a difference between this isn't working right now and nothing is going to work. The first is a decision. The second is a conclusion, and it's worth having someone else in the room when you look at it. If it's been sitting with you for a while, or it's spread past dating, please talk to someone.",
-        },
-      ],
     },
   ],
 
-  // ── §4 literature ──────────────────────────────────────────────
   literature: C4_LITERATURE,
 
-  // ── §5 missions ────────────────────────────────────────────────
   missions: [
     {
       id: "mission-c4-pattern",
@@ -586,7 +571,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
       playId: "them-or-the-pattern",
       title: "Check one person against their own record",
       instruction:
-        "Next time you catch yourself already knowing how someone goes, stop and write down what they've actually done so far. Then decide.",
+        "Next time you catch yourself already knowing how someone goes, stop and write down what they have actually done so far. Then decide.",
       linkToOperation:
         "Separating the general read from this person's actual record",
       attemptMeaning:
@@ -625,22 +610,21 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
       playId: "how-many-at-once",
       title: "Hold your limit for one week",
       instruction:
-        "Keep the number of people you're actively evaluating at or under the limit you set. Notice what changes.",
+        "Keep the number of people you're actively evaluating at or below the limit you set. Note what you noticed.",
       linkToOperation: "Holding a self-set limit on concurrent evaluation",
       attemptMeaning: "You tried it. Going over is information, not failure.",
       suitability:
-        "If holding the limit means stopping altogether for now, that counts. It isn't a miss.",
+        "If holding the limit means stopping altogether for now, that counts and is not a miss.",
       progression: [
         {
           id: "rung-c4-load-2",
           instruction:
-            "Notice whether the last person you talked to got a different read than the first.",
+            "Notice whether your reading of the last person differs from the first.",
         },
       ],
     },
   ],
 
-  // ── §6 use reviews ─────────────────────────────────────────────
   useReviews: [
     {
       id: "review-c4-pattern",
@@ -658,7 +642,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you check this person against their own record?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -696,7 +680,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you weigh effort over warmth?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -734,7 +718,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you hold the limit you set?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -757,6 +741,4 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
       },
     },
   ],
-
-  // §7 simulations — INTENTIONALLY ABSENT. §0 decision: Plays-only.
 };

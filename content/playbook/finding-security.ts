@@ -4,22 +4,27 @@
  *
  * §0 DECISION: PLAYS-ONLY, consistent with Clusters 3, 4 and 5.
  *
- * PROMOTED from _import/ into content/playbook/ 2026-07-30 and SCHEMA-CONFORMED by
- * Claude Code against contentSchema.ts (same pass as C3/C5): headings folded into
- * body[0]; ownTurn heading→intro and chips options→suggestions; sentenceBuilder
- * collapsed to { label, helper }; ruleBuilder reshaped to actions:string[] + one
- * controlCheck string; scenarioSort situation added; output.body→string; portable
- * screens filled; outputEditor removed; opening.cta added. NOT publish-wired.
- *
  * ⚠⚠ HARD PROHIBITION — NO ATTACHMENT CLASSIFICATION anywhere in this module.
- *   The pattern is DESCRIBED and never NAMED. Owner-confirmed 29 Jul 2026.
+ *   No "anxious attachment", no attachment style, no type, no diagnosis.
+ *   The pattern is DESCRIBED (reassurance helps and wears off; a lot is spent
+ *   on watching) and never NAMED. Owner-confirmed 29 Jul 2026.
+ *
  * ⚠ OWNER RULING 29 Jul: the target is the REASSURANCE ROUTE, not the need.
- *   PE-3b gets NO Play. Content must never reinforce "you should not need this".
+ *   PE-3b (nine statements of self-attack about having the need) gets NO Play.
+ *   Content must never reinforce "you should not need this".
+ *
+ * Derived against Framework Version 1.9.
+ *   PE-3b  → wellbeing constraint; Understand layer only, no intervention
+ *   PE-8   → Personal Capacity Regulation (RLC-FR-002) framing
+ *   PE-5   → Perceptual Lens; STM-0418 is an observation and may be accurate
+ *   Phase  → single phase, Exploration (1047/1050/1054 per C3 and C5 precedent)
  *
  * ⚠ CLAIM SCOPE. May claim: ask a question that has a real answer; notice what
- *   happens to reassurance when it arrives; tell a specific read from a familiar
- *   one; see what the watching costs and reclaim some. MUST NOT claim: that the
- *   reader will need less reassurance, feel secure, or stop being anxious.
+ *   happens to reassurance when it arrives; tell a specific read from a
+ *   familiar one; see what the watching costs and reclaim some. MUST NOT
+ *   CLAIM: that the reader will need less reassurance, that they will feel
+ *   secure, that they will stop being anxious, or anything about what kind of
+ *   person they are.
  *
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
@@ -39,7 +44,13 @@ export const FINDING_SECURITY: PlaybookContent = {
       "What we'll look at instead is the route — because most people in this position aren't short of reassurance. It arrives, it helps, and then it drains.",
       "We won't be telling you what kind of person you are.",
     ],
-    cta: "See what sounds like me",
+    manifestations: [
+      "I overanalyze every text.",
+      "I need constant reassurance.",
+      "I don't believe compliments.",
+      "I hate needing reassurance.",
+    ],
+    cta: "Start with what isn't a defect",
   },
 
   // ── recognition ────────────────────────────────────────────────
@@ -75,7 +86,8 @@ export const FINDING_SECURITY: PlaybookContent = {
       role: "route",
       pathwayPlayId: "when-it-doesnt-land",
       headline: "They tell me it's fine and by evening I need to hear it again.",
-      explanation: "You're probably not short of reassurance. It isn't staying.",
+      explanation:
+        "You're probably not short of reassurance. It isn't staying.",
       secondaryExamples: [
         "I don't believe compliments.",
         "I assume they're just being nice.",
@@ -87,7 +99,8 @@ export const FINDING_SECURITY: PlaybookContent = {
       role: "route",
       pathwayPlayId: "insecure-or-accurate",
       headline: "I can't tell if I'm being insecure or if something's actually changed.",
-      explanation: "Sometimes you're right. There's a usable way to check.",
+      explanation:
+        "Sometimes you're right. There's a usable way to check.",
       secondaryExamples: [
         "I don't know if I'm overreacting.",
         "I compare myself to their ex.",
@@ -117,7 +130,8 @@ export const FINDING_SECURITY: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "Ask, Then Watch",
-      positioning: "For when you've reread it eleven times and learned nothing.",
+      positioning:
+        "For when you've reread it eleven times and learned nothing. You write the question alone \u2014 then you ask it, because rereading never produces new information and asking does.",
       recognitionGate: {
         prompt: "Do you go back over messages looking for something you missed?",
       },
@@ -125,7 +139,6 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "The eleventh read has the same words in it.",
             "Analysis feels like progress. You're turning it over, considering angles, working on it.",
             "But no new information is arriving, so nothing can resolve. What it produces is more possible meanings — which is the opposite of what you were after.",
             "Only two things generate new information. Asking, and watching what happens over time.",
@@ -134,23 +147,23 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "A question with an answer.",
-            "“Are we okay?” gets you “yes, of course”. Lovely, and almost no information — which is why it's gone by Thursday.",
+            "\u201cAre we okay?\u201d gets you \u201cyes, of course\u201d. Lovely, and almost no information — which is why it's gone by Thursday.",
             "A question with an actual answer is specific: are we seeing other people, are you free next weekend, is this a regular thing.",
             "The narrower it is, the harder it is to answer with warmth alone — and warmth alone is the thing that doesn't last.",
           ],
         },
         {
           kind: "sentenceBuilder",
-          label: "Write the question — one thing, answerable.",
+          label: "The question, in your words",
           helper:
-            "Specific enough that 'yeah, of course' wouldn't answer it. You might open with “I'd rather ask than guess —”, “Can I check one thing?”, or “Something I want to know:”",
+            "Specific enough that “yeah, of course” wouldn't answer it. You might start with “I'd rather ask than guess…” or “Can I check one thing?”",
         },
+        
         {
           kind: "ruleBuilder",
-          intro: "Then watch, rather than reread.",
-          conditionLabel: "The question I asked",
-          thenLabel: "Over the next week I'll watch for",
+          intro: "Then watch, rather than reread",
+          conditionLabel: "What I'll watch over the next week",
+          thenLabel: "And what I'll do instead of rereading",
           actions: [
             "Whether they start things without me",
             "Whether what they said would happen, happens",
@@ -158,7 +171,7 @@ export const FINDING_SECURITY: PlaybookContent = {
             "Whether they actually answered what I asked",
           ],
           controlCheck:
-            "I asked once — I'm not going to re-ask it in a new shape, I'm not going quiet to see what they do, and when I want to reread I've got somewhere else to put it.",
+            "I asked once. I'm not going to re-ask it in a new shape. I'm not going quiet to see what they do. When I want to reread, I've got somewhere else to put it.",
         },
         {
           kind: "output",
@@ -167,17 +180,17 @@ export const FINDING_SECURITY: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "The eleventh read has the same words in it.",
-            "“Are we okay?” is a nice noise. Ask something with an answer.",
+            "\u201cAre we okay?\u201d is a nice noise. Ask something with an answer.",
             "Asked once. Now watch.",
           ],
         },
       ],
       portable: [
         "The eleventh read has the same words in it.",
-        "“Are we okay?” is a nice noise. Ask something with an answer.",
+        "\u201cAre we okay?\u201d is a nice noise. Ask something with an answer.",
         "Asked once. Now watch.",
       ],
       myPlaysTemplate: {
@@ -189,7 +202,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "One specific answerable question is asked, and observation is extended over time in place of re-analysis.",
+          "One specific answerable question is actually asked, and observation is then extended over time in place of re-analysis. Drafting is preparation; asking is the operation.",
         misuse: [
           "Re-asking the same question in different words.",
           "Going quiet to see what they do.",
@@ -214,7 +227,6 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "You're probably not short of it.",
             "They've told you. It landed. And then it faded faster than seemed reasonable and you were back where you started.",
             "So the problem isn't supply. It's what happens on the way in, and how quickly the ground goes soft again.",
           ],
@@ -222,7 +234,6 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "Information stays. Relief doesn't.",
             "Information is something you didn't know and now do. It holds until something changes.",
             "Relief is the discomfort dropping for a while. Nothing was learned, so there's nothing to hold onto.",
             "Most reassurance-seeking gets relief. That's why it evaporates — not because they didn't mean it.",
@@ -231,14 +242,13 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "emotionBeat",
           body: [
-            "This next bit can sting.",
             "Looking at how you take something apart is uncomfortable, especially when you'd rather just be able to believe it.",
             "You're not doing it on purpose and it isn't a character failing. It's a habit with a reason behind it. Noticing is the whole ask here.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "One time it didn't stay.",
+          intro: "One time it didn't stay",
           fields: [
             {
               id: "what-they-said",
@@ -289,7 +299,7 @@ export const FINDING_SECURITY: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Information stays. Relief doesn't.",
             "Where does it get taken apart? That's the moment.",
@@ -344,7 +354,6 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Sometimes you're right.",
             "Being anxious doesn't make you wrong. People do lose interest, and you may well be picking something up.",
             "The trouble is that the feeling is identical whether or not there's something there. So the feeling can't be the test.",
           ],
@@ -352,7 +361,6 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "Two lists.",
             "Probably about them: you can point at a specific thing, something changed, and someone else would notice if you described it flatly.",
             "Probably the pattern: it's the same feeling as last month and the person before, it's loudest when nothing at all has happened, and it gets stronger rather than weaker after they reassure you.",
             "That last one is the most useful tell in this cluster.",
@@ -361,7 +369,8 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "scenarioSort",
           prompt: "Which side?",
-          situation: "You're holding a worry about where you stand, and trying to place where it comes from.",
+          situation:
+            "You sent a message four hours ago. They've been online since. Nothing yet, and nothing has actually gone wrong.",
           buckets: [
             { id: "about-them", label: "Probably about them" },
             { id: "the-pattern", label: "Probably the pattern" },
@@ -409,7 +418,7 @@ export const FINDING_SECURITY: PlaybookContent = {
         },
         {
           kind: "ownTurn",
-          intro: "Run yours through it.",
+          intro: "Run yours through it",
           fields: [
             {
               id: "the-read",
@@ -432,24 +441,24 @@ export const FINDING_SECURITY: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Louder after they reassure me? That's the pattern.",
             "Can I point at something that changed?",
-            "“The pattern” never means ignore it.",
+            "\u201cThe pattern\u201d never means ignore it.",
           ],
         },
       ],
       portable: [
         "Louder after they reassure me? That's the pattern.",
         "Can I point at something that changed?",
-        "“The pattern” never means ignore it.",
+        "\u201cThe pattern\u201d never means ignore it.",
       ],
       myPlaysTemplate: {
         when: "When I can't tell if something's actually changed",
         move: "Check the read against both lists before acting on it",
         lookingFor: "Something specific that changed, describable without commentary",
-        watchOut: "Using “it's just me” to dismiss something that was real",
+        watchOut: "Using \u201cit's just me\u201d to dismiss something that was real",
         remember: "Anxious doesn't mean wrong. The feeling just can't be the test.",
       },
       fidelity: {
@@ -479,7 +488,6 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "A budget, not a flaw.",
             "This isn't about caring less, and it isn't a diagnosis of how you attach.",
             "It's arithmetic. The rereading, the checking, the replaying, the working out what they meant — those hours come out of the same supply as everything else.",
             "And the less of you there is elsewhere, the more weight the relationship has to carry, which makes every wobble in it enormous.",
@@ -488,14 +496,13 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "Why stopping doesn't work.",
             "You've probably tried to just stop checking. It doesn't take, and then that becomes another thing you've failed at.",
             "Adding it up works better than banning it. Knowing the price lets you decide what you'd rather spend some of it on — which is a choice rather than a prohibition.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "The honest count.",
+          intro: "The honest count",
           fields: [
             {
               id: "where-it-goes",
@@ -525,9 +532,9 @@ export const FINDING_SECURITY: PlaybookContent = {
         },
         {
           kind: "ruleBuilder",
-          intro: "Name when it happens, and what you'll do instead.",
-          conditionLabel: "When I catch myself doing it",
-          thenLabel: "I'll",
+          intro: "Reclaim some of it",
+          conditionLabel: "The one I'll take back first",
+          thenLabel: "And where that goes instead",
           actions: [
             "Check once a day rather than whenever",
             "Read it once and close it",
@@ -535,7 +542,7 @@ export const FINDING_SECURITY: PlaybookContent = {
             "Give the worrying a slot, and keep it there",
           ],
           controlCheck:
-            "The time goes somewhere real, not nowhere — this isn't about seeming less keen to them — and slipping is expected, not a failure.",
+            "The time goes somewhere real, not nowhere. This isn't about seeming less keen to them. Slipping is expected and isn't a failure.",
         },
         {
           kind: "output",
@@ -544,7 +551,7 @@ export const FINDING_SECURITY: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "A budget, not a flaw.",
             "When it's carrying everything, every wobble is enormous.",
@@ -594,15 +601,19 @@ export const FINDING_SECURITY: PlaybookContent = {
       id: "mission-c6-ask",
       version: 1,
       playId: "ask-then-watch",
-      title: "Ask once, then watch for a week",
+      title: "Watch for a week without re-asking",
       instruction:
-        "Ask the question you wrote. Then, for a week, note what they do rather than rereading what they said.",
+        "You asked in the tool. Now hold a full week \u2014 note what they do, and don't re-ask it in a new shape.",
       linkToOperation: "Direct clarification followed by observation over time",
-      attemptMeaning: "You asked and watched. It doesn't mean the answer settled anything.",
+      attemptMeaning:
+        "You asked and watched. It doesn't mean the answer settled anything.",
       suitability:
         "If you find yourself re-asking it in a new shape, that's the thing to notice rather than a failure.",
       progression: [
-        { id: "rung-c6-ask-2", instruction: "Let a full week pass before asking anything else." },
+        {
+          id: "rung-c6-ask-2",
+          instruction: "Let a full week pass before asking anything else.",
+        },
       ],
     },
     {
@@ -613,7 +624,8 @@ export const FINDING_SECURITY: PlaybookContent = {
       instruction:
         "Next time someone says something good, notice the moment you start taking it apart. Don't stop it — just note where it happened.",
       linkToOperation: "Observing the point at which reassurance is discounted",
-      attemptMeaning: "You noticed. Believing it wasn't the ask.",
+      attemptMeaning:
+        "You noticed. Believing it wasn't the ask.",
       suitability:
         "If noticing turns into a fresh round of self-criticism, stop and read 'Wanting to know where you stand isn't a defect'.",
       progression: [
@@ -631,8 +643,10 @@ export const FINDING_SECURITY: PlaybookContent = {
       instruction:
         "Take something you're currently worried about and check it against both lists before you act on it or push it down.",
       linkToOperation: "Discriminating a specific change from a familiar feeling",
-      attemptMeaning: "You checked. Landing on 'the pattern' doesn't mean the worry was silly.",
-      suitability: "If it lands on both, that's a real result. Some reads don't sort.",
+      attemptMeaning:
+        "You checked. Landing on 'the pattern' doesn't mean the worry was silly.",
+      suitability:
+        "If it lands on both, that's a real result. Some reads don't sort.",
       progression: [
         {
           id: "rung-c6-check-2",
@@ -648,11 +662,15 @@ export const FINDING_SECURITY: PlaybookContent = {
       instruction:
         "Pick the one you named. Hold it for a week, and put the time somewhere real. Note what you noticed.",
       linkToOperation: "Reclaiming capacity spent on monitoring",
-      attemptMeaning: "You tried it. Slipping is information, not failure.",
+      attemptMeaning:
+        "You tried it. Slipping is information, not failure.",
       suitability:
         "If holding it makes the worry noticeably worse rather than just uncomfortable, ease off — that's worth knowing rather than pushing through.",
       progression: [
-        { id: "rung-c6-cost-2", instruction: "Add a second one, or extend the first by a week." },
+        {
+          id: "rung-c6-cost-2",
+          instruction: "Add a second one, or extend the first by a week.",
+        },
       ],
     },
   ],
@@ -675,7 +693,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you ask once and then watch?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -713,7 +731,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you notice where it got taken apart?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -751,7 +769,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you check before acting or pushing it down?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -789,7 +807,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you take one thing back and put it somewhere?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",

@@ -10,7 +10,7 @@
  *   Owner ruling: "I don't feel emotionally safe" routes OUT of the tools,
  *   never into one. Every tool here involves raising difficult things and
  *   staying in the conversation. That is the wrong instruction for someone
- *   frightened of their partner. `lit-c7-if-you-dont-feel-safe` is a
+ *   frightened of their partner. `lit-shared-if-you-dont-feel-safe` is a
  *   dedicated exit guide and is surfaced first for anyone who taps that card.
  *   NOTHING in this cluster may frame intimidation, contempt, or control as a
  *   communication problem.
@@ -29,54 +29,10 @@
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
+import { SAFETY_GUIDE } from "./shared/safety-not-safe";
+
 export const C7_LITERATURE: LiteratureEntry[] = [
-  {
-    id: "lit-c7-if-you-dont-feel-safe",
-    version: 1,
-    scope: "cluster",
-    depth: "core",
-    title: "If you don't feel safe",
-    related: ["lit-c7-your-half"],
-    body: [
-      {
-        kind: "paragraph",
-        body: [
-          "We're putting this first because it matters more than anything else here.",
-          "Two of the things people say in this situation are: I don't feel emotionally safe during conflict, and I don't feel safe enough to be honest.",
-        ],
-      },
-      {
-        kind: "paragraph",
-        body: [
-          "Sometimes that means two people who argue badly and both feel bruised afterwards. Sometimes it means something else.",
-        ],
-      },
-      {
-        kind: "list",
-        label: "None of the following is a communication problem",
-        items: [
-          "Being frightened of how they'll react.",
-          "Changing what you say to manage their temper.",
-          "Being made to feel small, stupid, or unstable on purpose.",
-          "Being blamed for things that happened to you.",
-          "Having your access to money, people, or leaving controlled.",
-          "Anything physical, ever.",
-        ],
-      },
-      {
-        kind: "guardrail",
-        body: [
-          "Every tool in this Playbook asks you to raise difficult things and stay in the conversation. If any of the above is happening, that is the wrong instruction and following it could make things worse. Please talk to someone who can help you look at it properly — a domestic abuse service, a GP, or a therapist. You don't have to be certain it's serious to ask.",
-        ],
-      },
-      {
-        kind: "paragraph",
-        body: [
-          "If none of that fits, and it's genuinely two people who can't do conflict well — the rest of this is for you.",
-        ],
-      },
-    ],
-  },
+  SAFETY_GUIDE, // shared — do not re-author per cluster
 
   {
     id: "lit-c7-what-this-is",
@@ -344,7 +300,7 @@ export const C7_LITERATURE: LiteratureEntry[] = [
     scope: "cluster",
     depth: "question",
     title: "Is this normal, or is something actually wrong?",
-    related: ["lit-c7-same-argument", "lit-c7-if-you-dont-feel-safe"],
+    related: ["lit-c7-same-argument", "lit-shared-if-you-dont-feel-safe"],
     body: [
       {
         kind: "paragraph",

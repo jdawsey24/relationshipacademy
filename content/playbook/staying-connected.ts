@@ -28,7 +28,7 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { SAFETY_RECOGNITION_CARD, SAFETY_GUIDE } from "./shared/safety-not-safe";
+import { SAFETY_RECOGNITION_CARD } from "./shared/safety-not-safe";
 import { C18_LITERATURE } from "./staying-connected-literature";
 
 export const STAYING_CONNECTED: PlaybookContent = {
@@ -436,8 +436,7 @@ export const STAYING_CONNECTED: PlaybookContent = {
     },
   ],
 
-  // SAFETY_GUIDE first so the shared "not safe" card's guide is reachable in Understand.
-  literature: [SAFETY_GUIDE, ...C18_LITERATURE],
+  literature: C18_LITERATURE,
 
   missions: [
     {

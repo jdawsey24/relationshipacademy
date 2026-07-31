@@ -67,7 +67,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
     scope: "cluster",
     depth: "core",
     title: "Some of this fear is just accurate",
-    related: ["lit-c3-where-this-came-from"],
+    related: ["lit-c3-fear-is-accurate", "lit-c3-where-this-came-from"],
     body: [
       {
         kind: "paragraph",
@@ -151,7 +151,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
     scope: "cluster",
     depth: "core",
     title: "Why you leave first",
-    related: ["lit-c3-why-good-feels-wrong"],
+    related: ["lit-c3-why-good-feels-wrong", "lit-c3-fear-is-accurate"],
     body: [
       {
         kind: "paragraph",

@@ -26,8 +26,10 @@
  */
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
+import { SAFETY_GUIDE } from "./shared/safety-not-safe";
 
 export const C8_LITERATURE: LiteratureEntry[] = [
+  SAFETY_GUIDE, // shared — do not re-author per cluster
   {
     id: "lit-c8-what-this-is",
     version: 1,

@@ -25,7 +25,7 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C14_LITERATURE } from "./saying-no-literature";
+import { C14_LITERATURE } from "./learning-to-say-no-literature";
 
 export const LEARNING_TO_SAY_NO: PlaybookContent = {
   playbookKey: "learning-to-say-no", // ⚠ CONFIRM canonical slug

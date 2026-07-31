@@ -2,29 +2,9 @@
  * Cluster 3 — "Fear of Being Fully Known"
  * The Relationship Playbook™ · Letting Someone In
  *
- * PROMOTED from _import/ into content/playbook/ 2026-07-30 and registered for the
- * dev preview. NOT publish-wired (absent from lib/playbook/keys.ts) and still behind
- * the open R5 / Part B ratification + Hidden Thoughts quarantine — same held status as C4.
- *
  * §0 DECISION: PLAYS-ONLY (consistent with Cluster 4). No `simulations[]`.
  * Ships under the amended invariant permitting a Play without a paired
  * Experience (PD-9, owner-approved).
- *
- * SCHEMA-CONFORMED by Claude Code, 29 Jul 2026, against contentSchema.ts +
- * contentValidate.ts (same pass as Cluster 4). Corrections from the draft:
- *   - opening.cta added (required).
- *   - shift/learn/emotionBeat: no `heading` slot — heading folded into body[0].
- *   - ownTurn: `heading` → `intro`; chips fields use `suggestions`, not `options`.
- *   - sentenceBuilder: real shape is { label, helper } (single free-text) — the
- *     draft's prompt/parts/options collapsed into label + helper (opener hints).
- *   - ruleBuilder: real primitive is `actions: string[]` + `controlCheck: string`.
- *     Draft's two object-lists reshaped — a genuine second selection ("what I'll
- *     watch for", Play 1) moved to an ownTurn chips screen; guardrail lists
- *     collapsed into the single controlCheck string. `heading` → `intro`.
- *   - scenarioSort: added required `situation`.
- *   - output.body: string[] → single string.
- *   - portable screen: filled required heading + steps (= the Play's portable[]).
- *   - outputEditor: DEFERRED (was `true`, not a valid OutputEditor object).
  *
  * ⚠ CANDIDATE FOR A LATER EXPERIENCE: `one-true-thing` maps naturally to
  *   `evidenceTimeline` (disclose → watch the response → decide about the next
@@ -63,7 +43,13 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       "What we're going to look at is the moment you move away — and whether, that once, you want to.",
       "Nothing here promises it goes well.",
     ],
-    cta: "See what sounds like me",
+    manifestations: [
+      "I push people away.",
+      "I leave before they leave.",
+      "I don't know how to be vulnerable.",
+      "I'm afraid I've become too guarded.",
+    ],
+    cta: "Start with what's already accurate",
   },
 
   // ── §2 recognition ─────────────────────────────────────────────
@@ -160,7 +146,6 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Put a gap between deciding and doing.",
             "Leaving first isn't cowardice. It's the only move that guarantees the outcome — if you go before they do, you wrote the ending.",
             "The cost is that you never find out. Every early exit is a data point you didn't collect.",
             "This isn't about not leaving. Sometimes leaving is right. It's about putting a gap in, and using the gap.",
@@ -169,7 +154,6 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "Two exits that look identical.",
             "One responds to something they did. It's specific, recent, and you could point at it.",
             "The other arrives before they've done anything, and would be true of whoever was standing there.",
             "You often can't tell which you're in from the inside, in the moment. That's what the gap is for.",
@@ -178,14 +162,13 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "emotionBeat",
           body: [
-            "This part is uncomfortable on purpose.",
             "Staying in an unresolved thing is harder than ending it. Ending it brings relief, and the relief is real.",
             "You can want to go and still wait. Both at once. Feeling the pull isn't failing at this.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "The two lists.",
+          intro: "The two lists",
           fields: [
             {
               id: "what-they-did",
@@ -212,35 +195,18 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           observableLabel: "Something I could actually notice happening",
         },
         {
-          kind: "ownTurn",
-          intro: "What I'll watch for while I wait.",
-          fields: [
-            {
-              id: "watch-for",
-              input: "chips",
-              label: "Pick what you'll actually look at",
-              suggestions: [
-                "Whether they get in touch first",
-                "Whether they do the thing they said",
-                "Whether the urge to go changes on its own",
-                "The specific thing I named above",
-              ],
-            },
-          ],
-        },
-        {
           kind: "ruleBuilder",
-          intro: "Set the gap now, so you're not deciding in the moment.",
+          intro: "Set the gap before you need it.",
           conditionLabel: "How long I'll wait before acting on it",
-          thenLabel: "I'll wait",
+          thenLabel: "And while I wait, I'll watch for",
           actions: [
-            "Two days",
-            "A week",
-            "Until we next actually speak",
-            "One more real interaction",
+            "Whether they get in touch first",
+            "Whether they do the thing they said",
+            "Whether the urge to go changes on its own",
+            "The specific thing I named above",
           ],
           controlCheck:
-            "The gap is for looking, not for building the case to leave — and if you've actually been mistreated, you don't need one.",
+            "The gap is a promise to look, not a promise to stay \u2014 and if I've actually been mistreated, I don't need one.",
         },
         {
           kind: "output",
@@ -249,7 +215,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Is this about them, or about everyone?",
             "I can want to go and still wait.",
@@ -296,7 +262,8 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "One True Thing",
-      positioning: "For when they only know the version you've edited.",
+      positioning:
+        "For when they only know the version you've edited. You choose the thing alone \u2014 then you say it, because a true thing unsaid changes nothing.",
       recognitionGate: {
         prompt: "Do you find yourself managing what people see of you?",
       },
@@ -304,7 +271,6 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Small, and one at a time.",
             "Letting someone see something real does two things at once. It gives them a chance to accept it. It also gives them better information for leaving.",
             "Both are true. Anyone pretending only the first exists is selling something.",
             "What changes the maths is size and order. One true thing, said to one person, and then you watch.",
@@ -313,7 +279,6 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "What counts as one true thing.",
             "Not a confession. Not your history. Something small and real that you'd normally have smoothed over.",
             "An actual opinion instead of the agreeable one. Something you're worried about. A preference you'd usually let go.",
             "The size is the point. You need it small enough that their reaction is survivable, because the reaction is the information.",
@@ -321,15 +286,23 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         },
         {
           kind: "sentenceBuilder",
-          label: "One true thing, said plainly.",
+          label: "One true thing, said plainly",
           helper:
-            "Small. Real. Something you'd normally smooth over. You might start with “Honestly, I…”, “Something I haven't said is…”, or “I've been sitting on this:”",
+            "Small. Real. Something you'd normally smooth over. You might start with \u201cHonestly, I\u2026\u201d or \u201cSomething I haven't said is\u2026\u201d",
+        },
+        {
+          kind: "realWorldUse",
+          useWhen: "You've picked the one thing and you're with the person you had in mind.",
+          doThis:
+            "Say it once, then stop talking and watch what they do with it. Don't explain it, don't add a second one, and don't apologise for it.",
+          safetyNote:
+            "If what you're carrying is heavier than a preference \u2014 something from your history you've never told anyone \u2014 this isn't the place to try it first. Start smaller.",
         },
         {
           kind: "ruleBuilder",
-          intro: "Name the person, then decide what you'll watch for.",
-          conditionLabel: "Who I'll say it to",
-          thenLabel: "I'll watch for",
+          intro: "Decide what you're watching for before you say it.",
+          conditionLabel: "The one true thing I'm going to say",
+          thenLabel: "What I'll pay attention to in their response",
           actions: [
             "Whether they stayed with it or moved past it",
             "Whether they asked anything about it",
@@ -337,7 +310,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
             "Whether they offered something of their own",
           ],
           controlCheck:
-            "I'm saying this to find out, not to see if they pass — it's small enough that any reaction is survivable, and I'm not attaching three other things to it.",
+            "I'm saying this to find out, not to test them \u2014 and it's small enough that any reaction is survivable.",
         },
         {
           kind: "output",
@@ -346,7 +319,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Small enough that their reaction is survivable.",
             "I'm saying it to find out, not to test them.",
@@ -368,7 +341,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "One bounded disclosure is made, and the response is observed rather than pre-judged.",
+          "One bounded disclosure is actually made to the other person, and the response observed rather than pre-judged. Choosing the thing is preparation; saying it is the operation.",
         misuse: [
           "Disclosing everything at once to get it over with.",
           "Using it as a loyalty test.",
@@ -393,7 +366,8 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "Just Ask",
-      positioning: "For when you'd rather find out sideways.",
+      positioning:
+        "For when you'd rather find out sideways. You write the question alone \u2014 then you ask it, because that is the only thing that produces an answer.",
       recognitionGate: {
         prompt: "Do you try to find things out without having to ask?",
       },
@@ -401,7 +375,6 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "A test can't give you the answer.",
             "Going quiet to see if they notice. Waiting longer than you need to. Hoping they'll work it out.",
             "The trouble is that a test tells you how someone responds to a test. And if they pass, you don't believe it — because you know it was one.",
             "Asking costs one specific thing: they might say something you don't want to hear. That's the whole cost, and it's why testing exists.",
@@ -410,16 +383,16 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "What direct actually looks like.",
             "Direct isn't confrontational. It's short, specific, and about one thing.",
-            "“Are we exclusive?” is direct. “Where is this going?” is not — it asks them to guess what you're asking.",
+            "\u201cAre we exclusive?\u201d is direct. \u201cWhere is this going?\u201d is not — it asks them to guess what you're asking.",
             "The more specific the question, the harder it is to answer vaguely.",
           ],
         },
         {
           kind: "scenarioSort",
           prompt: "Which of these actually asks something?",
-          situation: "You want to know where you stand, and you're deciding how to find out.",
+          situation:
+            "You've been seeing someone for two months. You want to know where you stand, and you keep finding ways not to ask.",
           buckets: [
             { id: "asks", label: "Asks the question" },
             { id: "sideways", label: "Goes sideways" },
@@ -427,7 +400,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           items: [
             {
               id: "sort-c3-exclusive",
-              text: "“Are we seeing other people?”",
+              text: "\u201cAre we seeing other people?\u201d",
               correctBucket: "asks",
               correction: "That one's answerable with a yes or a no. It asks.",
             },
@@ -440,14 +413,14 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
             },
             {
               id: "sort-c3-where-going",
-              text: "“So… where is this going?”",
+              text: "\u201cSo… where is this going?\u201d",
               correctBucket: "sideways",
               correction:
                 "It sounds direct, but it asks them to guess what you want to know. Name the actual thing.",
             },
             {
               id: "sort-c3-thursday",
-              text: "“I'd like to know if you're free Thursday, or if this isn't a regular thing.”",
+              text: "\u201cI'd like to know if you're free Thursday, or if this isn't a regular thing.\u201d",
               correctBucket: "asks",
               correction: "Specific, and answerable. That asks.",
             },
@@ -468,18 +441,24 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         },
         {
           kind: "sentenceBuilder",
-          label: "Write the actual question — one thing, answerable.",
+          label: "The question, in your words",
           helper:
-            "Specific enough that a vague answer would be obvious. You might open with “I want to ask you something directly —” or “I'd rather just ask:”",
+            "One thing, specific enough that a vague answer would be obvious. You might start with \u201cI'd rather just ask\u2026\u201d or \u201cCan I check something?\u201d",
+        },
+        {
+          kind: "realWorldUse",
+          useWhen: "You've written the question and you're in a calm moment together.",
+          doThis:
+            "Ask it once, in the words you wrote. Then let the answer be the answer, including if it isn't the one you wanted.",
         },
         {
           kind: "output",
-          heading: "My question",
-          body: "Asked once, plainly. Whatever comes back is real information.",
+          heading: "What I asked, and what came back",
+          body: "Whatever came back is real information. That's the whole point.",
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "A test tells me how they handle a test.",
             "Specific enough that a vague answer would be obvious.",
@@ -501,7 +480,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "One specific answerable question is asked directly, in place of an indirect probe.",
+          "One specific answerable question is actually asked, directly, in place of an indirect probe. Drafting it is preparation; asking is the operation.",
         misuse: [
           "Asking in a way engineered to produce a particular answer.",
           "Asking and then discounting the answer.",
@@ -526,7 +505,6 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Staying and choosing to stay are different.",
             "There's a version of staying that's a decision, and a version that's just the absence of leaving.",
             "They look the same from outside. From inside, one has a reason and the other has an explanation you assembled afterwards.",
           ],
@@ -534,15 +512,14 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "Two different questions.",
-            "“Could this work?” is nearly always yes. Almost anything could.",
-            "“Does this fit what I actually need?” is the one that gets answered, and it's the one people avoid.",
+            "\u201cCould this work?\u201d is nearly always yes. Almost anything could.",
+            "\u201cDoes this fit what I actually need?\u201d is the one that gets answered, and it's the one people avoid.",
             "The second question doesn't require anything to be wrong with them.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "The honest version.",
+          intro: "The honest version",
           fields: [
             {
               id: "what-works",
@@ -587,7 +564,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Could this work, or does this fit? Two different questions.",
             "A reason to stay isn't the same as a reason not to leave.",
@@ -642,16 +619,14 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "This one isn't about whether you can be close.",
             "Before anything else: we don't think you can't do closeness.",
             "Closeness takes something — attention, honesty, being reachable, sitting with not knowing. Those aren't free, and the closer it gets the more they cost.",
-            "“I feel trapped when it gets serious” reads very differently as a statement about cost than as a statement about ability. We think it's the first one.",
+            "\u201cI feel trapped when it gets serious\u201d reads very differently as a statement about cost than as a statement about ability. We think it's the first one.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Pacing is not avoidance.",
             "Avoidance takes you out of the thing. Pacing keeps you in it, slower.",
             "That's the whole distinction, and it's the one to hold onto. If what you're doing removes you entirely, that's the other one — and that's what Before You Go is for.",
             "You don't need to learn to be close. You need it to cost less, or to have more available, or to go at a rate you can actually afford.",
@@ -659,7 +634,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         },
         {
           kind: "ownTurn",
-          intro: "What's actually expensive.",
+          intro: "What's actually expensive",
           fields: [
             {
               id: "costly-part",
@@ -683,9 +658,9 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         },
         {
           kind: "ruleBuilder",
-          intro: "Set a rate you can actually hold — and plan to say it.",
-          conditionLabel: "What I'll keep doing, at a rate I can hold",
-          thenLabel: "I'll",
+          intro: "Pick a rate you could actually sustain.",
+          conditionLabel: "The rate I can actually hold, for now",
+          thenLabel: "What that looks like in practice",
           actions: [
             "Stay in contact, less often",
             "Keep seeing them, shorter",
@@ -693,7 +668,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
             "One real conversation, not constant ones",
           ],
           controlCheck:
-            "I'll tell them I'm slowing rather than just slowing — this is slowing down, not disappearing — and I'll revisit it when things ease.",
+            "I'll say that I'm slowing rather than just slowing \u2014 pacing keeps me in it, disappearing doesn't.",
         },
         {
           kind: "output",
@@ -702,7 +677,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Not can't. Costs more than I've got right now.",
             "Pacing keeps me in it. Avoidance takes me out.",
@@ -772,9 +747,9 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       id: "mission-c3-true-thing",
       version: 1,
       playId: "one-true-thing",
-      title: "Say the one true thing",
+      title: "Say a second one",
       instruction:
-        "Say it to the person you had in mind. Then note what they did with it — not what you assumed it meant.",
+        "You said the first in the tool. Say another, to the same person, and compare what they did with each.",
       linkToOperation: "Graduated disclosure with response observation",
       attemptMeaning:
         "You said it. It doesn't mean they took it well, or that you should say more.",
@@ -783,7 +758,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       progression: [
         {
           id: "rung-c3-true-thing-2",
-          instruction: "Say a second one, to the same person, and compare the two responses.",
+          instruction: "Say one to a second person, and notice whether it is easier or harder.",
         },
       ],
     },
@@ -791,9 +766,9 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       id: "mission-c3-ask",
       version: 1,
       playId: "just-ask",
-      title: "Ask the question you'd normally test for",
+      title: "Ask a second one",
       instruction:
-        "Ask it directly, once, in the words you wrote. Note the answer, including if it's not the one you wanted.",
+        "You asked the first in the tool. Ask another \u2014 something you'd normally have inferred rather than checked.",
       linkToOperation: "Direct clarification in place of indirect testing",
       attemptMeaning:
         "You asked. It doesn't mean the answer is good news.",
@@ -864,7 +839,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you hold the gap before acting?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -902,7 +877,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you say it, and watch rather than assume?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -940,7 +915,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you ask directly rather than test?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -978,7 +953,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you evaluate fit rather than build a case?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -1016,7 +991,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you pace it and say so?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",

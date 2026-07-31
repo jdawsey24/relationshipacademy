@@ -205,14 +205,14 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         items: [
           "Warmth. Being nice is cheap and most people manage it.",
           "Intensity early on. Strong feeling before they know you isn't about you yet.",
-          "Stated intentions with nothing behind them. “I'm looking for something real” is a sentence.",
+          "Stated intentions with nothing behind them. \u201cI'm looking for something real\u201d is a sentence.",
           "Attractiveness, in either direction.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The useful shift is small: stop weighing what people say, start weighing what they do — and give it more than one data point before you decide.",
+          "The useful shift is small: stop weighing what people say, start weighing what they do \u2014 and give it more than one data point before you decide.",
         ],
       },
       {
@@ -236,7 +236,7 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "You've probably thought at some point that the apps aren't built for you to succeed. That's not paranoid.",
-          "They work on the same principle as a slot machine. The reward is unpredictable — sometimes a match, usually nothing — and unpredictable rewards are the most habit-forming kind there is. Not because anyone is being cruel, but because it keeps people opening the app.",
+          "They work on the same principle as a slot machine. The reward is unpredictable \u2014 sometimes a match, usually nothing \u2014 and unpredictable rewards are the most habit-forming kind there is. Not because anyone is being cruel, but because it keeps people opening the app.",
         ],
       },
       {
@@ -279,14 +279,14 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         // STAT: Pronk & Denissen 2020, Soc Psych & Personality Science 11(3). CITATION REQUIRED.
         kind: "example",
         body: [
-          "When researchers watched people go through profiles in a single sitting, something consistent happened. People got more rejecting as they went. By the end of a session they were saying no far more often than at the start — roughly a quarter less likely to accept anyone.",
+          "When researchers watched people go through profiles in a single sitting, something consistent happened. People got more rejecting as they went. By the end of a session they were saying no far more often than at the start \u2014 roughly a quarter less likely to accept anyone.",
           "The people at the end weren't worse. The person judging them was depleted.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "So the pickiness that creeps in, the sense that nobody measures up, the way everyone starts to blur — that's not you becoming jaded as a personality change. That's what evaluating too many people in a row does to anyone.",
+          "So the pickiness that creeps in, the sense that nobody measures up, the way everyone starts to blur \u2014 that's not you becoming jaded as a personality change. That's what evaluating too many people in a row does to anyone.",
         ],
       },
       {
@@ -331,7 +331,7 @@ export const C4_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "We're not going to tell you to join a running club. We're telling you that the answer to “how does anyone meet anymore” is: mostly this way, and it's genuinely hard, and some people still do it the old way.",
+          "We're not going to tell you to join a running club. We're telling you that the answer to \u201chow does anyone meet anymore\u201d is: mostly this way, and it's genuinely hard, and some people still do it the old way.",
         ],
       },
     ],
@@ -355,7 +355,7 @@ export const C4_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Weighing whether something is worth continuing is exactly the kind of judgement this whole Playbook is about. Applying it to the process itself isn't giving up — it's the same evaluation, pointed one level out.",
+          "Weighing whether something is worth continuing is exactly the kind of judgement this whole Playbook is about. Applying it to the process itself isn't giving up \u2014 it's the same evaluation, pointed one level out.",
           "Plenty of people take a break and come back with a clearer sense of what they're after. Plenty take a break and stay stopped for a while, and that's a legitimate outcome too.",
         ],
       },
@@ -363,14 +363,14 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "The one thing worth knowing about yourself",
         body: [
-          "“I'm stopping because this isn't paying off right now” is a decision.",
-          "“I'm stopping because nothing will ever work” is a conclusion, and conclusions like that are worth a second look before you act on them.",
+          "\u201cI'm stopping because this isn't paying off right now\u201d is a decision.",
+          "\u201cI'm stopping because nothing will ever work\u201d is a conclusion, and conclusions like that are worth a second look before you act on them.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If it's the second one — and especially if that feeling has spread beyond dating into how you see yourself generally — that's worth talking to someone about. Not because something's wrong with you. Because that's a heavier thing than a Playbook is built for.",
+          "If it's the second one \u2014 and especially if that feeling has spread beyond dating into how you see yourself generally \u2014 that's worth talking to someone about. Not because something's wrong with you. Because that's a heavier thing than a Playbook is built for.",
         ],
       },
     ],
@@ -442,7 +442,7 @@ export const C4_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Both are real. Both are common. And they produce opposite-looking complaints — “everyone has too many options” and “I can't get anyone to notice me” — from people who are both, accurately, describing what's happening to them.",
+          "Both are real. Both are common. And they produce opposite-looking complaints \u2014 \u201ceveryone has too many options\u201d and \u201cI can't get anyone to notice me\u201d \u2014 from people who are both, accurately, describing what's happening to them.",
         ],
       },
       {
@@ -480,7 +480,7 @@ export const C4_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "So it's a trade-off, not a right answer. The question worth asking isn't are apps good or bad — it's is what I'm putting in coming back in any form. If it isn't, that's information. If it is, even occasionally, that's information too.",
+          "So it's a trade-off, not a right answer. The question worth asking isn't are apps good or bad \u2014 it's is what I'm putting in coming back in any form. If it isn't, that's information. If it is, even occasionally, that's information too.",
         ],
       },
       {

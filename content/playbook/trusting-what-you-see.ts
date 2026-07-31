@@ -4,25 +4,24 @@
  *
  * §0 DECISION: PLAYS-ONLY, consistent with Clusters 3 and 4.
  *
- * PROMOTED from _import/ into content/playbook/ 2026-07-30 and SCHEMA-CONFORMED by
- * Claude Code against contentSchema.ts + contentValidate.ts (same pass as C3): shift/
- * learn/emotionBeat headings folded into body[0]; ownTurn heading→intro and chips
- * options→suggestions; ruleBuilder reshaped to actions:string[] + one controlCheck
- * string (guardrail lists collapsed; conditionLabel made a real fill-in); scenarioSort
- * situation added; output.body→string; portable screens filled; outputEditor removed;
- * opening.cta added. NOT publish-wired (absent from lib/playbook/keys.ts).
- *
  * Derived against Framework Version 1.9. Part B Instance 3 rulings applied:
- *   1. Single phase — Exploration. STM-1043/1045/1048/1049 assigned Exploration.
- *   2. The ambition block (PE-9) describes WANTS — Recognition/Context, no Play.
- *   3. PE-8 split on Context-Validity. PE-8a EXITS.
+ *   1. Single phase — Exploration. STM-1043/1045/1048/1049 assigned Exploration
+ *      following the Cluster 3 precedent.
+ *   2. The ambition block (PE-9) describes WANTS, not a judgement difficulty.
+ *      Recognition/Context. No Play. It is the input to PE-6b.
+ *   3. PE-8 split on Context-Validity. PE-8a EXITS — accurate recalibration
+ *      after real misjudgement is not a distortion.
  *   4. Standards reframed: not "are they too high" but "do they fit who I am".
  *
- * ⚠ CLAIM SCOPE. May claim: name a concern instead of burying it; set a point at which
- *   you look; tell a specific read from a familiar feeling; put effort where it is
- *   returned; take a second look before dismissing; sort which requirements are
- *   load-bearing. MUST NOT claim: that the reader will choose better, that their
- *   instincts will come back, that their standards are too high or too low.
+ * Four Tier 1 Core Plays carry this cluster: CP-01, CP-02, CP-03, CP-04.
+ *
+ * ⚠ CLAIM SCOPE. May claim: name a concern instead of burying it; set a point
+ *   at which you look; tell a specific read from a familiar feeling; put effort
+ *   where it is returned; take a second look before dismissing; sort which of
+ *   your requirements are load-bearing. MUST NOT claim: that the reader will
+ *   choose better, that their instincts will come back, that their standards
+ *   are too high or too low, or that attraction to unavailable people means
+ *   anything in particular about them.
  *
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
@@ -42,7 +41,13 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       "And if your judgement has genuinely been wrong before, then being wary of it now is a fair conclusion — not something to talk yourself out of.",
       "What follows is a way of deciding that doesn't need you to feel certain.",
     ],
-    cta: "See what sounds like me",
+    manifestations: [
+      "I keep choosing the wrong people.",
+      "I ignore red flags.",
+      "I don't trust my judgment.",
+      "I always give people one more chance.",
+    ],
+    cta: "Start with what's already fair",
   },
 
   // ── recognition ────────────────────────────────────────────────
@@ -107,7 +112,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       secondaryExamples: [
         "Healthy relationships feel boring.",
         "I mistake anxiety for chemistry.",
-        "I don't feel “the spark.”",
+        "I don't feel \u201cthe spark.\u201d",
       ],
     },
     {
@@ -115,7 +120,8 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       role: "route",
       pathwayPlayId: "wise-or-scared",
       headline: "I can't tell if I'm being wise or just frightened.",
-      explanation: "There's a usable test for this. Not a perfect one.",
+      explanation:
+        "There's a usable test for this. Not a perfect one.",
       secondaryExamples: [
         "I don't know if I'm overthinking or seeing reality.",
         "I second-guess every decision.",
@@ -152,7 +158,6 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "The problem isn't noticing.",
             "You noticed. You usually do. What happens is that the concern arrives without proof, and you park it until it's certain — and certainty doesn't come in the timeframe you need it.",
             "So the concern goes quiet, and the decision gets made by default.",
             "This puts one step between noticing and burying: name it, and give it something to look for.",
@@ -161,14 +166,13 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "The four ways a concern disappears.",
             "Waiting for proof. Deciding it says something unkind about you. Explaining it with something true — they're busy, it's early, they're stressed. Or giving it one more chance, and then another.",
             "All four are reasonable. All four end the same way: the concern is gone and you never tested it.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "Name it plainly.",
+          intro: "Name it plainly",
           fields: [
             {
               id: "the-concern",
@@ -192,9 +196,9 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         },
         {
           kind: "ruleBuilder",
-          intro: "Give it something specific to look for.",
-          conditionLabel: "The concern, in a line",
-          thenLabel: "I'll watch for",
+          intro: "Give it something to look for",
+          conditionLabel: "The concern",
+          thenLabel: "What would tell me either way",
           actions: [
             "Whether it happens again",
             "How they respond when I raise it",
@@ -202,7 +206,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
             "Whether it's a one-off or a pattern",
           ],
           controlCheck:
-            "I'm checking, not building a case — what I named is something I could actually see, and I'd accept a result that says it was nothing.",
+            "I'm checking, not building a case. What I named is something I could actually see. I'd accept a result that says it was nothing.",
         },
         {
           kind: "output",
@@ -211,7 +215,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Don't wait for proof. Name it and look.",
             "Explaining it isn't testing it.",
@@ -266,7 +270,6 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "A chance with no end can't be failed.",
             "Nobody stays five years because of one big decision. They stay because of forty small ones, each defensible on the day.",
             "A chance with no end point never resolves. A chance with an end point produces information — either it changes by then, or it doesn't.",
             "The whole difference is a date you set before you need it.",
@@ -275,7 +278,6 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "What the deadline is and isn't.",
             "It isn't a threat and you don't tell them. It isn't a promise to leave, and it isn't a promise to stay.",
             "It's a promise to look, on a particular day, at a particular thing. That's all it has to be to work.",
           ],
@@ -283,14 +285,13 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "emotionBeat",
           body: [
-            "Setting one feels disloyal.",
             "Putting a date on something can feel like you've already decided against them. It isn't that.",
             "Deciding by default is the version where they don't get a fair look. This is the one where they do.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "The thing you keep giving chances on.",
+          intro: "The thing you keep giving chances on",
           fields: [
             {
               id: "the-thing",
@@ -308,12 +309,17 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         },
         {
           kind: "ruleBuilder",
-          intro: "Set the date, and name what you'll look at.",
-          conditionLabel: "What I'll be looking at",
-          thenLabel: "I'll look after",
-          actions: ["Two weeks", "A month", "Three months", "The next time it comes up"],
+          intro: "The date, and what you'll look at",
+          conditionLabel: "When I'll look",
+          thenLabel: "What I'll be looking at",
+          actions: [
+            "Two weeks",
+            "A month",
+            "Three months",
+            "The next time it comes up",
+          ],
           controlCheck:
-            "This is for me — not an ultimatum I tell them. What I'm looking at is specific enough to answer yes or no, and I'll actually look on that day rather than extend it.",
+            "What I'm looking at is specific enough to answer yes or no. This is for me. I'm not telling them as a warning. I'll actually look on that day, not extend it.",
         },
         {
           kind: "output",
@@ -322,7 +328,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "A chance with no end can't be failed.",
             "The date is a promise to look, not a promise to leave.",
@@ -369,7 +375,6 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "The pull may be measuring the wrong thing.",
             "Someone unavailable never becomes ordinary. There's always a next thing to find out, always a reason it hasn't settled.",
             "So the wanting doesn't run out — it never gets what it's after. Which means how strongly you want someone may be telling you how unresolved they are, not how right they are.",
           ],
@@ -377,7 +382,6 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "Effort that's returned, and effort that isn't.",
             "This isn't about giving less to punish anyone, or matching them move for move. That's scorekeeping and it doesn't work.",
             "It's about noticing whether what you put in comes back in any form — and letting that, rather than the intensity of the pull, decide how much more goes in.",
           ],
@@ -385,7 +389,8 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "scenarioSort",
           prompt: "Which of these came back?",
-          situation: "You've been putting effort into someone. Here's what came back — or didn't.",
+          situation:
+            "Three weeks in. Something happened on Tuesday that you keep coming back to, and you've already explained it to yourself twice.",
           buckets: [
             { id: "returned", label: "Came back" },
             { id: "not-returned", label: "Didn't" },
@@ -401,7 +406,8 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               id: "sort-c5-said-lovely",
               text: "They said something lovely when you pushed for it",
               correctBucket: "not-returned",
-              correction: "You had to go and get it. That's your effort, returned to you.",
+              correction:
+                "You had to go and get it. That's your effort, returned to you.",
             },
             {
               id: "sort-c5-remembered",
@@ -432,9 +438,9 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         },
         {
           kind: "ruleBuilder",
-          intro: "Decide what counts as it coming back — then pace to that, not to the pull.",
-          conditionLabel: "The person I'm pacing with",
-          thenLabel: "I'll treat as it coming back",
+          intro: "How I'll pace it",
+          conditionLabel: "What I'll treat as it coming back",
+          thenLabel: "And what I'll do while I wait to see",
           actions: [
             "They start something without me prompting it",
             "They make a plan and keep it",
@@ -442,7 +448,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
             "It happens more than once",
           ],
           controlCheck:
-            "I'm pacing, not punishing — I'm not going quiet to see what they do — and the effort I'm not spending goes somewhere, not nowhere.",
+            "I'm pacing, not punishing. I'm not going quiet to see what they do. The effort I'm not spending goes somewhere, not nowhere.",
         },
         {
           kind: "output",
@@ -451,7 +457,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "The pull may be measuring how unresolved they are.",
             "Pacing, not punishing.",
@@ -498,7 +504,6 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Nothing happening, or nothing going wrong?",
             "Uncertainty generates activity — wondering, analysing, waiting. That activity feels like involvement.",
             "When someone is straightforwardly available, all of it stops. And the absence of the activity can read as the absence of feeling, when it's actually the absence of anxiety.",
             "This isn't about dating people you don't like. It's about not deciding in the first hour.",
@@ -507,14 +512,13 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "What a second look actually is.",
             "One more real interaction, in a setting where something could happen — not a repeat of the same coffee.",
             "And a specific thing to notice, so you're not just re-running the same feeling and getting the same answer.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "The person you were about to rule out.",
+          intro: "The person you were about to rule out",
           fields: [
             {
               id: "the-person",
@@ -552,7 +556,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Nothing happening, or nothing going wrong?",
             "A first read on a steady person is usually taken too early.",
@@ -599,7 +603,6 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "There's a usable test. Not a perfect one.",
             "This is the question underneath most of the others, and the honest position is that you can't always tell.",
             "What you can do is check the read against a few things, and get a better-than-nothing answer. That's a lot more than choosing between trusting yourself completely and not at all.",
           ],
@@ -607,14 +610,13 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "The two lists.",
             "Probably about them: you can point at the specific thing, it's recent, you could describe it to someone and they'd see why you noticed, and it didn't arrive before you'd met them.",
             "Probably about you: it's the same feeling you had about the last three people, it arrived early, it gets stronger the better things go, and when you try to say what it's about you end up describing a pattern rather than a person.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "Run yours through it.",
+          intro: "Run yours through it",
           fields: [
             {
               id: "the-read",
@@ -633,7 +635,8 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "scenarioSort",
           prompt: "Which side does each of these fall on?",
-          situation: "You're holding a read about someone and trying to place where it comes from.",
+          situation:
+            "You've been putting in most of the effort for a month. Every so often something comes back and it keeps you going.",
           buckets: [
             { id: "about-them", label: "Probably about them" },
             { id: "about-me", label: "Probably about me" },
@@ -656,7 +659,8 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               id: "sort-c5-stronger-when-good",
               text: "It gets louder the better things are going",
               correctBucket: "about-me",
-              correction: "A read that intensifies when things improve isn't tracking them.",
+              correction:
+                "A read that intensifies when things improve isn't tracking them.",
             },
             {
               id: "sort-c5-friend-would-see",
@@ -686,7 +690,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Can I point at the specific thing?",
             "Same feeling as the last three? That's about me.",
@@ -741,16 +745,14 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Wrong question, better question.",
-            "“Are my standards too high?” has no answer, because there's no general standard to be high relative to.",
-            "“Do my standards fit the life I actually have and the person I actually am?” does have an answer, and only you can work it out.",
+            "\u201cAre my standards too high?\u201d has no answer, because there's no general standard to be high relative to.",
+            "\u201cDo my standards fit the life I actually have and the person I actually am?\u201d does have an answer, and only you can work it out.",
             "If you've built something demanding, wanting someone who can hold it isn't fussiness. It's arithmetic.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Two piles.",
             "Load-bearing: without this, the thing genuinely doesn't work. Not preference — structure.",
             "Inherited: it came from a film, a family, an idea you formed at twenty-two, and it's never been looked at.",
             "Most people have both and haven't sorted them. Nobody outside you can do the sorting, which is why being told you're too picky is unhelpful even when it's kindly meant.",
@@ -758,7 +760,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         },
         {
           kind: "ownTurn",
-          intro: "What you actually need someone to hold.",
+          intro: "What you actually need someone to hold",
           fields: [
             {
               id: "my-life",
@@ -777,7 +779,8 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "scenarioSort",
           prompt: "Sort your list. Which of these is which?",
-          situation: "Here are things people put on their list for a partner.",
+          situation:
+            "You've got a bad feeling about someone and you can't work out whether it's them or whether you've felt this before.",
           buckets: [
             { id: "load-bearing", label: "Load-bearing" },
             { id: "inherited", label: "Worth a second look" },
@@ -794,7 +797,8 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               id: "sort-c5-taller",
               text: "Taller than me",
               correctBucket: "inherited",
-              correction: "Might still matter to you. But it's worth knowing which pile it's in.",
+              correction:
+                "Might still matter to you. But it's worth knowing which pile it's in.",
             },
             {
               id: "sort-c5-kids-view",
@@ -806,7 +810,8 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               id: "sort-c5-instant-spark",
               text: "Instant chemistry from the first meeting",
               correctBucket: "inherited",
-              correction: "This one's worth examining — see 'Anxiety isn't chemistry'.",
+              correction:
+                "This one's worth examining — see 'Anxiety isn't chemistry'.",
             },
             {
               id: "sort-c5-same-ambition",
@@ -819,7 +824,8 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               id: "sort-c5-sweeps",
               text: "Sweeps me off my feet",
               correctBucket: "inherited",
-              correction: "Possibly a film. Worth checking what it's standing in for.",
+              correction:
+                "Possibly a film. Worth checking what it's standing in for.",
             },
           ],
         },
@@ -830,7 +836,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         },
         {
           kind: "portable",
-          heading: "Take it with you",
+          heading: "Take this with you",
           steps: [
             "Not too high — does it fit the life I actually have?",
             "Load-bearing, or inherited?",
@@ -993,7 +999,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you name the concern and give it something to look for?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -1031,7 +1037,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you look on the day you set?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -1069,7 +1075,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you pace effort against what actually came back?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -1107,7 +1113,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you take one more look with something specific in mind?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -1145,7 +1151,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you check the read before acting on it or dropping it?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
@@ -1183,7 +1189,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       },
       performedOperation: {
         label: "Did you sort against your actual life rather than against what people say?",
-        options: ["Pretty closely", "Some of it", "Not really this time"],
+        options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",

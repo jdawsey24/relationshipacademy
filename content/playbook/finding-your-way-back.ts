@@ -27,10 +27,7 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import {
-  SAFETY_RECOGNITION_CARD,
-  SAFETY_GUIDE,
-} from "@/content/playbook/shared/safety-not-safe";
+import { SAFETY_RECOGNITION_CARD } from "./shared/safety-not-safe";
 import { C8_LITERATURE } from "./finding-your-way-back-literature";
 
 export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
@@ -571,8 +568,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
     },
   ],
 
-  // SAFETY_GUIDE first so the shared "not safe" card's guide is reachable in Understand.
-  literature: [SAFETY_GUIDE, ...C8_LITERATURE],
+  literature: C8_LITERATURE,
 
   missions: [
     {
