@@ -126,7 +126,7 @@ export default function QuizPage() {
           );
         })}
         <button disabled={busy} onClick={() => choose(q, NEUTRAL)}
-          className={`block w-full rounded-2xl border border-dashed px-5 py-3.5 text-left font-body text-[15px] leading-relaxed transition-colors disabled:cursor-default ${answers[q.id] === NEUTRAL ? "border-midnight-navy bg-midnight-navy/5 text-midnight-navy" : "border-light-gray bg-transparent text-charcoal/60 hover:border-midnight-navy/40 hover:text-charcoal"}`}>
+          className={`block w-full rounded-2xl border border-dashed px-5 py-3.5 text-left font-body text-body transition-colors disabled:cursor-default ${answers[q.id] === NEUTRAL ? "border-midnight-navy bg-midnight-navy/5 text-midnight-navy" : "border-light-gray bg-transparent text-charcoal/60 hover:border-midnight-navy/40 hover:text-charcoal"}`}>
           None of these fit
         </button>
       </div>

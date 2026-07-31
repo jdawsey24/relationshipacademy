@@ -68,7 +68,7 @@ export default async function HomePage() {
           <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">
             {get(content, "home.connect.heading", "Wherever you are in your relationship journey, this is for you.")}
           </h2>
-          <p className="mx-auto mt-6 max-w-[640px] font-body text-[17px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-6 max-w-[640px] font-body text-reading text-charcoal">
             {get(content, "home.connect.body", "Whether you're figuring out if someone is right for you, navigating a committed relationship, rebuilding after something hard, or healing on your own — relationships look different at every stage. The Relationship Life Cycle™ gives you a way to understand where you are and what your relationship actually needs right now.")}
           </p>
         </div>
@@ -93,7 +93,7 @@ export default async function HomePage() {
       <section className="bg-warm-ivory px-6 py-24">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.mapintro.heading", "A map for where you are.")}</h2>
-          <p className="mx-auto mt-6 max-w-[640px] font-body text-[17px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-6 max-w-[640px] font-body text-reading text-charcoal">
             {get(content, "home.mapintro.body", "The Relationship Life Cycle™ is a developmental framework that organizes relationship growth into six distinct phases — each with its own purpose, focus, and opportunities. It's not about whether your relationship is healthy or unhealthy. It's about understanding where it is and what it needs next.")}
           </p>
           <div className="mt-14 grid gap-10 sm:grid-cols-3">
@@ -101,7 +101,7 @@ export default async function HomePage() {
               <div key={f.n} className="flex flex-col items-center text-center">
                 <span className="text-midnight-navy"><FeatureIcon kind={f.icon} /></span>
                 <h3 className="mt-4 font-display text-xl font-semibold text-midnight-navy">{get(content, `home.feature${f.n}.title`, f.title)}</h3>
-                <p className="mt-2 max-w-[240px] font-body text-[15px] leading-relaxed text-charcoal">{get(content, `home.feature${f.n}.body`, f.body)}</p>
+                <p className="mt-2 max-w-[240px] font-body text-body text-charcoal">{get(content, `home.feature${f.n}.body`, f.body)}</p>
               </div>
             ))}
           </div>
@@ -116,7 +116,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.phases.heading", "Every relationship has a season.")}</h2>
-            <p className="mx-auto mt-4 max-w-[680px] font-body text-[17px] leading-relaxed text-charcoal">
+            <p className="mx-auto mt-4 max-w-[680px] font-body text-reading text-charcoal">
               {get(content, "home.phases.body", "The Relationship Life Cycle™ identifies six phases of relationship development — each one serving a distinct purpose in the larger journey.")}
             </p>
           </div>
@@ -135,7 +135,7 @@ export default async function HomePage() {
       <section className="bg-warm-ivory px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.assess.heading", "See where your relationship is right now.")}</h2>
-          <p className="mx-auto mt-4 max-w-[680px] font-body text-[17px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-4 max-w-[680px] font-body text-reading text-charcoal">
             {get(content, "home.assess.body", "The Relationship Snapshot™ is a free assessment that shows you how your relationship is functioning today — and what it might need next.")}
           </p>
           <ul className="mx-auto mt-8 flex max-w-md flex-col gap-3 text-left">
@@ -168,7 +168,7 @@ export default async function HomePage() {
       <section className="bg-midnight-navy px-6 py-24 text-center text-white">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-3xl font-semibold sm:text-4xl">{get(content, "home.academy.heading", "The Relationship Academy")}</h2>
-          <p className="mx-auto mt-4 max-w-[600px] font-body text-[17px] leading-relaxed text-white/85">
+          <p className="mx-auto mt-4 max-w-[600px] font-body text-reading text-white/85">
             {get(content, "home.academy.body", "A community for people who want to go deeper — guided conversations, live sessions, and ongoing learning built around the Relationship Life Cycle™ Framework.")}
           </p>
           <div className="mt-8"><CtaButton href="https://skool.com/relationship-academy" variant="accent" external>Join The Relationship Academy</CtaButton></div>

@@ -93,7 +93,7 @@ async function Landing() {
                   <PlaybookMark clusterId={p.clusterId} className="h-[26px] w-[26px]" />
                 </IconTile>
                 <h3 className="mt-4 font-display text-xl font-semibold leading-tight text-midnight-navy">{p.subtitle}</h3>
-                {p.corePattern && <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/70">{p.corePattern}</p>}
+                {p.corePattern && <p className="mt-2 font-body text-body text-charcoal/70">{p.corePattern}</p>}
                 {p.keyTakeaway && (
                   <p className="mt-3 flex-1 border-l-2 pl-3 font-body text-[14px] italic leading-relaxed text-charcoal/60" style={{ borderColor: `${hue}66` }}>
                     &ldquo;{p.keyTakeaway}&rdquo;
@@ -115,7 +115,7 @@ async function Landing() {
         <p className="mx-auto mt-4 max-w-2xl text-balance font-display text-2xl font-medium leading-relaxed">
           Take the free Relationship Snapshot&trade; and we&apos;ll point you to the Playbook for your pattern.
         </p>
-        <p className="mx-auto mt-4 max-w-xl font-body text-[15px] leading-relaxed text-white/75">
+        <p className="mx-auto mt-4 max-w-xl font-body text-body text-white/75">
           About 10 minutes, free. It identifies the pattern shaping your relationships right now and matches you to the Playbook written for it.
         </p>
         <div className="mt-6 flex justify-center"><CtaButton href="/snapshot" variant="secondary">Take the free Snapshot</CtaButton></div>

@@ -85,7 +85,7 @@ export default async function PhaseDetailPage({ params }: { params: Promise<{ ph
               <h2 className="font-display text-2xl font-semibold text-midnight-navy">{s.heading}</h2>
               <div className="mt-4 space-y-4">
                 {s.comingSoon ? (
-                  <p className="font-body text-[15px] italic leading-relaxed text-charcoal/50">
+                  <p className="font-body text-body italic text-charcoal/50">
                     Full content coming soon.
                   </p>
                 ) : (

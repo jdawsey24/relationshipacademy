@@ -46,7 +46,7 @@ export default async function QuizPickerPage() {
               </IconTile>
               <span className="min-w-0 flex-1">
                 <span className="block font-display text-lg font-semibold text-midnight-navy">Single</span>
-                <span className="mt-0.5 block font-body text-[15px] leading-relaxed text-charcoal/75">You&apos;re not in a relationship right now — which fits?</span>
+                <span className="mt-0.5 block font-body text-body text-charcoal/75">You&apos;re not in a relationship right now — which fits?</span>
               </span>
               <span className="shrink-0 text-midnight-navy/40 transition-transform group-open:rotate-180" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
@@ -83,7 +83,7 @@ function MarkerRow({ a, label, sub }: { a: { id: string; display_name: string; e
       </IconTile>
       <span className="min-w-0 flex-1">
         <span className="block font-display text-lg font-semibold text-midnight-navy">{label ?? a.display_name}</span>
-        <span className="mt-0.5 block font-body text-[15px] leading-relaxed text-charcoal/75">{a.entry_prompt}</span>
+        <span className="mt-0.5 block font-body text-body text-charcoal/75">{a.entry_prompt}</span>
       </span>
       <span className="shrink-0 text-xl transition-transform group-hover:translate-x-0.5" style={{ color: hue }} aria-hidden="true">→</span>
     </Link>

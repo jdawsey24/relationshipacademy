@@ -40,7 +40,7 @@ export default function MissionCard({ mission, state, rungId, lastReport, onSele
 
       <div className="rounded-3xl bg-white/60 p-6 sm:p-8 space-y-5">
         <h2 className="font-display text-xl text-midnight-navy">{mission.title}</h2>
-        <p className="font-body text-[17px] leading-relaxed text-charcoal/85">{instruction}</p>
+        <p className="font-body text-reading text-charcoal/85">{instruction}</p>
 
         <p className="rounded-2xl bg-warm-ivory px-4 py-3 font-body text-[14px] text-charcoal/75">
           <span className="font-medium">How it connects:</span> {mission.linkToOperation}

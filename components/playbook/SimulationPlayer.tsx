@@ -95,8 +95,8 @@ export default function SimulationPlayer({ simulation, onComplete, onExit, onScr
       <div className="rounded-3xl bg-white/60 p-6 sm:p-8">
         {(node.kind === "moment" || node.kind === "note") && (
           <div className="space-y-5">
-            <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-body text-[17px] leading-relaxed text-charcoal/85 focus:outline-none">{node.body[0]}</p>
-            {node.body.slice(1).map((p, j) => <p key={j} className="font-body text-[17px] leading-relaxed text-charcoal/85">{p}</p>)}
+            <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-body text-reading text-charcoal/85 focus:outline-none">{node.body[0]}</p>
+            {node.body.slice(1).map((p, j) => <p key={j} className="font-body text-reading text-charcoal/85">{p}</p>)}
             <JitLink node={node} onSurfaceJit={onSurfaceJit} />
             <button type="button" className={nextBtn} onClick={() => advance(node.next)}>Continue</button>
           </div>
@@ -110,7 +110,7 @@ export default function SimulationPlayer({ simulation, onComplete, onExit, onScr
             <div className="space-y-5">
               <div aria-live="polite">
                 <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-ui text-xs font-semibold uppercase tracking-wide text-coral-rose focus:outline-none">{rv.label ?? "What happened next"}</p>
-                {rv.paragraphs.map((p, j) => <p key={j} className="mt-2 font-body text-[17px] leading-relaxed text-charcoal/85">{p}</p>)}
+                {rv.paragraphs.map((p, j) => <p key={j} className="mt-2 font-body text-reading text-charcoal/85">{p}</p>)}
               </div>
               {rv.recap.length > 0 && (
                 <dl className="space-y-2 rounded-2xl bg-white/60 p-4">
@@ -216,8 +216,8 @@ export default function SimulationPlayer({ simulation, onComplete, onExit, onScr
 
         {node.kind === "teach" && (
           <div className="space-y-5">
-            <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-body text-[17px] leading-relaxed text-charcoal/85 focus:outline-none">{node.body[0]}</p>
-            {node.body.slice(1).map((p, j) => <p key={j} className="font-body text-[17px] leading-relaxed text-charcoal/85">{p}</p>)}
+            <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-body text-reading text-charcoal/85 focus:outline-none">{node.body[0]}</p>
+            {node.body.slice(1).map((p, j) => <p key={j} className="font-body text-reading text-charcoal/85">{p}</p>)}
             <button
               type="button"
               className={nextBtn}

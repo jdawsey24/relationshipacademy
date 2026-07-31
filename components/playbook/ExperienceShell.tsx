@@ -232,7 +232,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
       {crisis && (
         <div className="mx-auto mb-6 max-w-2xl rounded-2xl border border-deep-red/30 bg-white p-5" role="alert">
           <h3 className="font-display text-lg text-deep-red">{crisis.heading ?? "If you're in danger or crisis"}</h3>
-          {crisis.message && <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/85">{crisis.message}</p>}
+          {crisis.message && <p className="mt-2 font-body text-body text-charcoal/85">{crisis.message}</p>}
           {crisis.resources.length > 0 && (
             <ul className="mt-3 space-y-1">
               {crisis.resources.map((r, i) => (
@@ -295,7 +295,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
           <h1 className="font-display text-4xl font-semibold text-midnight-navy">{content.opening.title}</h1>
           <div className="mt-6 space-y-4">
             {content.opening.body.map((p, i) => (
-              <p key={i} className="font-body text-[17px] leading-relaxed text-charcoal/85">{p}</p>
+              <p key={i} className="font-body text-reading text-charcoal/85">{p}</p>
             ))}
           </div>
           {content.opening.manifestations && (
@@ -428,7 +428,7 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
         <section className="mx-auto max-w-2xl">
           <button type="button" onClick={() => setView(backTo)} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">{backTo === "board" ? "← Back to board" : "← Back"}</button>
           <h2 className="mt-6 font-display text-2xl text-midnight-navy">{activePlay.name}</h2>
-          <p className="mt-4 rounded-2xl bg-white/70 p-5 font-body text-[17px] italic leading-relaxed text-charcoal/85">“{activePlay.recognitionGate.prompt}”</p>
+          <p className="mt-4 rounded-2xl bg-white/70 p-5 font-body text-reading italic text-charcoal/85">“{activePlay.recognitionGate.prompt}”</p>
           <p className="mt-4 font-body text-[15px] text-charcoal/70">Does this happen for you?</p>
           <div className="mt-4 flex flex-col gap-3">
             <button type="button" onClick={startActivePlay} className="rounded-full bg-coral-rose px-6 py-3 font-ui text-sm font-medium text-white">Yes, this happens</button>

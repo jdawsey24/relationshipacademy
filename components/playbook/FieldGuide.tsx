@@ -32,7 +32,7 @@ function Block({ block }: { block: LiteratureBlock }) {
         <aside className="rounded-2xl border border-slate-blue/30 bg-slate-blue/10 p-4">
           <p className="font-ui text-xs font-semibold uppercase tracking-wide text-slate-blue">{block.label}</p>
           {block.body.map((p, j) => (
-            <p key={j} className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/85">{p}</p>
+            <p key={j} className="mt-2 font-body text-body text-charcoal/85">{p}</p>
           ))}
         </aside>
       );
@@ -42,7 +42,7 @@ function Block({ block }: { block: LiteratureBlock }) {
           {block.label && <p className="font-ui text-sm font-medium text-charcoal">{block.label}</p>}
           <ul className="space-y-1">
             {block.items.map((it, j) => (
-              <li key={j} className="flex gap-2 font-body text-[15px] leading-relaxed text-charcoal/85">
+              <li key={j} className="flex gap-2 font-body text-body text-charcoal/85">
                 <span aria-hidden="true" className="text-coral-rose">•</span>
                 <span>{it}</span>
               </li>
@@ -55,7 +55,7 @@ function Block({ block }: { block: LiteratureBlock }) {
         <figure className="rounded-2xl bg-warm-ivory px-4 py-3">
           <figcaption className="font-ui text-xs uppercase tracking-wide text-charcoal/45">For example</figcaption>
           {block.body.map((p, j) => (
-            <p key={j} className="mt-1 font-body text-[15px] italic leading-relaxed text-charcoal/80">{p}</p>
+            <p key={j} className="mt-1 font-body text-body italic text-charcoal/80">{p}</p>
           ))}
         </figure>
       );
@@ -64,7 +64,7 @@ function Block({ block }: { block: LiteratureBlock }) {
         <aside className="rounded-2xl bg-sage-green/12 px-4 py-3" role="note">
           <p className="font-ui text-xs uppercase tracking-wide text-charcoal/50">Keep in mind</p>
           {block.body.map((p, j) => (
-            <p key={j} className="mt-1 font-body text-[15px] leading-relaxed text-charcoal/85">{p}</p>
+            <p key={j} className="mt-1 font-body text-body text-charcoal/85">{p}</p>
           ))}
         </aside>
       );

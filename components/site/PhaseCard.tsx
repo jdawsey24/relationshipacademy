@@ -38,7 +38,7 @@ export default function PhaseCard({
           Developmental task: {task}
         </span>
       )}
-      <span className="mt-3 font-body text-[15px] leading-relaxed text-charcoal">{description}</span>
+      <span className="mt-3 font-body text-body text-charcoal">{description}</span>
     </Link>
   );
 }

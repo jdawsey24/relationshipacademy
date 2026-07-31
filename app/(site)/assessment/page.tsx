@@ -104,7 +104,7 @@ export default async function AssessmentPage() {
               <div key={s.n} className="rounded-xl border border-light-gray bg-white p-6">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-midnight-navy font-ui text-sm font-semibold text-white">{s.n}</span>
                 <h3 className="mt-4 font-display text-lg font-semibold text-midnight-navy">{s.title}</h3>
-                <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal">{s.body}</p>
+                <p className="mt-2 font-body text-body text-charcoal">{s.body}</p>
               </div>
             ))}
           </div>
@@ -197,7 +197,7 @@ export default async function AssessmentPage() {
             {FAQ.map((f) => (
               <div key={f.q} className="py-5">
                 <h3 className="font-display text-lg font-semibold text-midnight-navy">{f.q}</h3>
-                <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal">{f.a}</p>
+                <p className="mt-2 font-body text-body text-charcoal">{f.a}</p>
               </div>
             ))}
           </div>

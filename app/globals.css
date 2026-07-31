@@ -22,7 +22,7 @@ body {
 
   /* Article prose (Learn) — brand-styled markdown output. */
   .article-prose {
-    @apply font-body text-[17px] leading-relaxed text-charcoal;
+    @apply font-body text-reading text-charcoal;
   }
   .article-prose h2 {
     @apply mt-10 mb-3 font-display text-3xl font-semibold text-midnight-navy;

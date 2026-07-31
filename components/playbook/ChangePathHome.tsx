@@ -84,7 +84,7 @@ export default function ChangePathHome({ content, progress, displayName, onSurfa
       {cp.nextStep && (
         <div className="mt-6 rounded-3xl bg-white/70 p-6">
           <p className="font-ui text-xs uppercase tracking-wide text-charcoal/50">A useful next step</p>
-          <p className="mt-2 font-body text-[17px] leading-relaxed text-charcoal/90">{cp.nextStep}</p>
+          <p className="mt-2 font-body text-reading text-charcoal/90">{cp.nextStep}</p>
           {primary && (
             <button type="button" className={`${primaryBtn} mt-4`} onClick={() => onSurfaced(primary)}>{primary.label} →</button>
           )}

@@ -99,9 +99,15 @@ Ordered by value / safety:
    `text-xs … tracking-[0.15em]` eyebrow tier used in institute/academy account panels (a deliberately
    larger eyebrow — migrating would shrink it 12→11px), and admin status-pills / variant-tracking
    labels (0.12/0.14/0.2/0.22em) which are not the canonical eyebrow.
-2. **Body copy → `text-body` / `text-reading`.** Migrate `text-[15px] leading-relaxed` → `text-body`
-   and `text-[17px]` → `text-reading`, dropping the now-redundant `leading-*`. Do per-surface and
-   eyeball each — a few `text-[15px]` sites use non-relaxed leading intentionally.
+2. ~~**Body copy → `text-body` / `text-reading`.**~~ **DONE (2026-07-31).** Migrated the 78
+   reading-copy sites (42 `text-[15px] leading-relaxed` → `text-body`; 36 `text-[17px] leading-relaxed`
+   → `text-reading`, incl. the 3 `… italic leading-relaxed` variants and the `.article-prose` base in
+   `globals.css`), dropping the now-redundant `leading-relaxed`. Verified live: body 15px/24px LH,
+   reading 17px/28.9px LH. `text-body` is pixel-identical to the old pair (1.6 vs relaxed 1.625 =
+   0.375px); `text-reading` gains a deliberately slightly looser long-form leading (1.7 vs 1.625,
+   ~1.3px/line — better reading measure). **Left as-is:** the 57 bare `text-[15px]` and 3 bare
+   `text-[17px]` (single-line labels/list-items on `normal` leading — migrating would loosen the
+   multi-line ones), and the 3 `leading-snug` variants (intentional tight leading).
 3. **Micro text → `text-micro`.** `text-[13px]` → `text-micro`.
 4. **Redundancy cleanup (F4).** Case-by-case; only where the named step's line-height matches intent.
 5. **Secondary hero tiers.** Consider tokens for the 36px (`contact`) and 30→40px (`results`,

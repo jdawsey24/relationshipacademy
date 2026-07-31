@@ -92,7 +92,7 @@ export default function RelationshipCompanionPage() {
             <div key={s.n} className="rounded-2xl border border-midnight-navy/10 bg-white p-6">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-midnight-navy font-ui text-sm font-semibold text-white">{s.n}</span>
               <h3 className="mt-4 font-display text-xl font-semibold text-midnight-navy">{s.title}</h3>
-              <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/70">{s.body}</p>
+              <p className="mt-2 font-body text-body text-charcoal/70">{s.body}</p>
             </div>
           ))}
         </div>
@@ -108,7 +108,7 @@ export default function RelationshipCompanionPage() {
           {INSIDE.map((f) => (
             <div key={f.title} className="rounded-2xl border border-midnight-navy/10 bg-white p-6">
               <h3 className="font-display text-xl font-semibold text-midnight-navy">{f.title}</h3>
-              <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/70">{f.body}</p>
+              <p className="mt-2 font-body text-body text-charcoal/70">{f.body}</p>
             </div>
           ))}
         </div>
@@ -120,7 +120,7 @@ export default function RelationshipCompanionPage() {
         <p className="mx-auto mt-4 max-w-2xl text-balance font-display text-2xl font-medium leading-relaxed">
           The Companion is a private, educational tool — not therapy, diagnosis, or crisis care.
         </p>
-        <p className="mx-auto mt-4 max-w-xl font-body text-[15px] leading-relaxed text-white/75">
+        <p className="mx-auto mt-4 max-w-xl font-body text-body text-white/75">
           It supports your reflection and respects your autonomy; it never decides for you. If you&apos;re in crisis, it points you to real resources and support.
         </p>
       </section>
@@ -135,7 +135,7 @@ export default function RelationshipCompanionPage() {
           {FAQ.map((f) => (
             <div key={f.q} className="py-5">
               <h3 className="font-display text-lg font-semibold text-midnight-navy">{f.q}</h3>
-              <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/75">{f.a}</p>
+              <p className="mt-2 font-body text-body text-charcoal/75">{f.a}</p>
             </div>
           ))}
         </div>

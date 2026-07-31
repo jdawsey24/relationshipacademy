@@ -71,7 +71,7 @@ export default async function ProfessionalsPage() {
       <section className="px-6 py-16">
         <div className="mx-auto max-w-2xl">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "professionals.gap.heading", "The gap most professionals recognize.")}</h2>
-          <div className="mt-6 space-y-4 font-body text-[17px] leading-relaxed text-charcoal">
+          <div className="mt-6 space-y-4 font-body text-reading text-charcoal">
             <RichText text={get(content, "professionals.gap.body", "Most professionals who work with relationships encounter the same pattern. Clients arrive with good intentions, clear struggles, and years of accumulated damage from needs that were never properly understood or addressed at the right time.\n\nThe Relationship Life Cycle™ Framework was created from that clinical observation: most relationship challenges aren't caused by bad people. They're caused by relationships that outpaced their own foundation — moving forward without building the skills each phase required.\n\nThis framework gives professionals a shared developmental language for understanding that gap.")} />
           </div>
         </div>
@@ -81,7 +81,7 @@ export default async function ProfessionalsPage() {
       <section className="bg-[#F2F5F2] px-6 py-16">
         <div className="mx-auto max-w-2xl">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "professionals.position.heading", "A complement, not a competitor.")}</h2>
-          <div className="mt-6 space-y-4 font-body text-[17px] leading-relaxed text-charcoal">
+          <div className="mt-6 space-y-4 font-body text-reading text-charcoal">
             <RichText text={get(content, "professionals.position.body", "The Relationship Life Cycle™ is not designed to replace attachment theory, Gottman Method, EFT, or any existing therapeutic model. It provides the developmental framework that organizes when and why different relationship needs, challenges, and skills become most relevant.\n\nThink of it as the map that helps your existing tools make more sense — to you and to the people you serve.")} />
           </div>
         </div>
@@ -107,7 +107,7 @@ export default async function ProfessionalsPage() {
       <section className="bg-[#FBF9F5] px-6 py-16">
         <div className="mx-auto max-w-2xl">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "professionals.beyond.heading", "Beyond romantic relationships.")}</h2>
-          <div className="mt-6 space-y-4 font-body text-[17px] leading-relaxed text-charcoal">
+          <div className="mt-6 space-y-4 font-body text-reading text-charcoal">
             <RichText text={get(content, "professionals.beyond.body", "The Relationship Life Cycle™ Framework is fundamentally about relational development — which means its principles extend beyond romantic partnerships.\n\nRelationships between parents and children, colleagues and teams, mentors and mentees, friends and communities — all of these develop over time. All of them have phases, tasks, and opportunities for growth.\n\nThe framework's application to non-romantic relationships is an active area of development. What exists today in the context of romantic partnerships is the foundation for a much broader body of work.")} />
           </div>
         </div>
@@ -129,7 +129,7 @@ export default async function ProfessionalsPage() {
       <section className="bg-[#FBF9F5] px-6 py-16">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "professionals.ecosystem.heading", "A growing professional ecosystem.")}</h2>
-          <p className="mt-3 max-w-[680px] font-body text-[17px] leading-relaxed text-charcoal">
+          <p className="mt-3 max-w-[680px] font-body text-reading text-charcoal">
             {get(content, "professionals.ecosystem.body", "The Relationship Life Cycle™ is being developed into a comprehensive professional ecosystem. What exists today is the beginning.")}
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

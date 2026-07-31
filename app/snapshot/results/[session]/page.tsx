@@ -93,7 +93,7 @@ export default function ResultsPage() {
         <section className="mt-8 rounded-2xl border border-light-gray bg-white/70 p-5">
           <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal/45">You may also relate to</p>
           <p className="mt-1 font-display text-lg font-semibold text-midnight-navy">{data.secondary.result_title || data.secondary.name}</p>
-          <p className="mt-1 font-body text-[15px] leading-relaxed text-charcoal/80">{data.secondary.secondary_blurb}</p>
+          <p className="mt-1 font-body text-body text-charcoal/80">{data.secondary.secondary_blurb}</p>
         </section>
       )}
     </main>
@@ -115,7 +115,7 @@ function Prose({ label, text }: { label: string; text: string }) {
   return (
     <section className="mt-8">
       <Label>{label}</Label>
-      <p className="mt-2.5 font-body text-[17px] leading-relaxed text-charcoal/85">{text}</p>
+      <p className="mt-2.5 font-body text-reading text-charcoal/85">{text}</p>
     </section>
   );
 }
@@ -127,7 +127,7 @@ function Bullets({ label, items }: { label: string; items: string[] }) {
       <Label>{label}</Label>
       <ul className="mt-2.5 space-y-1.5">
         {items.map((it, i) => (
-          <li key={i} className="flex gap-2.5 font-body text-[17px] leading-relaxed text-charcoal/85">
+          <li key={i} className="flex gap-2.5 font-body text-reading text-charcoal/85">
             <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "var(--hue)" }} aria-hidden="true" />
             <span>{it}</span>
           </li>
@@ -232,12 +232,12 @@ function PlaybookCard({ session, clusterId, title, subtitle, whyThisPlaybook, ct
       </span>
       <p className="mt-3 font-ui text-xs uppercase tracking-wide text-white/60">The Relationship Playbook&trade;</p>
       <h2 className="mt-1 font-display text-2xl font-semibold sm:text-3xl">{title}</h2>
-      <p className="mx-auto mt-2 max-w-md font-body text-[17px] leading-relaxed text-white/85">{subtitle}</p>
-      {whyThisPlaybook && <p className="mx-auto mt-3 max-w-md font-body text-[15px] leading-relaxed text-white/70">{whyThisPlaybook}</p>}
+      <p className="mx-auto mt-2 max-w-md font-body text-reading text-white/85">{subtitle}</p>
+      {whyThisPlaybook && <p className="mx-auto mt-3 max-w-md font-body text-body text-white/70">{whyThisPlaybook}</p>}
 
       {available ? (
         <>
-          {ctaLabel && <p className="mx-auto mt-5 max-w-md font-body text-[15px] leading-relaxed text-white/75">{ctaLabel}</p>}
+          {ctaLabel && <p className="mx-auto mt-5 max-w-md font-body text-body text-white/75">{ctaLabel}</p>}
           <button onClick={buy} disabled={buying}
             className="mt-5 inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60">
             {buying ? "Starting checkout…" : "Get Your Playbook →"}

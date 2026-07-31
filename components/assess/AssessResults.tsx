@@ -118,7 +118,7 @@ function AcademyCta({ domains, firstName, attempt }: { domains: Domain[]; firstN
   return (
     <section className="mt-12 rounded-2xl bg-midnight-navy px-6 py-9 text-center text-white">
       <h2 className="font-display text-2xl font-semibold sm:text-3xl">Keep building on your snapshot</h2>
-      <p className="mx-auto mt-4 max-w-xl font-body text-[17px] leading-relaxed text-white/85">
+      <p className="mx-auto mt-4 max-w-xl font-body text-reading text-white/85">
         {growth.length
           ? `Your growth areas — ${growth.join(" and ")} — are exactly what the Relationship Academy helps you strengthen, with guided lessons and a supportive community organized around this framework.`
           : "The Relationship Academy helps you build on your strengths with guided lessons and a supportive community organized around this framework."}

@@ -157,7 +157,7 @@ export default function RelationshipSnapshotLanding() {
             {OUTCOMES.map((o) => (
               <div key={o.title} className="flex flex-col rounded-2xl border border-light-gray bg-white p-6">
                 <h3 className="font-display text-xl font-semibold text-midnight-navy">{o.title}</h3>
-                <p className="mt-3 font-body text-[15px] leading-relaxed text-charcoal/80">{o.body}</p>
+                <p className="mt-3 font-body text-body text-charcoal/80">{o.body}</p>
               </div>
             ))}
           </div>
@@ -175,7 +175,7 @@ export default function RelationshipSnapshotLanding() {
               <div key={s.n} className="rounded-2xl border border-light-gray bg-white p-7">
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-midnight-navy font-ui text-sm font-semibold text-white">{s.n}</span>
                 <h3 className="mt-4 font-display text-xl font-semibold text-midnight-navy">{s.title}</h3>
-                <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/80">{s.body}</p>
+                <p className="mt-2 font-body text-body text-charcoal/80">{s.body}</p>
               </div>
             ))}
           </div>
@@ -227,7 +227,7 @@ export default function RelationshipSnapshotLanding() {
                 </li>
               ))}
             </ul>
-            <p className="mt-6 rounded-xl bg-warm-ivory p-4 font-body text-[15px] leading-relaxed text-charcoal/75">
+            <p className="mt-6 rounded-xl bg-warm-ivory p-4 font-body text-body text-charcoal/75">
               The Snapshot can be completed by one person. Your partner does not need to participate for you to receive meaningful insight.
             </p>
           </div>

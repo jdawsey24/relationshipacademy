@@ -9,7 +9,7 @@ export default function QuestionMock({ className = "" }: { className?: string })
         <div className="h-full w-2/5 rounded-full bg-midnight-navy" />
       </div>
       <p className="mt-2 font-ui text-[11px] text-charcoal/45">Section 2 of 6 · Communication</p>
-      <p className="mt-4 font-body text-[15px] leading-relaxed text-charcoal">
+      <p className="mt-4 font-body text-body text-charcoal">
         When something feels off between us, I say so instead of letting it pass.
       </p>
       <div className="mt-4 flex flex-wrap gap-1.5">

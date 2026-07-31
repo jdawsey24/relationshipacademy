@@ -47,7 +47,7 @@ export default function DisclosureScreen({ onAccepted }: { onAccepted: () => voi
 
         {/* Prominent summary of the material points. */}
         <section className="mt-4 rounded-2xl border border-coral-rose/35 bg-coral-rose/8 p-4">
-          <p className="font-body text-[15px] leading-relaxed text-charcoal/85">{DISCLOSURE_SUMMARY}</p>
+          <p className="font-body text-body text-charcoal/85">{DISCLOSURE_SUMMARY}</p>
         </section>
 
         {/* Full disclosure. */}

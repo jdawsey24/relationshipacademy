@@ -18,7 +18,7 @@ export default async function ContactPage() {
           <h1 className="font-display text-[36px] font-semibold leading-[1.08] text-midnight-navy sm:text-[44px]">
             {get(content, "contact.hero.heading", "How can we help?")}
           </h1>
-          <p className="mx-auto mt-5 max-w-[600px] font-body text-[17px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-5 max-w-[600px] font-body text-reading text-charcoal">
             {get(content, "contact.hero.subhead", "Whether you have a question, want to explore the framework, or are ready to work together — you're in the right place.")}
           </p>
         </div>

@@ -100,7 +100,7 @@ export default async function SpeakingPage() {
               <div key={t.title} className="rounded-xl border border-light-gray bg-white p-6">
                 <span className="font-ui text-[11px] uppercase tracking-wide text-charcoal/50">{t.audience}</span>
                 <h3 className="mt-2 font-display text-xl font-semibold text-midnight-navy">{t.title}</h3>
-                <p className="mt-3 font-body text-[15px] leading-relaxed text-charcoal">{t.body}</p>
+                <p className="mt-3 font-body text-body text-charcoal">{t.body}</p>
               </div>
             ))}
           </div>
@@ -115,7 +115,7 @@ export default async function SpeakingPage() {
             {AUDIENCES.map((a) => (
               <div key={a.name} className="rounded-xl border border-light-gray bg-white p-6">
                 <h3 className="font-display text-lg font-semibold text-midnight-navy">{a.name}</h3>
-                <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal">{a.body}</p>
+                <p className="mt-2 font-body text-body text-charcoal">{a.body}</p>
               </div>
             ))}
           </div>
@@ -126,7 +126,7 @@ export default async function SpeakingPage() {
       <section className="px-6 py-16">
         <div className="mx-auto max-w-2xl">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "speaking.workplace.heading", "Relational development in the workplace.")}</h2>
-          <div className="mt-6 space-y-4 font-body text-[17px] leading-relaxed text-charcoal">
+          <div className="mt-6 space-y-4 font-body text-reading text-charcoal">
             <RichText text={get(content, "speaking.workplace.body", "The principles of the Relationship Life Cycle™ extend naturally into organizational settings. The way trust is built between a leader and a team, the way a new professional partnership develops, the way organizations navigate change — these are all relational experiences with developmental patterns.\n\nJanelle's organizational sessions apply the framework's developmental lens to the professional relationships that shape workplace culture, retention, and performance.")} />
           </div>
         </div>

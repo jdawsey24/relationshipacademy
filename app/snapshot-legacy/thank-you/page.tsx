@@ -40,7 +40,7 @@ function ThankYouInner() {
       <section className="mt-12 rounded-2xl bg-midnight-navy px-6 py-10 text-center text-white">
         <p className="font-ui text-xs uppercase tracking-wide text-white/60">Your next step</p>
         <h2 className="mt-2 font-display text-3xl font-semibold sm:text-4xl">Keep growing with the Academy</h2>
-        <p className="mx-auto mt-4 max-w-xl font-body text-[17px] leading-relaxed text-white/85">
+        <p className="mx-auto mt-4 max-w-xl font-body text-reading text-white/85">
           Your snapshot shows where your relationship is today. The Relationship Academy is where you build on it — guided
           lessons, live sessions, and a supportive community organized around the same framework, so you can strengthen the
           areas that matter most.
