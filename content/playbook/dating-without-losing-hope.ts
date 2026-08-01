@@ -23,6 +23,24 @@
  * ⚠ `engagementMode` removed — not a field in contentSchema.ts. The mapping is
  *   retained in Standing_Rule_Tool_Engagement_Mode.md (all three SOLO here).
  *
+ * ── C4 GATE RESOLUTIONS (2026-07-31) ──────────────────────────────────────────
+ *  • Claim-scope check (gate §10.5): PASS. Full-text scan of Plays + literature
+ *    found no claim that dating improves, that the reader will feel better or meet
+ *    someone, or that the problem is their attitude. The only keyword hits are the
+ *    copy disavowing exactly those claims ("Nothing here will tell you to be more
+ *    positive"; "If we started by suggesting the problem is your attitude, we'd be
+ *    wrong"). PE-4 is framed as capacity, not competency, throughout.
+ *  • Reading level (gate §10.6): PASS. Flesch–Kincaid Grade 6.1; Reading Ease 72.7
+ *    (plain English; ~12 words/sentence). Within the 6th–8th-grade target.
+ *  • Gender branching (gate §10.2): RESOLVED — the tools do NOT branch explicitly.
+ *    Each experience self-selects via the recognition cards (the "too many/blur"
+ *    read routes to how-many-at-once; the others serve both the overwhelmed and
+ *    the unseen), lit-c4-faq-different-for-others holds both accounts in one read,
+ *    and no Play characterises men or women as a group. Owner to ratify.
+ *  • STM-0290 "how to stand out" (gate §10.3): bounded scope PROPOSED — a reframe,
+ *    NOT optimisation advice — pending owner ratification before content is
+ *    authored. See the session change log.
+ *
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
 
