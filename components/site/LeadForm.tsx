@@ -102,6 +102,13 @@ export default function LeadForm({
     } catch {
       setStatus("error");
       setError("Something went wrong. Please try again.");
+      // Turnstile tokens are single-use — the one we just sent is spent whether
+      // or not the server accepted it. Reset so a retry gets a fresh token
+      // instead of being rejected as timeout-or-duplicate.
+      if (turnstileEnabled) {
+        window.turnstile?.reset();
+        setCaptchaToken("");
+      }
     }
   }
 
