@@ -37,9 +37,9 @@
  *    read routes to how-many-at-once; the others serve both the overwhelmed and
  *    the unseen), lit-c4-faq-different-for-others holds both accounts in one read,
  *    and no Play characterises men or women as a group. Owner to ratify.
- *  • STM-0290 "how to stand out" (gate §10.3): bounded scope PROPOSED — a reframe,
- *    NOT optimisation advice — pending owner ratification before content is
- *    authored. See the session change log.
+ *  • STM-0290 "how to stand out" (gate §10.3): RESOLVED — bounded scope ratified
+ *    by owner 2026-07-31; authored as lit-c4-faq-standing-out (a reframe, not
+ *    optimisation advice; boundary noted on that entry).
  *
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */

@@ -1,6 +1,6 @@
 /**
  * Cluster 4 — "Feeling Like You Don't Belong in Today's Dating World"
- * Field Guide literature. 9 Core Guides + 3 Question Reads.
+ * Field Guide literature. 9 Core Guides + 4 Question Reads.
  *
  * Authored 29 Jul 2026 from the Cluster 4 content write-up.
  * Derived against Framework Version 1.9 (Manual Lag Rule applied).
@@ -531,6 +531,39 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         kind: "guardrail",
         body: [
           "What we'd steer you away from is deciding in the middle of a bad week. That's the depleted version of you making a call the rested version might make differently.",
+        ],
+      },
+    ],
+  },
+  {
+    // STM-0290 "how to stand out" — bounded scope ratified by owner 2026-07-31.
+    // A REFRAME, never optimisation advice: no profile/photo tips, no "be more X,"
+    // no implication that being more noticeable = success or that dating improves.
+    id: "lit-c4-faq-standing-out",
+    version: 1,
+    scope: "cluster",
+    depth: "question",
+    title: "How do I stand out?",
+    related: ["lit-c4-what-serious-looks-like"],
+    body: [
+      {
+        kind: "paragraph",
+        body: [
+          "This is a fair question, and an exhausting one — it can feel like everyone's being asked to perform just to be seen at all.",
+        ],
+      },
+      {
+        kind: "distinction",
+        label: "What this isn't",
+        body: [
+          "This isn't a guide to better photos, sharper openers, or being more marketable. If that's the advice you were bracing for, you can let it go — it's what a lot of people in your position have already tried and found hollow, and we're not going to repeat it.",
+        ],
+      },
+      {
+        kind: "paragraph",
+        body: [
+          "The more answerable question isn't “how do I get noticed by everyone,” which mostly isn't in anyone's control. It's this: when someone does show up, can you tell whether they're actually engaged — and are you spending your effort where it comes back? That part you can work on, and it's what “Who's Actually Here” is for.",
+          "Standing out to the whole pool and being met by one person are different things. This Playbook is about the second.",
         ],
       },
     ],
