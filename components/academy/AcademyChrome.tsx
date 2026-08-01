@@ -54,7 +54,7 @@ export default function AcademyChrome({ children }: { children: React.ReactNode 
 
   async function signOut() {
     await getSupabaseBrowserClient().auth.signOut();
-    router.push("/academy/login");
+    router.push("/account/login");
     router.refresh();
   }
 

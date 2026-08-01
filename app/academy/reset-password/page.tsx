@@ -89,7 +89,7 @@ export default function AcademyResetPasswordPage() {
               {submitting ? "Sending…" : "Send reset link"}
             </button>
             <p className="mt-4 text-center font-ui text-sm text-midnight-navy/70">
-              <Link href="/academy/login" className="underline underline-offset-4 hover:text-midnight-navy">Back to sign in</Link>
+              <Link href="/account/login" className="underline underline-offset-4 hover:text-midnight-navy">Back to sign in</Link>
             </p>
           </form>
         ) : (
