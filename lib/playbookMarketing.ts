@@ -1,6 +1,7 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { PLAYBOOK_CLUSTERS } from "@/lib/snapshot/playbooks";
-import { DRAFT_PLAYBOOK_KEY_TO_CLUSTER, CLUSTER_PRIMARY_KEY } from "@/lib/playbook/keys";
+import { DRAFT_PLAYBOOK_KEY_TO_CLUSTER, CLUSTER_PRIMARY_KEY, COMPANION_KEY_TO_CLUSTER, COMPANION_KEYS } from "@/lib/playbook/keys";
+import { getPlaybookContent } from "@/content/playbook";
 
 // Marketing/sales data for the public Playbook pages. Grounded in the real
 // per-cluster copy authored in snapshot_clusters (subtitle, why, takeaway,
@@ -12,11 +13,13 @@ export const PLAYBOOK_PRICE_DISPLAY = "$29.99";
 // with the corpus flag so it stays in lockstep with PLAYBOOK_CLUSTERS:
 //   • OFF (production today): only the pre-corpus set {1,3,4,5,6,24}.
 //   • ON: every corpus Playbook, derived from the keys.ts source of truth so the
-//     two can't drift. Add-ons (900-block) are intentionally NOT slug-based —
+//     two can't drift. Companions (reserved 900+ ids) ARE slug-based standalone
+//     products; their pages/cards are sourced from the content registry (no
+//     snapshot_clusters row). Add-ons (900-block) are intentionally NOT slug-based —
 //     they sell from the /playbooks index via AddonsForSale, not a detail page.
 const CORPUS_ENABLED = process.env.NEXT_PUBLIC_PLAYBOOK_CORPUS === "true";
 export const PLAYBOOK_SLUGS: Record<string, number> = CORPUS_ENABLED
-  ? { "moving-beyond-rejection": 1, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER }
+  ? { "moving-beyond-rejection": 1, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER, ...COMPANION_KEY_TO_CLUSTER }
   : {
       "moving-beyond-rejection": 1,
       "letting-someone-in": 3,
@@ -26,9 +29,9 @@ export const PLAYBOOK_SLUGS: Record<string, number> = CORPUS_ENABLED
       "lean-in-or-let-go": 24,
     };
 
-// Reverse map id→slug. Multi-Playbook clusters (12, 21) have two slugs; the index
-// and marketing lookups must resolve to the PRIMARY (the quiz-result Playbook), so
-// prefer CLUSTER_PRIMARY_KEY and fall back to first-wins (mirrors keys.ts).
+// Reverse map id→slug. Each cluster now maps to a single slug (the C12/C21 companions
+// split out to their own ids), so this is effectively first-wins; CLUSTER_PRIMARY_KEY
+// is honored if any future cluster maps to more than one slug (mirrors keys.ts).
 const CLUSTER_TO_SLUG = new Map<number, string>();
 for (const [slug, id] of Object.entries(PLAYBOOK_SLUGS)) {
   const primary = CLUSTER_PRIMARY_KEY[id];
@@ -63,19 +66,47 @@ function toMarketing(c: ClusterRow): PlaybookMarketing | null {
   };
 }
 
+// Companions have no snapshot_clusters row (their id is a reserved 900+ pseudo-id),
+// so their marketing is sourced from the authored content registry. The optional
+// marketing sections (pillars, keyTakeaway) simply don't render when absent.
+function companionMarketing(slug: string): PlaybookMarketing | null {
+  const clusterId = COMPANION_KEY_TO_CLUSTER[slug];
+  const c = getPlaybookContent(slug);
+  if (clusterId == null || !c) return null;
+  const body = c.opening?.body ?? [];
+  return {
+    clusterId,
+    slug,
+    name: c.displayName,
+    subtitle: c.displayName,
+    corePattern: c.opening?.title ?? null,
+    why: body.length ? body.join(" ") : null,
+    keyTakeaway: null,
+    pillars: [],
+  };
+}
+
 /** All published playbooks, ordered by cluster id. */
 export async function getPlaybookMarketing(): Promise<PlaybookMarketing[]> {
   const s = getSupabaseAdminClient();
   const { data } = await s.from("snapshot_clusters")
     .select("id, name, playbook_subtitle, core_pattern, why_this_playbook, key_takeaway, content_pillars")
     .in("id", [...PLAYBOOK_CLUSTERS]);
-  return ((data ?? []) as ClusterRow[]).map(toMarketing).filter((p): p is PlaybookMarketing => !!p).sort((a, b) => a.clusterId - b.clusterId);
+  const dbCards = ((data ?? []) as ClusterRow[]).map(toMarketing).filter((p): p is PlaybookMarketing => !!p);
+  // Companion cards (only when slug-enabled, i.e. the corpus flag is on).
+  const companionCards = COMPANION_KEYS
+    .filter((slug) => slug in PLAYBOOK_SLUGS)
+    .map(companionMarketing)
+    .filter((p): p is PlaybookMarketing => !!p);
+  return [...dbCards, ...companionCards].sort((a, b) => a.clusterId - b.clusterId);
 }
 
 /** One playbook by its marketing slug, or null. */
 export async function getPlaybookBySlug(slug: string): Promise<PlaybookMarketing | null> {
   const clusterId = PLAYBOOK_SLUGS[slug];
   if (!clusterId) return null;
+  // Companions are content-sourced (no snapshot_clusters row).
+  if (COMPANION_KEY_TO_CLUSTER[slug] != null) return companionMarketing(slug);
   const s = getSupabaseAdminClient();
   const { data } = await s.from("snapshot_clusters")
     .select("id, name, playbook_subtitle, core_pattern, why_this_playbook, key_takeaway, content_pillars")
