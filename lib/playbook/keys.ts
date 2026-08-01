@@ -88,6 +88,13 @@ export const ADDON_KEY_TO_CLUSTER: Record<string, number> = {
   "addon-grieving-differently": 905,
 };
 export const ADDON_KEYS = Object.keys(ADDON_KEY_TO_CLUSTER);
+const ADDON_ENTITLEMENT_IDS = new Set<number>(Object.values(ADDON_KEY_TO_CLUSTER));
+
+/** True if this entitlement id is an add-on (900-block) rather than a Snapshot
+ *  cluster. Used by checkout to auto-apply the add-on coupon on the back end. */
+export function isAddonEntitlementId(id: number | null | undefined): boolean {
+  return id != null && ADDON_ENTITLEMENT_IDS.has(id);
+}
 
 // For clusters with more than one Playbook, the key a Snapshot result opens.
 export const CLUSTER_PRIMARY_KEY: Record<number, string> = {

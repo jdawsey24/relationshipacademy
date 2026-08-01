@@ -57,7 +57,9 @@ The 5 add-ons — **losing-a-partner, caregiving, living-with-illness, dating-la
 
 **Why this needs no schema change:** `playbook_entitlements.cluster_id` is a plain `integer` with **no foreign key**. Each add-on has its own reserved id (900-block); a purchase writes that id and unlocks *only* that add-on. `clusterIdForKey`/`keyForClusterId` resolve it; the shared `playbook_onetime` price + `allow_promotion_codes: true` (already in the checkout) handle price and coupon. Wired gated-off in `lib/playbook/keys.ts`.
 
-**Build items before add-ons can sell:** (a) the live `playbook_onetime` Stripe price must exist (same one the clusters use); (b) a **coupon/promotion code** in Stripe for the discount; (c) a **place to present each add-on for sale** — they have no marketing card today (checkout itself already works if handed the reserved id).
+**Discount is applied on the back end** (not customer-entered): create a Stripe **coupon** and set **`STRIPE_ADDON_COUPON_ID`** in the environment (Netlify) — the checkout auto-applies it to add-on purchases (ids 901–905). If the env var is unset, add-ons fall back to the customer-enterable promo field. Cluster purchases keep the promo field. Wired in `app/api/playbooks/checkout/route.ts`; the coupon id lives only in env, never in the repo.
+
+**Build items before add-ons can sell:** (a) the live `playbook_onetime` Stripe price exists; (b) the Stripe coupon + `STRIPE_ADDON_COUPON_ID` env var; (c) a **place to present each add-on for sale** — they have no marketing card today (checkout already works if handed the reserved id).
 
 ## Pricing structure — options
 
