@@ -1,5 +1,6 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { PLAYBOOK_CLUSTERS } from "@/lib/snapshot/playbooks";
+import { DRAFT_PLAYBOOK_KEY_TO_CLUSTER, CLUSTER_PRIMARY_KEY } from "@/lib/playbook/keys";
 
 // Marketing/sales data for the public Playbook pages. Grounded in the real
 // per-cluster copy authored in snapshot_clusters (subtitle, why, takeaway,
@@ -7,16 +8,33 @@ import { PLAYBOOK_CLUSTERS } from "@/lib/snapshot/playbooks";
 
 export const PLAYBOOK_PRICE_DISPLAY = "$29.99";
 
-// Stable, SEO-friendly slug per playbook cluster. Keep in sync with PLAYBOOK_CLUSTERS.
-export const PLAYBOOK_SLUGS: Record<string, number> = {
-  "moving-beyond-rejection": 1,
-  "letting-someone-in": 3,
-  "dating-without-losing-hope": 4,
-  "trusting-what-you-see": 5,
-  "finding-security": 6,
-  "lean-in-or-let-go": 24,
-};
-const CLUSTER_TO_SLUG = new Map(Object.entries(PLAYBOOK_SLUGS).map(([slug, id]) => [id, slug]));
+// Stable, SEO-friendly slug per playbook cluster (slug == playbook_key). Gated
+// with the corpus flag so it stays in lockstep with PLAYBOOK_CLUSTERS:
+//   • OFF (production today): only the pre-corpus set {1,3,4,5,6,24}.
+//   • ON: every corpus Playbook, derived from the keys.ts source of truth so the
+//     two can't drift. Add-ons (900-block) are intentionally NOT slug-based —
+//     they sell from the /playbooks index via AddonsForSale, not a detail page.
+const CORPUS_ENABLED = process.env.NEXT_PUBLIC_PLAYBOOK_CORPUS === "true";
+export const PLAYBOOK_SLUGS: Record<string, number> = CORPUS_ENABLED
+  ? { "moving-beyond-rejection": 1, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER }
+  : {
+      "moving-beyond-rejection": 1,
+      "letting-someone-in": 3,
+      "dating-without-losing-hope": 4,
+      "trusting-what-you-see": 5,
+      "finding-security": 6,
+      "lean-in-or-let-go": 24,
+    };
+
+// Reverse map id→slug. Multi-Playbook clusters (12, 21) have two slugs; the index
+// and marketing lookups must resolve to the PRIMARY (the quiz-result Playbook), so
+// prefer CLUSTER_PRIMARY_KEY and fall back to first-wins (mirrors keys.ts).
+const CLUSTER_TO_SLUG = new Map<number, string>();
+for (const [slug, id] of Object.entries(PLAYBOOK_SLUGS)) {
+  const primary = CLUSTER_PRIMARY_KEY[id];
+  if (primary) CLUSTER_TO_SLUG.set(id, primary);
+  else if (!CLUSTER_TO_SLUG.has(id)) CLUSTER_TO_SLUG.set(id, slug);
+}
 
 export interface PlaybookMarketing {
   clusterId: number;
