@@ -4,7 +4,8 @@ import { useState } from "react";
 
 // Public buy button for a Playbook. Starts the paid checkout; ownership must
 // attach to an account, so an unauthenticated buyer is routed to sign in and
-// returned. Mirrors the Snapshot results buy flow.
+// returned. Uses the neutral /account doorway (a purchase is not the Academy).
+// Mirrors the Snapshot results buy flow.
 export default function PlaybookBuyButton({ clusterId, label, className = "" }: { clusterId: number; label: string; className?: string }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -16,7 +17,7 @@ export default function PlaybookBuyButton({ clusterId, label, className = "" }: 
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cluster_id: clusterId }),
       });
-      if (res.status === 401) { window.location.href = `/academy/login?next=${encodeURIComponent(window.location.pathname)}`; return; }
+      if (res.status === 401) { window.location.href = `/account/login?next=${encodeURIComponent(window.location.pathname)}`; return; }
       const d = await res.json().catch(() => ({}));
       if (!res.ok || !d.url) { setErr(d.error ?? "Purchasing isn't available yet."); setBusy(false); return; }
       const w = window as unknown as { fbq?: (...a: unknown[]) => void };
