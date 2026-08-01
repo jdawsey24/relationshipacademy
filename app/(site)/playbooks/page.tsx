@@ -9,6 +9,7 @@ import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
 import { IconTile, CARD_HOVER } from "@/components/site/IconTile";
+import AddonsForSale from "@/components/site/AddonsForSale";
 import type { CSSProperties } from "react";
 
 export const dynamic = "force-dynamic";
@@ -108,6 +109,9 @@ async function Landing() {
         </div>
         <p className="mt-6 text-center font-body text-sm text-charcoal/50">{PLAYBOOK_PRICE_DISPLAY} each · one-time purchase · instant access, yours in your library</p>
       </section>
+
+      {/* Expansion life-situation add-ons — gated; renders only when the corpus flag is on */}
+      <AddonsForSale />
 
       {/* Not sure which? — the Snapshot, now a helper, not the pitch */}
       <section className="mt-20 rounded-3xl bg-midnight-navy px-8 py-12 text-center text-white sm:px-12">
