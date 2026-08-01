@@ -40,6 +40,18 @@
  *  • STM-0290 "how to stand out" (gate §10.3): RESOLVED — bounded scope ratified
  *    by owner 2026-07-31; authored as lit-c4-faq-standing-out (a reframe, not
  *    optimisation advice; boundary noted on that entry).
+ *  • Part B ratification reconciliation (gate §10.7): RESOLVED 2026-07-31 — the
+ *    delivered content reconciles with the ratified C4 Part B Ruling Sheet (all 10
+ *    ruled 2026-07-29). Verified per ruling: Q1 Exploration/Discernment; Q3a PE-1
+ *    "target the quantifier" (Play them-or-the-pattern); Q3b PE-2 primary change
+ *    target (whos-actually-here); Q3c PE-3 Recognition/Context + explain-the-design
+ *    (lit-c4-designed-this-way); Q3d PE-4 second change target / volume
+ *    (how-many-at-once); Q3e PE-5 split — "how people meet" answered
+ *    (lit-c4-how-people-meet-now), "how to stand out" bounded (lit-c4-faq-standing-out);
+ *    Q4 claim scope matches; Q5 CP-01 boundary — distinct playId (how-many-at-once)
+ *    + re-derived fidelity, portfolio-level; Q6 elevated safety, no gamification,
+ *    hopelessness/self-worth signposts. No content change required. (Grade label
+ *    SUFFICIENT-WITH-RECOGNITION/CONTEXT is a pkg-config field, not this module.)
  *
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
