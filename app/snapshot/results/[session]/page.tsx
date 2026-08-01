@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
 import { IconTile } from "@/components/site/IconTile";
 import { getPlaybookContent } from "@/content/playbook";
-import { CLUSTER_COMPANION_KEY, keyForClusterId, isPlaybookKey } from "@/lib/playbook/keys";
+import { CLUSTER_PAIRED_KEY, keyForClusterId, isPlaybookKey } from "@/lib/playbook/keys";
 import { routesFrom } from "@/lib/playbook/crossPlaybookRoutes";
 
 interface Primary {
@@ -47,13 +47,13 @@ export default function ResultsPage() {
   const title = p.result_title || p.name;
   const hue = playbookHue(p.id);
 
-  // Companion nudge — only for the two clusters with a second, separately-sold module,
+  // Related-Playbook nudge — only for the two clusters with a second, separately-sold module,
   // and only when it's actually served (isPlaybookKey is corpus-flag-aware).
-  const companionKey = CLUSTER_COMPANION_KEY[p.id];
-  const companion = companionKey && isPlaybookKey(companionKey) ? getPlaybookContent(companionKey) : null;
+  const pairedKey = CLUSTER_PAIRED_KEY[p.id];
+  const paired = pairedKey && isPlaybookKey(pairedKey) ? getPlaybookContent(pairedKey) : null;
   const primaryKey = keyForClusterId(p.id);
-  const companionReason = companion && primaryKey
-    ? routesFrom(primaryKey).find((r) => r.to === companionKey)?.reason ?? null
+  const pairedReason = paired && primaryKey
+    ? routesFrom(primaryKey).find((r) => r.to === pairedKey)?.reason ?? null
     : null;
 
   return (
@@ -100,14 +100,14 @@ export default function ResultsPage() {
         available={data.playbook_url != null}
       />
 
-      {/* Companion Playbook — a separate next step (own product), for C12/C21 results */}
-      {companion && companionKey && (
+      {/* Related Playbook — a separate next step (own product), for C12/C21 results */}
+      {paired && pairedKey && (
         <section className="mt-6 rounded-2xl border border-dashed border-midnight-navy/25 bg-white/60 p-5">
-          <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal/45">A companion Playbook</p>
-          <p className="mt-1 font-display text-lg font-semibold text-midnight-navy">{companion.displayName}</p>
-          {companionReason && <p className="mt-1 font-body text-body text-charcoal/75">{companionReason}</p>}
-          <a href={`/playbooks/${companionKey}`} className="mt-3 inline-flex items-center gap-1 font-ui text-sm font-semibold text-midnight-navy underline underline-offset-4 hover:opacity-80">
-            See {companion.displayName} →
+          <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal/45">A related Playbook</p>
+          <p className="mt-1 font-display text-lg font-semibold text-midnight-navy">{paired.displayName}</p>
+          {pairedReason && <p className="mt-1 font-body text-body text-charcoal/75">{pairedReason}</p>}
+          <a href={`/playbooks/${pairedKey}`} className="mt-3 inline-flex items-center gap-1 font-ui text-sm font-semibold text-midnight-navy underline underline-offset-4 hover:opacity-80">
+            See {paired.displayName} →
           </a>
           <p className="mt-2 font-body text-xs text-charcoal/45">A separate Playbook, bought on its own.</p>
         </section>

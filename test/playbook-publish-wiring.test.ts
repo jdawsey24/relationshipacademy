@@ -9,8 +9,8 @@ import {
   INTERACTIVE_PLAYBOOK_KEYS,
   DRAFT_PLAYBOOK_KEY_TO_CLUSTER,
   CLUSTER_PRIMARY_KEY,
-  COMPANION_KEYS,
-  COMPANION_KEY_TO_CLUSTER,
+  PAIRED_KEYS,
+  PAIRED_KEY_TO_CLUSTER,
   ADDON_KEYS,
   ADDON_KEY_TO_CLUSTER,
   hasInteractivePlaybook,
@@ -33,9 +33,9 @@ test("GATE OFF: only the flagship is wired/served (production behaviour)", () =>
   assert.equal(keyForClusterId(1), FLAGSHIP);
 });
 
-test("DRAFT core + companions + add-ons cover exactly the corpus", () => {
+test("DRAFT core + paired modules + add-ons cover exactly the corpus", () => {
   const corpus = listPlaybookKeys().filter((k) => k !== FLAGSHIP).sort();
-  const drafted = [...Object.keys(DRAFT_PLAYBOOK_KEY_TO_CLUSTER), ...COMPANION_KEYS, ...ADDON_KEYS].sort();
+  const drafted = [...Object.keys(DRAFT_PLAYBOOK_KEY_TO_CLUSTER), ...PAIRED_KEYS, ...ADDON_KEYS].sort();
   assert.deepEqual(drafted, corpus);
 });
 
@@ -59,17 +59,17 @@ test("add-ons sold individually: each resolves to content and has its own reserv
   }
 });
 
-test("C12/C21 companions are sold separately: distinct reserved ids, own content, no collisions", () => {
-  assert.equal(COMPANION_KEYS.length, 2);
-  const companionIds = Object.values(COMPANION_KEY_TO_CLUSTER);
-  assert.equal(new Set(companionIds).size, companionIds.length, "companions must have DISTINCT ids");
+test("C12/C21 paired modules are sold separately: distinct reserved ids, own content, no collisions", () => {
+  assert.equal(PAIRED_KEYS.length, 2);
+  const pairedIds = Object.values(PAIRED_KEY_TO_CLUSTER);
+  assert.equal(new Set(pairedIds).size, pairedIds.length, "paired modules must have DISTINCT ids");
   const addonIds = new Set(Object.values(ADDON_KEY_TO_CLUSTER));
   const draftIds = new Set(Object.values(DRAFT_PLAYBOOK_KEY_TO_CLUSTER));
-  for (const [key, id] of Object.entries(COMPANION_KEY_TO_CLUSTER)) {
+  for (const [key, id] of Object.entries(PAIRED_KEY_TO_CLUSTER)) {
     assert.ok(getPlaybookContent(key), `no content for ${key}`);
     assert.ok(id > 27, `${key} id ${id} must be outside the Snapshot cluster range`);
     assert.ok(!addonIds.has(id), `${key} id ${id} collides with an add-on id`);
-    // The whole point of the split: the companion must NOT share a Snapshot cluster id,
+    // The whole point of the split: the paired module must NOT share a Snapshot cluster id,
     // and must not also live in the DRAFT map.
     assert.ok(!draftIds.has(id), `${key} id ${id} collides with a Snapshot cluster id`);
     assert.equal(DRAFT_PLAYBOOK_KEY_TO_CLUSTER[key], undefined, `${key} must not also be in the DRAFT map`);
