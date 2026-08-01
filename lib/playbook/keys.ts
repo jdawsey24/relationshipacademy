@@ -107,6 +107,13 @@ export const COMPANION_KEY_TO_CLUSTER: Record<string, number> = {
 };
 export const COMPANION_KEYS = Object.keys(COMPANION_KEY_TO_CLUSTER);
 
+// Parent Snapshot cluster → its companion Playbook key. Used to nudge the companion
+// (a separate product) on the results handoff for a C12/C21 result.
+export const CLUSTER_COMPANION_KEY: Record<number, string> = {
+  12: "moving-forward",
+  21: "asking-better-questions",
+};
+
 /** True if this entitlement id is an add-on (900-block) rather than a Snapshot
  *  cluster. Used by checkout to auto-apply the add-on coupon on the back end. */
 export function isAddonEntitlementId(id: number | null | undefined): boolean {
