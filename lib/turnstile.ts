@@ -1,7 +1,8 @@
 // Server-side Cloudflare Turnstile verification. Disabled (returns true) until
 // TURNSTILE_SECRET_KEY is configured, so forms keep working before the keys are
-// added. Fails OPEN on a network/parse error (Cloudflare unreachable) to avoid
-// dropping legitimate leads during an outage, but rejects an explicit failure.
+// added. Once configured, fails CLOSED: a missing token, an explicit
+// verification failure, or a network/parse error (Cloudflare unreachable) all
+// reject the submission.
 
 const VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
@@ -23,7 +24,7 @@ export async function verifyTurnstile(token: string | null, ip: string): Promise
     const data = (await res.json()) as { success?: boolean };
     return data.success === true;
   } catch (e) {
-    console.error("[turnstile] verification error (failing open):", e instanceof Error ? e.message : e);
-    return true;                     // Cloudflare unreachable → don't drop the lead
+    console.error("[turnstile] verification error (failing closed):", e instanceof Error ? e.message : e);
+    return false;                    // Cloudflare unreachable → reject rather than admit unverified traffic
   }
 }
