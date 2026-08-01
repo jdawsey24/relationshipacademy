@@ -40,27 +40,27 @@ export const C22_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "You've built something. A life that works, that you know the shape of, that you got to on your own.",
-          "And now there's a person, and the question underneath everything is whether letting them in means dismantling any of it.",
+          "And now there's a person. The question under everything is whether letting them in means taking any of it apart.",
         ],
       },
       {
         kind: "distinction",
-        label: "Two things that arrive together and aren't the same",
+        label: "Two things that show up together and aren't the same",
         body: [
-          "Wanting to keep your life. That's a position, and a reasonable one. It isn't a fear to be worked on.",
-          "Needing to know in advance how it goes. That's the part that costs you, because it can't be satisfied and it makes the not-knowing harder rather than easier.",
+          "Wanting to keep your life. That's a stand, and a fair one. It isn't a fear to work on.",
+          "Needing to know ahead of time how it goes. That's the part that costs you. It can't be met, and it makes the not-knowing harder, not easier.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Almost everything written for people in this position tries to reassure them that commitment won't change their life. We're not going to do that, because it isn't true and you'd know it wasn't.",
+          "Almost everything written for people in your spot tries to promise them that commitment won't change their life. We're not going to do that. It isn't true, and you'd know it wasn't.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nor are we going to tell you to let go and trust the process. You've heard it, it isn't actionable, and it implies the planning is a flaw rather than something that has served you.",
+          "We're also not going to tell you to let go and trust the process. You've heard it. It gives you nothing to do, and it treats your planning as a flaw instead of something that has worked for you.",
         ],
       },
     ],
@@ -77,7 +77,7 @@ export const C22_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "A good deal of what people say here isn't a difficulty at all. It's a clearly held position.",
+          "A lot of what people say here isn't a problem at all. It's a clearly held stand.",
         ],
       },
       {
@@ -94,14 +94,14 @@ export const C22_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Those are boundaries, stated plainly, by someone who knows what they want. Most people arrive at a relationship without being able to say any of that.",
-          "We're not going to reframe them as fear of intimacy. There is a version of this material that does, and it's wrong.",
+          "Those are boundaries, said plainly, by someone who knows what they want. Most people come to a relationship unable to say any of that.",
+          "We're not going to call them a fear of intimacy. There's a version of this material that does, and it's wrong.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "The only thing worth checking is whether a position is being applied so early and so completely that nothing gets to happen. A boundary you'd defend against an actual encroachment is one thing. A boundary defended against a person who hasn't asked for anything yet is doing a different job.",
+          "The one thing worth checking is whether a stand is being used so early and so fully that nothing gets to happen. A boundary you'd defend when someone is actually pushing on it is one thing. A boundary you defend against a person who hasn't asked for anything yet is doing a different job.",
         ],
       },
     ],
@@ -118,28 +118,28 @@ export const C22_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI'm afraid commitment means losing myself\u201d is the sentence. It's also very general, and general fears can't be checked.",
+          "\u201cI'm afraid commitment means losing myself\u201d is the sentence. It's also very general, and a general fear can't be checked.",
         ],
       },
       {
         kind: "distinction",
         label: "Worth getting specific about",
         body: [
-          "Some things genuinely go. Time alone, mostly. Complete autonomy over your evenings and your money and where you live. Those are real and worth grieving rather than denying.",
+          "Some things really do go. Time alone, mostly. Full say over your evenings, your money, and where you live. Those losses are real, and worth grieving rather than denying.",
           "Some things don't go unless you hand them over. Your work, your friendships, your opinions, what you do with a free Saturday, who you are when nobody's watching.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "People conflate the two, and then defend the whole set at once — which is exhausting, and means the negotiable and the non-negotiable get the same energy.",
+          "People mix the two up, and then defend the whole set at once. That's exhausting, and it means the things you could bend on get the same energy as the things you won't.",
           "Naming which is which makes the fear smaller. Not gone. Smaller and more specific, which is a different thing to carry.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If the honest answer is that everything on your list is non-negotiable, that's worth knowing too. It may mean this isn't the moment, and that's a legitimate finding rather than a failure.",
+          "If the honest answer is that everything on your list is non-negotiable, that's worth knowing too. It may mean this isn't the moment, and that's a real finding, not a failure.",
         ],
       },
     ],
@@ -163,15 +163,15 @@ export const C22_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Sometimes that's true. Time is finite and something does have to give. But a lot of what feels like a space problem is a control problem wearing different clothes — the discomfort isn't that there's no room, it's that someone else will now have a say in the shape of it.",
+          "Sometimes that's true. Time is limited, and something does have to give. But a lot of what feels like a space problem is really a control problem in different clothes. The discomfort isn't that there's no room. It's that someone else will now have a say in its shape.",
         ],
       },
       {
         kind: "distinction",
-        label: "Two questions that get confused",
+        label: "Two questions that get mixed up",
         body: [
-          "Do I have capacity? Practical, checkable, and sometimes the answer is genuinely no for now.",
-          "Am I willing to have less say over my own arrangements? Different question, harder, and the one usually underneath.",
+          "Do I have room? Practical, checkable, and sometimes the honest answer is no for now.",
+          "Am I willing to have less say over how my own life is set up? A different question, harder, and usually the one underneath.",
         ],
       },
       {
@@ -195,27 +195,27 @@ export const C22_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI always need a plan.\u201d \u201cI like knowing what to expect.\u201d \u201cI struggle when things feel uncertain.\u201d",
-          "Planning is not a flaw and it has almost certainly served you. Most people who describe themselves this way have built something with it.",
+          "Planning is not a flaw, and it has almost certainly worked for you. Most people who describe themselves this way have built something with it.",
         ],
       },
       {
         kind: "distinction",
         label: "Where it stops working",
         body: [
-          "In most areas, more planning produces more control. Effort in, certainty out. That relationship is real and it's why the habit exists.",
-          "In relationships, more planning doesn't produce more certainty. Another person is involved and they're not a variable you hold. So the effort goes in and nothing comes back, and the natural response is to plan harder.",
+          "In most areas, more planning gives you more control. Effort in, certainty out. That link is real, and it's why the habit exists.",
+          "In relationships, more planning doesn't give you more certainty. Another person is involved, and you don't control them. So the effort goes in and nothing comes back, and the natural response is to plan harder.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "That's the loop worth seeing. Not that planning is bad — that in this one area the usual return on it isn't there, and the effort keeps escalating because it feels like it should be.",
+          "That's the loop worth seeing. Not that planning is bad. It's that in this one area the usual payoff isn't there, and the effort keeps growing because it feels like it should work.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here will suggest you stop planning. It suggests noticing which parts of a relationship are actually plannable, so the rest of the effort can go somewhere it pays.",
+          "Nothing here will tell you to stop planning. It points to noticing which parts of a relationship you can actually plan, so the rest of the effort can go somewhere it pays off.",
         ],
       },
     ],
@@ -233,7 +233,7 @@ export const C22_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI prepare for disappointment before it happens.\u201d",
-          "The logic is sound: if you've already imagined it, it can't land as hard. And it does work \u2014 slightly, sometimes.",
+          "The logic makes sense: if you've already imagined it, it can't hit as hard. And it does work \u2014 a little, sometimes.",
         ],
       },
       {
@@ -241,19 +241,19 @@ export const C22_LITERATURE: LiteratureEntry[] = [
         label: "What it costs to run",
         body: [
           "You pay for the disappointment whether or not it arrives. Bracing for six months costs six months of bracing, and if nothing goes wrong you've paid it for nothing.",
-          "And it's visible. Someone being braced against is usually aware of it, even if neither of you names it \u2014 which can produce the distance you were preparing for.",
+          "And it shows. Someone being braced against usually feels it, even if neither of you names it \u2014 and that can create the very distance you were preparing for.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The saving is also smaller than it feels. Being partly prepared for something painful makes it somewhat less shocking. It doesn't make it much less painful, which is the thing you were buying.",
+          "The saving is also smaller than it feels. Being partly ready for something painful makes it a bit less shocking. It doesn't make it much less painful — and less painful was the thing you were buying.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "This isn't an argument for optimism. It's arithmetic: a small saving, paid for continuously, against a cost that arrives whether or not the thing does.",
+          "This isn't an argument for optimism. It's just math: a small saving, paid for the whole time, against a cost that arrives whether or not the thing does.",
         ],
       },
     ],
@@ -271,27 +271,27 @@ export const C22_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI feel responsible for making everything work.\u201d \u201cI struggle when I can't fix things.\u201d \u201cI don't like depending on anyone.\u201d",
-          "These three arrive together often enough to be one thing: if it's all on you, then it's all under your control \u2014 and that's the appeal, even though it's exhausting.",
+          "These three show up together often enough to be one thing: if it's all on you, then it's all in your control \u2014 and that's the pull of it, even though it's exhausting.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Depending on someone means their choices affect your outcome. That's the actual objection, and it's not irrational. It's just also the definition of the thing you're considering.",
+          "Depending on someone means their choices affect how things turn out for you. That's the real objection, and it makes sense. It's just also the very thing a relationship is.",
         ],
       },
       {
         kind: "distinction",
         label: "What's genuinely yours",
         body: [
-          "Yours: what you contribute, what you're honest about, whether you show up, what you'll accept.",
+          "Yours: what you put in, what you're honest about, whether you show up, what you'll accept.",
           "Not yours: whether they do the same. Whether it lasts. Whether it turns out to have been the right call.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Carrying the second set doesn't make it more likely to go well. It makes you tired, and it quietly relieves the other person of things that were theirs.",
+          "Carrying the second set doesn't make it more likely to go well. It just makes you tired, and it quietly lets the other person off the hook for things that were theirs.",
         ],
       },
     ],
@@ -316,14 +316,14 @@ export const C22_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "The honest version",
         body: [
-          "You will have less unilateral control over your life. That's not a risk, it's the arrangement, and anyone claiming otherwise is describing something else.",
-          "Whether you lose yourself is a different question, and it depends much more on what you hand over than on what commitment inherently takes.",
+          "You will have less say over your life on your own. That's not a risk, it's the deal, and anyone who tells you otherwise is describing something else.",
+          "Whether you lose yourself is a different question. It depends much more on what you hand over than on what commitment takes on its own.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "People who lose themselves in relationships usually do it gradually and voluntarily \u2014 a series of small accommodations, none of which felt like much. That's worth watching for. It isn't the same as commitment taking it from you.",
+          "People who lose themselves in relationships usually do it slowly and by choice \u2014 a string of small trade-offs, none of which felt like much. That's worth watching for. It isn't the same as commitment taking it from you.",
         ],
       },
       {
@@ -346,13 +346,13 @@ export const C22_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Probably not by trying to. Relaxing isn't a thing that responds to instruction, and being told to do it tends to add a second job on top of the first.",
+          "Probably not by trying to. Relaxing doesn't respond to being told to, and being told to do it tends to add a second job on top of the first.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "What does sometimes shift is smaller. Noticing which parts of this are actually plannable and putting the effort there. Noticing that bracing is being paid for continuously. Working out which things are genuinely yours to carry, and setting the rest down \u2014 not out of trust, but because carrying them wasn't doing anything.",
+          "What does sometimes shift is smaller. Noticing which parts of this you can actually plan, and putting the effort there. Noticing that you're paying for bracing the whole time. Working out which things are genuinely yours to carry, and setting the rest down \u2014 not out of trust, but because carrying them wasn't doing anything.",
         ],
       },
       {

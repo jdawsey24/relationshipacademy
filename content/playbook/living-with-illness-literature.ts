@@ -38,6 +38,8 @@
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const ADDON_ILLNESS_LITERATURE: LiteratureEntry[] = [
   {
     id: "lit-ill-what-this-is",
@@ -50,21 +52,21 @@ export const ADDON_ILLNESS_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Your illness changed the relationship. That's a fact rather than a failing, and it's usually carried as though it were the second.",
+          "Your illness changed the relationship. That's a fact, not a failing. And it's usually treated as the second thing, not the first.",
         ],
       },
       {
         kind: "distinction",
-        label: "Two different difficulties, often confused",
+        label: "Two different hard things, often mixed up",
         body: [
-          "What the illness actually requires \u2014 practical, and it has specialists.",
+          "What the illness actually needs \u2014 practical, and there are specialists for it.",
           "What has happened between you because of it \u2014 the asking, the guilt, the intimacy, the fear. That has almost nothing written for it, which is what this is.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here is medical, makes any assumption about your condition, or has a view on what you're capable of. There is also a paired Playbook written from your partner's side. If both of you want to, reading the paired piece may help you understand the other's perspective — share or discuss only what each of you is comfortable sharing.",
+          "Nothing here is medical. Nothing here assumes anything about your condition, or has a view on what you can do. There is also a paired Playbook written from your partner's side. If both of you want to, reading it may help each of you understand the other's side — share or discuss only what each of you is comfortable sharing.",
         ],
       },
     ],
@@ -81,7 +83,7 @@ export const ADDON_ILLNESS_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "We're not going to tell you that you aren't. Being argued out of it doesn't work, and it usually adds a second layer about being unreasonable on top of the first.",
+          "We're not going to tell you that you aren't. Being argued out of it doesn't work. It usually just adds a second layer on top of the first — now you feel unreasonable too.",
           "What's worth looking at is what the belief does.",
         ],
       },
@@ -89,20 +91,20 @@ export const ADDON_ILLNESS_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "The specific cost",
         body: [
-          "It suppresses asking. If every request adds to a total you're already ashamed of, then the sensible move is to ask for less \u2014 and most people here have got very good at that.",
-          "Which makes things harder for both of you, because your partner is then working from incomplete information and often getting it wrong.",
+          "It stops you asking. If every request adds to a total you're already ashamed of, then asking for less makes sense \u2014 and most people here have got very good at that.",
+          "Which makes things harder for both of you, because your partner is then working from only part of the picture and often getting it wrong.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't want them to feel trapped\u201d comes from the same place, and it usually results in managing their experience for them \u2014 deciding in advance what they can bear, without asking.",
+          "\u201cI don't want them to feel trapped\u201d comes from the same place. It usually means managing their experience for them \u2014 deciding ahead of time what they can handle, without asking.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Some of what you're carrying may be accurate. Care has costs, and pretending it doesn't would be its own dishonesty. The point isn't that the belief is wrong \u2014 it's that acting on it silently makes things worse rather than better.",
+          "Some of what you're carrying may be true. Care has costs, and pretending it doesn't would be its own kind of lie. The point isn't that the belief is wrong \u2014 it's that acting on it in silence makes things worse, not better.",
         ],
       },
     ],
@@ -119,27 +121,27 @@ export const ADDON_ILLNESS_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know how to ask for what I need.\u201d Two things make this harder than ordinary asking.",
+          "\u201cI don't know how to ask for what I need.\u201d Two things make this harder than everyday asking.",
         ],
       },
       {
         kind: "distinction",
         label: "What's different about it",
         body: [
-          "The volume. There's more to ask for than there used to be, and each request feels like it's being added to a running total.",
-          "The refusability. Ordinary requests can be declined easily. These often can't be, which means asking can feel like requiring rather than asking.",
+          "The amount. There's more to ask for than there used to be, and each request feels like it's added to a running total.",
+          "How easy it is to say no. Everyday requests can be turned down easily. These often can't be, which means asking can feel like demanding rather than asking.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "One thing that reliably helps is separating what you need from how it gets met. \u201cI need help getting to appointments\u201d has one solution and it's them. \u201cI need to not be doing this alone\u201d has several, and only some of them involve your partner.",
+          "One thing that reliably helps is separating what you need from how it gets met. \u201cI need help getting to appointments\u201d has one answer, and it's them. \u201cI need to not be doing this alone\u201d has several, and only some of them involve your partner.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Asking less doesn't reduce the load. It relocates it \u2014 into their guessing, into things being done at the wrong time, and into you managing without something you needed.",
+          "Asking for less doesn't lower the load. It just moves it \u2014 into their guessing, into things being done at the wrong time, and into you going without something you needed.",
         ],
       },
     ],
@@ -157,7 +159,7 @@ export const ADDON_ILLNESS_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI don't know how to stay connected when everything has changed.\u201d \u201cI don't feel attractive anymore.\u201d \u201cI don't know how to navigate intimacy now.\u201d",
-          "The last one is the least discussed and one of the most common, and almost nothing written about relationships and illness goes anywhere near it.",
+          "The last one is the least talked-about and one of the most common, and almost nothing written about relationships and illness goes anywhere near it.",
         ],
       },
       {
@@ -165,19 +167,19 @@ export const ADDON_ILLNESS_LITERATURE: LiteratureEntry[] = [
         label: "Two things that get treated as one",
         body: [
           "What your body can do. Between you and people who know about your condition, and it isn't what this is about.",
-          "Whether it can be talked about. That's the part that stalls, and it stalls in a specific way: both people avoid it to protect the other, and the avoiding becomes the problem.",
+          "Whether it can be talked about. That's the part that gets stuck, and it gets stuck in a certain way: both people avoid it to protect the other, and the avoiding becomes the problem.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Feeling unattractive is worth separating too. It's usually about how you feel in your body rather than what your partner thinks \u2014 which matters, because reassurance from them doesn't reach it, and both of you may have concluded the reassurance failed.",
+          "Feeling unattractive is worth pulling apart too. It's usually about how you feel in your body, not what your partner thinks \u2014 which matters, because their reassurance doesn't reach it, and both of you may have decided the reassurance failed.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here suggests intimacy can be restored, or that it should look like it used to. What's workable is whether the subject can be opened at all.",
+          "Nothing here says intimacy can be brought back, or that it should look like it used to. What can be worked on is whether the subject can be opened at all.",
         ],
       },
     ],
@@ -195,28 +197,28 @@ export const ADDON_ILLNESS_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "One of the clearest things anyone says in this material, and it's worth taking literally rather than as a sentiment.",
+          "One of the clearest things anyone says in this material, and it's worth taking literally, not as a nice sentiment.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The practical version: how much of what passes between you is about the illness? Appointments, symptoms, medication, how you're doing. All necessary, and it can expand until there isn't much else.",
-          "\u201cI miss who I used to be\u201d is partly about the body and partly about that \u2014 being related to as a person with things going on rather than as a condition being managed.",
+          "The practical version: how much of what goes on between you is about the illness? Appointments, symptoms, medication, how you're doing. All of it needed, and it can grow until there isn't much else.",
+          "\u201cI miss who I used to be\u201d is partly about the body and partly about that \u2014 being treated as a person with a life, not as a condition being managed.",
         ],
       },
       {
         kind: "distinction",
         label: "What sometimes helps",
         body: [
-          "Not less discussion of the illness. It's necessary and reducing it doesn't serve anyone.",
-          "Something in the week that has nothing to do with it. Small, ordinary, and about something else entirely.",
+          "Not less talk about the illness. It's needed, and cutting it back doesn't help anyone.",
+          "Something in the week that has nothing to do with it. Small, everyday, and about something else entirely.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI worry they'll leave because of my health\u201d is a fear we're not going to reassure you about. Some partners do leave, and being told otherwise by a text that doesn't know either of you would be worth nothing. What's true is that it's a fear about the future rather than information about the present.",
+          "\u201cI worry they'll leave because of my health\u201d is a fear we're not going to talk you out of. Some partners do leave, and being told otherwise by a text that doesn't know either of you would be worth nothing. What's true is that it's a fear about the future, not a fact about right now.",
         ],
       },
     ],

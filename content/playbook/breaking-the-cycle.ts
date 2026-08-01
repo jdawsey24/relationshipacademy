@@ -26,6 +26,7 @@
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { SAFETY_RECOGNITION_CARD } from "./shared/safety-not-safe";
 import { C7_LITERATURE } from "./breaking-the-cycle-literature";
@@ -38,8 +39,8 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
   opening: {
     title: "Two things before we start",
     body: [
-      "First: if you don't feel safe with them — if you're managing how you speak to avoid a reaction — nothing in here applies. Read 'If you don't feel safe' and stop there.",
-      "Second: this is a two-person pattern and there's one of you here. Everything in this Playbook works on your half. We can't move theirs and won't pretend to.",
+      "First: if you don't feel safe with them — if you watch how you speak so they don't react — nothing in here is for you. Read 'If you don't feel safe' and stop there.",
+      "Second: this pattern takes two people, and only one of you is here. Everything in this Playbook works on your half. We can't change their half, and we won't pretend we can.",
     ],
     manifestations: [
       "We keep having the same argument.",
@@ -58,7 +59,7 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
       pathwayPlayId: "raise-it-anyway",
       headline: "I don't bring things up because I know how it'll go.",
       explanation:
-        "Avoidance here is usually a calculation, and often a correct one. The conversation costs more than the thing.",
+        "Not bringing it up is usually a choice you've weighed out — and often the right one. The talk costs more than the thing does.",
       secondaryExamples: [
         "I avoid difficult conversations because they're exhausting.",
         "I stop talking because nothing changes.",
@@ -71,7 +72,7 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
       pathwayPlayId: "not-always-me",
       headline: "I'm always the one who has to bring things up.",
       explanation:
-        "Being the only one raising things is exhausting, and it quietly makes you the problem in every conversation.",
+        "Being the only one who brings things up is tiring. And little by little, it makes you look like the problem every time.",
       secondaryExamples: [
         "Nothing gets talked about unless I start it.",
       ],
@@ -82,7 +83,7 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
       pathwayPlayId: "when-it-starts-turning",
       headline: "Everything turns into a fight.",
       explanation:
-        "There's usually a moment where it turns. Most people notice it. Very few do anything at the time.",
+        "There's usually a moment where it turns. Most people notice it. Very few do anything about it right then.",
       secondaryExamples: [
         "Every conversation becomes defensive.",
         "One of us always explodes.",
@@ -95,7 +96,7 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
       pathwayPlayId: "going-back-afterwards",
       headline: "We apologise and nothing actually changes.",
       explanation:
-        "An apology closes the incident. It doesn't reconnect anyone. Those are two different jobs.",
+        "An apology closes off what just happened. It doesn't bring you back together. Those are two different jobs.",
       secondaryExamples: [
         "We don't know how to recover after conflict.",
         "We don't know how to repair after arguments.",
@@ -118,17 +119,17 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "You've weighed the thing against the conversation and the conversation costs more. That's usually an accurate sum.",
-            "The trouble is what accumulates. Each unraised thing is small; the pile isn't, and the pile eventually arrives all at once attached to something trivial.",
-            "This isn't about being braver. It's about making the conversation cost less.",
+            "You've weighed the thing against the talk it would take, and the talk costs more. That math is usually right.",
+            "The trouble is what builds up. Each thing you don't say is small. The pile isn't. And one day the whole pile shows up at once, stuck to something tiny.",
+            "This isn't about being braver. It's about making the talk cost less.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Two different conversations, and mixing them is why they go wrong.",
-            "The incident is Tuesday. Specific, recent, solvable — and settling it changes nothing about next week.",
-            "The pattern is what happens every time. Bigger, riskier, and the only one that could actually shift things. It needs a calm day, not the fourth instance.",
+            "There are two different conversations here. Mixing them is why they go wrong.",
+            "The incident is Tuesday. It's specific, recent, and fixable — but settling it changes nothing about next week.",
+            "The pattern is what happens every time. It's bigger, riskier, and the only one that could really change things. It needs a calm day — not the fourth time it comes up.",
           ],
         },
         {
@@ -164,7 +165,7 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
           kind: "sentenceBuilder",
           label: "How you'll open it",
           helper:
-            "One thing, specific, shorter than feels sufficient. You might start with “Can I raise something? It's not a big thing” or “There's something I've been sitting on.”",
+            "One thing. Specific. Shorter than feels like enough. You might start with “Can I bring something up? It's not a big deal” or “There's something I've been sitting on.”",
         },
         {
           kind: "ruleBuilder",
@@ -178,7 +179,7 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
             "Next time it happens, but afterwards",
           ],
           controlCheck:
-            "One thing, not the accumulated list. If it turns, I'll name it and pause rather than push. I'm raising it, not delivering a verdict.",
+            "One thing, not the whole pile. If it turns, I'll name it and pause instead of pushing. I'm raising it, not handing down a verdict.",
         },
         {
           kind: "output",
@@ -189,14 +190,14 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "One thing. Specific. Shorter than feels sufficient.",
+            "One thing. Specific. Shorter than feels like enough.",
             "Incident or pattern — don't do both at once.",
             "Say what you want, not only what's wrong.",
           ],
         },
       ],
       portable: [
-        "One thing. Specific. Shorter than feels sufficient.",
+        "One thing. Specific. Shorter than feels like enough.",
         "Incident or pattern — don't do both at once.",
         "Say what you want, not only what's wrong.",
       ],
@@ -205,25 +206,25 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
         move: "Raise one specific thing, on a calm day, with what I'd like instead",
         lookingFor: "Whether I said the actual thing, and kept it to one",
         watchOut: "Bringing the whole pile because I finally started talking",
-        remember: "Delivery changes the odds. It doesn't guarantee anything.",
+        remember: "How you say it changes the odds. It doesn't promise anything.",
       },
       fidelity: {
         correct:
-          "One specific thing is raised at a chosen time, with a request attached, separate from the accumulated list.",
+          "One specific thing gets raised at a time you chose, with a request attached, kept apart from the whole pile.",
         misuse: [
-          "Raising the whole backlog at once.",
-          "Using the opening as a delivery mechanism for a verdict.",
-          "Raising the pattern mid-argument.",
+          "Raising the whole pile at once.",
+          "Using the opening to hand down a verdict.",
+          "Raising the pattern in the middle of a fight.",
         ],
         notMeaning:
-          "It does not mean they'll respond well, that the issue will resolve, or that the pattern will change.",
+          "It doesn't mean they'll take it well, that the issue will get solved, or that the pattern will change.",
       },
       supportSignposts: [
         {
           id: "signpost-c7-not-safe",
           heading: "If raising things isn't safe",
           body:
-            "If you're weighing whether to speak based on how angry they'll get, or you've learned to manage your words around their mood, this tool is the wrong one and following it could make things worse. Please read 'If you don't feel safe', and talk to someone — a domestic abuse service, a GP, or a therapist. You don't have to be certain to ask.",
+            "If you decide whether to speak based on how angry they'll get, or you've learned to watch your words around their mood, this tool is the wrong one — and following it could make things worse. Please read 'If you don't feel safe', and talk to someone: a domestic abuse service, a GP, or a therapist. You don't have to be sure to ask.",
         },
       ],
     },
@@ -235,7 +236,7 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "Not Always Me",
       positioning:
-        "For when nothing gets discussed unless you start it. This one needs them in the room \u2014 it ends in a conversation, not a plan.",
+        "For when nothing gets talked about unless you start it. This one needs them in the room \u2014 it ends in a conversation, not a plan.",
       recognitionGate: {
         prompt:
           "Are you the only one who ever brings anything up \u2014 and ready to say so to them?",
@@ -244,16 +245,16 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "It's exhausting, which you know. Here's the part that's less obvious: it also makes you the one who starts every difficult conversation.",
-            "Which means over time you become associated with them. You're not the person raising an issue — you're the person who always has an issue.",
-            "That's not a fair outcome and it isn't something you did wrong. It's just what happens when one person carries all the initiating.",
+            "It's tiring, which you already know. Here's the part that's harder to see: it also makes you the one who starts every hard conversation.",
+            "Over time, you get tied to those conversations. You're not the person raising an issue — you're the person who always has an issue.",
+            "That's not fair, and it isn't something you did wrong. It's just what happens when one person does all the starting.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Raising less so they'll raise more. That's a test, it usually just means nothing gets said, and it rarely works.",
-            "Making room, and saying that you're doing it. That's different — it names the imbalance out loud rather than staging it.",
+            "Raising less so they'll raise more. That's a test. It usually just means nothing gets said, and it rarely works.",
+            "Making room, and saying out loud that you're doing it. That's different — it names the imbalance instead of staging it silently.",
           ],
         },
         {
@@ -263,7 +264,7 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
             {
               id: "who-raises",
               input: "chips",
-              label: "Of the last five difficult conversations, how many did you start?",
+              label: "Of the last five hard conversations, how many did you start?",
               suggestions: ["All five", "Four", "Three", "Fewer than three"],
             },
             {
@@ -286,13 +287,13 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
             "Say that carrying it is wearing me out",
           ],
           controlCheck:
-            "I'm saying it, not staging it silently. Leaving something unraised isn't a punishment. They may not pick it up. That's information, not a failure of mine.",
+            "I'm saying it, not staging it silently. Leaving something unraised isn't a punishment. They may not pick it up. That's information, not me failing.",
         },
         {
           kind: "sentenceBuilder",
           label: "What you'll say about the imbalance",
           helper:
-            "Plainly, once, and not as an accusation. You might start with \u201cCan I say something I've noticed?\u201d",
+            "Say it plainly, once, and not as an attack. You might start with \u201cCan I say something I've noticed?\u201d",
         },
         {
           kind: "output",
@@ -315,22 +316,22 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
         "If they don't pick it up, that's information.",
       ],
       myPlaysTemplate: {
-        when: "When nothing gets discussed unless I start it",
+        when: "When nothing gets talked about unless I start it",
         move: "Name the imbalance out loud rather than testing it silently",
-        lookingFor: "Whether they bring anything to me without prompting",
+        lookingFor: "Whether they bring anything to me without me asking",
         watchOut: "Going quiet to prove a point — that's a test, not a request",
-        remember: "Carrying all the initiating makes me look like the problem. That isn't fair and it isn't mine to fix alone.",
+        remember: "Doing all the starting makes me look like the problem. That isn't fair, and it isn't mine to fix alone.",
       },
       fidelity: {
         correct:
-          "The imbalance is said out loud to the other person, directly, rather than demonstrated through withdrawal. The conversation happening IS the operation.",
+          "You say the imbalance out loud to the other person, directly, instead of showing it by pulling back. The conversation happening IS the operation.",
         misuse: [
           "Going silent to see if they notice.",
           "Using it to build a case about how much you do.",
-          "Treating their non-response as proof of something.",
+          "Treating no response as proof of something.",
         ],
         notMeaning:
-          "It does not mean they'll start raising things, that the balance will shift, or that naming it is enough on its own. Their response is not part of what this tool achieves.",
+          "It doesn't mean they'll start raising things, that the balance will shift, or that naming it is enough on its own. What they do back is not part of what this tool does.",
       },
     },
 
@@ -348,17 +349,17 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "There's a point where it's still a conversation, and then it isn't. Afterwards you can both roughly point at when.",
-            "Most people notice at the time. Almost nobody does anything, because by then it has momentum and stopping feels like losing.",
-            "Your half of this is small: name it, and stop. Not win it, not resolve it, not explain why it turned.",
+            "There's a point where it's still a conversation, and then it isn't. Afterward you can both roughly point to when.",
+            "Most people notice it as it happens. Almost nobody does anything, because by then it's already rolling, and stopping feels like losing.",
+            "Your half of this is small: name it, and stop. Not win it, not fix it, not explain why it turned.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "The subject moves to something older. One of you starts explaining rather than listening. Always and never show up.",
+            "The subject moves to something older. One of you starts explaining instead of listening. 'Always' and 'never' show up.",
             "You notice you're building your reply while they're still talking. Or your body gets there first — chest, jaw, the voice going up.",
-            "Yours will be one or two of those, reliably. Knowing which is most of the skill.",
+            "Yours will be one or two of these, again and again. Knowing which ones is most of the skill.",
           ],
         },
         {
@@ -381,20 +382,20 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
               id: "sort-c7-last-year",
               text: "Something from last year has come up",
               correctBucket: "turning",
-              correction: "Old material arriving is one of the clearest markers.",
+              correction: "Old stuff coming up is one of the clearest signs.",
             },
             {
               id: "sort-c7-you-always",
               text: "\u201cYou always do this\u201d",
               correctBucket: "turning",
-              correction: "Absolutes mean it's stopped being about the specific thing.",
+              correction: "Absolute words mean it's stopped being about the one specific thing.",
             },
             {
               id: "sort-c7-uncomfortable",
               text: "It's uncomfortable and you both stay with it",
               correctBucket: "conversation",
               correction:
-                "Uncomfortable isn't the same as turning. Difficult conversations are supposed to be difficult.",
+                "Uncomfortable isn't the same as turning. Hard conversations are supposed to be hard.",
             },
             {
               id: "sort-c7-rehearsing",
@@ -458,19 +459,19 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
         when: "When a conversation is starting to go the usual way",
         move: "Name that it's turning and pause it, with a time to come back",
         lookingFor: "My own tell — the thing I do when I've stopped listening",
-        watchOut: "Using the pause to end the subject permanently",
+        watchOut: "Using the pause to end the subject for good",
         remember: "It works about as often as it doesn't. That's a big improvement on nothing.",
       },
       fidelity: {
         correct:
-          "The turn is named at the time and the conversation is paused with a stated point of return.",
+          "You name the turn as it happens and pause the conversation, with a set time to come back.",
         misuse: [
           "Pausing and never coming back.",
-          "Naming the turn as an accusation — \u201cyou're doing it again\u201d.",
-          "Using it to exit any conversation that gets uncomfortable.",
+          "Naming the turn as an attack — \u201cyou're doing it again\u201d.",
+          "Using it to get out of any conversation that gets uncomfortable.",
         ],
         notMeaning:
-          "It does not mean they'll accept the pause, that the conversation will go better, or that you'll always catch it in time.",
+          "It doesn't mean they'll accept the pause, that the conversation will go better, or that you'll always catch it in time.",
       },
     },
 
@@ -488,23 +489,23 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "An apology closes the incident. Necessary, and it stops the argument.",
-            "Repair is coming back to each other afterwards — which is a separate thing, and most couples who fight the same fight forever are good at the first and have none of the second.",
+            "An apology closes off what just happened. It's needed, and it stops the argument.",
+            "Repair is coming back to each other afterward. That's a separate thing. Most couples who fight the same fight forever are good at the first and have none of the second.",
             "The argument ends, there's a gap, and the gap is where the next one gets built.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Smaller than you'd think. Naming what happened without relitigating it. Checking you're both still here. Sometimes just being in the same room with no agenda.",
-            "It doesn't require agreement about who was right. That's the part people get stuck on — they wait to agree before reconnecting, and the agreement never comes.",
-            "And it's the part you can do a surprising amount of alone. Going back is one-sided until it isn't.",
+            "Smaller than you'd think. Naming what happened without going over it again. Checking you're both still here. Sometimes just being in the same room with nothing you need to settle.",
+            "It doesn't need you to agree about who was right. That's where people get stuck — they wait to agree before reconnecting, and the agreement never comes.",
+            "And it's the part you can do a lot of on your own. Going back is one-sided until it isn't.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
-            "Going back first when you still feel wronged is genuinely hard, and there's a fair argument that it shouldn't be your job.",
+            "Going back first when you still feel wronged is really hard. And there's a fair case that it shouldn't be your job.",
             "It probably shouldn't. It's also the only half you control. You can think both.",
           ],
         },
@@ -560,28 +561,28 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "After an argument ends and nothing is actually repaired",
-        move: "Go back afterwards without relitigating it",
-        lookingFor: "Whether contact is possible before agreement is",
+        move: "Go back afterward without going over it again",
+        lookingFor: "Whether contact is possible before you agree",
         watchOut: "Turning the repair into round two",
         remember: "It shouldn't have to be my job. It's still the half I control.",
       },
       fidelity: {
         correct:
-          "Contact is re-established after conflict without reopening the content of it.",
+          "You make contact again after the fight without reopening what it was about.",
         misuse: [
           "Using the repair to reopen the argument.",
-          "Repairing in order to extract an apology.",
+          "Repairing in order to get an apology out of them.",
           "Skipping repair because they should go first.",
         ],
         notMeaning:
-          "It does not mean the issue is resolved, that they'll reciprocate, or that repeated repair makes the pattern acceptable.",
+          "It doesn't mean the issue is solved, that they'll do the same back, or that repairing over and over makes the pattern okay.",
       },
       supportSignposts: [
         {
           id: "signpost-c7-always-repairing",
           heading: "If you're always the one going back",
           body:
-            "If repair is only ever coming from you, and it's been that way a long time, that's worth taking seriously rather than doing more of. A pattern where one person does all the reconnecting isn't a communication problem — it's an imbalance. If both people can take part safely and freely, a qualified couples professional may help. If there's fear, control, retaliation, or pressure, seek individual support first rather than entering joint counselling. Read 'Should we see someone?'",
+            "If repair only ever comes from you, and it's been that way a long time, that's worth taking seriously rather than doing more of it. A pattern where one person does all the reconnecting isn't a communication problem — it's an imbalance. If both people can take part safely and freely, a qualified couples professional may help. If there's fear, control, payback, or pressure, get individual support first instead of going into joint counselling. Read 'Should we see someone?'",
         },
       ],
     },
@@ -601,7 +602,7 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
       attemptMeaning:
         "You raised it. It doesn't mean it went well, and going badly doesn't mean you did it wrong.",
       suitability:
-        "Not if raising things isn't safe. If you're weighing this against how angry they'll get, read 'If you don't feel safe' instead.",
+        "Not if raising things isn't safe. If you're deciding this based on how angry they'll get, read 'If you don't feel safe' instead.",
       progression: [
         { id: "rung-c7-raise-2", instruction: "Raise the pattern once, on a calm day, rather than the incident again." },
       ],
@@ -612,12 +613,12 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
       playId: "not-always-me",
       title: "Come back to it a month later",
       instruction:
-        "You've already named it in the tool. A month on, say whether anything shifted \u2014 once, without keeping score out loud.",
+        "You've already named it in the tool. A month later, say whether anything changed \u2014 once, without keeping score out loud.",
       linkToOperation: "Making shared-responsibility space by naming the imbalance",
       attemptMeaning:
         "You said it. Whether they pick it up isn't yours.",
       suitability:
-        "If you find yourself going quiet to prove the point instead, that's a test rather than a request, and it won't tell you anything.",
+        "If you find yourself going quiet to prove the point instead, that's a test, not a request, and it won't tell you anything.",
       progression: [
         { id: "rung-c7-imbalance-2", instruction: "Ask them to bring one thing to you this month." },
       ],
@@ -631,9 +632,9 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
         "Next time you notice your tell, say your line and pause it — with a time to come back. Then come back.",
       linkToOperation: "Naming escalation and pausing at the point of turn",
       attemptMeaning:
-        "You caught one. Missing them is expected; you'll miss more than you catch at first.",
+        "You caught one. Missing them is normal; you'll miss more than you catch at first.",
       suitability:
-        "If pausing gets overridden — if they won't let the conversation stop — that's worth noticing, and it isn't a failure of the technique.",
+        "If pausing gets pushed past — if they won't let the conversation stop — that's worth noticing, and it isn't the tool failing.",
       progression: [
         { id: "rung-c7-pause-2", instruction: "Catch it earlier — at the tell rather than after it." },
       ],
@@ -644,10 +645,10 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
       playId: "going-back-afterwards",
       title: "Go back once",
       instruction:
-        "After the next argument ends, go back within a day. Don't relitigate it. Just make contact.",
+        "After the next argument ends, go back within a day. Don't go over it again. Just make contact.",
       linkToOperation: "Repair contact separate from apology",
       attemptMeaning:
-        "You went back. It doesn't require them to meet you there.",
+        "You went back. It doesn't need them to meet you there.",
       suitability:
         "If you're always the one going back and have been for a long time, read the signpost on that Play before doing more of it.",
       progression: [
@@ -679,8 +680,8 @@ export const BREAKING_THE_CYCLE: PlaybookContent = {
         label: "What got clearer?",
         multi: true,
         options: [
-          "That the delivery does change it",
-          "That it goes wrong regardless of how I say it",
+          "That how I say it does change it",
+          "That it goes wrong no matter how I say it",
           "How much I'd been holding",
           "Nothing new",
         ],

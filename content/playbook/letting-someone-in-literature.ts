@@ -21,6 +21,8 @@
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const C3_LITERATURE: LiteratureEntry[] = [
   // ───────────────────────────────────────────────── CORE GUIDES ──
   {
@@ -42,20 +44,20 @@ export const C3_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "Two things are true at once",
         body: [
-          "Being known is genuinely risky. Someone who knows you can leave with better information. That isn't paranoia — it's arithmetic.",
+          "Being known is really risky. Someone who knows you can leave with better information. That isn't paranoia — it's just math.",
           "And the protection has a cost. Every time you pull back before they can get close, you keep the risk down and you also keep the thing from happening at all.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "This isn't about becoming an open book. It's about noticing the moment you move away, and deciding — that once — whether you want to.",
+          "This isn't about becoming an open book. It's about noticing the moment you move away, and deciding — this one time — whether you want to.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here will tell you that letting someone in works out. Sometimes it doesn't. What we can offer is that you'd be finding out, rather than deciding in advance.",
+          "Nothing here will tell you that letting someone in works out. Sometimes it doesn't. What we can offer is that you'd be finding out, rather than deciding ahead of time.",
         ],
       },
     ],
@@ -73,7 +75,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "We want to say this early, because most things written for people like you skip it.",
-          "Being afraid of getting hurt, after you've been hurt, is not a distortion. It's a correct reading of something that actually happened.",
+          "Being afraid of getting hurt, after you've been hurt, is not you seeing things wrong. It's a correct reading of something that really happened.",
         ],
       },
       {
@@ -89,7 +91,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Those are accurate. Vulnerability does carry risk. Wanting something you're frightened of is an ordinary human position, not a malfunction. We're not going to try to talk you out of any of it.",
+          "Those are accurate. Opening up does carry risk. Wanting something you're scared of is an ordinary human thing, not something broken in you. We're not going to try to talk you out of any of it.",
         ],
       },
       {
@@ -120,20 +122,20 @@ export const C3_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Nobody arrives at guardedness from nowhere.",
+          "Nobody gets guarded out of nowhere.",
           "Notice the words that show up when you describe it. Hurt \u2014 again. Chaos feels \u2014 familiar. I don't trust \u2014 peace. Every one of those is pointing backwards.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "What happened before doesn't change where you are now. But it does shape what you do here, and it's worth naming rather than treating as a personality trait you were born with.",
+          "What happened before doesn't change where you are now. But it does shape what you do here, and it's worth naming rather than treating it as something you were just born with.",
         ],
       },
       {
         kind: "example",
         body: [
-          "If calm has previously meant the quiet before something, then calm now will read as a warning rather than as calm. That's not irrational. It's a pattern that was accurate somewhere else and has come along with you.",
+          "If calm has in the past meant the quiet before something, then calm now will read as a warning rather than as calm. That's not irrational. It's a pattern that was accurate somewhere else and has come along with you.",
         ],
       },
       {
@@ -156,16 +158,16 @@ export const C3_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Leaving first isn't cowardice. It's the only move that guarantees the outcome.",
-          "If you go before they do, you know how it ends. You wrote the ending. It's worse than the good version and better than the version where you're blindsided.",
+          "Leaving first isn't cowardice. It's the only move that makes the outcome sure.",
+          "If you go before they do, you know how it ends. You wrote the ending. It's worse than the good version and better than the version where you get caught off guard.",
         ],
       },
       {
         kind: "distinction",
         label: "What it costs",
         body: [
-          "You never find out. Every exit is a data point you didn't collect — about them, and about whether the thing you were bracing for was going to happen at all.",
-          "And it accumulates. Enough exits and \u201cthey all leave\u201d becomes true, in a way, because you keep being the one who did.",
+          "You never find out. Every exit is something you didn't get to find out — about them, and about whether the thing you were bracing for was going to happen at all.",
+          "And it adds up. Enough exits and \u201cthey all leave\u201d becomes true, in a way, because you keep being the one who did.",
         ],
       },
       {
@@ -177,7 +179,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "If someone has treated you badly, leaving isn't a pattern to examine. It's the correct response. This is about the exits that happen when nothing has actually gone wrong.",
+          "If someone has treated you badly, leaving isn't a pattern to look at. It's the correct response. This is about the exits that happen when nothing has actually gone wrong.",
         ],
       },
     ],
@@ -200,16 +202,16 @@ export const C3_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It makes more sense than it looks. If steady has historically been unfamiliar, then steady doesn't register as safe — it registers as unreadable. And unreadable is uncomfortable enough that ending it can feel like relief.",
-          "\u201cI don't trust peace\u201d is a very precise description of that.",
+          "It makes more sense than it looks. If steady has been unfamiliar in the past, then steady doesn't feel safe — it feels unreadable. And unreadable is uncomfortable enough that ending it can feel like relief.",
+          "\u201cI don't trust peace\u201d is a very exact description of that.",
         ],
       },
       {
         kind: "distinction",
         label: "Two different things that look identical from outside",
         body: [
-          "Finding something genuinely wrong. Happens, and worth acting on.",
-          "Finding something because the not-knowing is unbearable. Also happens, and produces the same behaviour.",
+          "Finding something really wrong. Happens, and worth acting on.",
+          "Finding something because the not-knowing is unbearable. Also happens, and looks the same.",
         ],
       },
       {
@@ -247,7 +249,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "Asking is worse in one specific way: they might say something you don't want to hear. That's the entire cost, and it's the reason testing exists.",
-          "It's also the reason testing can't do the job. The information you want is only available if you risk getting the other answer.",
+          "It's also the reason testing can't do the job. The information you want only comes if you risk getting the other answer.",
         ],
       },
     ],
@@ -264,7 +266,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "There's a version of this advice that says be your authentic self and everything follows. That's not what we're going to say, because it isn't true.",
+          "There's a version of this advice that says be your real self and everything follows. That's not what we're going to say, because it isn't true.",
         ],
       },
       {
@@ -278,14 +280,14 @@ export const C3_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "What changes the maths",
         body: [
-          "Size. One true thing, said to one person, is survivable in a way that all of it, said to everyone, is not.",
+          "Size. One true thing, said to one person, is something you can live through in a way that all of it, said to everyone, is not.",
           "Order. You get to watch what happens to the small thing before deciding about the next one.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "This is not a technique for being accepted. It's a technique for finding out, in increments small enough that finding out doesn't cost everything.",
+          "This is not a way to get accepted. It's a way to find out, in steps small enough that finding out doesn't cost everything.",
         ],
       },
     ],
@@ -303,7 +305,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "Some of what reads like fear isn't fear. It's cost.",
-          "Being close to someone takes something. Attention, honesty, being reachable, tolerating not knowing. Those aren't free, and the closer it gets the more they cost.",
+          "Being close to someone takes something. Attention, honesty, being reachable, sitting with not knowing. Those aren't free, and the closer it gets the more they cost.",
         ],
       },
       {
@@ -311,20 +313,20 @@ export const C3_LITERATURE: LiteratureEntry[] = [
         label: "This is the important distinction in this guide",
         body: [
           "\u201cI can't do closeness\u201d is a statement about ability, and we don't think it's true of you.",
-          "\u201cCloseness currently costs more than I've got\u201d is a statement about resources, and it might be exactly true.",
+          "\u201cCloseness currently costs more than I've got\u201d is a statement about what you have, and it might be exactly true.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI feel trapped when it gets serious\u201d and \u201cI crave space all the time\u201d read very differently under the second reading. Not someone who can't be close. Someone for whom closeness is currently expensive.",
+          "\u201cI feel trapped when it gets serious\u201d and \u201cI crave space all the time\u201d sound very different read the second way. Not someone who can't be close. Someone for whom closeness is expensive right now.",
           "That changes what helps. You don't need to learn to be close. You need it to cost less, or you need more available, or you need to go at a rate you can actually afford.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Pacing is not avoidance. Avoidance takes you out. Pacing keeps you in, slower. If what you're doing removes you from the thing entirely, that's the other one.",
+          "Pacing is not avoidance. Avoidance takes you out. Pacing keeps you in, slower. If what you're doing takes you out of it completely, that's the other one.",
         ],
       },
     ],
@@ -341,13 +343,13 @@ export const C3_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Some people find being cared for harder than being left. If that sounds absurd, it probably isn't your one. If it sounds obvious, read on.",
+          "Some people find being cared for harder than being left. If that sounds ridiculous, it probably isn't your one. If it sounds obvious, read on.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Receiving is its own thing, separate from giving, and it's less practised in most people. It asks you to sit still while something happens to you, without deflecting it, improving it, or immediately returning it.",
+          "Receiving is its own thing, separate from giving, and most people do it less. It asks you to sit still while something happens to you, without pushing it away, improving it, or handing it right back.",
         ],
       },
       {
@@ -355,15 +357,15 @@ export const C3_LITERATURE: LiteratureEntry[] = [
         label: "The usual moves for not receiving",
         items: [
           "Making a joke of it.",
-          "Correcting them \u2014 pointing out why the nice thing isn't quite accurate.",
-          "Giving something back immediately so the balance is restored.",
+          "Correcting them \u2014 pointing out why the nice thing isn't quite right.",
+          "Giving something back right away so things feel even again.",
           "Changing the subject.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "None of those are character flaws. They're all ways of shortening an uncomfortable moment. Noticing which one is yours is most of the work.",
+          "None of those are flaws in you. They're all ways of cutting short an uncomfortable moment. Noticing which one is yours is most of the work.",
         ],
       },
     ],
@@ -387,14 +389,14 @@ export const C3_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Wanting someone at a distance is safe. Nothing is asked of you, nothing can be lost, and the version of them you're wanting is partly one you've constructed.",
-          "The moment it's returned, all of that changes at once. It becomes real, it becomes reciprocal, and it becomes something you could lose.",
+          "Wanting someone at a distance is safe. Nothing is asked of you, nothing can be lost, and the version of them you're wanting is partly one you've made up.",
+          "The moment it's returned, all of that changes at once. It becomes real, it goes both ways, and it becomes something you could lose.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "We're not going to tell you this means you're afraid of intimacy, or anything else about why. We don't know why, and neither does anyone who says it confidently. What's useful is knowing that the drop is predictable, and that it arrives at a specific moment rather than because something changed about them.",
+          "We're not going to tell you this means you're afraid of intimacy, or anything else about why. We don't know why, and neither does anyone who says it confidently. What's useful is knowing that the drop is something you can expect, and that it arrives at a specific moment rather than because something changed about them.",
         ],
       },
     ],
@@ -413,7 +415,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "We can't tell you. Anyone who can is guessing.",
-          "What we can say is that guardedness isn't a fixed trait. It moves with what's being asked of you, what happened recently, and how much you've got available. People are more open in some years than others, and that's not backsliding.",
+          "What we can say is that being guarded isn't set in stone. It moves with what's being asked of you, what happened recently, and how much you've got available. People are more open in some years than others, and that's not slipping backwards.",
         ],
       },
       {
@@ -443,7 +445,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "What's different about it",
         body: [
-          "They left knowing who you were, which is information you couldn't otherwise have had.",
+          "They left knowing who you were, which is something you couldn't have found out any other way.",
           "And you'd have found out what happens when you don't pull back \u2014 which is the question underneath all of this, and it doesn't get answered any other way.",
         ],
       },
@@ -481,7 +483,7 @@ export const C3_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "That's not a clean test and it won't settle every case. But if you can't name the specific thing, it's worth at least considering that the caution came with you rather than from them.",
+          "That's not a clean test and it won't settle every case. But if you can't name the specific thing, it's worth at least thinking about whether the caution came with you rather than from them.",
         ],
       },
     ],

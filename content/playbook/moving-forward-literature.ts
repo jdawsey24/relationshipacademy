@@ -40,6 +40,7 @@
  *   comparison stops, or that dating again is advisable.
  */
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
 export const C12B_LITERATURE: LiteratureEntry[] = [
@@ -54,7 +55,7 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "You're considering doing this again, and a set of questions has arrived that nobody had to answer the first time round.",
+          "You're thinking about doing this again, and a set of questions has shown up that nobody had to answer the first time around.",
           "How much of it do I tell someone. When do I mention the divorce. Am I allowed to want this yet. And why does everyone get measured against someone I chose to leave.",
         ],
       },
@@ -63,7 +64,7 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
         label: "What's here and what isn't",
         body: [
           "Not how to do it differently. That has its own Playbook and it's better than anything we'd repeat here.",
-          "The specific problems of having a history \u2014 what to say about it, whether you're permitted to move, and what the previous person is still doing to your judgement of new ones.",
+          "The specific problems of having a history \u2014 what to say about it, whether you're allowed to move on, and what the last person is still doing to how you judge new ones.",
         ],
       },
       {
@@ -86,28 +87,28 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know how much of my past to share.\u201d Said twice in this material, from both directions, which suggests it's the live one.",
-          "There's no correct amount, and the advice available splits into two unhelpful halves: be completely open, or don't burden them with it.",
+          "\u201cI don't know how much of my past to share.\u201d It comes up twice here, from both sides, which suggests it's the live one.",
+          "There's no correct amount, and the advice out there splits into two unhelpful halves: be completely open, or don't burden them with it.",
         ],
       },
       {
         kind: "distinction",
-        label: "Two different disclosures that get confused",
+        label: "Two different kinds of sharing that get confused",
         body: [
           "The fact. That you were married, that it ended, roughly when. That's context someone needs fairly early to understand your life.",
-          "The account. What happened, whose fault, what it did to you. That's an intimacy, and intimacies are exchanged rather than delivered.",
+          "The account. What happened, whose fault, what it did to you. That's personal, and personal things get shared back and forth, not handed over.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Most of the difficulty comes from treating those as one thing. The fact is small and can be said in a sentence. The account is large, and there's no obligation to produce it on any timetable.",
+          "Most of the difficulty comes from treating those as one thing. The fact is small and can be said in a sentence. The account is large, and you don't have to give it on any timetable.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "A useful check: are you telling them because they need to know, or because you're bracing for them to find out? The second one tends to produce the full account early, and it's usually more than either of you wanted.",
+          "A useful check: are you telling them because they need to know, or because you're bracing for them to find out? The second one tends to bring out the whole account early, and it's usually more than either of you wanted.",
         ],
       },
     ],
@@ -131,7 +132,7 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "Why early, and why brief",
         body: [
-          "Early, because it's a fact about your life that shapes a great deal \u2014 time, money, family, availability. Withholding it doesn't protect anyone and it gets harder to raise the longer it waits.",
+          "Early, because it's a fact about your life that shapes a great deal \u2014 time, money, family, how free you are. Holding it back doesn't protect anyone, and it gets harder to bring up the longer it waits.",
           "Brief, because the detail isn't information they can use yet, and it changes what the conversation is about.",
         ],
       },
@@ -144,7 +145,7 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "How someone receives it is genuinely useful information. Some people become uncomfortable, some become curious in a way that's about them rather than you, and some take it as an ordinary fact about an adult's life. That last group is larger than it feels from where you're standing.",
+          "How someone takes it is genuinely useful information. Some people get uncomfortable, some get curious in a way that's about them rather than you, and some take it as an ordinary fact about an adult's life. That last group is bigger than it feels from where you're standing.",
         ],
       },
     ],
@@ -161,7 +162,7 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "This surprises people, because there's often nobody obvious to be guilty toward. The relationship ended, possibly at your instigation, and the other person is alive and getting on with things.",
+          "This surprises people, because there's often nobody obvious to feel guilty toward. The relationship ended — maybe you're the one who ended it — and the other person is alive and getting on with things.",
         ],
       },
       {
@@ -169,20 +170,20 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
         label: "What it's usually about, and it's rarely the ex",
         body: [
           "Children, if there are any \u2014 not wanting to introduce something, or to be seen wanting something for yourself.",
-          "The marriage as a thing you meant. Moving on can feel like conceding it wasn't what you said it was, which is a loss on top of the loss.",
-          "Or a sense that wanting anything again is greedy, having already had a go.",
+          "The marriage as something you meant. Moving on can feel like admitting it wasn't what you said it was, which is a loss on top of the loss.",
+          "Or a feeling that wanting anything again is greedy, since you've already had a turn.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "None of those respond to being told you're allowed. What they respond to, slowly, is being named \u2014 because guilt with no identified object is much harder to weigh than guilt with one.",
+          "None of those respond to being told you're allowed. What they respond to, slowly, is being named \u2014 because guilt with no clear target is much harder to weigh than guilt with one.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI want love, but I don't want more pain\u201d is the same sentence twice in this material, and it isn't guilt \u2014 it's an accurate statement of the trade. There isn't a version without exposure, and anyone offering one is selling something.",
+          "\u201cI want love, but I don't want more pain\u201d shows up twice here, and it isn't guilt \u2014 it's an honest look at the trade. There's no version of this that doesn't leave you open to being hurt, and anyone who says there is one is selling something.",
         ],
       },
     ],
@@ -199,7 +200,7 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI compare everyone to my former partner.\u201d Nearly universal, and worth knowing what's actually being compared.",
+          "\u201cI compare everyone to my former partner.\u201d Almost everyone does it, and it's worth knowing what's really being compared.",
         ],
       },
       {
@@ -207,13 +208,13 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
         label: "It isn't them against the new person",
         body: [
           "It's someone met three weeks ago against someone you knew for years \u2014 their humour, their references, the shorthand, the way they knew what you meant.",
-          "That's not a fair comparison and it isn't fixable by trying to be fair. Familiarity is what's being missed, and nobody new has any.",
+          "That's not a fair comparison, and you can't fix it by trying to be fair. What you're missing is familiarity, and nobody new has any.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "There's a second version that's more useful to notice. Sometimes the comparison isn't favourable at all \u2014 you're scanning for resemblance rather than superiority, checking whether this one will turn out the same way. That's a different activity and it's worth telling them apart.",
+          "There's a second version that's more useful to notice. Sometimes the comparison isn't flattering at all \u2014 you're scanning for likeness rather than who's better, checking whether this one will turn out the same way. That's a different thing, and it's worth telling them apart.",
         ],
       },
       {
@@ -244,8 +245,8 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "Two things that get called unavailable",
         body: [
-          "Still occupied. A lot of your attention is with the previous relationship, and there isn't much spare. Real, and it changes.",
-          "Guarded. You have the attention and you're not extending it, because extending it is how the last one hurt. Also real, and it responds to different things.",
+          "Still taken up. A lot of your attention is still with the last relationship, and there isn't much to spare. Real, and it changes.",
+          "Guarded. You have the attention, but you're holding it back, because opening up is how the last one hurt. Also real, and it responds to different things.",
         ],
       },
       {
@@ -281,14 +282,14 @@ export const C12B_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "What actually puts people off, when it does",
         body: [
-          "Rarely the fact of it. Adults dating adults expect histories, and the absence of one raises more questions than its presence.",
-          "More often the handling \u2014 an account delivered too early and too complete, or an obvious avoidance that makes it seem larger than it is.",
+          "Rarely the fact of it. Adults dating adults expect histories, and not having one raises more questions than having one.",
+          "More often the handling \u2014 an account given too early and too complete, or an obvious dodging that makes it seem bigger than it is.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Someone put off by the existence of a previous marriage has told you something quickly and cheaply, which is worth more than it costs.",
+          "Someone put off by the fact that you were married before has told you something quickly and cheaply, which is worth more than it costs.",
         ],
       },
     ],

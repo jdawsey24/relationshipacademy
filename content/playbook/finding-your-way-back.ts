@@ -26,6 +26,7 @@
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { SAFETY_RECOGNITION_CARD, CRISIS_ESCALATION } from "./shared/safety-not-safe";
 import { C8_LITERATURE } from "./finding-your-way-back-literature";
@@ -38,7 +39,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
   opening: {
     title: "Before anything else",
     body: [
-      "Nothing went wrong. That's what makes this so hard to explain — there was no crisis, and you're still two people who handle things well together and don't know each other much anymore.",
+      "Nothing went wrong. That's what makes this so hard to explain. There was no crisis. You're still two people who handle things well together — you just don't know each other much anymore.",
       "Underneath most of what people say here is one thing: I don't feel understood. That's what this works on.",
       "There's one of you reading this, and it took two of you to drift. We'll be honest about what that means.",
     ],
@@ -59,7 +60,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
       pathwayPlayId: "the-closest-word",
       headline: "I don't feel seen, or heard, or... I can't quite name it.",
       explanation:
-        "That's one thing said eight ways, because no single word covers it. Finding the closest one is what makes it askable.",
+        "That's one thing said eight ways. No single word covers it. Finding the closest one is what makes it something you can ask for.",
       secondaryExamples: [
         "I don't feel valued.",
         "They don't understand me.",
@@ -72,7 +73,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
       pathwayPlayId: "what-i-want-instead",
       headline: "I know what's missing. I don't know how to ask for it.",
       explanation:
-        "\u201cI don't feel like a priority\u201d invites a defence. \u201cI want to feel like a priority\u201d invites an answer.",
+        "\u201cI don't feel like a priority\u201d invites them to defend themselves. \u201cI want to feel like a priority\u201d asks them for an answer.",
       secondaryExamples: [
         "I want someone who understands me.",
         "I want a relationship that feels like home.",
@@ -125,14 +126,14 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
           body: [
             "Not seen. Not heard. Not valued. Not appreciated. Not important.",
             "That's not five problems. It's one thing that doesn't have a good word, so you keep trying different ones hoping something lands.",
-            "The circling is accurate. It's also unaskable — a person can respond to something specific and can't respond to a fog.",
+            "The circling is accurate. But you can't really ask it. A person can answer something specific. They can't answer a fog.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "\u201cI don't feel appreciated\u201d sounds like it's about the washing-up. What you mean is much bigger, which is why saying it never quite works.",
-            "The aim isn't a perfect word. It's the closest one, plus one concrete moment where you felt it — because the moment does the work the word can't.",
+            "\u201cI don't feel appreciated\u201d sounds like it's about the washing-up. What you mean is much bigger. That's why saying it never quite works.",
+            "The aim isn't a perfect word. It's the closest one, plus one real moment where you felt it. The moment does the work the word can't.",
           ],
         },
         {
@@ -163,7 +164,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
               text: "\u201cI don't feel valued\u201d",
               correctBucket: "fog",
               correction:
-                "It's the truest thing you could say and there's no action in it. Needs a moment attached.",
+                "It's the truest thing you could say, and there's nothing to act on. It needs a moment attached.",
             },
             {
               id: "sort-c8-told-you-thing",
@@ -176,13 +177,13 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
               text: "\u201cWe're like roommates\u201d",
               correctBucket: "fog",
               correction:
-                "Accurate and unanswerable. It invites agreement or denial, not action.",
+                "It's true, but there's nothing to answer. They can only agree or disagree — not act.",
             },
             {
               id: "sort-c8-laugh",
               text: "\u201cWe used to laugh at things together and I can't remember the last time\u201d",
               correctBucket: "askable",
-              correction: "Specific enough to be recognised, and it names something recoverable.",
+              correction: "Specific enough for them to recognise, and it names something you could get back.",
             },
           ],
         },
@@ -239,18 +240,18 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I can't say what's missing without listing everything",
-        move: "Find the closest word and attach one concrete moment to it",
+        move: "Find the closest word and attach one real moment to it",
         lookingFor: "Something specific enough that they could recognise it",
-        watchOut: "Producing the whole list again — that's the fog, not the point",
-        remember: "The circling is accurate. It's just not askable yet.",
+        watchOut: "Giving the whole list again — that's the fog, not the point",
+        remember: "The circling is accurate. You just can't ask it yet.",
       },
       fidelity: {
         correct:
-          "One term is selected, paired with a single concrete recent instance, and SAID to the other person. The saying completes it; the working-out alone does not.",
+          "You pick one word, pair it with one real recent moment, and SAY it to the other person. Saying it is what finishes it. Working it out alone doesn't.",
         misuse: [
-          "Producing the full list instead of choosing.",
+          "Giving the full list instead of choosing one.",
           "Using the moment as evidence in a case.",
-          "Picking the word that sounds least demanding rather than the truest.",
+          "Picking the word that asks the least of them, instead of the truest one.",
         ],
         notMeaning:
           "It does not mean they'll understand it, that naming it changes anything, or that you've found the whole of it.",
@@ -267,13 +268,13 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
         "For turning what's missing into something they could actually do \u2014 and then asking. This one needs them; the ask is the tool.",
       recognitionGate: {
         prompt:
-          "Do your attempts to raise this turn into them defending themselves \u2014 and are you ready to try asking instead?",
+          "When you try to bring this up, does it turn into them defending themselves \u2014 and are you ready to try asking instead?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "\u201cI don't feel like a priority\u201d is a verdict. There's a rebuttal available, so you get one.",
+            "\u201cI don't feel like a priority\u201d is a verdict. There's an argument they can make back.",
             "\u201cI want to feel like a priority\u201d is a request. It can be met or refused — and either way you learn something.",
             "This isn't a communication trick. The second version tells them what to do. The first only tells them they've failed.",
           ],
@@ -282,8 +283,8 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
           kind: "learn",
           body: [
             "Most people in this position can list what they want quite easily: to be understood, to feel like a priority, for it to feel like home.",
-            "Those sentences get overlooked because they sound obvious. They're the most useful thing here — they're the only place you say what you want rather than what's absent.",
-            "The work is making one of them small enough to be doable this week.",
+            "Those sentences get overlooked because they sound obvious. But they're the most useful thing here. They're the only place you say what you want instead of what's missing.",
+            "The work is making one of them small enough to do this week.",
           ],
         },
         {
@@ -295,51 +296,51 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
         {
           kind: "sufficiency",
           prompt: "Could they do what you've written, this week, without guessing?",
-          enoughLabel: "Yes — it's concrete",
+          enoughLabel: "Yes — it's specific",
           needMoreLabel: "Not really — it's still a feeling",
           needMoreIntro:
-            "Very common. \u201cI want to feel closer\u201d isn't doable. \u201cI want us to have one conversation this week that isn't about the kids\u201d is.",
-          needToKnowLabel: "What would make it concrete",
+            "Very common. \u201cI want to feel closer\u201d isn't something they can do. \u201cI want us to have one conversation this week that isn't about the kids\u201d is.",
+          needToKnowLabel: "What would make it specific",
           observableLabel: "Something they could actually do",
         },
         {
           kind: "realWorldUse",
-          useWhen: "You've drafted the ask and you're somewhere neither of you is busy.",
+          useWhen: "You've written the ask and you're somewhere neither of you is busy.",
           doThis:
             "Ask for it once, in those words. Then stop and let them answer \u2014 met or refused, you now know something you were guessing at.",
         },
         {
           kind: "output",
           heading: "What I asked, and what they said",
-          body: "Met or refused, you now know something you were previously guessing at.",
+          body: "Met or refused, you now know something you were only guessing at before.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "A verdict gets a rebuttal. A request gets an answer.",
+            "A verdict gets an argument. A request gets an answer.",
             "Could they do it Wednesday without guessing?",
             "Say what I want, not what's wrong.",
           ],
         },
       ],
       portable: [
-        "A verdict gets a rebuttal. A request gets an answer.",
+        "A verdict gets an argument. A request gets an answer.",
         "Could they do it Wednesday without guessing?",
         "Say what I want, not what's wrong.",
       ],
       myPlaysTemplate: {
         when: "When raising it turns into them defending themselves",
         move: "Turn what's missing into a specific want they could act on",
-        lookingFor: "Whether it's concrete enough to do this week",
-        watchOut: "Asking for a feeling — nobody can produce a feeling on request",
+        lookingFor: "Whether it's specific enough to do this week",
+        watchOut: "Asking for a feeling — no one can turn a feeling on when asked",
         remember: "Either answer is information. Refused is still information.",
       },
       fidelity: {
         correct:
-          "A stated absence is converted into a specific actionable request AND asked. The asking is the operation; drafting it is preparation.",
+          "You turn something that's missing into a specific request they can act on, AND you ask it. Asking is the real move. Writing it is just getting ready.",
         misuse: [
-          "Wrapping a complaint in request language.",
+          "Dressing up a complaint as a request.",
           "Asking for a feeling rather than an action.",
           "Attaching a consequence to it.",
         ],
@@ -362,7 +363,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Logistics are urgent. Connection isn't. The bins have a deadline; asking each other a real question doesn't.",
+            "The everyday chores are urgent. Feeling close isn't. The bins have a deadline. Asking each other a real question doesn't.",
             "So it goes to the bottom of the list, every day, for perfectly good reasons. Two years of that and you've built something that runs beautifully and contains almost nothing.",
           ],
         },
@@ -410,7 +411,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
             "Next time there's a quiet ten minutes",
           ],
           controlCheck:
-            "I'm not announcing it as an initiative. I'm not counting whether they reciprocate. If it lands flat, that's allowed. I'll do another.",
+            "I'm not announcing it as some big new effort. I'm not counting whether they do it back. If it lands flat, that's allowed. I'll do another.",
         },
         {
           kind: "output",
@@ -434,18 +435,18 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When everything between us is admin",
-        move: "Put one small non-logistical thing back, without announcing it",
+        move: "Put one small thing back that isn't about chores, without announcing it",
         lookingFor: "Whether anything at all comes back — not whether it's matched",
         watchOut: "Keeping score, or making it a Thing",
         remember: "A weekend away can't carry this. Ten minutes might.",
       },
       fidelity: {
         correct:
-          "One small non-logistical exchange is initiated without announcement or reciprocity condition.",
+          "You start one small exchange that isn't about chores — without announcing it, and without needing them to do it back.",
         misuse: [
           "Announcing it as an effort you're making.",
           "Tracking whether they match it.",
-          "Escalating to a large gesture when a small one falls flat.",
+          "Jumping to a big gesture when a small one falls flat.",
         ],
         notMeaning:
           "It does not mean they'll respond, that closeness returns, or that repeated small things add up to a fix.",
@@ -467,20 +468,20 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
           kind: "shift",
           body: [
             "You reached, and weren't met, enough times that reaching started to feel humiliating. So you stopped — and stopping brought relief, which is why it stuck.",
-            "That's a sensible adaptation to something that kept costing you. It's also, eventually, the thing holding the situation in place.",
+            "That was a sensible way to adjust to something that kept costing you. But in the end, it's also the thing holding the situation in place.",
           ],
         },
         {
           kind: "learn",
           body: [
             "People who've genuinely stopped caring don't feel flat about it. They feel free.",
-            "Flat usually means still wanting it and having given up on getting it. That's more painful, and it also means something is still running.",
+            "Flat usually means still wanting it and having given up on getting it. That's more painful. But it also means something is still there.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
-            "Noticing you've checked out tends to bring up how long it's been, and what it's cost, and whether it was worth it.",
+            "Noticing you've checked out tends to bring up a lot: how long it's been, what it's cost, whether it was worth it.",
             "You don't have to do anything with that today. Noticing is the whole ask.",
           ],
         },
@@ -543,12 +544,12 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
         when: "When I've quietly stopped trying and haven't admitted it",
         move: "Look honestly at when I stopped and whether anything is still there",
         lookingFor: "Whether it's flat or genuinely finished — they're different",
-        watchOut: "Turning this into a verdict about the relationship today",
+        watchOut: "Turning this into a final judgment about the relationship today",
         remember: "Stopping was sensible. It's also what's holding it in place.",
       },
       fidelity: {
         correct:
-          "Disengagement is named honestly, including whether anything remains, without a decision being forced.",
+          "You name honestly that you've pulled back — including whether anything is still there — without forcing a decision.",
         misuse: [
           "Using it to justify leaving.",
           "Using it to prove you tried harder than they did.",
@@ -562,7 +563,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
           id: "signpost-c8-self-disconnection",
           heading: "If it isn't only about them",
           body:
-            `Some of what people write here isn't really about the relationship — feeling disconnected from yourself, not remembering the last time anything felt exciting, not feeling like yourself anymore. If that's nearer the mark, it can help to mention it to a GP or another professional — alongside this, not instead of it, because that part isn't a relationship problem and won't be fixed by one. ${CRISIS_ESCALATION}`,
+            `Some of what people write here isn't really about the relationship — feeling disconnected from yourself, not remembering the last time anything felt exciting, not feeling like yourself anymore. If that's closer to the mark, it can help to mention it to a GP or another professional. Alongside this, not instead of it — because that part isn't a relationship problem, and a relationship won't fix it. ${CRISIS_ESCALATION}`,
         },
       ],
     },
@@ -611,7 +612,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
         "Do the small thing you named. Then do it again a few days later. Don't announce either, and don't count what comes back.",
       linkToOperation: "Reintroducing non-logistical exchange",
       attemptMeaning:
-        "You did it. Flat is a normal result and isn't a verdict.",
+        "You did it. Flat is a normal result. It isn't a final judgment.",
       suitability:
         "If you've been doing this alone for a long time already, read 'Your half of it' before doing more.",
       progression: [

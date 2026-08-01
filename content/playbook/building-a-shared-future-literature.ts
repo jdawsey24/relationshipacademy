@@ -47,28 +47,28 @@ export const C21_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "You've noticed a gap. Not a fight, not a betrayal — a difference in what you each want your life to look like.",
-          "And the difficulty is that nobody can tell you how much it matters, because that depends entirely on which difference it is and on you.",
+          "And the hard part is that nobody can tell you how much it matters, because that depends entirely on which difference it is — and on you.",
         ],
       },
       {
         kind: "distinction",
         label: "Three things that get called the same thing",
         body: [
-          "Differences that are permanent and fine. Most of them. Two people are never going to want identical lives.",
-          "Differences that are permanent and load-bearing. Fewer, and they don't resolve by being worked on — they get decided about.",
+          "Differences that are permanent and fine. Most of them. Two people are never going to want the exact same life.",
+          "Differences that are permanent and load-bearing. Fewer of these, and they don't get solved by working on them — they get decided about.",
           "Repeating misunderstandings, which look like differences and aren't. Those are workable.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Most of the exhaustion in this position comes from treating all three the same way — working hard on the permanent ones and letting the workable ones repeat.",
+          "Most of what wears you out here comes from treating all three the same way — working hard on the permanent ones and letting the workable ones keep happening.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here leans toward staying or ending. Plenty of couples with real differences do well, and plenty of couples who look aligned don't. We can't tell you which yours is.",
+          "Nothing here leans toward staying or ending. Plenty of couples with real differences do well, and plenty of couples who look well-matched don't. We can't tell you which yours is.",
         ],
       },
     ],
@@ -93,24 +93,24 @@ export const C21_LITERATURE: LiteratureEntry[] = [
         label: "The ones that most often turn out to be structural",
         items: [
           "Children \u2014 whether, and roughly when.",
-          "Where you live, when that's genuinely fixed for one of you.",
-          "How central faith or practice is to daily life, rather than what either of you believes.",
+          "Where you live, when that's truly fixed for one of you.",
+          "How big a part faith or practice plays in daily life, not what either of you believes.",
           "Whether the relationship is monogamous.",
-          "Money at the level of what it's for, not how much.",
+          "Money \u2014 what it's for, not how much of it there is.",
         ],
       },
       {
         kind: "distinction",
         label: "What tends to look structural and isn't",
         body: [
-          "Different interests, different politics, different social appetites. Common, workable, and frequently not the actual problem.",
-          "Different paces. Someone wanting more of something is a negotiation, not an incompatibility \u2014 unless the gap is very large.",
+          "Different interests, different politics, wanting different amounts of time with people. Common, workable, and often not the real problem.",
+          "Different speeds. One person wanting more of something is something to work out, not a true mismatch \u2014 unless the gap is very large.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "You're the only one who can say which of yours are load-bearing. Someone else's list won't fit you, and \u201cthat wouldn't bother me\u201d is not information about your relationship.",
+          "You're the only one who can say which of yours are load-bearing. Someone else's list won't fit you, and \u201cthat wouldn't bother me\u201d tells you nothing about your relationship.",
         ],
       },
     ],
@@ -128,22 +128,22 @@ export const C21_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "It's an uncomfortable thing to think and a harder thing to say, because it sounds like a claim about being better.",
-          "It usually isn't. It's more often about direction than about height \u2014 you've moved and they haven't come, or they've moved somewhere else.",
+          "It usually isn't. It's more often about which way you're each going than about who's ahead \u2014 you've moved and they haven't come with you, or they've moved somewhere else.",
         ],
       },
       {
         kind: "distinction",
-        label: "Worth separating",
+        label: "Worth telling apart",
         body: [
-          "You've changed and they haven't. Happens, and it isn't anyone's fault \u2014 people don't develop on the same schedule.",
-          "You've changed and they've changed differently. Also happens, and it's a different situation: two people moving, not one waiting.",
-          "You've changed and they don't know. Surprisingly common. Whole years get spent on a mismatch that has never been described out loud.",
+          "You've changed and they haven't. It happens, and it isn't anyone's fault \u2014 people don't grow on the same schedule.",
+          "You've changed and they've changed differently. This happens too, and it's a different situation: two people moving, not one waiting.",
+          "You've changed and they don't know. Surprisingly common. Whole years get spent on a mismatch that has never been said out loud.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cWe're becoming different people\u201d is often said as though it were a verdict. It's a description, and it's true of nearly every long relationship \u2014 what matters is whether the directions still work alongside each other.",
+          "\u201cWe're becoming different people\u201d is often said like it's a verdict. It's a description, and it's true of nearly every long relationship \u2014 what matters is whether the two directions still work side by side.",
         ],
       },
     ],
@@ -161,7 +161,7 @@ export const C21_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI feel like I'm growing alone.\u201d \u201cI want more out of life than my partner does.\u201d",
-          "This is uncomfortable in both directions, and it's usually silent because of that.",
+          "This is uncomfortable both ways, and that's usually why it stays silent.",
         ],
       },
       {
@@ -169,20 +169,20 @@ export const C21_LITERATURE: LiteratureEntry[] = [
         label: "Why neither of you says it",
         body: [
           "The one who's moving can't mention it without sounding like they think they're better.",
-          "The one who isn't can't mention it without sounding resentful of someone else's momentum.",
-          "So the gap grows in silence, and both people privately conclude the other doesn't care.",
+          "The one who isn't can't mention it without sounding bitter about the other person moving forward.",
+          "So the gap grows in silence, and each person quietly decides the other doesn't care.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Wanting more from your life isn't a criticism of someone who wants less. Those are different appetites, not different values \u2014 though they get treated as the second, which is what makes it so hard to raise.",
+          "Wanting more from your life isn't a criticism of someone who wants less. Those are different wants, not different values \u2014 but they get treated like different values, and that's what makes it so hard to bring up.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI don't want either of us to lose ourselves\u201d is worth holding onto here. It's the most generous framing of this situation available, and it's usually accurate to what both people want.",
+          "\u201cI don't want either of us to lose ourselves\u201d is worth holding onto here. It's the kindest way to put this situation, and it's usually true to what both people want.",
         ],
       },
     ],
@@ -200,15 +200,15 @@ export const C21_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cWe don't agree about faith.\u201d \u201cWe have different values.\u201d \u201cWe agree on chemistry but not on life.\u201d",
-          "We're not going to take a position on any of it \u2014 not on any faith, not on none, not on what anyone ought to believe. What we can offer is a distinction that tends to be more useful than the belief itself.",
+          "We're not going to take a side on any of it \u2014 not on any faith, not on none, not on what anyone should believe. What we can offer is a way to look at it that's usually more useful than the belief itself.",
         ],
       },
       {
         kind: "distinction",
         label: "Belief and practice are different questions",
         body: [
-          "What you each believe. Can differ enormously and often matters less than people expect.",
-          "How much of your actual week it shapes \u2014 Sundays, food, holidays, how children would be raised, who you spend time with. That's the part that produces friction, and it's checkable.",
+          "What you each believe. This can differ hugely, and it often matters less than people expect.",
+          "How much of your actual week it shapes \u2014 Sundays, food, holidays, how children would be raised, who you spend time with. That's the part that causes friction, and you can check it.",
         ],
       },
       {
@@ -220,7 +220,7 @@ export const C21_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "\u201cI don't want to compromise my beliefs\u201d is a legitimate position and nothing here will suggest you should. If a difference is load-bearing for you, it's load-bearing \u2014 that's a fact about you, not a rigidity to be worked on.",
+          "\u201cI don't want to compromise my beliefs\u201d is a fair position, and nothing here will suggest you should. If a difference is load-bearing for you, it's load-bearing \u2014 that's a fact about you, not a stubbornness to be worked on.",
         ],
       },
     ],
@@ -243,7 +243,7 @@ export const C21_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "The first of those isn't a problem to be solved. You do experience the world differently, and you will continue to \u2014 that's not a gap that closes with effort, and treating it as one puts a quiet pressure on whichever of you is being asked to move.",
+          "The first of those isn't a problem to be solved. You do experience the world differently, and you always will \u2014 that's not a gap that closes with effort, and treating it like one puts a quiet pressure on whichever of you is being asked to change.",
           "Nothing here suggests either of you should become less yourself.",
         ],
       },
@@ -251,20 +251,20 @@ export const C21_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "What is workable",
         body: [
-          "Not the difference. The repeating misunderstanding \u2014 the same conversation going wrong the same way, which is a pattern rather than a fact about either of you.",
-          "And the practical collisions: family expectations, traditions, who is accommodated at Christmas or Eid or a wedding. Those are negotiable in a way the underlying difference isn't.",
+          "Not the difference. The repeating misunderstanding \u2014 the same conversation going wrong the same way, which is a pattern, not a fact about either of you.",
+          "And the day-to-day clashes: family expectations, traditions, who gets accommodated at Christmas or Eid or a wedding. Those can be worked out in a way the underlying difference can't.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know how to talk about race without hurting each other\u201d deserves an honest answer: sometimes it will be painful even when it goes well. That isn't a sign it's going badly. Conversations where one person is describing something the other hasn't lived are difficult by construction.",
+          "\u201cI don't know how to talk about race without hurting each other\u201d deserves an honest answer: sometimes it will be painful even when it goes well. That doesn't mean it's going badly. Conversations where one person is describing something the other hasn't lived are hard by their very nature.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI want us to understand each other's experiences better\u201d is the right aim and a slow one. Understanding isn't a state you arrive at \u2014 it accumulates, and it goes backwards sometimes.",
+          "\u201cI want us to understand each other's experiences better\u201d is the right aim, and a slow one. Understanding isn't a place you arrive at \u2014 it builds up over time, and sometimes it slips backward.",
         ],
       },
     ],
@@ -289,20 +289,20 @@ export const C21_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "The thing that makes them repeat",
         body: [
-          "Each instance gets handled as an instance. This particular Christmas, this particular comment, this particular relative.",
-          "The underlying rule never gets stated \u2014 whose family takes precedence, what gets explained and what gets assumed, who does the accommodating and how often.",
+          "Each time gets handled on its own. This particular Christmas, this particular comment, this particular relative.",
+          "The rule underneath never gets said out loud \u2014 whose family comes first, what gets explained and what gets assumed, who does the bending and how often.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Which means you resolve the instance and it returns in a new costume. Naming the rule is a bigger conversation and it's the only one that stops the repetition.",
+          "Which means you solve the instance and it comes back in a new costume. Naming the rule is a bigger conversation, and it's the only one that stops it from repeating.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Worth having when nothing is imminent. Trying to name the rule in the middle of the fourth instance almost never works.",
+          "Worth having when nothing is about to happen. Trying to name the rule in the middle of the fourth instance almost never works.",
         ],
       },
     ],
@@ -319,7 +319,7 @@ export const C21_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "In amongst all of this, people say what they actually want, and it's usually the most concrete thing in the conversation.",
+          "In the middle of all this, people say what they actually want — and it's usually the clearest thing in the conversation.",
         ],
       },
       {
@@ -335,7 +335,7 @@ export const C21_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Notice that none of those ask the other person to change. They describe a way of being together that holds difference rather than resolving it \u2014 which is a different and more achievable aim than agreement.",
+          "Notice that none of those ask the other person to change. They describe a way of being together that holds difference instead of solving it \u2014 which is a different goal than agreement, and an easier one to reach.",
         ],
       },
       {
@@ -359,21 +359,21 @@ export const C21_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "On its own, no \u2014 and that's a fairly consistent answer rather than a comment on your relationship.",
+          "On its own, no \u2014 and that's the usual answer, not a comment on your relationship.",
         ],
       },
       {
         kind: "distinction",
         label: "What it's enough for and what it isn't",
         body: [
-          "Love carries you through difficulty, disagreement, and long stretches of things being hard. That's not nothing and it's most of what people need it for.",
-          "It doesn't make two incompatible lives compatible. If one of you needs children and the other doesn't, love doesn't resolve that \u2014 it makes it more painful.",
+          "Love carries you through hard times, disagreements, and long stretches of things being tough. That's not nothing, and it's most of what people need it for.",
+          "It doesn't make two lives that can't fit together suddenly fit. If one of you needs children and the other doesn't, love doesn't fix that \u2014 it just makes it more painful.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Which is why the load-bearing question matters more than the love question. Love is usually present in this situation. It's the thing making the decision hard, not the thing that decides it.",
+          "Which is why the load-bearing question matters more than the love question. Love is usually there in this situation. It's the thing making the decision hard, not the thing that decides it.",
         ],
       },
     ],
@@ -390,16 +390,16 @@ export const C21_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Constantly. Nearly every long relationship contains people who want somewhat different lives and have found a shape that holds both.",
+          "Constantly. Nearly every long relationship holds two people who want somewhat different lives and have found a shape that fits both.",
         ],
       },
       {
         kind: "distinction",
         label: "What seems to make the difference",
         body: [
-          "Whether the difference is named. Unnamed differences get relitigated forever; named ones get planned around.",
-          "Whether the accommodating is shared. One person doing all the bending is a different arrangement, and it usually shows up later as something else.",
-          "Whether it's structural. Most differences aren't, and the ones that are can't be accommodated \u2014 only decided about.",
+          "Whether the difference is named. Unnamed differences get argued over forever; named ones get planned around.",
+          "Whether the bending is shared. One person doing all the bending is a different setup, and it usually shows up later as something else.",
+          "Whether it's structural. Most differences aren't, and the ones that are can't be worked around \u2014 only decided about.",
         ],
       },
       {

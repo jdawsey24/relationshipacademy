@@ -55,14 +55,14 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "What's actually missing",
         body: [
-          "Not insight. You already know what matters to you, which is further than most people get.",
-          "The mechanics. When to raise the big things, how to raise them without it becoming an interview, and how to tell which differences are actually going to matter.",
+          "Not insight. You already know what matters to you. That's further than most people get.",
+          "The how-to. When to raise the big things, how to raise them without it turning into an interview, and how to tell which differences are actually going to matter.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "There are no rules here about timing, and anyone who gives you a number of dates is guessing. What exists is better and worse ways of finding things out, which is a smaller and more honest offer.",
+          "There are no rules here about timing, and anyone who gives you a number of dates is guessing. What exists is better and worse ways of finding things out. That's a smaller, more honest offer.",
         ],
       },
     ],
@@ -80,27 +80,27 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI don't know when to talk about marriage.\u201d \u201cI don't know when to talk about children.\u201d",
-          "There's no correct week and no agreed norm. What there is: a cost to raising it early, and a much larger cost to raising it late.",
+          "There's no correct week, and no rule everyone agrees on. What there is: a cost to raising it early, and a much larger cost to raising it late.",
         ],
       },
       {
         kind: "distinction",
-        label: "The asymmetry worth knowing",
+        label: "The uneven trade worth knowing",
         body: [
-          "Raise it early and you risk seeming intense, or ending something that might have been good.",
-          "Raise it late and you risk two years, real attachment, and finding out something that was knowable at week three.",
+          "Bring it up early and you risk seeming intense, or ending something that might have been good.",
+          "Bring it up late and you risk two years, real attachment, and finding out something you could have known in week three.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Most people wait far longer than the asymmetry justifies, because the early cost is immediate and the late cost is hypothetical until it isn't.",
+          "Most people wait far longer than makes sense, because the early cost is right now and the late cost feels like a 'maybe' until it isn't.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "A useful rule of thumb rather than a rule: raise it before you're attached enough that the answer would be hard to act on. That point arrives earlier than most people expect.",
+          "A rough guide, not a rule: bring it up before you're attached enough that the answer would be hard to act on. That point comes sooner than most people expect.",
         ],
       },
     ],
@@ -117,28 +117,28 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "The fear behind most of the waiting isn't the question. It's that asking turns a nice evening into an assessment.",
-          "It can. The difference is almost entirely in whether you go first.",
+          "The fear behind most of the waiting isn't the question. It's that asking turns a nice evening into a test.",
+          "It can. The difference is almost all in whether you go first.",
         ],
       },
       {
         kind: "distinction",
         label: "Two versions of the same question",
         body: [
-          "\u201cDo you want children?\u201d \u2014 a question put to them. It requires an answer, and it arrives without context.",
-          "\u201cI've always assumed I'd have children. What about you?\u201d \u2014 information offered, then a question. Now it's an exchange.",
+          "\u201cDo you want children?\u201d \u2014 a question put to them. It needs an answer, and it comes with no lead-in.",
+          "\u201cI've always assumed I'd have children. What about you?\u201d \u2014 you offer something first, then ask. Now it's an exchange.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Going first also does something else: it tells them what you actually think, which is the thing you're hoping they'll do. People match the register they're given.",
+          "Going first also does something else: it tells them what you actually think — which is the thing you're hoping they'll do. People match the tone they're given.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "It's still possible to ask three of these in one evening and produce an interview. One at a time, spread out, is not a technique \u2014 it's just how conversations work.",
+          "You can still ask three of these in one evening and end up with an interview. One at a time, spread out, isn't a technique \u2014 it's just how conversations work.",
         ],
       },
     ],
@@ -163,8 +163,8 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "The test that works better than a list",
         body: [
-          "Does this difference mean the lives you each want can't both happen? If yes, it's structural, and it doesn't resolve \u2014 it gets decided about.",
-          "If it would just be harder, or require negotiating, it's a preference. Most differences are preferences.",
+          "Does this difference mean the lives you each want can't both happen? If yes, it's structural, and it doesn't get worked out \u2014 it gets decided about.",
+          "If it would just be harder, or need some give and take, it's a preference. Most differences are preferences.",
         ],
       },
       {
@@ -172,7 +172,7 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
         label: "The ones that most often turn out structural",
         items: [
           "Children \u2014 whether, and roughly when.",
-          "Where you live, when that's genuinely fixed for one of you.",
+          "Where you live, when that's truly fixed for one of you.",
           "How much of the week a faith or practice shapes \u2014 not what's believed.",
           "Whether the relationship is monogamous.",
           "What money is for, rather than how much of it there is.",
@@ -212,13 +212,13 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Which means the question isn't how much. It's what kind \u2014 and a lot of compromise on preferences is healthy, while a small amount of compromise on structure tends not to be.",
+          "So the question isn't how much. It's what kind \u2014 and a lot of compromise on preferences is healthy, while even a little compromise on structure tends not to be.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI don't want to ignore important differences\u201d is worth holding onto. Ignoring them early is extremely common, entirely understandable, and the single most reliable source of the position described in Volume I of this Playbook.",
+          "\u201cI don't want to ignore important differences\u201d is worth holding onto. Ignoring them early is very common, completely understandable, and the single most reliable source of the situation described in Volume I of this Playbook.",
         ],
       },
     ],
@@ -235,28 +235,28 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know if shared faith is important.\u201d We're not going to answer that, in either direction. It depends entirely on what faith does in your life, and only you know that.",
+          "\u201cI don't know if shared faith is important.\u201d We're not going to answer that, either way. It depends entirely on what faith does in your life, and only you know that.",
         ],
       },
       {
         kind: "distinction",
         label: "One distinction that helps more than the belief question",
         body: [
-          "What you each believe. Can differ a great deal and often matters less than people expect.",
+          "What you each believe. This can be very different and often matters less than people expect.",
           "How much of your actual week it shapes \u2014 what you do on Sundays, what you eat, which holidays, how children would be raised, who you spend time with, what you'd want at a wedding or a funeral.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The second is what produces friction, and it's checkable early. Couples with different beliefs and similar practices frequently do fine. Couples with similar beliefs and very different practices often don't.",
+          "The second is what causes friction, and you can check it early. Couples with different beliefs but similar practices often do fine. Couples with similar beliefs but very different practices often don't.",
           "\u201cMy faith has changed how I view relationships\u201d is worth saying out loud early for the same reason \u2014 it changes what the week looks like, and that's the part someone needs to know.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI don't want to compromise my beliefs\u201d is a legitimate position and nothing here suggests you should. If shared faith is structural for you, it's structural \u2014 that's a fact about your life, not a rigidity to be worked on.",
+          "\u201cI don't want to compromise my beliefs\u201d is a fair position and nothing here suggests you should. If shared faith is structural for you, it's structural \u2014 that's a fact about your life, not a stubbornness to be worked on.",
         ],
       },
     ],
@@ -274,27 +274,27 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI don't know how to discuss politics respectfully.\u201d \u201cI don't know how to have hard conversations about faith.\u201d",
-          "Both go wrong the same way: they turn into a debate about whether the position is correct, when what you were trying to find out was what it means to the person.",
+          "Both go wrong the same way: they turn into a debate about who's right, when what you were trying to find out was what it means to the person.",
         ],
       },
       {
         kind: "distinction",
         label: "Two different conversations",
         body: [
-          "Is this view right? Unwinnable, and neither of you will change your mind over dinner.",
-          "What does holding this do to your life? Answerable, interesting, and the actual information you need.",
+          "Is this view right? Nobody wins that one, and neither of you will change your mind over dinner.",
+          "What does holding this do to your life? You can answer that, it's interesting, and it's the real information you need.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The second version also tends to go better socially, because it's a genuine question rather than an opening position \u2014 and people can tell the difference immediately.",
+          "The second version also tends to go over better, because it's a real question rather than an opinion in disguise \u2014 and people can tell the difference right away.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Some differences will be unbridgeable and finding that out is the point of asking. A conversation that reveals an incompatibility hasn't gone wrong.",
+          "Some differences can't be bridged, and finding that out is the point of asking. A conversation that turns up a real mismatch hasn't gone wrong.",
         ],
       },
     ],
@@ -312,27 +312,27 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI want to honour my values while dating.\u201d \u201cI don't know how to date with integrity.\u201d",
-          "The difficulty isn't knowing your values. It's that dating has strong defaults, and holding a different position means explaining it, repeatedly, to people who didn't ask.",
+          "The hard part isn't knowing your values. It's that dating has strong defaults, so holding a different position means explaining it, over and over, to people who didn't ask.",
         ],
       },
       {
         kind: "distinction",
         label: "What tends to make it easier",
         body: [
-          "Stating it as a fact about you rather than as a position to be defended. \u201cI don't do that\u201d needs no argument attached.",
-          "Saying it before it's contested rather than at the moment of contest. Much easier as information than as a refusal.",
+          "Saying it as a fact about you rather than a stand you have to defend. \u201cI don't do that\u201d needs no argument attached.",
+          "Saying it before anyone pushes back rather than in the moment they do. Much easier as a simple fact than as a “no”.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "You'll lose some people this way. That's not a failure of the method \u2014 it's the method working, earlier and more cheaply than it would have otherwise.",
+          "You'll lose some people this way. That's not the method failing \u2014 it's the method working, sooner and at less cost than it would have otherwise.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nobody is owed an explanation of your values, and \u201cthat's just how I do it\u201d is a complete sentence. If someone requires justification for a position that affects only you, that's information.",
+          "Nobody is owed an explanation of your values, and \u201cthat's just how I do it\u201d is a complete sentence. If someone demands a reason for something that affects only you, that's information.",
         ],
       },
     ],
@@ -350,21 +350,21 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "One of the clearest things anyone says in this material, and worth taking at face value rather than treating as a compromise.",
+          "One of the clearest things anyone says in this material. It's worth taking at face value rather than treating it as settling for less.",
         ],
       },
       {
         kind: "distinction",
         label: "Chemistry isn't the enemy",
         body: [
-          "It matters, and a relationship without it is hard to sustain. Nothing here suggests ignoring it.",
-          "But it isn't information about fit. It tells you how you feel in the room with someone, which is real and is a different question from whether the lives work.",
+          "It matters, and a relationship without it is hard to keep going. Nothing here suggests ignoring it.",
+          "But it isn't information about fit. It tells you how you feel in the room with someone. That's real, but it's a different question from whether the lives work.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI want to know someone beyond attraction\u201d is the same instinct stated practically. Attraction is available in the first hour. Almost everything else takes weeks, and the weeks are the part most people skip.",
+          "\u201cI want to know someone beyond attraction\u201d is the same instinct, said plainly. Attraction is there in the first hour. Almost everything else takes weeks, and the weeks are the part most people skip.",
         ],
       },
     ],
@@ -381,7 +381,7 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Some people, yes. That's worth being honest about rather than reassuring around.",
+          "Some people, yes. That's worth being honest about rather than smoothing over.",
         ],
       },
       {
@@ -395,13 +395,13 @@ export const C21B_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It's a real cost and it's front-loaded. You'll have fewer second dates and fewer eighteen-month surprises, and only you can say whether that trade is worth it.",
+          "It's a real cost, and it comes up front. You'll have fewer second dates and fewer eighteen-month surprises, and only you can say whether that trade is worth it.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "The version that genuinely does scare people is three big questions in one evening, delivered as an assessment. That's not directness \u2014 it's an interview, and the difference is obvious from the other side of the table.",
+          "The version that really does scare people is three big questions in one evening, delivered as a test. That's not directness \u2014 it's an interview, and the difference is obvious from the other side of the table.",
         ],
       },
     ],

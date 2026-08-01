@@ -36,6 +36,7 @@ import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C15_LITERATURE } from "./feeling-seen-literature";
 import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const FEELING_SEEN: PlaybookContent = {
   playbookKey: "feeling-seen",
   playbookVersion: 1,
@@ -44,9 +45,9 @@ export const FEELING_SEEN: PlaybookContent = {
   opening: {
     title: "It didn't start as resentment",
     body: [
-      "It started as giving, willingly, and not being noticed. The rest arrived by a route where every step made sense at the time.",
-      "The part worth working on isn't the appreciation. It's what years of going unnoticed has done to you — and the fact that you don't like who you've become is the best evidence you haven't become it.",
-      "Nothing here promises the resentment lifts.",
+      "It started as giving, gladly, and not being noticed. The rest came one step at a time. Each step made sense back then.",
+      "The part worth working on isn't the appreciation. It's what years of going unnoticed has done to you. And the fact that you don't like who you've become is the best sign you haven't become it.",
+      "Nothing here promises the resentment goes away.",
     ],
     manifestations: [
       "I feel taken for granted.",
@@ -64,7 +65,7 @@ export const FEELING_SEEN: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I don't like who I've become.",
       validationCopy:
-        "That's the most important sentence in this Playbook, and it's usually said in passing. Two things about it: someone who had genuinely turned bitter wouldn't be troubled by it — the noticing is the part of you that hasn't changed. And it names the real loss. You haven't only lost the appreciation. You've lost being someone who gave without counting, and you liked that person.",
+        "That's the most important sentence in this Playbook, and people usually say it in passing. Two things about it. Someone who had truly turned bitter wouldn't be bothered by it. The fact that you notice is the part of you that hasn't changed. And it names the real loss. You haven't only lost the appreciation. You've lost being someone who gave without keeping count, and you liked that person.",
       secondaryExamples: [
         "I feel bitter.",
         "Small things bother me now.",
@@ -77,7 +78,7 @@ export const FEELING_SEEN: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm always the one texting first. I don't want to convince someone to choose me.",
       validationCopy:
-        "This Playbook is for people years into a relationship where the giving stopped being noticed. What you're describing sounds earlier than that — chasing someone who isn't reciprocating, and deciding whether to keep going. That's a different situation with a different answer, and the tools here won't fit it. Look for the Playbook on knowing whether to invest.",
+        "This Playbook is for people years into a relationship where the giving stopped being noticed. What you're describing sounds earlier than that. You're chasing someone who isn't giving back, and deciding whether to keep going. That's a different situation with a different answer, and the tools here won't fit it. Look for the Playbook on knowing whether to keep putting in.",
       secondaryExamples: [
         "I feel like I'm chasing people.",
         "I don't know if I should keep trying or walk away.",
@@ -90,7 +91,7 @@ export const FEELING_SEEN: PlaybookContent = {
       pathwayPlayId: "one-specific-thing",
       headline: "I don't think they see how much I'm trying.",
       explanation:
-        "A ledger can only ever be presented as a case, and a case gets defended against. One specific thing can be heard.",
+        "A ledger can only ever be shown as a case, and a case gets defended against. One specific thing can be heard.",
       secondaryExamples: [
         "I feel taken for granted.",
         "I don't think they realise how much I've done.",
@@ -103,7 +104,7 @@ export const FEELING_SEEN: PlaybookContent = {
       pathwayPlayId: "the-ledger",
       headline: "I keep score, and I'm not proud of it.",
       explanation:
-        "The ledger is doing a job — it's the only place your contribution exists. Worth looking at what it costs to maintain, not at whether you should have it.",
+        "The ledger is doing a job. It's the only place what you've given exists. It's worth looking at what it costs to keep, not at whether you should have it.",
       secondaryExamples: [
         "I remember everything they've done wrong.",
         "I resent everything I sacrificed.",
@@ -116,7 +117,7 @@ export const FEELING_SEEN: PlaybookContent = {
       pathwayPlayId: "what-i-stopped",
       headline: "I stopped trying, and I miss the person who didn't.",
       explanation:
-        "Stopping was sensible. It also removed the thing you liked about yourself, which is a high price for a reasonable decision.",
+        "Stopping made sense. It also took away the thing you liked about yourself, which is a high price for a sensible choice.",
       secondaryExamples: [
         "I don't feel emotionally generous anymore.",
         "I feel emotionally checked out.",
@@ -129,7 +130,7 @@ export const FEELING_SEEN: PlaybookContent = {
       pathwayPlayId: "what-forgiving-would-take",
       headline: "I don't know how to let go of this.",
       explanation:
-        "Nothing here teaches forgiveness. What's workable is finding out what it would actually require — which is usually smaller and more specific than people think.",
+        "Nothing here teaches forgiveness. What you can do is find out what it would really take. That's usually smaller and more specific than people think.",
       secondaryExamples: [
         "I don't know how to forgive.",
         "I don't know if the resentment is fixable.",
@@ -146,7 +147,7 @@ export const FEELING_SEEN: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "One Specific Thing",
       positioning:
-        "For the years of it that can't be said all at once. You pick one alone — then you say it.",
+        "For the years of it that can't be said all at once. You pick one thing on its own, then you say it.",
       recognitionGate: {
         prompt: "Have you tried telling them how much you do, and had it turn into an argument?",
       },
@@ -154,23 +155,23 @@ export const FEELING_SEEN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "When you finally say it, it comes out as everything, because everything is what's accumulated.",
-            "And everything is a case. A case gets defended against — they'll produce their own list, and now you're comparing rather than being heard.",
+            "When you finally say it, it all comes out at once, because that's what's piled up.",
+            "And all of it at once is a case. A case gets defended against. They'll bring their own list, and now you're comparing instead of being heard.",
             "One thing can be heard. It's a much smaller ask and a much better chance.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "\u201cI do everything around here\u201d invites a rebuttal, and there's always a rebuttal available.",
-            "\u201cI booked the dentist, and the car, and your mum's present, and I don't think you knew\u201d is checkable. There's nothing to argue with, so there's a chance of it landing.",
-            "It also won't cover what you've been carrying. That's the trade — you give up completeness to get a hearing.",
+            "\u201cI do everything around here\u201d invites a comeback, and there's always a comeback ready.",
+            "\u201cI booked the dentist, and the car, and your mum's present, and I don't think you knew\u201d is checkable. There's nothing to argue with, so there's a chance it lands.",
+            "It also won't cover everything you've been carrying. That's the trade. You give up saying all of it to get heard.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
-            "It is insufficient. It's a fraction of it, and picking one can feel like letting them off.",
+            "It isn't enough. It's a small piece of it, and picking one can feel like letting them off.",
             "That's real. It's also the difference between being heard about something and being argued with about everything.",
           ],
         },
@@ -201,7 +202,7 @@ export const FEELING_SEEN: PlaybookContent = {
           kind: "sentenceBuilder",
           label: "The one thing, said plainly",
           helper:
-            "One specific recent thing, and what it was like. No preamble, no comparison. You might start with \u201cThere's something small I want to mention.\u201d",
+            "One specific recent thing, and what it was like. No lead-up, no comparing. You might start with \u201cThere's something small I want to mention.\u201d",
         },
         {
           kind: "realWorldUse",
@@ -220,21 +221,21 @@ export const FEELING_SEEN: PlaybookContent = {
           steps: [
             "A case gets defended. One thing can be heard.",
             "Don't add the second one.",
-            "Giving up completeness to get a hearing.",
+            "Giving up saying all of it to get heard.",
           ],
         },
       ],
       portable: [
         "A case gets defended. One thing can be heard.",
         "Don't add the second one.",
-        "Giving up completeness to get a hearing.",
+        "Giving up saying all of it to get heard.",
       ],
       myPlaysTemplate: {
         when: "When I want to tell them how much I do and it always becomes an argument",
         move: "Say one specific recent thing, and stop",
         lookingFor: "Whether one thing can land where the whole account couldn't",
         watchOut: "Adding the second example — that turns it back into a case",
-        remember: "One thing is insufficient. That's the trade for being heard at all.",
+        remember: "One thing isn't enough. That's the trade for being heard at all.",
       },
       fidelity: {
         correct:
@@ -264,16 +265,16 @@ export const FEELING_SEEN: PlaybookContent = {
           kind: "shift",
           body: [
             "People are usually ashamed of keeping score. It's worth knowing what it's for before deciding anything about it.",
-            "It's a record. When nobody else acknowledges what you've contributed, keeping the account yourself is the only place it exists. It's also protection — if you know the numbers, you can't be told you're imagining it.",
+            "It's a record. When nobody else acknowledges what you've given, keeping the account yourself is the only place it exists. It's also protection. If you know the numbers, you can't be told you're imagining it.",
             "So it isn't petty. Nothing here will ask you to tear it up.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Every interaction gets logged, which means you're never quite off duty.",
-            "And small things arrive on top of a running total rather than on their own. That's why the cup left out feels enormous — it isn't the cup, it's the cup plus four years.",
-            "The bigger cost: while the account is running, nothing they do can register as generous. It gets logged as partial repayment. Which means even the good things stop counting.",
+            "Everything that happens between you gets logged, which means you're never quite off duty.",
+            "And small things land on top of a running total instead of on their own. That's why the cup left out feels huge. It isn't the cup, it's the cup plus four years.",
+            "The bigger cost: while the account is running, nothing they do can count as generous. It gets logged as partial repayment. Which means even the good things stop counting.",
           ],
         },
         {
@@ -288,15 +289,15 @@ export const FEELING_SEEN: PlaybookContent = {
           items: [
             {
               id: "sort-c15-know-numbers",
-              text: "Knowing roughly what you've each contributed",
+              text: "Knowing roughly what you've each done",
               correctBucket: "record",
-              correction: "That's just knowing. Reasonable, and not costing you much.",
+              correction: "That's just knowing. Fair enough, and not costing you much.",
             },
             {
               id: "sort-c15-cup",
               text: "The cup left out ruining the evening",
               correctBucket: "charging",
-              correction: "That's four years arriving on a cup. The interest, not the record.",
+              correction: "That's four years landing on a cup. The interest, not the record.",
             },
             {
               id: "sort-c15-remembering",
@@ -309,19 +310,19 @@ export const FEELING_SEEN: PlaybookContent = {
               text: "Them doing something kind and it not counting",
               correctBucket: "charging",
               correction:
-                "Logged as repayment rather than received. That's the expensive part.",
+                "Logged as repayment instead of received. That's the expensive part.",
             },
             {
               id: "sort-c15-recount",
               text: "Running back through the list at 2am",
               correctBucket: "charging",
-              correction: "The record doesn't need re-reading. That's maintenance.",
+              correction: "The record doesn't need re-reading. That's upkeep.",
             },
             {
               id: "sort-c15-tell-friend",
               text: "Being able to explain the situation accurately to a friend",
               correctBucket: "record",
-              correction: "Accuracy is fine. It's the compounding that costs.",
+              correction: "Getting it right is fine. It's the piling up that costs.",
             },
           ],
         },
@@ -344,7 +345,7 @@ export const FEELING_SEEN: PlaybookContent = {
               id: "last-generous",
               input: "text",
               label:
-                "When did they last do something that landed as generous rather than as repayment?",
+                "When did they last do something that landed as generous instead of as repayment?",
               placeholder: "If nothing comes to mind, that's the answer.",
             },
           ],
@@ -374,7 +375,7 @@ export const FEELING_SEEN: PlaybookContent = {
         move: "Separate keeping the record from charging interest on it",
         lookingFor: "Whether anything they do can still land as generous",
         watchOut: "Turning this into another reason to be ashamed of the ledger",
-        remember: "The record is reasonable. The compounding is what's expensive.",
+        remember: "The record is fair. The piling up is what's expensive.",
       },
       fidelity: {
         correct:
@@ -403,16 +404,16 @@ export const FEELING_SEEN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Pouring into something that wasn't registering cost more than it produced. Stopping brought relief, and that's why it held.",
-            "It also removed the thing you liked about yourself, which is a very high price for a reasonable decision.",
+            "Pouring into something that wasn't landing cost more than it gave back. Stopping brought relief, and that's why it held.",
+            "It also took away the thing you liked about yourself, which is a very high price for a sensible choice.",
             "\u201cI miss giving love freely\u201d is the tell. You don't miss something you're glad to be rid of.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Withdrawn as protection: reversible, and it's what most people here have done. It aches.",
-            "Finished: different, and it doesn't ache. People who are genuinely done don't miss the version of themselves who tried.",
+            "Pulled back to protect yourself: this can be undone, and it's what most people here have done. It aches.",
+            "Finished: different, and it doesn't ache. People who are truly done don't miss the version of themselves who tried.",
             "If it aches, you're in the first one. That's more painful and it means something is still running.",
           ],
         },
@@ -454,11 +455,11 @@ export const FEELING_SEEN: PlaybookContent = {
         },
         {
           kind: "sufficiency",
-          prompt: "Is there one thing you'd want back for your own sake, not as a strategy?",
+          prompt: "Is there one thing you'd want back for your own sake, not as a plan?",
           enoughLabel: "Yes, there's something",
           needMoreLabel: "Not right now",
           needMoreIntro:
-            "That's a legitimate answer and not a failure. Wanting it back has to come from you rather than from a plan.",
+            "That's a real answer, not a failure. Wanting it back has to come from you, not from a plan.",
           needToKnowLabel: "What would have to change first",
           observableLabel: "Something I'd actually notice",
         },
@@ -471,22 +472,22 @@ export const FEELING_SEEN: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Stopping was sensible. It also cost me something I liked.",
-            "If it aches, I'm withdrawn rather than finished.",
-            "Giving in order to be appreciated is how this started.",
+            "Stopping made sense. It also cost me something I liked.",
+            "If it aches, I've pulled back, not finished.",
+            "Giving so I'd be appreciated is how this started.",
           ],
         },
       ],
       portable: [
-        "Stopping was sensible. It also cost me something I liked.",
-        "If it aches, I'm withdrawn rather than finished.",
-        "Giving in order to be appreciated is how this started.",
+        "Stopping made sense. It also cost me something I liked.",
+        "If it aches, I've pulled back, not finished.",
+        "Giving so I'd be appreciated is how this started.",
       ],
       myPlaysTemplate: {
         when: "When I've stopped giving and I miss the person who didn't",
         move: "Name what I stopped and whether it still aches",
-        lookingFor: "Whether this is protection or completion — they're different",
-        watchOut: "Deciding to start giving again as a strategy",
+        lookingFor: "Whether this is pulling back to protect myself or being truly done — they're different",
+        watchOut: "Deciding to start giving again as a plan",
         remember: "Wanting it back has to be for me, not for a result.",
       },
       fidelity: {
@@ -505,7 +506,7 @@ export const FEELING_SEEN: PlaybookContent = {
           id: "signpost-c15-numbness",
           heading: "If the flatness has spread",
           body:
-            `If it isn't only this relationship — if most things feel flat, or you've stopped expecting anything to improve anywhere — it can help to talk to a GP or another professional, alongside this rather than instead of it. And if you've had thoughts of suicide, or of hurting yourself, please treat that as urgent. ${CRISIS_ESCALATION}`,
+            `If it isn't only this relationship — if most things feel flat, or you've stopped expecting anything to get better anywhere — it can help to talk to a GP or another professional, alongside this rather than instead of it. And if you've had thoughts of suicide, or of hurting yourself, please treat that as urgent. ${CRISIS_ESCALATION}`,
         },
       ],
     },
@@ -516,7 +517,7 @@ export const FEELING_SEEN: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "What Forgiving Would Take",
-      positioning: "For working out what it would actually require — not for producing it.",
+      positioning: "For working out what it would really take — not for making it happen.",
       recognitionGate: {
         prompt: "Do you want to let this go and find you can't?",
       },
@@ -524,16 +525,16 @@ export const FEELING_SEEN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "It isn't a technique and we don't think it can be produced on demand. Anyone selling you a method is selling you something.",
-            "What is workable is finding out what it would require — which is usually smaller and more specific than what people mean by the word.",
+            "It isn't a technique, and we don't think it can be forced on demand. Anyone selling you a method is selling you something.",
+            "What you can do is find out what it would take. That's usually smaller and more specific than what people mean by the word.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "It isn't deciding it was fine. It wasn't. It isn't forgetting — you won't. It isn't a feeling you can arrange to have.",
+            "It isn't deciding it was fine. It wasn't. It isn't forgetting — you won't. It isn't a feeling you can make yourself have.",
             "More often it's a decision to stop charging interest. The debt stays on the books; you stop adding to it daily.",
-            "That's much smaller than most people mean, and considerably more achievable.",
+            "That's much smaller than most people mean, and a lot more doable.",
           ],
         },
         {
@@ -572,7 +573,7 @@ export const FEELING_SEEN: PlaybookContent = {
           enoughLabel: "Yes, in principle",
           needMoreLabel: "No — or not from them",
           needMoreIntro:
-            "That's important rather than hopeless. If what forgiveness requires isn't available, then not being able to forgive isn't a failing of yours — it's arithmetic.",
+            "That's important, not hopeless. If what forgiveness needs isn't there, then not being able to forgive isn't a failing of yours. It's arithmetic.",
           needToKnowLabel: "What that means for what happens next",
           observableLabel: "Something I could actually decide",
         },
@@ -587,21 +588,21 @@ export const FEELING_SEEN: PlaybookContent = {
           steps: [
             "Not deciding it was fine. Deciding to stop charging interest.",
             "Forgiving something never admitted is a lot to ask.",
-            "If what it requires isn't available, that's arithmetic, not failure.",
+            "If what it takes isn't there, that's arithmetic, not failure.",
           ],
         },
       ],
       portable: [
         "Not deciding it was fine. Deciding to stop charging interest.",
         "Forgiving something never admitted is a lot to ask.",
-        "If what it requires isn't available, that's arithmetic, not failure.",
+        "If what it takes isn't there, that's arithmetic, not failure.",
       ],
       myPlaysTemplate: {
         when: "When I want to let go and find I can't",
-        move: "Work out what forgiving would actually require, and whether it's available",
-        lookingFor: "Whether the condition is something they could give",
-        watchOut: "Treating inability to forgive as a defect in me",
-        remember: "Resentment about something ongoing can't resolve while it's ongoing.",
+        move: "Work out what forgiving would really take, and whether it's there",
+        lookingFor: "Whether what's needed is something they could give",
+        watchOut: "Treating not being able to forgive as a flaw in me",
+        remember: "Resentment about something still going on can't settle while it's still going on.",
       },
       fidelity: {
         correct:

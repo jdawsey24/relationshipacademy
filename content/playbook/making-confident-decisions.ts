@@ -36,6 +36,8 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C23_LITERATURE } from "./making-confident-decisions-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
   playbookKey: "making-confident-decisions",
   playbookVersion: 1,
@@ -44,9 +46,9 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
   opening: {
     title: "Two things that look separate and aren't",
     body: [
-      "A demand that the next decision be right, and a quiet shame about the last one.",
-      "They're the same mechanism pointed in two directions. Backwards: I got it wrong, and that says something about me. Forwards: so this one has to be right, and I can't move until I'm sure.",
-      "Which is why being told to take a chance doesn't help much — not while getting it wrong still means what it currently means.",
+      "You feel the next decision has to be right. And you carry a quiet shame about the last one.",
+      "They're the same thing pointed two ways. Looking back: I got it wrong, and that says something about me. Looking ahead: so this one has to be right, and I can't move until I'm sure.",
+      "That's why being told to take a chance doesn't help much. Not while getting it wrong still means what it means to you now.",
     ],
     manifestations: [
       "I feel like I have to get relationships right.",
@@ -64,7 +66,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm afraid I'm too damaged.",
       validationCopy:
-        "It's the most common thing people in this position don't say out loud, and it sits exactly between the two halves of what you're carrying. Worth noting that it's a fear rather than an assessment — it arrives with the shame rather than from any evidence, and it tends to be loudest in people who have thought hardest about getting it right.",
+        "It's the most common thing people here don't say out loud, and it sits right between the two halves of what you're carrying. It's a fear, not a fact about you — it comes with the shame, not from any evidence. And it tends to be loudest in the people who've thought hardest about getting it right.",
       secondaryExamples: [
         "I feel like I failed.",
         "I expect too much from myself.",
@@ -77,7 +79,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I thought love would be enough, and it wasn't.",
       validationCopy:
-        "That's a real and specific realisation — that relationships involve skills nobody taught you, and that chemistry and commitment don't supply them. It has its own Playbook, and the tools there are built around exactly that. This one is about the fear of choosing wrong and the shame of having done. Related, and different. Look for the one about building from the ground up.",
+        "That's a real, specific thing to notice — that relationships take skills nobody taught you, and that chemistry and commitment don't give you those skills. It has its own Playbook, and the tools there are built around exactly that. This one is about the fear of choosing wrong and the shame of having done. Close, but different. Look for the one about building from the ground up.",
       secondaryExamples: [
         "I thought chemistry was enough.",
         "I didn't realize love required so much intentionality.",
@@ -90,7 +92,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
       pathwayPlayId: "the-standard",
       headline: "I have to get relationships right.",
       explanation:
-        "The standard is unusually high and applied to one area only. Most people here are far more forgiving of themselves at work.",
+        "The standard is unusually high, and you apply it to just one area. Most people here are far easier on themselves at work.",
       secondaryExamples: [
         "I expect too much from myself.",
         "I expect too much from other people.",
@@ -103,7 +105,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
       pathwayPlayId: "waiting-to-be-sure",
       headline: "I keep waiting until I'm ready.",
       explanation:
-        "\u201cI don't know if I'll ever feel ready\u201d answers that. Waiting for something that may not arrive isn't a plan, though it feels like one.",
+        "\u201cI don't know if I'll ever feel ready\u201d answers that. Waiting for something that may never come isn't a plan, even though it feels like one.",
       secondaryExamples: [
         "I overthink every decision.",
         "I don't know when good is good enough.",
@@ -116,7 +118,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
       pathwayPlayId: "telling-one-person",
       headline: "I pretend everything is okay.",
       explanation:
-        "\u201cI'm tired of carrying this alone\u201d is the tell. Nobody says that about a load they're content to carry.",
+        "\u201cI'm tired of carrying this alone\u201d is the tell. Nobody says that about a load they're happy to carry.",
       secondaryExamples: [
         "I don't like telling people what happened.",
         "I don't like asking for help.",
@@ -140,16 +142,16 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "The standard is unusually high, and it's usually applied to one area. Most people here are considerably more forgiving of themselves at work.",
-            "There's a reason. A poor decision at work is a poor decision. A poor relationship decision gets read as a fact about your judgement, and then about you.",
-            "Which is where the demand comes from. If getting it wrong means something about who you are, then getting it right isn't a preference — it's a defence.",
+            "The standard is unusually high, and you usually apply it to one area. Most people here are far easier on themselves at work.",
+            "There's a reason. A bad decision at work is just a bad decision. A bad relationship decision gets read as a fact about your judgement, and then about you.",
+            "That's where the demand comes from. If getting it wrong means something about who you are, then getting it right isn't optional — it's a defence.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "\u201cI expect too much from other people\u201d belongs here too. It's usually the same standard turned outward — people holding themselves to an impossible line rarely hold others to a generous one.",
-            "And \u201cwhen is good good enough\u201d has no external answer. Sometimes it means: is this relationship good enough? Answerable only against your own terms. More often it means: am I allowed to stop scrutinising? That doesn't resolve by more information.",
+            "\u201cI expect too much from other people\u201d belongs here too. It's usually the same standard turned outward — people who hold themselves to an impossible line rarely hold others to a gentle one.",
+            "And \u201cwhen is good good enough\u201d has no outside answer. Sometimes it means: is this relationship good enough? You can only answer that against your own terms. More often it means: am I allowed to stop picking it apart? More information won't settle that.",
           ],
         },
         {
@@ -167,52 +169,52 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
               text: "\u201cI didn't know then what I know now\u201d",
               correctBucket: "accept",
               correction:
-                "Easy to grant a friend. Worth noticing whether you grant it to yourself.",
+                "Easy to give a friend. Worth noticing whether you give it to yourself.",
             },
             {
               id: "sort-c23-should-have-seen",
               text: "\u201cI should have seen it\u201d",
               correctBucket: "not-me",
               correction:
-                "Most people would argue with a friend saying this and not with themselves.",
+                "Most people would argue with a friend who said this. They don't argue with themselves.",
             },
             {
               id: "sort-c23-good-reasons",
               text: "\u201cI had good reasons at the time\u201d",
               correctBucket: "accept",
-              correction: "Granted to others readily. Rarely claimed for oneself.",
+              correction: "We give this to others easily. We rarely claim it for ourselves.",
             },
             {
               id: "sort-c23-wasted",
               text: "\u201cI wasted years\u201d",
               correctBucket: "not-me",
-              correction: "You'd push back on a friend. The same case applies.",
+              correction: "You'd push back on a friend. The same case applies to you.",
             },
             {
               id: "sort-c23-was-loved",
               text: "\u201cI was in love, and that made it harder to see\u201d",
               correctBucket: "accept",
-              correction: "Obviously reasonable from someone else.",
+              correction: "Clearly fair when someone else says it.",
             },
             {
               id: "sort-c23-failed",
               text: "\u201cI failed\u201d",
               correctBucket: "not-me",
               correction:
-                "Almost nobody would let a friend describe an ended relationship this way.",
+                "Almost nobody would let a friend describe a relationship that ended this way.",
             },
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Not an exercise in being kinder to yourself. A comparison.",
+            "This isn't about being kinder to yourself. It's a comparison.",
           fields: [
             {
               id: "my-standard",
               label: "What do you require of yourself here?",
               input: "text",
-              placeholder: "The actual line, stated plainly.",
+              placeholder: "The real line, in plain words.",
             },
             {
               id: "friend-standard",
@@ -228,7 +230,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
           enoughLabel: "Not really — they're similar",
           needMoreLabel: "Yes, a large one",
           needMoreIntro:
-            "That gap is the standard doing its work. It isn't evidence of higher values — it's a defence, and it's expensive to maintain.",
+            "That gap is the standard doing its work. It isn't a sign of higher values — it's a defence, and it costs a lot to keep up.",
           needToKnowLabel: "What the standard is protecting against",
           observableLabel: "Something I'd notice if it eased",
         },
@@ -236,21 +238,21 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
           kind: "output",
           heading: "My standard, and the one I'd offer",
           body:
-            "Not an instruction to lower it. A measurement of the gap.",
+            "This isn't telling you to lower it. It's a measure of the gap.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "A poor decision here gets read as a verdict rather than an outcome.",
-            "Getting it right isn't a preference. It's a defence.",
+            "A bad decision here gets read as a verdict, not just an outcome.",
+            "Getting it right isn't optional. It's a defence.",
             "The standard I'd offer a friend is the honest one.",
           ],
         },
       ],
       portable: [
-        "A poor decision here gets read as a verdict rather than an outcome.",
-        "Getting it right isn't a preference. It's a defence.",
+        "A bad decision here gets read as a verdict, not just an outcome.",
+        "Getting it right isn't optional. It's a defence.",
         "The standard I'd offer a friend is the honest one.",
       ],
       myPlaysTemplate: {
@@ -288,15 +290,15 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
           kind: "shift",
           body: [
             "\u201cI keep waiting until I'm ready.\u201d \u201cI don't know if I'll ever feel ready.\u201d",
-            "The second sentence answers the first. If you don't know whether it'll arrive, waiting for it isn't a plan — it's an indefinite position that feels like one.",
+            "The second sentence answers the first. If you don't know whether it'll ever come, then waiting for it isn't a plan — it's a wait with no end that feels like one.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Two things readiness could mean. Practically ready — the circumstances allow it, which is checkable and sometimes genuinely no.",
-            "Or feeling ready — the doubt has gone. That one doesn't arrive by waiting, because doubt about something uncertain is an accurate response rather than an obstacle.",
-            "Which means the certainty isn't available, and its absence isn't information about whether to proceed. Unsatisfying, and honest.",
+            "“Ready” could mean two things. Practically ready — your circumstances allow it. You can check that, and sometimes the honest answer really is no.",
+            "Or feeling ready — the doubt is gone. That kind doesn't come from waiting, because doubt about something uncertain is an accurate response, not a roadblock.",
+            "So the certainty isn't there to be had. And not having it doesn't tell you whether to go ahead. That's unsatisfying, and it's honest.",
           ],
         },
         {
@@ -324,30 +326,30 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
               id: "how-long",
               label: "How long have you been waiting?",
               input: "text",
-              placeholder: "And has anything moved in that time?",
+              placeholder: "And has anything changed in that time?",
             },
           ],
         },
         {
           kind: "ruleBuilder",
           intro:
-            "Not a decision. A point at which you look, chosen while you're calm.",
+            "Not a decision. A time to look again, picked while you're calm.",
           conditionLabel: "The date I'll look at this again",
           thenLabel: "And what I'll decide on, when I do",
           actions: [
-            "What I'd do if certainty were never going to arrive",
+            "What I'd do if certainty were never going to come",
             "Whether anything has actually changed since I started waiting",
-            "The practical question only, setting the feeling aside",
+            "Just the practical question, with the feeling set aside",
             "Whether waiting has cost more than deciding would",
           ],
           controlCheck:
-            "The absence of certainty isn't information about whether to proceed \\u2014 doubt about something uncertain is an accurate response, not an obstacle.",
+            "Not having certainty doesn't tell you whether to go ahead \\u2014 doubt about something uncertain is an accurate response, not a roadblock.",
         },
         {
           kind: "output",
           heading: "What I'm waiting on",
           body:
-            "Not deciding is also a decision, and it costs the same time \u2014 with less information at the end.",
+            "Not deciding is also a decision. It costs the same time \u2014 and leaves you with less information at the end.",
         },
         {
           kind: "portable",
@@ -355,14 +357,14 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
           steps: [
             "\u201cI don't know if I'll ever feel ready\u201d answers \u201cI'm waiting until I'm ready.\u201d",
             "Doubt about something uncertain is accurate, not an obstacle.",
-            "Waiting is also a decision, and it's the one I'm currently making.",
+            "Waiting is also a decision, and it's the one I'm making right now.",
           ],
         },
       ],
       portable: [
         "\u201cI don't know if I'll ever feel ready\u201d answers \u201cI'm waiting until I'm ready.\u201d",
         "Doubt about something uncertain is accurate, not an obstacle.",
-        "Waiting is also a decision, and it's the one I'm currently making.",
+        "Waiting is also a decision, and it's the one I'm making right now.",
       ],
       myPlaysTemplate: {
         when: "When I'm waiting to feel certain before I move",
@@ -391,7 +393,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "Telling One Person",
       positioning:
-        "For the thing nobody knows. You work out what and who — then you say it.",
+        "For the thing nobody knows. You work out what to say and who to tell — then you say it.",
       recognitionGate: {
         prompt: "Is there something about your situation that nobody actually knows?",
       },
@@ -399,23 +401,23 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "\u201cI'm tired of carrying this alone\u201d is the tell. Nobody says that about a load they're content to carry.",
-            "Hiding buys something real — nobody's pity, nobody's opinion, nobody's version of what you should have done.",
-            "It costs something too. Everyone around you is operating on the pretend version, so nothing they offer can be aimed at what's actually happening.",
+            "\u201cI'm tired of carrying this alone\u201d is the tell. Nobody says that about a load they're happy to carry.",
+            "Hiding buys you something real. No one's pity, no one's opinion, no one's version of what you should have done.",
+            "It costs you something too. Everyone around you is going on the pretend version. So nothing they offer can be aimed at what's really happening.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "The version that works is smaller than people imagine. Not telling everyone, not a full account, not an announcement. One person, one true thing, nothing attached.",
-            "Who you pick matters more than what you say. Someone who won't immediately tell you what to do — advice is what most people reach for and it's rarely what's needed. And someone who won't relay it, because the fear of it circulating is often the actual obstacle.",
+            "The version that works is smaller than people think. Not telling everyone. Not the full story. Not an announcement. One person, one true thing, nothing attached.",
+            "Who you pick matters more than what you say. Pick someone who won't jump to telling you what to do — advice is what most people reach for, and it's rarely what's needed. And someone who won't pass it on. The fear of it getting around is often the real obstacle.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
-            "The longer the pretend version has been running, the more this feels like something that would need announcing rather than mentioning.",
-            "It doesn't. One sentence, in an ordinary conversation, is the whole thing.",
+            "The longer the pretend version has been running, the more this feels like something you'd have to announce, not just mention.",
+            "It doesn't. One sentence, in an everyday conversation, is the whole thing.",
           ],
         },
         {
@@ -426,18 +428,18 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
               id: "who",
               label: "Who wouldn't tell you what to do, and wouldn't pass it on?",
               input: "text",
-              placeholder: "One name. Not necessarily the closest person.",
+              placeholder: "One name. It doesn't have to be the closest person.",
             },
             {
               id: "the-one-thing",
               label: "What's the one true thing?",
               input: "text",
               placeholder:
-                "Not the whole account. The sentence you've been not saying.",
+                "Not the whole story. The one sentence you've been holding back.",
             },
             {
               id: "whats-stopping",
-              label: "What's the actual obstacle?",
+              label: "What's the real obstacle?",
               input: "chips",
               suggestions: [
                 "They'd pity me",
@@ -453,16 +455,16 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
           kind: "sentenceBuilder",
           label: "The one thing, in your words",
           helper:
-            "One sentence, no preamble, no request attached. You might start with \u201cThere's something I haven't told anyone\u201d or \u201cCan I say something? I don't need you to do anything about it.\u201d",
+            "One sentence. No build-up, no request attached. You might start with \u201cThere's something I haven't told anyone\u201d or \u201cCan I say something? I don't need you to do anything about it.\u201d",
         },
         {
           kind: "realWorldUse",
           useWhen:
-            "An ordinary conversation with the person you picked \u2014 not a scheduled talk, and not at the end of an evening.",
+            "An ordinary conversation with the person you picked \u2014 not a planned sit-down, and not at the end of an evening.",
           doThis:
-            "Say the one thing. Don't build up to it, don't give the full account, and don't apologise for saying it. Then let them respond however they respond.",
+            "Say the one thing. Don't build up to it. Don't give the full story. Don't apologise for saying it. Then let them respond however they respond.",
           safetyNote:
-            "If the thing you're carrying involves being frightened of someone, or being harmed, that needs more than one friend \u2014 a GP, a therapist, or a domestic abuse service. You don't have to be certain it's serious to ask.",
+            "If the thing you're carrying involves being afraid of someone, or being harmed, that needs more than one friend \u2014 a GP, a therapist, or a domestic abuse service. You don't have to be sure it's serious to ask.",
         },
         {
           kind: "output",
@@ -474,14 +476,14 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Everyone is operating on the pretend version.",
+            "Everyone is going on the pretend version.",
             "One person, one thing, nothing attached.",
             "Who I pick matters more than what I say.",
           ],
         },
       ],
       portable: [
-        "Everyone is operating on the pretend version.",
+        "Everyone is going on the pretend version.",
         "One person, one thing, nothing attached.",
         "Who I pick matters more than what I say.",
       ],
@@ -508,7 +510,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
           id: "signpost-c23-alone",
           heading: "If there's no one",
           body:
-            "Some people work through this and find there isn't anyone \u2014 the relationship took the friendships with it, or there was never much of a network. That's common and it isn't a failure of yours. A therapist can be a reasonable first person to tell, precisely because there's no history to manage and nothing gets passed on. So can a mental-health support line, or a bereavement line if the loss is what's heaviest \u2014 whichever is easier to start with.",
+            "Some people work through this and find there isn't anyone \u2014 the relationship took the friendships with it, or there was never much of a network. That's common, and it isn't a failure of yours. A therapist can be a good first person to tell, exactly because there's no history to manage and nothing gets passed on. So can a mental-health support line, or a bereavement line if the loss is what's heaviest \u2014 whichever is easier to start with.",
         },
       ],
     },
@@ -528,7 +530,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
       attemptMeaning:
         "You noticed. Feeling differently wasn't the ask.",
       suitability:
-        "If this becomes another thing to get right, stop \u2014 that's the standard reasserting itself in a new place.",
+        "If this turns into another thing to get right, stop \u2014 that's the standard showing up again in a new place.",
       progression: [
         {
           id: "rung-c23-standard-2",
@@ -547,7 +549,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
       attemptMeaning:
         "You looked on the day. Moving the date is information too.",
       suitability:
-        "If you move it more than once, that pattern is more informative than the next date will be.",
+        "If you move it more than once, that pattern tells you more than the next date will.",
       progression: [
         {
           id: "rung-c23-waiting-2",
@@ -566,7 +568,7 @@ export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
       attemptMeaning:
         "You said it. How they took it is separate and is also information.",
       suitability:
-        "If the first went badly, that's about them rather than about the principle. Choose differently rather than concluding.",
+        "If the first went badly, that's about them, not about the idea. Choose differently instead of writing it off.",
       progression: [
         {
           id: "rung-c23-tell-2",

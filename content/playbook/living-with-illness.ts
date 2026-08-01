@@ -30,6 +30,8 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { ADDON_ILLNESS_LITERATURE } from "./living-with-illness-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
   playbookKey: "addon-living-with-illness",
   playbookVersion: 1,
@@ -38,9 +40,9 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
   opening: {
     title: "A fact, not a failing",
     body: [
-      "Your illness changed the relationship. That's usually carried as though it were the second thing rather than the first.",
-      "What the illness requires is practical and has specialists. What has happened between you because of it — the asking, the guilt, the intimacy, the fear — has almost nothing written for it. That's what this is.",
-      "Nothing here is medical, and nothing here has a view about what you're capable of.",
+      "Your illness changed the relationship. Most people treat that as the second thing, not the first.",
+      "What the illness needs is practical, and there are specialists for it. What has happened between you because of it — the asking, the guilt, the intimacy, the fear — has almost nothing written for it. That's what this is for.",
+      "Nothing here is medical. And nothing here has a view about what you can do.",
     ],
     manifestations: [
       "I feel like a burden.",
@@ -58,7 +60,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I want to feel like more than my diagnosis.",
       validationCopy:
-        "Worth taking literally rather than as a sentiment. The practical version: how much of what passes between you is about the illness? Appointments, symptoms, medication, how you're doing — all necessary, and it expands until there isn't much else. \u201cI miss who I used to be\u201d is partly about the body and partly about being related to as a person rather than a condition being managed.",
+        "Worth taking literally, not as a nice sentiment. The practical version: how much of what goes on between you is about the illness? Appointments, symptoms, medication, how you're doing — all of it needed, and it grows until there isn't much else. \u201cI miss who I used to be\u201d is partly about the body. And partly about being treated as a person, not a condition being managed.",
       secondaryExamples: [
         "I miss who I used to be.",
         "My illness has changed our relationship.",
@@ -71,7 +73,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm the one providing the care.",
       validationCopy:
-        "Then this is written from the wrong side. There's a paired Playbook for the person caring — about the partnership receding, about the guilt of wanting a break, about being alone while together. That's the one for you. If both of you want to, reading the paired piece may help you understand the other's perspective. Share or discuss only what each of you is comfortable sharing.",
+        "Then this is written from the wrong side. There's a paired Playbook for the person caring — about the partnership fading, about the guilt of wanting a break, about being alone while together. That's the one for you. If both of you want to, reading the paired piece may help each of you understand the other's side. Share or discuss only what each of you is comfortable sharing.",
       secondaryExamples: [
         "I'm exhausted.",
         "I feel guilty wanting a break.",
@@ -84,7 +86,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
       pathwayPlayId: "what-the-burden-belief-costs",
       headline: "I feel like a burden.",
       explanation:
-        "We're not going to tell you that you aren't. What's worth looking at is what the belief does — it suppresses asking, and that makes things harder for both of you.",
+        "We're not going to tell you that you aren't. What's worth looking at is what the belief does — it stops you asking, and that makes things harder for both of you.",
       secondaryExamples: [
         "I don't want them to feel trapped.",
         "I don't know how to ask for what I need.",
@@ -96,7 +98,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
       pathwayPlayId: "opening-the-subject",
       headline: "I don't know how to navigate intimacy now.",
       explanation:
-        "The least discussed part of this and one of the most common. Both people avoid it to protect the other, and the avoiding becomes the problem.",
+        "The least talked-about part of this, and one of the most common. Both people avoid it to protect the other, and the avoiding becomes the problem.",
       secondaryExamples: [
         "I don't feel attractive anymore.",
         "I don't know how to stay connected when everything has changed.",
@@ -118,23 +120,23 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "We're not going to tell you that you aren't a burden. Being argued out of it doesn't work and it adds a second layer about being unreasonable.",
-            "What's worth looking at is what the belief does. It suppresses asking — if every request adds to a total you're already ashamed of, the sensible move is to ask for less.",
+            "We're not going to tell you that you aren't a burden. Being argued out of it doesn't work. And it only adds a second layer: feeling unreasonable on top of everything else.",
+            "What's worth looking at is what the belief does. It stops you asking. If every request adds to a total you're already ashamed of, then asking for less makes sense.",
             "Most people here have got very good at that.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Which makes things harder for both of you. Your partner is working from incomplete information and often getting it wrong — doing things at the wrong time, missing the thing that mattered, guessing.",
-            "\u201cI don't want them to feel trapped\u201d comes from the same place and usually results in managing their experience for them: deciding in advance what they can bear, without asking.",
-            "Asking less doesn't reduce the load. It relocates it.",
+            "Which makes things harder for both of you. Your partner is working from only part of the picture, and often gets it wrong — doing things at the wrong time, missing the thing that mattered, guessing.",
+            "\u201cI don't want them to feel trapped\u201d comes from the same place. It usually means managing their experience for them — deciding ahead of time what they can handle, without asking.",
+            "Asking for less doesn't lower the load. It just moves it.",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Not an exercise in asking for more. A count of what's currently unsaid.",
+            "This isn't about asking for more. It's a count of what's going unsaid right now.",
           fields: [
             {
               id: "not-asking",
@@ -144,7 +146,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
             },
             {
               id: "deciding-for-them",
-              label: "What have you decided they couldn't bear, without asking?",
+              label: "What have you decided they couldn't handle, without asking?",
               input: "text",
               placeholder: "Most people find there's at least one.",
             },
@@ -153,7 +155,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
               label:
                 "One thing you'd ask for if the running total didn't exist",
               input: "text",
-              placeholder: "Small enough that a no would be survivable.",
+              placeholder: "Small enough that you could take a no.",
             },
           ],
         },
@@ -164,7 +166,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
           enoughLabel: "Mostly, yes",
           needMoreLabel: "No \u2014 they'd have no idea",
           needMoreIntro:
-            "That's the cost, stated plainly. They're making decisions about how to help you based on a version of your needs that you've edited down.",
+            "That's the cost, put plainly. They're deciding how to help you based on a cut-down version of your needs — one you edited down yourself.",
           needToKnowLabel: "What I'd most want them to know exists",
           observableLabel: "Something specific I could name",
         },
@@ -172,37 +174,37 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
           kind: "output",
           heading: "What I've stopped asking for",
           body:
-            "Asking less doesn't reduce the load. It relocates it into their guessing.",
+            "Asking for less doesn't lower the load. It just moves it into their guessing.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "The belief suppresses asking. That's the cost, whatever its accuracy.",
-            "Deciding what they can bear, without asking, is managing them.",
-            "Asking less relocates the load. It doesn't reduce it.",
+            "The belief stops you asking. That's the cost, whether it's true or not.",
+            "Deciding what they can handle, without asking, is managing them.",
+            "Asking for less just moves the load. It doesn't lower it.",
           ],
         },
       ],
       portable: [
-        "The belief suppresses asking. That's the cost, whatever its accuracy.",
-        "Deciding what they can bear, without asking, is managing them.",
-        "Asking less relocates the load. It doesn't reduce it.",
+        "The belief stops you asking. That's the cost, whether it's true or not.",
+        "Deciding what they can handle, without asking, is managing them.",
+        "Asking for less just moves the load. It doesn't lower it.",
       ],
       myPlaysTemplate: {
         when: "When I've got good at needing less than I need",
         move: "Count what I've stopped asking for, and what I've decided for them",
         lookingFor: "Whether they know these things exist at all",
         watchOut: "Turning this into another reason to feel like a burden",
-        remember: "They're working from a version of my needs that I edited down.",
+        remember: "They're working from a cut-down version of my needs — one I edited down.",
       },
       fidelity: {
         correct:
-          "Suppressed requests are counted, and decisions made on the partner's behalf without asking are identified.",
+          "You count the requests you've held back, and you spot the choices you made for your partner without asking.",
         misuse: [
-          "Using it as further evidence of being a burden.",
+          "Using it as more proof that you're a burden.",
           "Deciding to ask for everything at once.",
-          "Treating the belief as something to be argued away.",
+          "Treating the belief as something to argue away.",
         ],
         notMeaning:
           "It does not mean you aren't a burden, that asking will be met, or that they want to be asked.",
@@ -217,29 +219,29 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
       positioning:
         "For the conversation you're both avoiding to protect each other.",
       recognitionGate: {
-        prompt: "Is there something about how you are together that neither of you raises?",
+        prompt: "Is there something about how you are together that neither of you brings up?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "Intimacy after a body changes is one of the least discussed parts of this, and almost nothing written about relationships and illness goes near it.",
-            "Two things get treated as one. What your body can do — between you and people who know your condition, and not what this is about.",
-            "And whether it can be talked about. That's the part that stalls, and it stalls in a specific way: both people avoid it to protect the other, and the avoiding becomes the problem.",
+            "Intimacy after your body changes is one of the least talked-about parts of this. And almost nothing written about relationships and illness goes near it.",
+            "Two things get treated as one. First, what your body can do. That's between you and people who know your condition — and it's not what this is about.",
+            "Second, whether it can be talked about. That's the part that gets stuck. And it gets stuck in a certain way: both people avoid it to protect the other, and the avoiding becomes the problem.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Feeling unattractive is worth separating too. It's usually about how you feel in your body rather than what your partner thinks — which matters, because reassurance from them doesn't reach it, and you may both have concluded the reassurance failed.",
-            "Nothing here suggests intimacy can be restored or should look like it used to. What's workable is whether the subject can be opened at all.",
+            "Feeling unattractive is worth pulling apart too. It's usually about how you feel in your body, not what your partner thinks — which matters, because their reassurance doesn't reach it, and you may both have decided the reassurance failed.",
+            "Nothing here says intimacy can be brought back, or that it should look like it used to. What can be worked on is whether the subject can be opened at all.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
             "Opening it will probably be uncomfortable, and it may not go well the first time.",
-            "That's not a sign it was the wrong move. Subjects that have been avoided for a long time rarely open gracefully.",
+            "That's not a sign it was the wrong move. Subjects avoided for a long time rarely open smoothly.",
           ],
         },
         {
@@ -276,52 +278,52 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
           kind: "sentenceBuilder",
           label: "How you'd open it",
           helper:
-            "Not a request and not an apology. Naming that it's unsaid is enough to start. You might use \u201cThere's something we don't talk about, and I'd rather we did\u201d or \u201cCan I say something awkward? I don't need you to fix it.\u201d",
+            "Not a request, and not an apology. Just naming that it's unsaid is enough to start. You might say \u201cThere's something we don't talk about, and I'd rather we did\u201d or \u201cCan I say something awkward? I don't need you to fix it.\u201d",
         },
         {
           kind: "realWorldUse",
           useWhen:
-            "A calm moment with time afterwards \u2014 not in bed, and not after something has already gone wrong.",
+            "A calm moment with time afterward \u2014 not in bed, and not right after something has gone wrong.",
           doThis:
-            "Say the opening line and then the one unsaid thing. Don't add a request, don't apologise for raising it, and let it be uncomfortable rather than rescuing it.",
+            "Say the opening line, then the one unsaid thing. Don't add a request. Don't apologise for bringing it up. And let it stay uncomfortable instead of smoothing it over.",
           safetyNote:
-            "If you'd be at risk raising it \u2014 if there's pressure, or a reaction you're frightened of \u2014 that's a different situation and this isn't the tool. Please talk to someone.",
+            "If raising it would put you at risk \u2014 if there's pressure, or a reaction you're afraid of \u2014 that's a different situation, and this isn't the tool for it. Please talk to someone.",
         },
         {
           kind: "output",
           heading: "What I said",
           body:
-            "Not a solution. The subject opened, which is the part that was stuck.",
+            "Not a fix. The subject got opened, which is the part that was stuck.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
             "We're both avoiding it to protect each other. The avoiding is the problem.",
-            "What my body can do and whether we can discuss it are different questions.",
+            "What my body can do and whether we can talk about it are two different questions.",
             "Reassurance doesn't reach how I feel in my body. That isn't their failure.",
           ],
         },
       ],
       portable: [
         "We're both avoiding it to protect each other. The avoiding is the problem.",
-        "What my body can do and whether we can discuss it are different questions.",
+        "What my body can do and whether we can talk about it are two different questions.",
         "Reassurance doesn't reach how I feel in my body. That isn't their failure.",
       ],
       myPlaysTemplate: {
-        when: "When neither of us raises something about how we are together",
+        when: "When neither of us brings up something about how we are together",
         move: "Name that it's unsaid, then say the one thing",
         lookingFor: "Whether the subject can be opened at all",
-        watchOut: "Rescuing the discomfort by adding a solution",
-        remember: "It rarely opens gracefully. That isn't a sign it was wrong.",
+        watchOut: "Smoothing over the discomfort by adding a fix",
+        remember: "It rarely opens smoothly. That isn't a sign it was wrong.",
       },
       fidelity: {
         correct:
-          "An avoided subject is named directly, with one unsaid thing stated, and no request or apology attached.",
+          "You name an avoided subject directly, say one unsaid thing, and add no request or apology.",
         misuse: [
-          "Raising it in the moment it's most loaded.",
-          "Attaching a request for something to change.",
-          "Treating a difficult first conversation as evidence it shouldn't have been raised.",
+          "Bringing it up in the moment it's most loaded.",
+          "Adding a request for something to change.",
+          "Treating a hard first conversation as proof it shouldn't have been brought up.",
         ],
         notMeaning:
           "It does not mean intimacy changes, that they'll respond well, or that the subject becomes easy.",
@@ -339,16 +341,16 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
       title: "Ask for the one thing",
       instruction:
         "Ask for the small thing you named. Once, plainly, without explaining why you deserve it.",
-      linkToOperation: "Making a suppressed request",
+      linkToOperation: "Making a request you'd held back",
       attemptMeaning:
-        "You asked. A no is a completed attempt and is information about the request, not about you.",
+        "You asked. A no still counts as a full attempt — it's information about the request, not about you.",
       suitability:
-        "Start with one where a no would be genuinely survivable. Not the biggest thing on the list.",
+        "Start with one where you could handle a no. Not the biggest thing on the list.",
       progression: [
         {
           id: "rung-ill-ask-2",
           instruction:
-            "Tell them one thing you'd decided they couldn't bear, and check whether that was right.",
+            "Tell them one thing you'd decided they couldn't handle, and check whether that was right.",
         },
       ],
     },
@@ -358,12 +360,12 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
       playId: "opening-the-subject",
       title: "Come back to it once",
       instruction:
-        "A week or two after you opened it, return to it briefly. Subjects that get raised once and never again tend to close over.",
-      linkToOperation: "Sustaining an opened subject rather than raising it once",
+        "A week or two after you opened it, come back to it briefly. Subjects that get raised once and never again tend to close over.",
+      linkToOperation: "Keeping an opened subject going, not just raising it once",
       attemptMeaning:
         "You came back. That it stays uncomfortable is expected.",
       suitability:
-        "If the first attempt went badly, coming back is still worth doing \u2014 second attempts frequently go better than first ones here.",
+        "If the first try went badly, coming back is still worth doing \u2014 second tries often go better than first ones here.",
       progression: [
         {
           id: "rung-ill-subject-2",
@@ -389,7 +391,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
         ],
       },
       performedOperation: {
-        label: "Did you count the suppressed requests?",
+        label: "Did you count the requests you'd held back?",
         options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
@@ -405,7 +407,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
       stuckWhere: {
         label: "Where did you get stuck?",
         options: [
-          "It became more evidence of being a burden",
+          "It became more proof I'm a burden",
           "I couldn't ask even for the small thing",
           "I asked and it went badly",
           "Nothing stuck",
@@ -423,7 +425,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
           "Named that it was unsaid",
           "Said the one thing",
           "Let it be uncomfortable",
-          "Rescued it with a solution",
+          "Smoothed it over with a fix",
         ],
       },
       performedOperation: {
@@ -435,7 +437,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
         multi: true,
         options: [
           "That they'd been avoiding it too",
-          "That my assumption about them was wrong",
+          "That what I assumed about them was wrong",
           "That it's about how I feel in my body",
           "Nothing new",
         ],
@@ -443,7 +445,7 @@ export const ADDON_LIVING_WITH_ILLNESS: PlaybookContent = {
       stuckWhere: {
         label: "Where did you get stuck?",
         options: [
-          "I couldn't raise it",
+          "I couldn't bring it up",
           "It went badly",
           "They reassured me and it didn't land",
           "Nothing stuck",

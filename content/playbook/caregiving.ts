@@ -25,6 +25,7 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { ADDON_CAREGIVING_LITERATURE } from "./caregiving-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const ADDON_CAREGIVING: PlaybookContent = {
   playbookKey: "addon-caregiving",
   playbookVersion: 1,
@@ -33,9 +34,9 @@ export const ADDON_CAREGIVING: PlaybookContent = {
   opening: {
     title: "Two things that are both true",
     body: [
-      "You love them. And you are overwhelmed. The second isn't evidence against the first, though it's usually carried as though it were.",
-      "What's happened is structural: two relationships now run through the same person, and one of them takes precedence by necessity.",
-      "Nothing here is guidance on care, benefits, or anything clinical. Those have specialists. This is about what happened to the relationship underneath.",
+      "You love them. And you are overwhelmed. The second one isn't evidence against the first — even though it usually feels like it is.",
+      "What happened is about how things are set up. Two relationships now run through the same person. And one of them has to come first.",
+      "Nothing here is advice on care, benefits, or anything clinical. Those things have experts. This is about what happened to the relationship underneath.",
     ],
     manifestations: [
       "Our relationship has become more about caregiving than partnership.",
@@ -53,7 +54,7 @@ export const ADDON_CAREGIVING: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I love them, but I'm overwhelmed.",
       validationCopy:
-        "Both halves are true at once, and the guilt usually rests on a comparison — they didn't choose to be ill, and you're tired of helping. But their difficulty being larger doesn't make yours zero; those aren't on the same scale. And wanting a break isn't wanting them to be different. It's a fact about capacity.",
+        "Both halves are true at once. The guilt usually rests on a comparison — they didn't choose to be ill, and you're tired of helping. But their struggle being bigger doesn't make yours zero. The two aren't on the same scale. And wanting a break isn't wanting them to be different. It's a fact about how much you have left to give.",
       secondaryExamples: [
         "I'm exhausted.",
         "I feel guilty wanting a break.",
@@ -66,7 +67,7 @@ export const ADDON_CAREGIVING: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm the one who's ill, not the one caring.",
       validationCopy:
-        "Then this is written from the wrong side. There's a paired Playbook for the person living with the illness — about feeling like a burden, about not wanting them to feel trapped, about staying connected when everything has changed. That's the one for you. If both of you want to, reading the paired piece may help you understand the other's perspective. Share or discuss only what each of you is comfortable sharing.",
+        "Then this is written from the wrong side. There's a paired Playbook for the person living with the illness. It's about feeling like a burden, about not wanting them to feel trapped, and about staying close when everything has changed. That's the one for you. If you both want to, reading the paired piece may help you see the other's side. Share or talk about only what each of you is okay sharing.",
       secondaryExamples: [
         "I feel like a burden.",
         "I don't want them to feel trapped.",
@@ -79,7 +80,7 @@ export const ADDON_CAREGIVING: PlaybookContent = {
       pathwayPlayId: "the-two-relationships",
       headline: "I miss the relationship we used to have.",
       explanation:
-        "The partnership recedes rather than ending. It required two people with something spare, and there rarely is any.",
+        "The partnership fades rather than ends. It needed two people with something to spare, and there rarely is any.",
       secondaryExamples: [
         "Our relationship has become more about caregiving than partnership.",
         "I don't know how to balance love and responsibility.",
@@ -92,7 +93,7 @@ export const ADDON_CAREGIVING: PlaybookContent = {
       pathwayPlayId: "one-specific-ask",
       headline: "I don't know how to ask for help.",
       explanation:
-        "Usually not about pride. \u201cLet me know if you need anything\u201d puts three jobs on you. A specific request is one job for them.",
+        "Usually it's not about pride. \u201cLet me know if you need anything\u201d puts three jobs on you. A specific request is one job for them.",
       secondaryExamples: [
         "I feel alone even though we're together.",
         "I'm exhausted.",
@@ -106,31 +107,31 @@ export const ADDON_CAREGIVING: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "The Two Relationships",
-      positioning: "For the partnership that receded without either of you choosing it.",
+      positioning: "For the partnership that faded without either of you choosing it.",
       recognitionGate: {
-        prompt: "Has the caring taken over the space the relationship used to occupy?",
+        prompt: "Has the caring taken over the space the relationship used to fill?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "Two relationships are now running through the same person, and one takes precedence by necessity.",
-            "The caring one is organised around need — not reciprocal, doesn't take turns, doesn't stop when either of you is tired.",
-            "The partnership was organised around mutuality. It required two people with something spare, and there rarely is any.",
-            "Which is why it recedes rather than ends. Not because either of you stopped wanting it.",
+            "Two relationships now run through the same person. And one has to come first.",
+            "The caring one is built around need. It doesn't go both ways, it doesn't take turns, and it doesn't stop when either of you is tired.",
+            "The partnership was built on give-and-take. It needed two people with something to spare, and there rarely is any.",
+            "That's why it fades rather than ends. Not because either of you stopped wanting it.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Naming that separation does something specific: it stops the receding being read as a verdict on the relationship, or on either of you.",
-            "It also makes a smaller question available. Not \u201chow do we get the partnership back\u201d, which usually isn't answerable while the caring load is what it is. But: is there anything left of it that doesn't require spare capacity?",
+            "Naming that split does one clear thing. It stops the fading from being read as a judgment on the relationship, or on either of you.",
+            "It also opens up a smaller question. Not \u201chow do we get the partnership back\u201d \u2014 that usually can't be answered while the caring load stays this heavy. But: is there anything left of it that doesn't need spare energy?",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Be concrete. Small things count more here than large ones.",
+            "Be specific. Small things count more here than big ones.",
           fields: [
             {
               id: "what-went",
@@ -147,14 +148,14 @@ export const ADDON_CAREGIVING: PlaybookContent = {
             },
             {
               id: "whats-left",
-              label: "Is there anything of the partnership that survives?",
+              label: "Is there any part of the partnership that's still there?",
               input: "text",
               placeholder:
                 "It's usually something very small. A joke, ten minutes, one habit.",
             },
             {
               id: "requires-spare",
-              label: "Does that thing require spare capacity, or does it fit inside the day?",
+              label: "Does that thing need spare energy, or does it fit inside the day?",
               input: "chips",
               suggestions: [
                 "Fits inside the day",
@@ -167,19 +168,19 @@ export const ADDON_CAREGIVING: PlaybookContent = {
         },
         {
           kind: "sufficiency",
-          prompt: "Is the receding being read as a verdict on the relationship?",
+          prompt: "Is the fading being read as a judgment on the relationship?",
           enoughLabel: "No \u2014 it's the situation",
           needMoreLabel: "Sometimes, yes",
           needMoreIntro:
-            "Very common, and it adds a second weight to the first. The partnership receding under this load isn't information about how you feel about each other.",
+            "Very common, and it adds a second weight to the first. The partnership fading under this load doesn't tell you how you feel about each other.",
           needToKnowLabel: "What I'd want them to know about that",
           observableLabel: "Something small I could say",
         },
         {
           kind: "output",
-          heading: "What's receded, and what's left",
+          heading: "What's faded, and what's left",
           body:
-            "The partnership requiring spare capacity is why it went. That isn't a verdict on it.",
+            "The partnership needed spare energy, and that's why it went. That isn't a judgment on it.",
         },
         {
           kind: "portable",
@@ -192,27 +193,27 @@ export const ADDON_CAREGIVING: PlaybookContent = {
         },
       ],
       portable: [
-        "Two relationships, one person. One takes precedence by necessity.",
-        "It receded because there's nothing spare, not because we stopped wanting it.",
-        "The small thing that fits inside the day is worth more than the large one that doesn't.",
+        "Two relationships, one person. One has to come first.",
+        "It faded because there's nothing spare, not because we stopped wanting it.",
+        "The small thing that fits inside the day is worth more than the big one that doesn't.",
       ],
       myPlaysTemplate: {
         when: "When the caring has taken the space the relationship used to have",
-        move: "Separate the caring relationship from the partnership, and find what survives",
-        lookingFor: "Something that fits inside the day rather than needing spare capacity",
-        watchOut: "Reading the receding as a verdict on how we feel about each other",
-        remember: "Nobody prepared us for this. That's accurate rather than a failing.",
+        move: "Separate the caring relationship from the partnership, and find what's still there",
+        lookingFor: "Something that fits inside the day rather than needing spare energy",
+        watchOut: "Reading the fading as a judgment on how we feel about each other",
+        remember: "Nobody prepared us for this. That's true, not a failing.",
       },
       fidelity: {
         correct:
-          "The caring relationship and the partnership are named separately, and any surviving element is identified by whether it fits within existing capacity.",
+          "The caring relationship and the partnership are named separately, and any part that's left is checked by whether it fits inside the energy you already have.",
         misuse: [
           "Using it to build a case that the relationship is over.",
-          "Setting a goal of restoring the partnership while the load is unchanged.",
-          "Treating the receding as either person's fault.",
+          "Setting a goal of getting the partnership back while the load stays the same.",
+          "Treating the fading as either person's fault.",
         ],
         notMeaning:
-          "It does not mean the partnership returns, that anything survives, or that naming it reduces the load.",
+          "It does not mean the partnership comes back, that anything is left, or that naming it makes the load lighter.",
       },
     },
 
@@ -222,7 +223,7 @@ export const ADDON_CAREGIVING: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "One Specific Ask",
       positioning:
-        "For converting offers into help. You prepare the ask — then you use it.",
+        "For turning offers into real help. You get the ask ready — then you use it.",
       recognitionGate: {
         prompt: "Do people offer to help and nothing ever comes of it?",
       },
@@ -230,16 +231,16 @@ export const ADDON_CAREGIVING: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "\u201cI don't know how to ask for help\u201d usually isn't about pride. It's about specificity.",
-            "\u201cLet me know if you need anything\u201d puts the work on you — identify a task, judge whether it's reasonable, then ask. That's three jobs on top of the one you already have.",
+            "\u201cI don't know how to ask for help\u201d usually isn't about pride. It's about being specific.",
+            "\u201cLet me know if you need anything\u201d puts the work on you. You have to name a task, decide if it's fair to ask, then ask. That's three jobs on top of the one you already have.",
             "\u201cCould you sit with him Thursday afternoon?\u201d is one job for them and none for you afterwards.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "So what converts offers into help is having a specific request ready before anyone offers. Most people who offer mean it and are waiting to be told what.",
-            "It's also worth having more than one, at different sizes. People decline the big one and take the small one, and you want the small one to exist.",
+            "So what turns offers into help is having a specific request ready before anyone offers. Most people who offer mean it, and they're waiting to be told what.",
+            "It's also worth having more than one, in different sizes. People turn down the big one and take the small one, so you want the small one to exist.",
           ],
         },
         {
@@ -249,7 +250,7 @@ export const ADDON_CAREGIVING: PlaybookContent = {
           fields: [
             {
               id: "who-offers",
-              label: "Who has offered, in general terms?",
+              label: "Who has offered, in a general way?",
               input: "text",
               placeholder: "The people who've said some version of \u201clet me know\u201d.",
             },
@@ -275,17 +276,17 @@ export const ADDON_CAREGIVING: PlaybookContent = {
         {
           kind: "realWorldUse",
           useWhen:
-            "The next time someone offers in general terms \u2014 or the next time you see one of the people who has.",
+            "The next time someone offers in a general way \u2014 or the next time you see one of the people who has.",
           doThis:
             "Name one specific thing, with a day attached. Don't soften it, don't offer them an exit, and don't apologise for asking.",
           safetyNote:
-            "If nobody has offered and there's nobody to ask, that's a different problem and a real one. A carers' group or your GP is a reasonable place to start \u2014 people are often reluctant on the grounds that others have it worse, and that isn't the entry requirement.",
+            "If nobody has offered and there's nobody to ask, that's a different problem \u2014 and a real one. A carers' group or your GP is a reasonable place to start. People are often reluctant because they think others have it worse. But that isn't the entry requirement.",
         },
         {
           kind: "output",
           heading: "My asks, ready",
           body:
-            "Most people who offer mean it and are waiting to be told what.",
+            "Most people who offer mean it, and they're waiting to be told what.",
         },
         {
           kind: "portable",
@@ -293,27 +294,27 @@ export const ADDON_CAREGIVING: PlaybookContent = {
           steps: [
             "\u201cLet me know if you need anything\u201d is three jobs for me.",
             "A named day beats \u201csometime\u201d.",
-            "Have a small one ready. People decline the big one and take the small one.",
+            "Have a small one ready. People turn down the big one and take the small one.",
           ],
         },
       ],
       portable: [
         "\u201cLet me know if you need anything\u201d is three jobs for me.",
         "A named day beats \u201csometime\u201d.",
-        "Have a small one ready. People decline the big one and take the small one.",
+        "Have a small one ready. People turn down the big one and take the small one.",
       ],
       myPlaysTemplate: {
         when: "When people offer and nothing comes of it",
         move: "Have two or three specific asks ready, with days attached",
-        lookingFor: "Whether a specific ask converts where a general offer didn't",
+        lookingFor: "Whether a specific ask works where a general offer didn't",
         watchOut: "Making every ask about them and none about me",
-        remember: "Depletion responds to rest, not to guilt.",
+        remember: "Being worn down responds to rest, not to guilt.",
       },
       fidelity: {
         correct:
-          "Specific requests with named times are prepared in advance and made directly when an offer occurs.",
+          "Specific requests with named times are ready in advance, and made directly when someone offers.",
         misuse: [
-          "Softening the ask until it's declinable by default.",
+          "Softening the ask until it's easy to say no to.",
           "Only ever asking for things that serve the caring.",
           "Waiting for an offer specific enough to accept.",
         ],
@@ -332,12 +333,12 @@ export const ADDON_CAREGIVING: PlaybookContent = {
       playId: "the-two-relationships",
       title: "Protect the small thing for a fortnight",
       instruction:
-        "Whatever survives that fits inside the day \u2014 keep it, for two weeks, deliberately.",
+        "Whatever's left that fits inside the day \u2014 keep it, for two weeks, on purpose.",
       linkToOperation: "Preserving a surviving element of partnership within existing capacity",
       attemptMeaning:
         "You kept it. Whether it felt like enough isn't the measure.",
       suitability:
-        "If nothing survives that fits inside the day, that's a real answer and worth saying to someone rather than solving alone.",
+        "If nothing's left that fits inside the day, that's a real answer \u2014 and worth telling someone rather than solving alone.",
       progression: [
         {
           id: "rung-care-small-2",
@@ -354,7 +355,7 @@ export const ADDON_CAREGIVING: PlaybookContent = {
         "Ask for the one that gives you an hour, rather than the ones that serve the caring. Note what happens.",
       linkToOperation: "Requesting support for oneself rather than for the care task",
       attemptMeaning:
-        "You asked. A refusal is information about them, not about whether you should have.",
+        "You asked. A no is information about them, not about whether you should have.",
       suitability:
         "If asking for something that's only for you feels impossible, that's worth noticing \u2014 it's the most common version of this.",
       progression: [
@@ -376,8 +377,8 @@ export const ADDON_CAREGIVING: PlaybookContent = {
         multi: true,
         options: [
           "Separated the caring from the partnership",
-          "Found something that survives",
-          "Protected it deliberately",
+          "Found something still there",
+          "Protected it on purpose",
           "Couldn't find anything",
         ],
       },
@@ -389,8 +390,8 @@ export const ADDON_CAREGIVING: PlaybookContent = {
         label: "What got clearer?",
         multi: true,
         options: [
-          "That it receded rather than ended",
-          "That something does survive",
+          "That it faded rather than ended",
+          "That something is still there",
           "That there's nothing spare at all",
           "Nothing new",
         ],
@@ -398,7 +399,7 @@ export const ADDON_CAREGIVING: PlaybookContent = {
       stuckWhere: {
         label: "Where did you get stuck?",
         options: [
-          "Nothing survives that fits in the day",
+          "Nothing's left that fits in the day",
           "Protecting it took energy I don't have",
           "It made me sadder rather than clearer",
           "Nothing stuck",
@@ -427,7 +428,7 @@ export const ADDON_CAREGIVING: PlaybookContent = {
         label: "What got clearer?",
         multi: true,
         options: [
-          "That specific asks convert",
+          "That specific asks work",
           "That some offers weren't meant",
           "How rarely I ask for anything for myself",
           "Nothing new",

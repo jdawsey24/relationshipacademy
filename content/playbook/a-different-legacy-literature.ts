@@ -35,6 +35,8 @@
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const C26_LITERATURE: LiteratureEntry[] = [
   {
     id: "lit-c26-what-this-is",
@@ -48,7 +50,7 @@ export const C26_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "You've noticed something that ran in the family you grew up in, and you don't want it to keep running.",
-          "That's most of what's here \u2014 not a difficulty you're stuck in, but a direction you've decided on and a worry about whether deciding is enough.",
+          "That's most of what's here \u2014 not a problem you're stuck in, but a direction you've chosen, and a worry about whether choosing is enough.",
         ],
       },
       {
@@ -56,13 +58,13 @@ export const C26_LITERATURE: LiteratureEntry[] = [
         label: "The gap this Playbook works on",
         body: [
           "\u201cI want to break generational patterns\u201d is a direction. Sincere, and not yet something you could do this week.",
-          "Naming the specific thing, and noticing what a relationship actually demonstrates rather than states \u2014 those are small enough to act on.",
+          "Naming the specific thing, and noticing what a relationship actually shows rather than says \u2014 those are small enough to act on.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here is about how to raise children, and nothing assumes you have any. It also doesn't assume your family was bad. Most people in this position had a childhood with a lot of good in it and one pattern they'd rather not carry forward.",
+          "Nothing here is about how to raise children, and nothing assumes you have any. It also doesn't assume your family was bad. Most people in this spot had a childhood with a lot of good in it, and just one pattern they'd rather not carry forward.",
         ],
       },
     ],
@@ -95,14 +97,14 @@ export const C26_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Those are values, clearly held, by someone who has thought about it. Most people never articulate any of them, and a good number never notice the pattern at all.",
-          "Noticing is the part that's hard to acquire and you've already done it.",
+          "Those are values, clearly held, by someone who has thought about it. Most people never put any of them into words, and plenty never notice the pattern at all.",
+          "Noticing is the hard part to learn, and you've already done it.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "So this is a short Playbook, deliberately. Two tools, because most of what you'd need has already happened.",
+          "So this is a short Playbook, on purpose. Two tools, because most of what you'd need has already happened.",
         ],
       },
     ],
@@ -119,13 +121,13 @@ export const C26_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't want dysfunction to become normal\u201d describes a category. It doesn't tell you what to watch for.",
-          "Inherited patterns are hard to see for a specific reason: they were the water. Whatever happened in your house was, for years, simply what happens \u2014 and that background quality persists long after you can name it as a pattern.",
+          "\u201cI don't want dysfunction to become normal\u201d names a whole category. It doesn't tell you what to watch for.",
+          "Inherited patterns are hard to see for a specific reason: they were the water. Whatever happened in your house was, for years, simply what happens \u2014 and that background feeling stays with you long after you can name it as a pattern.",
         ],
       },
       {
         kind: "distinction",
-        label: "Two levels, and only one is workable",
+        label: "Two levels, and only one you can work with",
         body: [
           "\u201cThere was a lot of conflict\u201d or \u201cnobody talked about anything\u201d \u2014 a description of the climate. True, and too broad to act on.",
           "\u201cWhen someone was upset, everyone left the room\u201d or \u201cyou apologised by making a joke\u201d \u2014 a specific move, repeated. That's a thing you could catch yourself doing.",
@@ -134,13 +136,13 @@ export const C26_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "The specific version is nearly always something small and procedural. What happened at the moment of difficulty \u2014 who spoke, who left, what got said instead of the real thing.",
+          "The specific version is nearly always something small and about what you actually did. What happened at the moment of difficulty \u2014 who spoke, who left, what got said instead of the real thing.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "This isn't an audit of your parents and doesn't require you to conclude anything about them. Plenty of people identify a pattern they don't want to repeat and still think their parents did well.",
+          "This isn't a review of your parents, and it doesn't ask you to decide anything about them. Plenty of people name a pattern they don't want to repeat and still think their parents did well.",
         ],
       },
     ],
@@ -157,8 +159,8 @@ export const C26_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI want my children to see a healthy relationship.\u201d The operative word is *see*.",
-          "Whatever anyone is told about relationships, what's absorbed is what's demonstrated \u2014 and mostly not the good moments, which are noticed and enjoyed. What's absorbed is what happens when something goes wrong.",
+          "\u201cI want my children to see a healthy relationship.\u201d The key word is *see*.",
+          "Whatever anyone is told about relationships, what gets taken in is what's shown \u2014 and mostly not the good moments, which get noticed and enjoyed. What gets taken in is what happens when something goes wrong.",
         ],
       },
       {
@@ -172,13 +174,13 @@ export const C26_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Which is unexpectedly good news. It means you don't need a relationship without conflict \u2014 you couldn't have one \u2014 and a repaired disagreement demonstrates more than an avoided one.",
+          "This is surprisingly good news. It means you don't need a relationship without conflict \u2014 you couldn't have one \u2014 and a repaired disagreement shows more than an avoided one.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "This applies whether or not anyone is watching. What gets demonstrated is also what gets practised, and it's the practice that carries forward.",
+          "This is true whether or not anyone is watching. What gets shown is also what gets practised, and it's the practice that carries forward.",
         ],
       },
     ],
@@ -201,21 +203,21 @@ export const C26_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It also sets a timescale that can't be checked. You won't find out whether it worked, which makes it a strange thing to be working on \u2014 no feedback, no confirmation, and the results arrive somewhere you won't be.",
+          "It also sets a timeline you can't check. You won't find out whether it worked, which makes it a strange thing to be working on \u2014 no feedback, no proof, and the results arrive somewhere you won't be.",
         ],
       },
       {
         kind: "distinction",
-        label: "What's available to check instead",
+        label: "What you can check instead",
         body: [
-          "Not: has the pattern stopped. Unknowable on your timescale.",
-          "But: did I do the specific thing differently, this week, in this house. That's checkable, and it's the only part that was ever yours.",
+          "Not: has the pattern stopped. You can't know that in your lifetime.",
+          "But: did I do the specific thing differently, this week, in this house. That you can check, and it's the only part that was ever yours.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here can promise the pattern stops with you. People break patterns and their children develop different ones. What's true is that the specific thing you change is genuinely changed, and that's a smaller and more defensible claim than legacy.",
+          "Nothing here can promise the pattern stops with you. People break patterns, and their children develop new ones. What's true is that the specific thing you change is really changed — and that's a smaller claim than legacy, and one you can stand behind.",
         ],
       },
     ],
@@ -238,16 +240,16 @@ export const C26_LITERATURE: LiteratureEntry[] = [
       },
       {
         kind: "distinction",
-        label: "Why intention and pattern operate at different levels",
+        label: "Why intention and pattern work at different levels",
         body: [
-          "Intention is available when you're thinking about it, which is usually when things are calm.",
+          "Intention is there when you're thinking about it, which is usually when things are calm.",
           "Patterns arrive at the moment of difficulty, which is exactly when you're not thinking about intentions.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Which is why the specific version matters so much. \u201cI want to do it differently\u201d isn't available in the moment. \u201cWhen someone's upset, I stay in the room\u201d is small enough to survive the moment it's needed in.",
+          "Which is why the specific version matters so much. \u201cI want to do it differently\u201d isn't there in the moment. \u201cWhen someone's upset, I stay in the room\u201d is small enough to survive the moment you need it.",
         ],
       },
     ],
@@ -270,14 +272,14 @@ export const C26_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Identifying a pattern is a description, not a verdict. Plenty of people can name something they don't want to carry forward and also think their parents did well with what they had \u2014 those aren't in tension.",
+          "Naming a pattern is a description, not a judgment. Plenty of people can name something they don't want to carry forward and also think their parents did well with what they had \u2014 those two things can both be true.",
           "It's also worth remembering that whoever taught you the pattern was almost certainly taught it too. That doesn't excuse anything that needs excusing, and it does make the pattern look less like a choice someone made about you.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If what you inherited was genuinely harmful rather than merely unhelpful, that's a different weight and worth having someone alongside you for. A Playbook is a reasonable place to work on a habit and the wrong place to work on that.",
+          "If what you inherited was truly harmful rather than just unhelpful, that's a heavier thing, and worth having someone alongside you for. A Playbook is a fine place to work on a habit, and the wrong place to work on that.",
         ],
       },
     ],
