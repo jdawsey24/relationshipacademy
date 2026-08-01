@@ -25,12 +25,13 @@
 //      per cluster. Primaries are set in CLUSTER_PRIMARY_KEY (the quiz-result
 //      Playbook); companions are reached via cross-Playbook routing
 //      (lib/playbook/crossPlaybookRoutes). Confirm the primaries.
-//   3. ADD-ONS = the "Expansion Life-Situations Pack" (owner ruling 2026-07-31):
-//      the 5 add-ons are a SEPARATE product for anyone in the Expansion phase, NOT
-//      tied to a Snapshot cluster. They entitle via a reserved pseudo-cluster id
-//      (EXPANSION_PACK_CLUSTER_ID) — playbook_entitlements.cluster_id has no FK, so
-//      a purchase writes that id and unlocks all 5. Needs its own Stripe price
-//      (EXPANSION_PACK_PRICE_LOOKUP) and a pack marketing/checkout surface (none yet).
+//   3. ADD-ONS — sold INDIVIDUALLY (owner ruling 2026-07-31: no bundle). Each is
+//      its own product for anyone in the Expansion phase, at the flat
+//      playbook_onetime price ($29.99); a Stripe PROMOTION CODE applies any discount
+//      (checkout already sets allow_promotion_codes: true — no code change). Not
+//      quiz-detectable and not a Snapshot cluster, so each entitles via its OWN
+//      reserved pseudo-cluster id in the 900-block (playbook_entitlements.cluster_id
+//      has no FK) — buy one, own one.
 //   4. COVERAGE GAP: cluster 19 ("Staying Connected Through Parenthood") is
 //      assessable but has NO Playbook in the corpus — a C19 result would show
 //      "Coming soon". Clusters 2 and 17 are non-assessable (no Playbook by ruling).
@@ -74,22 +75,19 @@ export const DRAFT_PLAYBOOK_KEY_TO_CLUSTER: Record<string, number> = {
   "letting-go-of-the-armor": 27,
 };
 
-// EXPANSION LIFE-SITUATIONS PACK — a separate product for anyone in the Expansion
-// phase (decision #3). The 5 add-ons entitle via a reserved pseudo-cluster id
-// (NOT a Snapshot cluster; playbook_entitlements.cluster_id has no FK). One
-// purchase of EXPANSION_PACK_PRICE_LOOKUP writes this id and unlocks all 5.
-export const EXPANSION_PACK_CLUSTER_ID = 900;
-export const EXPANSION_PACK_PRICE_LOOKUP = "playbook_pack_expansion";
-export const EXPANSION_ADDON_KEYS = [
-  "addon-losing-a-partner",
-  "addon-caregiving",
-  "addon-living-with-illness",
-  "addon-dating-later",
-  "addon-grieving-differently",
-] as const;
-const ADDON_KEY_TO_PACK: Record<string, number> = Object.fromEntries(
-  EXPANSION_ADDON_KEYS.map((k) => [k, EXPANSION_PACK_CLUSTER_ID]),
-);
+// ADD-ONS — sold individually (decision #3: no bundle). Each is its own product
+// at the flat playbook_onetime price; a Stripe promotion code applies any discount.
+// Not quiz-detectable / not a Snapshot cluster, so each entitles via its OWN
+// reserved pseudo-cluster id in the 900-block (playbook_entitlements.cluster_id has
+// no FK). Distinct id per add-on = buy one, own one.
+export const ADDON_KEY_TO_CLUSTER: Record<string, number> = {
+  "addon-losing-a-partner": 901,
+  "addon-caregiving": 902,
+  "addon-living-with-illness": 903,
+  "addon-dating-later": 904,
+  "addon-grieving-differently": 905,
+};
+export const ADDON_KEYS = Object.keys(ADDON_KEY_TO_CLUSTER);
 
 // For clusters with more than one Playbook, the key a Snapshot result opens.
 export const CLUSTER_PRIMARY_KEY: Record<number, string> = {
@@ -98,7 +96,7 @@ export const CLUSTER_PRIMARY_KEY: Record<number, string> = {
 };
 
 export const PLAYBOOK_KEY_TO_CLUSTER: Record<string, number> = CORPUS_ENABLED
-  ? { ...FLAGSHIP_KEY_TO_CLUSTER, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER, ...ADDON_KEY_TO_PACK }
+  ? { ...FLAGSHIP_KEY_TO_CLUSTER, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER, ...ADDON_KEY_TO_CLUSTER }
   : { ...FLAGSHIP_KEY_TO_CLUSTER };
 
 // Reverse map: cluster → its PRIMARY playbook_key (explicit for multi-Playbook
@@ -114,7 +112,7 @@ for (const [key, cluster] of Object.entries(PLAYBOOK_KEY_TO_CLUSTER)) {
 const ALL_INTERACTIVE_KEYS: string[] = [
   "moving-beyond-rejection",
   ...Object.keys(DRAFT_PLAYBOOK_KEY_TO_CLUSTER),
-  ...EXPANSION_ADDON_KEYS,
+  ...ADDON_KEYS,
 ];
 
 /** Keys with a shipped INTERACTIVE experience. Gated: flagship-only until the corpus flag is on. */

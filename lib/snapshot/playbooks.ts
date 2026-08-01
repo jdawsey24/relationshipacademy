@@ -1,10 +1,20 @@
-// Relationship Playbooks — paid one-time products, one per Snapshot cluster.
+// Relationship Playbooks — paid one-time products.
 //
-// Which clusters have a real Playbook PDF (in /content/playbooks, OUTSIDE the
-// public web root so the file is never directly downloadable — access is gated
-// by ownership via /api/playbooks/[cluster]/download). As more Playbooks are
-// added (content/playbooks/cluster-{id}.pdf), add the cluster id here.
-export const PLAYBOOK_CLUSTERS = new Set<number>([1, 3, 4, 5, 6, 24]); // Exploration phase
+// Which clusters have a purchasable Playbook — the checkout gate (`hasPlaybook`).
+// GATED with the corpus flag (see lib/playbook/keys.ts):
+//   • OFF (production today): the pre-corpus set {1,3,4,5,6,24} sold as PDFs
+//     (content/playbooks/cluster-{id}.pdf, ownership-gated download route).
+//   • ON: every wired key's id from PLAYBOOK_KEY_TO_CLUSTER — the full interactive
+//     corpus + the reserved add-on ids (900-block). Delivery is the interactive
+//     /playbook/[key] path (keyForClusterId), not the legacy PDF download.
+// Single source of truth for the ON set = keys.ts, so the flip stays one switch.
+import { PLAYBOOK_KEY_TO_CLUSTER } from "@/lib/playbook/keys";
+
+export const PLAYBOOK_CLUSTERS = new Set<number>(
+  process.env.NEXT_PUBLIC_PLAYBOOK_CORPUS === "true"
+    ? Object.values(PLAYBOOK_KEY_TO_CLUSTER)
+    : [1, 3, 4, 5, 6, 24],
+);
 
 // Stripe: one shared Price for every playbook (same price for all). The specific
 // playbook (cluster id) rides in checkout metadata. The owner creates a Price

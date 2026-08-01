@@ -9,8 +9,8 @@ import {
   INTERACTIVE_PLAYBOOK_KEYS,
   DRAFT_PLAYBOOK_KEY_TO_CLUSTER,
   CLUSTER_PRIMARY_KEY,
-  EXPANSION_ADDON_KEYS,
-  EXPANSION_PACK_CLUSTER_ID,
+  ADDON_KEYS,
+  ADDON_KEY_TO_CLUSTER,
   hasInteractivePlaybook,
   clusterIdForKey,
   keyForClusterId,
@@ -31,9 +31,9 @@ test("GATE OFF: only the flagship is wired/served (production behaviour)", () =>
   assert.equal(keyForClusterId(1), FLAGSHIP);
 });
 
-test("DRAFT core + Expansion pack cover exactly the corpus", () => {
+test("DRAFT core + add-ons cover exactly the corpus", () => {
   const corpus = listPlaybookKeys().filter((k) => k !== FLAGSHIP).sort();
-  const drafted = [...Object.keys(DRAFT_PLAYBOOK_KEY_TO_CLUSTER), ...EXPANSION_ADDON_KEYS].sort();
+  const drafted = [...Object.keys(DRAFT_PLAYBOOK_KEY_TO_CLUSTER), ...ADDON_KEYS].sort();
   assert.deepEqual(drafted, corpus);
 });
 
@@ -46,12 +46,14 @@ test("every core DRAFT key resolves to content; every cluster is 1..27 and asses
   }
 });
 
-test("Expansion pack: 5 add-ons resolve to content and share a reserved (non-cluster) pack id", () => {
-  assert.equal(EXPANSION_ADDON_KEYS.length, 5);
-  assert.ok(EXPANSION_PACK_CLUSTER_ID > 27, "pack id must be outside the Snapshot cluster range");
-  for (const key of EXPANSION_ADDON_KEYS) {
+test("add-ons sold individually: each resolves to content and has its own reserved (non-cluster) id", () => {
+  assert.equal(ADDON_KEYS.length, 5);
+  const ids = Object.values(ADDON_KEY_TO_CLUSTER);
+  assert.equal(new Set(ids).size, ids.length, "each add-on must have a DISTINCT entitlement id");
+  for (const [key, id] of Object.entries(ADDON_KEY_TO_CLUSTER)) {
     assert.ok(getPlaybookContent(key), `no content for ${key}`);
     assert.ok(key.startsWith("addon-"), `${key} should be an add-on`);
+    assert.ok(id > 27, `${key} id ${id} must be outside the Snapshot cluster range`);
   }
 });
 

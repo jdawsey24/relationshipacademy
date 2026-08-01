@@ -43,19 +43,21 @@ Each **cluster** is one product (named by its `playbook_subtitle`). Three cluste
 
 **Not sellable via a cluster:** C2, C17 — non-assessable, no playbook by ruling. **C19** ("Staying Connected Through Parenthood") — *assessable but has no playbook*: a C19 Snapshot result would show "Coming soon." (Content gap, not a pricing item.)
 
-## The Expansion Life-Situations Pack — its own product (owner ruling)
+## Add-ons — sold individually (owner ruling: no bundle)
 
-The 5 add-ons — **losing-a-partner, caregiving, living-with-illness, dating-later, grieving-differently** — are a **separate product for anyone in the Expansion phase**, not tied to a Snapshot cluster (they aren't quiz-detectable; they're reached by signpost). Sold as **one pack** that grants all 5.
+The 5 add-ons — **losing-a-partner, caregiving, living-with-illness, dating-later, grieving-differently** — are **each their own product** for anyone in the Expansion phase (not tied to a Snapshot cluster; reached by signpost). Each lists at the **same $29.99** as a playbook; a **Stripe promotion code** applies any discount (compassion/positioning, not a lower list price).
 
-| Product | Grants | Price | SKU | Entitlement |
-|---|---|---|---|---|
-| **Expansion Life-Situations Pack** | all 5 add-ons | **TBD** (owner) | `playbook_pack_expansion` | reserved pseudo-cluster id **900** (`EXPANSION_PACK_CLUSTER_ID`) |
+| Add-on product | Price | SKU | Entitlement id |
+|---|---|---|---|
+| Losing a Partner | $29.99 | `playbook_onetime` | 901 |
+| When Care Becomes the Relationship | $29.99 | `playbook_onetime` | 902 |
+| When Your Body Changes the Relationship | $29.99 | `playbook_onetime` | 903 |
+| Dating Later | $29.99 | `playbook_onetime` | 904 |
+| When You Grieve Differently | $29.99 | `playbook_onetime` | 905 |
 
-**Why the reserved id works with no schema change:** `playbook_entitlements.cluster_id` is a plain `integer` with **no foreign key** to snapshot_clusters. A pack purchase writes `cluster_id = 900`; the 5 add-on keys resolve to 900 via `clusterIdForKey`, so `ownsPlaybook` unlocks all 5. Wired (gated off) in `lib/playbook/keys.ts`.
+**Why this needs no schema change:** `playbook_entitlements.cluster_id` is a plain `integer` with **no foreign key**. Each add-on has its own reserved id (900-block); a purchase writes that id and unlocks *only* that add-on. `clusterIdForKey`/`keyForClusterId` resolve it; the shared `playbook_onetime` price + `allow_promotion_codes: true` (already in the checkout) handle price and coupon. Wired gated-off in `lib/playbook/keys.ts`.
 
-**Two small build items** before the pack can sell (both owner/one-time):
-1. A **Stripe price** with lookup key `playbook_pack_expansion`.
-2. A **checkout + marketing surface** for the pack — the current `/api/playbooks/checkout` takes a `cluster_id`, so it already works if handed `900`; the pack just needs a place to be presented for sale (it has no marketing card today).
+**Build items before add-ons can sell:** (a) the live `playbook_onetime` Stripe price must exist (same one the clusters use); (b) a **coupon/promotion code** in Stripe for the discount; (c) a **place to present each add-on for sale** — they have no marketing card today (checkout itself already works if handed the reserved id).
 
 ## Pricing structure — options
 
@@ -64,9 +66,9 @@ The 5 add-ons — **losing-a-partner, caregiving, living-with-illness, dating-la
 | **A · Flat (recommended)** | 1 (`playbook_onetime` $29.99), all clusters | none | Every cluster one price; C12/C21 include both their modules. Matches current architecture. |
 | B · Value tiers | +1–2 (e.g. `playbook_bundle` for C12/C21) | per-cluster price lookup | Only if the two-module clusters warrant more; needs a cluster→price map + extra Stripe prices. |
 
-The **Expansion pack** is priced separately from the clusters either way (`playbook_pack_expansion`, price TBD).
+Add-ons list at the same $29.99 (`playbook_onetime`) with a **coupon code** for any discount — no separate price, no per-add-on Stripe SKU.
 
-**Recommendation:** launch on **Option A** for the 24 clusters ($29.99 each) + the **Expansion pack** at a price you set. No new cluster code; the pack is already wired (gated off). Revisit cluster tiering after purchase data.
+**Recommendation:** launch on **Option A** — all 24 clusters and the 5 add-ons at $29.99 (`playbook_onetime`), applying a Stripe promotion code to add-on purchases for the compassion discount. No new pricing code; all wired (gated off). Revisit cluster tiering after purchase data.
 
 ## If you keep flat pricing, the Stripe setup is already right
 
@@ -85,13 +87,14 @@ export const PLAYBOOK_SKUS: PlaybookSku[] = [
   { clusterId: 20, product: "Finding Yourself Again", grants: ["finding-yourself-again"], priceLookupKey: "playbook_onetime" },
   { clusterId: 21, product: "Building a Shared Future", grants: ["building-a-shared-future","asking-better-questions"], priceLookupKey: "playbook_onetime" },
 ];
-// The Expansion pack is a separate product (EXPANSION_* in lib/playbook/keys.ts),
-// entitled via reserved id 900, priced by `playbook_pack_expansion`.
+// Add-ons sell individually (ADDON_KEY_TO_CLUSTER in lib/playbook/keys.ts), each
+// entitled via its own reserved 900-block id, at the flat playbook_onetime price
+// with a coupon for the discount.
 ```
 
 ## Open items for the owner
 
 1. **Cluster pricing:** flat (A, recommended) or tiers (B)?
-2. **Expansion pack price** — set a number for `playbook_pack_expansion`, and decide where the pack is presented for sale (no marketing card today).
+2. **Add-on discount:** create the Stripe promotion/coupon code, and decide where each add-on is presented for sale (no marketing card today).
 3. **C19 gap:** author a Parenthood playbook, or leave "Coming soon"?
-4. On flip: sync `PLAYBOOK_SLUGS` (marketing URLs); confirm the live Stripe `playbook_onetime` price + create `playbook_pack_expansion`.
+4. On flip: sync `PLAYBOOK_SLUGS` (marketing URLs); confirm the live Stripe `playbook_onetime` price.
