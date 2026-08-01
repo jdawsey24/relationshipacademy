@@ -24,46 +24,46 @@ function toBoard(...recognize: RegExp[]) {
 
 test("recognition selections surface the expected pathway cards on the board", () => {
   mount();
-  toBoard(/can't always tell what their behavior/i);
+  toBoard(/can't always tell what someone/i);
   // built pathway recognized → shows a Start button; unrecognized ones aren't shown yet
-  assert.ok(screen.getByText(/Read It, Then Decide|tell what you've seen/i) || screen.getByRole("button", { name: /start/i }));
+  assert.ok(screen.getByText(/Read It, Then Decide|tell what you saw/i) || screen.getByRole("button", { name: /start/i }));
   assert.ok(screen.getByRole("button", { name: /start|revisit/i }), "a built pathway card is shown");
   // the self-editing pathway was NOT recognized → not on the default board
-  assert.equal(screen.queryByText(/edit myself so they'll keep liking me/i), null);
+  assert.equal(screen.queryByText(/change myself so they'll keep liking me/i), null);
 });
 
 test("'Explore another area' reveals all pathways and never locks", () => {
   mount();
-  toBoard(/can't always tell what their behavior/i);
+  toBoard(/can't always tell what someone/i);
   fireEvent.click(screen.getByRole("button", { name: /explore another area/i }));
   // a non-recognized pathway is now explorable (all six cluster pathways are built)
-  assert.ok(screen.getByText(/edit myself so they'll keep liking me/i), "a non-recognized pathway is explorable");
+  assert.ok(screen.getByText(/change myself so they'll keep liking me/i), "a non-recognized pathway is explorable");
   const explored = screen.getAllByRole("button", { name: /start|revisit/i }).length;
   // toggling back narrows to just the recognized starting points (never locks)
   fireEvent.click(screen.getByRole("button", { name: /show just my starting points/i }));
   const starting = screen.getAllByRole("button", { name: /start|revisit/i }).length;
   assert.ok(explored > starting, "exploring reveals more pathways than the recognized starting points");
-  assert.equal(screen.queryByText(/edit myself so they'll keep liking me/i), null, "back to starting points only");
+  assert.equal(screen.queryByText(/change myself so they'll keep liking me/i), null, "back to starting points only");
 });
 
 test("'I handle this okay' skips the Play and returns without entering it", () => {
   mount();
-  toBoard(/can't always tell what their behavior/i);
+  toBoard(/can't always tell what someone/i);
   fireEvent.click(screen.getByRole("button", { name: /start/i })); // → gate
   fireEvent.click(screen.getByRole("button", { name: /i handle this okay/i }));
   assert.ok(screen.getByText(/that's a real strength/i), "strengths affirmation shown");
   // did NOT enter the play (no play 'shift' copy present)
-  assert.equal(screen.queryByText(/an unclear signal can turn into a whole story/i), null);
+  assert.equal(screen.queryByText(/one small thing can turn into a big story/i), null);
   fireEvent.click(screen.getByRole("button", { name: /back to the board/i }));
   assert.ok(screen.getByRole("button", { name: /start/i }), "returned to board");
 });
 
 test("play state transition: gate → Yes enters the play (explored)", () => {
   mount();
-  toBoard(/can't always tell what their behavior/i);
+  toBoard(/can't always tell what someone/i);
   fireEvent.click(screen.getByRole("button", { name: /start/i }));
   fireEvent.click(screen.getByRole("button", { name: /yes, this happens/i }));
-  assert.ok(screen.getByText(/an unclear signal can turn into a whole story/i), "entered the play (shift screen)");
+  assert.ok(screen.getByText(/one small thing can turn into a big story/i), "entered the play (shift screen)");
 });
 
 test("saved progress restores on re-entry (recognized + play state + My Plays)", () => {
@@ -76,7 +76,7 @@ test("saved progress restores on re-entry (recognized + play state + My Plays)",
   mount(restored);
   // recognition reflects the prior selection (✓)
   fireEvent.click(screen.getByRole("button", { name: /see what sounds like me/i }));
-  const recBtn = screen.getByText(/can't always tell what their behavior/i).closest("button");
+  const recBtn = screen.getByText(/can't always tell what someone/i).closest("button");
   assert.ok(recBtn?.textContent?.includes("✓"), "prior recognition restored");
   // board reflects saved state + My Plays count
   fireEvent.click(screen.getByRole("button", { name: /show me where to start/i }));
@@ -143,7 +143,7 @@ test("Used → Update opens the prefilled editor; the change propagates to My Pl
   fireEvent.click(screen.getByRole("button", { name: /i used this in real life/i }));
   fireEvent.click(screen.getByRole("button", { name: /update it/i }));
   // editor is the narrow output editor, prefilled
-  assert.ok(screen.getByRole("form", { name: /update your read & move/i }), "output editor opened");
+  assert.ok(screen.getByRole("form", { name: /update your read and plan/i }), "output editor opened");
   const condition = screen.getByLabelText(/if i see/i) as HTMLInputElement;
   assert.equal(condition.value, "they keep cancelling", "editor prefilled from the saved output");
   fireEvent.change(condition, { target: { value: "they follow through consistently" } });
@@ -162,7 +162,7 @@ test("axe: no serious/critical violations on the recognition + board states", as
   const r1 = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
   const bad1 = r1.violations.filter((v) => v.impact === "serious" || v.impact === "critical");
   assert.deepEqual(bad1.map((v) => v.id), [], "recognition a11y: " + JSON.stringify(bad1.map((v) => v.id)));
-  clickText(/can't always tell what their behavior/i);
+  clickText(/can't always tell what someone/i);
   fireEvent.click(screen.getByRole("button", { name: /show me where to start/i }));
   const r2 = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
   const bad2 = r2.violations.filter((v) => v.impact === "serious" || v.impact === "critical");
