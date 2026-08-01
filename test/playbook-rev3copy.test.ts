@@ -8,11 +8,13 @@ const RD = C.plays.find((p) => p.playId === "read-and-decide")!;
 const WM = C.plays.find((p) => p.playId === "what-it-actually-means")!;
 const sorts = (screens: Screen[]) => screens.filter((s): s is Extract<Screen, { kind: "scenarioSort" }> => s.kind === "scenarioSort");
 
-test("v0 content is untouched by the Rev 3 copy transform", () => {
-  // original still has its literature screen and its original Shift wording
+test("v0 base holds its own plain-language copy; the Rev 3 transform is a separate path", () => {
+  // v0 base is authored at plain-language reading level — its own copy, distinct from the
+  // Rev 3 tightening below. It still keeps its literature screen (the Rev 3 path drops it),
+  // and this base wording is what the deployed flagship serves.
   assert.ok(RD.screens.some((s) => s.kind === "literature"), "v0 keeps the literature screen");
   const v0Shift = RD.screens.find((s) => s.kind === "shift") as Extract<Screen, { kind: "shift" }>;
-  assert.match(v0Shift.body[0], /an unclear signal can turn into a whole story/i, "v0 Shift copy unchanged");
+  assert.match(v0Shift.body[0], /one small thing can turn into a big story/i, "v0 Shift = plain-language base copy");
 });
 
 test("rev3Play extracts literature and tightens the Shift copy (Rev 3 path only)", () => {

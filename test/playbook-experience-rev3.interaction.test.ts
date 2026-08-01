@@ -15,7 +15,7 @@ function mount(rev3: boolean, progress: PlaybookProgress = emptyProgress(KEY, 1)
 // First-time (opening) flow → recognizes rec-evidence and lands on the board.
 function openingToBoard() {
   fireEvent.click(screen.getByRole("button", { name: /see what sounds like me/i }));
-  fireEvent.click(screen.getByText(/can't always tell what their behavior/i).closest("button")!);
+  fireEvent.click(screen.getByText(/can't always tell what someone/i).closest("button")!);
   fireEvent.click(screen.getByRole("button", { name: /show me where to start/i }));
 }
 // Returning (home) flow → board. The board is now the recognition/pathway picker reached via
@@ -66,14 +66,14 @@ test("flag OFF, first-time: goes straight to the Play (v0)", () => {
   openingToBoard();
   fireEvent.click(screen.getByRole("button", { name: /start/i }));
   fireEvent.click(screen.getByRole("button", { name: /yes, this happens/i }));
-  assert.ok(screen.getByText(/an unclear signal can turn into a whole story/i), "v0 Play directly");
+  assert.ok(screen.getByText(/one small thing can turn into a big story/i), "v0 Play directly");
   assert.equal(screen.queryByText(/great first date/i), null);
 });
 
 test("flag ON: a completed simulation is not repeated", () => {
   mount(true, simDone);
   homeToBoard();
-  const rdCard = screen.getByText(/can't always tell what their behavior/i).closest("li")!;
+  const rdCard = screen.getByText(/can't always tell what someone/i).closest("li")!;
   fireEvent.click(within(rdCard).getByRole("button", { name: /start|revisit/i }));
   fireEvent.click(screen.getByRole("button", { name: /yes, this happens/i }));
   assert.ok(screen.getByText(/one unclear signal can turn into a whole story/i), "straight to the Play (Rev 3 copy)");
@@ -229,7 +229,7 @@ test("Home → 'Practice in Real Life' → Back returns to the Home, not the boa
 test("Board → Start → Back still returns to the board (regression)", () => {
   mount(true, savedR);
   homeToBoard();
-  const rdCard = screen.getByText(/can't always tell what their behavior/i).closest("li")!;
+  const rdCard = screen.getByText(/can't always tell what someone/i).closest("li")!;
   fireEvent.click(within(rdCard).getByRole("button", { name: /start|revisit/i }));
   assert.ok(screen.getByRole("button", { name: /yes, this happens/i }), "at the gate");
   fireEvent.click(screen.getByRole("button", { name: /back to board/i }));
