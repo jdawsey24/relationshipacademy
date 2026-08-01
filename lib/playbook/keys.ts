@@ -16,21 +16,21 @@
 // as today (production behaviour unchanged; the scaffold tests stay green).
 //
 // ⚠ BEFORE ENABLING — owner decisions (all do-not-revert once money/URLs move):
-//   1. ENTITLEMENT IS PER-CLUSTER (playbook_entitlements.cluster_id). Three
-//      clusters map to MULTIPLE Playbooks, so ONE purchase would grant ALL of
-//      them together:
+//   1. ENTITLEMENT IS PER-CLUSTER (playbook_entitlements.cluster_id). Two clusters
+//      are a SINGLE product authored as multiple modules, so one purchase grants
+//      both parts (intended — not a discount bundle):
 //        • C12 → letting-go + moving-forward
 //        • C21 → building-a-shared-future + asking-better-questions
-//        • C20 → finding-yourself-again + the 5 add-ons
-//      Confirm the bundle, or split into separate products (needs a per-key
-//      entitlement path — a schema change).
 //   2. keyForClusterId (Snapshot result → "open your Playbook") returns ONE key
 //      per cluster. Primaries are set in CLUSTER_PRIMARY_KEY (the quiz-result
 //      Playbook); companions are reached via cross-Playbook routing
 //      (lib/playbook/crossPlaybookRoutes). Confirm the primaries.
-//   3. ADD-ONS are not quiz-detectable — no Snapshot result routes to them. They
-//      ride C20 entitlement here (see #1); if they must be separately purchasable,
-//      that's the same per-key-entitlement decision.
+//   3. ADD-ONS = the "Expansion Life-Situations Pack" (owner ruling 2026-07-31):
+//      the 5 add-ons are a SEPARATE product for anyone in the Expansion phase, NOT
+//      tied to a Snapshot cluster. They entitle via a reserved pseudo-cluster id
+//      (EXPANSION_PACK_CLUSTER_ID) — playbook_entitlements.cluster_id has no FK, so
+//      a purchase writes that id and unlocks all 5. Needs its own Stripe price
+//      (EXPANSION_PACK_PRICE_LOOKUP) and a pack marketing/checkout surface (none yet).
 //   4. COVERAGE GAP: cluster 19 ("Staying Connected Through Parenthood") is
 //      assessable but has NO Playbook in the corpus — a C19 result would show
 //      "Coming soon". Clusters 2 and 17 are non-assessable (no Playbook by ruling).
@@ -44,8 +44,8 @@ const FLAGSHIP_KEY_TO_CLUSTER: Record<string, number> = {
   "moving-beyond-rejection": 1,
 };
 
-// DRAFT: every corpus Playbook + add-on → its Snapshot cluster. Inert until the
-// flag is on. Add-ons ride cluster 20 (see decision #3).
+// DRAFT: every corpus Playbook → its Snapshot cluster. Inert until the flag is on.
+// (Add-ons are NOT here — they are the Expansion pack; see below.)
 export const DRAFT_PLAYBOOK_KEY_TO_CLUSTER: Record<string, number> = {
   "letting-someone-in": 3,
   "dating-without-losing-hope": 4,
@@ -63,7 +63,7 @@ export const DRAFT_PLAYBOOK_KEY_TO_CLUSTER: Record<string, number> = {
   "feeling-seen": 15,
   "rebuilding-trust": 16,
   "staying-connected": 18,
-  "finding-yourself-again": 20, // C20 primary
+  "finding-yourself-again": 20,
   "building-a-shared-future": 21, // C21 primary
   "asking-better-questions": 21, // C21 companion (still dating)
   "staying-yourself": 22,
@@ -72,23 +72,33 @@ export const DRAFT_PLAYBOOK_KEY_TO_CLUSTER: Record<string, number> = {
   "from-the-ground-up": 25,
   "a-different-legacy": 26,
   "letting-go-of-the-armor": 27,
-  // Add-ons → C20 (not quiz-detectable; ride C20 entitlement — decision #3)
-  "addon-losing-a-partner": 20,
-  "addon-caregiving": 20,
-  "addon-living-with-illness": 20,
-  "addon-dating-later": 20,
-  "addon-grieving-differently": 20,
 };
+
+// EXPANSION LIFE-SITUATIONS PACK — a separate product for anyone in the Expansion
+// phase (decision #3). The 5 add-ons entitle via a reserved pseudo-cluster id
+// (NOT a Snapshot cluster; playbook_entitlements.cluster_id has no FK). One
+// purchase of EXPANSION_PACK_PRICE_LOOKUP writes this id and unlocks all 5.
+export const EXPANSION_PACK_CLUSTER_ID = 900;
+export const EXPANSION_PACK_PRICE_LOOKUP = "playbook_pack_expansion";
+export const EXPANSION_ADDON_KEYS = [
+  "addon-losing-a-partner",
+  "addon-caregiving",
+  "addon-living-with-illness",
+  "addon-dating-later",
+  "addon-grieving-differently",
+] as const;
+const ADDON_KEY_TO_PACK: Record<string, number> = Object.fromEntries(
+  EXPANSION_ADDON_KEYS.map((k) => [k, EXPANSION_PACK_CLUSTER_ID]),
+);
 
 // For clusters with more than one Playbook, the key a Snapshot result opens.
 export const CLUSTER_PRIMARY_KEY: Record<number, string> = {
   12: "letting-go",
-  20: "finding-yourself-again",
   21: "building-a-shared-future",
 };
 
 export const PLAYBOOK_KEY_TO_CLUSTER: Record<string, number> = CORPUS_ENABLED
-  ? { ...FLAGSHIP_KEY_TO_CLUSTER, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER }
+  ? { ...FLAGSHIP_KEY_TO_CLUSTER, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER, ...ADDON_KEY_TO_PACK }
   : { ...FLAGSHIP_KEY_TO_CLUSTER };
 
 // Reverse map: cluster → its PRIMARY playbook_key (explicit for multi-Playbook
@@ -104,6 +114,7 @@ for (const [key, cluster] of Object.entries(PLAYBOOK_KEY_TO_CLUSTER)) {
 const ALL_INTERACTIVE_KEYS: string[] = [
   "moving-beyond-rejection",
   ...Object.keys(DRAFT_PLAYBOOK_KEY_TO_CLUSTER),
+  ...EXPANSION_ADDON_KEYS,
 ];
 
 /** Keys with a shipped INTERACTIVE experience. Gated: flagship-only until the corpus flag is on. */

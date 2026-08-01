@@ -9,6 +9,8 @@ import {
   INTERACTIVE_PLAYBOOK_KEYS,
   DRAFT_PLAYBOOK_KEY_TO_CLUSTER,
   CLUSTER_PRIMARY_KEY,
+  EXPANSION_ADDON_KEYS,
+  EXPANSION_PACK_CLUSTER_ID,
   hasInteractivePlaybook,
   clusterIdForKey,
   keyForClusterId,
@@ -29,17 +31,27 @@ test("GATE OFF: only the flagship is wired/served (production behaviour)", () =>
   assert.equal(keyForClusterId(1), FLAGSHIP);
 });
 
-test("DRAFT covers exactly the corpus (every registered key except flagship)", () => {
+test("DRAFT core + Expansion pack cover exactly the corpus", () => {
   const corpus = listPlaybookKeys().filter((k) => k !== FLAGSHIP).sort();
-  assert.deepEqual(Object.keys(DRAFT_PLAYBOOK_KEY_TO_CLUSTER).sort(), corpus);
+  const drafted = [...Object.keys(DRAFT_PLAYBOOK_KEY_TO_CLUSTER), ...EXPANSION_ADDON_KEYS].sort();
+  assert.deepEqual(drafted, corpus);
 });
 
-test("every DRAFT key resolves to loadable content; every cluster is 1..27 and assessable", () => {
+test("every core DRAFT key resolves to content; every cluster is 1..27 and assessable", () => {
   const NON_ASSESSABLE = new Set([2, 17]);
   for (const [key, cluster] of Object.entries(DRAFT_PLAYBOOK_KEY_TO_CLUSTER)) {
     assert.ok(getPlaybookContent(key), `no content for ${key}`);
     assert.ok(cluster >= 1 && cluster <= 27, `cluster ${cluster} out of range (${key})`);
     assert.ok(!NON_ASSESSABLE.has(cluster), `${key} maps to non-assessable cluster ${cluster}`);
+  }
+});
+
+test("Expansion pack: 5 add-ons resolve to content and share a reserved (non-cluster) pack id", () => {
+  assert.equal(EXPANSION_ADDON_KEYS.length, 5);
+  assert.ok(EXPANSION_PACK_CLUSTER_ID > 27, "pack id must be outside the Snapshot cluster range");
+  for (const key of EXPANSION_ADDON_KEYS) {
+    assert.ok(getPlaybookContent(key), `no content for ${key}`);
+    assert.ok(key.startsWith("addon-"), `${key} should be an add-on`);
   }
 });
 
