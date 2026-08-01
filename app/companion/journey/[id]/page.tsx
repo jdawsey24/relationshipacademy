@@ -86,7 +86,7 @@ export default function CompanionJourneyDetail() {
           d.responses.map((r, i) => (
             <div key={r.block_ref} className="rounded-2xl border border-light-gray bg-white p-4">
               <p className="font-ui text-[10px] font-semibold uppercase tracking-wide text-charcoal/35">Reflection {i + 1}</p>
-              <p className="mt-1 whitespace-pre-wrap font-body text-[15px] leading-relaxed text-charcoal/80">{renderVal(r.response) || <span className="text-charcoal/35">—</span>}</p>
+              <p className="mt-1 whitespace-pre-wrap font-body text-body text-charcoal/80">{renderVal(r.response) || <span className="text-charcoal/35">—</span>}</p>
             </div>
           ))}
       </div>

@@ -12,8 +12,12 @@ const WM = MBR_SIMULATIONS.find((s) => s.signature === "conclusionNarrowing")!;
 test("G1: fidelity is authored per-scenario, never hardcoded by signature", () => {
   // Same behavioural concept ("hold the read") — OPPOSITE fidelity across scenarios,
   // because the appropriateness depends on THAT scenario's evidence, not the signature.
-  const rdHold = aggregateFidelity(RD, { rc1: "hold-open" }).interpretation_response_appropriate;
-  const wmHoldVerdict = aggregateFidelity(WM, { rc1: "still-wrong" }).interpretation_response_appropriate;
+  const rd = aggregateFidelity(RD, { rc1: "hold-open" });
+  assert.ok(rd.signature === "evidenceTimeline");
+  const wm = aggregateFidelity(WM, { rc1: "still-wrong" });
+  assert.ok(wm.signature === "conclusionNarrowing");
+  const rdHold = rd.interpretation_response_appropriate;
+  const wmHoldVerdict = wm.interpretation_response_appropriate;
   assert.equal(rdHold, "demonstrated", "holding an open read is evidence-appropriate in RD (ambiguity remains)");
   assert.equal(wmHoldVerdict, "not_demonstrated", "holding the global verdict is not appropriate in WM");
   assert.notEqual(rdHold, wmHoldVerdict, "fidelity of 'hold' is not fixed by signature — it depends on the scenario's evidence");
@@ -27,8 +31,9 @@ test("G2: JIT literature exposure never contributes to fidelity (it is not an in
   const a = aggregateFidelity(RD, { rc1: "revise" });
   const b = aggregateFidelity(RD, { rc1: "revise" });
   assert.deepEqual(a, b, "fidelity is a pure function of reconsider selections only");
-  // and the completion dimensions never include a literature/engagement key
-  assert.deepEqual(Object.keys(a).sort(), ["evidence_reconsidered", "interpretation_response_appropriate"]);
+  // and the completion dimensions never include a literature/engagement key (signature is the
+  // discriminant tag, not a fidelity input)
+  assert.deepEqual(Object.keys(a).sort(), ["evidence_reconsidered", "interpretation_response_appropriate", "signature"]);
 });
 
 test("G3: process tags stay narrowly behavioural/operational (no trait/etiology language)", () => {

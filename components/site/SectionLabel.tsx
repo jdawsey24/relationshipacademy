@@ -16,7 +16,7 @@ export default function SectionLabel({
         ? "text-white/70"
         : "text-charcoal/50";
   return (
-    <p className={`font-ui text-[11px] font-semibold uppercase tracking-[0.15em] ${color} ${className}`}>
+    <p className={`font-ui text-eyebrow font-semibold uppercase ${color} ${className}`}>
       {children}
     </p>
   );

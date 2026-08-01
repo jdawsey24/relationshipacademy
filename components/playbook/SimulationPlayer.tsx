@@ -12,7 +12,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Simulation, SimNode, FidelityOutcome } from "@/lib/playbook/contentSchema";
-import { nodeMap, nextNodeId, aggregateFidelity, completionPayload, pathBefore } from "@/lib/playbook/simulation";
+import { nodeMap, nextNodeId, aggregateFidelity, completionPayload, pathBefore, resolveRevealContent } from "@/lib/playbook/simulation";
 import { SIGNATURE_CHROME, SIGNATURE_TITLE } from "@/components/playbook/SimulationSignatures";
 
 const nextBtn = "rounded-full bg-coral-rose px-6 py-3 font-ui text-sm font-medium text-white transition hover:opacity-90 disabled:opacity-40";
@@ -95,23 +95,45 @@ export default function SimulationPlayer({ simulation, onComplete, onExit, onScr
       <div className="rounded-3xl bg-white/60 p-6 sm:p-8">
         {(node.kind === "moment" || node.kind === "note") && (
           <div className="space-y-5">
-            <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-body text-[17px] leading-relaxed text-charcoal/85 focus:outline-none">{node.body[0]}</p>
-            {node.body.slice(1).map((p, j) => <p key={j} className="font-body text-[17px] leading-relaxed text-charcoal/85">{p}</p>)}
+            <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-body text-reading text-charcoal/85 focus:outline-none">{node.body[0]}</p>
+            {node.body.slice(1).map((p, j) => <p key={j} className="font-body text-reading text-charcoal/85">{p}</p>)}
             <JitLink node={node} onSurfaceJit={onSurfaceJit} />
             <button type="button" className={nextBtn} onClick={() => advance(node.next)}>Continue</button>
           </div>
         )}
 
-        {node.kind === "reveal" && (
-          <div className="space-y-5">
-            <div aria-live="polite">
-              <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-ui text-xs font-semibold uppercase tracking-wide text-coral-rose focus:outline-none">{node.label ?? "What happened next"}</p>
-              {node.body.map((p, j) => <p key={j} className="mt-2 font-body text-[17px] leading-relaxed text-charcoal/85">{p}</p>)}
+        {node.kind === "reveal" && (() => {
+          // Static `body` reveals render as before; computed reveals also show a code-selected
+          // summary line, a recap of the reader's own choices, and/or a fixed labeled set.
+          const rv = resolveRevealContent(node, simulation, selections, captures);
+          return (
+            <div className="space-y-5">
+              <div aria-live="polite">
+                <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-ui text-xs font-semibold uppercase tracking-wide text-coral-rose focus:outline-none">{rv.label ?? "What happened next"}</p>
+                {rv.paragraphs.map((p, j) => <p key={j} className="mt-2 font-body text-reading text-charcoal/85">{p}</p>)}
+              </div>
+              {rv.recap.length > 0 && (
+                <dl className="space-y-2 rounded-2xl bg-white/60 p-4">
+                  {rv.recap.map((r, j) => (
+                    <div key={j}><dt className="font-ui text-xs uppercase tracking-wide text-charcoal/50">{r.label}</dt><dd className="font-body text-[15px] text-charcoal/85">{r.value}</dd></div>
+                  ))}
+                </dl>
+              )}
+              {rv.summary && (
+                <p className="rounded-2xl bg-sage-green/12 px-4 py-3 font-body text-base leading-relaxed text-charcoal/90">{rv.summary}</p>
+              )}
+              {rv.reactions.length > 0 && (
+                <ul className="space-y-2">
+                  {rv.reactions.map((r, j) => (
+                    <li key={j} className="rounded-2xl bg-white/60 px-4 py-3"><span className="font-ui text-xs uppercase tracking-wide text-charcoal/50">{r.label}</span><br /><span className="font-body text-[15px] text-charcoal/85">{r.example}</span></li>
+                  ))}
+                </ul>
+              )}
+              <JitLink node={node} onSurfaceJit={onSurfaceJit} />
+              <button type="button" className={nextBtn} onClick={() => advance(node.next)}>Continue</button>
             </div>
-            <JitLink node={node} onSurfaceJit={onSurfaceJit} />
-            <button type="button" className={nextBtn} onClick={() => advance(node.next)}>Continue</button>
-          </div>
-        )}
+          );
+        })()}
 
         {node.kind === "capture" && (
           <div className="space-y-5">
@@ -194,12 +216,12 @@ export default function SimulationPlayer({ simulation, onComplete, onExit, onScr
 
         {node.kind === "teach" && (
           <div className="space-y-5">
-            <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-body text-[17px] leading-relaxed text-charcoal/85 focus:outline-none">{node.body[0]}</p>
-            {node.body.slice(1).map((p, j) => <p key={j} className="font-body text-[17px] leading-relaxed text-charcoal/85">{p}</p>)}
+            <p ref={promptRef as React.RefObject<HTMLParagraphElement>} tabIndex={-1} className="font-body text-reading text-charcoal/85 focus:outline-none">{node.body[0]}</p>
+            {node.body.slice(1).map((p, j) => <p key={j} className="font-body text-reading text-charcoal/85">{p}</p>)}
             <button
               type="button"
               className={nextBtn}
-              onClick={() => onComplete(completionPayload(aggregateFidelity(simulation, selections)), node.toPlayId)}
+              onClick={() => onComplete(completionPayload(aggregateFidelity(simulation, selections, captures)), node.toPlayId)}
             >
               Open the tool →
             </button>

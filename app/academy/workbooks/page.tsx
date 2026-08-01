@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getMember, memberCanAccess } from "@/lib/academyAuth";
 import { getWorkbooks, getCourseTitleMap } from "@/lib/academyData";
 import { LockPill } from "@/components/academy/ui";
+import { IconTile } from "@/components/site/IconTile";
 
 export const dynamic = "force-dynamic";
 
@@ -33,9 +34,7 @@ export default async function WorkbooksPage() {
             return (
               <div key={w.id} className="flex flex-col rounded-2xl border border-midnight-navy/10 bg-white p-6">
                 <div className="mb-3 flex items-center gap-2">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-coral-rose/12 font-ui text-xs font-semibold uppercase text-coral-rose">
-                    PDF
-                  </span>
+                  <IconTile hue="#D9777D" className="font-ui text-xs font-semibold uppercase">PDF</IconTile>
                   {!unlocked && <LockPill />}
                 </div>
                 <h2 className="font-display text-lg font-semibold text-midnight-navy">{w.title}</h2>

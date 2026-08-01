@@ -165,7 +165,7 @@ export default function SandboxPage() {
                   {result.consumerReport.map((sec, i) => (
                     <div key={i}>
                       {sec.heading && <h3 className="text-lg font-semibold text-midnight-navy">{sec.heading}</h3>}
-                      {sec.body && <p className="mt-1 font-body text-[15px] leading-relaxed text-charcoal/90">{sec.body}</p>}
+                      {sec.body && <p className="mt-1 font-body text-body text-charcoal/90">{sec.body}</p>}
                     </div>
                   ))}
                   <p className="border-t border-light-gray pt-3 text-[11px] text-charcoal/40">Consumer copy is drawn from your authored Results Templates. Provisional — sample data, not a real result.</p>
@@ -193,7 +193,7 @@ export default function SandboxPage() {
                   {narrative.sections.map((s, i) => (
                     <div key={i}>
                       {s.heading && <h3 className="text-lg font-semibold text-midnight-navy">{s.heading}</h3>}
-                      {s.body && <p className="mt-1 font-body text-[15px] leading-relaxed text-charcoal/90">{s.body}</p>}
+                      {s.body && <p className="mt-1 font-body text-body text-charcoal/90">{s.body}</p>}
                     </div>
                   ))}
                   {narrative.safety_notes.length > 0 && <p className="border-t border-dusty-plum/20 pt-2 text-[11px] text-amber-700">Safety flags: {narrative.safety_notes.join("; ")}</p>}

@@ -3,6 +3,7 @@ import Logo from "@/components/Logo";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import PhaseCard from "@/components/site/PhaseCard";
+import FrameworkCycle from "@/components/site/FrameworkCycle";
 import { getSiteContentMap, get, applyPhaseOverrides, buildPageMetadata } from "@/lib/siteContent";
 
 // ISR: page is cached and regenerated periodically so CMS edits appear within
@@ -16,7 +17,7 @@ export async function generateMetadata() {
 const FEATURES = [
   { n: 1, icon: "phases", title: "Six relationship phases", body: "From the earliest stages of connection to rebuilding after loss." },
   { n: 2, icon: "domains", title: "Six areas of focus", body: "Every relationship expresses itself through six key areas, measured throughout every phase." },
-  { n: 3, icon: "assessment", title: "A free developmental assessment", body: "See exactly where your relationship is functioning right now." },
+  { n: 3, icon: "assessment", title: "A free developmental assessment", body: "See the pattern shaping your relationship life right now." },
 ] as const;
 
 function FeatureIcon({ kind }: { kind: string }) {
@@ -32,22 +33,31 @@ export default async function HomePage() {
   return (
     <main>
       {/* Hero */}
-      <section className="flex min-h-screen flex-col items-center justify-center bg-warm-ivory px-6 pt-24 text-center">
-        <Logo variant="full" className="mb-10 h-16 sm:h-20" />
-        <SectionLabel tone="sage" className="mb-4">
-          {get(content, "home.hero.eyebrow", "The Relationship Life Cycle™")}
-        </SectionLabel>
-        <h1 className="font-display text-[40px] font-semibold leading-[1.05] text-midnight-navy sm:text-6xl">
-          {get(content, "home.hero.headline", "Every relationship has a season.")}
-        </h1>
-        <p className="mt-6 max-w-[580px] font-body text-lg leading-relaxed text-charcoal sm:text-xl">
-          {get(content, "home.hero.subhead", "Every relationship has different needs at different points in its journey. The first step is understanding where you are.")}
-        </p>
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <CtaButton href="/framework" variant="primary">Explore the Framework</CtaButton>
-          <CtaButton href="/snapshot" variant="secondary">Take the Free Assessment</CtaButton>
+      <section className="relative flex min-h-screen items-center bg-warm-ivory px-6 pb-20 pt-24">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-16">
+          {/* Copy */}
+          <div className="text-center lg:text-left">
+            <Logo variant="full" className="mx-auto mb-8 h-14 sm:h-16 lg:mx-0" />
+            <SectionLabel tone="sage" className="mb-4">
+              {get(content, "home.hero.eyebrow", "The Relationship Life Cycle™")}
+            </SectionLabel>
+            <h1 className="text-balance font-display text-hero font-semibold text-midnight-navy sm:text-6xl">
+              {get(content, "home.hero.headline", "Every relationship has a season.")}
+            </h1>
+            <p className="mx-auto mt-6 max-w-[540px] font-body text-lg leading-relaxed text-charcoal sm:text-xl lg:mx-0">
+              {get(content, "home.hero.subhead", "Every relationship has different needs at different points in its journey. The first step is understanding where you are.")}
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+              <CtaButton href="/framework" variant="primary">Explore the Framework</CtaButton>
+              <CtaButton href="/snapshot" variant="secondary">Take the Free Assessment</CtaButton>
+            </div>
+          </div>
+          {/* The framework, living */}
+          <div className="mx-auto w-full max-w-[360px] px-2 lg:max-w-[460px]">
+            <FrameworkCycle />
+          </div>
         </div>
-        <span className="mt-16 animate-bounce text-midnight-navy/40" aria-hidden="true">
+        <span className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-midnight-navy/40" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6" /></svg>
         </span>
       </section>
@@ -58,7 +68,7 @@ export default async function HomePage() {
           <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">
             {get(content, "home.connect.heading", "Wherever you are in your relationship journey, this is for you.")}
           </h2>
-          <p className="mx-auto mt-6 max-w-[640px] font-body text-[17px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-6 max-w-[640px] font-body text-reading text-charcoal">
             {get(content, "home.connect.body", "Whether you're figuring out if someone is right for you, navigating a committed relationship, rebuilding after something hard, or healing on your own — relationships look different at every stage. The Relationship Life Cycle™ gives you a way to understand where you are and what your relationship actually needs right now.")}
           </p>
         </div>
@@ -73,7 +83,7 @@ export default async function HomePage() {
           <p className="mt-3 font-body text-lg text-charcoal/90">
             {get(content, "home.problem.subhead", "It's trying to solve today's problems with yesterday's expectations.")}
           </p>
-          <p className="mx-auto mt-6 max-w-[640px] font-body text-[16px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-6 max-w-[640px] font-body text-base leading-relaxed text-charcoal">
             {get(content, "home.problem.body", "We're surrounded by relationship advice. Communication tips. Attachment styles. Conflict strategies. Love languages. Most of it is good. But good advice applied at the wrong moment — or the wrong stage — can make things harder, not easier. The Relationship Life Cycle™ doesn't replace what you already know about relationships. It gives it context.")}
           </p>
         </div>
@@ -83,7 +93,7 @@ export default async function HomePage() {
       <section className="bg-warm-ivory px-6 py-24">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.mapintro.heading", "A map for where you are.")}</h2>
-          <p className="mx-auto mt-6 max-w-[640px] font-body text-[17px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-6 max-w-[640px] font-body text-reading text-charcoal">
             {get(content, "home.mapintro.body", "The Relationship Life Cycle™ is a developmental framework that organizes relationship growth into six distinct phases — each with its own purpose, focus, and opportunities. It's not about whether your relationship is healthy or unhealthy. It's about understanding where it is and what it needs next.")}
           </p>
           <div className="mt-14 grid gap-10 sm:grid-cols-3">
@@ -91,7 +101,7 @@ export default async function HomePage() {
               <div key={f.n} className="flex flex-col items-center text-center">
                 <span className="text-midnight-navy"><FeatureIcon kind={f.icon} /></span>
                 <h3 className="mt-4 font-display text-xl font-semibold text-midnight-navy">{get(content, `home.feature${f.n}.title`, f.title)}</h3>
-                <p className="mt-2 max-w-[240px] font-body text-[15px] leading-relaxed text-charcoal">{get(content, `home.feature${f.n}.body`, f.body)}</p>
+                <p className="mt-2 max-w-[240px] font-body text-body text-charcoal">{get(content, `home.feature${f.n}.body`, f.body)}</p>
               </div>
             ))}
           </div>
@@ -106,7 +116,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.phases.heading", "Every relationship has a season.")}</h2>
-            <p className="mx-auto mt-4 max-w-[680px] font-body text-[17px] leading-relaxed text-charcoal">
+            <p className="mx-auto mt-4 max-w-[680px] font-body text-reading text-charcoal">
               {get(content, "home.phases.body", "The Relationship Life Cycle™ identifies six phases of relationship development — each one serving a distinct purpose in the larger journey.")}
             </p>
           </div>
@@ -124,12 +134,12 @@ export default async function HomePage() {
       {/* Assessment */}
       <section className="bg-warm-ivory px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.assess.heading", "See where your relationship is right now.")}</h2>
-          <p className="mx-auto mt-4 max-w-[680px] font-body text-[17px] leading-relaxed text-charcoal">
-            {get(content, "home.assess.body", "The Relationship Snapshot™ is a free assessment that shows you how your relationship is functioning today — and what it might need next.")}
+          <h2 className="font-display text-3xl font-semibold text-midnight-navy sm:text-4xl">{get(content, "home.assess.heading", "See where you are right now.")}</h2>
+          <p className="mx-auto mt-4 max-w-[680px] font-body text-reading text-charcoal">
+            {get(content, "home.assess.body", "The Relationship Snapshot™ is a free assessment that names the pattern shaping your relationship life today — and what to focus on next.")}
           </p>
           <ul className="mx-auto mt-8 flex max-w-md flex-col gap-3 text-left">
-            {["Understand where your relationship is", "Discover what's already going well", "See what to focus on next"].map((b) => (
+            {["Understand the pattern you're in", "Discover what's already going well", "See what to focus on next"].map((b) => (
               <li key={b} className="flex items-center gap-3 font-body text-charcoal">
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage-green/20 text-sage-green">✓</span>
                 {b}
@@ -147,7 +157,7 @@ export default async function HomePage() {
       <section className="bg-[#F2F5F2] px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-3xl font-semibold text-midnight-navy">{get(content, "home.pros.heading", "A framework built for clinical practice.")}</h2>
-          <p className="mx-auto mt-4 max-w-[680px] font-body text-[16px] leading-relaxed text-charcoal">
+          <p className="mx-auto mt-4 max-w-[680px] font-body text-base leading-relaxed text-charcoal">
             {get(content, "home.pros.body", "Therapists, coaches, attorneys, healthcare providers, and organizations are using the Relationship Life Cycle™ Framework to bring developmental clarity to the relationships they support. Professional resources, CE courses, and certification are in development.")}
           </p>
           <div className="mt-8"><CtaButton href="/professionals" variant="secondary">Explore Professional Resources</CtaButton></div>
@@ -158,7 +168,7 @@ export default async function HomePage() {
       <section className="bg-midnight-navy px-6 py-24 text-center text-white">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-3xl font-semibold sm:text-4xl">{get(content, "home.academy.heading", "The Relationship Academy")}</h2>
-          <p className="mx-auto mt-4 max-w-[600px] font-body text-[17px] leading-relaxed text-white/85">
+          <p className="mx-auto mt-4 max-w-[600px] font-body text-reading text-white/85">
             {get(content, "home.academy.body", "A community for people who want to go deeper — guided conversations, live sessions, and ongoing learning built around the Relationship Life Cycle™ Framework.")}
           </p>
           <div className="mt-8"><CtaButton href="https://skool.com/relationship-academy" variant="accent" external>Join The Relationship Academy</CtaButton></div>

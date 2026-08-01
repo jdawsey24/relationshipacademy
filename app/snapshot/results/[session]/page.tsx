@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { CSSProperties } from "react";
 import { useParams } from "next/navigation";
+import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
+import { IconTile } from "@/components/site/IconTile";
 
 interface Primary {
   id: number; name: string; result_title: string; core_pattern: string;
@@ -18,6 +21,8 @@ interface Results {
   secondary: { id: number; name: string; result_title: string; secondary_blurb: string } | null;
   playbook_url: string | null;
 }
+
+const SAGE = "#8A9D8F"; // strengths / steady
 
 export default function ResultsPage() {
   const { session } = useParams<{ session: string }>();
@@ -37,26 +42,40 @@ export default function ResultsPage() {
 
   const p = data.primary;
   const title = p.result_title || p.name;
+  const hue = playbookHue(p.id);
 
   return (
-    <main className="mx-auto max-w-2xl px-6 pb-24 pt-8">
-      <p className="text-center font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Your Relationship Snapshot&trade;</p>
+    <main className="mx-auto max-w-2xl px-6 pb-24 pt-8" style={{ "--hue": hue } as CSSProperties}>
+      <p className="text-center font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Your Relationship Snapshot&trade;</p>
 
-      {/* Primary — the full structured read */}
-      <section className="mt-6">
-        <h1 className="text-balance text-center font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-4xl">{title}</h1>
-        {p.core_pattern && <p className="mx-auto mt-4 max-w-xl text-balance text-center font-body text-lg leading-relaxed text-charcoal/70">{p.core_pattern}</p>}
+      {/* Hero — the pattern, revealed */}
+      <section className="mt-7 flex flex-col items-center text-center">
+        <IconTile hue={hue} size="lg">
+          <PlaybookMark clusterId={p.id} className="h-9 w-9" />
+        </IconTile>
+        <h1 className="mt-5 text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-[40px]">{title}</h1>
+        {p.core_pattern && <p className="mx-auto mt-4 max-w-xl text-balance font-body text-lg leading-relaxed text-charcoal/70">{p.core_pattern}</p>}
       </section>
 
       <Prose label="What this means" text={p.what_this_means} />
       <Prose label="Why this happens" text={p.why_this_happens} />
       <Bullets label="How it may show up" items={p.how_it_may_show_up} />
-      <Bullets label="Strengths" items={p.strengths} />
-      <Bullets label="Blind spots" items={p.blind_spots} />
+
+      {/* The two-sided read */}
+      <TwoUp strengths={p.strengths} blindSpots={p.blind_spots} hue={hue} />
+
       <Prose label="Cost of staying here" text={p.cost_of_staying_here} />
       <Prose label="Growth looks like" text={p.growth_looks_like} />
       <Prose label="What you're actually looking for" text={p.unmet_need} />
       <Prose label="Developmental focus" text={p.developmental_focus} />
+
+      {/* The heart of it — key takeaway, given a moment */}
+      {p.key_takeaway && (
+        <section className="mt-12 rounded-3xl px-8 py-10 text-center" style={{ backgroundColor: `${hue}12`, border: `1px solid ${hue}33` }}>
+          <p className="font-ui text-eyebrow font-semibold uppercase" style={{ color: hue }}>The heart of it</p>
+          <p className="mx-auto mt-3 max-w-xl text-balance font-display text-2xl font-medium italic leading-snug text-midnight-navy">{p.key_takeaway}</p>
+        </section>
+      )}
 
       {/* Playbook — CTA on Primary only */}
       <PlaybookCard
@@ -65,7 +84,6 @@ export default function ResultsPage() {
         title={p.playbook_title}
         subtitle={p.playbook_subtitle}
         whyThisPlaybook={p.why_this_playbook}
-        keyTakeaway={p.key_takeaway}
         ctaLabel={p.call_to_action}
         available={data.playbook_url != null}
       />
@@ -75,19 +93,29 @@ export default function ResultsPage() {
         <section className="mt-8 rounded-2xl border border-light-gray bg-white/70 p-5">
           <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal/45">You may also relate to</p>
           <p className="mt-1 font-display text-lg font-semibold text-midnight-navy">{data.secondary.result_title || data.secondary.name}</p>
-          <p className="mt-1 font-body text-[15px] leading-relaxed text-charcoal/80">{data.secondary.secondary_blurb}</p>
+          <p className="mt-1 font-body text-body text-charcoal/80">{data.secondary.secondary_blurb}</p>
         </section>
       )}
     </main>
   );
 }
 
+// A small hue tick before a section label — replaces the uniform coral labels.
+function Label({ children, color }: { children: React.ReactNode; color?: string }) {
+  return (
+    <h2 className="flex items-center gap-2.5 font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal/45">
+      <span className="h-px w-5 shrink-0" style={{ backgroundColor: color ?? "var(--hue)" }} aria-hidden="true" />
+      {children}
+    </h2>
+  );
+}
+
 function Prose({ label, text }: { label: string; text: string }) {
   if (!text) return null;
   return (
-    <section className="mt-7">
-      <h2 className="font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal/45">{label}</h2>
-      <p className="mt-2 font-body text-[17px] leading-relaxed text-charcoal/85">{text}</p>
+    <section className="mt-8">
+      <Label>{label}</Label>
+      <p className="mt-2.5 font-body text-reading text-charcoal/85">{text}</p>
     </section>
   );
 }
@@ -95,12 +123,12 @@ function Prose({ label, text }: { label: string; text: string }) {
 function Bullets({ label, items }: { label: string; items: string[] }) {
   if (!items?.length) return null;
   return (
-    <section className="mt-7">
-      <h2 className="font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal/45">{label}</h2>
-      <ul className="mt-2 space-y-1.5">
+    <section className="mt-8">
+      <Label>{label}</Label>
+      <ul className="mt-2.5 space-y-1.5">
         {items.map((it, i) => (
-          <li key={i} className="flex gap-2.5 font-body text-[17px] leading-relaxed text-charcoal/85">
-            <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-coral-rose/70" aria-hidden="true" />
+          <li key={i} className="flex gap-2.5 font-body text-reading text-charcoal/85">
+            <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "var(--hue)" }} aria-hidden="true" />
             <span>{it}</span>
           </li>
         ))}
@@ -109,8 +137,44 @@ function Bullets({ label, items }: { label: string; items: string[] }) {
   );
 }
 
-function PlaybookCard({ session, clusterId, title, subtitle, whyThisPlaybook, keyTakeaway, ctaLabel, available }: {
-  session: string; clusterId: number; title: string; subtitle: string; whyThisPlaybook: string; keyTakeaway: string; ctaLabel: string; available: boolean;
+// Strengths (steady/sage) and blind spots (the cluster hue) side by side — the
+// good and the watch-out, encoded in color rather than another identical list.
+function TwoUp({ strengths, blindSpots, hue }: { strengths: string[]; blindSpots: string[]; hue: string }) {
+  if (!strengths?.length && !blindSpots?.length) return null;
+  return (
+    <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      {strengths?.length > 0 && (
+        <div className="rounded-2xl border p-5" style={{ borderColor: `${SAGE}55`, backgroundColor: `${SAGE}12` }}>
+          <Label color={SAGE}>Strengths</Label>
+          <ul className="mt-3 space-y-2">
+            {strengths.map((it, i) => (
+              <li key={i} className="flex gap-2.5 font-body text-[15.5px] leading-relaxed text-charcoal/85">
+                <svg viewBox="0 0 24 24" width={16} height={16} className="mt-[3px] shrink-0" fill="none" stroke={SAGE} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                <span>{it}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {blindSpots?.length > 0 && (
+        <div className="rounded-2xl border p-5" style={{ borderColor: `${hue}55`, backgroundColor: `${hue}12` }}>
+          <Label color={hue}>Blind spots</Label>
+          <ul className="mt-3 space-y-2">
+            {blindSpots.map((it, i) => (
+              <li key={i} className="flex gap-2.5 font-body text-[15.5px] leading-relaxed text-charcoal/85">
+                <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rotate-45" style={{ backgroundColor: hue }} aria-hidden="true" />
+                <span>{it}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PlaybookCard({ session, clusterId, title, subtitle, whyThisPlaybook, ctaLabel, available }: {
+  session: string; clusterId: number; title: string; subtitle: string; whyThisPlaybook: string; ctaLabel: string; available: boolean;
 }) {
   const [buying, setBuying] = useState(false);
   const [buyErr, setBuyErr] = useState<string | null>(null);
@@ -162,16 +226,18 @@ function PlaybookCard({ session, clusterId, title, subtitle, whyThisPlaybook, ke
   }
 
   return (
-    <section className="mt-10 rounded-2xl bg-midnight-navy px-6 py-8 text-center text-white">
-      <p className="font-ui text-xs uppercase tracking-wide text-white/60">The Relationship Playbook&trade;</p>
+    <section className="mt-10 overflow-hidden rounded-2xl bg-midnight-navy px-6 py-8 text-center text-white">
+      <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
+        <PlaybookMark clusterId={clusterId} className="h-7 w-7 text-white" />
+      </span>
+      <p className="mt-3 font-ui text-xs uppercase tracking-wide text-white/60">The Relationship Playbook&trade;</p>
       <h2 className="mt-1 font-display text-2xl font-semibold sm:text-3xl">{title}</h2>
-      <p className="mx-auto mt-2 max-w-md font-body text-[17px] leading-relaxed text-white/85">{subtitle}</p>
-      {whyThisPlaybook && <p className="mx-auto mt-3 max-w-md font-body text-[15px] leading-relaxed text-white/70">{whyThisPlaybook}</p>}
-      {keyTakeaway && <p className="mx-auto mt-5 max-w-md border-t border-white/15 pt-5 font-body text-[15px] italic leading-relaxed text-white/85">{keyTakeaway}</p>}
+      <p className="mx-auto mt-2 max-w-md font-body text-reading text-white/85">{subtitle}</p>
+      {whyThisPlaybook && <p className="mx-auto mt-3 max-w-md font-body text-body text-white/70">{whyThisPlaybook}</p>}
 
       {available ? (
         <>
-          {ctaLabel && <p className="mx-auto mt-4 max-w-md font-body text-[15px] leading-relaxed text-white/75">{ctaLabel}</p>}
+          {ctaLabel && <p className="mx-auto mt-5 max-w-md font-body text-body text-white/75">{ctaLabel}</p>}
           <button onClick={buy} disabled={buying}
             className="mt-5 inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60">
             {buying ? "Starting checkout…" : "Get Your Playbook →"}

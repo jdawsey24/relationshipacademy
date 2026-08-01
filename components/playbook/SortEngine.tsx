@@ -49,7 +49,7 @@ export default function SortEngine({ buckets, items, note, onComplete, continueL
           const current = assign[item.id];
           return (
             <li key={item.id} className="rounded-2xl bg-white/70 p-4">
-              <p className="font-body text-[15px] leading-relaxed text-charcoal">{item.text}</p>
+              <p className="font-body text-body text-charcoal">{item.text}</p>
               <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label={`Sort: ${item.text}`}>
                 {buckets.map((b) => {
                   const selected = current === b.id;
@@ -88,7 +88,7 @@ export default function SortEngine({ buckets, items, note, onComplete, continueL
       </ul>
 
       {allAssigned && note && (
-        <p className="rounded-2xl bg-sage-green/15 px-4 py-3 font-body text-[15px] leading-relaxed text-charcoal">
+        <p className="rounded-2xl bg-sage-green/15 px-4 py-3 font-body text-body text-charcoal">
           {note}
         </p>
       )}

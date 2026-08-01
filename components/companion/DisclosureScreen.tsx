@@ -14,11 +14,11 @@ function BlockView({ block }: { block: Block }) {
   if (Array.isArray(block)) {
     return (
       <ul className="mt-2 list-disc space-y-1 pl-5">
-        {block.map((li, i) => <li key={i} className="font-body text-[14px] leading-relaxed text-charcoal/80">{li}</li>)}
+        {block.map((li, i) => <li key={i} className="font-body text-sm leading-relaxed text-charcoal/80">{li}</li>)}
       </ul>
     );
   }
-  return <p className="mt-2 font-body text-[14px] leading-relaxed text-charcoal/80">{block}</p>;
+  return <p className="mt-2 font-body text-sm leading-relaxed text-charcoal/80">{block}</p>;
 }
 
 export default function DisclosureScreen({ onAccepted }: { onAccepted: () => void }) {
@@ -42,17 +42,17 @@ export default function DisclosureScreen({ onAccepted }: { onAccepted: () => voi
   return (
     <div className="min-h-screen overflow-y-auto bg-warm-ivory">
       <div className="mx-auto max-w-md px-5 pb-40 pt-8">
-        <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">The Relationship Companion&trade;</p>
+        <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">The Relationship Companion&trade;</p>
         <h1 className="mt-1 font-display text-2xl font-semibold leading-tight text-midnight-navy">Before you begin</h1>
 
         {/* Prominent summary of the material points. */}
         <section className="mt-4 rounded-2xl border border-coral-rose/35 bg-coral-rose/8 p-4">
-          <p className="font-body text-[15px] leading-relaxed text-charcoal/85">{DISCLOSURE_SUMMARY}</p>
+          <p className="font-body text-body text-charcoal/85">{DISCLOSURE_SUMMARY}</p>
         </section>
 
         {/* Full disclosure. */}
         <h2 className="mt-7 font-display text-lg font-semibold text-midnight-navy">{DISCLOSURE_TITLE}</h2>
-        <p className="mt-2 font-body text-[14px] leading-relaxed text-charcoal/75">{DISCLOSURE_INTRO}</p>
+        <p className="mt-2 font-body text-sm leading-relaxed text-charcoal/75">{DISCLOSURE_INTRO}</p>
 
         <div className="mt-4 space-y-5">
           {DISCLOSURE_SECTIONS.map((s) => (
@@ -84,7 +84,7 @@ export default function DisclosureScreen({ onAccepted }: { onAccepted: () => voi
       {/* Sticky acceptance bar. */}
       <div className="fixed inset-x-0 bottom-0 z-20 border-t border-light-gray bg-white/95 backdrop-blur">
         <div className="mx-auto max-w-md px-5 py-3">
-          {err && <p className="mb-2 font-body text-[13px] text-coral-rose">{err}</p>}
+          {err && <p className="mb-2 font-body text-micro text-coral-rose">{err}</p>}
           <label className="flex items-start gap-2.5">
             <input type="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} className="mt-0.5 h-4 w-4 flex-none" aria-describedby="disclosure-title" />
             <span className="font-body text-[13px] leading-relaxed text-charcoal/80">{ACCEPT_LABEL}</span>

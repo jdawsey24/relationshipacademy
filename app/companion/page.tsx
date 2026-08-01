@@ -37,7 +37,7 @@ export default function CompanionHome() {
     <CompanionChrome active="home">
       <InstallGuide />
       <div className="flex items-center justify-between">
-        <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
+        <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Relationship Companion</p>
         <Link href="/companion/settings" aria-label="Settings" className="text-lg text-charcoal/40 hover:text-charcoal">⚙</Link>
       </div>
       <h1 className="mt-2 text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy">What are you navigating right now?</h1>
@@ -57,7 +57,7 @@ export default function CompanionHome() {
         </span>
         <span className="flex-1">
           <span className="block font-display text-lg font-semibold">Plan a conversation</span>
-          <span className="mt-0.5 block font-body text-[13px] text-white/70">Prepare for something you need to say.</span>
+          <span className="mt-0.5 block font-body text-micro text-white/70">Prepare for something you need to say.</span>
         </span>
         <span className="text-white/50" aria-hidden="true">→</span>
       </Link>
@@ -72,7 +72,7 @@ export default function CompanionHome() {
           <>
             <SituationList situations={situations.slice(0, HOME_SUGGESTIONS)} />
             <Link href="/companion/process"
-              className="mt-3 flex items-center justify-center gap-1.5 rounded-2xl border border-light-gray/70 py-3 font-ui text-[13px] font-semibold text-midnight-navy/75 transition-colors hover:bg-white hover:text-midnight-navy">
+              className="mt-3 flex items-center justify-center gap-1.5 rounded-2xl border border-light-gray/70 py-3 font-ui text-micro font-semibold text-midnight-navy/75 transition-colors hover:bg-white hover:text-midnight-navy">
               Browse all situations
               <span aria-hidden="true">→</span>
             </Link>

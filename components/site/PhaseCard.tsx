@@ -28,7 +28,7 @@ export default function PhaseCard({
       className="group relative flex flex-col overflow-hidden rounded-xl border border-light-gray bg-white p-6 transition-shadow hover:shadow-md"
     >
       <span className={`absolute left-0 top-0 h-full w-1 ${c.barFill}`} aria-hidden="true" />
-      <span className={`font-ui text-[11px] font-semibold uppercase tracking-[0.15em] ${c.text}`}>
+      <span className={`font-ui text-eyebrow font-semibold uppercase ${c.text}`}>
         Phase {number}
       </span>
       <span className="mt-2 font-display text-2xl font-semibold text-midnight-navy">{name}</span>
@@ -38,7 +38,7 @@ export default function PhaseCard({
           Developmental task: {task}
         </span>
       )}
-      <span className="mt-3 font-body text-[15px] leading-relaxed text-charcoal">{description}</span>
+      <span className="mt-3 font-body text-body text-charcoal">{description}</span>
     </Link>
   );
 }

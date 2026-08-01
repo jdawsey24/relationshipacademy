@@ -44,7 +44,7 @@ export default function VersionsPage() {
         <div className="mt-5 overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+              <tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
                 <th className="px-3 py-2 font-semibold">Version</th>
                 <th className="px-3 py-2 font-semibold">Description</th>
                 <th className="px-3 py-2 font-semibold">Active from</th>

@@ -22,7 +22,7 @@ function Prose({ body }: { body: string[] }) {
   return (
     <div className="space-y-4">
       {body.map((p, i) => (
-        <p key={i} className="font-body text-[17px] leading-relaxed text-charcoal/85">
+        <p key={i} className="font-body text-reading text-charcoal/85">
           {p}
         </p>
       ))}
@@ -274,7 +274,7 @@ export default function PlayContainer({ play, onSaveOutput, onExit, onRoute, onS
       {showSignpost && play.supportSignposts?.[0] && (
         <div className="mb-6 rounded-2xl border border-slate-blue/30 bg-slate-blue/10 p-5" role="note">
           <h3 className="font-display text-lg text-midnight-navy">{play.supportSignposts[0].heading}</h3>
-          <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/85">{play.supportSignposts[0].body}</p>
+          <p className="mt-2 font-body text-body text-charcoal/85">{play.supportSignposts[0].body}</p>
         </div>
       )}
 
@@ -309,13 +309,13 @@ function LiteratureScreen({ l1, l2, l2Heading, onNext }: { l1: string; l2?: stri
   return (
     <div className="space-y-5">
       <h2 className="font-display text-xl text-midnight-navy">Why this matters</h2>
-      <p className="font-body text-[16px] leading-relaxed text-charcoal/85">{l1}</p>
+      <p className="font-body text-base leading-relaxed text-charcoal/85">{l1}</p>
       {l2 && (
         <div>
           <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} className="font-ui text-sm text-midnight-navy underline">
             {open ? "Hide" : (l2Heading ?? "Understand this deeper")} {open ? "▴" : "▸"}
           </button>
-          {open && <p className="mt-3 font-body text-[15px] leading-relaxed text-charcoal/75">{l2}</p>}
+          {open && <p className="mt-3 font-body text-body text-charcoal/75">{l2}</p>}
         </div>
       )}
       <button type="button" className={nextBtn} onClick={onNext}>Show me how</button>
@@ -330,7 +330,7 @@ function ScenarioSortScreen({ data, onDone }: { data: Extract<Screen, { kind: "s
     <div className="space-y-5">
       <p className="font-body text-[15px] text-charcoal/70">{data.prompt}</p>
       <div className="rounded-2xl bg-warm-ivory p-4">
-        <p className="font-body text-[16px] leading-relaxed text-charcoal">{data.situation}</p>
+        <p className="font-body text-base leading-relaxed text-charcoal">{data.situation}</p>
         {data.thought && <p className="mt-2 font-body text-[15px] italic text-charcoal/70">{data.thought}</p>}
       </div>
       {!assignments ? (

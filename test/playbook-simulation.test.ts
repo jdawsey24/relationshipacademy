@@ -41,23 +41,25 @@ test("validation catches malformed graphs", () => {
 });
 
 test("fidelity aggregation is explicit-state and revision-agnostic", () => {
-  // RD: revising is appropriate, AND holding-open is appropriate (evidence-responsive)
-  assert.deepEqual(aggregateFidelity(RD, { rc1: "revise" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
-  assert.deepEqual(aggregateFidelity(RD, { rc1: "hold-open" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
+  // RD: revising is appropriate, AND holding-open is appropriate (evidence-responsive). Outcomes
+  // are now signature-tagged (owner decision #1).
+  assert.deepEqual(aggregateFidelity(RD, { rc1: "revise" }), { signature: "evidenceTimeline", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
+  assert.deepEqual(aggregateFidelity(RD, { rc1: "hold-open" }), { signature: "evidenceTimeline", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
   // RD: ignoring the concrete plan is weighed-but-not-appropriate
-  assert.deepEqual(aggregateFidelity(RD, { rc1: "keep" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
+  assert.deepEqual(aggregateFidelity(RD, { rc1: "keep" }), { signature: "evidenceTimeline", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
   // WM: narrowing appropriate; naming the fact WHILE the feeling persists is also appropriate
   // (cognitive fidelity ≠ emotional persistence); still treating it as a self-verdict is not.
-  assert.deepEqual(aggregateFidelity(WM, { rc1: "narrow" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
-  assert.deepEqual(aggregateFidelity(WM, { rc1: "narrow-with-feeling" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
-  assert.deepEqual(aggregateFidelity(WM, { rc1: "still-wrong" }), { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
+  assert.deepEqual(aggregateFidelity(WM, { rc1: "narrow" }), { signature: "conclusionNarrowing", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
+  assert.deepEqual(aggregateFidelity(WM, { rc1: "narrow-with-feeling" }), { signature: "conclusionNarrowing", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
+  assert.deepEqual(aggregateFidelity(WM, { rc1: "still-wrong" }), { signature: "conclusionNarrowing", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
   // unexercised → not_applicable, not a false "positive"
-  assert.deepEqual(aggregateFidelity(RD, {}), { evidence_reconsidered: "not_applicable", interpretation_response_appropriate: "not_applicable" });
+  assert.deepEqual(aggregateFidelity(RD, {}), { signature: "evidenceTimeline", evidence_reconsidered: "not_applicable", interpretation_response_appropriate: "not_applicable" });
 });
 
-test("completionPayload conforms to the event registry (states only)", () => {
+test("completionPayload conforms to the event registry (signature-tagged states only)", () => {
   const p = completionPayload(aggregateFidelity(RD, { rc1: "keep" }));
-  assert.deepEqual(Object.keys(p).sort(), ["evidence_reconsidered", "interpretation_response_appropriate"]);
+  assert.deepEqual(Object.keys(p).sort(), ["evidence_reconsidered", "interpretation_response_appropriate", "signature"]);
+  assert.equal(p.signature, "evidenceTimeline");
 });
 
 test("graph routing includes teaching branches that rejoin the main path", () => {
@@ -114,6 +116,9 @@ test("JIT literature hooks reference real literature ids (never inlined)", () =>
   for (const id of hooks) assert.ok(litIds.has(id), `unknown JIT literature ${id}`);
 });
 
-test("content module exposes the Experience layer", () => {
-  assert.equal(C.simulations?.length, 2);
+test("content module exposes the Experience layer (2 live + implemented slices)", () => {
+  assert.equal(C.simulations?.length, 6);
+  for (const sig of ["dualAttention", "decisionRoom", "investmentView", "communicationRehearsal"]) {
+    assert.ok(C.simulations?.some((s) => s.signature === sig), `${sig} simulation present`);
+  }
 });

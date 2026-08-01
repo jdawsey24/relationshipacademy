@@ -11,7 +11,7 @@ export const DOMAIN_SLUGS = [
   "trust",
   "emotional_intimacy",
   "conflict_management",
-  "role_functioning", // canonical (workbook name); live site still says "Relational Functioning"
+  "role_functioning", // canonical (workbook + site) name is "Role Functioning"; snapshot DB slug remains "relational_functioning"
   "physical_intimacy",
 ] as const;
 

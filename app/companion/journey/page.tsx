@@ -54,7 +54,7 @@ export default function CompanionJourney() {
 
   return (
     <CompanionChrome active="journey">
-      <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Journey</p>
+      <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Journey</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy">Your journey</h1>
       <p className="mt-1 font-body text-sm text-charcoal/60">Everything you&apos;ve saved, in one private place.</p>
 

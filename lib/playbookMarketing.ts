@@ -12,7 +12,7 @@ export const PLAYBOOK_SLUGS: Record<string, number> = {
   "moving-beyond-rejection": 1,
   "letting-someone-in": 3,
   "dating-without-losing-hope": 4,
-  "trusting-your-judgment": 5,
+  "trusting-what-you-see": 5,
   "finding-security": 6,
   "lean-in-or-let-go": 24,
 };

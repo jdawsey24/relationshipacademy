@@ -161,7 +161,7 @@ export default function CrmPage() {
       {!error && !loading && active.kind === "assessment" && (
         <div className="overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
-            <thead><tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+            <thead><tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
               <th className="px-3 py-2 font-semibold">Name</th><th className="px-3 py-2 font-semibold">Email</th>
               <th className="px-3 py-2 font-semibold">Phase</th><th className="px-3 py-2 font-semibold">Alignment</th>
               <th className="px-3 py-2 font-semibold">Risk</th><th className="px-3 py-2 font-semibold">Completed</th>
@@ -186,7 +186,7 @@ export default function CrmPage() {
       {!error && !loading && active.kind === "site" && (
         <div className="overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
-            <thead><tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+            <thead><tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
               <th className="px-3 py-2 font-semibold">Name</th><th className="px-3 py-2 font-semibold">Email</th>
               <th className="px-3 py-2 font-semibold">Org</th>
               {active.showType && <th className="px-3 py-2 font-semibold">Type</th>}

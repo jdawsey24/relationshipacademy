@@ -38,7 +38,7 @@ test("evidenceTimeline: temptation choices earn teaching beats and rejoin the sa
   fireEvent.click(screen.getByRole("button", { name: /open the tool/i }));
 
   assert.equal(calls[0].toPlayId, "read-and-decide");
-  assert.deepEqual(calls[0].payload, { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
+  assert.deepEqual(calls[0].payload, { signature: "evidenceTimeline", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
 });
 
 test("evidenceTimeline: acting-before-clear beat; holding 'not enough yet' is evidence-appropriate", () => {
@@ -55,7 +55,7 @@ test("evidenceTimeline: acting-before-clear beat; holding 'not enough yet' is ev
   fireEvent.click(screen.getByRole("button", { name: /losing interest is still possible, but i don't have enough/i }));
   cont();
   fireEvent.click(screen.getByRole("button", { name: /open the tool/i }));
-  assert.deepEqual(calls[0].payload, { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
+  assert.deepEqual(calls[0].payload, { signature: "evidenceTimeline", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
 });
 
 test("conclusionNarrowing: globalizing read expands, jump routes to a note, narrowing credits fidelity", () => {
@@ -82,7 +82,7 @@ test("conclusionNarrowing: globalizing read expands, jump routes to a note, narr
   cont();
   fireEvent.click(screen.getByRole("button", { name: /open the tool/i }));
   assert.equal(calls[0].toPlayId, "what-it-actually-means");
-  assert.deepEqual(calls[0].payload, { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
+  assert.deepEqual(calls[0].payload, { signature: "conclusionNarrowing", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
 });
 
 test("conclusionNarrowing: a bounded first read is acknowledged, not treated as a problem", () => {
@@ -108,7 +108,7 @@ test("conclusionNarrowing: naming the fact while the feeling persists is Techniq
   assert.ok(screen.getByText(/the feeling doesn't have to disappear/i), "feeling ≠ evidence teaching");
   cont();
   fireEvent.click(screen.getByRole("button", { name: /open the tool/i }));
-  assert.deepEqual(calls[0].payload, { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
+  assert.deepEqual(calls[0].payload, { signature: "conclusionNarrowing", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
 });
 
 test("conclusionNarrowing: 'still proves something is wrong' separates real pain from the unsupported conclusion", () => {
@@ -125,7 +125,7 @@ test("conclusionNarrowing: 'still proves something is wrong' separates real pain
   assert.ok(screen.getByText(/keep the pain; drop the verdict/i), "distinguishes pain from conclusion");
   cont();
   fireEvent.click(screen.getByRole("button", { name: /open the tool/i }));
-  assert.deepEqual(calls[0].payload, { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
+  assert.deepEqual(calls[0].payload, { signature: "conclusionNarrowing", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" });
 });
 
 test("focus moves to the new node's prompt on transition", () => {

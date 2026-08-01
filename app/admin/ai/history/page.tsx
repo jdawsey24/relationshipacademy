@@ -20,7 +20,7 @@ export default function AiHistoryPage() {
         <div className="overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+              <tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
                 <th className="px-3 py-2 font-semibold">When</th>
                 <th className="px-3 py-2 font-semibold">Type</th>
                 <th className="px-3 py-2 font-semibold">Model</th>

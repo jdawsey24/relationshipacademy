@@ -33,9 +33,21 @@ const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object
 const isBool = (v: unknown) => typeof v === "boolean";
 const isStr = (v: unknown) => typeof v === "string";
 const isFidelityState = (v: unknown) => v === "demonstrated" || v === "not_demonstrated" || v === "not_applicable";
+const isChosenStance = (v: unknown) => v === "rest" || v === "not_now" || v === "lightly_open" || v === "return_later" || v === "pause_decision";
 const optional = (v: unknown, check: (x: unknown) => boolean) => v === undefined || check(v);
 /** Reject any key not in the allow-list (keeps payloads minimal + functional). */
 const onlyKeys = (p: Record<string, unknown>, keys: string[]) => Object.keys(p).every((k) => keys.includes(k));
+
+/** Per-signature allow-listed fidelity fields for the signature-tagged `simulation_completed`
+ *  payload (each field a FidelityState; decisionRoom also carries the bounded `chosen_stance`). */
+const SIM_COMPLETED_FIELDS: Record<string, Record<string, (v: unknown) => boolean>> = {
+  evidenceTimeline: { evidence_reconsidered: isFidelityState, interpretation_response_appropriate: isFidelityState },
+  conclusionNarrowing: { evidence_reconsidered: isFidelityState, interpretation_response_appropriate: isFidelityState },
+  dualAttention: { evaluator_stance_held: isFidelityState, fit_information_kept_in_view: isFidelityState },
+  decisionRoom: { intentional_stance_selected: isFidelityState, discouragement_distinguished_from_conclusion: isFidelityState, chosen_stance: isChosenStance },
+  investmentView: { investment_evidence_tied: isFidelityState, effort_without_new_evidence_noticed: isFidelityState },
+  communicationRehearsal: { preference_expressed_clearly: isFidelityState, unnecessary_self_erasure_avoided: isFidelityState },
+};
 
 // ---- the registry -------------------------------------------------------------
 // Each event declares its object type, payload schema version, and a payload
@@ -50,13 +62,18 @@ export const EVENT_REGISTRY: Record<PlaybookEventType, EventDef> = {
   },
   simulation_completed: {
     objectType: "simulation",
-    schemaVersion: 2,
-    // Explicit fidelity STATES (not positive-only booleans). Revision is not the target.
-    validatePayload: (p) =>
-      isObj(p) &&
-      onlyKeys(p, ["evidence_reconsidered", "interpretation_response_appropriate"]) &&
-      optional(p.evidence_reconsidered, isFidelityState) &&
-      optional(p.interpretation_response_appropriate, isFidelityState),
+    schemaVersion: 3,
+    // Signature-tagged fidelity payload (owner decision #1). Explicit STATES per signature
+    // (never a positive-only boolean or a score); `signature` is the discriminant.
+    validatePayload: (p) => {
+      if (!isObj(p) || !isStr(p.signature)) return false;
+      const spec = SIM_COMPLETED_FIELDS[p.signature];
+      if (!spec) return false;
+      return (
+        onlyKeys(p, ["signature", ...Object.keys(spec)]) &&
+        Object.entries(spec).every(([k, check]) => optional(p[k], check))
+      );
+    },
   },
   operation_performed: {
     objectType: "play",

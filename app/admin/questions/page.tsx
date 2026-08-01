@@ -109,7 +109,7 @@ export default function QuestionsPage() {
         <div className="overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+              <tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
                 <th className="px-3 py-2 font-semibold">ID</th>
                 <th className="px-3 py-2 font-semibold">Domain</th>
                 <th className="px-3 py-2 font-semibold">Phase</th>

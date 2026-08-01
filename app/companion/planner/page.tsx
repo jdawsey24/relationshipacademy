@@ -29,7 +29,7 @@ export default function CompanionPlannerList() {
     <CompanionChrome active="none">
       <Link href="/companion" className="flex items-center gap-1 font-ui text-sm text-charcoal/55 hover:text-charcoal"><span aria-hidden="true">←</span> Home</Link>
 
-      <p className="mt-4 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Conversation Planner</p>
+      <p className="mt-4 font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Conversation Planner</p>
       <h1 className="mt-1.5 font-display text-3xl font-semibold leading-tight text-midnight-navy">Plan a conversation</h1>
       <p className="mt-1 font-body text-sm leading-relaxed text-charcoal/60">Prepare for a conversation that matters — privately, at your own pace.</p>
 
@@ -38,7 +38,7 @@ export default function CompanionPlannerList() {
         <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/15"><Glyph paths={["M12 5v14", "M5 12h14"]} size={21} /></span>
         <span className="flex-1">
           <span className="block font-display text-lg font-semibold">Plan a new conversation</span>
-          <span className="mt-0.5 block font-body text-[13px] text-white/70">Start a private, guided plan.</span>
+          <span className="mt-0.5 block font-body text-micro text-white/70">Start a private, guided plan.</span>
         </span>
         <span className="text-white/50" aria-hidden="true">→</span>
       </button>

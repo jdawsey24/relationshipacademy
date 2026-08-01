@@ -32,16 +32,18 @@ test("recognition selections surface the expected pathway cards on the board", (
   assert.equal(screen.queryByText(/edit myself so they'll keep liking me/i), null);
 });
 
-test("'Explore another area' reveals all pathways (incl. coming-soon) and never locks", () => {
+test("'Explore another area' reveals all pathways and never locks", () => {
   mount();
   toBoard(/can't always tell what their behavior/i);
   fireEvent.click(screen.getByRole("button", { name: /explore another area/i }));
-  // now the not-yet-built pathways appear, honestly marked "coming soon"
-  assert.ok(screen.getAllByText(/coming soon/i).length >= 1, "unbuilt pathways shown as coming soon");
-  assert.ok(screen.getByText(/edit myself so they'll keep liking me/i), "a non-recognized pathway is now explorable");
-  // toggling back returns to just the starting points
+  // a non-recognized pathway is now explorable (all six cluster pathways are built)
+  assert.ok(screen.getByText(/edit myself so they'll keep liking me/i), "a non-recognized pathway is explorable");
+  const explored = screen.getAllByRole("button", { name: /start|revisit/i }).length;
+  // toggling back narrows to just the recognized starting points (never locks)
   fireEvent.click(screen.getByRole("button", { name: /show just my starting points/i }));
-  assert.equal(screen.queryByText(/coming soon/i), null);
+  const starting = screen.getAllByRole("button", { name: /start|revisit/i }).length;
+  assert.ok(explored > starting, "exploring reveals more pathways than the recognized starting points");
+  assert.equal(screen.queryByText(/edit myself so they'll keep liking me/i), null, "back to starting points only");
 });
 
 test("'I handle this okay' skips the Play and returns without entering it", () => {

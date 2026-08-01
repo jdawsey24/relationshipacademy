@@ -62,7 +62,7 @@ export default function CompanionSettings() {
   return (
     <CompanionChrome active="none">
       {installOpen && <InstallGuide open onClose={() => setInstallOpen(false)} />}
-      <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Settings</p>
+      <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Settings</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy">Settings</h1>
       {msg && <p className="mt-3 rounded-2xl border border-light-gray bg-white p-3.5 font-body text-sm leading-relaxed text-charcoal/70">{msg}</p>}
 
@@ -77,7 +77,7 @@ export default function CompanionSettings() {
                 <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors ${sel ? "bg-midnight-navy text-white" : "bg-warm-ivory text-midnight-navy/65"}`}><Glyph paths={m?.icon ?? []} size={18} /></span>
                 <span className="flex-1">
                   <span className="block font-display text-[17px] font-semibold text-midnight-navy">{s.label}</span>
-                  <span className="block font-body text-[13px] text-charcoal/55">{m?.desc}</span>
+                  <span className="block font-body text-micro text-charcoal/55">{m?.desc}</span>
                 </span>
                 <span className={`shrink-0 text-midnight-navy transition-opacity ${sel ? "opacity-100" : "opacity-0"}`} aria-hidden="true"><Glyph paths={["M5 12l5 5 9-11"]} size={17} /></span>
               </button>

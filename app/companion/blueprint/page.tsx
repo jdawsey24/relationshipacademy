@@ -30,7 +30,7 @@ export default function CompanionBlueprint() {
   return (
     <CompanionChrome active="blueprint">
       {safety && <SafetyInterstitial payload={safety} onClose={() => setSafety(null)} />}
-      <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Blueprint</p>
+      <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Relationship Blueprint</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy">Your blueprint</h1>
       <p className="mt-1 font-body text-sm leading-relaxed text-charcoal/60">A living picture of what matters to you. Fill it in gradually — nothing needs finishing in one sitting.</p>
 

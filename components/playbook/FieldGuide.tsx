@@ -23,7 +23,7 @@ function Block({ block }: { block: LiteratureBlock }) {
         <section className="space-y-3">
           {block.heading && <h2 className="font-ui text-sm font-semibold uppercase tracking-wide text-charcoal/55">{block.heading}</h2>}
           {block.body.map((p, j) => (
-            <p key={j} className="font-body text-[16px] leading-relaxed text-charcoal/85">{p}</p>
+            <p key={j} className="font-body text-base leading-relaxed text-charcoal/85">{p}</p>
           ))}
         </section>
       );
@@ -32,7 +32,7 @@ function Block({ block }: { block: LiteratureBlock }) {
         <aside className="rounded-2xl border border-slate-blue/30 bg-slate-blue/10 p-4">
           <p className="font-ui text-xs font-semibold uppercase tracking-wide text-slate-blue">{block.label}</p>
           {block.body.map((p, j) => (
-            <p key={j} className="mt-2 font-body text-[15px] leading-relaxed text-charcoal/85">{p}</p>
+            <p key={j} className="mt-2 font-body text-body text-charcoal/85">{p}</p>
           ))}
         </aside>
       );
@@ -42,7 +42,7 @@ function Block({ block }: { block: LiteratureBlock }) {
           {block.label && <p className="font-ui text-sm font-medium text-charcoal">{block.label}</p>}
           <ul className="space-y-1">
             {block.items.map((it, j) => (
-              <li key={j} className="flex gap-2 font-body text-[15px] leading-relaxed text-charcoal/85">
+              <li key={j} className="flex gap-2 font-body text-body text-charcoal/85">
                 <span aria-hidden="true" className="text-coral-rose">•</span>
                 <span>{it}</span>
               </li>
@@ -55,7 +55,7 @@ function Block({ block }: { block: LiteratureBlock }) {
         <figure className="rounded-2xl bg-warm-ivory px-4 py-3">
           <figcaption className="font-ui text-xs uppercase tracking-wide text-charcoal/45">For example</figcaption>
           {block.body.map((p, j) => (
-            <p key={j} className="mt-1 font-body text-[15px] italic leading-relaxed text-charcoal/80">{p}</p>
+            <p key={j} className="mt-1 font-body text-body italic text-charcoal/80">{p}</p>
           ))}
         </figure>
       );
@@ -64,7 +64,7 @@ function Block({ block }: { block: LiteratureBlock }) {
         <aside className="rounded-2xl bg-sage-green/12 px-4 py-3" role="note">
           <p className="font-ui text-xs uppercase tracking-wide text-charcoal/50">Keep in mind</p>
           {block.body.map((p, j) => (
-            <p key={j} className="mt-1 font-body text-[15px] leading-relaxed text-charcoal/85">{p}</p>
+            <p key={j} className="mt-1 font-body text-body text-charcoal/85">{p}</p>
           ))}
         </aside>
       );
@@ -75,9 +75,11 @@ function Block({ block }: { block: LiteratureBlock }) {
 
 const BROWSE_SECTIONS: { key: string; heading: string; match: (e: LiteratureEntry) => boolean }[] = [
   { key: "core", heading: "Core guides", match: (e) => e.scope === "cluster" && e.depth !== "question" },
-  { key: "questions", heading: "Common questions", match: (e) => e.scope === "cluster" && e.depth === "question" },
-  { key: "play", heading: "Behind the tools", match: (e) => e.scope === "play" },
-  // JIT entries are intentionally NOT a browse section — they surface at their anchors.
+  { key: "questions", heading: "Question reads", match: (e) => e.scope === "cluster" && e.depth === "question" },
+  { key: "play", heading: "Related reads", match: (e) => e.scope === "play" },
+  // JIT entries are NOT browseable by default — they surface at their anchors first. Once the
+  // reader has seen one in context, it becomes revisitable in the "Previously surfaced" section
+  // below (driven by `availableJitIds`).
 ];
 
 export interface FieldGuideProps {
@@ -85,11 +87,13 @@ export interface FieldGuideProps {
   /** JIT entry ids the reader has already encountered at an anchor — eligible for revisit. */
   availableJitIds?: string[];
   title?: string;
+  /** Open directly on a specific entry (e.g. a JIT read surfaced from a simulation). */
+  initialEntryId?: string;
   onExit?: () => void;
 }
 
-export default function FieldGuide({ entries, availableJitIds = [], title = "Understand this pattern", onExit }: FieldGuideProps) {
-  const [activeId, setActiveId] = useState<string | null>(null);
+export default function FieldGuide({ entries, availableJitIds = [], title = "Understand this pattern", initialEntryId, onExit }: FieldGuideProps) {
+  const [activeId, setActiveId] = useState<string | null>(initialEntryId ?? null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const firstRun = useRef(true);
 
@@ -115,9 +119,16 @@ export default function FieldGuide({ entries, availableJitIds = [], title = "Und
       .filter((e) => e.scope !== "jit" || jitAvailable.has(e.id));
     return (
       <article className="mx-auto max-w-2xl px-5 py-8" aria-label={active.title}>
-        <button type="button" onClick={() => setActiveId(null)} className={`font-ui text-sm text-charcoal/55 hover:text-charcoal ${focusBtn}`}>
-          ← All topics
-        </button>
+        <div className="flex items-center justify-between">
+          <button type="button" onClick={() => setActiveId(null)} className={`font-ui text-sm text-charcoal/55 hover:text-charcoal ${focusBtn}`}>
+            ← All topics
+          </button>
+          {onExit && (
+            <button type="button" onClick={onExit} className={`font-ui text-sm text-charcoal/55 hover:text-charcoal ${focusBtn}`}>
+              Done
+            </button>
+          )}
+        </div>
         <h1 ref={headingRef} tabIndex={-1} className="mt-6 font-display text-2xl text-midnight-navy focus:outline-none">{active.title}</h1>
         <div className="mt-5 space-y-6">
           {active.body.map((block, i) => (
@@ -175,6 +186,30 @@ export default function FieldGuide({ entries, availableJitIds = [], title = "Und
           </div>
         );
       })}
+      {/* Previously surfaced — JIT reads the reader has already met at an anchor become
+          revisitable here. Never shown before they've been surfaced in context. */}
+      {(() => {
+        const surfaced = entries.filter((e) => e.scope === "jit" && jitAvailable.has(e.id));
+        if (surfaced.length === 0) return null;
+        return (
+          <div className="mt-8">
+            <h2 className="font-ui text-sm font-semibold uppercase tracking-wide text-charcoal/55">Previously surfaced reads</h2>
+            <ul className="mt-3 space-y-2">
+              {surfaced.map((e) => (
+                <li key={e.id}>
+                  <button
+                    type="button"
+                    onClick={() => setActiveId(e.id)}
+                    className={`w-full rounded-2xl bg-white/70 px-4 py-3 text-left font-body text-[16px] text-charcoal transition hover:bg-white ${focusBtn}`}
+                  >
+                    {e.title}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })()}
     </section>
   );
 }

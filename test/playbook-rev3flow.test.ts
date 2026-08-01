@@ -30,13 +30,13 @@ test("play-scope literature resolves for each Play (the extracted education)", (
 
 test("recordSimulationComplete writes minimal functional state (additive, version-stamped)", () => {
   const p0 = emptyProgress("moving-beyond-rejection", 1);
-  const fid = { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" } as const;
+  const fid = { signature: "evidenceTimeline", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" } as const;
   const p1 = recordSimulationComplete(p0, "sim-rd-shorter-texts", fid);
   assert.equal(p1.simulation_state?.version, 1);
   assert.deepEqual(p1.simulation_state?.runs?.["sim-rd-shorter-texts"], { completed: true, fidelity: fid });
   // additive — untouched elsewhere, and other runs preserved on a second write
   assert.deepEqual(p1.recognized, []);
-  const p2 = recordSimulationComplete(p1, "sim-wm-not-a-match", { evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
+  const p2 = recordSimulationComplete(p1, "sim-wm-not-a-match", { signature: "conclusionNarrowing", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "demonstrated" });
   assert.ok(p2.simulation_state?.runs?.["sim-rd-shorter-texts"]?.completed, "prior run preserved");
   assert.ok(p2.simulation_state?.runs?.["sim-wm-not-a-match"]?.completed);
 });

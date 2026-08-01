@@ -230,8 +230,10 @@ export type InteractionKind =
   | "scenarioSort"
   | "ruleBuilder"
   | "sentenceBuilder"
-  | "communicationRehearsal" // future (not built)
-  | "investmentView"; // future (not built)
+  | "dualAttention" // Is This Right for You?  (Phase B/C — content not yet built)
+  | "decisionRoom" // Rest, or Giving Up?      (Phase B/C — content not yet built)
+  | "communicationRehearsal" // Say the Real Thing (Phase B/C — content not yet built)
+  | "investmentView"; // How Much to Put In      (Phase B/C — content not yet built)
 
 // ---- Understand: literature (§5) ----------------------------------------------
 
@@ -286,6 +288,10 @@ export interface SimOption {
   label: string; // a plausible choice — NEVER "the correct one"; NO score/outcome fields
   feedback: string[]; // educational, mechanism-focused (no outcome, no score)
   processTag?: SimProcessTag;
+  /** A per-signature SEMANTIC fidelity tag read by that signature's aggregator (e.g.
+   *  "fit_kept"). Never a score/outcome — a named behavioural marker for THIS response, mapped to
+   *  fidelity states by the signature's aggregator. Only the four choice-computed signatures use it. */
+  signal?: string;
   /** Route to a short teaching branch; if omitted, advance to the node's `next`. */
   next?: string;
 }
@@ -295,16 +301,60 @@ export interface SimOption {
  *  signature. "Hold" vs "revise" is not fixed by signature: holding is evidence-appropriate
  *  in RD (ambiguity remains) and not in WM (the global verdict outruns one event).
  *  The engine never treats mere change-of-mind as the target. */
-export interface FidelityOutcome {
+/** The per-response fidelity fragment authored on a reconsider option (RD/WM two-dimension
+ *  shape). Distinct from the aggregated, signature-tagged `FidelityOutcome` below. */
+export interface ReconsiderFidelity {
   evidence_reconsidered: FidelityState;
   interpretation_response_appropriate: FidelityState;
 }
+
+/** decisionRoom's bounded stance enum (persisted inside its FidelityOutcome variant). */
+export type ChosenStance = "rest" | "not_now" | "lightly_open" | "return_later" | "pause_decision";
+
+/** Aggregated fidelity — a SIGNATURE-TAGGED discriminated union (owner decision #1). Each
+ *  interaction signature owns its approved fidelity fields (all `FidelityState`; no generic
+ *  score). Produced by `aggregateFidelity` (per-signature) and persisted on completion. */
+export type FidelityOutcome =
+  | ({ signature: "evidenceTimeline" | "conclusionNarrowing" } & ReconsiderFidelity)
+  | { signature: "dualAttention"; evaluator_stance_held: FidelityState; fit_information_kept_in_view: FidelityState }
+  | { signature: "decisionRoom"; intentional_stance_selected: FidelityState; discouragement_distinguished_from_conclusion: FidelityState; chosen_stance: ChosenStance }
+  | { signature: "investmentView"; investment_evidence_tied: FidelityState; effort_without_new_evidence_noticed: FidelityState }
+  | { signature: "communicationRehearsal"; preference_expressed_clearly: FidelityState; unnecessary_self_erasure_avoided: FidelityState };
+
 export interface ReconsiderOption {
   id: string;
   label: string;
   feedback?: string[];
   next?: string;
-  fidelity: FidelityOutcome;
+  /** Optional: only the two reconsider-based signatures (RD/WM) author this fragment.
+   *  Other signatures compute fidelity from decision/capture selections (see aggregateFidelity). */
+  fidelity?: ReconsiderFidelity;
+  /** Per-signature semantic fidelity tag (see SimOption.signal) — for choice-computed signatures. */
+  signal?: string;
+}
+
+// ---- Computed reveal (owner decision #2) --------------------------------------
+// The `reveal` node can show content that depends on the reader's OWN prior choices —
+// beyond a static body — for the four new signatures' mirrors. All fields are optional and
+// additive: an authored `body: string[]` reveal renders exactly as before.
+
+/** One line chosen IN CODE from prior selections/captures: the engine runs the named
+ *  `resolver` (a pure function of the run's selections/captures) which returns a key into
+ *  `variants`. Keeps compound selection logic testable in code, not a content DSL. */
+export interface RevealComputedSummary {
+  label?: string;
+  resolver: string;
+  variants: Record<string, string>;
+}
+/** Recap the reader's own earlier choice: shows `label` + the chosen option's label at `fromNode`. */
+export interface RevealRecap {
+  label: string;
+  fromNode: string;
+}
+/** A fixed, authored labeled example (e.g. one hypothetical reaction in a decoupled spread). */
+export interface RevealReaction {
+  label: string;
+  example: string;
 }
 
 /** Nodes form an authored GRAPH (startNodeId + per-node/option `next`), not a linear
@@ -322,7 +372,15 @@ export type SimNode = SimNodeBase &
     | { kind: "note"; body: string[]; next?: string } // short teaching-branch content (rejoins)
     | { kind: "capture"; prompt: string; field: CaptureField; next?: string }
     | { kind: "decision"; prompt: string; options: SimOption[]; next?: string }
-    | { kind: "reveal"; body: string[]; label?: string; next?: string } // authored/contextual label
+    | {
+        kind: "reveal";
+        body?: string[]; // static paragraphs (optional now — a computed reveal may have none)
+        label?: string; // authored/contextual label
+        next?: string;
+        computedSummary?: RevealComputedSummary; // one line selected in code from prior choices
+        recap?: RevealRecap[]; // recap of the reader's own earlier choices
+        reactions?: RevealReaction[]; // fixed labeled examples (e.g. a decoupled reaction spread)
+      }
     | { kind: "reconsider"; prompt: string; options: ReconsiderOption[]; next?: string }
     | { kind: "teach"; body: string[]; toPlayId: string } // terminal handoff (no `next`)
   );
@@ -449,9 +507,17 @@ export interface UseReviewSignals {
   updated?: boolean; // tool_updated
   saved?: boolean; // tool_saved_after_use (no saved Play existed before the review)
 }
+/** One logged real-life experience = the review signals plus when it was logged (ISO, display-only)
+ *  and an optional free-text description of what happened. Rev 3 keeps a chronological list per Play
+ *  so a reader can log the same tool multiple times over time (newest last); `at` is bounded/display-
+ *  only and never trusted for logic. `experience` is the ONE free-text note (owner-requested, optional,
+ *  bounded, crisis-screened at entry) — it is the reader's own and is never emitted to the event log. */
+export type UseReviewEntry = UseReviewSignals & { at?: string; experience?: string };
 export interface UseReviewState {
   version: number;
-  reviews?: Record<string, UseReviewSignals>;
+  // Chronological list of logged real-life uses per Play (newest last). A legacy single object
+  // is tolerated on read and coerced to a one-element list on the next save.
+  reviews?: Record<string, UseReviewEntry[]>;
 }
 export interface ChangePathState {
   version: number;

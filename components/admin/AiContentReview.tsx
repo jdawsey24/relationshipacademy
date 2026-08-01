@@ -31,7 +31,7 @@ export default function AiContentReview({ onMsg }: { onMsg: (m: string) => void 
       {rows && rows.length > 0 && (
         <div className="overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
-            <thead><tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal"><th className="px-3 py-2 font-semibold">Title</th><th className="px-3 py-2 font-semibold">Type</th><th className="px-3 py-2 font-semibold">Competency</th><th className="px-3 py-2 font-semibold">Quality</th><th className="px-3 py-2 font-semibold">Status</th></tr></thead>
+            <thead><tr className="bg-light-gray text-left text-micro uppercase text-charcoal"><th className="px-3 py-2 font-semibold">Title</th><th className="px-3 py-2 font-semibold">Type</th><th className="px-3 py-2 font-semibold">Competency</th><th className="px-3 py-2 font-semibold">Quality</th><th className="px-3 py-2 font-semibold">Status</th></tr></thead>
             <tbody>
               {rows.map((r, i) => (
                 <tr key={r.id} className={i % 2 ? "bg-[#F9F9F9]" : "bg-white"}>

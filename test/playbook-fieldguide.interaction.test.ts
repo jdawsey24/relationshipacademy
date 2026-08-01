@@ -13,13 +13,25 @@ test("browse view splits Core Guides and Common Questions; JIT is not a browse s
   mount();
   assert.ok(screen.getByText(/read whatever pulls at you/i), "optional, non-sequential framing");
   assert.ok(screen.getByText(/core guides/i));
-  assert.ok(screen.getByText(/common questions/i));
-  assert.ok(screen.getByText(/behind the tools/i));
+  assert.ok(screen.getByText(/question reads/i));
+  assert.ok(screen.getByText(/related reads/i));
   // no JIT browse section and no JIT entry surfaced as a top-level topic
   assert.equal(screen.queryByText(/quick reads/i), null);
   assert.equal(screen.queryByRole("button", { name: /when one thing becomes everything/i }), null, "JIT not browseable by default");
   // no sequential control in a field guide
   assert.equal(screen.queryByRole("button", { name: /^(continue|next)$/i }), null);
+});
+
+test("a previously-surfaced JIT read becomes browseable under 'Previously surfaced'", () => {
+  // not shown by default (no JIT seen yet)
+  mount();
+  assert.equal(screen.queryByText(/previously surfaced/i), null, "hidden until a JIT read is surfaced");
+});
+
+test("once surfaced, a JIT read is listed under 'Previously surfaced reads'", () => {
+  render(h(FieldGuide, { entries: MBR_LITERATURE, availableJitIds: ["lit-jit-ambiguity-spiral"] }));
+  assert.ok(screen.getByText(/previously surfaced reads/i), "section appears");
+  assert.ok(screen.getByRole("button", { name: /small change becomes a big story/i }), "the surfaced JIT read is revisitable");
 });
 
 test("opening an entry renders its blocks and moves focus to the heading", () => {

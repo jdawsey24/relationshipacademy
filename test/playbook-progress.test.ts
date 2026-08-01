@@ -77,3 +77,100 @@ test("sanitizeIncomingProgress tolerates a non-object body", () => {
   assert.deepEqual(out.my_plays, []);
   assert.equal(out.playbook_key, "k");
 });
+
+// ---- Phase D: Rev 3 separated state now carried (was stripped) -----------------
+
+test("Phase D: simulation_state is carried, and a tagged fidelity outcome is validated", () => {
+  const out = sanitizeIncomingProgress(
+    {
+      simulation_state: {
+        version: 1,
+        runs: {
+          "sim-itr-evaluator-stance": { completed: true, fidelity: { signature: "dualAttention", evaluator_stance_held: "demonstrated", fit_information_kept_in_view: "demonstrated" } },
+          "sim-rgu-decision-room": { completed: true, fidelity: { signature: "decisionRoom", intentional_stance_selected: "demonstrated", discouragement_distinguished_from_conclusion: "demonstrated", chosen_stance: "rest" } },
+        },
+      },
+    },
+    "k",
+    1,
+  );
+  assert.ok(out.simulation_state, "simulation_state is no longer stripped");
+  assert.equal(out.simulation_state?.runs?.["sim-itr-evaluator-stance"]?.completed, true);
+  assert.equal(out.simulation_state?.runs?.["sim-rgu-decision-room"]?.fidelity?.signature, "decisionRoom");
+});
+
+test("Phase D: invalid fidelity states/stances are coerced to safe defaults; junk keys dropped", () => {
+  const out = sanitizeIncomingProgress(
+    {
+      simulation_state: {
+        runs: {
+          s1: { completed: true, fidelity: { signature: "decisionRoom", intentional_stance_selected: "YES", discouragement_distinguished_from_conclusion: "demonstrated", chosen_stance: "whatever", partner_name: "leak" } },
+          s2: { fidelity: { signature: "not-a-signature", x: 1 } },
+        },
+      },
+    },
+    "k",
+    1,
+  );
+  const fid = out.simulation_state?.runs?.s1?.fidelity;
+  assert.ok(fid && fid.signature === "decisionRoom");
+  assert.equal(fid.intentional_stance_selected, "not_applicable", "invalid state → not_applicable");
+  assert.equal(fid.chosen_stance, "pause_decision", "invalid stance → pause_decision");
+  assert.ok(!("partner_name" in fid), "unknown/surveillance key dropped");
+  assert.equal(out.simulation_state?.runs?.s2?.fidelity, undefined, "unknown signature → no fidelity");
+});
+
+test("Phase D: practice / use_review / change_path / literature state carried + enum-validated", () => {
+  const out = sanitizeIncomingProgress(
+    {
+      practice_state: { version: 1, currentMissionId: "m1", missions: { m1: { state: "attempted", lastReport: "no_opportunity", attemptCount: 2 }, bad: { state: "nope" } } },
+      use_review_state: { version: 1, reviews: { p1: { performed: "partly", stuck: "x", didDifferently: ["a", 5], kept: true } } },
+      change_path_state: { version: 1, currentFocus: "read-and-decide" },
+      literature_state: { version: 1, read: ["lit-a", "lit-b", 9] },
+    },
+    "k",
+    1,
+  );
+  assert.equal(out.practice_state?.missions?.m1?.lastReport, "no_opportunity");
+  assert.equal(out.practice_state?.missions?.bad, undefined, "invalid mission state dropped");
+  // A legacy single-object review is coerced to a one-element list on the way in.
+  assert.equal(out.use_review_state?.reviews?.p1?.[0]?.performed, "partly");
+  assert.deepEqual(out.use_review_state?.reviews?.p1?.[0]?.didDifferently, ["a"]);
+  assert.equal(out.change_path_state?.currentFocus, "read-and-decide");
+  assert.deepEqual(out.literature_state?.read, ["lit-a", "lit-b"]);
+});
+
+test("Phase D: use_review keeps a LIST of logged uses (multiple over time), bounds count + at, coerces legacy", () => {
+  const many = Array.from({ length: 60 }, (_, i) => ({ performed: "yes", at: `2026-07-${(i % 28) + 1}` }));
+  const out = sanitizeIncomingProgress(
+    {
+      use_review_state: {
+        version: 1,
+        reviews: {
+          listed: [{ performed: "yes", at: "2026-07-01T00:00:00.000Z" }, { performed: "partly", stuck: "s" }],
+          legacy: { performed: "no" }, // legacy single object → one-element list
+          capped: many,
+          junk: [5, "x", { performed: "BAD", extra: "drop" }],
+        },
+      },
+    },
+    "k",
+    1,
+  );
+  const rev = out.use_review_state?.reviews;
+  assert.equal(rev?.listed?.length, 2, "list of uses preserved");
+  assert.equal(rev?.listed?.[0]?.at, "2026-07-01T00:00:00.000Z", "at kept (bounded)");
+  assert.equal(rev?.listed?.[1]?.performed, "partly");
+  assert.deepEqual(rev?.legacy, [{ performed: "no" }], "legacy object coerced to one-element list");
+  assert.equal(rev?.capped?.length, 50, "entries capped at 50");
+  assert.equal(rev?.junk?.length, 1, "non-object entries dropped");
+  assert.equal(rev?.junk?.[0]?.performed, undefined, "invalid performed dropped");
+  assert.ok(!("extra" in (rev?.junk?.[0] ?? {})), "unknown keys dropped");
+});
+
+test("Phase D: absent/invalid Rev 3 state stays absent (no fabricated objects)", () => {
+  const out = sanitizeIncomingProgress({ simulation_state: "not-an-object" }, "k", 1);
+  assert.equal(out.simulation_state, undefined);
+  assert.equal(out.practice_state, undefined);
+  assert.equal(out.change_path_state, undefined);
+});

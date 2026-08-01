@@ -25,7 +25,7 @@ export default async function LearnPage() {
     <main className="bg-warm-ivory">
       <section className="px-6 pt-36 pb-14 text-center">
         <div className="mx-auto max-w-3xl">
-          <h1 className="font-display text-[40px] font-semibold leading-[1.05] text-midnight-navy sm:text-5xl">
+          <h1 className="font-display text-hero font-semibold text-midnight-navy sm:text-5xl">
             The Relationship Life Cycle™ Learning Center
           </h1>
           <p className="mx-auto mt-6 max-w-[600px] font-body text-lg leading-relaxed text-charcoal">
@@ -76,7 +76,7 @@ export default async function LearnPage() {
                   <div className="flex flex-1 flex-col p-6">
                     {a.category && <span className="mb-2 font-ui text-[11px] uppercase tracking-wide text-coral-rose">{a.category}</span>}
                     <h3 className="font-display text-xl font-semibold text-midnight-navy">{a.title}</h3>
-                    {a.summary && <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal">{a.summary}</p>}
+                    {a.summary && <p className="mt-2 font-body text-body text-charcoal">{a.summary}</p>}
                   </div>
                 </Link>
               ))}
@@ -91,12 +91,12 @@ export default async function LearnPage() {
               {[
                 { title: "Understanding the Exploration Phase", body: "What discernment really looks like in the earliest phase of a relationship." },
                 { title: "Developmental Mismatch, Explained", body: "Why good relationships struggle when phases and expectations don't align." },
-                { title: "The Six Universal Domains", body: "How relational functioning is measured across every phase." },
+                { title: "The Six Universal Domains", body: "How role functioning is measured across every phase." },
               ].map((a) => (
                 <div key={a.title} className="flex flex-col rounded-xl border border-light-gray bg-white p-6">
                   <span className="mb-3 inline-flex w-fit rounded-full bg-light-gray px-3 py-1 font-ui text-[11px] uppercase tracking-wide text-charcoal/60">Coming soon</span>
                   <h3 className="font-display text-xl font-semibold text-midnight-navy">{a.title}</h3>
-                  <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal">{a.body}</p>
+                  <p className="mt-2 font-body text-body text-charcoal">{a.body}</p>
                 </div>
               ))}
             </div>
@@ -122,7 +122,7 @@ export default async function LearnPage() {
                     {r.category && <span className="font-ui text-[11px] uppercase tracking-wide text-coral-rose">{r.category}</span>}
                   </div>
                   <h3 className="font-display text-lg font-semibold text-midnight-navy">{r.title}</h3>
-                  {r.description && <p className="mt-2 font-body text-[15px] leading-relaxed text-charcoal">{r.description}</p>}
+                  {r.description && <p className="mt-2 font-body text-body text-charcoal">{r.description}</p>}
                   <span className="mt-4 inline-flex items-center gap-1 font-ui text-sm font-medium text-midnight-navy group-hover:underline">
                     Download
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" /></svg>

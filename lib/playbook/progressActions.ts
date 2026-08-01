@@ -1,7 +1,7 @@
 // Pure progress reducers (unit-testable, no React). ExperienceShell applies these
 // through useProgress().update(). Functional data only; version-stamped (R2).
 
-import type { FidelityOutcome, MissionReport, MissionState, Play, PlaybookProgress, SavedPlayCard, UseReviewSignals } from "@/lib/playbook/contentSchema";
+import type { FidelityOutcome, MissionReport, MissionState, Play, PlaybookProgress, SavedPlayCard, UseReviewEntry, UseReviewSignals } from "@/lib/playbook/contentSchema";
 import { deriveUserLine } from "@/lib/playbook/outputSummary";
 
 export function toggleRecognized(p: PlaybookProgress, cardId: string): PlaybookProgress {
@@ -90,12 +90,27 @@ export function recordChangePathFocus(p: PlaybookProgress, focusPlayId: string):
 
 // ---- Integrate: structured Use Review signals (Rev 3 Step 7; additive) ------------
 
-/** Persist the structured functional signals from a Use Review into use_review_state.
- *  Bounded selects only (no journaling). Feeds Change Path (Step 8). */
-export function recordUseReview(p: PlaybookProgress, playId: string, signals: UseReviewSignals): PlaybookProgress {
+const MAX_REVIEW_ENTRIES = 50;
+
+/** Read the chronological list of logged real-life uses for a Play (newest last), tolerating a
+ *  legacy single-object review (coerced to a one-element list). Empty when none. */
+export function reviewEntries(p: PlaybookProgress, playId: string): UseReviewEntry[] {
+  const v = p.use_review_state?.reviews?.[playId] as unknown;
+  if (Array.isArray(v)) return v as UseReviewEntry[];
+  if (v && typeof v === "object") return [v as UseReviewEntry];
+  return [];
+}
+
+/** Append a Use Review as a NEW logged real-life experience (never overwrites prior ones), so the
+ *  same tool can be logged multiple times over time. `at` is an optional ISO timestamp (display-only);
+ *  `experience` is an optional free-text description of what happened (the reader's own, bounded). The
+ *  bounded selects feed Change Path (Step 8) via the latest entry; the free text never does. */
+export function recordUseReview(p: PlaybookProgress, playId: string, signals: UseReviewSignals, at?: string, experience?: string): PlaybookProgress {
   const prev = p.use_review_state ?? { version: 1 };
   const reviews = { ...(prev.reviews ?? {}) };
-  reviews[playId] = { ...(reviews[playId] ?? {}), ...signals };
+  const note = experience?.trim();
+  const entry: UseReviewEntry = { ...signals, ...(at ? { at } : {}), ...(note ? { experience: note.slice(0, 2000) } : {}) };
+  reviews[playId] = [...reviewEntries(p, playId), entry].slice(-MAX_REVIEW_ENTRIES);
   return { ...p, use_review_state: { version: prev.version ?? 1, reviews } };
 }
 

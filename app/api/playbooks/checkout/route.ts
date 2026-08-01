@@ -4,6 +4,7 @@ import { requireMember } from "@/lib/academyAuth";
 import { getStripe, stripeConfigured } from "@/lib/stripe";
 import { readJsonBody } from "@/lib/apiSecurity";
 import { PLAYBOOK_PRICE_LOOKUP_KEY, PLAYBOOK_PRODUCT_KEY, hasPlaybook } from "@/lib/snapshot/playbooks";
+import { isAddonEntitlementId } from "@/lib/playbook/keys";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -50,16 +51,24 @@ export async function POST(request: Request) {
     }
 
     const meta = { user_id: member.user.id, product_key: PLAYBOOK_PRODUCT_KEY, billing_type: "one_time", cluster_id: String(clusterId) };
-    const session = await stripe.checkout.sessions.create({
+    const params: Parameters<typeof stripe.checkout.sessions.create>[0] = {
       mode: "payment",
       customer: customerId,
       line_items: [{ price: price.id, quantity: 1 }],
-      allow_promotion_codes: true,
       success_url: `${origin}/playbooks?purchase=success`,
       cancel_url: `${origin}/snapshot/results/${(body as { session_id?: string } | null)?.session_id ?? ""}`,
       metadata: meta,
       payment_intent_data: { metadata: meta }, // so the finance layer classifies it as one_time
-    });
+    };
+
+    // Add-ons carry a back-end coupon (auto-applied, not customer-entered) when
+    // STRIPE_ADDON_COUPON_ID is configured. Stripe forbids `discounts` alongside
+    // `allow_promotion_codes`, so it's one or the other.
+    const addonCoupon = process.env.STRIPE_ADDON_COUPON_ID;
+    if (isAddonEntitlementId(clusterId) && addonCoupon) params.discounts = [{ coupon: addonCoupon }];
+    else params.allow_promotion_codes = true;
+
+    const session = await stripe.checkout.sessions.create(params);
     return NextResponse.json({ url: session.url });
   } catch (e) {
     console.error("[playbooks/checkout]", e instanceof Error ? e.message : e);

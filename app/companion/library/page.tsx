@@ -1,6 +1,7 @@
 "use client";
 
 import CompanionChrome from "@/components/companion/CompanionChrome";
+import { IconTile } from "@/components/site/IconTile";
 
 function Glyph({ paths }: { paths: string[] }) {
   return (
@@ -16,22 +17,20 @@ const COMING: { title: string; desc: string; icon: string[]; accent: string }[] 
   { title: "Saved resources", desc: "Notes and downloads you keep", accent: "#C09A52", icon: ["M6 4h12v16l-6-4-6 4z"] },
 ];
 
-function tint(hex: string, a: number) { const n = parseInt(hex.slice(1), 16); return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`; }
-
 export default function CompanionLibrary() {
   return (
     <CompanionChrome active="library">
-      <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Library</p>
+      <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Library</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy">Your library</h1>
       <p className="mt-1 font-body text-sm leading-relaxed text-charcoal/60">Playbooks, unlocked experiences, and saved resources — all in one private place.</p>
 
       <div className="mt-6 space-y-2.5">
         {COMING.map((c) => (
           <div key={c.title} className="flex items-center gap-3.5 rounded-2xl border border-light-gray/70 bg-white p-3.5">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: tint(c.accent, 0.12), color: c.accent }}><Glyph paths={c.icon} /></span>
+            <IconTile hue={c.accent}><Glyph paths={c.icon} /></IconTile>
             <span className="min-w-0 flex-1">
               <span className="block font-display text-lg font-semibold leading-tight text-midnight-navy">{c.title}</span>
-              <span className="mt-0.5 block font-body text-[13px] text-charcoal/55">{c.desc}</span>
+              <span className="mt-0.5 block font-body text-micro text-charcoal/55">{c.desc}</span>
             </span>
             <span className="shrink-0 rounded-full bg-warm-ivory px-2.5 py-0.5 font-ui text-[10px] font-semibold uppercase tracking-wide text-charcoal/45">Soon</span>
           </div>

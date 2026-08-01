@@ -118,7 +118,7 @@ export default function ArticleEditor({ id }: { id?: string }) {
 
         <label className="block">
           <span className="mb-1 block text-xs uppercase text-charcoal/50">Content (Markdown)</span>
-          <textarea rows={16} value={v.content ?? ""} onChange={(e) => set("content", e.target.value)} className="admin-input font-mono text-[13px]" placeholder="## Heading&#10;&#10;Body text. **Bold**, _italic_, [links](https://…), lists, > quotes." />
+          <textarea rows={16} value={v.content ?? ""} onChange={(e) => set("content", e.target.value)} className="admin-input font-mono text-micro" placeholder="## Heading&#10;&#10;Body text. **Bold**, _italic_, [links](https://…), lists, > quotes." />
         </label>
 
         <Field label="Featured image URL" k="featured_image_url" />

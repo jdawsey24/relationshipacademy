@@ -1,0 +1,621 @@
+/**
+ * Cluster 9 — "Difficulty Staying Physically Connected"
+ * The Relationship Playbook™ · Rebuilding Physical Connection
+ *
+ * Track: Expansion. Task = Integration. Core Need: TO BE CHOSEN.
+ * §0 DECISION: PLAYS-ONLY.
+ *
+ * ⚠ OWNER RULINGS 29 Jul 2026 (Part B, Instance 7):
+ *   1. FRAME — WANTED-NESS, not frequency. No tool is built around initiating
+ *      more. "I miss affection more than sex" is the key statement.
+ *   2. DESIRE DISCREPANCY — MEDIUM guard. Tools work on TALKING about it,
+ *      never on GETTING more of it. Every relevant Play carries the boundary
+ *      in its fidelity block and its control check.
+ *   3. MEDICAL — FIRM and FIRST. `lit-c9-rule-this-out-first` is entry one and
+ *      is named in the opening screen before anything else.
+ *   4. JOINT WORK — unlike Clusters 7 and 8, this is NOT "your half". The work
+ *      requires the other person. Every Play produces a CONVERSATION and every
+ *      Mission is "have this talk". There is no solo practice in this cluster.
+ *
+ * ⚠ CONTENT — clinical, practical, non-explicit throughout.
+ *
+ * ⚠ CLAIM SCOPE. May claim: work out what you actually miss; say it out loud;
+ *   have the conversation about a difference in wanting. MUST NOT CLAIM:
+ *   frequency increases, desire returns, your partner will want you more, or
+ *   that any of this can be achieved alone.
+ *
+ * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
+ */
+
+import type { PlaybookContent } from "@/lib/playbook/contentSchema";
+import { C9_LITERATURE } from "./rebuilding-physical-connection-literature";
+
+export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
+  playbookKey: "rebuilding-physical-connection", // ⚠ CONFIRM canonical slug
+  playbookVersion: 1,
+  displayName: "Rebuilding Physical Connection",
+
+  opening: {
+    title: "Two things before we start",
+    body: [
+      "First: rule out the physical causes. Medication, menopause, thyroid, pain, the year after a baby — all common, all treatable, all frequently missed. Read 'Before you work on this' before anything else.",
+      "Second: this one can't be done alone. Everything here ends in a conversation, because that's the only place this work happens. If you're hoping for something you can practise quietly on your own side, that isn't this.",
+    ],
+    manifestations: [
+      "I don't feel desired.",
+      "I miss affection more than sex.",
+      "We have different sex drives.",
+      "I don't know how to talk about it.",
+    ],
+    cta: "Start by ruling out the physical",
+  },
+
+  recognitionCards: [
+    {
+      id: "rec-c9-rule-out-first",
+      role: "signpost",
+      pathwayPlayId: null,
+      headline: "Something's changed and I don't know why.",
+      validationCopy:
+        "Changes in desire can have physical, medication-related, hormonal, emotional, relational, or combined causes. Antidepressants and other medications, pregnancy or the postpartum period, perimenopause or menopause, thyroid conditions, pain, stress, and relationship difficulties may all contribute. A GP or appropriate healthcare professional can help rule out or treat medical factors while you consider the relationship context. Finding a physical contributor doesn't mean the relational experience is irrelevant — or the other way round.",
+      secondaryExamples: [
+        "This started fairly suddenly.",
+        "One of us is on medication or has had a health change.",
+      ],
+    },
+    {
+      id: "rec-c9-not-wanted",
+      role: "route",
+      pathwayPlayId: "what-you-actually-miss",
+      headline: "I don't feel wanted anymore.",
+      explanation:
+        "This usually presents as a frequency problem and isn't one. More sex doesn't fix not feeling wanted.",
+      secondaryExamples: [
+        "I don't feel desired.",
+        "I feel rejected by my partner.",
+        "I miss affection more than sex.",
+      ],
+    },
+    {
+      id: "rec-c9-cant-say-it",
+      role: "route",
+      pathwayPlayId: "saying-it-out-loud",
+      headline: "I don't know how to bring this up.",
+      explanation:
+        "Most couples together a long time have never had a straightforward conversation about this. There's no good moment and no good opening line.",
+      secondaryExamples: [
+        "We avoid talking about sex.",
+        "I don't know how to talk about what I want.",
+        "I don't know how to initiate.",
+      ],
+    },
+    {
+      id: "rec-c9-different-wanting",
+      role: "route",
+      pathwayPlayId: "the-difference-conversation",
+      headline: "We want different amounts.",
+      explanation:
+        "Very common, and not something one person solves. This is about having the conversation, not about getting more.",
+      secondaryExamples: [
+        "We have different sex drives.",
+        "We're on different pages sexually.",
+      ],
+    },
+  ],
+
+  plays: [
+    // ─────────────────────────────── Play 1 ──
+    {
+      playId: "what-you-actually-miss",
+      playVersion: 1,
+      outputSchemaVersion: 1,
+      name: "What You Actually Miss",
+      positioning: "For working out what's missing before you try to ask for it.",
+      recognitionGate: {
+        prompt: "Do you feel less wanted than you used to?",
+      },
+      screens: [
+        {
+          kind: "shift",
+          body: [
+            "It presents as: we don't have sex anymore. It usually means: I don't feel wanted.",
+            "Those need different conversations. People who ask for more sex and get it, and still don't feel wanted, will tell you the first didn't fix the second.",
+            "So it's worth being precise before you say anything, because the wrong ask gets you the wrong thing.",
+          ],
+        },
+        {
+          kind: "learn",
+          body: [
+            "In long relationships, contact often stops being ordinary and becomes a signal — a hand on the back means something is being started.",
+            "So the person who doesn't want sex right now stops touching at all, to avoid seeming to begin something. And the other reads that absence as not being wanted.",
+            "Both are being reasonable, and the result is two people who miss each other and have stopped making contact.",
+          ],
+        },
+        {
+          kind: "scenarioSort",
+          prompt: "Which of these would actually change how you feel?",
+          situation:
+            "It's been a while. Neither of you has said anything about it, and the not-saying has become its own thing.",
+          buckets: [
+            { id: "would", label: "Yes, this is it" },
+            { id: "wouldnt", label: "Not really" },
+          ],
+          items: [
+            {
+              id: "sort-c9-more-often",
+              text: "The same as now, but more often",
+              correctBucket: "wouldnt",
+              correction:
+                "For most people here, more of the same isn't it. Worth checking, though — for some it genuinely is.",
+            },
+            {
+              id: "sort-c9-reached-for",
+              text: "Being reached for when nothing's going to happen",
+              correctBucket: "would",
+              correction: "That's the one most people land on. Touch without a question in it.",
+            },
+            {
+              id: "sort-c9-told",
+              text: "Being told they find you attractive, out loud",
+              correctBucket: "would",
+              correction: "Often the missing piece, and almost never asked for.",
+            },
+            {
+              id: "sort-c9-scheduled",
+              text: "A regular slot in the diary",
+              correctBucket: "wouldnt",
+              correction:
+                "It fixes frequency and doesn't touch wanted-ness. Useful for some couples, not for this.",
+            },
+            {
+              id: "sort-c9-they-start",
+              text: "Them starting it, rather than you",
+              correctBucket: "would",
+              correction:
+                "Being pursued rather than doing the pursuing. Very common answer.",
+            },
+            {
+              id: "sort-c9-new-things",
+              text: "Trying something different in bed",
+              correctBucket: "wouldnt",
+              correction:
+                "That answers routine. Different question — see 'When it's gone routine'.",
+            },
+          ],
+        },
+        {
+          kind: "ownTurn",
+          intro: "Say it in your own words",
+          fields: [
+            {
+              id: "what-i-miss",
+              input: "text",
+              label: "What do you actually miss?",
+              placeholder: "Not what's missing. What you miss. There's a difference.",
+            },
+            {
+              id: "last-time",
+              input: "text",
+              label: "When did you last have it? Briefly.",
+              placeholder: "A moment, if one comes to mind.",
+            },
+          ],
+        },
+        {
+          kind: "output",
+          heading: "What I actually miss",
+          body: "Precise enough to ask for. That's the whole job of this one.",
+        },
+        {
+          kind: "portable",
+          heading: "Take this with you",
+          steps: [
+            "More sex doesn't fix not feeling wanted.",
+            "What do I miss — not what's missing.",
+            "Touch with no question in it.",
+          ],
+        },
+      ],
+      portable: [
+        "More sex doesn't fix not feeling wanted.",
+        "What do I miss — not what's missing.",
+        "Touch with no question in it.",
+      ],
+      myPlaysTemplate: {
+        when: "When I feel less wanted and I'm about to ask for the wrong thing",
+        move: "Work out precisely what I miss before saying anything",
+        lookingFor: "Whether it's frequency or wanted-ness — they need different conversations",
+        watchOut: "Asking for more sex when what I want is to be reached for",
+        remember: "Wanting to be wanted isn't the same as wanting more sex.",
+      },
+      fidelity: {
+        correct:
+          "The missing thing is identified specifically, and distinguished from frequency.",
+        misuse: [
+          "Turning it into a list of what they've failed to do.",
+          "Deciding what they'd say before asking them.",
+        ],
+        notMeaning:
+          "It does not mean you'll get it, that they'll agree with your read, or that naming it changes anything on its own.",
+      },
+    },
+
+    // ─────────────────────────────── Play 2 ──
+    {
+      playId: "saying-it-out-loud",
+      playVersion: 1,
+      outputSchemaVersion: 1,
+      name: "Saying It Out Loud",
+      positioning: "For the conversation neither of you has started.",
+      recognitionGate: {
+        prompt: "Have you and your partner ever talked about this directly?",
+      },
+      screens: [
+        {
+          kind: "shift",
+          body: [
+            "Not because they're avoidant. Because there's no good moment and no good opening line, and the longer it goes unsaid the bigger a deal saying it becomes.",
+            "There isn't a version of this that isn't awkward. The aim is to get through it, not to do it well.",
+          ],
+        },
+        {
+          kind: "learn",
+          body: [
+            "Clothes on, nothing pending. Not in bed. Not after a knock-back. Somewhere neither of you is exposed.",
+            "Say what you miss, not what's missing. \u201cI miss you reaching for me\u201d is receivable. \u201cYou never touch me anymore\u201d is a charge, and it gets a defence.",
+          ],
+        },
+        {
+          kind: "emotionBeat",
+          body: [
+            "Raising it means saying out loud that you want something you're not getting, to the person not giving it. That's exposing in a way most conversations aren't.",
+            "It's also the only route. There's no version where they work it out and you don't have to say it.",
+          ],
+        },
+        {
+          kind: "sentenceBuilder",
+          label: "How you'll open it",
+          helper:
+            "Short, and what you miss rather than what's missing. You might start with “Can I say something that's a bit awkward?” or “Something I miss, and I don't want it to sound like a complaint…”",
+        },
+        {
+          kind: "ruleBuilder",
+          intro: "When and how",
+          conditionLabel: "When I'll say it",
+          thenLabel: "And what I'll hold to",
+          actions: [
+            "Not in bed, not at night",
+            "Not after being turned down",
+            "Somewhere side by side rather than face to face",
+            "This week, before I talk myself out of it",
+          ],
+          controlCheck:
+            "I'm saying what I miss, not asking for something tonight. Their answer might be about them, not about me. This is one conversation, not the whole subject.",
+        },
+        {
+          kind: "output",
+          heading: "What I'm going to say, and when",
+          body: "The awkwardness is unavoidable. Getting through it is the win.",
+        },
+        {
+          kind: "portable",
+          heading: "Take this with you",
+          steps: [
+            "Clothes on, nothing pending.",
+            "What I miss, not what's missing.",
+            "Getting through it is the win.",
+          ],
+        },
+      ],
+      portable: [
+        "Clothes on, nothing pending.",
+        "What I miss, not what's missing.",
+        "Getting through it is the win.",
+      ],
+      myPlaysTemplate: {
+        when: "When neither of us has ever raised this directly",
+        move: "Say what I miss, out loud, at a time when nothing is pending",
+        lookingFor: "Whether it can be a conversation rather than a negotiation",
+        watchOut: "Raising it in bed, or straight after being turned down",
+        remember: "There's no non-awkward version. That isn't a sign to wait.",
+      },
+      fidelity: {
+        correct:
+          "The subject is raised at a neutral time, framed as something missed rather than something withheld.",
+        misuse: [
+          "Raising it in bed or immediately after a refusal.",
+          "Framing it as what they've failed to provide.",
+          "Turning one conversation into a full audit.",
+        ],
+        notMeaning:
+          "It does not mean they'll respond well, that anything changes, or that one conversation settles it.",
+      },
+    },
+
+    // ─────────────────────────────── Play 3 · guarded ──
+    {
+      playId: "the-difference-conversation",
+      playVersion: 1,
+      outputSchemaVersion: 1,
+      name: "The Difference Conversation",
+      positioning: "For when you want different amounts — and no, this isn't about getting more.",
+      recognitionGate: {
+        prompt: "Do you and your partner want different amounts of physical intimacy?",
+      },
+      screens: [
+        {
+          kind: "shift",
+          body: [
+            "We want to be plain about this before anything else, because nearly all advice in this area points the other way.",
+            "A difference in wanting isn't fixed by initiating better, being more attractive, or trying harder. Done for long enough, that becomes pressure — and pressure reliably reduces desire in the person on the other end of it.",
+            "So this tool doesn't help you get more. It helps you have the conversation about the difference, which is a different thing and the only one available to you alone.",
+          ],
+        },
+        {
+          kind: "learn",
+          body: [
+            "Not to negotiate a number. Numbers agreed under pressure don't hold and both people know it.",
+            "It's to get both positions said out loud, once, without either of you having to defend one. Including if the honest answer from either side is \u201cless, at the moment\u201d.",
+            "Most couples in this position have never done that. They've had rounds of it at the wrong moment instead.",
+          ],
+        },
+        {
+          kind: "ownTurn",
+          intro: "Your position, honestly",
+          fields: [
+            {
+              id: "my-position",
+              input: "text",
+              label: "What's true for you right now?",
+              placeholder: "Not what you think is reasonable. What's actually true.",
+            },
+            {
+              id: "what-i-assume",
+              input: "text",
+              label: "What do you assume is true for them?",
+              placeholder: "And note whether they've ever actually told you.",
+            },
+            {
+              id: "affection-separate",
+              input: "chips",
+              label: "Would separating affection from sex change anything for you?",
+              suggestions: [
+                "Yes, quite a lot",
+                "Some",
+                "No, it's the sex I miss",
+                "I don't know",
+              ],
+            },
+          ],
+        },
+        {
+          kind: "sufficiency",
+          prompt: "Have they actually told you where they are — or are you working it out from behaviour?",
+          enoughLabel: "They've told me directly",
+          needMoreLabel: "I'm working it out from behaviour",
+          needMoreIntro:
+            "Very common, and it's why this conversation is worth having. Silence has a lot of possible causes and you're currently picking one.",
+          needToKnowLabel: "What I'd want to actually know",
+          observableLabel: "Something they could tell me",
+        },
+        {
+          kind: "output",
+          heading: "Both positions, said once",
+          body: "Not an agreement. Two things known rather than assumed.",
+        },
+        {
+          kind: "portable",
+          heading: "Take this with you",
+          steps: [
+            "A difference in wanting isn't mine to solve.",
+            "Not negotiating a number. Getting both positions said.",
+            "Pressure reduces desire. It doesn't increase it.",
+          ],
+        },
+      ],
+      portable: [
+        "A difference in wanting isn't mine to solve.",
+        "Not negotiating a number. Getting both positions said.",
+        "Pressure reduces desire. It doesn't increase it.",
+      ],
+      myPlaysTemplate: {
+        when: "When we want different amounts and it's never been discussed",
+        move: "Get both positions said out loud, once, without either being defended",
+        lookingFor: "What's actually true for them, rather than what I've inferred",
+        watchOut: "Turning it into a negotiation, or a case for why I should get more",
+        remember: "This isn't a problem I can solve on my own, and trying harder makes it worse.",
+      },
+      fidelity: {
+        correct:
+          "Both positions are stated once, at a neutral time, without either being negotiated or defended.",
+        misuse: [
+          "Using it to argue for more.",
+          "Agreeing a frequency under pressure.",
+          "Repeating the conversation until the answer changes.",
+        ],
+        notMeaning:
+          "It does not mean the difference resolves, that they'll want more, or that having the conversation entitles you to anything.",
+      },
+      supportSignposts: [
+        {
+          id: "signpost-c9-pressure",
+          heading: "If they've already said no",
+          body:
+            "If your partner has told you they don't want to, the answer isn't a better approach. Wanting more than your partner does is genuinely painful, and it isn't something you can fix on your own — and continuing to try turns into pressure, whatever the intention. A qualified sex therapist can help partners explore desire differences without ever treating consent as negotiable, and it's a reasonable thing to want help with rather than keep working at alone. Where there's fear, coercion, or retaliation, joint work isn't the right setting — individual support comes first.",
+        },
+      ],
+    },
+  ],
+
+  literature: C9_LITERATURE,
+
+  missions: [
+    {
+      id: "mission-c9-miss",
+      version: 1,
+      playId: "what-you-actually-miss",
+      title: "Say the one sentence",
+      instruction:
+        "Tell them the thing you worked out you miss. One sentence, at a neutral time. Then let it sit.",
+      linkToOperation: "Naming the missing thing specifically",
+      attemptMeaning:
+        "You said it. How they took it isn't the measure.",
+      suitability:
+        "If you haven't ruled out the physical causes yet, do that first — it may change the conversation entirely.",
+      progression: [
+        { id: "rung-c9-miss-2", instruction: "Ask them the same question: what do you miss?" },
+      ],
+    },
+    {
+      id: "mission-c9-talk",
+      version: 1,
+      playId: "saying-it-out-loud",
+      title: "Have the conversation",
+      instruction:
+        "Say your opening, at the time you chose. Clothes on, nothing pending. See where it goes.",
+      linkToOperation: "Opening the subject directly at a neutral time",
+      attemptMeaning:
+        "You raised it. Awkward counts. Badly counts.",
+      suitability:
+        "Not in bed and not after a knock-back. If those are the only times it comes up, that's worth noticing on its own.",
+      progression: [
+        { id: "rung-c9-talk-2", instruction: "Come back to it a week later rather than leaving it as one conversation." },
+      ],
+    },
+    {
+      id: "mission-c9-difference",
+      version: 1,
+      playId: "the-difference-conversation",
+      title: "Get both positions said",
+      instruction:
+        "Say yours. Ask theirs. Don't negotiate anything in the same conversation.",
+      linkToOperation: "Stating both positions without negotiation",
+      attemptMeaning:
+        "Both positions are now known rather than assumed. That's the whole outcome.",
+      suitability:
+        "If they've already told you they don't want to, don't do this one. Read the signpost on that Play instead.",
+      progression: [
+        { id: "rung-c9-difference-2", instruction: "Talk about affection separately from sex, as its own subject." },
+      ],
+    },
+  ],
+
+  useReviews: [
+    {
+      id: "review-c9-miss",
+      version: 1,
+      playId: "what-you-actually-miss",
+      didDifferently: {
+        label: "What did you do differently?",
+        multi: true,
+        options: [
+          "Worked out it wasn't about frequency",
+          "Said one specific thing",
+          "Asked what they miss",
+          "Asked for more sex anyway",
+        ],
+      },
+      performedOperation: {
+        label: "Did you identify what you actually miss, separate from frequency?",
+        options: ["Yes", "Partly", "No"],
+      },
+      becameClearer: {
+        label: "What got clearer?",
+        multi: true,
+        options: [
+          "That it's about feeling wanted",
+          "That it is actually about frequency",
+          "What they miss",
+          "Nothing new",
+        ],
+      },
+      stuckWhere: {
+        label: "Where did you get stuck?",
+        options: [
+          "I couldn't separate the two",
+          "Saying it made it worse",
+          "They didn't understand what I meant",
+          "Nothing stuck",
+        ],
+      },
+    },
+    {
+      id: "review-c9-talk",
+      version: 1,
+      playId: "saying-it-out-loud",
+      didDifferently: {
+        label: "What did you do differently?",
+        multi: true,
+        options: [
+          "Raised it at a neutral time",
+          "Said what I miss rather than what's missing",
+          "Got through the awkward part",
+          "Didn't manage to bring it up",
+        ],
+      },
+      performedOperation: {
+        label: "Did you raise it at a neutral time, framed as something you miss?",
+        options: ["Yes", "Partly", "No"],
+      },
+      becameClearer: {
+        label: "What got clearer?",
+        multi: true,
+        options: [
+          "That it could be discussed at all",
+          "Where they actually are",
+          "That they'd been avoiding it too",
+          "Nothing new",
+        ],
+      },
+      stuckWhere: {
+        label: "Where did you get stuck?",
+        options: [
+          "It turned into an argument",
+          "They shut it down",
+          "I couldn't get the words out",
+          "Nothing stuck",
+        ],
+      },
+    },
+    {
+      id: "review-c9-difference",
+      version: 1,
+      playId: "the-difference-conversation",
+      didDifferently: {
+        label: "What did you do differently?",
+        multi: true,
+        options: [
+          "Said my position without arguing for it",
+          "Asked theirs and listened",
+          "Kept affection separate from sex",
+          "Tried to negotiate a number",
+        ],
+      },
+      performedOperation: {
+        label: "Did you get both positions said without negotiating?",
+        options: ["Yes", "Partly", "No"],
+      },
+      becameClearer: {
+        label: "What got clearer?",
+        multi: true,
+        options: [
+          "Where they actually are",
+          "That I'd assumed wrong",
+          "That this needs more than the two of us",
+          "Nothing new",
+        ],
+      },
+      stuckWhere: {
+        label: "Where did you get stuck?",
+        options: [
+          "It became a negotiation",
+          "Hearing their position was hard",
+          "Nothing has changed since",
+          "Nothing stuck",
+        ],
+      },
+    },
+  ],
+
+  // simulations — INTENTIONALLY ABSENT. Plays-only.
+};

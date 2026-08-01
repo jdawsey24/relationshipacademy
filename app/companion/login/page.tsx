@@ -28,7 +28,7 @@ export default function CompanionLoginPage() {
             <path d="M12 15v2" />
           </svg>
         </span>
-        <p className="mt-5 font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">Relationship Companion</p>
+        <p className="mt-5 font-ui text-eyebrow font-semibold uppercase text-charcoal/45">Relationship Companion</p>
         <h1 className="mt-2 font-display text-3xl font-semibold text-midnight-navy">Welcome back</h1>
         <p className="mt-2 font-body text-sm text-charcoal/65">Sign in to your private Companion.</p>
         <div className="mt-6 space-y-2.5 text-left">

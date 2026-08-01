@@ -19,8 +19,9 @@
 //  • Observation-not-trait; absence is an invitation, never inability/avoidance; no mastery.
 //  • Fail-soft: missing/stale/obsolete state never crashes, and is never read as a negative.
 
-import type { PlaybookContent, PlaybookProgress, MissionReport, UseReviewSignals } from "@/lib/playbook/contentSchema";
+import type { PlaybookContent, PlaybookProgress, MissionReport, UseReviewEntry } from "@/lib/playbook/contentSchema";
 import { simulationForPlay, missionForPlay, useReviewForPlay } from "@/lib/playbook/rev3Flow";
+import { reviewEntries } from "@/lib/playbook/progressActions";
 
 export type FocusReason = "declared" | "active_mission" | "pending_review" | "recent_exploration" | "recognition";
 
@@ -41,7 +42,7 @@ export interface OperationSignals {
 }
 
 export interface SurfacedItem {
-  kind: "experience" | "practice" | "review" | "understand" | "explore";
+  kind: "experience" | "practice" | "review" | "history" | "understand" | "explore";
   playId?: string;
   literatureId?: string;
   label: string;
@@ -72,8 +73,9 @@ export function operationSignals(content: PlaybookContent, progress: PlaybookPro
   const missionSelected = Boolean(ms);
   const missionAttempted = ms?.state === "attempted";
   const review = useReviewForPlay(content, playId);
-  const rv: UseReviewSignals | undefined = progress.use_review_state?.reviews?.[playId];
-  const missionReviewed = ms?.state === "reviewed" || Boolean(rv && review);
+  const entries = reviewEntries(progress, playId);
+  const rv: UseReviewEntry | undefined = entries[entries.length - 1]; // latest logged use drives Change Path
+  const missionReviewed = ms?.state === "reviewed" || Boolean(entries.length && review);
   const transferEvidence = (ms?.attemptCount ?? 0) >= 2;
   return {
     playId,
@@ -153,11 +155,13 @@ function reviewedRouting(content: PlaybookContent, s: OperationSignals, name: st
         primary: other ? { kind: "experience", playId: other, label: `Look at “${playName(content, other)}”` } : { kind: "practice", playId: s.playId, label: "Keep practicing" },
       };
     }
-    return { nextStep: "Based on what you practiced, the move is working for you. You might take it into the next situation when one comes up.", primary: { kind: "practice", playId: s.playId, label: "Practice it again" } };
+    return { nextStep: "Based on what you practiced, the move is working for you. You might take it into the next situation when one comes up.", primary: { kind: "practice", playId: s.playId, label: "Practice this in real life" } };
   }
 
-  // 3) Partly / not really, no specific friction named → a gentle forward re-practice.
-  return { nextStep: `You've had a first go at “${name}.” You might run the move again when a moment comes up.`, primary: { kind: "practice", playId: s.playId, label: "Practice it again" } };
+  // 3) Partly / not really, no specific friction named → a gentle forward re-practice IN REAL LIFE
+  //    (item 7: a reviewed in-app Play routes to the real-world Practice layer, not a repeat of the
+  //    in-app Play — the CTA is `kind: practice`, and the copy says so).
+  return { nextStep: `You've had a first go at “${name}.” When a real moment comes up, you might take it there.`, primary: { kind: "practice", playId: s.playId, label: "Practice this in real life" } };
 }
 
 /** Route for one operation from its independent signals (used for any chosen focus). */

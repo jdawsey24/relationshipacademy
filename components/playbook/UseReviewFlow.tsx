@@ -1,14 +1,16 @@
 "use client";
 
 // Rev 3 Step 7 — Integrate layer. The structured return after a real-world attempt.
-// Bounded selects only (NO journaling, NOT a checklist score). Captures functional signals:
-// what the reader did differently (multi), whether the operation was used as intended
-// (single — Technique Fidelity), what got clearer (multi), where they got stuck MOST
-// (single — a prioritized friction point), then a tool decision:
+// Bounded selects (NOT a checklist score) PLUS one optional free-text note (owner-requested):
+// an opening "what was the experience" description, so a logged real-life experience can carry
+// what actually happened. Then the functional signals: what the reader did differently (multi),
+// whether the operation was used as intended (single — Technique Fidelity), what got clearer
+// (multi), where they got stuck MOST (single — a prioritized friction point), then a tool decision:
 //   • saved Play exists → Keep it / Update it (tool_retained / tool_updated)
 //   • no saved Play     → Save this Play / Not right now (tool_saved_after_use)
-// None of these independently constitutes Transfer. The only user-authored free text is in
-// the Keep/Update editor (the Play's own output). Flag-gated; v0 keeps its Keep/Update dialog.
+// None of the signals independently constitutes Transfer. The free-text note is the reader's own,
+// bounded, and crisis-screened (onScreenText) exactly like the Play's own-turn free text; it is
+// never emitted to the event log. Flag-gated; v0 keeps its Keep/Update dialog.
 
 import { useState } from "react";
 import type { UseReview, UseReviewSignals, StructuredPrompt } from "@/lib/playbook/contentSchema";
@@ -54,15 +56,20 @@ export interface UseReviewFlowProps {
   review: UseReview;
   /** Whether a saved output exists — drives Keep/Update vs. a save decision. */
   hasSavedOutput: boolean;
-  onComplete: (signals: UseReviewSignals, action: "keep" | "update" | "save" | "none") => void;
+  onComplete: (signals: UseReviewSignals, action: "keep" | "update" | "save" | "none", experience?: string) => void;
+  /** Layer A crisis screening for the optional free-text description (best-effort). */
+  onScreenText?: (text: string) => void;
   onExit?: () => void;
 }
 
-export default function UseReviewFlow({ review, hasSavedOutput, onComplete, onExit }: UseReviewFlowProps) {
+export default function UseReviewFlow({ review, hasSavedOutput, onComplete, onScreenText, onExit }: UseReviewFlowProps) {
+  const [experience, setExperience] = useState<string>("");
   const [didDifferently, setDidDifferently] = useState<string[]>([]);
   const [performed, setPerformed] = useState<string>();
   const [becameClearer, setBecameClearer] = useState<string[]>([]);
   const [stuck, setStuck] = useState<string>();
+
+  const note = () => experience.trim() || undefined;
 
   const toggle = (list: string[], set: (v: string[]) => void, v: string) =>
     set(list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
@@ -89,6 +96,19 @@ export default function UseReviewFlow({ review, hasSavedOutput, onComplete, onEx
           A quick, honest look at the practice itself — no score, and a hard moment isn't a failure here.
         </p>
 
+        <fieldset className="space-y-2">
+          <legend className="font-body text-[15px] font-medium text-charcoal">What was the experience? <span className="font-normal text-charcoal/50">(optional)</span></legend>
+          <textarea
+            value={experience}
+            onChange={(e) => setExperience(e.target.value)}
+            onBlur={(e) => { if (onScreenText && e.target.value.trim()) onScreenText(e.target.value); }}
+            rows={3}
+            maxLength={2000}
+            placeholder="A few words on what actually happened — just for you."
+            className="w-full rounded-2xl border border-light-gray bg-white px-4 py-3 font-body text-[15px] text-charcoal outline-none focus:border-midnight-navy"
+          />
+        </fieldset>
+
         <MultiChoice prompt={review.didDifferently} values={didDifferently} onToggle={(v) => toggle(didDifferently, setDidDifferently, v)} />
         <SingleChoice prompt={review.performedOperation} name="rv-perf" value={performed} onChange={setPerformed} />
         <MultiChoice prompt={review.becameClearer} values={becameClearer} onToggle={(v) => toggle(becameClearer, setBecameClearer, v)} />
@@ -99,16 +119,16 @@ export default function UseReviewFlow({ review, hasSavedOutput, onComplete, onEx
             <>
               <p className="font-body text-[15px] text-charcoal/85">Does the Play you saved still fit what you learned?</p>
               <div className="mt-3 flex flex-wrap gap-3">
-                <button type="button" className={primaryBtn} onClick={() => onComplete(signals({ kept: true }), "keep")}>Keep it</button>
-                <button type="button" className={ghostBtn} onClick={() => onComplete(signals({ updated: true }), "update")}>Update it</button>
+                <button type="button" className={primaryBtn} onClick={() => onComplete(signals({ kept: true }), "keep", note())}>Keep it</button>
+                <button type="button" className={ghostBtn} onClick={() => onComplete(signals({ updated: true }), "update", note())}>Update it</button>
               </div>
             </>
           ) : (
             <>
               <p className="font-body text-[15px] text-charcoal/85">Would this be useful to keep for next time?</p>
               <div className="mt-3 flex flex-wrap gap-3">
-                <button type="button" className={primaryBtn} onClick={() => onComplete(signals({ saved: true }), "save")}>Save this Play</button>
-                <button type="button" className={ghostBtn} onClick={() => onComplete(signals(), "none")}>Not right now</button>
+                <button type="button" className={primaryBtn} onClick={() => onComplete(signals({ saved: true }), "save", note())}>Save this Play</button>
+                <button type="button" className={ghostBtn} onClick={() => onComplete(signals(), "none", note())}>Not right now</button>
               </div>
             </>
           )}

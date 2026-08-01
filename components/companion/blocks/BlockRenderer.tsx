@@ -49,7 +49,7 @@ export default function BlockView({ block, value, onChange, disabled }: {
   if (!isInput) {
     // The intro sets the scene — lead prose, no card.
     if (block.type === "intro_context") {
-      return <p className="text-balance font-body text-[17px] leading-relaxed text-charcoal/85">{text}</p>;
+      return <p className="text-balance font-body text-reading text-charcoal/85">{text}</p>;
     }
     // Safety blocks keep the amber treatment.
     if (block.type === "safety_notice" || block.type === "professional_support") {

@@ -44,7 +44,7 @@ export default function CompanionOnboardingPage() {
 
       {step === 0 && (
         <Section eyebrow="Welcome" title="A private space to process" onNext={() => setStep(1)} nextLabel="Get started">
-          <p className="text-balance font-body text-[16px] leading-relaxed text-charcoal/75">The Relationship Companion is a private, judgment-free space to think through whatever you&apos;re navigating — so you can move at your own pace and make choices that feel intentional. It isn&apos;t therapy, and there&apos;s nothing to keep up with. Come as often, or as rarely, as you need.</p>
+          <p className="text-balance font-body text-base leading-relaxed text-charcoal/75">The Relationship Companion is a private, judgment-free space to think through whatever you&apos;re navigating — so you can move at your own pace and make choices that feel intentional. It isn&apos;t therapy, and there&apos;s nothing to keep up with. Come as often, or as rarely, as you need.</p>
         </Section>
       )}
 
@@ -62,7 +62,7 @@ export default function CompanionOnboardingPage() {
                   </span>
                   <span className="flex-1">
                     <span className="block font-display text-lg font-semibold text-midnight-navy">{s.label}</span>
-                    <span className="block font-body text-[13px] text-charcoal/55">{m?.desc}</span>
+                    <span className="block font-body text-micro text-charcoal/55">{m?.desc}</span>
                   </span>
                   <span className={`shrink-0 text-midnight-navy transition-opacity ${sel ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
                     <Glyph paths={["M5 12l5 5 9-11"]} size={18} />
@@ -119,7 +119,7 @@ function Section({ eyebrow, title, subtitle, children, onNext, nextLabel = "Cont
 }) {
   return (
     <div className="flex flex-1 flex-col">
-      {eyebrow && <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">{eyebrow}</p>}
+      {eyebrow && <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">{eyebrow}</p>}
       <h1 className="mt-1.5 text-balance font-display text-3xl font-semibold leading-tight text-midnight-navy">{title}</h1>
       {subtitle && <p className="mt-2 font-body text-sm leading-relaxed text-charcoal/60">{subtitle}</p>}
       <div className="mt-6 flex-1">{children}</div>

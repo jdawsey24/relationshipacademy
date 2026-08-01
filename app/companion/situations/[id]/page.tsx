@@ -45,7 +45,7 @@ export default function CompanionSituation() {
       {d.publication_status !== "Published" && <p className="mt-1 font-ui text-[11px] uppercase tracking-wide text-coral-rose">Staff preview · {d.publication_status}</p>}
 
       {d.user_need && <p className="mt-4 text-balance font-body text-lg leading-relaxed text-charcoal/80">{d.user_need}</p>}
-      {d.definition && <p className="mt-3 font-body text-[15px] leading-relaxed text-charcoal/65">{d.definition}</p>}
+      {d.definition && <p className="mt-3 font-body text-body text-charcoal/65">{d.definition}</p>}
 
       <div className="mt-8">
         {d.experience_slug ? (

@@ -33,6 +33,18 @@ const config: Config = {
         // UI / Data
         ui: ["var(--font-inter)", "sans-serif"],
       },
+      // Semantic type scale. These name the intentional, off-default sizes the
+      // site had been expressing as one-off `text-[Npx]` arbitrary values, each
+      // bundling its line-height (and tracking, for the eyebrow) so callers pick
+      // one token instead of re-tuning size + leading by hand. Tailwind's default
+      // steps (text-xs … text-6xl) are preserved for structural headings.
+      fontSize: {
+        eyebrow: ["0.6875rem", { lineHeight: "1.2", letterSpacing: "0.15em" }], // 11px — kickers / labels
+        micro: ["0.8125rem", { lineHeight: "1.5" }], // 13px — helper / meta text
+        body: ["0.9375rem", { lineHeight: "1.6" }], // 15px — default card / body copy
+        reading: ["1.0625rem", { lineHeight: "1.7" }], // 17px — long-form reading
+        hero: ["2.5rem", { lineHeight: "1.05" }], // 40px — display hero base (pair with sm:text-5xl/6xl)
+      },
     },
   },
   plugins: [],

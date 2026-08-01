@@ -54,7 +54,7 @@ export default function CompanionChrome({ active, children, hideNav }: { active:
     return (
       <div className="flex min-h-screen items-center justify-center bg-warm-ivory px-6 text-center">
         <div className="max-w-sm">
-          <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">The Relationship Companion&trade;</p>
+          <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">The Relationship Companion&trade;</p>
           <h1 className="mt-2 font-display text-3xl font-semibold text-midnight-navy">Coming soon</h1>
           <p className="mt-3 font-body leading-relaxed text-charcoal/70">We&apos;re putting the finishing touches on your private space to process what you&apos;re navigating. Check back soon.</p>
           <Link href="/" className="mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full bg-midnight-navy px-6 font-ui text-sm font-semibold text-white">Back to Relationship Life Cycle</Link>

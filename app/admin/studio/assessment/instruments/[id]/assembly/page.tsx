@@ -139,7 +139,7 @@ export default function AssemblyPage() {
       ) : (
         <div className="overflow-x-auto rounded-md border border-light-gray">
           <table className="w-full border-collapse text-sm">
-            <thead><tr className="bg-light-gray text-left text-[13px] uppercase text-charcoal">
+            <thead><tr className="bg-light-gray text-left text-micro uppercase text-charcoal">
               <th className="px-3 py-2 font-semibold">#</th><th className="px-3 py-2 font-semibold">Item</th><th className="px-3 py-2 font-semibold">Covers</th>
             </tr></thead>
             <tbody>

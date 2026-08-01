@@ -17,7 +17,7 @@ export const DOMAINS: DomainMeta[] = [
   { dbSlug: "trust", routeSlug: "trust", name: "Trust", questionCount: 10 },
   { dbSlug: "emotional_intimacy", routeSlug: "emotional-intimacy", name: "Emotional Intimacy", questionCount: 8 },
   { dbSlug: "conflict_management", routeSlug: "conflict-management", name: "Conflict Management", questionCount: 8 },
-  { dbSlug: "relational_functioning", routeSlug: "relational-functioning", name: "Relational Functioning", questionCount: 8 },
+  { dbSlug: "relational_functioning", routeSlug: "relational-functioning", name: "Role Functioning", questionCount: 8 },
   { dbSlug: "physical_intimacy", routeSlug: "physical-intimacy", name: "Physical Intimacy", questionCount: 7 },
 ];
 

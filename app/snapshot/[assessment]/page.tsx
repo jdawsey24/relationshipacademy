@@ -83,7 +83,7 @@ export default function QuizPage() {
   if (tiebreak) {
     return (
       <main className="mx-auto max-w-xl px-6 pb-24 pt-10">
-        <p className="text-center font-ui text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/45">One more</p>
+        <p className="text-center font-ui text-eyebrow font-semibold uppercase text-charcoal/45">One more</p>
         <h2 className="mt-2 text-balance text-center font-display text-2xl font-semibold text-midnight-navy">Which feels more true right now?</h2>
         <div className="mt-7 space-y-2.5">
           {tiebreak.options.map((o) => (
@@ -126,7 +126,7 @@ export default function QuizPage() {
           );
         })}
         <button disabled={busy} onClick={() => choose(q, NEUTRAL)}
-          className={`block w-full rounded-2xl border border-dashed px-5 py-3.5 text-left font-body text-[15px] leading-relaxed transition-colors disabled:cursor-default ${answers[q.id] === NEUTRAL ? "border-midnight-navy bg-midnight-navy/5 text-midnight-navy" : "border-light-gray bg-transparent text-charcoal/60 hover:border-midnight-navy/40 hover:text-charcoal"}`}>
+          className={`block w-full rounded-2xl border border-dashed px-5 py-3.5 text-left font-body text-body transition-colors disabled:cursor-default ${answers[q.id] === NEUTRAL ? "border-midnight-navy bg-midnight-navy/5 text-midnight-navy" : "border-light-gray bg-transparent text-charcoal/60 hover:border-midnight-navy/40 hover:text-charcoal"}`}>
           None of these fit
         </button>
       </div>
