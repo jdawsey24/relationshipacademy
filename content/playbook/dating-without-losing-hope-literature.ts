@@ -14,11 +14,8 @@
  *  - Never characterise men or women as a group.
  *
  * OPEN ITEM 4 — CITATIONS ATTACHED 2026-07-31, verified against primary sources
- *   (see the CITATION comment on each figure). Six of seven figures confirmed
+ *   (see the CITATION comment on each figure). All seven figures confirmed
  *   accurate as authored.
- *   ⚠ ONE OPEN: the "~three-quarters ghosted or ghosted someone" figure below is
- *     NOT confirmed against the cited 2024 survey (which reports 41% BEEN ghosted).
- *     Owner to confirm the 2023 (n=5,000) source or adjust the copy before publish.
  *   ⚠ TIME-SENSITIVE: the Match Group litigation STATUS and Tinder payer counts
  *     change — re-check both at each review before publish.
  */
@@ -85,10 +82,11 @@ export const C4_LITERATURE: LiteratureEntry[] = [
         //     (n=1,000 US adults who used a dating app in the past year; fieldwork
         //     27 Mar–1 Apr 2024) — 78% feel fatigued sometimes/often/always.
         //     https://www.forbes.com/health/dating/dating-app-fatigue/
-        //   ⚠ "Ghosted or ghosted someone (~three-quarters)": NOT confirmed against
-        //     the 2024 survey, which reports 41% have BEEN ghosted. This union figure
-        //     needs its primary source confirmed (Forbes Health 2023, n=5,000?) or the
-        //     copy adjusted. OWNER TO CONFIRM before publish.
+        //   "Ghosted or ghosted someone (~three-quarters)": Forbes Health / OnePoll,
+        //     2023 (n=5,000 US adults who actively dated in the past 5 years; fieldwork
+        //     2–16 Aug 2023) — 76% either ghosted someone or had been ghosted. Matches
+        //     the copy's "around three-quarters … in the last five years."
+        //     https://www.forbes.com/health/mind/modern-dating-mental-health/
         kind: "list",
         label: "What the numbers actually say",
         items: [
