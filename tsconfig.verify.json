@@ -1,0 +1,7 @@
+{
+  "//": "For running .tsx verification scripts under tsx/esbuild. The base tsconfig uses jsx:preserve (Next handles JSX), but standalone tsx runs need the automatic runtime (components don't import React). Referenced by `npm run verify:snapshot`.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
+}

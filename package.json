@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "node --test --import tsx test/*.test.ts",
-    "test:score": "node --env-file=.env.local scripts/test-score.mjs"
+    "test:score": "node --env-file=.env.local scripts/test-score.mjs",
+    "verify:snapshot": "tsx --tsconfig tsconfig.verify.json scripts/verifySnapshotEmptyState.tsx"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.111.0",
