@@ -18,12 +18,14 @@ export interface MarkerStat {
   tiedPct: number;
 }
 export interface ClusterCount { clusterId: number; name: string; count: number }
+export interface MarkerClusters { markerId: string; markerDisplay: string; total: number; clusters: ClusterCount[] }
 export interface Hotspot { marker: string; markerDisplay: string; questionOrder: number; neutralPct: number; answers: number; clusters: string[] }
 
 export interface SnapshotAnalytics {
   overall: { completed: number; converted: number; lowConfidencePct: number; conversionPct: number };
   perMarker: MarkerStat[];
   primaryClusters: ClusterCount[];
+  perMarkerClusters: MarkerClusters[];
   hotspots: Hotspot[];
   hasData: boolean;
 }
@@ -85,6 +87,21 @@ export async function getSnapshotAnalytics(): Promise<SnapshotAnalytics> {
     .map(([clusterId, count]) => ({ clusterId, name: clusterName.get(clusterId) ?? `Cluster ${clusterId}`, count }))
     .sort((a, b) => b.count - a.count);
 
+  // Per-marker result distribution: for each situation, which primary clusters
+  // people land on (e.g. single_but_dating → Feeling Chosen 40%, …).
+  const perMarkerClusters: MarkerClusters[] = assessments
+    .map((a) => {
+      const rows = sessions.filter((x) => x.assessment_id === a.id && x.primary_cluster_id != null);
+      const m = new Map<number, number>();
+      for (const x of rows) m.set(x.primary_cluster_id as number, (m.get(x.primary_cluster_id as number) ?? 0) + 1);
+      const clustersOut: ClusterCount[] = [...m.entries()]
+        .map(([clusterId, count]) => ({ clusterId, name: clusterName.get(clusterId) ?? `Cluster ${clusterId}`, count }))
+        .sort((x, y) => y.count - x.count);
+      return { markerId: a.id, markerDisplay: a.display_name, total: rows.length, clusters: clustersOut };
+    })
+    .filter((x) => x.total > 0)
+    .sort((a, b) => MARKER_ORDER.indexOf(a.markerId) - MARKER_ORDER.indexOf(b.markerId));
+
   // Neutral hotspots: per question, share of answers that were neutral. Question
   // structure is fixed per marker, so a high-neutral question = statements that
   // aren't landing for that slot's clusters (content gap).
@@ -123,6 +140,7 @@ export async function getSnapshotAnalytics(): Promise<SnapshotAnalytics> {
     overall: { completed, converted, lowConfidencePct: pct(lowConf, completed), conversionPct: pct(converted, completed) },
     perMarker,
     primaryClusters,
+    perMarkerClusters,
     hotspots,
     hasData: completed > 0,
   };
