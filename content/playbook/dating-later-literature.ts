@@ -32,6 +32,7 @@
  *   independence must be given up, or anything about anyone's timeline.
  */
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
 export const ADDON_DATING_LATER_LITERATURE: LiteratureEntry[] = [
@@ -46,22 +47,22 @@ export const ADDON_DATING_LATER_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI never thought I'd be dating at this age.\u201d Most of what's written for people dating assumes someone at the beginning of things, with time, few commitments and no accumulated history.",
-          "That describes almost nobody doing this later, and the mismatch is most of why the available advice reads as though it were written for somebody else.",
+          "\u201cI never thought I'd be dating at this age.\u201d Most of what's written for people who date assumes someone right at the start — with time, few commitments, and no long history behind them.",
+          "That fits almost nobody doing this later. That gap is most of why the advice out there reads like it was written for someone else.",
         ],
       },
       {
         kind: "distinction",
-        label: "Two things have changed and they're often conflated",
+        label: "Two things have changed, and they often get mixed up",
         body: [
-          "The mechanics. How people meet, what's expected, the pace. Genuinely different, and learnable.",
-          "You. A settled life, known preferences, less patience for what doesn't work. Also genuinely different, and mostly an advantage.",
+          "The mechanics. How people meet, what's expected, the pace. Really different now, and something you can learn.",
+          "You. A settled life, knowing what you like, less patience for what doesn't work. Also really different, and mostly an advantage.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here says how it goes or promises you'll meet someone. What it can do is stop the two kinds of change being treated as one problem.",
+          "Nothing here says how it will go or promises you'll meet someone. What it can do is keep the two kinds of change from being treated as one problem.",
         ],
       },
     ],
@@ -79,7 +80,7 @@ export const ADDON_DATING_LATER_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cDating feels completely different now.\u201d \u201cI don't know what people expect anymore.\u201d",
-          "Both accurate. It's worth separating what's changed out there from what's changed in you, because they need different responses.",
+          "Both are true. It's worth pulling apart what's changed out there from what's changed in you, because they need different answers.",
         ],
       },
       {
@@ -87,9 +88,9 @@ export const ADDON_DATING_LATER_LITERATURE: LiteratureEntry[] = [
         label: "Changed out there",
         items: [
           "Where people meet, and how much of it happens on a screen before anyone is in a room.",
-          "The pace, which is often faster at the start and slower to arrive anywhere.",
-          "The volume \u2014 more options, less depth of attention on any of them.",
-          "Less shared context. People arrive with histories that aren't visible.",
+          "The pace, which is often faster at the start and slower to actually go anywhere.",
+          "The sheer number \u2014 more options, and less real attention on any one of them.",
+          "Less shared background. People show up with histories you can't see.",
         ],
       },
       {
@@ -98,14 +99,14 @@ export const ADDON_DATING_LATER_LITERATURE: LiteratureEntry[] = [
         items: [
           "You know what you want, which most people at the start don't.",
           "You have a life, which changes what a relationship has to carry.",
-          "Less patience for what doesn't work, which is efficiency rather than rigidity.",
-          "More to protect, and more to lose by merging carelessly.",
+          "Less patience for what doesn't work, which is being efficient, not rigid.",
+          "More to protect, and more to lose by joining your lives carelessly.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "The first list is a learning problem and it's smaller than it feels. The second isn't a problem at all, though it frequently gets described as one \u2014 usually by people who'd benefit from you having less of it.",
+          "The first list is a learning problem, and it's smaller than it feels. The second isn't a problem at all. People often call it one, though \u2014 usually people who'd be better off if you had less of it.",
         ],
       },
     ],
@@ -122,27 +123,27 @@ export const ADDON_DATING_LATER_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know how to balance protecting my peace with opening my heart.\u201d The clearest statement of the actual difficulty, and it's a genuine tension rather than a confusion to be resolved.",
+          "\u201cI don't know how to balance protecting my peace with opening my heart.\u201d This is the clearest way to name the real difficulty. It's a true tension, not a mix-up to be cleared up.",
         ],
       },
       {
         kind: "distinction",
-        label: "Why it doesn't resolve",
+        label: "Why it doesn't go away",
         body: [
-          "Both are real goods. The peace was hard-won and losing it would be a genuine loss. And nothing worth having is available without some exposure.",
-          "Advice usually picks a side \u2014 be more open, or protect yourself \u2014 and both halves of that are wrong half the time.",
+          "Both are good things. The peace was hard to win, and losing it would be a real loss. And nothing worth having comes without opening yourself up a little.",
+          "Advice usually picks a side \u2014 be more open, or protect yourself \u2014 and each side is wrong about half the time.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "What's more useful is treating it as a rate rather than a decision. Not open or closed \u2014 how fast, and about what, and with the ability to slow down without ending anything.",
+          "It helps more to treat this as a rate, not a decision. Not open or closed \u2014 but how fast, about what, and with the freedom to slow down without ending anything.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI enjoy my independence, but I miss companionship\u201d is not a contradiction and doesn't require choosing. Plenty of people arrange lives that contain both, and the arrangements are less conventional than the ones available earlier.",
+          "\u201cI enjoy my independence, but I miss companionship\u201d isn't a contradiction, and it doesn't mean you have to choose. Plenty of people build lives that hold both, and those setups are less traditional than the ones on offer earlier in life.",
         ],
       },
     ],
@@ -159,28 +160,28 @@ export const ADDON_DATING_LATER_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't want to merge my life with someone too quickly.\u201d Sensible, and worth noticing that it's easier said than done later rather than harder.",
+          "\u201cI don't want to merge my life with someone too quickly.\u201d Sensible. And worth noticing that merging is easier to do later, not harder.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Two pressures push toward speed. \u201cI don't want to waste time\u201d, which is often accurate about the years and inaccurate about the pace \u2014 moving quickly doesn't save time if it ends badly.",
-          "And the fact that merging is easier when there's more to merge. Houses, routines, family, money. It happens faster and it's much harder to undo.",
+          "Two pressures push you to hurry. One is \u201cI don't want to waste time\u201d. That's often true about the years, but not about the pace \u2014 moving fast doesn't save time if it ends badly.",
+          "The other is that merging is easier when there's more to merge. Houses, routines, family, money. It happens faster, and it's much harder to undo.",
         ],
       },
       {
         kind: "distinction",
         label: "What's worth keeping separate, longer than feels natural",
         body: [
-          "Money and property. Obvious, frequently rushed, and the expensive one to get wrong.",
-          "Your own place, if you have one, and your own week \u2014 the things that constitute the peace you'd be protecting.",
+          "Money and property. Obvious, often rushed, and the costly one to get wrong.",
+          "Your own place, if you have one, and your own week \u2014 the things that make up the peace you'd be protecting.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Slower isn't a test of them and shouldn't be presented as one. It's about what you'd want to still have if it didn't work, which is a reasonable thing to attend to and has nothing to do with expecting it to fail.",
+          "Going slower isn't a test of them, and shouldn't be presented as one. It's about what you'd want to still have if it didn't work out. That's a fair thing to look after, and it has nothing to do with expecting it to fail.",
         ],
       },
     ],
@@ -198,27 +199,27 @@ export const ADDON_DATING_LATER_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "We're not going to answer that with encouragement, because encouragement about this is usually hollow and you'd know.",
+          "We're not going to answer that with a pep talk. A pep talk about this usually rings empty, and you'd know it.",
         ],
       },
       {
         kind: "distinction",
         label: "What's actually true about it",
         body: [
-          "Some things are harder. A smaller pool, more complicated lives, more that has to be accommodated rather than built together.",
-          "Some things are easier. Knowing what you want, being able to say it, and not needing the relationship to supply everything.",
+          "Some things are harder. Fewer people to meet, more tangled lives, and more that has to be worked around instead of built together.",
+          "Some things are easier. Knowing what you want, being able to say it, and not needing the relationship to give you everything.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cWill I ever find love again\u201d has no answer and nobody can give you one. What can be said is that it isn't a question about you \u2014 people with everything in their favour don't meet anyone, and people with none of it do.",
+          "\u201cWill I ever find love again\u201d has no answer, and nobody can give you one. What can be said is that it isn't a question about you. People who have everything going for them don't meet anyone, and people who have none of it do.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI don't know how to trust after everything I've experienced\u201d is the more workable version of the same worry, and it's a different question. Trust after experience isn't naivety restored \u2014 it's a decision made on evidence, which is available to you and wasn't available at twenty.",
+          "\u201cI don't know how to trust after everything I've experienced\u201d is the more workable version of the same worry, and it's a different question. Trust after all you've been through isn't going back to being naive. It's a choice you make based on evidence. That evidence is there for you now, and it wasn't there at twenty.",
         ],
       },
     ],

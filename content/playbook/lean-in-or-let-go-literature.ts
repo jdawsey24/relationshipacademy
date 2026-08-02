@@ -38,6 +38,7 @@
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const C24_LITERATURE: LiteratureEntry[] = [
   {
     id: "lit-c24-what-this-is",
@@ -58,15 +59,15 @@ export const C24_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "Which changes what would help",
         body: [
-          "Most Playbooks help you see something you couldn't see. You can see this perfectly well.",
-          "What you're missing is a way to decide without the certainty you've been waiting for — because the certainty isn't coming.",
+          "Most Playbooks help you see something you couldn't see before. You can see this one clearly.",
+          "What you're missing is a way to decide without being sure — because the sureness you've been waiting for isn't coming.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "We'll be straight with you: this isn't going to answer your questions. Several of them don't have answers, and the ones that do have partial ones.",
-          "What it can do is trade the questions that can't be answered for ones that can, which is a smaller offer and an honest one.",
+          "We'll be straight with you: this isn't going to answer your questions. Several of them have no answer, and the ones that do only have part of one.",
+          "What it can do is swap the questions that can't be answered for ones that can. That's a smaller offer, and an honest one.",
         ],
       },
     ],
@@ -90,17 +91,17 @@ export const C24_LITERATURE: LiteratureEntry[] = [
         kind: "list",
         label: "No answer exists",
         items: [
-          "How long should I wait? There is no correct number of weeks. Anyone who gives you one is guessing with confidence.",
-          "Am I settling? There's no external standard to be settling against. Only your own terms, and those you'd have to name.",
-          "Is there someone better? Almost certainly, and also irrelevant \u2014 there's always someone better at something. It's an unanswerable question by construction.",
-          "Is love supposed to feel different? Different from what? People's experience varies enormously and none of it is the standard.",
-          "Am I asking too much, or too little? No scale exists. Both questions are asking for a norm that isn't there.",
+          "How long should I wait? There's no right number of weeks. Anyone who gives you one is just guessing, confidently.",
+          "Am I settling? There's no outside standard to measure 'settling' against. There are only your own terms — and you'd have to name those yourself.",
+          "Is there someone better? Almost certainly — and also beside the point \u2014 there's always someone better at something. The question is built so it can never be answered.",
+          "Is love supposed to feel different? Different from what? What people feel varies hugely, and none of it is the standard.",
+          "Am I asking too much, or too little? There's no scale. Both questions are asking for a normal that isn't there.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "We're not saying these are silly questions. They're the natural questions. We're saying they can be held for years without ever resolving, and that the holding is what costs you.",
+          "We're not saying these are silly questions. They're the natural ones to ask. We're saying you can hold them for years without ever getting an answer — and the holding is what costs you.",
         ],
       },
       {
@@ -123,18 +124,18 @@ export const C24_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Some of it is genuinely knowable. Less than you'd like, and more than nothing.",
+          "Some of it you really can find out. Less than you'd like, and more than nothing.",
         ],
       },
       {
         kind: "list",
         label: "Answerable",
         items: [
-          "What are we? Answerable, by asking. Uncomfortable, and answerable.",
-          "Do they want the same things I do? Answerable, by asking, and worth doing before rather than after a year.",
-          "Are they putting in effort I can point at? Observable over a few weeks.",
-          "Does what they say match what they do? Observable, and the single most useful thing on this list.",
-          "What would I need to see to feel differently about this? Answerable, by you, and almost nobody has done it.",
+          "What are we? You can find out, by asking. Uncomfortable, and still something you can find out.",
+          "Do they want the same things I do? You can find out, by asking — and it's worth doing before a year passes, not after.",
+          "Are they putting in effort I can point at? You can watch for it over a few weeks.",
+          "Does what they say match what they do? You can watch for it — and it's the single most useful thing on this list.",
+          "What would I need to see to feel differently about this? You can answer it yourself — and almost nobody has.",
         ],
       },
       {
@@ -149,7 +150,7 @@ export const C24_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "None of these produce certainty. They produce a basis for deciding, which is what's available.",
+          "None of these make you certain. They give you a basis for deciding, which is what's on offer.",
         ],
       },
     ],
@@ -166,28 +167,28 @@ export const C24_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Yes. That's the short answer, and it's worth saying plainly because there's a great deal of advice suggesting you shouldn't.",
+          "Yes. That's the short answer, and it's worth saying plainly, because there's a lot of advice out there saying you shouldn't.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The case against asking is usually that it seems needy, or it'll scare them off, or you should be able to tell. All three assume the question costs you something.",
-          "What it actually costs is finding out. If someone is put off by being asked a direct question about what you're doing together, that's information rather than a mistake you made.",
+          "The reasons people give against asking are usually that it seems needy, or it'll scare them off, or you should be able to tell. All three assume the question costs you something.",
+          "What it actually costs is finding out. If someone is put off by a direct question about what you're doing together, that tells you something — it's not a mistake you made.",
         ],
       },
       {
         kind: "distinction",
         label: "Two different asks",
         body: [
-          "\u201cWhere is this going?\u201d asks them to guess what you want to know, and produces a vague answer.",
+          "\u201cWhere is this going?\u201d asks them to guess what you want to know, and gets a vague answer.",
           "\u201cAre we seeing other people?\u201d or \u201cAre you looking for something serious?\u201d can be answered yes or no.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "There's no correct week to ask. If it's on your mind enough to be reading this, it's on your mind enough to ask.",
+          "There's no right week to ask. If it's on your mind enough to be reading this, it's on your mind enough to ask.",
         ],
       },
     ],
@@ -205,14 +206,14 @@ export const C24_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cAm I settling?\u201d \u201cI don't know if this is enough.\u201d \u201cI don't know if I'm asking for too much.\u201d",
-          "All three are asking the same thing: is there a standard, and am I above or below it? There isn't one, which is why the question never resolves.",
+          "All three ask the same thing: is there a standard, and am I above or below it? There isn't one — which is why the question never gets settled.",
         ],
       },
       {
         kind: "distinction",
         label: "What replaces it",
         body: [
-          "Not a standard. Your terms \u2014 the specific things without which this doesn't work for you.",
+          "Not a standard. Your terms \u2014 the specific things this doesn't work without.",
           "Most people have never written them down, which is why \u201cis this enough\u201d has nothing to be measured against.",
         ],
       },
@@ -220,7 +221,7 @@ export const C24_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "Terms are usually fewer than people expect, and more specific. Not \u201ckindness\u201d \u2014 something like \u201csomeone who tells me when they're annoyed instead of going quiet\u201d.",
-          "Once they exist, \u201cam I settling\u201d becomes a checkable question rather than an anxious one.",
+          "Once you have them,\u201cam I settling\u201d becomes a question you can check, not just an anxious one.",
         ],
       },
       {
@@ -243,8 +244,8 @@ export const C24_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Yes. Almost certainly. There's someone funnier, someone more successful, someone who'd suit you better on some dimension you haven't thought of.",
-          "That's not a discouraging answer \u2014 it's a structural one. The question is built so that it can never be answered no, which means it can be asked forever.",
+          "Yes. Almost certainly. There's someone funnier, someone more successful, someone who'd fit you better in some way you haven't even thought of.",
+          "That's not a gloomy answer \u2014 it's about how the question is built. It's set up so it can never be answered no, which means you can ask it forever.",
         ],
       },
       {
@@ -258,7 +259,7 @@ export const C24_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know when to stop looking\u201d comes from the same place. There's no point at which the looking is complete, because the looking isn't a task with an end. It ends when you decide it does.",
+          "\u201cI don't know when to stop looking\u201d comes from the same place. There's no point where the looking is finished, because looking isn't a task with an end. It ends when you decide it does.",
         ],
       },
       {
@@ -282,27 +283,27 @@ export const C24_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI'm afraid I'll choose the wrong person.\u201d \u201cI'm afraid of wasting more time.\u201d",
-          "Both reasonable. And both, unhelpfully, push in the same direction: don't decide yet.",
+          "Both are reasonable. And both, unhelpfully, push you the same way: don't decide yet.",
         ],
       },
       {
         kind: "distinction",
-        label: "The thing the fear obscures",
+        label: "What the fear hides",
         body: [
           "Not deciding is also a decision, and it costs time in exactly the way you're trying to avoid.",
-          "Two years of not-quite-deciding is two years, spent, with less information at the end than a clear attempt would have produced.",
+          "Two years of not-quite-deciding is still two years, gone — and you'll have less to go on at the end than a clear attempt would have given you.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "There's also no version of this where you can't be wrong. Choosing carries risk; so does waiting; so does leaving. The choice isn't between risk and safety, it's between which risk.",
+          "There's also no version of this where you can't be wrong. Choosing has risk. So does waiting. So does leaving. The choice isn't between risk and safety — it's about which risk.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI keep second-guessing relationships\u201d is worth noticing as a pattern rather than a verdict on any particular person. If it's happened with several, the useful question is about the deciding rather than about them.",
+          "\u201cI keep second-guessing relationships\u201d is worth noticing as a pattern, not a verdict on any one person. If it's happened with several, the useful question is about the deciding, not about them.",
         ],
       },
     ],
@@ -319,17 +320,17 @@ export const C24_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cHow do I know if they're serious?\u201d This one has a partial answer, which is better than most.",
+          "\u201cHow do I know if they're serious?\u201d This one has part of an answer, which is better than most.",
         ],
       },
       {
         kind: "list",
         label: "Worth weighing",
         items: [
-          "They start things sometimes, rather than only responding.",
+          "They start things sometimes, instead of only responding.",
           "What they said would happen, happened.",
           "It's held up over more than a few weeks.",
-          "They've made a plan that involves the future rather than the weekend.",
+          "They've made a plan about the future, not just the weekend.",
         ],
       },
       {
@@ -337,9 +338,9 @@ export const C24_LITERATURE: LiteratureEntry[] = [
         label: "Worth weighing less than it feels",
         items: [
           "Warmth. Cheap, pleasant, and not evidence.",
-          "Intensity early on. Not about you yet.",
-          "Stated intentions with nothing behind them.",
-          "How well you get on. Necessary and nowhere near sufficient.",
+          "Strong feelings early on. Not about you yet.",
+          "Saying the right things with nothing behind them.",
+          "How well you get along. It matters, but it's nowhere near enough.",
         ],
       },
       {
@@ -363,21 +364,21 @@ export const C24_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Probably not, and we'd be cautious of anyone who tells you there's a correct week.",
+          "Probably not. And be wary of anyone who tells you there's a right week.",
         ],
       },
       {
         kind: "distinction",
         label: "Two ways to think about timing",
         body: [
-          "The one people use: how long is normal before this conversation? No answer, varies wildly, and waiting for the normal moment is how a year passes.",
-          "The more useful one: is not knowing costing me something? If it's occupying your attention, that's the cost, and it's already being paid.",
+          "The one people use: how long is normal before this talk? There's no answer, it varies a lot, and waiting for the normal moment is how a year passes.",
+          "The more useful one: is not knowing costing me something? If it's taking up your attention, that's the cost — and you're already paying it.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "The fear underneath is usually that asking will end it. Sometimes it does \u2014 and if a direct question ends something, the something was more fragile than the asking.",
+          "The fear underneath is usually that asking will end it. Sometimes it does \u2014 and if a direct question ends something, that something was more fragile than the asking.",
         ],
       },
     ],
@@ -394,22 +395,22 @@ export const C24_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "You can't, in the way you want to. There's no external standard and nobody can tell you where the line is.",
+          "You can't, in the way you want to. There's no outside standard, and nobody can tell you where the line is.",
         ],
       },
       {
         kind: "distinction",
         label: "What you can check instead",
         body: [
-          "Are the things you actually need present? Requires having named them, which most people haven't.",
-          "Would you be relieved if it ended? A blunt question, and an unusually informative one.",
-          "Are you staying for a reason, or staying because leaving is a decision? Those feel identical and are not the same.",
+          "Are the things you actually need here? That means having named them first, which most people haven't.",
+          "Would you be relieved if it ended? A blunt question, and one that tells you a lot.",
+          "Are you staying for a reason, or staying because leaving would mean deciding? Those feel the same, but they're not.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "The word \u201csettling\u201d does a lot of damage here. It implies a scale everyone is placed on, and there isn't one. What exists is whether this particular arrangement works for you.",
+          "The word \u201csettling\u201d does a lot of damage here. It suggests there's a scale everyone gets placed on, and there isn't one. What's real is whether this particular setup works for you.",
         ],
       },
     ],
@@ -426,27 +427,27 @@ export const C24_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It's the belief underneath most of this cluster, and it's worth examining rather than reassuring you about.",
+          "It's the belief underneath most of this Playbook, and it's worth looking at instead of just reassuring you.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Some people do report knowing. Plenty of people who report knowing turn out to have been wrong, and plenty who were uncertain for a year turn out fine. The feeling of certainty isn't a reliable signal about the relationship \u2014 it's a signal about the person having it.",
+          "Some people do say they just knew. Plenty of people who say that turn out to have been wrong, and plenty who were unsure for a year turn out fine. Feeling sure isn't a reliable sign about the relationship \u2014 it's more a sign about the person who feels it.",
         ],
       },
       {
         kind: "distinction",
         label: "Which means",
         body: [
-          "Waiting to know may be waiting for something that isn't going to arrive, and isn't diagnostic even when it does.",
-          "Deciding on evidence \u2014 what they've done, whether your terms are met \u2014 is available now, and is a better basis than a feeling.",
+          "Waiting to know may be waiting for something that isn't coming — and even when it does come, it doesn't reliably tell you the truth.",
+          "Deciding on evidence \u2014 what they've done, whether your terms are met \u2014 is something you can do now, and it's a better basis than a feeling.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "That isn't a case for ignoring your instincts. It's a case against treating the absence of certainty as an answer.",
+          "That isn't a reason to ignore your gut. It's a reason not to treat not-being-sure as an answer.",
         ],
       },
     ],

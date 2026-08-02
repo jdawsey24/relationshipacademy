@@ -33,6 +33,7 @@ import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C11_LITERATURE } from "./accepting-what-is-literature";
 import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const ACCEPTING_WHAT_IS: PlaybookContent = {
   playbookKey: "accepting-what-is",
   playbookVersion: 1,
@@ -41,9 +42,9 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
   opening: {
     title: "We're not going to decide for you",
     body: [
-      "You've been carrying should-I-stay-or-go for a while, and it doesn't resolve by being carried. You've probably found that.",
-      "Some of what you're asking has no answer — can this be saved, is love enough, whether you'd regret it. Nobody knows those, including anyone who tells you confidently.",
-      "What's here separates those from the ones you can actually check. It won't tell you what to do. It should tell you what you're deciding between.",
+      "You've been carrying should-I-stay-or-go for a while now. It doesn't get better just by being carried. You've probably found that.",
+      "Some of what you're asking has no answer. Can this be saved? Is love enough? Would you regret it? Nobody knows those things — not even someone who sounds sure.",
+      "What's here sorts those out from the ones you can actually check. It won't tell you what to do. But it should show you what you're deciding between.",
     ],
     manifestations: [
       "Should I stay or leave?",
@@ -61,7 +62,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I wish someone would decide for me.",
       validationCopy:
-        "That's a reasonable wish — the deciding is the worst part, and handing it over would be an enormous relief. Nobody should take it, though. Anyone who does is guessing with a fraction of the information and none of the consequences, and a decision made because someone told you tends not to hold. The friends certain you should leave and the ones certain you should stay are usually describing what they'd do.",
+        "That's a fair wish — the deciding is the worst part, and handing it off would be a huge relief. But nobody should take it. Anyone who does is guessing. They have only a sliver of the facts and none of the fallout, and a choice you made because someone told you to usually doesn't hold. The friends who are sure you should leave, and the ones sure you should stay, are usually just describing what they'd do.",
       secondaryExamples: [
         "I keep changing my mind.",
         "I don't know what I actually want.",
@@ -100,7 +101,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
       pathwayPlayId: "which-way-does-it-lean",
       headline: "Part of me wants this and part of me doesn't.",
       explanation:
-        "Changing your mind about something this large isn't a malfunction. It's what a genuinely close call looks like from inside.",
+        "Changing your mind about something this big isn't a sign something's wrong with you. It's what a truly close call feels like from the inside.",
       secondaryExamples: [
         "I'm torn between comfort and growth.",
         "I don't know whether to fight or let go.",
@@ -113,7 +114,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
       pathwayPlayId: "the-distance-or-the-relationship",
       headline: "I don't know if long distance is worth it.",
       explanation:
-        "Distance is genuinely hard, which makes it available as the explanation for everything. Worth separating.",
+        "Distance is genuinely hard. That makes it easy to blame for everything. Worth pulling apart.",
       secondaryExamples: [
         "I'm tired of saying goodbye.",
         "I don't know if we're building a future or delaying the inevitable.",
@@ -137,24 +138,24 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "This is the sharpest question in the whole cluster, and it does have a partial answer.",
-            "The difference isn't how much you hope. Hope with evidence points at something that has actually happened — they did change that, it has been better since March, there was a stretch where this worked.",
+            "This is the hardest question in the whole set, and it does have a partial answer.",
+            "The difference isn't how much you hope. Hope with evidence points at something that has actually happened — they did change that, it's been better since March, there was a stretch when this worked.",
             "Hope without evidence points at something that hasn't. They could change. If they understood, they would. It was like this once, years ago.",
-            "Both feel identical from inside. The test isn't the strength of the feeling — it's whether you can name a thing that happened.",
+            "Both feel the same from the inside. The test isn't how strong the feeling is — it's whether you can name a thing that happened.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "None of this is an argument against hope. Wanting not to give up too soon is as legitimate as not wanting to stay too long, and people who leave early regret it about as often as people who stay late.",
-            "The point is only to know which kind you're holding, because they behave differently over time.",
+            "None of this is an argument against hope. Wanting not to give up too soon is just as valid as not wanting to stay too long, and people who leave early regret it about as often as people who stay too long.",
+            "The point is just to know which kind you're holding, because the two act differently over time.",
           ],
         },
         {
           kind: "scenarioSort",
           prompt: "Which of these is pointing at something that happened?",
           situation:
-            "You've been waiting for a while for something to shift. Some of what you're holding is based on the record, and some of it isn't.",
+            "You've been waiting a while for something to shift. Some of what you're holding is based on the record. Some of it isn't.",
           buckets: [
             { id: "happened", label: "Something that happened" },
             { id: "could", label: "Something that could happen" },
@@ -164,14 +165,14 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
               id: "sort-c11-stopped-doing",
               text: "They stopped doing the thing after I raised it in April",
               correctBucket: "happened",
-              correction: "Datable and checkable. That's evidence.",
+              correction: "You can put a date on it and check it. That's evidence.",
             },
             {
               id: "sort-c11-if-they-understood",
               text: "If they really understood how much it hurt, they'd change",
               correctBucket: "could",
               correction:
-                "A prediction about a version of them that hasn't appeared yet.",
+                "That's a guess about a version of them that hasn't shown up yet.",
             },
             {
               id: "sort-c11-better-stretch",
@@ -191,7 +192,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
               text: "They said they'd start therapy",
               correctBucket: "could",
               correction:
-                "Saying isn't doing. It moves to the other side when they've been.",
+                "Saying isn't doing. It moves to the other side once they've actually gone.",
             },
             {
               id: "sort-c11-came-back",
@@ -203,7 +204,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
         },
         {
           kind: "ownTurn",
-          intro: "Now yours. Be exact — the exactness is the whole exercise.",
+          intro: "Now yours. Be exact — being exact is the whole point.",
           fields: [
             {
               id: "waiting-for",
@@ -216,7 +217,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
               label: "Has it ever happened? When?",
               input: "text",
               placeholder:
-                "A date, a stretch, an occasion. If nothing comes, write 'never'.",
+                "A date, a stretch of time, a moment. If nothing comes to mind, write 'never'.",
             },
           ],
         },
@@ -227,7 +228,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
           enoughLabel: "The record — it has happened",
           needMoreLabel: "What's possible — it hasn't yet",
           needMoreIntro:
-            "That doesn't mean give up. It means you know which kind of hope this is, which is different from being told to stop hoping.",
+            "That doesn't mean give up. It just means you know which kind of hope this is. That's different from being told to stop hoping.",
           needToKnowLabel: "What would have to happen for this to become evidence",
           observableLabel: "Something I could point at afterwards",
         },
@@ -235,21 +236,21 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
           kind: "output",
           heading: "What I'm holding",
           body:
-            "Not a verdict on the relationship. A clear view of what your hope is resting on.",
+            "Not a verdict on the relationship. Just a clear view of what your hope is resting on.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
             "The test isn't how much I hope. It's whether I can name a thing that happened.",
-            "Saying isn't doing. It becomes evidence when it's been done.",
+            "Saying isn't doing. It becomes evidence once it's actually done.",
             "Not giving up too soon is as real a risk as staying too long.",
           ],
         },
       ],
       portable: [
         "The test isn't how much I hope. It's whether I can name a thing that happened.",
-        "Saying isn't doing. It becomes evidence when it's been done.",
+        "Saying isn't doing. It becomes evidence once it's actually done.",
         "Not giving up too soon is as real a risk as staying too long.",
       ],
       myPlaysTemplate: {
@@ -268,7 +269,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
           "Counting a promise as an occurrence.",
         ],
         notMeaning:
-          "It does not mean the hope is unfounded, that the relationship can't change, or that you should act on what you found.",
+          "It does not mean your hope has no basis, that the relationship can't change, or that you should act on what you found.",
       },
     },
 
@@ -287,22 +288,22 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
           kind: "shift",
           body: [
             "A lot of the weight you're carrying is made of questions that have no answers. Can this be saved. Is love enough. Whether you'd regret it.",
-            "Those can be held for years and never resolve, and holding them is most of what's tiring.",
+            "You can hold those for years and never solve them. Holding them is most of what wears you out.",
             "Underneath them are questions that can be checked — mostly by looking rather than thinking.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "This won't tell you what to do. It'll tell you what you're actually choosing between, which is more than most people in this position have.",
-            "\u201cIs love enough\u201d has a fairly consistent answer, and it's no — not on its own. That's not a verdict on your relationship. It's why the checkable questions are the ones worth your time.",
+            "This won't tell you what to do. It'll show you what you're actually choosing between. That's more than most people in your spot have.",
+            "\u201cIs love enough\u201d has a pretty steady answer, and it's no — not by itself. That's not a verdict on your relationship. It's why the checkable questions are the ones worth your time.",
           ],
         },
         {
           kind: "scenarioSort",
           prompt: "Which of these could actually be answered?",
           situation:
-            "You've been turning the same questions over for months. Some of them are going to keep going round forever.",
+            "You've been turning the same questions over for months. Some of them will keep going round forever.",
           buckets: [
             { id: "checkable", label: "Can be checked" },
             { id: "no-answer", label: "Nobody can answer" },
@@ -312,39 +313,39 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
               id: "sort-c11-both-want",
               text: "Does the other person want this fixed?",
               correctBucket: "checkable",
-              correction: "Answerable by asking, and it matters more than most of the list.",
+              correction: "You can answer this by asking, and it matters more than most of the list.",
             },
             {
               id: "sort-c11-saved",
               text: "Can this relationship be saved?",
               correctBucket: "no-answer",
-              correction: "Not knowable in advance, by you or anyone.",
+              correction: "No one can know this ahead of time — not you, not anyone.",
             },
             {
               id: "sort-c11-changed-before",
               text: "Has anything ever actually changed between us?",
               correctBucket: "checkable",
-              correction: "A matter of record. Look rather than think.",
+              correction: "A matter of record. Look instead of think.",
             },
             {
               id: "sort-c11-regret",
               text: "Would I regret leaving?",
               correctBucket: "no-answer",
               correction:
-                "Unknowable, and the fear of it is doing a lot of the work here.",
+                "No one can know this, and the fear of it is doing a lot of the work here.",
             },
             {
               id: "sort-c11-would-need",
               text: "What would I need to see in six months?",
               correctBucket: "checkable",
-              correction: "Answerable by you today, and almost nobody has done it.",
+              correction: "You could answer this today, and almost nobody does.",
             },
             {
               id: "sort-c11-love-enough",
               text: "Is love enough?",
               correctBucket: "no-answer",
               correction:
-                "Not answerable as posed — and the general answer is no, not on its own.",
+                "Can't be answered the way it's asked — and the general answer is no, not by itself.",
             },
           ],
         },
@@ -357,7 +358,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
               id: "unanswerable",
               label: "The question you keep coming back to",
               input: "text",
-              placeholder: "The one that never resolves.",
+              placeholder: "The one that never gets answered.",
             },
             {
               id: "checkable-version",
@@ -371,7 +372,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
         {
           kind: "ruleBuilder",
           intro:
-            "A point at which you look. Not a deadline for them, and not a promise either way.",
+            "A time when you'll look. Not a deadline for them, and not a promise either way.",
           conditionLabel: "When I'll look at this again",
           thenLabel: "And what I'll be looking at",
           actions: [
@@ -381,7 +382,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
             "How I feel when I imagine another year of exactly this",
           ],
           controlCheck:
-            "This is a date I'll look on \u2014 not a decision made in advance, and not something I'm telling them as a warning.",
+            "This is a date I'll look on \u2014 not a decision made ahead of time, and not something I'm telling them as a warning.",
         },
         {
           kind: "output",
@@ -393,16 +394,16 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Some of these have no answers. Holding them is most of what's tiring.",
+            "Some of these have no answers. Holding them is most of what wears you out.",
             "Not deciding is also a decision, and it costs the same time.",
-            "A date to look on isn't a decision made in advance.",
+            "A date to look on isn't a decision made ahead of time.",
           ],
         },
       ],
       portable: [
-        "Some of these have no answers. Holding them is most of what's tiring.",
+        "Some of these have no answers. Holding them is most of what wears you out.",
         "Not deciding is also a decision, and it costs the same time.",
-        "A date to look on isn't a decision made in advance.",
+        "A date to look on isn't a decision made ahead of time.",
       ],
       myPlaysTemplate: {
         when: "When I've been weighing this for months without moving",
@@ -417,7 +418,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
         misuse: [
           "Setting the date and then deciding before it.",
           "Telling them the date as an ultimatum.",
-          "Using the sort to justify a conclusion already reached.",
+          "Using the sort to back up a conclusion you'd already reached.",
         ],
         notMeaning:
           "It does not mean you should stay, that you should leave, or that the answer arrives on the date.",
@@ -438,16 +439,16 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Changing your mind about something this large isn't a malfunction. Decisions that are obvious don't oscillate.",
-            "There's also a mechanical reason. Near them, when things are good, staying looks right. Apart, remembering the hard parts, leaving does. Neither reading is dishonest — you're sampling different evidence at different moments.",
-            "Which makes \u201cI don't trust my feelings because they change\u201d slightly unfair to yourself. They're responding accurately to what's in front of them.",
+            "Changing your mind about something this big isn't a sign something's broken. Decisions that are obvious don't keep flipping.",
+            "There's also a simple reason for it. When you're near them and things are good, staying looks right. When you're apart and remembering the hard parts, leaving does. Neither read is a lie — you're just taking in different evidence at different moments.",
+            "Which makes \u201cI don't trust my feelings because they change\u201d a bit unfair to yourself. They're reacting correctly to what's in front of them.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Two situations feel identical here. Genuinely torn — both options carry real weight, and the oscillation reflects that. Or knowing and not wanting to know — there's an answer you keep arriving at and moving away from.",
-            "Nothing in this tool decides. It's a way of noticing which one you're in, and you may find it's the first, which is a legitimate place to be.",
+            "Two situations feel the same here. Genuinely torn — both options carry real weight, and the back-and-forth shows that. Or knowing and not wanting to know — there's an answer you keep landing on and then backing away from.",
+            "Nothing in this tool decides for you. It's a way of noticing which one you're in. You may find it's the first — and that's a fine place to be.",
           ],
         },
         {
@@ -460,12 +461,12 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
         {
           kind: "ownTurn",
           intro:
-            "Three questions people find informative. There are no right answers and nothing is scored.",
+            "Three questions people find helpful. There are no right answers, and nothing is scored.",
           fields: [
             {
               id: "first-feeling",
               label:
-                "When you imagine it being over, what's the FIRST feeling — before the sensible one arrives?",
+                "When you imagine it being over, what's the FIRST feeling — before the sensible one shows up?",
               input: "chips",
               suggestions: [
                 "Dread",
@@ -480,13 +481,13 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
               label:
                 "If they stayed exactly as they are now — no better, no worse — for five years, what's your answer?",
               input: "text",
-              placeholder: "Most people find they know immediately. Write what came.",
+              placeholder: "Most people find they know right away. Write what came to you.",
             },
             {
               id: "what-im-avoiding",
-              label: "Is there an answer you keep arriving at and moving away from?",
+              label: "Is there an answer you keep landing on and then backing away from?",
               input: "text",
-              placeholder: "If there isn't, say so — genuinely torn is a real position.",
+              placeholder: "If there isn't, say so — being genuinely torn is a real place to be.",
             },
           ],
         },
@@ -496,7 +497,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
           enoughLabel: "There's a lean",
           needMoreLabel: "It's genuinely close",
           needMoreIntro:
-            "Then it's close, and thinking harder won't resolve it. That's worth knowing rather than treating as a failure of yours.",
+            "Then it's close, and thinking harder won't settle it. That's worth knowing — not something to treat as your failure.",
           needToKnowLabel: "What would tip it either way",
           observableLabel: "Something that would actually have to happen",
         },
@@ -510,14 +511,14 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Obvious decisions don't oscillate. Mine changes because it's close.",
+            "Obvious decisions don't keep flipping. Mine changes because it's close.",
             "The first feeling, not the sensible second one.",
             "Noticing a lean isn't the same as acting on it.",
           ],
         },
       ],
       portable: [
-        "Obvious decisions don't oscillate. Mine changes because it's close.",
+        "Obvious decisions don't keep flipping. Mine changes because it's close.",
         "The first feeling, not the sensible second one.",
         "Noticing a lean isn't the same as acting on it.",
       ],
@@ -526,25 +527,25 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
         move: "Notice whether this is genuinely close or whether there's a lean I'm avoiding",
         lookingFor: "The first feeling, and what I'd say about five more years of exactly this",
         watchOut: "Treating a lean as a decision I now have to act on",
-        remember: "My feelings change because they're sampling different weeks. That isn't unreliability.",
+        remember: "My feelings change because they're taking in different weeks. That doesn't make them unreliable.",
       },
       fidelity: {
         correct:
-          "The reader distinguishes genuine ambivalence from an avoided lean, without a decision being forced.",
+          "The reader tells real mixed feelings apart from a lean they've been avoiding, without being forced into a decision.",
         misuse: [
           "Treating the output as an instruction.",
-          "Running it repeatedly until it gives the answer you wanted.",
+          "Running it over and over until it gives the answer you wanted.",
           "Using it to tell someone else what you've decided.",
         ],
         notMeaning:
-          "It does not mean you should act, that a lean is correct, or that genuine ambivalence needs resolving today.",
+          "It does not mean you should act, that a lean is right, or that real mixed feelings need to be settled today.",
       },
       supportSignposts: [
         {
           id: "signpost-c11-flatness",
           heading: "If it isn't only this",
           body:
-            `If the flatness has spread past the relationship — if most things feel this way, or you've stopped expecting anything to improve anywhere — it can help to talk it through with a GP or another professional. It's separate from this decision, and it can make the decision harder to make well. ${CRISIS_ESCALATION}`,
+            `If the flatness has spread past the relationship — if most things feel this way, or you've stopped expecting anything to get better anywhere — it can help to talk it through with a GP or another professional. It's separate from this decision, and it can make the decision harder to make well. ${CRISIS_ESCALATION}`,
         },
       ],
     },
@@ -563,22 +564,22 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Distance is genuinely hard, which is exactly the problem: it's always available as the explanation.",
-            "Every difficulty can be attributed to it, which means nothing gets examined on its own terms — including the things that would be difficult anyway.",
+            "Distance is genuinely hard. That's exactly the problem — it's always there to blame.",
+            "You can pin every problem on it. So nothing gets looked at on its own — including the things that would be hard anyway.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Two questions worth separating, and they lead to opposite conclusions.",
+            "Two questions worth pulling apart, and they lead to opposite answers.",
             "Is the distance the problem? If it ended tomorrow, would this be good?",
-            "Or is the distance holding something together? Some relationships work partly because the gaps prevent the friction — and that's common, and not shameful, and very hard to see from inside.",
+            "Or is the distance holding something together? Some relationships work partly because the gaps keep the friction away. That's common, and nothing to be ashamed of, and very hard to see from the inside.",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "The thought experiment does more work than months of weighing. Answer quickly.",
+            "This thought experiment does more than months of weighing. Answer quickly.",
           fields: [
             {
               id: "same-city",
@@ -595,7 +596,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
             },
             {
               id: "what-would-surface",
-              label: "What would you have to deal with that the distance currently postpones?",
+              label: "What would you have to deal with that the distance is putting off right now?",
               input: "text",
               placeholder: "Be honest. There's usually something.",
             },
@@ -613,7 +614,7 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
           enoughLabel: "Yes, there's a real one",
           needMoreLabel: "No, or it keeps moving",
           needMoreIntro:
-            "That's the more common answer and it's worth knowing. Distance with no end isn't a phase you're getting through — it's the arrangement, and it should be evaluated as one.",
+            "That's the more common answer, and it's worth knowing. Distance with no end isn't a phase you're getting through — it's the arrangement, and it should be judged as one.",
           needToKnowLabel: "What would have to be true for there to be an end",
           observableLabel: "Something one of us would have to actually do",
         },
@@ -627,14 +628,14 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Distance explains everything, which means nothing gets examined.",
+            "Distance explains everything, which means nothing gets looked at.",
             "If it ended tomorrow, would this be good?",
             "Distance with no end date isn't a phase. It's the arrangement.",
           ],
         },
       ],
       portable: [
-        "Distance explains everything, which means nothing gets examined.",
+        "Distance explains everything, which means nothing gets looked at.",
         "If it ended tomorrow, would this be good?",
         "Distance with no end date isn't a phase. It's the arrangement.",
       ],
@@ -647,10 +648,10 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "The effect of the distance is separated from the state of the relationship, and the presence or absence of an end point is named.",
+          "The effect of the distance is pulled apart from the state of the relationship, and whether or not there's an end point is named.",
         misuse: [
-          "Using it to conclude the relationship is fine because the distance explains everything.",
-          "Using it to conclude the relationship is over because the distance is hard.",
+          "Using it to decide the relationship is fine because the distance explains everything.",
+          "Using it to decide the relationship is over because the distance is hard.",
           "Treating a moving end date as an end date.",
         ],
         notMeaning:
@@ -688,15 +689,15 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
       title: "Keep the date you set",
       instruction:
         "When the date arrives, look at the thing you named. Don't move it. Note what you found either way.",
-      linkToOperation: "Time-bounded review in place of open-ended weighing",
+      linkToOperation: "A review with a set date instead of endless weighing",
       attemptMeaning:
         "You looked on the day. Moving the date is information too.",
       suitability:
-        "If you find yourself moving it repeatedly, that's worth noticing — it usually means the condition wasn't the real question.",
+        "If you find yourself moving it over and over, that's worth noticing — it usually means the thing you set wasn't the real question.",
       progression: [
         {
           id: "rung-c11-deciding-2",
-          instruction: "Ask them the checkable question rather than only observing it.",
+          instruction: "Ask them the checkable question instead of only watching for it.",
         },
       ],
     },
@@ -707,11 +708,11 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
       title: "Say it out loud to one person",
       instruction:
         "Tell someone you trust where you actually are — the lean, or that it's close. Not the person you're deciding about.",
-      linkToOperation: "Externalising an unspoken position",
+      linkToOperation: "Saying an unspoken position out loud",
       attemptMeaning:
         "You said it. Hearing yourself say it is the point, not what they advise.",
       suitability:
-        "Pick someone who won't immediately tell you what to do. That's the input you're trying to avoid.",
+        "Pick someone who won't right away tell you what to do. That's the kind of input you're trying to avoid.",
       progression: [
         {
           id: "rung-c11-lean-2",
@@ -725,12 +726,12 @@ export const ACCEPTING_WHAT_IS: PlaybookContent = {
       playId: "the-distance-or-the-relationship",
       title: "Ask about the end date",
       instruction:
-        "Ask them directly whether there's an actual plan for the distance ending, and when. Listen to the answer rather than the reassurance.",
-      linkToOperation: "Establishing whether the arrangement has an end",
+        "Ask them directly whether there's an actual plan for the distance ending, and when. Listen to the answer instead of the reassurance.",
+      linkToOperation: "Finding out whether the arrangement has an end",
       attemptMeaning:
         "You asked. A vague answer is itself an answer.",
       suitability:
-        "If the date has moved more than twice, that pattern is more informative than the next date will be.",
+        "If the date has moved more than twice, that pattern tells you more than the next date will.",
       progression: [
         {
           id: "rung-c11-distance-2",

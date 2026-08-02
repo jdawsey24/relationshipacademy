@@ -28,6 +28,7 @@
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const C27_LITERATURE: LiteratureEntry[] = [
   {
     id: "lit-c27-what-this-is",
@@ -40,7 +41,7 @@ export const C27_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "You give a lot. You're good at it, and people take it, and somewhere in there you started to suspect that the giving is the reason anybody stays.",
+          "You give a lot. You're good at it. People take it. And somewhere in there, you started to suspect that the giving is the reason anybody stays.",
           "\u201cI wonder if anyone would still want me if I stopped giving so much\u201d is the sentence underneath the rest.",
         ],
       },
@@ -48,20 +49,20 @@ export const C27_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "Two beliefs that arrive together",
         body: [
-          "That you have to earn being wanted. Which means the giving is never generosity \u2014 it's payment, and payments have to keep coming.",
-          "That people mostly want what you provide. Which makes every good thing they do ambiguous, because it might be about the provision.",
+          "That you have to earn being wanted. Which means the giving is never a gift \u2014 it's payment, and payments have to keep coming.",
+          "That people mostly want what you provide. Which makes every good thing they do unclear, because it might be about what you provide.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The guard follows from both. If being known means being assessed on what you're worth, keeping some of yourself back is sensible.",
+          "The guard follows from both. If being known means being judged on what you're worth, keeping some of yourself back makes sense.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here will ask you to drop the guard. That would be asking you to be more available to the thing that hurt you. What's worth looking at is what it costs and what it can't do \u2014 and that's a different request.",
+          "Nothing here will ask you to drop the guard. That would mean opening yourself up more to the thing that hurt you. What's worth looking at is what it costs and what it can't do \u2014 and that's a different ask.",
         ],
       },
     ],
@@ -79,27 +80,27 @@ export const C27_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI feel like I have to prove my value before anyone will choose me.\u201d \u201cI have to earn love instead of just receiving it.\u201d \u201cI'm afraid that if I stop achieving, no one will want me.\u201d",
-          "These describe a specific arrangement: being wanted is a thing you buy, and the price is ongoing.",
+          "These describe a specific setup: being wanted is a thing you buy, and the price never ends.",
         ],
       },
       {
         kind: "distinction",
-        label: "Why that arrangement doesn't settle",
+        label: "Why that setup doesn't settle",
         body: [
-          "A purchase can be lost. If you bought it, you can stop being able to afford it, so the effort can never come down.",
-          "And it makes the evidence useless. Every sign that someone wants you is explained by what you've been providing, so it can't count.",
+          "A purchase can be lost. If you bought it, you can stop being able to afford it. So the effort can never come down.",
+          "And it makes the proof useless. Every sign that someone wants you gets explained by what you've been giving. So it can't count.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "That's the trap worth seeing. It isn't that you're wrong about people \u2014 it's that the belief makes itself unfalsifiable. As long as you're paying, you can never find out whether you needed to.",
+          "That's the trap worth seeing. It isn't that you're wrong about people \u2014 it's that the belief can't be tested. As long as you're paying, you can never find out whether you needed to.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "This isn't an argument for giving less as a strategy. Giving less in order to test someone is still the same arrangement, just running in reverse.",
+          "This isn't an argument for giving less as a plan. Giving less to test someone is still the same deal, just running in reverse.",
         ],
       },
     ],
@@ -116,34 +117,34 @@ export const C27_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know how to tell if someone wants me or just wants what I offer.\u201d It's the practical question in this cluster and there's a partial answer.",
+          "\u201cI don't know how to tell if someone wants me or just wants what I offer.\u201d It's the real question in this cluster, and there's a partial answer.",
         ],
       },
       {
         kind: "list",
-        label: "Signals that lean toward the person",
+        label: "Signs that lean toward the person",
         items: [
           "They ask about things that have nothing to do with what you provide.",
-          "They notice when you're depleted, without you announcing it.",
-          "They offer something without a problem needing solving first.",
-          "They're interested in your opinions, not only your capabilities.",
-          "Something has been declined and they stayed.",
+          "They notice when you're worn out, without you saying so.",
+          "They offer something when there's no problem to solve.",
+          "They care about your opinions, not just what you can do.",
+          "You said no to something and they stayed.",
         ],
       },
       {
         kind: "list",
-        label: "Signals that lean toward the provision",
+        label: "Signs that lean toward what you provide",
         items: [
-          "Warmth that arrives when something is needed.",
-          "Appreciation phrased around what you did rather than who you are.",
-          "Interest that thins when you're unavailable.",
+          "Warmth that shows up when something is needed.",
+          "Thanks aimed at what you did rather than who you are.",
+          "Interest that fades when you're not around.",
           "Never asking anything about you that isn't practical.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "That last signal on the first list is the strongest and the hardest to get. You can't observe how someone responds to being declined until you've declined something \u2014 which is why this question tends to stay open indefinitely.",
+          "That last sign on the first list is the strongest, and the hardest to get. You can't see how someone reacts to being told no until you've told them no \u2014 which is why this question tends to stay open for a long time.",
         ],
       },
     ],
@@ -160,28 +161,28 @@ export const C27_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It's a real question and it's frightening, because the answer might be nobody would stay.",
-          "Which is worth saying plainly rather than reassuring around: sometimes people do leave. Not everyone who's been taking will stay when the taking stops.",
+          "It's a real question, and it's scary, because the answer might be that nobody would stay.",
+          "Which is worth saying plainly, instead of talking around it: sometimes people do leave. Not everyone who's been taking will stay when the taking stops.",
         ],
       },
       {
         kind: "distinction",
         label: "What that would actually tell you",
         body: [
-          "Not that you're only worth what you provide. That would be the conclusion you're afraid of, and it doesn't follow.",
-          "That those particular people were there for the provision. Which is information about them, and it's information you currently don't have.",
+          "Not that you're only worth what you provide. That's the conclusion you're afraid of, and it doesn't follow.",
+          "That those particular people were there for what you provide. Which is information about them — and it's information you don't have right now.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The cost of not finding out is that you keep paying, indefinitely, to avoid an answer. And the payment is expensive \u2014 it's most of what \u201cI'm drained by relationships that only take\u201d is describing.",
+          "The cost of not finding out is that you keep paying, on and on, to avoid an answer. And the payment is expensive \u2014 it's most of what \u201cI'm drained by relationships that only take\u201d is describing.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here says do it all at once, or with everyone. Small and specific is the only version of this that's manageable, and it's also the only version that produces usable information.",
+          "Nothing here says do it all at once, or with everyone. Small and specific is the only version of this you can manage — and it's also the only version that gives you information you can use.",
         ],
       },
     ],
@@ -199,22 +200,22 @@ export const C27_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI do more emotional work than I get back.\u201d \u201cI manage everyone else's feelings but my own.\u201d \u201cMy needs are treated as too much.\u201d",
-          "The third one is the giveaway. Someone doing all the managing usually has needs that arrive as an inconvenience, because there's no established channel for them.",
+          "The third one is the giveaway. Someone who does all the managing usually has needs that feel like a bother — because there's no usual way for them to come up.",
         ],
       },
       {
         kind: "distinction",
-        label: "How that becomes self-reinforcing",
+        label: "How that feeds itself",
         body: [
           "You manage their feelings, so your feelings never come up.",
-          "Your feelings never coming up means everyone gets used to them not being there.",
-          "So when one arrives it's disruptive \u2014 which confirms that they were too much, and you go back to managing.",
+          "Because your feelings never come up, everyone gets used to them not being there.",
+          "So when one does show up, it throws things off \u2014 which confirms that they were too much, and you go back to managing.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cToo much\u201d is almost always a comparison against a baseline of nothing. It isn't a measure of your needs. It's a measure of how unaccustomed everyone is to hearing them.",
+          "\u201cToo much\u201d is almost always a comparison against a baseline of nothing. It isn't a measure of your needs. It's a measure of how unused everyone is to hearing them.",
         ],
       },
     ],
@@ -232,27 +233,27 @@ export const C27_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI feel like effort and integrity don't get rewarded in dating.\u201d",
-          "There's a good deal of truth in this and we're not going to argue with it. Plenty of people are treating dating as a market, and effort genuinely does go unreciprocated a lot of the time.",
+          "There's a lot of truth in this, and we're not going to argue with it. Plenty of people treat dating like a market, and effort really does go unreturned a lot of the time.",
         ],
       },
       {
         kind: "distinction",
-        label: "Where the accurate reading stops being useful",
+        label: "Where that true reading stops being useful",
         body: [
-          "\u201cA lot of dating is transactional\u201d is an observation, and it's defensible.",
-          "\u201cEffort and integrity don't get rewarded\u201d is a rule, and a rule tells you not to bother \u2014 which means you stop finding out about individuals.",
+          "\u201cA lot of dating is transactional\u201d is an observation, and it holds up.",
+          "\u201cEffort and integrity don't get rewarded\u201d is a rule, and a rule tells you not to bother \u2014 which means you stop finding out about individual people.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The distinction matters practically. An accurate observation about the pool doesn't tell you about the person in front of you. If the rule is doing your reading for you, you'll be right about the average and wrong about anyone specific.",
+          "The difference matters in practice. A true observation about the whole pool doesn't tell you about the person in front of you. If the rule is doing your reading for you, you'll be right about the average and wrong about anyone specific.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Keep the observation. It's earned. The only thing worth checking is whether it's arriving before you've seen anything.",
+          "Keep what you've noticed. You earned it. The only thing worth checking is whether it's showing up before you've seen anything.",
         ],
       },
     ],
@@ -270,21 +271,21 @@ export const C27_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI keep my guard up so I don't get taken advantage of again.\u201d",
-          "It works. That's the first thing to say \u2014 it does reduce how often you get used, and it was built for a reason.",
+          "It works. That's the first thing to say \u2014 it does cut down how often you get used, and you built it for a reason.",
         ],
       },
       {
         kind: "distinction",
         label: "And what it can't do",
         body: [
-          "It doesn't distinguish. Armor is undirected \u2014 it holds off the people who'd take and the people who wouldn't, at the same rate.",
-          "It also makes the evidence unavailable. You can't find out whether someone would have wanted you for yourself while they're being kept at the distance where they can't.",
+          "It can't tell people apart. Armor doesn't aim \u2014 it holds off the people who'd take and the people who wouldn't, at the same rate.",
+          "It also makes the proof impossible to get. You can't find out whether someone would have wanted you for yourself while you're keeping them at the distance where they can't.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "So it buys protection and it costs information. That's a real trade and it might be the right one for now. What's worth knowing is that it's a trade, rather than a free arrangement.",
+          "So it buys protection, and it costs information. That's a real trade, and it might be the right one for now. What's worth knowing is that it's a trade, not a free deal.",
         ],
       },
       {
@@ -308,21 +309,21 @@ export const C27_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "No. And we'd be wary of anyone telling you that you must \u2014 that's usually said by people who haven't had your experience.",
+          "No. And we'd be wary of anyone telling you that you must \u2014 that's usually said by people who haven't been through what you have.",
         ],
       },
       {
         kind: "distinction",
-        label: "A more useful framing",
+        label: "A more useful way to see it",
         body: [
-          "Not: lower it. Aim it. Undirected armor holds off everyone equally; a specific check applied to a specific person does a different job.",
-          "Not: trust more. Find out more. Those aren't the same, and the second is available without the first.",
+          "Not: lower it. Aim it. Armor that doesn't aim holds off everyone the same; a specific check on a specific person does a different job.",
+          "Not: trust more. Find out more. Those aren't the same, and you can do the second without the first.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If the guard is currently the only thing making dating survivable, that's worth respecting. There's no version of this that requires you to be less protected than you can manage.",
+          "If the guard is the only thing making dating survivable right now, that's worth respecting. Nothing here needs you to be less protected than you can manage.",
         ],
       },
     ],
@@ -339,21 +340,21 @@ export const C27_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Possibly. We're not going to explain why, because the confident explanations available \u2014 about what you attract, what you're drawn to, what it says about you \u2014 aren't established enough to hand you as fact.",
+          "Possibly. We're not going to explain why, because the confident explanations out there \u2014 about what you attract, what you're drawn to, what it says about you \u2014 aren't solid enough to hand you as fact.",
         ],
       },
       {
         kind: "distinction",
-        label: "One observation that is fairly safe",
+        label: "One thing that's fairly safe to say",
         body: [
-          "People who give a great deal, early and without conditions, are more visible to people looking for that than to people looking for a person.",
-          "That's a fact about visibility rather than about you \u2014 and it's the version of this that leaves something to do.",
+          "People who give a lot, early and with no strings, stand out more to people looking for that than to people looking for a person.",
+          "That's a fact about who notices you, not about you \u2014 and it's the version of this that leaves something to do.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI attract users\u201d puts the cause in you and leaves nothing actionable. \u201cI give a lot before I know anything\u201d is the same pattern one level down, and it's workable.",
+          "\u201cI attract users\u201d puts the cause in you and leaves nothing to do. \u201cI give a lot before I know anything\u201d is the same pattern one level down, and you can work with it.",
         ],
       },
     ],

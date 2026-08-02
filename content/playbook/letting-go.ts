@@ -41,6 +41,8 @@ import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C12_LITERATURE } from "./letting-go-literature";
 import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const LETTING_GO: PlaybookContent = {
   playbookKey: "letting-go",
   playbookVersion: 1,
@@ -49,9 +51,9 @@ export const LETTING_GO: PlaybookContent = {
   opening: {
     title: "It's over and you're still in it",
     body: [
-      "Not by choice. You've probably tried a good deal not to be.",
-      "Two things are happening at once. Grief, which doesn't respond to reasoning and takes as long as it takes. And a search — for an explanation, a moment you could have changed, a reason. That second one feels productive and mostly isn't.",
-      "Nothing here will tell you how long this should take, or that it gets easier, or that you're behind.",
+      "Not by choice. You've probably tried hard not to be.",
+      "Two things are happening at once. One is grief. Grief doesn't listen to reasoning, and it takes as long as it takes. The other is a search — for an explanation, a moment you could have changed, a reason. That second one feels useful. Mostly it isn't.",
+      "Nothing here will tell you how long this should take. Nothing says it gets easier, or that you're behind.",
     ],
     manifestations: [
       "I can't move on.",
@@ -69,7 +71,7 @@ export const LETTING_GO: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm afraid I'll never heal.",
       validationCopy:
-        "That's a reasonable fear and we're not going to reassure you out of it — the reassurance is usually hollow and you'd know. What can honestly be said: most people find it changes, and rarely in the way they expected. Not the absence of it, but it taking up less of the day. Some carry a version of it permanently and still build good lives. Those aren't in conflict.",
+        "That's a reasonable fear, and we're not going to talk you out of it. That kind of comfort is usually hollow, and you'd know it. Here's what can honestly be said. Most people find it changes, and rarely in the way they expected. Not that it goes away — but that it takes up less of the day. Some people carry a version of it for good and still build good lives. Both of those are true at once.",
       secondaryExamples: [
         "I'm afraid I'll never feel that way again.",
         "I don't know if I'll ever love again.",
@@ -82,7 +84,7 @@ export const LETTING_GO: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm thinking about dating again and don't know how.",
       validationCopy:
-        "That's the next part rather than this one. The paired Playbook about moving forward covers disclosure, comparison, pacing, and working out what you're ready to explore. You don't have to be completely \"over\" the earlier relationship before reading it, and you may move between both Playbooks.",
+        "That's the next part, not this one. There's a matching Playbook about moving forward. It covers what to share, comparing, pacing, and working out what you're ready to try. You don't have to be all the way \"over\" the earlier relationship before you read it. And you can move back and forth between both Playbooks.",
       secondaryExamples: [
         "I don't know how to date anymore.",
         "Dating apps weren't around last time I was single.",
@@ -95,7 +97,7 @@ export const LETTING_GO: PlaybookContent = {
       pathwayPlayId: null,
       headline: "My partner died.",
       validationCopy:
-        "This one would land badly on you, and we'd rather say so than let you find out three screens in. The tools here assume someone made a choice \u2014 they're about what was yours, what was theirs, and what the checking is for. None of that is your situation. Losing a partner to death is a different injury with different questions: whether going on means leaving them behind, how to want company without it feeling like a betrayal. There's something written for that, and it's the right thing to read.",
+        "This one would land badly on you, and we'd rather say so now than let you find out three screens in. The tools here assume someone made a choice. They're about what was yours, what was theirs, and what the checking is for. None of that fits your situation. Losing a partner to death is a different wound, with different questions. Does going on mean leaving them behind? How do you want company without it feeling like a betrayal? There's something written for that, and it's the right thing to read.",
       secondaryExamples: [
         "I feel guilty for laughing again.",
         "I still think of us as \u201cwe.\u201d",
@@ -108,7 +110,7 @@ export const LETTING_GO: PlaybookContent = {
       pathwayPlayId: "the-checking",
       headline: "I keep checking their social media.",
       explanation:
-        "Nearly everyone does. It also keeps the relationship in a present tense — something still being updated isn't over the way something finished is.",
+        "Nearly everyone does. It also keeps the relationship in the present tense. Something that's still being updated isn't over the way something finished is.",
       secondaryExamples: [
         "I wonder if they miss me.",
         "I still hope they'll come back.",
@@ -121,7 +123,7 @@ export const LETTING_GO: PlaybookContent = {
       pathwayPlayId: "what-was-mine",
       headline: "Why wasn't I enough?",
       explanation:
-        "A question with a false premise in it. Relationships don't end because someone was insufficient.",
+        "This question has a false idea buried in it. Relationships don't end because someone wasn't enough.",
       secondaryExamples: [
         "I keep blaming myself.",
         "I ignored what I already knew.",
@@ -134,7 +136,7 @@ export const LETTING_GO: PlaybookContent = {
       pathwayPlayId: "what-actually-happened",
       headline: "I question whether any of it was real.",
       explanation:
-        "The ending recasts everything. Something can be genuinely good and still end — those aren't in tension, though they feel like it.",
+        "The ending makes you see all of it in a new way. Something can be truly good and still end. Those two things don't fight each other, even though it feels like they do.",
       secondaryExamples: [
         "I don't know how to trust my memories.",
         "I compare everyone to my ex.",
@@ -147,7 +149,7 @@ export const LETTING_GO: PlaybookContent = {
       pathwayPlayId: "the-shape-of-a-week",
       headline: "I don't know who I am anymore.",
       explanation:
-        "A long relationship organises a lot. Some of what feels like an identity crisis is not knowing what to do on a Tuesday.",
+        "A long relationship organises a lot. Some of what feels like a crisis about who you are is really just not knowing what to do on a Tuesday.",
       secondaryExamples: [
         "I don't know how to start over.",
         "I don't know how to close this chapter.",
@@ -171,21 +173,21 @@ export const LETTING_GO: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "First: nearly everyone does this. It isn't weakness and it isn't a sign your recovery has gone wrong.",
-            "It's also doing something mechanical. Contact — even one-sided, even through a screen — keeps the relationship in a present tense. Something still being updated isn't over the way something finished is.",
-            "Nothing here tells you to stop as an act of will. That mostly produces a few good days and a worse relapse.",
+            "First: nearly everyone does this. It isn't weakness, and it isn't a sign that your recovery has gone wrong.",
+            "It's also doing something automatic. Contact keeps the relationship in the present tense — even one-sided contact, even through a screen. Something that's still being updated isn't over the way something finished is.",
+            "Nothing here tells you to just stop by force of will. That mostly gives you a few good days and then a worse slip back.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Each check delivers three things. A few seconds of contact, which is genuinely relieving. New information to process, which restarts the thinking. And no resolution.",
-            "That last one is structural. If they look happy, that hurts. If they look unhappy, that's hope, which hurts differently. There's nothing you could see that would settle it.",
+            "Each check gives you three things. A few seconds of contact, which really does bring relief. New information to work through, which starts the thinking up again. And nothing gets settled.",
+            "That last one is built in. If they look happy, that hurts. If they look unhappy, that's hope, which hurts in a different way. There's nothing you could see that would settle it.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "An honest count. No judgement attached to any of it.",
+          intro: "An honest count. No judgement about any of it.",
           fields: [
             {
               id: "where",
@@ -203,7 +205,7 @@ export const LETTING_GO: PlaybookContent = {
               id: "how-often",
               label: "Roughly how often?",
               input: "text",
-              placeholder: "Most people underestimate. A guess is fine.",
+              placeholder: "Most people guess too low. A guess is fine.",
             },
             {
               id: "after",
@@ -219,7 +221,7 @@ export const LETTING_GO: PlaybookContent = {
           enoughLabel: "Yes — there's something",
           needMoreLabel: "No — nothing would",
           needMoreIntro:
-            "That's the usual answer and it's the important one. If nothing you could see would settle it, the checking isn't gathering information. It's contact, and contact is what's being paid for.",
+            "That's the usual answer, and it's the important one. If nothing you could see would settle it, then the checking isn't really gathering information. It's contact. And contact is what you're paying for.",
           needToKnowLabel: "What I'd actually want to know",
           observableLabel: "Something that would have to come from outside my looking",
         },
@@ -227,7 +229,7 @@ export const LETTING_GO: PlaybookContent = {
           kind: "output",
           heading: "What the checking gives me",
           body:
-            "Not a decision to stop. A clear view of what it delivers and what it can't.",
+            "Not a decision to stop. A clear view of what it gives you and what it can't.",
         },
         {
           kind: "portable",
@@ -249,15 +251,15 @@ export const LETTING_GO: PlaybookContent = {
         move: "Look at what each check actually delivers, and what it can't",
         lookingFor: "Whether anything I could see would settle it",
         watchOut: "Turning this into shame about checking — that isn't the exercise",
-        remember: "Stopping as an act of will mostly produces a worse relapse.",
+        remember: "Stopping by force of will mostly leads to a worse slip back.",
       },
       fidelity: {
         correct:
-          "The checking is examined for what it delivers and whether any result could settle the question, without judgement about entitlement.",
+          "You look at what the checking gives you, and whether any result could settle the question — without judging whether you're allowed to.",
         misuse: [
-          "Using it to conclude you're pathetic or stuck.",
-          "Stopping abruptly and treating a relapse as failure.",
-          "Checking more thoroughly to get a better answer.",
+          "Using it to decide you're pathetic or stuck.",
+          "Stopping all at once and treating a slip back as failure.",
+          "Checking more carefully to get a better answer.",
         ],
         notMeaning:
           "It does not mean you should stop, that stopping would help, or that the wanting to look is a problem.",
@@ -270,24 +272,24 @@ export const LETTING_GO: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "What Was Actually Mine",
-      positioning: "For the account you've been keeping against yourself.",
+      positioning: "For the case you've been building against yourself.",
       recognitionGate: {
-        prompt: "Have you concluded that most of it was your fault?",
+        prompt: "Have you decided that most of it was your fault?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "\u201cWhy wasn't I enough?\u201d has a false premise in it. Relationships don't end because someone was insufficient — they end for reasons that mostly aren't about anyone's total worth.",
-            "But the question is doing something, and it's worth seeing what.",
+            "\u201cWhy wasn't I enough?\u201d has a false idea buried in it. Relationships don't end because someone wasn't enough. They end for reasons that mostly aren't about anyone's total worth.",
+            "But the question is doing something, and it's worth seeing what that is.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Three categories, and most people collapse them into one.",
-            "Yours — things you did or didn't do, which you could have chosen differently. Theirs — their choices, their limits, their reasons, including ones you never had access to. And neither's — timing, circumstance, incompatibility nobody caused.",
-            "Taking all three isn't humility. It's a way of keeping some control: if it was all yours, it was preventable, and next time you could prevent it. Which is why separating them can feel like a loss rather than a relief.",
+            "There are three kinds, and most people squash them into one.",
+            "Yours — things you did or didn't do, that you could have chosen differently. Theirs — their choices, their limits, their reasons, including ones you never got to see. And neither's — timing, circumstance, a mismatch nobody caused.",
+            "Taking all three on yourself isn't humility. It's a way of keeping some control. If it was all yours, then it could have been stopped — and next time you could stop it. That's why pulling them apart can feel like a loss instead of a relief.",
           ],
         },
         {
@@ -305,7 +307,7 @@ export const LETTING_GO: PlaybookContent = {
               id: "sort-c12-stayed-quiet",
               text: "I didn't say what I needed for two years",
               correctBucket: "mine",
-              correction: "Yours, and genuinely so. That's the useful column.",
+              correction: "Yours, and truly so. That's the useful column.",
             },
             {
               id: "sort-c12-they-lied",
@@ -323,7 +325,7 @@ export const LETTING_GO: PlaybookContent = {
               id: "sort-c12-their-capacity",
               text: "They weren't able to give what I needed",
               correctBucket: "theirs",
-              correction: "About their capacity. Not a verdict on what you needed.",
+              correction: "About what they were able to give. Not a judgement on what you needed.",
             },
             {
               id: "sort-c12-ignored",
@@ -335,18 +337,18 @@ export const LETTING_GO: PlaybookContent = {
               id: "sort-c12-timing",
               text: "It happened in the worst year either of us had had",
               correctBucket: "neither",
-              correction: "Circumstance. Real, and not authored by anyone.",
+              correction: "Circumstance. Real, and not caused by anyone.",
             },
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Your own account. Try to put at least one thing in each column — the difficulty is usually the last two.",
+            "Your own list. Try to put at least one thing in each column. The hard part is usually the last two.",
           fields: [
             {
               id: "mine",
-              label: "What was genuinely yours?",
+              label: "What was truly yours?",
               input: "text",
               placeholder: "Specific. Things you chose or didn't.",
             },
@@ -360,7 +362,7 @@ export const LETTING_GO: PlaybookContent = {
               id: "neither",
               label: "What was neither of yours?",
               input: "text",
-              placeholder: "Timing, circumstance, incompatibility nobody caused.",
+              placeholder: "Timing, circumstance, a mismatch nobody caused.",
             },
           ],
         },
@@ -370,7 +372,7 @@ export const LETTING_GO: PlaybookContent = {
           enoughLabel: "Yes",
           needMoreLabel: "Not really — it all went in mine",
           needMoreIntro:
-            "Very common, and worth sitting with rather than forcing. If it was all yours, it was preventable — and giving that up means accepting that some of it wasn't in anyone's hands.",
+            "Very common, and worth sitting with rather than forcing. If it was all yours, then it could have been stopped. Giving that up means accepting that some of it wasn't in anyone's hands.",
           needToKnowLabel: "One thing that might belong elsewhere",
           observableLabel: "Something they did, or something neither of you chose",
         },
@@ -378,7 +380,7 @@ export const LETTING_GO: PlaybookContent = {
           kind: "output",
           heading: "The three columns",
           body:
-            "Separating them isn't taking none. There's usually something genuinely yours, and it's the only part you could do anything with.",
+            "Pulling them apart isn't taking none of it. There's usually something truly yours, and it's the only part you could do anything with.",
         },
         {
           kind: "portable",
@@ -386,32 +388,32 @@ export const LETTING_GO: PlaybookContent = {
           steps: [
             "Taking all of it isn't humility. It's a way of keeping control.",
             "Yours, theirs, neither's. Most people only use one column.",
-            "Relationships don't end because someone was insufficient.",
+            "Relationships don't end because someone wasn't enough.",
           ],
         },
       ],
       portable: [
         "Taking all of it isn't humility. It's a way of keeping control.",
         "Yours, theirs, neither's. Most people only use one column.",
-        "Relationships don't end because someone was insufficient.",
+        "Relationships don't end because someone wasn't enough.",
       ],
       myPlaysTemplate: {
-        when: "When I've concluded most of it was my fault",
+        when: "When I've decided most of it was my fault",
         move: "Sort what happened into mine, theirs, and neither's",
         lookingFor: "Whether I can put anything at all in the last two columns",
         watchOut: "Using the exercise to move everything into theirs instead",
-        remember: "If it was all mine, it was preventable. That's the appeal, and it isn't true.",
+        remember: "If it was all mine, then it could have been stopped. That's the appeal, and it isn't true.",
       },
       fidelity: {
         correct:
-          "Responsibility is separated into the reader's own, the other person's, and neither's, with something placed in each column where honest.",
+          "You split responsibility into your own, the other person's, and neither's — putting something in each column where it's honest to.",
         misuse: [
           "Moving everything into the other person's column.",
           "Using it to build a case against them.",
-          "Concluding you bear none of it.",
+          "Deciding you carry none of it.",
         ],
         notMeaning:
-          "It does not mean you weren't at fault, that they were, or that sorting it reduces the grief.",
+          "It does not mean you weren't at fault, that they were, or that sorting it makes the grief any less.",
       },
     },
 
@@ -421,7 +423,7 @@ export const LETTING_GO: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "What Actually Happened",
-      positioning: "For an account that doesn't require rewriting the good parts.",
+      positioning: "For an account that doesn't make you rewrite the good parts.",
       recognitionGate: {
         prompt: "Has the ending changed how you remember all of it?",
       },
@@ -429,16 +431,16 @@ export const LETTING_GO: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "\u201cI question whether any of it was real.\u201d This arrives once the ending recasts everything — the good parts start to look like evidence of something you missed.",
-            "But an ending doesn't retroactively unmake what happened. Something can be genuinely good and still end. Those aren't in tension, though they feel like it.",
+            "\u201cI question whether any of it was real.\u201d This shows up once the ending makes you see it all differently. The good parts start to look like proof of something you missed.",
+            "But an ending doesn't reach back and undo what happened. Something can be truly good and still end. Those two things don't fight each other, even though it feels like they do.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Someone can also have meant it at the time and stopped meaning it later. That's more common than deception, and it's harder to hold because it can't be filed anywhere clean.",
-            "The account that includes both — it was real, and it ended — is more accurate than either the rewritten version or the preserved one. It's also the hardest to hold, which is why people generally pick a side.",
-            "If you were actively deceived, that's different. Rewriting isn't distortion then; it's updating on information you didn't have.",
+            "Someone can also have meant it at the time and stopped meaning it later. That's more common than being lied to, and it's harder to hold because it doesn't fit neatly anywhere.",
+            "The account that holds both — it was real, and it ended — is more accurate than either the rewritten version or the preserved one. It's also the hardest to hold, which is why people usually pick a side.",
+            "If you were actively lied to, that's different. Rewriting isn't twisting the truth then. It's updating with information you didn't have.",
           ],
         },
         {
@@ -448,9 +450,9 @@ export const LETTING_GO: PlaybookContent = {
           fields: [
             {
               id: "was-real",
-              label: "What was genuinely good, that you now doubt?",
+              label: "What was truly good, that you now doubt?",
               input: "text",
-              placeholder: "Specific moments. The ones the ending has cast into question.",
+              placeholder: "Specific moments. The ones the ending has thrown into doubt.",
             },
             {
               id: "was-also-true",
@@ -477,7 +479,7 @@ export const LETTING_GO: PlaybookContent = {
           enoughLabel: "Yes — both, at the same time",
           needMoreLabel: "Not yet — one keeps cancelling the other",
           needMoreIntro:
-            "That's expected and it isn't a failure of the exercise. Holding both is the harder position and it usually arrives late rather than by deciding.",
+            "That's expected, and it isn't a failure of the exercise. Holding both is the harder spot to be in, and it usually comes late rather than by deciding.",
           needToKnowLabel: "What makes it hard to hold both",
           observableLabel: "Something I'd notice about which version I tell",
         },
@@ -491,34 +493,34 @@ export const LETTING_GO: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "An ending doesn't retroactively unmake what happened.",
+            "An ending doesn't reach back and undo what happened.",
             "They may have meant it then and stopped meaning it later.",
             "Both lists are true. That's harder than picking one.",
           ],
         },
       ],
       portable: [
-        "An ending doesn't retroactively unmake what happened.",
+        "An ending doesn't reach back and undo what happened.",
         "They may have meant it then and stopped meaning it later.",
         "Both lists are true. That's harder than picking one.",
       ],
       myPlaysTemplate: {
-        when: "When the ending has recast everything that came before",
+        when: "When the ending has changed how I see everything before it",
         move: "Hold what was real and what was also true, at the same time",
-        lookingFor: "Which version I default to telling",
+        lookingFor: "Which version I fall back on telling",
         watchOut: "Picking a side because holding both is uncomfortable",
-        remember: "If I was actively deceived, rewriting isn't distortion — it's updating.",
+        remember: "If I was actively lied to, rewriting isn't twisting the truth — it's updating.",
       },
       fidelity: {
         correct:
-          "Both the genuine good and the concurrent difficulty are held in one account, without either cancelling the other.",
+          "You hold both the real good and the hard parts that were there at the same time, in one account, without either cancelling the other.",
         misuse: [
-          "Using it to preserve an idealised version.",
-          "Using it to establish that none of it counted.",
-          "Applying it where there was actual deception.",
+          "Using it to hold on to an all-good version.",
+          "Using it to prove that none of it counted.",
+          "Using it where there was actual lying.",
         ],
         notMeaning:
-          "It does not mean the relationship was good, that it was bad, or that a coherent account reduces the loss.",
+          "It does not mean the relationship was good, that it was bad, or that a clear account makes the loss any smaller.",
       },
     },
 
@@ -537,22 +539,22 @@ export const LETTING_GO: PlaybookContent = {
           kind: "shift",
           body: [
             "A long relationship organises a lot. Your week, your friendships, what you do on Sunday, what you talk about, who you're in the habit of being.",
-            "When it ends, all of that loses its scaffolding at once — and it feels like not knowing who you are.",
+            "When it ends, all of that loses its support at once — and it feels like not knowing who you are.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Two different losses are tangled here. The person, which is grief and works the way grief works.",
-            "And the structure, which is a practical problem wearing an existential costume. A good deal of \u201cI don't know who I am\u201d turns out to be not knowing what to do on a Tuesday.",
-            "Worth separating, because the second one responds to ordinary things. Not insight — arrangements. Something in the diary, someone to see, something that happens whether or not you feel like it.",
+            "Two different losses are tangled together here. The first is the person. That's grief, and grief works the way grief works.",
+            "The second is the structure. That's a practical problem dressed up as a huge one about who you are. A lot of \u201cI don't know who I am\u201d turns out to be not knowing what to do on a Tuesday.",
+            "Worth separating, because the second one responds to ordinary things. Not deep insight — plans. Something in the diary, someone to see, something that happens whether or not you feel like it.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
-            "Putting something in the diary can feel absurd when the problem is this large.",
-            "It is disproportionate. It's also one of the few things that reliably helps, and it doesn't require you to feel any better first.",
+            "Putting something in the diary can feel silly when the problem is this big.",
+            "It is too small for the problem. But it's also one of the few things that really does help, and it doesn't need you to feel any better first.",
           ],
         },
         {
@@ -562,7 +564,7 @@ export const LETTING_GO: PlaybookContent = {
           fields: [
             {
               id: "what-went",
-              label: "What did the relationship organise that's now unorganised?",
+              label: "What did the relationship organise that now has no shape?",
               input: "chips",
               suggestions: [
                 "Evenings",
@@ -578,7 +580,7 @@ export const LETTING_GO: PlaybookContent = {
               label: "What's one thing you could put in the week that would happen anyway?",
               input: "text",
               placeholder:
-                "Small and fixed. Something that occurs whether or not you feel like it.",
+                "Small and fixed. Something that happens whether or not you feel like it.",
             },
             {
               id: "one-person",
@@ -592,37 +594,37 @@ export const LETTING_GO: PlaybookContent = {
           kind: "output",
           heading: "One fixed thing",
           body:
-            "Not a solution to the grief. Structure for the part that's structural.",
+            "Not a fix for the grief. Structure for the part that's about structure.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
             "Some of \u201cI don't know who I am\u201d is not knowing what to do on a Tuesday.",
-            "The structural part responds to arrangements, not insight.",
-            "It doesn't require me to feel any better first.",
+            "The structural part responds to plans, not insight.",
+            "It doesn't need me to feel any better first.",
           ],
         },
       ],
       portable: [
         "Some of \u201cI don't know who I am\u201d is not knowing what to do on a Tuesday.",
-        "The structural part responds to arrangements, not insight.",
-        "It doesn't require me to feel any better first.",
+        "The structural part responds to plans, not insight.",
+        "It doesn't need me to feel any better first.",
       ],
       myPlaysTemplate: {
         when: "When the week has lost its shape",
-        move: "Put one fixed thing in it that happens regardless of how I feel",
+        move: "Put one fixed thing in it that happens no matter how I feel",
         lookingFor: "Which part is grief and which part is missing structure",
-        watchOut: "Waiting to feel better before arranging anything",
-        remember: "It's disproportionate to the size of the problem. It still helps.",
+        watchOut: "Waiting to feel better before I plan anything",
+        remember: "It's too small for the size of the problem. It still helps.",
       },
       fidelity: {
         correct:
-          "The structural loss is separated from the grief, and one fixed commitment is placed in the week.",
+          "You separate the structural loss from the grief, and put one fixed thing in the week.",
         misuse: [
           "Filling the week to avoid feeling anything.",
-          "Treating structure as a solution to the grief.",
-          "Waiting until you feel better to arrange something.",
+          "Treating structure as a fix for the grief.",
+          "Waiting until you feel better to plan something.",
         ],
         notMeaning:
           "It does not mean the grief is structural, that a full week helps, or that you should be doing more.",
@@ -632,7 +634,7 @@ export const LETTING_GO: PlaybookContent = {
           id: "signpost-c12-not-coping",
           heading: "If it's more than grief",
           body:
-            `Losing a relationship this way can tip into something that needs more than time. If most things feel like this rather than just the relationship — if it's affecting your sleep, your eating, or your ability to get through a day, or it's been like this for a long stretch without lifting — it may help to talk to a GP or another healthcare professional. That isn't a comment on how you're grieving; it's a different thing that can arrive alongside it and can respond to different kinds of help. ${CRISIS_ESCALATION}`,
+            `Losing a relationship this way can tip into something that needs more than time. If most things feel like this — not just the relationship — or if it's affecting your sleep, your eating, or your ability to get through a day, or it's been like this for a long stretch without lifting, it may help to talk to a GP or another healthcare professional. That isn't a comment on how you're grieving. It's a different thing that can show up alongside it, and it can respond to different kinds of help. ${CRISIS_ESCALATION}`,
         },
       ],
     },
@@ -670,7 +672,7 @@ export const LETTING_GO: PlaybookContent = {
       attemptMeaning:
         "You said it. Believing it comes later than saying it.",
       suitability:
-        "Pick someone who won't immediately tell you it was all their fault. That's a different distortion.",
+        "Pick someone who won't immediately tell you it was all their fault. That's just twisting it the other way.",
       progression: [
         {
           id: "rung-c12-columns-2",
@@ -689,7 +691,7 @@ export const LETTING_GO: PlaybookContent = {
       attemptMeaning:
         "You told it whole. Wanting to drop half is the expected difficulty.",
       suitability:
-        "If it was deception rather than an ending, this isn't the tool — updating your account is accurate there, not distortion.",
+        "If it was being lied to rather than an ending, this isn't the tool — updating your account is accurate there, not twisting the truth.",
       progression: [
         {
           id: "rung-c12-account-2",
@@ -708,7 +710,7 @@ export const LETTING_GO: PlaybookContent = {
       attemptMeaning:
         "You went. Whether it helped isn't the measure for the first three.",
       suitability:
-        "If three weeks is too much, do one. The point is that it happens regardless of how you feel, not how many.",
+        "If three weeks is too much, do one. The point is that it happens no matter how you feel, not how many.",
       progression: [
         {
           id: "rung-c12-week-2",

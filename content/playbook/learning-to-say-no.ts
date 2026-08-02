@@ -27,6 +27,8 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C14_LITERATURE } from "./learning-to-say-no-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const LEARNING_TO_SAY_NO: PlaybookContent = {
   playbookKey: "learning-to-say-no", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
@@ -35,8 +37,8 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
   opening: {
     title: "You already know what you do",
     body: [
-      "That's unusual. Most people arrive at something like this unsure what the pattern even is — you can list yours.",
-      "So this isn't about insight. It's about the half-second between being asked and the yes coming out, which is where the whole thing actually happens.",
+      "That's unusual. Most people come to something like this unsure what their pattern even is. You can list yours.",
+      "So this isn't about figuring yourself out. It's about the half-second between being asked and the yes coming out. That's where the whole thing really happens.",
       "Nothing here is aimed at making you less generous.",
     ],
     manifestations: [
@@ -55,7 +57,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I know I do this. Knowing hasn't helped.",
       validationCopy:
-        "It wouldn't. You're not short of insight — you can list the pattern better than most people could. The gap is between knowing and the half-second where the yes comes out anyway, and that's a much smaller and more specific thing to work on than 'learn to set boundaries'.",
+        "It wouldn't. You don't lack understanding — you can list the pattern better than most people could. The gap is between knowing and the half-second where the yes comes out anyway. That's a much smaller and more exact thing to work on than 'learn to set boundaries'.",
       secondaryExamples: [
         "I confuse love with sacrifice.",
         "I don't know how to protect my peace.",
@@ -67,7 +69,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       pathwayPlayId: "the-half-second",
       headline: "I say yes before I've even thought about it.",
       explanation:
-        "The yes isn't a decision. It's out before any weighing happened, and then you manage the consequences of an answer you never gave.",
+        "The yes isn't a decision. It's out before you've weighed anything. Then you deal with the results of an answer you never gave.",
       secondaryExamples: [
         "I say yes when I want to say no.",
         "I don't know how to say no.",
@@ -80,7 +82,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       pathwayPlayId: "the-smaller-true-thing",
       headline: "I keep the peace even when I'm unhappy.",
       explanation:
-        "A boundary doesn't have to be a flat refusal. There's usually something smaller and true that you'd actually manage.",
+        "A boundary doesn't have to be a flat no. There's usually something smaller and true that you could actually do.",
       secondaryExamples: [
         "I pretend everything is okay.",
         "I apologise too much.",
@@ -93,7 +95,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       pathwayPlayId: "ask-for-one-thing",
       headline: "I never ask for what I need.",
       explanation:
-        "Saying no and asking are the same muscle. Most people here find the asking harder — a no can be practical, a request is naked.",
+        "Saying no and asking use the same muscle. Most people here find asking harder. A no can sound practical. A request is bare.",
       secondaryExamples: [
         "I'm afraid my needs are too much.",
         "I don't know how to advocate for myself.",
@@ -106,7 +108,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       pathwayPlayId: "what-this-is-costing-me",
       headline: "I always end up doing everything.",
       explanation:
-        "Each yes was small and reasonable. That's why it accumulates without anyone noticing — including you.",
+        "Each yes was small and made sense. That's why it piles up without anyone noticing — including you.",
       secondaryExamples: [
         "I give too much.",
         "I stay longer than I should.",
@@ -130,16 +132,16 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Someone asks, and before any weighing happens the word is already out. Then you spend three days managing the consequences of an answer you never gave.",
-            "It's fast because it's been practised thousands of times, and mostly it worked — things stayed smooth, nobody was annoyed with you.",
-            "Something that efficient doesn't get removed. But it can be slowed down.",
+            "Someone asks, and before you've weighed anything the word is already out. Then you spend three days dealing with the results of an answer you never gave.",
+            "It's fast because you've done it thousands of times, and mostly it worked. Things stayed smooth. Nobody was annoyed with you.",
+            "Something that works that well doesn't just go away. But it can be slowed down.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "\u201cLet me check and come back to you\u201d is the whole intervention.",
-            "It works because it doesn't require you to refuse anyone in the moment — which is the part you can't currently do. It just buys back the weighing that didn't happen.",
+            "\u201cLet me check and come back to you\u201d is the whole tool.",
+            "It works because you don't have to say no to anyone right then — which is the part you can't do yet. It just buys back the thinking time you skipped.",
             "You'll still say yes to most of it. The difference is that some of them become decisions.",
           ],
         },
@@ -178,7 +180,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
             "\u201cLet me look at the week and tell you.\u201d",
           ],
           controlCheck:
-            "This isn't refusing. It's not answering yet. I will actually come back to them. Saying yes afterwards is a completely fine outcome.",
+            "This isn't saying no. It's not answering yet. I will actually come back to them. Saying yes afterwards is completely fine.",
         },
         {
           kind: "output",
@@ -203,16 +205,16 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       myPlaysTemplate: {
         when: "When I'm asked for something and the yes is already coming",
         move: "Use my holding line instead of answering",
-        lookingFor: "Whether the answer changes once I've actually weighed it",
-        watchOut: "Using the delay to work out what they'd prefer, rather than what I want",
+        lookingFor: "Whether the answer changes once I've actually thought it over",
+        watchOut: "Using the delay to figure out what they'd want, instead of what I want",
         remember: "Most of them will still be yes. Some of them will be mine.",
       },
       fidelity: {
         correct:
-          "A holding response is used in place of an immediate yes, and the reader returns with an answer.",
+          "A holding line is used instead of an instant yes, and the reader comes back with an answer.",
         misuse: [
           "Using the delay to avoid answering at all.",
-          "Using the time to work out what they'd rather hear.",
+          "Using the time to figure out what they'd rather hear.",
           "Treating a later yes as having failed.",
         ],
         notMeaning:
@@ -227,30 +229,30 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "The Smaller True Thing",
       positioning:
-        "For when a flat no is out of reach. You find the smaller version alone — then you say it.",
+        "For when a flat no feels out of reach. You find the smaller version on your own — then you say it.",
       recognitionGate: {
-        prompt: "Do you agree because the alternative feels too blunt?",
+        prompt: "Do you agree because the other option feels too blunt?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "People picture a flat no, delivered calmly, to someone who takes it well. That's a high bar, and if it's the only option you'll keep choosing the yes.",
-            "There's almost always something smaller and true — more honest than the automatic yes, and available to someone who can't yet manage a refusal.",
+            "People picture a flat no, said calmly, to someone who takes it well. That's a high bar. If it's the only option, you'll keep choosing the yes.",
+            "There's almost always something smaller and true. It's more honest than the automatic yes, and it's within reach for someone who can't yet manage a flat no.",
           ],
         },
         {
           kind: "learn",
           body: [
             "\u201cI can do part of that.\u201d \u201cNot this week \u2014 could it be next?\u201d \u201cI'd rather not, but I will if you're stuck.\u201d \u201cI can, but honestly it's a lot at the moment.\u201d",
-            "None of those are a no. All of them put your actual position in the room, which is the thing that's been missing.",
+            "None of those are a no. All of them put your real position in the room — which is the thing that's been missing.",
           ],
         },
         {
           kind: "scenarioSort",
           prompt: "Which of these puts your position in the room?",
           situation:
-            "Someone's asked you for something. It's not unreasonable. You've already said yes in your head.",
+            "Someone's asked you for something. It's a fair enough ask. You've already said yes in your head.",
           buckets: [
             { id: "honest", label: "Says something true" },
             { id: "same-as-yes", label: "Same as the automatic yes" },
@@ -260,13 +262,13 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
               id: "sort-c14-course",
               text: "\u201cOf course, no problem at all\u201d",
               correctBucket: "same-as-yes",
-              correction: "That's the reflex with extra reassurance attached.",
+              correction: "That's the reflex with extra reassurance stuck on.",
             },
             {
               id: "sort-c14-part",
               text: "\u201cI can do the first half, not the rest\u201d",
               correctBucket: "honest",
-              correction: "Partial, specific, and true. That's the middle range.",
+              correction: "Part of it, clear, and true. That's the middle range.",
             },
             {
               id: "sort-c14-happy-to",
@@ -303,7 +305,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
         },
         {
           kind: "realWorldUse",
-          useWhen: "You've drafted the middle-range version and the request is live.",
+          useWhen: "You've written out the middle-range version and the request is still open.",
           doThis:
             "Say it once, to the person it's about. Then stop, and let them respond however they respond.",
         },
@@ -330,15 +332,15 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       myPlaysTemplate: {
         when: "When a flat no is out of reach but the yes isn't honest",
         move: "Find the middle-range version and say it",
-        lookingFor: "Whether my actual position made it into the room",
+        lookingFor: "Whether my real position made it into the room",
         watchOut: "Softening it back into a yes while saying it",
         remember: "Most people take the middle version completely fine.",
       },
       fidelity: {
         correct:
-          "A partial or qualified response is actually said, in place of an unqualified yes.",
+          "A partial or hedged answer is actually said, instead of a plain yes.",
         misuse: [
-          "Drafting it and saying yes anyway.",
+          "Writing it out and saying yes anyway.",
           "Adding so much softening that the position disappears.",
           "Using it to refuse things you'd have been fine doing.",
         ],
@@ -354,7 +356,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "Ask For One Thing",
       positioning:
-        "For the request you've never made. You work out what it is — then you ask.",
+        "For the request you've never made. You figure out what it is — then you ask.",
       recognitionGate: {
         prompt: "When did you last ask someone for something you needed?",
       },
@@ -362,21 +364,21 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Most people here find it so, and there's a reason. A no can be framed as practical — I'm busy, I can't this week.",
-            "A request is naked. It says: I want something, and I'm telling you. There's no version that isn't exposing.",
+            "Most people here do, and there's a reason. A no can sound practical — I'm busy, I can't this week.",
+            "A request is bare. It says: I want something, and I'm telling you. There's no way to do it that isn't exposing.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "\u201cMy needs are too much\u201d is held very confidently by people who have almost never said one out loud.",
+            "\u201cMy needs are too much\u201d is held very firmly by people who have almost never said one out loud.",
             "It's a prediction about an experiment nobody ran. The people around you have mostly never had the chance to find your needs reasonable, because they've never heard one.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
-            "Asking for something small can feel disproportionately exposing — more than refusing something large.",
+            "Asking for something small can feel far more exposing than it should — more than saying no to something big.",
             "That's normal here and it isn't a sign you've picked the wrong thing.",
           ],
         },
@@ -407,7 +409,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
           kind: "sentenceBuilder",
           label: "The ask, in your words",
           helper:
-            "One thing, no justification appended. You might start with \u201cCould you\u2026\u201d or \u201cSomething that would help me\u2026\u201d",
+            "One thing, with no reason tacked on. You might start with \u201cCould you\u2026\u201d or \u201cSomething that would help me\u2026\u201d",
         },
         {
           kind: "realWorldUse",
@@ -426,28 +428,28 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
           steps: [
             "Saying no and asking are the same muscle.",
             "It's a prediction about an experiment I never ran.",
-            "No preamble. No apology attached.",
+            "No lead-in. No apology attached.",
           ],
         },
       ],
       portable: [
         "Saying no and asking are the same muscle.",
         "It's a prediction about an experiment I never ran.",
-        "No preamble. No apology attached.",
+        "No lead-in. No apology attached.",
       ],
       myPlaysTemplate: {
         when: "When I want something and haven't said so",
-        move: "Ask for one small thing, without justifying it",
-        lookingFor: "What actually happens, versus what I predicted",
-        watchOut: "Attaching so much apology that it stops being a request",
+        move: "Ask for one small thing, without giving a reason for it",
+        lookingFor: "What actually happens, next to what I predicted",
+        watchOut: "Adding so much apology that it stops being a request",
         remember: "They've mostly never had the chance to find my needs reasonable.",
       },
       fidelity: {
         correct:
-          "One request is actually made, without pre-emptive apology or justification.",
+          "One request is actually made, with no apology or reason added first.",
         misuse: [
-          "Wrapping it in so much softening it isn't recognisable as a request.",
-          "Asking and immediately withdrawing it.",
+          "Wrapping it in so much softening that it doesn't read as a request.",
+          "Asking and then taking it right back.",
           "Choosing something so small it can't test the prediction.",
         ],
         notMeaning:
@@ -469,15 +471,15 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Nobody agrees to carry everything. They agree to forty individually reasonable things, and the fortieth arrives on top of thirty-nine others nobody counted.",
-            "Including you. That's why this accumulates invisibly.",
+            "Nobody agrees to carry everything. They agree to forty small, fair things one at a time, and the fortieth lands on top of thirty-nine others nobody counted.",
+            "Including you. That's why this builds up where nobody can see it.",
           ],
         },
         {
           kind: "learn",
           body: [
             "The obvious cost is time and energy. The other one is that nobody around you knows what you actually think.",
-            "You've been agreeable long enough that your preferences aren't visible — including to people who'd happily have accommodated them.",
+            "You've gone along with things long enough that what you want isn't visible — including to people who'd have been glad to make room for it.",
             "That's how this quietly becomes resentment. You're carrying something nobody asked you to carry, because you never told them you were.",
           ],
         },
@@ -517,11 +519,11 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
         },
         {
           kind: "sufficiency",
-          prompt: "Have you actually told anyone this is a lot — or is it being inferred?",
+          prompt: "Have you actually told anyone this is a lot — or are they just left to guess?",
           enoughLabel: "I've said it directly",
-          needMoreLabel: "It's being inferred, or hinted at",
+          needMoreLabel: "They're guessing, or I've hinted",
           needMoreIntro:
-            "That's the common answer, and it's the whole problem. Resentment about something unsaid can't resolve, because the other person is operating on information they don't have.",
+            "That's the common answer, and it's the whole problem. Resentment about something you never said can't clear up, because the other person is working from information they don't have.",
           needToKnowLabel: "What I'd want them to actually know",
           observableLabel: "Something I could say plainly",
         },
@@ -535,14 +537,14 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
           heading: "Take this with you",
           steps: [
             "Every yes was small. That's why nobody counted.",
-            "They're operating on information they don't have.",
+            "They're working from information they don't have.",
             "Hinting isn't telling.",
           ],
         },
       ],
       portable: [
         "Every yes was small. That's why nobody counted.",
-        "They're operating on information they don't have.",
+        "They're working from information they don't have.",
         "Hinting isn't telling.",
       ],
       myPlaysTemplate: {
@@ -550,14 +552,14 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
         move: "Count it honestly, and check whether it's ever actually been said",
         lookingFor: "The gap between what I carry and what anyone knows I carry",
         watchOut: "Building a case rather than making a count",
-        remember: "Resentment about something unsaid can't resolve.",
+        remember: "Resentment about something you never said can't clear up.",
       },
       fidelity: {
         correct:
-          "The load is counted honestly, and the distinction between hinting and telling is named.",
+          "The load is counted honestly, and the difference between hinting and telling is named.",
         misuse: [
-          "Turning it into evidence against a specific person.",
-          "Using it to justify withdrawing rather than saying something.",
+          "Turning it into proof against one person.",
+          "Using it as a reason to pull back rather than say something.",
           "Counting only the things that prove the point.",
         ],
         notMeaning:
@@ -576,11 +578,11 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       title: "Use the holding line three times",
       instruction:
         "Next three times you're asked for something, use your line before answering. Note what you decided after the pause.",
-      linkToOperation: "Interrupting the automatic yes with a holding response",
+      linkToOperation: "Breaking into the automatic yes with a holding line",
       attemptMeaning:
         "You paused. Saying yes afterwards counts completely.",
       suitability:
-        "Small requests are ideal for this. Don't save it for the difficult one.",
+        "Small requests are best for this. Don't save it for the hard one.",
       progression: [
         { id: "rung-c14-hold-2", instruction: "Use it on something that matters more." },
       ],
@@ -592,7 +594,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       title: "Say a second one",
       instruction:
         "You said the first in the tool. Say another middle-range answer this week, to someone different.",
-      linkToOperation: "Stating a partial or qualified position",
+      linkToOperation: "Saying a partial or hedged position",
       attemptMeaning: "You said it. How it landed is separate.",
       suitability:
         "If softening keeps creeping back in, notice where — that's the useful part, not a failure.",
@@ -607,7 +609,7 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       title: "Ask for a second thing",
       instruction:
         "You asked in the tool. Ask for one more, from someone different, and compare how the two went.",
-      linkToOperation: "Making a request without justification",
+      linkToOperation: "Making a request without giving a reason",
       attemptMeaning:
         "You asked. A no is still a completed attempt.",
       suitability:
@@ -622,8 +624,8 @@ export const LEARNING_TO_SAY_NO: PlaybookContent = {
       playId: "what-this-is-costing-me",
       title: "Say one of them out loud",
       instruction:
-        "Pick one thing from your list and tell the relevant person it's a lot. Not a complaint — just information.",
-      linkToOperation: "Converting an inferred load into a stated one",
+        "Pick one thing from your list and tell the right person it's a lot. Not a complaint — just information.",
+      linkToOperation: "Turning a load they had to guess at into one you've said out loud",
       attemptMeaning:
         "You said it. Whether anything shifts is separate.",
       suitability:

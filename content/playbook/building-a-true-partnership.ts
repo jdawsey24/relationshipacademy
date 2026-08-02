@@ -25,6 +25,7 @@
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C10_LITERATURE } from "./building-a-true-partnership-literature";
 
@@ -37,7 +38,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
     title: "It isn't the tasks",
     body: [
       "You could hand over half the jobs tomorrow and still feel exactly like this. What's tiring is being the one who holds the whole thing in mind.",
-      "This one asks something unusual: not to do more, but to do less in a specific way. That's harder, and we'll be honest about why.",
+      "This one asks for something different. Not to do more, but to do less in a certain way. That's harder, and we'll be honest about why.",
       "It also can't make them step up. What it can do is find out whether they would.",
     ],
     manifestations: [
@@ -56,7 +57,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I want a partner, not another responsibility.",
       validationCopy:
-        "That's a legitimate thing to want, and we're not going to talk you into settling for the trained version. What's worth knowing is that 'they won't' and 'they've never had room to' look identical from inside the pattern — and only one of them is workable.",
+        "That's a fair thing to want. We're not going to talk you into settling for the trained version. But here's what's worth knowing. 'They won't' and 'they've never had room to' look exactly the same from the inside — and only one of them can work.",
       secondaryExamples: [
         "I don't want to be the relationship manager anymore.",
         "I don't want to teach someone how to love me.",
@@ -68,7 +69,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
       pathwayPlayId: "the-invisible-list",
       headline: "I notice everything; they notice nothing.",
       explanation:
-        "The tiring part isn't the tasks. It's holding the whole picture, continuously, in the background — and that part is invisible from outside.",
+        "The tiring part isn't the tasks. It's holding the whole picture in your head, all the time, in the background. And no one else can see that part.",
       secondaryExamples: [
         "I'm always thinking about us.",
         "I feel emotionally responsible for both of us.",
@@ -80,7 +81,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
       pathwayPlayId: "leave-the-gap",
       headline: "Everything falls on me.",
       explanation:
-        "While you're pre-empting, there's no gap for anyone to step into. Leaving one means something may go wrong — that's the actual cost.",
+        "While you handle things first, there's no gap for anyone to step into. Leaving one means something may go wrong — and that's the real cost.",
       secondaryExamples: [
         "I carry all the responsibility.",
         "I'm tired of reminding them.",
@@ -92,7 +93,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
       pathwayPlayId: "hand-one-thing-over",
       headline: "I ask them to do things and I'm still the one tracking it.",
       explanation:
-        "Handing over a task and handing over the noticing are different. Only the second reduces the load.",
+        "Handing over a task and handing over the noticing are two different things. Only the second one makes the load lighter.",
       secondaryExamples: [
         "I always have to bring up the hard conversations.",
         "I feel like I'm parenting my partner.",
@@ -108,24 +109,24 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "The Invisible List",
       positioning:
-        "For the work nobody can see. You write it down alone — then you describe it once, because they can't respond to something they can't see.",
+        "For the work nobody can see. You write it down alone — then you describe it once, because they can't answer something they can't see.",
       recognitionGate: {
-        prompt: "Do you hold things in mind that nobody else seems to be tracking?",
+        prompt: "Do you keep track of things in your head that no one else seems to be watching?",
       },
       screens: [
         {
           kind: "shift",
           body: [
             "When you say you do more, they list the tasks they do. That's the wrong list, and then you're both frustrated.",
-            "What you mean is the other category — knowing what's coming, noticing before it goes wrong, remembering what was agreed, deciding when to raise things.",
-            "None of that is visible from outside. Which means they may be entirely willing and genuinely unaware, both at once.",
+            "What you mean is the other kind of work — knowing what's coming, noticing before it goes wrong, remembering what was agreed, deciding when to bring things up.",
+            "None of that shows from the outside. So they may be fully willing and truly unaware — both at the same time.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Arguing about the division of tasks can't get at it, because the thing you're carrying isn't on the task list.",
-            "Describing it specifically — this is what I'm holding, here's what that involves — is a different conversation. It might not change anything. But it's the one you actually mean.",
+            "Arguing about how the tasks are split can't get at it. The thing you're carrying isn't on the task list.",
+            "Describing it clearly — this is what I'm holding, here's what that means — is a different talk. It might not change anything. But it's the one you really mean.",
           ],
         },
         {
@@ -136,14 +137,14 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
               id: "what-i-hold",
               input: "text",
               label: "What are you keeping track of that nobody else is?",
-              placeholder: "Not the jobs. The knowing, remembering, noticing, anticipating.",
+              placeholder: "Not the jobs. The knowing, remembering, noticing, seeing what's coming.",
             },
             {
               id: "when-it-runs",
               input: "chips",
               label: "When is it running?",
               suggestions: [
-                "Constantly, in the background",
+                "All the time, in the background",
                 "Whenever something's coming up",
                 "At night",
                 "Whenever they're doing something I'd do differently",
@@ -166,7 +167,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
         {
           kind: "output",
           heading: "What I described",
-          body: "Said once. Whether they'd have carried it is now findable out.",
+          body: "Said once. Now you can find out whether they'd have carried it.",
         },
         {
           kind: "portable",
@@ -192,14 +193,14 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "The invisible load is described specifically and once, without comparison to the other person's contribution.",
+          "You describe the invisible load clearly, and just once, without comparing it to what the other person does.",
         misuse: [
-          "Turning it into a comparison or a tally.",
-          "Repeating the description when it doesn't land.",
-          "Using it as an opening for a wider case.",
+          "Turning it into a comparison or keeping score.",
+          "Saying it again when it doesn't land.",
+          "Using it as a start for a bigger case against them.",
         ],
         notMeaning:
-          "It does not mean they'll take any of it on, that they'll understand it, or that describing it changes the arrangement.",
+          "It doesn't mean they'll take any of it on. It doesn't mean they'll understand it. And it doesn't mean describing it changes how things are set up.",
       },
     },
 
@@ -209,32 +210,32 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "Leave the Gap",
-      positioning: "For when you pre-empt everything and nothing is left for anyone else.",
+      positioning: "For when you handle everything first, so nothing is left for anyone else.",
       recognitionGate: {
-        prompt: "Do you handle things before anyone else notices they need handling?",
+        prompt: "Do you handle things before anyone else even notices they need doing?",
       },
       screens: [
         {
           kind: "shift",
           body: [
             "Every other kind of relationship advice asks you to do something more. This asks you to do something less, which is harder.",
-            "While you're pre-empting, there's no gap for anyone to step into. The thing gets handled, so it never becomes visible as something that needed handling.",
-            "Leaving a gap means something may go wrong — briefly, visibly, in a way you could have prevented. That's the real cost, and it's why almost nobody does it.",
+            "While you handle things first, there's no gap for anyone to step into. The thing gets done, so it never shows up as something that needed doing.",
+            "Leaving a gap means something may go wrong — for a bit, out in the open, in a way you could have stopped. That's the real cost, and it's why almost no one does it.",
           ],
         },
         {
           kind: "learn",
           body: [
             "Making room: you don't do the thing, and you say you're not doing it, so it can be picked up.",
-            "Withdrawing to prove a point: you don't do the thing silently and wait to see what happens.",
-            "The second is tempting and it doesn't work. It produces a mess and a row, and the row ends up being about the mess rather than the arrangement.",
+            "Pulling back to prove a point: you don't do the thing, you stay quiet, and you wait to see what happens.",
+            "The second one is tempting, and it doesn't work. It makes a mess and a fight, and the fight ends up being about the mess instead of the setup.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
-            "Watching something you could fix go unfixed is genuinely difficult, and the discomfort isn't a sign you've done it wrong.",
-            "You may also find you can't tolerate it. That's information rather than failure.",
+            "Watching something you could fix stay broken is really hard. That uncomfortable feeling isn't a sign you did it wrong.",
+            "You may also find you can't stand it. That's information, not failure.",
           ],
         },
         {
@@ -250,7 +251,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
             {
               id: "smallest-consequence",
               input: "text",
-              label: "Which one has the smallest consequence if it's forgotten?",
+              label: "Which one matters least if it gets forgotten?",
               placeholder: "Not the school forms. Something you could survive twice.",
             },
           ],
@@ -258,7 +259,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
         {
           kind: "ruleBuilder",
           intro: "The gap",
-          conditionLabel: "What I'm not going to pre-empt",
+          conditionLabel: "What I'm not going to handle first",
           thenLabel: "And how I'll say I'm not doing it",
           actions: [
             "Tell them once, plainly, that I'm not picking it up",
@@ -267,7 +268,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
             "Do this for two weeks, then look at it",
           ],
           controlCheck:
-            "I've said it out loud. This isn't a silent test. The consequence of it failing is genuinely small. I'm making room, not making a point.",
+            "I've said it out loud. This isn't a secret test. If it fails, the cost is really small. I'm making room, not making a point.",
         },
         {
           kind: "output",
@@ -278,34 +279,34 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "While I pre-empt, there's no gap to step into.",
+            "While I handle things first, there's no gap to step into.",
             "Making room means saying I'm not doing it.",
-            "Silent withdrawal produces a row about the mess.",
+            "Pulling back in silence just makes a fight about the mess.",
           ],
         },
       ],
       portable: [
-        "While I pre-empt, there's no gap to step into.",
+        "While I handle things first, there's no gap to step into.",
         "Making room means saying I'm not doing it.",
-        "Silent withdrawal produces a row about the mess.",
+        "Pulling back in silence just makes a fight about the mess.",
       ],
       myPlaysTemplate: {
-        when: "When I handle everything before anyone notices it needs handling",
+        when: "When I handle everything before anyone notices it needs doing",
         move: "Leave one small gap, and say out loud that I'm leaving it",
-        lookingFor: "Whether anything gets picked up, and whether I can tolerate the wait",
-        watchOut: "Leaving the gap silently — that's a test, and it produces a row",
-        remember: "The discomfort of watching it go unfixed isn't a sign I've done it wrong.",
+        lookingFor: "Whether anything gets picked up, and whether I can stand the wait",
+        watchOut: "Leaving the gap in silence — that's a test, and it makes a fight",
+        remember: "The bad feeling of watching it stay broken isn't a sign I did it wrong.",
       },
       fidelity: {
         correct:
-          "One small responsibility is left unhandled, the decision is stated out loud, and no reminder is given.",
+          "You leave one small job undone, you say so out loud, and you give no reminder.",
         misuse: [
-          "Withdrawing silently and waiting.",
-          "Choosing something with a large consequence.",
+          "Pulling back in silence and waiting.",
+          "Picking something with a big cost.",
           "Reminding them and calling it a gap.",
         ],
         notMeaning:
-          "It does not mean they'll pick it up, that the arrangement shifts, or that failing to tolerate the gap is a failure of yours.",
+          "It doesn't mean they'll pick it up. It doesn't mean the setup changes. And if you can't stand the gap, that's not a failure of yours.",
       },
     },
 
@@ -316,24 +317,24 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "Hand One Thing Over",
       positioning:
-        "For transferring the noticing, not just the task. This one needs them — the handover is the tool.",
+        "For handing over the noticing, not just the task. This one needs them — the handover is the tool.",
       recognitionGate: {
         prompt:
-          "Do you delegate tasks and still end up tracking whether they happened?",
+          "Do you hand tasks off and still end up checking whether they got done?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "\u201cCan you do the bins tonight?\u201d — you still own the bins. You've handed over an instance and kept the tracking, which is the part that was tiring.",
-            "\u201cThe bins are yours now, and I'm not going to remind you\u201d — that's the transfer. It includes the not-reminding, which is the whole point and the difficult bit.",
+            "\u201cCan you do the bins tonight?\u201d — you still own the bins. You handed over this one time and kept the tracking, and the tracking is the tiring part.",
+            "\u201cThe bins are yours now, and I'm not going to remind you\u201d — that's the real handover. It includes the not-reminding, which is the whole point, and the hard part.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "A real transfer means it will sometimes be forgotten. If you can't tolerate that, the handover hasn't happened — you've added anxiety to a job you still own.",
-            "Which is why what you pick matters more than how you say it. Start with something where being forgotten is genuinely survivable.",
+            "A real handover means it will sometimes be forgotten. If you can't stand that, the handover hasn't happened — you've just added worry to a job you still own.",
+            "That's why what you pick matters more than how you say it. Start with something you could live with if it gets forgotten.",
           ],
         },
         {
@@ -344,7 +345,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
               id: "the-thing",
               input: "text",
               label: "What are you handing over — completely?",
-              placeholder: "Small. Survivable if forgotten. Twice.",
+              placeholder: "Small. Okay if it gets forgotten. Twice.",
             },
             {
               id: "can-i-tolerate",
@@ -363,51 +364,51 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
           kind: "sentenceBuilder",
           label: "The handover, including the not-reminding",
           helper:
-            "The operative clause is that you won't remind them. You might say \u201c\u2026is yours now. I'm not going to remind you about it, and I'm not going to check.\u201d",
+            "The key part is that you won't remind them. You might say \u201c\u2026is yours now. I'm not going to remind you about it, and I'm not going to check.\u201d",
         },
         {
           kind: "realWorldUse",
-          useWhen: "You've picked something small and survivable.",
+          useWhen: "You've picked something small that you can live with if it goes wrong.",
           doThis:
-            "Say it, including the part about not reminding them. Then don't remind them \u2014 that's the whole operation.",
+            "Say it, including the part about not reminding them. Then don't remind them \u2014 that's the whole thing.",
         },
         {
           kind: "output",
           heading: "What I handed over",
-          body: "The transfer includes the silence afterwards.",
+          body: "The handover includes the silence afterward.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Delegating keeps the tracking. Transferring gives it away.",
-            "\u201cAnd I'm not going to remind you\u201d is the operative clause.",
+            "Handing off a task keeps the tracking. A real handover gives it away.",
+            "\u201cAnd I'm not going to remind you\u201d is the key part.",
             "If I can't let it fail, it hasn't been handed over.",
           ],
         },
       ],
       portable: [
-        "Delegating keeps the tracking. Transferring gives it away.",
-        "\u201cAnd I'm not going to remind you\u201d is the operative clause.",
+        "Handing off a task keeps the tracking. A real handover gives it away.",
+        "\u201cAnd I'm not going to remind you\u201d is the key part.",
         "If I can't let it fail, it hasn't been handed over.",
       ],
       myPlaysTemplate: {
-        when: "When I delegate and still end up tracking it",
+        when: "When I hand something off and still end up tracking it",
         move: "Hand one small thing over completely, including the not-reminding",
         lookingFor: "Whether I can let it fail without stepping in",
-        watchOut: "Reminding them once — that's the transfer cancelled",
-        remember: "It will sometimes be forgotten. That's what a transfer costs.",
+        watchOut: "Reminding them once — that cancels the handover",
+        remember: "It will sometimes be forgotten. That's what a handover costs.",
       },
       fidelity: {
         correct:
-          "One responsibility is transferred out loud, including an explicit undertaking not to remind or check, and no reminder is given.",
+          "You hand one job over out loud, you clearly promise not to remind or check, and you give no reminder.",
         misuse: [
           "Reminding them, then calling it handed over.",
-          "Choosing something you cannot let fail.",
+          "Picking something you can't let fail.",
           "Handing it over and then doing it yourself when it slips.",
         ],
         notMeaning:
-          "It does not mean they'll do it, do it well, or do it on time — and it does not mean the wider balance changes.",
+          "It doesn't mean they'll do it. It doesn't mean they'll do it well or on time. And it doesn't mean the bigger balance changes.",
       },
     },
   ],
@@ -426,7 +427,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
       attemptMeaning:
         "You noticed. Whether they took anything on is separate.",
       suitability:
-        "If describing it turned into an argument about tasks, that's worth noticing rather than repeating.",
+        "If describing it turned into an argument about tasks, that's worth noticing instead of doing again.",
       progression: [
         { id: "rung-c10-describe-2", instruction: "Name one specific item and ask if they'd take the noticing for it." },
       ],
@@ -442,7 +443,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
       attemptMeaning:
         "You held it. Stepping back in is information, not failure.",
       suitability:
-        "If you find you can't tolerate it, stop — that's worth knowing rather than forcing.",
+        "If you find you can't stand it, stop — that's worth knowing instead of forcing it.",
       progression: [
         { id: "rung-c10-gap-2", instruction: "Leave a second gap, slightly larger." },
       ],
@@ -456,9 +457,9 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
         "You handed it over in the tool. Now the hard part — a month with no reminder and no checking.",
       linkToOperation: "Sustaining a transfer of ownership",
       attemptMeaning:
-        "You held the silence. One reminder cancels the transfer, and that's worth knowing rather than hiding.",
+        "You held the silence. One reminder cancels the handover, and that's worth knowing instead of hiding.",
       suitability:
-        "If it failed in a way that mattered, pick something smaller next time rather than concluding it can't work.",
+        "If it failed in a way that mattered, pick something smaller next time instead of deciding it can't work.",
       progression: [
         { id: "rung-c10-handover-2", instruction: "Hand over a second thing, and don't take the first one back." },
       ],
@@ -477,7 +478,7 @@ export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
           "Described what I carry, not what they don't do",
           "Said it once and stopped",
           "Kept it out of comparison",
-          "It became a tally",
+          "It became keeping score",
         ],
       },
       performedOperation: {

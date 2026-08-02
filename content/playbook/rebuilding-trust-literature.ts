@@ -37,6 +37,8 @@
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const C16_LITERATURE: LiteratureEntry[] = [
   {
     id: "lit-c16-what-this-is",
@@ -64,13 +66,13 @@ export const C16_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Most people work on the second while the first is unresolved, which is exhausting and doesn't get anywhere. Trying to rebuild something you haven't decided to keep is a lot of effort aimed at a question you haven't asked.",
+          "Most people work on the second while the first is still open. That's exhausting, and it doesn't get anywhere. Trying to rebuild something you haven't decided to keep is a lot of effort aimed at a question you haven't asked.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here leans toward staying or leaving. Both are legitimate and both are survivable, and anybody certain about your situation from the outside is telling you about themselves.",
+          "Nothing here leans toward staying or leaving. Both are real choices, and you can get through either one. Anybody certain about your situation from the outside is telling you about themselves.",
         ],
       },
     ],
@@ -87,27 +89,27 @@ export const C16_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "These two arrive together, and they're doing the same job: turning a decision into a verdict on your character.",
+          "These two arrive together, and they're doing the same job: turning a decision into a judgement about who you are.",
         ],
       },
       {
         kind: "distinction",
         label: "Neither is true",
         body: [
-          "Staying isn't weakness. It's often harder than leaving \u2014 it means living with what happened rather than moving away from it.",
-          "Leaving isn't giving up. It's a decision that something isn't recoverable or isn't worth the recovering, which is a judgement, not a surrender.",
+          "Staying isn't weakness. It's often harder than leaving \u2014 it means living with what happened instead of moving away from it.",
+          "Leaving isn't giving up. It's a decision that something can't be fixed, or isn't worth fixing — which is you making a call, not giving up.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The reason this matters practically: as long as one option means you're weak and the other means you failed, you can't weigh them. You're not choosing between two paths, you're choosing between two accusations.",
+          "Here's why this matters in real life: as long as one choice means you're weak and the other means you failed, you can't weigh them. You're not choosing between two paths, you're choosing between two accusations.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "People will tell you which one is which. They'll be confident. Most of them are describing what they believe they'd do, from a position where nothing is at stake.",
+          "People will tell you which one is which. They'll be confident. Most of them are describing what they think they'd do, from a place where they have nothing to lose.",
         ],
       },
     ],
@@ -131,21 +133,21 @@ export const C16_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It's also doing something specific. Checking is an attempt to convert uncertainty into certainty \u2014 to find the thing that would settle it either way. And it doesn't work, for a structural reason: finding nothing doesn't prove anything. It only proves nothing was found today.",
+          "It's also doing something specific. Checking is a way to try to turn not-knowing into knowing for sure \u2014 to find the thing that would settle it either way. And it doesn't work, and there's a built-in reason why: finding nothing doesn't prove anything. It only proves nothing was found today.",
         ],
       },
       {
         kind: "distinction",
-        label: "Which is why it escalates",
+        label: "Which is why it keeps growing",
         body: [
-          "A clean check produces relief for a few hours and then the same uncertainty, so it has to be repeated.",
-          "And the questions that \u201cdon't bring peace\u201d are the same mechanism in words \u2014 each answer generates the next question, because no answer can do the job you need it to.",
+          "A clean check gives you relief for a few hours, and then the same uncertainty comes back, so you have to do it again.",
+          "And the questions that \u201cdon't bring peace\u201d are the same thing in words \u2014 each answer leads to the next question, because no answer can do the job you need it to.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here will tell you to stop checking as an act of will. What's worth knowing is what it costs and what it can't deliver, so the decision to keep doing it is at least a decision.",
+          "Nothing here will tell you to stop checking by sheer willpower. What's worth knowing is what it costs and what it can't deliver, so if you keep doing it, at least it's a real choice.",
         ],
       },
     ],
@@ -163,19 +165,19 @@ export const C16_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI don't know how to stop imagining what happened.\u201d \u201cI compare myself to the other person.\u201d",
-          "Intrusive imagining after a betrayal is extremely common and it's one of the parts people are most ashamed of, which keeps it unspoken.",
+          "Unwanted images after a betrayal are very common, and it's one of the parts people are most ashamed of, which keeps them quiet about it.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Some of it is your mind trying to fill a gap. You have partial information about something that mattered enormously, and it keeps attempting to complete the picture. More detail usually makes this worse rather than better \u2014 which is why the questions that bring no peace often make the images sharper.",
+          "Some of it is your mind trying to fill a gap. You have only some of the information about something that mattered a huge amount, and your mind keeps trying to finish the picture. More detail usually makes this worse, not better \u2014 which is why the questions that bring no peace often make the images sharper.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If the images are constant, or you're not sleeping, or they arrive as though it's happening now \u2014 that's worth taking to a therapist rather than managing alone. It's a recognised response to this kind of injury and there is specific help for it.",
+          "If the images are constant, or you're not sleeping, or they come as though it's happening now \u2014 that's worth taking to a therapist rather than handling alone. It's a known response to this kind of wound, and there is specific help for it.",
         ],
       },
     ],
@@ -192,16 +194,16 @@ export const C16_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "You can't see inside someone. That's the honest starting point, and it's why this question feels unanswerable.",
-          "But change has an outside, and the outside is checkable.",
+          "You can't see inside someone. That's the honest starting point, and it's why this question feels impossible to answer.",
+          "But change has an outside, and you can check the outside.",
         ],
       },
       {
         kind: "list",
-        label: "What tends to be visible when something has genuinely shifted",
+        label: "What you can usually see when something has really changed",
         items: [
           "They did something that cost them \u2014 ended a friendship, changed a job, started therapy and kept going.",
-          "They carry the reassurance rather than waiting to be asked for it.",
+          "They offer the reassurance instead of waiting to be asked for it.",
           "They can talk about what happened without it becoming about how hard it's been for them.",
           "Time has passed and it's held \u2014 not weeks, longer.",
           "They don't push you to be finished with it.",
@@ -209,17 +211,17 @@ export const C16_LITERATURE: LiteratureEntry[] = [
       },
       {
         kind: "distinction",
-        label: "What isn't evidence, however sincere",
+        label: "What isn't evidence, no matter how sincere",
         body: [
-          "Remorse. Real, and it isn't change \u2014 people can be genuinely devastated and do it again.",
-          "Promises, however specific. They become evidence once they've been kept for a while.",
+          "Remorse. Real, and it isn't change \u2014 people can be truly devastated and do it again.",
+          "Promises, no matter how specific. They become evidence once they've been kept for a while.",
           "\u201cI wonder if they regret it\u201d \u2014 almost certainly yes, and it tells you very little about what happens next.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "None of this predicts. Someone can do all five and it can happen again, and someone can do none of them and never repeat it. It's the best available information, not a guarantee \u2014 and if you're waiting for a guarantee, that's worth knowing, because there isn't one.",
+          "None of this predicts. Someone can do all five and it can still happen again, and someone can do none of them and never do it again. It's the best information there is, not a guarantee \u2014 and if you're waiting for a guarantee, that's worth knowing, because there isn't one.",
         ],
       },
     ],
@@ -241,24 +243,24 @@ export const C16_LITERATURE: LiteratureEntry[] = [
       },
       {
         kind: "distinction",
-        label: "Four combinations, all of which exist",
+        label: "Four combinations, and all of them are real",
         body: [
           "Forgive and stay. The one everyone pictures.",
-          "Forgive and leave. Common, and people rarely realise it's available \u2014 you can stop carrying it and still not want the relationship.",
-          "Stay and not forgive. Also common, and it's the one that tends to corrode.",
-          "Leave and not forgive. Legitimate, though it's the heaviest to carry afterwards.",
+          "Forgive and leave. Common, and people rarely realise it's an option \u2014 you can stop carrying it and still not want the relationship.",
+          "Stay and not forgive. Also common, and it's the one that tends to wear things down.",
+          "Leave and not forgive. A real choice, though it's the heaviest to carry afterwards.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know if forgiveness means forgetting\u201d has an easier answer: no. You won't forget, and being asked to is unreasonable. Forgiving is closer to deciding to stop charging interest \u2014 the debt stays, you stop adding to it daily.",
+          "\u201cI don't know if forgiveness means forgetting\u201d has an easier answer: no. You won't forget, and being asked to is unfair. Forgiving is closer to deciding to stop charging interest \u2014 the debt stays, you just stop adding to it every day.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "It also usually requires something first, and that's worth being honest about. Forgiving something that has never been properly acknowledged is a great deal to ask of a person. If you can't get there, that may be why, rather than a failing of yours.",
+          "It also usually takes something first, and that's worth being honest about. Forgiving something that was never really owned up to is a great deal to ask of anyone. If you can't get there, that may be why, rather than a failing of yours.",
         ],
       },
     ],
@@ -283,19 +285,19 @@ export const C16_LITERATURE: LiteratureEntry[] = [
         label: "What replaces it, when it works",
         body: [
           "The old trust was an assumption. You didn't think about it; it was the background.",
-          "What can be built afterwards is a decision, made repeatedly, on evidence. Less comfortable. More conscious. Some people find it more solid for being deliberate, and others find the consciousness itself unbearable.",
+          "What can be built afterwards is a decision, made again and again, based on evidence. Less comfortable. You're more aware of it. Some people find it more solid because it's chosen on purpose, and others find having to think about it all the time unbearable.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Which of those you'd find it to be is worth thinking about, because it's a real difference in what you'd be signing up for \u2014 and it's more useful than asking whether trust can return in the abstract.",
+          "Which of those it would be for you is worth thinking about, because it's a real difference in what you'd be signing up for \u2014 and it's more useful than asking whether trust can return as a general question.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI don't know if I'll ever feel safe again\u201d is worth taking seriously rather than reassuring away. For some people the answer is no in this relationship and yes in a later one. That isn't a failure of effort.",
+          "\u201cI don't know if I'll ever feel safe again\u201d is worth taking seriously, not brushing aside with reassurance. For some people the answer is no in this relationship and yes in a later one. That isn't a failure of effort.",
         ],
       },
     ],
@@ -318,16 +320,16 @@ export const C16_LITERATURE: LiteratureEntry[] = [
       },
       {
         kind: "distinction",
-        label: "What tiredness is actually reporting",
+        label: "What tiredness is actually telling you",
         body: [
-          "Not that you don't love them. That the effort of the current arrangement is exceeding what you have.",
-          "Which is information about sustainability rather than about feeling \u2014 and sustainability is the thing that decides these, more often than love does.",
+          "Not that you don't love them. That what things take right now is more than you have to give.",
+          "Which tells you about whether you can keep it up, not about how you feel \u2014 and whether you can keep it up is what decides these, more often than love does.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know if I have another chance left in me\u201d is the same report, more precisely. It's worth answering honestly rather than aspirationally. Having no more chances left is a legitimate position, and it isn't the same as not loving someone.",
+          "\u201cI don't know if I have another chance left in me\u201d is the same thing, said more exactly. It's worth answering honestly, not with what you wish were true. Having no more chances left is a real answer, and it isn't the same as not loving someone.",
         ],
       },
     ],
@@ -345,14 +347,14 @@ export const C16_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "We won't answer that, and we'd be wary of anyone who does. Both paths are legitimate, both are survivable, and the people most confident about your situation have the least at stake in it.",
+          "We won't answer that, and we'd be wary of anyone who does. Both paths are real choices, you can get through either one, and the people most confident about your situation have the least to lose in it.",
         ],
       },
       {
         kind: "distinction",
         label: "What's worth knowing instead",
         body: [
-          "Nobody needs a good enough reason to leave after a betrayal. \u201cI don't want to\u201d is sufficient, and people spend a long time trying to justify a decision they're allowed to make anyway.",
+          "Nobody needs a good enough reason to leave after a betrayal. \u201cI don't want to\u201d is enough, and people spend a long time trying to justify a decision they're allowed to make anyway.",
           "And nobody needs to leave to have self-respect. Staying is a choice, not a failure of one.",
         ],
       },
@@ -384,13 +386,13 @@ export const C16_LITERATURE: LiteratureEntry[] = [
         label: "More useful than counting",
         body: [
           "Was anything different about this chance? Not the promise \u2014 the conditions. Did something actually change in how it was set up?",
-          "Do you have another one in you? An honest question about your own reserves, and the answer is allowed to be no.",
+          "Do you have another one in you? An honest question about what you have left, and the answer is allowed to be no.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "A chance given because you couldn't face the alternative isn't really a chance. It's a postponement, and it tends to arrive again looking the same.",
+          "A chance given because you couldn't face the alternative isn't really a chance. It's just putting it off, and it tends to come around again looking the same.",
         ],
       },
     ],
@@ -407,13 +409,13 @@ export const C16_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Then this Playbook is the wrong instrument, and we'd rather say so than half-help.",
+          "Then this Playbook is the wrong tool, and we'd rather say so than half-help.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know where support ends and enabling begins\u201d is a real and specific question, and it has a body of knowledge behind it that a relationship Playbook doesn't contain. So does \u201cI'm exhausted from worrying\u201d, which is a recognised experience with recognised support.",
+          "\u201cI don't know where support ends and enabling begins\u201d is a real and specific question, and there's a whole field of knowledge behind it that a relationship Playbook doesn't have. So does \u201cI'm exhausted from worrying\u201d, which is a known experience with known support.",
         ],
       },
       {
@@ -421,14 +423,14 @@ export const C16_LITERATURE: LiteratureEntry[] = [
         label: "Worth looking into",
         items: [
           "Al-Anon or a similar family group \u2014 specifically for people alongside someone else's addiction.",
-          "A therapist who works with families affected by addiction, rather than a couples therapist.",
+          "A therapist who works with families affected by addiction, not a couples therapist.",
           "Your GP, if the worrying is affecting your sleep or your health.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Some of what's here will still apply \u2014 the checking, the images, the question of whether anything has changed. But the support-versus-enabling question needs people who know that territory, and you'd be underserved by anything less.",
+          "Some of what's here will still apply \u2014 the checking, the images, the question of whether anything has changed. But the support-versus-enabling question needs people who know that territory, and anything less would let you down.",
         ],
       },
     ],

@@ -41,27 +41,27 @@ export const C11_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "Should I stay or leave. Can this be saved. Is love enough. Have we outgrown each other. I don't know when enough is enough.",
-          "You've been carrying these for a while, and they don't resolve by being carried — which you've probably discovered.",
+          "You've been carrying these for a while. They don't get better just by being carried — which you've probably found out.",
         ],
       },
       {
         kind: "distinction",
         label: "Two kinds of question in that list",
         body: [
-          "Ones nobody can answer, including you, in advance. Can this be saved. Is love enough. Whether you'd regret it.",
-          "Ones that are answerable, mostly by looking rather than thinking. What's actually changed in the last year. What you'd need to see. Whether anything you're hoping for has ever happened before.",
+          "Ones nobody can answer ahead of time — not even you. Can this be saved. Is love enough. Whether you'd regret it.",
+          "Ones you can answer, mostly by looking rather than thinking. What's actually changed in the last year. What you'd need to see. Whether anything you're hoping for has ever happened before.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The second kind won't tell you what to do. They will tell you what you're actually deciding between, which is more than you have now.",
+          "The second kind won't tell you what to do. But they will show you what you're actually deciding between — which is more than you have now.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here leans toward staying or toward leaving. If you finish something in this Playbook and feel it pushed you, tell someone \u2014 that would be a failure of ours, not a signal about your relationship.",
+          "Nothing here leans toward staying or toward leaving. If you finish something in this Playbook and feel it pushed you, tell someone \u2014 that would be our mistake, not a signal about your relationship.",
         ],
       },
     ],
@@ -78,28 +78,28 @@ export const C11_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "One of the things people say in this position is: I wish someone would decide for me.",
-          "That's an entirely reasonable wish. The deciding is the worst part, and handing it to someone else would be an enormous relief.",
+          "One of the things people say in this spot is: I wish someone would decide for me.",
+          "That's a totally reasonable wish. The deciding is the worst part, and handing it to someone else would be a huge relief.",
         ],
       },
       {
         kind: "distinction",
         label: "Why nobody should take it",
         body: [
-          "Anyone who does is guessing. They have a fraction of the information and none of the consequences.",
-          "And a decision made because someone told you tends not to hold. You'll relitigate it, and now with the added complication that it wasn't yours.",
+          "Anyone who does is guessing. They have just a sliver of the facts and none of the fallout.",
+          "And a decision you made because someone told you to usually doesn't hold. You'll go back over it again — and now with the extra snag that it wasn't yours.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The friends who tell you to leave and the ones who tell you to stay are both usually describing what they'd do, or what they wish they'd done. That's worth knowing when you weigh their certainty.",
+          "The friends who tell you to leave and the ones who tell you to stay are both usually describing what they'd do, or what they wish they'd done. That's worth knowing when you weigh how sure they sound.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Wanting to be relieved of the decision isn't weakness. It's what carrying an unresolvable question for months does. But nobody can lift it, and the ones who offer to are usually the least well placed.",
+          "Wanting to be free of the decision isn't weakness. It's what carrying a question with no answer for months does. But nobody can lift it, and the ones who offer to are usually the least able to.",
         ],
       },
     ],
@@ -116,7 +116,7 @@ export const C11_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't know when hope becomes denial.\u201d It's the sharpest question in this cluster and it does have a partial answer.",
+          "\u201cI don't know when hope becomes denial.\u201d It's the hardest question in this set, and it does have a partial answer.",
         ],
       },
       {
@@ -130,13 +130,13 @@ export const C11_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Both feel identical from inside \u2014 that's why the question is hard. The test isn't the strength of the feeling. It's whether you can name a thing that happened.",
+          "Both feel the same from the inside \u2014 that's why the question is hard. The test isn't how strong the feeling is. It's whether you can name a thing that happened.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "This isn't an argument against hope. \u201cI don't want to give up too soon\u201d is as legitimate as \u201cI don't want to stay too long\u201d, and people who leave too early regret it as often as people who stay too late. The point is only to know which kind you're holding.",
+          "This isn't an argument against hope. \u201cI don't want to give up too soon\u201d is just as valid as \u201cI don't want to stay too long\u201d, and people who leave too early regret it as often as people who stay too late. The point is just to know which kind you're holding.",
         ],
       },
     ],
@@ -154,13 +154,13 @@ export const C11_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI keep falling in love with potential.\u201d \u201cI remember who they used to be more than who they are now.\u201d",
-          "Both describe the same thing: being in a relationship with a version of someone that isn't currently in the room.",
+          "Both describe the same thing: being in a relationship with a version of someone who isn't in the room right now.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The past version is the harder one, because it isn't imaginary. They really were like that. So it doesn't feel like fantasy \u2014 it feels like knowing who they truly are underneath.",
+          "The past version is the harder one, because it isn't made up. They really were like that. So it doesn't feel like fantasy \u2014 it feels like knowing who they truly are underneath.",
           "Which may be true, and is also not something you can be in a relationship with.",
         ],
       },
@@ -169,7 +169,7 @@ export const C11_LITERATURE: LiteratureEntry[] = [
         label: "A question worth sitting with",
         body: [
           "If they stayed exactly as they are now \u2014 no worse, and no better \u2014 for another five years, what's your answer?",
-          "Most people find they know immediately. It's an uncomfortable question and it does more work than months of weighing.",
+          "Most people find they know right away. It's an uncomfortable question, and it does more than months of weighing.",
         ],
       },
       {
@@ -192,7 +192,7 @@ export const C11_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Usually said with exhaustion rather than exaggeration. And usually not quite accurate \u2014 not because people haven't tried, but because of what \u201ceverything\u201d has meant.",
+          "Usually said out of exhaustion, not exaggeration. And usually not quite true \u2014 not because people haven't tried, but because of what \u201ceverything\u201d has meant.",
         ],
       },
       {
@@ -201,20 +201,20 @@ export const C11_LITERATURE: LiteratureEntry[] = [
         items: [
           "The same conversation, many times.",
           "One person trying hard while the other agreed things would change.",
-          "Long stretches of avoiding it, punctuated by a crisis.",
+          "Long stretches of avoiding it, broken up by a crisis.",
           "Two or three sessions with someone, years ago.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "None of that is failure. It's what most people do, and it's genuinely tiring. But it's a different fact from \u201cnothing could work\u201d, and the difference matters if you're using it to decide.",
+          "None of that is failure. It's what most people do, and it's genuinely tiring. But it's a different thing from \u201cnothing could work\u201d, and the difference matters if you're using it to decide.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "It also cuts the other way. If you've both genuinely tried \u2014 sustained, both of you, with help \u2014 then \u201cwe've tried everything\u201d is accurate and worth believing rather than arguing with.",
+          "It also cuts the other way. If you've both genuinely tried \u2014 kept it up, both of you, with help \u2014 then \u201cwe've tried everything\u201d is true and worth believing instead of arguing with.",
         ],
       },
     ],
@@ -232,27 +232,27 @@ export const C11_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cPart of me wants a relationship and part of me doesn't.\u201d \u201cI keep changing my mind.\u201d \u201cI don't trust my feelings because they change.\u201d",
-          "Worth saying plainly: changing your mind about something this large isn't a malfunction. It's what a genuinely close call looks like from the inside.",
+          "Worth saying plainly: changing your mind about something this big isn't a sign something's wrong with you. It's what a genuinely close call looks like from the inside.",
         ],
       },
       {
         kind: "distinction",
         label: "Two different situations that feel the same",
         body: [
-          "Genuinely torn \u2014 both options have real weight, and the oscillation reflects that. Common, and it doesn't resolve by thinking harder.",
-          "Knowing and not wanting to know \u2014 there's an answer you keep arriving at and moving away from. Also common, and it feels like being torn.",
+          "Genuinely torn \u2014 both options have real weight, and the back-and-forth shows that. Common, and it doesn't settle by thinking harder.",
+          "Knowing and not wanting to know \u2014 there's an answer you keep landing on and backing away from. Also common, and it feels like being torn.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "One quiet test: when you imagine it being over, is the first feeling dread or relief? Not the second feeling \u2014 the second one is usually the sensible one arriving. The first.",
+          "One quiet test: when you imagine it being over, is the first feeling dread or relief? Not the second feeling \u2014 the second one is usually the sensible one showing up. The first.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "That test isn't decisive and shouldn't be treated as one. It's one piece of information among several, and people's first feelings are sometimes about fear of change rather than about the relationship.",
+          "That test isn't the final word and shouldn't be treated as one. It's one piece of information among several, and people's first feelings are sometimes about fear of change instead of about the relationship.",
         ],
       },
     ],
@@ -270,27 +270,27 @@ export const C11_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI don't know if long distance is worth it.\u201d \u201cI don't know if we're building a future or delaying the inevitable.\u201d",
-          "Distance adds a particular difficulty: it's genuinely hard, so it becomes available as the explanation for everything.",
+          "Distance adds one particular problem: it's genuinely hard, so it becomes the go-to explanation for everything.",
         ],
       },
       {
         kind: "distinction",
-        label: "The question worth separating",
+        label: "The question worth pulling apart",
         body: [
           "Is the distance the problem? If it ended tomorrow, would this be good?",
-          "Or is the distance holding something together that wouldn't survive being in the same city? Some relationships work partly because the gaps prevent the friction.",
+          "Or is the distance holding something together that wouldn't survive living in the same city? Some relationships work partly because the gaps keep the friction away.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Both are common and neither is shameful. But they lead to opposite conclusions, and the distance makes them very hard to tell apart \u2014 which is why \u201cI don't know how long I can do this\u201d can persist for years.",
+          "Both are common, and neither is anything to be ashamed of. But they lead to opposite answers, and the distance makes them very hard to tell apart \u2014 which is why \u201cI don't know how long I can do this\u201d can go on for years.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI'm tired of saying goodbye\u201d is worth taking at face value. Exhaustion from distance is real, and it isn't the same as not wanting the person.",
+          "\u201cI'm tired of saying goodbye\u201d is worth taking at face value. Being worn out by distance is real, and it isn't the same as not wanting the person.",
         ],
       },
     ],
@@ -314,20 +314,20 @@ export const C11_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "Two readings, and it matters which",
         body: [
-          "You've decided without announcing it. Sometimes checking out is the decision, arrived at quietly and not yet said out loud.",
-          "You've protected yourself from something painful that's still going on. That's reversible, and it isn't a verdict.",
+          "You've decided without saying so. Sometimes checking out is the decision, reached quietly and not yet said out loud.",
+          "You've protected yourself from something painful that's still going on. That can be undone, and it isn't a verdict.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The distinguishing question is whether it aches. People who are genuinely finished don't feel flat about it \u2014 they feel free. If there's an ache, something is still running.",
+          "The question that tells them apart is whether it aches. People who are genuinely finished don't feel flat about it \u2014 they feel free. If there's an ache, something is still running.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If the flatness has spread past the relationship \u2014 if most things feel this way, or you've stopped expecting anything to improve anywhere \u2014 that's worth mentioning to a GP or a therapist. It's a separate thing from this decision and it makes the decision much harder to make well.",
+          "If the flatness has spread past the relationship \u2014 if most things feel this way, or you've stopped expecting anything to get better anywhere \u2014 that's worth mentioning to a GP or a therapist. It's a separate thing from this decision, and it makes the decision much harder to make well.",
         ],
       },
     ],
@@ -352,15 +352,15 @@ export const C11_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "What tends to matter more than the problem itself",
         body: [
-          "Whether both people want it fixed. One person working alone can change a great deal and cannot change this.",
+          "Whether both people want it fixed. One person working alone can change a lot, but can't change this.",
           "Whether anything has ever changed before. Not \u201ccould it\u201d \u2014 has it, actually, at any point.",
-          "Whether either of you can still be reached. Contempt and indifference are harder signs than conflict.",
+          "Whether either of you can still be reached. Contempt and not caring are worse signs than fighting.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cIs love enough\u201d is a question with a fairly consistent answer, and it's no \u2014 not on its own. That isn't a verdict on your relationship. It's why the other three questions above are the ones worth asking.",
+          "\u201cIs love enough\u201d is a question with a pretty steady answer, and it's no \u2014 not by itself. That isn't a verdict on your relationship. It's why the other three questions above are the ones worth asking.",
         ],
       },
     ],
@@ -377,14 +377,14 @@ export const C11_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Because it's close, most likely. Decisions that are obvious don't oscillate.",
+          "Because it's close, most likely. Decisions that are obvious don't keep flipping.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "There's also a mechanical explanation. When you're near them and things are good, staying looks right. When you're apart and remembering the hard parts, leaving does. Neither reading is dishonest \u2014 you're sampling different evidence at different moments.",
-          "Which is why \u201cI don't trust my feelings because they change\u201d is understandable and slightly unfair to yourself. The feelings are responding accurately to what's in front of them.",
+          "There's also a simple reason for it. When you're near them and things are good, staying looks right. When you're apart and remembering the hard parts, leaving does. Neither read is a lie \u2014 you're just taking in different evidence at different moments.",
+          "Which is why \u201cI don't trust my feelings because they change\u201d is understandable and a bit unfair to yourself. The feelings are reacting correctly to what's in front of them.",
         ],
       },
       {
@@ -412,22 +412,22 @@ export const C11_LITERATURE: LiteratureEntry[] = [
       },
       {
         kind: "distinction",
-        label: "What the fear obscures",
+        label: "What the fear hides",
         body: [
-          "Not deciding is also a decision, and it's the one you're currently making. It costs time in exactly the way you're trying to avoid.",
+          "Not deciding is also a decision, and it's the one you're making right now. It costs time in exactly the way you're trying to avoid.",
           "There's no risk-free option. Staying carries risk, leaving carries risk, and waiting carries the risk of both plus the waiting.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "What seems to reduce regret isn't getting it right \u2014 nobody can guarantee that. It's having decided on something you can point at, rather than having drifted. People who drift tend to regret the drifting more than the outcome.",
+          "What seems to lower regret isn't getting it right \u2014 nobody can promise that. It's having decided on something you can point at, instead of having drifted. People who drift tend to regret the drifting more than the outcome.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Deciding to stay for another six months and look again is a decision. Deciding to keep not-deciding is not the same thing, though they can look alike from outside.",
+          "Deciding to stay for another six months and look again is a decision. Deciding to keep not-deciding is not the same thing, though they can look alike from the outside.",
         ],
       },
     ],

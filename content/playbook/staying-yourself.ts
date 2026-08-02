@@ -26,6 +26,8 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C22_LITERATURE } from "./staying-yourself-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const STAYING_YOURSELF: PlaybookContent = {
   playbookKey: "staying-yourself",
   playbookVersion: 1,
@@ -34,9 +36,9 @@ export const STAYING_YOURSELF: PlaybookContent = {
   opening: {
     title: "Before anything else",
     body: [
-      "You've built a life that works. The question underneath everything here is whether letting someone in means dismantling any of it.",
-      "We're not going to reassure you that commitment won't change your life. It will, and you'd know if we were pretending otherwise.",
-      "And nothing here will tell you to let go and trust the process. You've heard it. It isn't actionable.",
+      "You've built a life that works. The question under everything here is this: does letting someone in mean taking any of it apart?",
+      "We're not going to tell you that commitment won't change your life. It will. You'd know if we pretended it wouldn't.",
+      "And nothing here will tell you to let go and trust the process. You've heard that already. It doesn't give you anything to actually do.",
     ],
     manifestations: [
       "I don't want to lose my independence.",
@@ -54,7 +56,7 @@ export const STAYING_YOURSELF: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I don't want love to become my whole identity.",
       validationCopy:
-        "That's a boundary, clearly stated, by someone who knows what they want — and most people arrive at a relationship unable to say any of it. We're not going to reframe it as fear of intimacy. There's a version of this material that does, and it's wrong. Nothing here works on your independence.",
+        "That's a boundary, said clearly, by someone who knows what they want. Most people come to a relationship unable to say any of it. We're not going to call it a fear of intimacy. There's a version of this material that does, and it's wrong. Nothing here works on your independence.",
       secondaryExamples: [
         "I want a relationship that adds to my life.",
         "I've worked too hard to give everything up.",
@@ -67,7 +69,7 @@ export const STAYING_YOURSELF: PlaybookContent = {
       pathwayPlayId: "what-is-actually-at-risk",
       headline: "I don't know how to let someone into the life I've built.",
       explanation:
-        "\u201cLosing myself\u201d is very general, and general fears can't be checked. Some things genuinely go. Most don't unless you hand them over.",
+        "\u201cLosing myself\u201d is very general, and a general fear can't be checked. Some things really do go. Most don't, unless you hand them over.",
       secondaryExamples: [
         "I don't know if I have room for someone else.",
         "I'm afraid commitment means losing myself.",
@@ -80,7 +82,7 @@ export const STAYING_YOURSELF: PlaybookContent = {
       pathwayPlayId: "what-the-plan-is-for",
       headline: "I always need a plan.",
       explanation:
-        "Planning has served you. In most areas effort goes in and certainty comes out. Relationships are the one place that return isn't there.",
+        "Planning has worked for you. In most areas, you put effort in and certainty comes out. Relationships are the one place you don't get that back.",
       secondaryExamples: [
         "I like knowing what to expect.",
         "I struggle when things feel uncertain.",
@@ -93,7 +95,7 @@ export const STAYING_YOURSELF: PlaybookContent = {
       pathwayPlayId: "not-mine-to-carry",
       headline: "I feel responsible for making everything work.",
       explanation:
-        "If it's all on you then it's all under your control. That's the appeal, and it's why it's exhausting.",
+        "If it's all on you, then it's all in your control. That's the pull of it. It's also why it wears you out.",
       secondaryExamples: [
         "I struggle when I can't fix things.",
         "I don't like depending on anyone.",
@@ -118,16 +120,16 @@ export const STAYING_YOURSELF: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "\u201cI'm afraid commitment means losing myself\u201d is the sentence. It's also very general, and general fears can't be checked or negotiated.",
-            "Some things genuinely go. Time alone, mostly. Complete say over your evenings and your money and where you live. Those are real and worth grieving rather than denying.",
+            "\u201cI'm afraid commitment means losing myself\u201d is the sentence. It's also very general. A general fear can't be checked or worked out with anyone.",
+            "Some things really do go. Time alone, mostly. Full say over your evenings, your money, and where you live. Those losses are real. They're worth grieving, not denying.",
             "Some things don't go unless you hand them over — your work, your friendships, your opinions, who you are when nobody's watching.",
-            "People defend the whole set at once, which is exhausting, and means the negotiable and the non-negotiable get the same energy.",
+            "People defend the whole set at once. That's exhausting. And it means the things you could bend on get the same energy as the things you won't.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "The point of separating them isn't to shrink the list. It's that a specific fear can be discussed and a general one can't.",
+            "The point of sorting them isn't to shrink the list. It's that a specific fear can be talked about. A general one can't.",
             "\u201cI don't want to lose myself\u201d gets reassurance. \u201cI'm not giving up Thursday nights\u201d gets an actual answer.",
           ],
         },
@@ -135,7 +137,7 @@ export const STAYING_YOURSELF: PlaybookContent = {
           kind: "scenarioSort",
           prompt: "Which of these does a relationship take, and which only goes if you hand it over?",
           situation:
-            "Things are getting serious. Nobody has asked you for anything yet, and you've already been running the calculation.",
+            "Things are getting serious. Nobody has asked you for anything yet. But you've already been running the numbers.",
           buckets: [
             { id: "goes", label: "Genuinely changes" },
             { id: "kept", label: "Only goes if I hand it over" },
@@ -153,52 +155,52 @@ export const STAYING_YOURSELF: PlaybookContent = {
               text: "My friendships",
               correctBucket: "kept",
               correction:
-                "These usually go by a series of small accommodations, not because commitment took them.",
+                "These usually slip away through lots of small trade-offs, not because commitment took them.",
             },
             {
               id: "sort-c22-decide-alone",
               text: "Deciding big things without consulting anyone",
               correctBucket: "goes",
-              correction: "That's the arrangement, not a risk within it.",
+              correction: "That's the deal itself, not a risk inside it.",
             },
             {
               id: "sort-c22-work",
               text: "My work and how much of me it gets",
               correctBucket: "kept",
-              correction: "Negotiable, and only lost if you trade it away.",
+              correction: "You can bend on this, but you only lose it if you trade it away.",
             },
             {
               id: "sort-c22-saturday",
               text: "What I do with a free Saturday",
               correctBucket: "kept",
               correction:
-                "Some of it gets shared. Losing it entirely would be something you agreed to.",
+                "Some of it gets shared. Losing all of it would be something you agreed to.",
             },
             {
               id: "sort-c22-opinions",
               text: "My opinions and how freely I say them",
               correctBucket: "kept",
               correction:
-                "Nothing about commitment removes these. If they go, that's worth noticing early.",
+                "Commitment doesn't take these. If they start to go, that's worth noticing early.",
             },
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Now your own list. Be specific — a general fear can't be discussed with anyone.",
+            "Now your own list. Be specific. A general fear can't be talked about with anyone.",
           fields: [
             {
               id: "non-negotiable",
               label: "What are you genuinely not giving up?",
               input: "text",
-              placeholder: "Two or three things. The load-bearing ones.",
+              placeholder: "Two or three things. The ones that really hold your life up.",
             },
             {
               id: "already-changing",
               label: "What's already changing, or would have to?",
               input: "text",
-              placeholder: "The honest version, including the bits you'd rather not.",
+              placeholder: "The honest version, including the parts you'd rather not.",
             },
           ],
         },
@@ -209,7 +211,7 @@ export const STAYING_YOURSELF: PlaybookContent = {
           enoughLabel: "Yes — it's been asked for",
           needMoreLabel: "No — I'm defending it in advance",
           needMoreIntro:
-            "Worth knowing. A boundary you'd defend against an actual encroachment is one thing. One defended against someone who hasn't asked for anything is doing a different job.",
+            "Worth knowing. A boundary you defend when someone is actually pushing on it is one thing. A boundary you defend when nobody has asked for anything is doing a different job.",
           needToKnowLabel: "What would tell me it was actually at risk",
           observableLabel: "Something they'd have to actually do or say",
         },
@@ -260,7 +262,7 @@ export const STAYING_YOURSELF: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "What the Plan Is For",
-      positioning: "For the planning that isn't returning anything.",
+      positioning: "For the planning that isn't giving you anything back.",
       recognitionGate: {
         prompt: "Do you find yourself planning a relationship the way you'd plan anything else?",
       },
@@ -268,16 +270,16 @@ export const STAYING_YOURSELF: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Planning isn't a flaw and it has almost certainly served you. Most people who describe themselves this way have built something with it.",
-            "In most areas the return is real: effort in, certainty out. That relationship is why the habit exists and why it's hard to switch off.",
-            "Relationships are the one place that return isn't there. Another person is involved and they aren't a variable you hold. So the effort goes in and nothing comes back — and the natural response is to plan harder.",
+            "Planning isn't a flaw, and it has almost certainly worked for you. Most people who describe themselves this way have built something with it.",
+            "In most areas it pays off: effort in, certainty out. That link is why the habit exists, and why it's hard to switch off.",
+            "Relationships are the one place you don't get that back. Another person is involved, and you don't control them. So the effort goes in and nothing comes back. And the natural response is to plan harder.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "That's the loop worth seeing. Not that planning is bad. That in this one area the usual return isn't available, and the effort keeps escalating because it feels like it should be.",
-            "Bracing is the same loop in a different shape. \u201cI prepare for disappointment before it happens\u201d buys a small reduction in shock, paid for continuously, against a cost that arrives whether or not the thing does.",
+            "That's the loop worth seeing. Not that planning is bad. It's that in this one area, the usual payoff isn't there, and the effort keeps growing because it feels like it should work.",
+            "Bracing is the same loop in a different shape. \u201cI prepare for disappointment before it happens\u201d buys a small drop in shock. You pay for it the whole time. And the cost lands whether or not the bad thing does.",
             "And bracing is visible. Someone being braced against usually knows, even if neither of you names it.",
           ],
         },
@@ -285,7 +287,7 @@ export const STAYING_YOURSELF: PlaybookContent = {
           kind: "scenarioSort",
           prompt: "Which of these can planning actually help with?",
           situation:
-            "You've been together four months. It's going well. You've been mentally running the next two years most evenings.",
+            "You've been together four months. It's going well. Most evenings, you've been running the next two years in your head.",
           buckets: [
             { id: "plannable", label: "Planning helps" },
             { id: "not", label: "Planning does nothing" },
@@ -302,20 +304,20 @@ export const STAYING_YOURSELF: PlaybookContent = {
               text: "Whether they'll still feel this way in a year",
               correctBucket: "not",
               correction:
-                "Not a variable you hold. Effort here returns nothing.",
+                "You don't control this. Effort here gives nothing back.",
             },
             {
               id: "sort-c22-my-limits",
               text: "What I'll do if a line of mine gets crossed",
               correctBucket: "plannable",
-              correction: "Entirely yours, and worth having decided in advance.",
+              correction: "Entirely yours, and worth deciding ahead of time.",
             },
             {
               id: "sort-c22-will-it-last",
               text: "Whether this lasts",
               correctBucket: "not",
               correction:
-                "The big one, and the least plannable. Effort here is where most of it goes.",
+                "The big one, and the least plannable. This is where most of your effort goes.",
             },
             {
               id: "sort-c22-my-time",
@@ -328,13 +330,13 @@ export const STAYING_YOURSELF: PlaybookContent = {
               text: "Whether they turn out to be who they seem",
               correctBucket: "not",
               correction:
-                "Observable over time, but not plannable. Watching isn't planning.",
+                "You can watch it over time, but you can't plan it. Watching isn't planning.",
             },
           ],
         },
         {
           kind: "ownTurn",
-          intro: "Where is your planning going at the moment?",
+          intro: "Where is your planning going right now?",
           fields: [
             {
               id: "planning-on",
@@ -344,7 +346,7 @@ export const STAYING_YOURSELF: PlaybookContent = {
             },
             {
               id: "returns",
-              label: "Honestly — has any of it produced an answer?",
+              label: "Honestly — has any of it given you an answer?",
               input: "chips",
               suggestions: [
                 "Yes, I decided something",
@@ -367,7 +369,7 @@ export const STAYING_YOURSELF: PlaybookContent = {
             "Say it out loud to them",
           ],
           controlCheck:
-            "I'm not trying to stop planning \u2014 I'm moving the effort to where it actually returns something.",
+            "I'm not trying to stop planning. I'm moving the effort to where it actually gives something back.",
         },
         {
           kind: "output",
@@ -387,15 +389,15 @@ export const STAYING_YOURSELF: PlaybookContent = {
       ],
       portable: [
         "In most areas effort buys certainty. Not this one.",
-        "Bracing is paid for continuously whether or not the thing happens.",
+        "You pay for bracing the whole time, whether or not the thing happens.",
         "Is this mine to decide, or am I running it again?",
       ],
       myPlaysTemplate: {
         when: "When I'm planning a relationship the way I'd plan anything else",
         move: "Separate what planning can settle from what it can't, and move the effort",
-        lookingFor: "Whether the thing I'm running has ever produced an answer",
+        lookingFor: "Whether the thing I'm running has ever given me an answer",
         watchOut: "Treating this as an instruction to stop planning — it isn't",
-        remember: "Planning built what I have. It just doesn't return anything here.",
+        remember: "Planning built what I have. It just doesn't give anything back here.",
       },
       fidelity: {
         correct:
@@ -418,39 +420,39 @@ export const STAYING_YOURSELF: PlaybookContent = {
       name: "Not Mine to Carry",
       positioning: "For when whether it works feels like your job.",
       recognitionGate: {
-        prompt: "Do you feel responsible for whether the relationship succeeds?",
+        prompt: "Do you feel responsible for whether the relationship works out?",
       },
       screens: [
         {
           kind: "shift",
           body: [
             "\u201cI feel responsible for making everything work.\u201d \u201cI struggle when I can't fix things.\u201d \u201cI don't like depending on anyone.\u201d",
-            "These three arrive together often enough to be one thing. If it's all on you, then it's all under your control — and that's the appeal, even though it's exhausting.",
-            "Depending on someone means their choices affect your outcome. That's the actual objection, and it isn't irrational. It's also the definition of the thing you're considering.",
+            "These three show up together often enough to be one thing. If it's all on you, then it's all in your control. That's the pull of it, even though it wears you out.",
+            "Depending on someone means their choices affect how things turn out for you. That's the real objection, and it makes sense. It's also the very thing a relationship is.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Yours: what you contribute, what you're honest about, whether you show up, what you'll accept.",
+            "Yours: what you put in, what you're honest about, whether you show up, what you'll accept.",
             "Not yours: whether they do the same. Whether it lasts. Whether it turns out to have been the right call.",
-            "Carrying the second set doesn't make it more likely to go well. It makes you tired — and it quietly relieves the other person of things that were theirs.",
+            "Carrying the second set doesn't make it more likely to go well. It just makes you tired. And it quietly lets the other person off the hook for things that were theirs.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
             "Setting something down isn't the same as trusting that it'll be fine.",
-            "You can put it down because carrying it wasn't doing anything, while still thinking it might go badly. Those aren't in conflict.",
+            "You can put it down because carrying it wasn't doing anything, and still think it might go badly. Both of those can be true at once.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "Sort what you're currently holding.",
+          intro: "Sort out what you're carrying right now.",
           fields: [
             {
               id: "carrying",
-              label: "What are you holding that isn't yours?",
+              label: "What are you carrying that isn't yours?",
               input: "chips",
               suggestions: [
                 "Whether they're happy",
@@ -464,18 +466,18 @@ export const STAYING_YOURSELF: PlaybookContent = {
               id: "actually-mine",
               label: "And what's genuinely yours here?",
               input: "text",
-              placeholder: "What you contribute, what you're honest about, what you'll accept.",
+              placeholder: "What you put in, what you're honest about, what you'll accept.",
             },
           ],
         },
         {
           kind: "sufficiency",
           prompt:
-            "Has carrying the first list ever changed the outcome of anything on it?",
+            "Has carrying the first list ever changed how anything on it turned out?",
           enoughLabel: "Yes, sometimes",
           needMoreLabel: "No — it just costs me",
           needMoreIntro:
-            "That's usually the answer, and it's the argument for setting it down. Not trust. Arithmetic.",
+            "That's usually the answer, and it's the reason to set it down. Not trust. Just math.",
           needToKnowLabel: "What I'd set down first",
           observableLabel: "Something I'd notice myself doing differently",
         },
@@ -489,23 +491,23 @@ export const STAYING_YOURSELF: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Depending on someone means their choices affect me. That's the arrangement.",
+            "Depending on someone means their choices affect me. That's the deal.",
             "Carrying their half doesn't make it more likely to go well.",
             "I can put it down and still think it might go badly.",
           ],
         },
       ],
       portable: [
-        "Depending on someone means their choices affect me. That's the arrangement.",
+        "Depending on someone means their choices affect me. That's the deal.",
         "Carrying their half doesn't make it more likely to go well.",
         "I can put it down and still think it might go badly.",
       ],
       myPlaysTemplate: {
         when: "When whether the relationship works feels like my responsibility",
         move: "Separate what's genuinely mine from what I've taken on",
-        lookingFor: "Whether carrying it has ever changed an outcome",
+        lookingFor: "Whether carrying it has ever changed how something turned out",
         watchOut: "Reading this as an instruction to trust them",
-        remember: "Setting it down is arithmetic, not optimism.",
+        remember: "Setting it down is math, not optimism.",
       },
       fidelity: {
         correct:
@@ -530,16 +532,16 @@ export const STAYING_YOURSELF: PlaybookContent = {
       playId: "what-is-actually-at-risk",
       title: "Say one non-negotiable out loud",
       instruction:
-        "Tell them one specific thing you're not giving up. Not as a warning — as information about how you work.",
+        "Tell them one specific thing you're not giving up. Not as a warning. Just as information about how you work.",
       linkToOperation: "Stating a specific boundary rather than a general fear",
       attemptMeaning:
         "You said it. How they take it is separate, and it's also useful information.",
       suitability:
-        "If nothing has actually been asked for yet, this is still worth doing — it's easier to say before it's contested.",
+        "If nothing has actually been asked for yet, this is still worth doing. It's easier to say before it's pushed on.",
       progression: [
         {
           id: "rung-c22-at-risk-2",
-          instruction: "Ask them what's on their equivalent list.",
+          instruction: "Ask them what's on their version of the list.",
         },
       ],
     },
@@ -552,9 +554,9 @@ export const STAYING_YOURSELF: PlaybookContent = {
         "Next time you catch yourself running the unplannable thing, note it and move to something that's yours to decide. Once is enough.",
       linkToOperation: "Redirecting planning effort toward decidable questions",
       attemptMeaning:
-        "You noticed and moved. The loop coming back isn't failure — it will.",
+        "You noticed and moved. The loop will come back. That isn't failure.",
       suitability:
-        "If the redirection becomes its own plan, that's worth noticing rather than perfecting.",
+        "If moving the effort turns into its own plan, that's worth noticing rather than perfecting.",
       progression: [
         {
           id: "rung-c22-plan-2",
@@ -568,12 +570,12 @@ export const STAYING_YOURSELF: PlaybookContent = {
       playId: "not-mine-to-carry",
       title: "Set one thing down for a week",
       instruction:
-        "Pick one thing from the not-yours list and stop carrying it for a week. Note what actually changed — in the situation, and in you.",
+        "Pick one thing from the not-yours list and stop carrying it for a week. Note what actually changed. In the situation, and in you.",
       linkToOperation: "Releasing a responsibility that belongs to the other person",
       attemptMeaning:
         "You set it down. Picking it back up is information, not failure.",
       suitability:
-        "If setting it down means contributing less rather than worrying less, that's a different thing and worth catching.",
+        "If setting it down means you put in less instead of worrying less, that's a different thing and worth catching.",
       progression: [
         {
           id: "rung-c22-carry-2",

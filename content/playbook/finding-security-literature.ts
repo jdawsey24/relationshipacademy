@@ -103,7 +103,7 @@ export const C6_LITERATURE: LiteratureEntry[] = [
         label: "Why the shame is worth putting down, practically",
         body: [
           "Hidden needs get asked for sideways. If it's embarrassing to say \u201cI'd like to know where we are\u201d, you'll find another way to find out — checking, rereading, testing, hinting.",
-          "Sideways asking produces worse answers. And a worse answer needs topping up sooner, which means asking again, which is more embarrassing. It compounds.",
+          "Sideways asking gives you worse answers. And a worse answer needs topping up sooner, which means asking again, which is more embarrassing. It builds on itself.",
         ],
       },
       {
@@ -172,7 +172,7 @@ export const C6_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It isn't a contradiction. If you're braced for bad news, anything good has to get past the brace. And the brace is there for a reason — it's cheaper to discount a compliment than to accept it and be wrong.",
+          "It isn't a contradiction. If you're braced for bad news, anything good has to get past the brace. And the brace is there for a reason — it's cheaper to brush off a compliment than to accept it and be wrong.",
         ],
       },
       {
@@ -211,8 +211,8 @@ export const C6_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Analysis feels like it's making progress. You're working on the problem, turning it over, considering angles. But there's no new data arriving, so nothing can actually be resolved — you're rearranging the same six words.",
-          "What it does produce is more possible meanings, which is the opposite of what you were after.",
+          "Going over it feels like it's making progress. You're working on the problem, turning it over, looking at every angle. But there's no new information coming in, so nothing can actually get settled — you're rearranging the same six words.",
+          "All it makes is more possible meanings, which is the opposite of what you were after.",
         ],
       },
       {
@@ -251,7 +251,7 @@ export const C6_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "Which produces a second problem on top of the first",
         body: [
-          "The monitoring is meant to make you feel safer. Mostly it doesn't \u2014 it generates more to analyse.",
+          "The watching is meant to make you feel safer. Mostly it doesn't \u2014 it makes more to go over.",
           "And it leaves less of you for the rest of your life, which tends to make the relationship carry more weight, which raises the stakes, which makes the monitoring feel more necessary.",
         ],
       },
@@ -318,13 +318,13 @@ export const C6_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "Their ex. The people they follow. Everyone at the party. Other people's relationships, as displayed.",
-          "The comparison always comes out the same way, and there's a structural reason for that: you're comparing your inside to their outside, and there's no version of that where you win.",
+          "The comparison always comes out the same way, and there's a built-in reason for that: you're comparing your inside to their outside, and there's no version of that where you win.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "It's also mostly unfalsifiable. You can't find out whether you compare favourably to their ex, because there's no test and no result. So the question stays open, and open questions in this cluster don't stay quiet.",
+          "You also mostly can't prove it either way. You can't find out whether you compare well to their ex, because there's no test and no result. So the question stays open, and open questions like this don't stay quiet.",
         ],
       },
       {
@@ -338,7 +338,7 @@ export const C6_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "\u201cI hate how dating has become so public\u201d is a fair reading of the environment, not a symptom. The comparison is easier to make than it used to be, and that isn't your imagination.",
+          "\u201cI hate how dating has become so public\u201d is a fair take on the world around you, not a symptom. The comparison is easier to make than it used to be, and that isn't your imagination.",
         ],
       },
     ],
@@ -356,13 +356,13 @@ export const C6_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cWe call each other exclusive, but I still don't feel secure.\u201d \u201cI'm more anxious now than I was before.\u201d",
-          "This one is worth knowing about in advance, because it can be genuinely disorienting when it happens.",
+          "This one is worth knowing about ahead of time, because it can be really confusing when it happens.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The reasonable expectation is that commitment settles the question. Sometimes it does the reverse: now there's more to lose, and the uncertainty that used to be about whether they liked you becomes uncertainty about whether it will last.",
+          "You'd reasonably expect commitment to settle the question. Sometimes it does the opposite: now there's more to lose, and the not-knowing that used to be about whether they liked you becomes not-knowing about whether it will last.",
           "The label changed. The not-knowing didn't.",
         ],
       },
@@ -393,8 +393,8 @@ export const C6_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "Two readings, and the second is more useful",
         body: [
-          "One says something is wrong with how you attach. We can't verify that and we're not going to assert it.",
-          "The other says something about arithmetic: a relationship at this intensity takes nearly everything you've got, so there isn't much left over. Not a flaw \u2014 a budget.",
+          "One says something is wrong with how you attach. We can't prove that, and we're not going to claim it.",
+          "The other is about arithmetic: a relationship this intense takes nearly everything you've got, so there isn't much left over. Not a flaw \u2014 a budget.",
         ],
       },
       {

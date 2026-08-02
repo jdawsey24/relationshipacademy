@@ -38,22 +38,22 @@ export const C14_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "You already know what you do. That's unusual — most people arrive at something like this unsure what the pattern even is.",
+          "You already know what you do. That's unusual — most people come to something like this unsure what their pattern even is.",
           "You can list it: saying yes when you meant no, keeping the peace when you're unhappy, apologising too much, doing everything, not asking for what you need.",
         ],
       },
       {
         kind: "distinction",
-        label: "Which means the problem isn't insight",
+        label: "Which means the problem isn't understanding",
         body: [
           "You're not going to learn anything here about yourself that you didn't know this morning.",
-          "The gap is between knowing and the half-second where the yes comes out anyway. That's where the work is, and it's much smaller and more specific than \u201clearn to set boundaries\u201d.",
+          "The gap is between knowing and the half-second where the yes comes out anyway. That's where the work is. It's much smaller and more exact than \u201clearn to set boundaries\u201d.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "This isn't about becoming less generous. Generosity isn't the problem, and people who try to fix this by becoming harder mostly end up unhappy and still doing everything.",
+          "This isn't about becoming less generous. Generosity isn't the problem. People who try to fix this by getting harder mostly end up unhappy and still doing everything.",
         ],
       },
     ],
@@ -71,14 +71,14 @@ export const C14_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "The yes doesn't come from a decision. That's the thing worth knowing.",
-          "Someone asks, and before any weighing has happened, the word is already out. Then you spend the next three days managing the consequences of an answer you never gave.",
+          "Someone asks, and before you've weighed anything, the word is already out. Then you spend the next three days dealing with the results of an answer you never gave.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "It's fast because it's been practised. Thousands of times, and mostly it worked \u2014 it kept things smooth, it avoided the difficult face, it meant nobody was annoyed with you.",
-          "Something that efficient doesn't get removed. But it can be slowed down.",
+          "It's fast because you've done it. Thousands of times, and mostly it worked \u2014 it kept things smooth, it avoided the difficult face, it meant nobody was annoyed with you.",
+          "Something that works that well doesn't just go away. But it can be slowed down.",
         ],
       },
       {
@@ -86,7 +86,7 @@ export const C14_LITERATURE: LiteratureEntry[] = [
         label: "What slowing it looks like",
         body: [
           "Not saying no. Just not saying yes yet.",
-          "\u201cLet me check and come back to you\u201d buys you the weighing that didn't happen. It's the whole intervention, and it works because it doesn't require you to refuse anyone in the moment.",
+          "\u201cLet me check and come back to you\u201d buys you the thinking time that didn't happen. It's the whole tool, and it works because you don't have to say no to anyone right then.",
         ],
       },
       {
@@ -110,7 +110,7 @@ export const C14_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI feel guilty setting boundaries.\u201d",
-          "You probably will. That's worth saying plainly, because most advice implies that if you do it right the guilt won't come, and then when it does you conclude you've done something wrong.",
+          "You probably will. That's worth saying plainly, because most advice hints that if you do it right the guilt won't come. Then when it does, you decide you've done something wrong.",
         ],
       },
       {
@@ -118,20 +118,20 @@ export const C14_LITERATURE: LiteratureEntry[] = [
         label: "Two things guilt can mean",
         body: [
           "You've done something wrong. Sometimes true, and worth listening to.",
-          "You've done something unfamiliar. Also produces guilt, at similar intensity, and means nothing at all about whether it was right.",
+          "You've done something new. That also brings guilt, about as strong, and it means nothing at all about whether it was right.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "For most people here, it's the second one. Declining something feels like a violation because it's never been done, not because it harmed anybody.",
+          "For most people here, it's the second one. Saying no feels like crossing a line because it's never been done, not because it hurt anybody.",
           "The test isn't how bad you feel. It's what actually happened to the other person \u2014 and usually the answer is \u201cvery little\u201d.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "The guilt tends to fade with repetition rather than with insight. Knowing this won't stop it. Doing it a few times sometimes does.",
+          "The guilt tends to fade with practice rather than with understanding. Knowing this won't stop it. Doing it a few times sometimes does.",
         ],
       },
     ],
@@ -148,8 +148,8 @@ export const C14_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "People imagine a boundary as a flat refusal, delivered calmly, to someone who takes it well.",
-          "That's a high bar, and if it's the only version available you'll keep choosing the yes.",
+          "People imagine a boundary as a flat no, said calmly, to someone who takes it well.",
+          "That's a high bar. If it's the only version there is, you'll keep choosing the yes.",
         ],
       },
       {
@@ -166,8 +166,8 @@ export const C14_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "None of those are a no. All of them are more honest than the automatic yes, and every one of them is available to someone who can't yet manage a flat refusal.",
-          "The point isn't to refuse more. It's to stop the answer being decided before you've had a say in it.",
+          "None of those are a no. All of them are more honest than the automatic yes, and every one is within reach for someone who can't yet manage a flat no.",
+          "The point isn't to say no more. It's to stop the answer being decided before you've had a say in it.",
         ],
       },
     ],
@@ -185,7 +185,7 @@ export const C14_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI give too much.\u201d \u201cI always end up doing everything.\u201d \u201cI stay longer than I should.\u201d \u201cI ignore my own needs.\u201d",
-          "Each individual yes is small and reasonable. That's why this accumulates without anyone noticing, including you.",
+          "Each single yes is small and fair. That's why this builds up without anyone noticing, including you.",
         ],
       },
       {
@@ -193,7 +193,7 @@ export const C14_LITERATURE: LiteratureEntry[] = [
         label: "Two costs, and the second is the one people miss",
         body: [
           "The obvious one: time, energy, the thing you didn't do instead.",
-          "The other one: nobody around you knows what you actually think. You've been agreeable for so long that your preferences have stopped being visible \u2014 including to people who would happily have accommodated them.",
+          "The other one: nobody around you knows what you actually think. You've gone along with things for so long that what you want has stopped being visible \u2014 including to people who would gladly have made room for it.",
         ],
       },
       {
@@ -205,7 +205,7 @@ export const C14_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "This isn't a case for keeping score. It's a case for being known \u2014 which is difficult when your only setting is agreeable.",
+          "This isn't a case for keeping score. It's a case for being known \u2014 which is hard when your only setting is agreeable.",
         ],
       },
     ],
@@ -223,21 +223,21 @@ export const C14_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI don't ask for what I need.\u201d \u201cI don't know how to advocate for myself.\u201d \u201cI'm afraid my needs are too much.\u201d",
-          "Saying no and asking for something are the same muscle. Both require believing that what you want counts enough to put into the room.",
+          "Saying no and asking for something use the same muscle. Both need you to believe that what you want counts enough to put into the room.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Most people in this position find the asking harder than the refusing. A no can be framed as practical \u2014 I'm busy, I can't this week. A request is naked. It says: I want something, and I'm telling you.",
+          "Most people in this spot find asking harder than saying no. A no can sound practical \u2014 I'm busy, I can't this week. A request is bare. It says: I want something, and I'm telling you.",
         ],
       },
       {
         kind: "distinction",
         label: "Worth noticing",
         body: [
-          "\u201cMy needs are too much\u201d is almost never tested. It's a prediction, held confidently, about an experiment nobody ran.",
-          "The people around you have mostly never been given the chance to find your needs reasonable, because they've never heard one.",
+          "\u201cMy needs are too much\u201d is almost never tested. It's a prediction, held firmly, about an experiment nobody ran.",
+          "The people around you have mostly never had the chance to find your needs fair, because they've never heard one.",
         ],
       },
     ],
@@ -261,7 +261,7 @@ export const C14_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "We're not going to explain why you're like this. There are confident explanations available \u2014 about your family, your history, what kind of person you became \u2014 and we don't think any of them are established enough to hand you as fact.",
+          "We're not going to explain why you're like this. There are confident explanations out there \u2014 about your family, your history, what kind of person you became \u2014 and we don't think any of them are solid enough to hand you as fact.",
         ],
       },
       {
@@ -275,7 +275,7 @@ export const C14_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It may also be true that some people take more when it's freely given. That's a fact about them, not a verdict on you \u2014 and it changes what you'd do about it.",
+          "It may also be true that some people take more when it's freely given. That's a fact about them, not a judgment on you \u2014 and it changes what you'd do about it.",
         ],
       },
     ],
@@ -293,15 +293,15 @@ export const C14_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It's the question that keeps this in place, so it's worth answering properly rather than reassuringly.",
+          "It's the question that keeps this in place, so it's worth answering honestly rather than just to make you feel better.",
         ],
       },
       {
         kind: "distinction",
         label: "The honest position",
         body: [
-          "Saying no to some things means someone else occasionally doesn't get what they wanted. That's real, and pretending otherwise would be dishonest.",
-          "But you're currently at every-time. Moving from every-time to most-of-the-time isn't selfishness. It's a different point on the same scale, and it's a long way from the other end.",
+          "Saying no to some things means someone else sometimes doesn't get what they wanted. That's real, and pretending otherwise would be dishonest.",
+          "But right now you're at every-time. Moving from every-time to most-of-the-time isn't selfish. It's a different point on the same scale, and it's a long way from the other end.",
         ],
       },
       {
@@ -324,7 +324,7 @@ export const C14_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Almost nobody who asks this has needs anywhere near the top of the range. The people who genuinely ask a lot of others don't tend to wonder about it.",
+          "Almost nobody who asks this has needs anywhere near the top of the range. The people who really do ask a lot of others don't tend to wonder about it.",
         ],
       },
       {
@@ -332,13 +332,13 @@ export const C14_LITERATURE: LiteratureEntry[] = [
         label: "A more useful question",
         body: [
           "Not: are my needs too much in general? There's no scale.",
-          "But: have I actually said one, out loud, recently? Most people here haven't, and are holding a confident conclusion about an experiment they never ran.",
+          "But: have I actually said one, out loud, recently? Most people here haven't, and are holding a firm conclusion about an experiment they never ran.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If someone in your life genuinely responds badly to an ordinary request, that's information about them. It's the kind that only becomes available once you've asked.",
+          "If someone in your life really does respond badly to an ordinary request, that's information about them. It's the kind you can only get once you've asked.",
         ],
       },
     ],

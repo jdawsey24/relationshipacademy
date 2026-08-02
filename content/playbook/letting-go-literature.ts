@@ -56,22 +56,22 @@ export const C12_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It's over and you're still in it. Not by choice \u2014 you've probably tried a good deal not to be.",
-          "The thinking doesn't stop, the checking doesn't help, and the question underneath most of it is some version of: why wasn't that enough, and what did I miss.",
+          "It's over and you're still in it. Not by choice \u2014 you've probably tried hard not to be.",
+          "The thinking doesn't stop. The checking doesn't help. And the question under most of it is some version of: why wasn't that enough, and what did I miss?",
         ],
       },
       {
         kind: "distinction",
         label: "Two things happening at once",
         body: [
-          "Grief, which doesn't respond to reasoning and isn't supposed to. It takes as long as it takes.",
-          "A search \u2014 for an explanation, a moment you could have changed, a reason. That one feels productive and mostly isn't, and it's the part with something to work on.",
+          "Grief, which doesn't listen to reasoning, and isn't supposed to. It takes as long as it takes.",
+          "A search \u2014 for an explanation, a moment you could have changed, a reason. That one feels useful, and mostly isn't. It's also the part with something to work on.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Nothing here will tell you how long this should take, or that it gets easier, or that you're behind. Those claims get made a great deal and none of them are ours to make.",
+          "Nothing here will tell you how long this should take, or that it gets easier, or that you're behind. Those claims get made a lot, and none of them are ours to make.",
         ],
       },
       {
@@ -101,22 +101,22 @@ export const C12_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It's also doing something specific. Contact \u2014 even one-sided, even through a screen \u2014 keeps the relationship in a present tense. Not as a mistake you're making, but mechanically: something that's still being updated isn't over in the way something finished is.",
+          "It's also doing something specific. Contact keeps the relationship in the present tense \u2014 even one-sided, even through a screen. Not as a mistake you're making, but automatically: something that's still being updated isn't over the way something finished is.",
         ],
       },
       {
         kind: "distinction",
-        label: "What each check actually delivers",
+        label: "What each check actually gives you",
         body: [
-          "A few seconds of contact, which is genuinely relieving.",
-          "New information to process, which restarts the thinking.",
-          "And no resolution, because nothing you could see would settle it. If they look happy, that hurts. If they look unhappy, that's hope, which hurts differently.",
+          "A few seconds of contact, which really does bring relief.",
+          "New information to work through, which starts the thinking up again.",
+          "And nothing settled, because nothing you could see would settle it. If they look happy, that hurts. If they look unhappy, that's hope, which hurts in a different way.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here tells you to stop as an act of will \u2014 that mostly produces a few good days and a worse relapse. What's worth knowing is the mechanism, so if you do stop, you know what you're buying.",
+          "Nothing here tells you to just stop by force of will \u2014 that mostly gives you a few good days and then a worse slip back. What's worth knowing is how it works, so if you do stop, you know what you're buying.",
         ],
       },
     ],
@@ -134,13 +134,13 @@ export const C12_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI replay every conversation.\u201d \u201cI keep replaying everything.\u201d \u201cI wish I could stop thinking about them.\u201d",
-          "The replaying is a search. It's looking for the moment \u2014 the thing you said, the thing you missed, the point at which it could have gone differently.",
+          "The replaying is a search. It's looking for the moment \u2014 the thing you said, the thing you missed, the point where it could have gone differently.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "It feels like work because it is work. It's just work on a problem that doesn't have the solution it's looking for. Relationships rarely turn on a single moment, and even when one exists, finding it doesn't undo it.",
+          "It feels like work because it is work. It's just work on a problem that doesn't have the answer it's looking for. Relationships rarely turn on a single moment. And even when one exists, finding it doesn't undo it.",
         ],
       },
       {
@@ -148,13 +148,13 @@ export const C12_LITERATURE: LiteratureEntry[] = [
         label: "What it's actually trying to do",
         body: [
           "Make it make sense. If there's a reason, then the world is orderly and you could avoid it next time.",
-          "That's a reasonable thing to want. It's also why the search doesn't end \u2014 no explanation is ever quite complete enough to deliver it.",
+          "That's a reasonable thing to want. It's also why the search doesn't end \u2014 no explanation is ever quite complete enough to give it to you.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Some of what you find will be true. \u201cI ignored what I already knew\u201d is often accurate, and it belongs in the account. The problem isn't that the search finds nothing \u2014 it's that it never finishes.",
+          "Some of what you find will be true. \u201cI ignored what I already knew\u201d is often true, and it belongs in the account. The problem isn't that the search finds nothing \u2014 it's that it never finishes.",
         ],
       },
     ],
@@ -172,29 +172,29 @@ export const C12_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cWhy wasn't I enough?\u201d \u201cI keep blaming myself.\u201d",
-          "The first one is a question with a false premise in it. Relationships don't end because someone was insufficient \u2014 they end for reasons that mostly aren't about anyone's total worth.",
+          "The first one is a question with a false idea buried in it. Relationships don't end because someone wasn't enough \u2014 they end for reasons that mostly aren't about anyone's total worth.",
         ],
       },
       {
         kind: "distinction",
-        label: "Three categories, and most people collapse them into one",
+        label: "Three kinds, and most people squash them into one",
         body: [
-          "Yours. Things you did or didn't do, which you could have chosen differently.",
-          "Theirs. Their choices, their limits, their reasons \u2014 including ones you never had access to.",
-          "Neither's. Timing, circumstance, incompatibility that nobody caused.",
+          "Yours. Things you did or didn't do, that you could have chosen differently.",
+          "Theirs. Their choices, their limits, their reasons \u2014 including ones you never got to see.",
+          "Neither's. Timing, circumstance, a mismatch that nobody caused.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Taking all three is common and it isn't humility. It's a way of keeping some control \u2014 if it was all yours, then it was preventable, and next time you could prevent it.",
-          "Which is why separating them can feel like a loss rather than a relief.",
+          "Taking all three is common, and it isn't humility. It's a way of keeping some control \u2014 if it was all yours, then it could have been stopped, and next time you could stop it.",
+          "That's why pulling them apart can feel like a loss instead of a relief.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Separating them isn't the same as taking none. There's usually something genuinely yours in the account, and finding it is useful \u2014 it's the only part you could do anything with.",
+          "Pulling them apart isn't the same as taking none. There's usually something truly yours in the account, and finding it is useful \u2014 it's the only part you could do anything with.",
         ],
       },
     ],
@@ -212,27 +212,27 @@ export const C12_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI ignored what I already knew.\u201d \u201cI regret not trusting myself.\u201d \u201cI wish I had left sooner.\u201d \u201cI knew better.\u201d",
-          "This is the sharpest kind of regret because it isn't about ignorance. You're not sorry you didn't know \u2014 you're sorry you knew and stayed anyway.",
+          "This is the sharpest kind of regret, because it isn't about not knowing. You're not sorry you didn't know \u2014 you're sorry you knew and stayed anyway.",
         ],
       },
       {
         kind: "distinction",
         label: "What \u201cknowing\u201d was actually like at the time",
         body: [
-          "In hindsight it feels like a clear signal you overrode.",
-          "At the time it was almost certainly a quiet uncertainty competing with love, hope, sunk cost, and someone you cared about telling you it was fine.",
+          "Looking back, it feels like a clear signal you pushed past.",
+          "At the time it was almost certainly a quiet doubt, up against love, hope, all you'd already put in, and someone you cared about telling you it was fine.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "That's not an excuse and it isn't meant to dissolve the regret. It's a correction to the picture. You didn't ignore a klaxon. You weighed something ambiguous and got it wrong, which is a different and much more forgivable thing.",
+          "That's not an excuse, and it isn't meant to make the regret go away. It's a fix to the picture. You didn't ignore a blaring alarm. You weighed something unclear and got it wrong — which is a different, and much more forgivable, thing.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI regret the person I became in that relationship\u201d is worth separating from the rest. That's usually about who you were shaped into rather than a decision you made, and it responds to different things.",
+          "\u201cI regret the person I became in that relationship\u201d is worth keeping separate from the rest. That's usually about who you were shaped into, rather than a choice you made, and it responds to different things.",
         ],
       },
     ],
@@ -250,27 +250,27 @@ export const C12_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI question whether any of it was real.\u201d \u201cI don't know how to trust my memories.\u201d",
-          "This tends to arrive after the ending has recast everything \u2014 once you know how it finished, the good parts start to look like evidence of something you missed.",
+          "This tends to show up after the ending has changed how you see it all \u2014 once you know how it finished, the good parts start to look like proof of something you missed.",
         ],
       },
       {
         kind: "distinction",
-        label: "An ending doesn't retroactively unmake what happened",
+        label: "An ending doesn't reach back and undo what happened",
         body: [
-          "Something can be genuinely good and still end. Those aren't in tension, though they feel like it.",
-          "And someone can have meant it at the time and stopped meaning it later. That's more common than deception, and it's harder to hold because it can't be filed anywhere.",
+          "Something can be truly good and still end. Those two things don't fight each other, even though it feels like they do.",
+          "And someone can have meant it at the time and stopped meaning it later. That's more common than being lied to, and it's harder to hold because it doesn't fit neatly anywhere.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The version of your memories that includes both \u2014 it was real, and it ended \u2014 is more accurate than either the rewritten one or the preserved one. It's also the hardest to hold, which is why people generally pick a side.",
+          "The version of your memories that holds both \u2014 it was real, and it ended \u2014 is more accurate than either the rewritten one or the preserved one. It's also the hardest to hold, which is why people usually pick a side.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If you were actively deceived, that's a different situation and rewriting isn't distortion \u2014 it's updating on information you didn't have. Being lied to and being left are not the same injury.",
+          "If you were actively lied to, that's a different situation, and rewriting isn't twisting the truth \u2014 it's updating with information you didn't have. Being lied to and being left are not the same wound.",
         ],
       },
     ],
@@ -287,20 +287,20 @@ export const C12_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI compare everyone to my ex.\u201d Almost universal, and it's worth knowing what's actually being compared.",
+          "\u201cI compare everyone to my ex.\u201d Almost everyone does, and it's worth knowing what's actually being compared.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Not them against a new person. A new person, met at week two, against someone you knew for years \u2014 their humour, their references, the shorthand, the version of yourself you were around them.",
-          "It isn't a fair comparison and it isn't fixable by trying to be fair. Familiarity is the thing being missed, and nobody new has any.",
+          "Not them against a new person. It's a new person, met at week two, held up against someone you knew for years \u2014 their humour, the references you both knew, the shorthand, the version of yourself you were around them.",
+          "It isn't a fair comparison, and you can't fix it by trying to be fair. What you're missing is familiarity, and nobody new has any.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI'm angry they moved on so quickly\u201d belongs near this. Speed of moving on says very little about depth of feeling \u2014 people process at wildly different rates, and some start long before the ending.",
+          "\u201cI'm angry they moved on so quickly\u201d belongs near this. How fast someone moves on says very little about how deep the feeling was \u2014 people process at wildly different speeds, and some start long before the ending.",
         ],
       },
     ],
@@ -317,8 +317,8 @@ export const C12_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "One of the more disorienting parts, and one of the least discussed.",
-          "A long relationship organises a lot: your week, your friendships, what you do on Sunday, what you talk about, who you're in the habit of being. When it ends, all of that loses its scaffolding at once.",
+          "One of the parts that leaves you most lost, and one of the least talked about.",
+          "A long relationship organises a lot: your week, your friendships, what you do on Sunday, what you talk about, who you're in the habit of being. When it ends, all of that loses its support at once.",
         ],
       },
       {
@@ -326,19 +326,19 @@ export const C12_LITERATURE: LiteratureEntry[] = [
         label: "Two different losses",
         body: [
           "The person. Grief, and it works the way grief works.",
-          "The structure. Which is a practical problem wearing an existential costume \u2014 it feels like not knowing who you are, and a good deal of it is not knowing what to do on a Tuesday.",
+          "The structure. This is a practical problem dressed up as a huge one \u2014 it feels like not knowing who you are, and a lot of it is not knowing what to do on a Tuesday.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Worth separating because the second one responds to ordinary things. Not insight \u2014 arrangements. Something in the diary, someone to see, something that happens whether or not you feel like it.",
+          "Worth separating, because the second one responds to ordinary things. Not deep insight \u2014 plans. Something in the diary, someone to see, something that happens whether or not you feel like it.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI don't know how to start over\u201d is a reasonable thing not to know. Most people only do this a few times in a life, and there's no accumulated skill at it.",
+          "\u201cI don't know how to start over\u201d is a reasonable thing not to know. Most people only do this a few times in a life, so there's no built-up skill at it.",
         ],
       },
     ],
@@ -356,27 +356,27 @@ export const C12_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It's a reasonable fear and we're not going to reassure you out of it, because the reassurance is usually hollow and you'd know.",
+          "It's a reasonable fear, and we're not going to talk you out of it, because that kind of comfort is usually hollow and you'd know it.",
         ],
       },
       {
         kind: "distinction",
         label: "What can honestly be said",
         body: [
-          "Most people do find it changes, and the change is rarely the one they expected \u2014 not the absence of it, but it taking up less of the day.",
-          "Some people carry a version of it permanently and still build good lives. Those aren't in conflict.",
+          "Most people do find it changes, and the change is rarely the one they expected \u2014 not that it goes away, but that it takes up less of the day.",
+          "Some people carry a version of it for good and still build good lives. Both of those are true at once.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI'm afraid I'll never feel that way again\u201d is a separate fear and worth naming separately. Sometimes people don't feel exactly that way again. They often feel other things, and some of them turn out to be better \u2014 though nobody can promise you that either.",
+          "\u201cI'm afraid I'll never feel that way again\u201d is a separate fear, and worth naming on its own. Sometimes people don't feel exactly that way again. They often feel other things, and some of them turn out to be better \u2014 though nobody can promise you that either.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If this has become a settled conviction rather than a fear \u2014 or if you've had thoughts about not being here \u2014 please talk to someone today. A GP, a crisis line, or someone you trust. That's a different thing from grief and it needs different help.",
+          "If this has turned into a settled belief rather than a fear \u2014 or if you've had thoughts about not being here \u2014 please talk to someone today. A GP, a crisis line, or someone you trust. That's a different thing from grief, and it needs different help.",
         ],
       },
     ],
@@ -393,21 +393,21 @@ export const C12_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It's a common thought and the answer is more complicated than either the harsh version or the consoling one.",
+          "It's a common thought, and the answer is more complicated than either the harsh version or the comforting one.",
         ],
       },
       {
         kind: "distinction",
         label: "Two things people mean by it",
         body: [
-          "Time spent that produced nothing. Rarely quite true \u2014 you lived those years, and things happened in them that weren't the relationship.",
-          "Time spent on something that wasn't going to work, which could have been spent otherwise. Often true, and it's a real loss worth grieving rather than arguing with.",
+          "Time spent that gave you nothing. Rarely quite true \u2014 you lived those years, and things happened in them that weren't the relationship.",
+          "Time spent on something that wasn't going to work, that you could have spent another way. Often true, and it's a real loss worth grieving rather than arguing with.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "The consoling version \u2014 everything happens for a reason, you learned so much \u2014 is worth being suspicious of. Some of it is genuinely instructive and some of it was simply cost. Being told it was all a lesson tends to add a small obligation to be grateful, on top of everything else.",
+          "The comforting version \u2014 everything happens for a reason, you learned so much \u2014 is worth being wary of. Some of it really does teach you something, and some of it was just cost. Being told it was all a lesson tends to add a small pressure to be grateful, on top of everything else.",
         ],
       },
     ],
@@ -432,19 +432,19 @@ export const C12_LITERATURE: LiteratureEntry[] = [
         label: "What it seems to be, when it happens",
         body: [
           "Not deciding it was fine. Not forgetting \u2014 you won't.",
-          "Closer to a decision to stop charging interest. The debt stays on the books; you stop adding to it daily.",
+          "Closer to a decision to stop charging interest. The debt stays on the books. You just stop adding to it every day.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Forgiving yourself tends to be harder than forgiving them, partly because you have access to every detail of what you did and none of what they were thinking. The account against yourself is simply better documented.",
+          "Forgiving yourself tends to be harder than forgiving them, partly because you have every detail of what you did and none of what they were thinking. The case against yourself is just better documented.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "It also usually comes later than people want, and rarely as a decision. Most people notice afterwards that it happened rather than doing it deliberately.",
+          "It also usually comes later than people want, and rarely as a decision. Most people notice afterwards that it happened, rather than doing it on purpose.",
         ],
       },
     ],

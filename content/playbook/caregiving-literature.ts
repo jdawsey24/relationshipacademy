@@ -32,6 +32,7 @@
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const ADDON_CAREGIVING_LITERATURE: LiteratureEntry[] = [
   {
     id: "lit-care-what-this-is",
@@ -45,21 +46,21 @@ export const ADDON_CAREGIVING_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cOur relationship has become more about caregiving than partnership.\u201d That's the sentence, and it's usually said quietly because saying it feels like a complaint about someone who is ill.",
-          "It isn't. It's an accurate description of a structural change that happened to both of you.",
+          "It isn't. It's a true description of a change in how things are set up \u2014 a change that happened to both of you.",
         ],
       },
       {
         kind: "distinction",
         label: "Two things that are both true",
         body: [
-          "You love them. Not in question, and it's why this is hard rather than simple.",
-          "You are overwhelmed. Also not in question, and it isn't evidence against the first.",
+          "You love them. That's not in doubt, and it's why this is hard rather than simple.",
+          "You are overwhelmed. That's also not in doubt, and it isn't evidence against the first.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here is guidance on providing care, benefits, respite services, or anything clinical. Those have specialists and this isn't one. This is about what has happened to the relationship underneath the caring.",
+          "Nothing here is advice on how to give care, benefits, respite services, or anything clinical. Those things have experts, and this isn't one. This is about what has happened to the relationship underneath the caring.",
         ],
       },
     ],
@@ -77,27 +78,27 @@ export const ADDON_CAREGIVING_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI miss the relationship we used to have.\u201d \u201cI don't know how to balance love and responsibility.\u201d",
-          "What's happened is that two relationships are now running through the same person, and one of them takes precedence by necessity.",
+          "What's happened is that two relationships now run through the same person. And one of them has to come first.",
         ],
       },
       {
         kind: "distinction",
-        label: "They have different requirements",
+        label: "They need different things",
         body: [
-          "The caring one is organised around need. It's not reciprocal, it doesn't take turns, and it doesn't stop when either of you is tired.",
-          "The partnership was organised around mutuality. It required two people with something spare.",
+          "The caring one is built around need. It doesn't go both ways, it doesn't take turns, and it doesn't stop when either of you is tired.",
+          "The partnership was built on give-and-take. It needed two people with something to spare.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Which is why the partnership recedes rather than ending \u2014 there's rarely anything spare. Not because either of you stopped wanting it.",
+          "That's why the partnership fades rather than ends \u2014 there's rarely anything to spare. Not because either of you stopped wanting it.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cNobody prepared us for this season\u201d is accurate. Almost nobody is prepared, there's very little written for it, and the material that exists is mostly practical rather than relational.",
+          "\u201cNobody prepared us for this season\u201d is true. Almost nobody is prepared, there's very little written about it, and what does exist is mostly about the practical side, not the relationship side.",
         ],
       },
     ],
@@ -120,22 +121,22 @@ export const ADDON_CAREGIVING_LITERATURE: LiteratureEntry[] = [
       },
       {
         kind: "distinction",
-        label: "Why the comparison doesn't hold",
+        label: "Why the comparison doesn't hold up",
         body: [
-          "Their difficulty being larger doesn't make yours zero. Those aren't on the same scale and one doesn't cancel the other.",
-          "And wanting a break isn't wanting them to be different. It's wanting to be less depleted, which is a fact about capacity rather than about them.",
+          "Their struggle being bigger doesn't make yours zero. The two aren't on the same scale, and one doesn't cancel out the other.",
+          "And wanting a break isn't wanting them to be different. It's wanting to be less worn down. That's a fact about how much you have left, not about them.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "There's also a practical point. Depletion doesn't respond to guilt \u2014 it responds to rest. A carer who doesn't rest becomes worse at caring, which serves nobody, including the person being cared for.",
+          "There's also a practical point. Being worn down doesn't get better with guilt \u2014 it gets better with rest. A carer who doesn't rest gets worse at caring, which helps nobody, including the person being cared for.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "None of this is a claim that rest is available. For a lot of people it genuinely isn't, or not much. Knowing that the wanting is legitimate is a smaller thing than getting the break, and it's sometimes all that's on offer.",
+          "None of this says that rest is available. For a lot of people it truly isn't, or not much. Knowing that the wanting is fair is a smaller thing than getting the break — and it's sometimes all that's on offer.",
         ],
       },
     ],
@@ -152,13 +153,13 @@ export const ADDON_CAREGIVING_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "\u201cI feel alone even though we're together.\u201d One of the more isolating parts, and it's rarely said because it sounds like a complaint about them.",
+          "\u201cI feel alone even though we're together.\u201d One of the loneliest parts, and it's rarely said because it sounds like a complaint about them.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Some of it is structural. The person you'd normally talk to about something difficult is the difficult thing, which closes the usual route.",
+          "Some of it is about how things are set up. The person you'd normally talk to about something hard is the hard thing, which shuts off the usual way.",
           "Some of it is that carers become invisible. People ask how the ill person is. Almost nobody asks how you are, and the ones who do often want a short answer.",
         ],
       },
@@ -167,13 +168,13 @@ export const ADDON_CAREGIVING_LITERATURE: LiteratureEntry[] = [
         label: "Which changes what would help",
         body: [
           "Not more support for them, though that helps with the load.",
-          "Someone whose relationship with you isn't organised around the illness \u2014 who asks about something else, or who lets you say the unspeakable thing without managing your guilt about saying it.",
+          "Someone whose relationship with you isn't built around the illness \u2014 who asks about something else, or who lets you say the thing you can't say out loud, without having to manage your guilt about saying it.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Carers' groups exist for exactly this and people are often reluctant, on the grounds that others have it worse. They generally don't, and that isn't the entry requirement.",
+          "Carers' groups exist for exactly this, and people are often reluctant because they think others have it worse. Mostly they don't, and that isn't the entry requirement.",
         ],
       },
     ],
@@ -191,27 +192,27 @@ export const ADDON_CAREGIVING_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Very common among carers, and it usually isn't about pride. It's more often about specificity.",
+          "Very common among carers, and it usually isn't about pride. It's more often about being specific.",
         ],
       },
       {
         kind: "distinction",
-        label: "Why the general offer never converts",
+        label: "Why the general offer never turns into help",
         body: [
-          "\u201cLet me know if you need anything\u201d puts the work on you \u2014 you have to identify a task, judge whether it's reasonable, and ask. That's three jobs on top of the one you already have.",
+          "\u201cLet me know if you need anything\u201d puts the work on you \u2014 you have to name a task, decide if it's fair to ask, and then ask. That's three jobs on top of the one you already have.",
           "\u201cCould you sit with him Thursday afternoon?\u201d is one job for them and none for you afterwards.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "So the thing that converts offers into help is having a specific request ready before anyone offers. Most people who offer mean it and are waiting to be told what.",
+          "So the thing that turns offers into help is having a specific request ready before anyone offers. Most people who offer mean it, and they're waiting to be told what.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Some people offer and don't mean it, and finding that out is unpleasant. It's also information, and it's cheaper to have early than to discover during a crisis.",
+          "Some people offer and don't mean it, and finding that out hurts. But it's also information, and it's cheaper to learn early than to find out during a crisis.",
         ],
       },
     ],

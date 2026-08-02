@@ -29,6 +29,7 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C5_LITERATURE } from "./trusting-what-you-see-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
   playbookKey: "trusting-what-you-see", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
@@ -38,7 +39,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
     title: "Before anything else",
     body: [
       "You're not short of information. You usually notice. What happens next is the problem.",
-      "And if your judgement has genuinely been wrong before, then being wary of it now is a fair conclusion — not something to talk yourself out of.",
+      "And if your judgement really has been wrong before, then being wary of it now makes sense — not something to talk yourself out of.",
       "What follows is a way of deciding that doesn't need you to feel certain.",
     ],
     manifestations: [
@@ -58,7 +59,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I don't trust my own judgment anymore — and I don't think that's paranoia.",
       validationCopy:
-        "It isn't. If you've misread people more than once, lowered confidence is a correct update, not damage. Nothing here will tell you to trust your gut. We'll give you something to check against instead.",
+        "It isn't. If you've misread people more than once, trusting yourself less makes sense. It's not damage. Nothing here will tell you to trust your gut. We'll give you something to check against instead.",
       secondaryExamples: [
         "I don't trust my instincts anymore.",
         "I don't trust myself to choose well.",
@@ -70,7 +71,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       pathwayPlayId: "check-it-dont-bury-it",
       headline: "I saw it and stayed anyway.",
       explanation:
-        "The information was there. It got overridden. That's a different problem from not noticing.",
+        "You had the information. You pushed it aside. That's a different problem from not noticing.",
       secondaryExamples: [
         "I ignore red flags.",
         "I knew something was wrong.",
@@ -83,7 +84,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       pathwayPlayId: "how-long-am-i-giving-this",
       headline: "I always give people one more chance.",
       explanation:
-        "Every chance is reasonable on the day. A chance with no end point can't be failed.",
+        "Every chance makes sense on the day. A chance with no end can't be failed.",
       secondaryExamples: [
         "I stay too long.",
         "I keep repeating the same relationship.",
@@ -108,7 +109,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       pathwayPlayId: "give-it-a-second-look",
       headline: "When someone's steady and available, I lose interest.",
       explanation:
-        "Not necessarily the absence of feeling. Possibly the absence of anxiety.",
+        "Maybe the feeling isn't missing. Maybe it's the anxiety that's missing.",
       secondaryExamples: [
         "Healthy relationships feel boring.",
         "I mistake anxiety for chemistry.",
@@ -133,7 +134,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       pathwayPlayId: "do-my-standards-fit-me",
       headline: "Everyone says my standards are too high.",
       explanation:
-        "That's their claim, not a finding. The real question is whether your standards fit the life you actually have.",
+        "That's what they think, not a fact. The real question is whether your standards fit the life you actually have.",
       secondaryExamples: [
         "I don't know if my standards are realistic.",
         "I don't know the difference between compromise and settling.",
@@ -158,8 +159,8 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "You noticed. You usually do. What happens is that the concern arrives without proof, and you park it until it's certain — and certainty doesn't come in the timeframe you need it.",
-            "So the concern goes quiet, and the decision gets made by default.",
+            "You noticed. You usually do. What happens is the concern shows up without proof, so you set it aside until you're sure — and being sure doesn't come in the time you need it.",
+            "So the concern goes quiet, and the decision just makes itself.",
             "This puts one step between noticing and burying: name it, and give it something to look for.",
           ],
         },
@@ -167,7 +168,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
           kind: "learn",
           body: [
             "Waiting for proof. Deciding it says something unkind about you. Explaining it with something true — they're busy, it's early, they're stressed. Or giving it one more chance, and then another.",
-            "All four are reasonable. All four end the same way: the concern is gone and you never tested it.",
+            "All four make sense. All four end the same way: the concern is gone and you never tested it.",
           ],
         },
         {
@@ -211,7 +212,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "output",
           heading: "My concern, and what I'm looking for",
-          body: "Named, not buried. That's the whole operation.",
+          body: "Named, not buried. That's the whole thing.",
         },
         {
           kind: "portable",
@@ -232,19 +233,19 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         when: "When I've noticed something and started explaining it away",
         move: "Name the concern flatly and give it something specific to look for",
         lookingFor: "Whether it happens again, and how they respond when raised",
-        watchOut: "Collecting evidence for a verdict I've already reached",
+        watchOut: "Collecting evidence for a decision I've already made",
         remember: "I noticed for a reason. Checking isn't accusing.",
       },
       fidelity: {
         correct:
-          "A concern is stated plainly and paired with an observable thing to look for.",
+          "A concern is said plainly and paired with something you can actually watch for.",
         misuse: [
           "Building a case rather than checking.",
-          "Naming a concern you'd never accept a negative result on.",
-          "Turning it into surveillance.",
+          "Naming a concern where you'd never accept an answer of “it was nothing.”",
+          "Turning it into spying.",
         ],
         notMeaning:
-          "It does not mean the concern is right, that the person is untrustworthy, or that you should act on it now.",
+          "It does not mean the concern is right, that the person can't be trusted, or that you should act on it now.",
       },
       supportSignposts: [
         {
@@ -262,16 +263,16 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "How Long Am I Giving This?",
-      positioning: "For when every chance is reasonable and there've been forty of them.",
+      positioning: "For when every chance is fair and there've been forty of them.",
       recognitionGate: {
-        prompt: "Do you find yourself giving one more chance, repeatedly?",
+        prompt: "Do you find yourself giving one more chance, over and over?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "Nobody stays five years because of one big decision. They stay because of forty small ones, each defensible on the day.",
-            "A chance with no end point never resolves. A chance with an end point produces information — either it changes by then, or it doesn't.",
+            "Nobody stays five years because of one big decision. They stay because of forty small ones, each one easy to defend on the day.",
+            "A chance with no end never settles. A chance with an end tells you something — either it changes by then, or it doesn't.",
             "The whole difference is a date you set before you need it.",
           ],
         },
@@ -319,7 +320,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
             "The next time it comes up",
           ],
           controlCheck:
-            "What I'm looking at is specific enough to answer yes or no. This is for me. I'm not telling them as a warning. I'll actually look on that day, not extend it.",
+            "What I'm looking at is specific enough to answer yes or no. This is for me. I'm not telling them as a warning. I'll actually look on that day, not push it back.",
         },
         {
           kind: "output",
@@ -345,15 +346,15 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         when: "When I keep giving one more chance on the same thing",
         move: "Set a date to look, and name what I'll be looking at",
         lookingFor: "Whether the specific thing has changed by then",
-        watchOut: "Extending the date when it arrives",
+        watchOut: "Pushing the date back when it arrives",
         remember: "It's a promise to look, not a promise to go.",
       },
       fidelity: {
         correct:
-          "A date is set in advance and paired with a specific observable thing to review.",
+          "You set a date ahead of time and pair it with a specific thing to look at.",
         misuse: [
-          "Using it as an unspoken ultimatum.",
-          "Extending the date rather than looking.",
+          "Using it as an ultimatum you never say out loud.",
+          "Pushing the date back rather than looking.",
           "Setting one so far out it changes nothing.",
         ],
         notMeaning:
@@ -376,14 +377,14 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
           kind: "shift",
           body: [
             "Someone unavailable never becomes ordinary. There's always a next thing to find out, always a reason it hasn't settled.",
-            "So the wanting doesn't run out — it never gets what it's after. Which means how strongly you want someone may be telling you how unresolved they are, not how right they are.",
+            "So the wanting doesn't run out — it never gets what it's after. So how strongly you want someone may be telling you how unresolved they are, not how right they are.",
           ],
         },
         {
           kind: "learn",
           body: [
             "This isn't about giving less to punish anyone, or matching them move for move. That's scorekeeping and it doesn't work.",
-            "It's about noticing whether what you put in comes back in any form — and letting that, rather than the intensity of the pull, decide how much more goes in.",
+            "It's about noticing whether what you put in comes back in any form. Then you let that — not how strong the pull feels — decide how much more goes in.",
           ],
         },
         {
@@ -420,13 +421,13 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               text: "They replied eventually, warmly",
               correctBucket: "not-returned",
               correction:
-                "Warmth after a delay you spent worrying about isn't the same as reciprocation. Have another look.",
+                "Warmth after a delay you spent worrying about isn't the same as them giving back. Have another look.",
             },
             {
               id: "sort-c5-checked-in",
               text: "They checked in when nothing was happening",
               correctBucket: "returned",
-              correction: "Unprompted contact is one of the clearer signals.",
+              correction: "Them reaching out on their own is one of the clearer signs.",
             },
             {
               id: "sort-c5-agreed",
@@ -472,16 +473,16 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I'm doing most of the work and it feels like chemistry",
-        move: "Let effort follow what's actually returned, not the strength of the pull",
-        lookingFor: "Unprompted contact, plans kept, things followed up",
+        move: "Let effort follow what actually comes back, not how strong the pull feels",
+        lookingFor: "Them reaching out on their own, plans kept, things followed up",
         watchOut: "Going quiet to see what they do — that's a test, not pacing",
         remember: "Someone unavailable never becomes ordinary. That's why it doesn't settle.",
       },
       fidelity: {
         correct:
-          "Investment is paced against observed reciprocation rather than against felt intensity.",
+          "You pace what you put in against what actually comes back, not against how strong the feeling is.",
         misuse: [
-          "Withdrawing to provoke a response.",
+          "Going quiet to provoke a response.",
           "Scorekeeping or matching move for move.",
           "Using it to justify a decision already made.",
         ],
@@ -496,7 +497,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "Give It a Second Look",
-      positioning: "For the person you dismissed because nothing happened.",
+      positioning: "For the person you ruled out because nothing happened.",
       recognitionGate: {
         prompt: "Do you rule people out quickly when there's no spark?",
       },
@@ -504,15 +505,15 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Uncertainty generates activity — wondering, analysing, waiting. That activity feels like involvement.",
-            "When someone is straightforwardly available, all of it stops. And the absence of the activity can read as the absence of feeling, when it's actually the absence of anxiety.",
+            "Uncertainty creates activity — wondering, analysing, waiting. That activity feels like involvement.",
+            "When someone is simply available, all of it stops. And the quiet can feel like no feeling, when it's really just no anxiety.",
             "This isn't about dating people you don't like. It's about not deciding in the first hour.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "One more real interaction, in a setting where something could happen — not a repeat of the same coffee.",
+            "One more real meeting, somewhere something could happen — not a repeat of the same coffee.",
             "And a specific thing to notice, so you're not just re-running the same feeling and getting the same answer.",
           ],
         },
@@ -573,16 +574,16 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         when: "When I'm about to rule someone out for no spark",
         move: "Take one more look, with a specific thing to notice",
         lookingFor: "Whether it was a thing they did or a feeling I didn't have",
-        watchOut: "Talking myself into someone — this is a second look, not a verdict",
+        watchOut: "Talking myself into someone — this is a second look, not a final decision",
         remember: "Quiet isn't the same as nothing.",
       },
       fidelity: {
         correct:
-          "A dismissal based on absent feeling is deferred for one further observation with a named thing to notice.",
+          "You put off ruling someone out for missing feeling, and take one more look with a named thing to notice.",
         misuse: [
           "Talking yourself into someone you don't want.",
-          "Overriding a specific thing they actually did.",
-          "Repeating the look indefinitely rather than deciding.",
+          "Ignoring a specific thing they actually did.",
+          "Taking the look over and over rather than deciding.",
         ],
         notMeaning:
           "It does not mean you should date them, that the spark will arrive, or that your first read was wrong.",
@@ -603,7 +604,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "This is the question underneath most of the others, and the honest position is that you can't always tell.",
+            "This is the question underneath most of the others, and honestly, you can't always tell.",
             "What you can do is check the read against a few things, and get a better-than-nothing answer. That's a lot more than choosing between trusting yourself completely and not at all.",
           ],
         },
@@ -647,7 +648,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               text: "It's the same feeling I had about the last three",
               correctBucket: "about-me",
               correction:
-                "A feeling that's identical across different people is telling you about the constant, not the variable.",
+                "A feeling that's the same across different people is telling you about what stays the same, not about this person.",
             },
             {
               id: "sort-c5-specific-thing",
@@ -660,13 +661,13 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               text: "It gets louder the better things are going",
               correctBucket: "about-me",
               correction:
-                "A read that intensifies when things improve isn't tracking them.",
+                "A read that gets stronger when things improve isn't about them.",
             },
             {
               id: "sort-c5-friend-would-see",
               text: "If I described it, a friend would understand why I noticed",
               correctBucket: "about-them",
-              correction: "Describable to someone else usually means it's in the world.",
+              correction: "If you can describe it to someone else, it's usually real.",
             },
             {
               id: "sort-c5-before-meeting",
@@ -679,14 +680,14 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               text: "When I explain it, I end up describing a type",
               correctBucket: "about-me",
               correction:
-                "If the description is of a category rather than a person, it came with you.",
+                "If you're describing a type rather than a person, it came with you.",
             },
           ],
         },
         {
           kind: "output",
           heading: "Where this one lands",
-          body: "A best guess, not a verdict. Either answer tells you what to do next.",
+          body: "A best guess, not a final call. Either answer tells you what to do next.",
         },
         {
           kind: "portable",
@@ -707,16 +708,16 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         when: "When I can't tell a real concern from an old fear",
         move: "Check the read against both lists",
         lookingFor: "Something specific, recent, and describable to someone else",
-        watchOut: "Using 'it's about me' to dismiss something that was real",
+        watchOut: "Using 'it's about me' to wave off something that was real",
         remember: "Either answer is useful. Neither settles it forever.",
       },
       fidelity: {
         correct:
-          "A read is checked against specificity, recency and describability before being acted on or dismissed.",
+          "You check the read for whether it's specific, recent, and describable before acting on it or dropping it.",
         misuse: [
-          "Using 'that's just my pattern' to override something specific you actually saw.",
+          "Using 'that's just my pattern' to ignore something specific you actually saw.",
           "Treating the result as proof either way.",
-          "Running it repeatedly on the same read until you get the answer you wanted.",
+          "Running it over and over on the same read until you get the answer you wanted.",
         ],
         notMeaning:
           "It does not mean the read is right or wrong, that your fear is unfounded, or that you can now trust your instincts.",
@@ -745,15 +746,15 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "\u201cAre my standards too high?\u201d has no answer, because there's no general standard to be high relative to.",
+            "\u201cAre my standards too high?\u201d has no answer, because there's no general standard to measure them against.",
             "\u201cDo my standards fit the life I actually have and the person I actually am?\u201d does have an answer, and only you can work it out.",
-            "If you've built something demanding, wanting someone who can hold it isn't fussiness. It's arithmetic.",
+            "If you've built a demanding life, wanting someone who can hold it isn't being fussy. It just adds up.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Load-bearing: without this, the thing genuinely doesn't work. Not preference — structure.",
+            "Load-bearing: without this, it genuinely doesn't work. Not just a preference — it's what holds the thing up.",
             "Inherited: it came from a film, a family, an idea you formed at twenty-two, and it's never been looked at.",
             "Most people have both and haven't sorted them. Nobody outside you can do the sorting, which is why being told you're too picky is unhelpful even when it's kindly meant.",
           ],
@@ -791,7 +792,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               text: "Someone who doesn't resent how much I work",
               correctBucket: "load-bearing",
               correction:
-                "If the work isn't going anywhere, this is structural rather than preference.",
+                "If the work isn't going anywhere, this is about how your life is set up, not just a preference.",
             },
             {
               id: "sort-c5-taller",
@@ -804,14 +805,14 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
               id: "sort-c5-kids-view",
               text: "Wants children, or definitely doesn't",
               correctBucket: "load-bearing",
-              correction: "Hard to build around a mismatch on this one.",
+              correction: "Hard to build around a difference on this one.",
             },
             {
               id: "sort-c5-instant-spark",
               text: "Instant chemistry from the first meeting",
               correctBucket: "inherited",
               correction:
-                "This one's worth examining — see 'Anxiety isn't chemistry'.",
+                "This one's worth a closer look — see 'Anxiety isn't chemistry'.",
             },
             {
               id: "sort-c5-same-ambition",
@@ -853,15 +854,15 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
         when: "When I'm being told I'm too picky and I'm not sure",
         move: "Sort my requirements into load-bearing and worth-a-second-look",
         lookingFor: "Which ones the life I actually have genuinely depends on",
-        watchOut: "Cutting the list to be agreeable rather than because I've thought about it",
+        watchOut: "Cutting the list to please people rather than because I've thought about it",
         remember: "The question is fit to me, not high or low in general.",
       },
       fidelity: {
         correct:
-          "Requirements are sorted against the reader's actual life rather than against an external judgement of reasonableness.",
+          "You sort your requirements against your actual life, not against what other people call reasonable.",
         misuse: [
           "Shortening the list to satisfy other people.",
-          "Using 'load-bearing' to protect a requirement from examination.",
+          "Using 'load-bearing' to protect a requirement from a closer look.",
           "Treating the output as a checklist to screen with.",
         ],
         notMeaning:
@@ -881,7 +882,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       title: "Name one concern, and look for the thing",
       instruction:
         "Next time you notice something and start explaining it away, write it down instead. Note what you said you'd look for, and whether you saw it.",
-      linkToOperation: "Verifying a concern before deciding on it",
+      linkToOperation: "Checking a concern before deciding on it",
       attemptMeaning: "You named it and looked. It doesn't mean the concern was right.",
       suitability:
         "For ordinary concerns. If what you noticed involves being frightened or controlled, don't test it over time — talk to someone now.",
@@ -896,7 +897,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       title: "Set the date, and keep it",
       instruction:
         "Put the date in your calendar. When it arrives, look at the thing you named — and don't move the date.",
-      linkToOperation: "Time-bounded observation before deciding",
+      linkToOperation: "Looking within a set time before deciding",
       attemptMeaning:
         "You looked on the day. It doesn't mean you have to act on what you found.",
       suitability: "If you find yourself moving the date, that's information worth noticing.",
@@ -911,7 +912,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       title: "One week, following what comes back",
       instruction:
         "For a week, put effort in where something came back and hold where it didn't. Note what you noticed — in them and in yourself.",
-      linkToOperation: "Pacing investment against observed reciprocation",
+      linkToOperation: "Pacing what you put in against what actually comes back",
       attemptMeaning:
         "You paced it. It doesn't mean they'll step up, and it doesn't mean they won't.",
       suitability:
@@ -930,7 +931,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       title: "One more look, then decide",
       instruction:
         "See them once more, somewhere something could actually happen. Notice the thing you named. Then decide either way.",
-      linkToOperation: "Deferring a dismissal for one further observation",
+      linkToOperation: "Putting off ruling someone out for one more look",
       attemptMeaning:
         "You looked again. Deciding no afterwards counts as completing it.",
       suitability:
@@ -949,7 +950,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       title: "Run one live read through the lists",
       instruction:
         "Take a read you're currently holding and check it against both lists before you act on it or drop it.",
-      linkToOperation: "Discriminating a specific read from a familiar one",
+      linkToOperation: "Telling a specific read apart from a familiar one",
       attemptMeaning:
         "You checked. Landing on 'about me' doesn't mean the concern was baseless.",
       suitability:
@@ -968,7 +969,7 @@ export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
       title: "Say the load-bearing list to one person",
       instruction:
         "Tell someone you trust what's actually load-bearing for you and why. Notice which ones you can defend easily and which ones wobble.",
-      linkToOperation: "Testing requirements against one's actual life",
+      linkToOperation: "Testing requirements against your actual life",
       attemptMeaning: "You said it out loud. Wobbling on one isn't a sign to drop it.",
       suitability:
         "Pick someone who won't immediately tell you you're too picky. That's the input you're trying to get away from.",

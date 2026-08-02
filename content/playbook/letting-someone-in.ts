@@ -30,6 +30,8 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C3_LITERATURE } from "./letting-someone-in-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const LETTING_SOMEONE_IN: PlaybookContent = {
   // ── §1 top level ───────────────────────────────────────────────
   playbookKey: "letting-someone-in", // ⚠ CONFIRM canonical slug
@@ -40,7 +42,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
     title: "Before anything else",
     body: [
       "Being afraid of getting hurt, after you've been hurt, is accurate. We're not going to try to talk you out of it.",
-      "What we're going to look at is the moment you move away — and whether, that once, you want to.",
+      "What we're going to look at is the moment you move away — and whether, this one time, you want to.",
       "Nothing here promises it goes well.",
     ],
     manifestations: [
@@ -60,7 +62,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm afraid of getting hurt again — and I don't think that's irrational.",
       validationCopy:
-        "It isn't. Being wary after being hurt is a correct reading of something that actually happened. Nothing in here is going to argue with it. This is the starting point, not the problem.",
+        "It isn't. Being careful after being hurt is a correct read of something that really happened. Nothing in here is going to argue with it. This is the starting point, not the problem.",
       secondaryExamples: [
         "I want love, but I'm scared of it.",
         "I'm afraid to be vulnerable.",
@@ -72,7 +74,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       pathwayPlayId: "before-you-go",
       headline: "I leave before they can leave me.",
       explanation:
-        "Exiting early guarantees the ending. It also means you never find out.",
+        "Leaving early makes the ending sure. It also means you never find out.",
       secondaryExamples: [
         "I push people away when they get close.",
         "I always find a reason to leave.",
@@ -85,7 +87,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       pathwayPlayId: "one-true-thing",
       headline: "I edit myself so people will keep liking me.",
       explanation:
-        "One true thing, to one person, is survivable in a way that all of it isn't.",
+        "One true thing, told to one person, is something you can live through in a way that all of it isn't.",
       secondaryExamples: [
         "I feel like I have to perform.",
         "I don't know if they'd still love me if they knew everything.",
@@ -110,7 +112,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       pathwayPlayId: "is-this-right-for-me",
       headline: "I knew it wasn't right and I stayed anyway.",
       explanation:
-        "Staying by default and choosing to stay are different things.",
+        "Staying because you never left, and choosing to stay, are different things.",
       secondaryExamples: [
         "I stayed because I didn't want to be alone.",
         "I kept hoping love would fix our incompatibility.",
@@ -122,7 +124,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       pathwayPlayId: "when-closeness-costs",
       headline: "I feel trapped when it gets serious.",
       explanation:
-        "Not that you can't be close. That closeness is currently costing more than you've got.",
+        "It's not that you can't be close. It's that closeness is costing more than you've got right now.",
       secondaryExamples: [
         "I crave space all the time.",
         "I don't like needing anyone.",
@@ -146,8 +148,8 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Leaving first isn't cowardice. It's the only move that guarantees the outcome — if you go before they do, you wrote the ending.",
-            "The cost is that you never find out. Every early exit is a data point you didn't collect.",
+            "Leaving first isn't cowardice. It's the one move that makes the outcome sure — if you go before they do, you wrote the ending.",
+            "The cost is that you never find out. Every early exit is one more thing you didn't get to find out.",
             "This isn't about not leaving. Sometimes leaving is right. It's about putting a gap in, and using the gap.",
           ],
         },
@@ -162,7 +164,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "emotionBeat",
           body: [
-            "Staying in an unresolved thing is harder than ending it. Ending it brings relief, and the relief is real.",
+            "Staying in something that isn't settled is harder than ending it. Ending it brings relief, and the relief is real.",
             "You can want to go and still wait. Both at once. Feeling the pull isn't failing at this.",
           ],
         },
@@ -211,7 +213,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "output",
           heading: "My gap",
-          body: "Not a commitment to stay. A decision about when you'll decide.",
+          body: "Not a promise to stay. A decision about when you'll decide.",
         },
         {
           kind: "portable",
@@ -237,21 +239,21 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "A gap is set before acting, and something observable is named to watch for during it.",
+          "A gap is set before acting, and something you could notice is named to watch for during it.",
         misuse: [
-          "Using the gap to gather evidence for the exit you'd already chosen.",
+          "Using the gap to build the case for the exit you'd already chosen.",
           "Staying in something where you've actually been mistreated.",
           "Treating the gap as a promise to stay.",
         ],
         notMeaning:
-          "It does not mean the relationship will work, that leaving would be wrong, or that your read is inaccurate.",
+          "It does not mean the relationship will work, that leaving would be wrong, or that your read is wrong.",
       },
       supportSignposts: [
         {
           id: "signpost-c3-mistreatment",
           heading: "If something has actually happened",
           body:
-            "If what you're describing involves fear, pressure, control, contempt, threats, or harm, this isn't a pattern for you to solve through better communication. Pause this tool and speak privately with a domestic-abuse service, or another qualified professional trained in relationship abuse. They can help you understand what's happening and make a safety plan based on your circumstances. You don't have to be certain before asking.",
+            "If what you're describing involves fear, pressure, control, contempt, threats, or harm, this isn't a pattern for you to fix with better communication. Pause this tool and talk privately with a domestic-abuse service, or another qualified professional trained in relationship abuse. They can help you understand what's happening and make a safety plan for your situation. You don't have to be sure before asking.",
         },
       ],
     },
@@ -263,7 +265,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "One True Thing",
       positioning:
-        "For when they only know the version you've edited. You choose the thing alone \u2014 then you say it, because a true thing unsaid changes nothing.",
+        "For when they only know the version you've edited. You choose the thing alone \u2014 then you say it, because a true thing you never say changes nothing.",
       recognitionGate: {
         prompt: "Do you find yourself managing what people see of you?",
       },
@@ -281,7 +283,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           body: [
             "Not a confession. Not your history. Something small and real that you'd normally have smoothed over.",
             "An actual opinion instead of the agreeable one. Something you're worried about. A preference you'd usually let go.",
-            "The size is the point. You need it small enough that their reaction is survivable, because the reaction is the information.",
+            "The size is the point. You need it small enough that their reaction is one you can live through, because the reaction is the information.",
           ],
         },
         {
@@ -310,12 +312,12 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
             "Whether they offered something of their own",
           ],
           controlCheck:
-            "I'm saying this to find out, not to test them \u2014 and it's small enough that any reaction is survivable.",
+            "I'm saying this to find out, not to test them \u2014 and it's small enough that any reaction is one I can live through.",
         },
         {
           kind: "output",
           heading: "My one true thing",
-          body: "Said once. Then watched. That's the whole operation.",
+          body: "Said once. Then watched. That's the whole thing.",
         },
         {
           kind: "portable",
@@ -341,9 +343,9 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "One bounded disclosure is actually made to the other person, and the response observed rather than pre-judged. Choosing the thing is preparation; saying it is the operation.",
+          "You actually tell the other person one small thing, and you watch their response instead of deciding it ahead of time. Choosing the thing is getting ready; saying it is the move.",
         misuse: [
-          "Disclosing everything at once to get it over with.",
+          "Telling everything at once to get it over with.",
           "Using it as a loyalty test.",
           "Deciding what their reaction meant before it happens.",
         ],
@@ -367,7 +369,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "Just Ask",
       positioning:
-        "For when you'd rather find out sideways. You write the question alone \u2014 then you ask it, because that is the only thing that produces an answer.",
+        "For when you'd rather find out sideways. You write the question alone \u2014 then you ask it, because that's the only thing that gives you an answer.",
       recognitionGate: {
         prompt: "Do you try to find things out without having to ask?",
       },
@@ -383,7 +385,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "Direct isn't confrontational. It's short, specific, and about one thing.",
+            "Being direct isn't picking a fight. It's short, specific, and about one thing.",
             "\u201cAre we exclusive?\u201d is direct. \u201cWhere is this going?\u201d is not — it asks them to guess what you're asking.",
             "The more specific the question, the harder it is to answer vaguely.",
           ],
@@ -409,7 +411,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
               text: "Going quiet for two days to see what they do",
               correctBucket: "sideways",
               correction:
-                "That produces a reaction, not an answer. And you'd discount the answer anyway.",
+                "That gets you a reaction, not an answer. And you'd brush the answer off anyway.",
             },
             {
               id: "sort-c3-where-going",
@@ -480,10 +482,10 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "One specific answerable question is actually asked, directly, in place of an indirect probe. Drafting it is preparation; asking is the operation.",
+          "You actually ask one specific, answerable question, straight out, instead of finding out sideways. Writing it is getting ready; asking is the move.",
         misuse: [
-          "Asking in a way engineered to produce a particular answer.",
-          "Asking and then discounting the answer.",
+          "Asking in a way built to get a particular answer.",
+          "Asking and then brushing off the answer.",
           "Stacking several questions so none can be answered.",
         ],
         notMeaning:
@@ -505,8 +507,8 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "There's a version of staying that's a decision, and a version that's just the absence of leaving.",
-            "They look the same from outside. From inside, one has a reason and the other has an explanation you assembled afterwards.",
+            "There's a version of staying that's a decision, and a version that's just not leaving.",
+            "They look the same from outside. From inside, one has a reason and the other has an explanation you put together afterwards.",
           ],
         },
         {
@@ -514,7 +516,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           body: [
             "\u201cCould this work?\u201d is nearly always yes. Almost anything could.",
             "\u201cDoes this fit what I actually need?\u201d is the one that gets answered, and it's the one people avoid.",
-            "The second question doesn't require anything to be wrong with them.",
+            "The second question doesn't need anything to be wrong with them.",
           ],
         },
         {
@@ -553,14 +555,14 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           enoughLabel: "A reason to stay",
           needMoreLabel: "A reason not to leave",
           needMoreIntro:
-            "Those aren't the same, and noticing the difference is the whole operation. It doesn't mean you have to go.",
+            "Those aren't the same, and noticing the difference is the whole thing. It doesn't mean you have to go.",
           needToKnowLabel: "What would need to be true for this to fit",
           observableLabel: "Something I could actually notice happening",
         },
         {
           kind: "output",
           heading: "Where I actually am",
-          body: "A read, not a verdict. You can hold it and not act on it.",
+          body: "A read, not a final call. You can hold it and not act on it.",
         },
         {
           kind: "portable",
@@ -586,11 +588,11 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "Fit is evaluated on stated needs, and the reason for staying is named honestly.",
+          "Fit is judged on the needs you named, and the reason for staying is named honestly.",
         misuse: [
-          "Building a case against them instead of assessing fit.",
+          "Building a case against them instead of looking at fit.",
           "Treating the output as a decision you now have to act on.",
-          "Using it to justify an exit you'd already chosen.",
+          "Using it to back up an exit you'd already chosen.",
         ],
         notMeaning:
           "It does not mean you should leave, that the relationship is wrong, or that hoping it changes is foolish.",
@@ -600,7 +602,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           id: "signpost-c3-mistreatment-fit",
           heading: "If something has actually happened",
           body:
-            "If part of what doesn't work is that you're being treated badly — pressure, contempt, being frightened, being controlled — that isn't a fit question, and it isn't something to solve through better communication. Fit assumes two people are both able to choose freely. If any of that fits, speak privately with a domestic-abuse service, or another qualified professional trained in relationship abuse — they can help you understand what's happening and make a safety plan based on your circumstances. You don't have to be certain before asking.",
+            "If part of what doesn't work is that you're being treated badly — pressure, contempt, being frightened, being controlled — that isn't a fit question, and it isn't something to fix with better communication. Fit assumes two people are both able to choose freely. If any of that fits, talk privately with a domestic-abuse service, or another qualified professional trained in relationship abuse — they can help you understand what's happening and make a safety plan for your situation. You don't have to be sure before asking.",
         },
       ],
     },
@@ -621,14 +623,14 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           body: [
             "Before anything else: we don't think you can't do closeness.",
             "Closeness takes something — attention, honesty, being reachable, sitting with not knowing. Those aren't free, and the closer it gets the more they cost.",
-            "\u201cI feel trapped when it gets serious\u201d reads very differently as a statement about cost than as a statement about ability. We think it's the first one.",
+            "\u201cI feel trapped when it gets serious\u201d sounds very different if it's about cost, not about ability. We think it's about cost.",
           ],
         },
         {
           kind: "learn",
           body: [
             "Avoidance takes you out of the thing. Pacing keeps you in it, slower.",
-            "That's the whole distinction, and it's the one to hold onto. If what you're doing removes you entirely, that's the other one — and that's what Before You Go is for.",
+            "That's the whole difference, and it's the one to hold onto. If what you're doing takes you out completely, that's the other one — and that's what Before You Go is for.",
             "You don't need to learn to be close. You need it to cost less, or to have more available, or to go at a rate you can actually afford.",
           ],
         },
@@ -651,14 +653,14 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
             {
               id: "whats-else-on",
               input: "text",
-              label: "What else is currently taking from the same account?",
+              label: "What else is taking from the same account right now?",
               placeholder: "Work, family, health, the rest of it…",
             },
           ],
         },
         {
           kind: "ruleBuilder",
-          intro: "Pick a rate you could actually sustain.",
+          intro: "Pick a rate you could actually keep up.",
           conditionLabel: "The rate I can actually hold, for now",
           thenLabel: "What that looks like in practice",
           actions: [
@@ -673,7 +675,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
         {
           kind: "output",
           heading: "My rate",
-          body: "Not a limit on the relationship. A rate you can actually sustain.",
+          body: "Not a limit on the relationship. A rate you can actually keep up.",
         },
         {
           kind: "portable",
@@ -699,9 +701,9 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "A sustainable rate is chosen and communicated, while remaining in contact.",
+          "You choose a rate you can keep up and you say it, while staying in contact.",
         misuse: [
-          "Using the rate as cover for withdrawing entirely.",
+          "Using the rate as cover for pulling out completely.",
           "Slowing without telling them.",
           "Treating the rate as permanent.",
         ],
@@ -713,7 +715,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
           id: "signpost-c3-depleted",
           heading: "If everything costs this much",
           body:
-            "If it isn't only closeness — if most things are currently costing more than you've got — that's worth talking to someone about. A GP or a therapist. Not because of anything to do with dating. Because running that low across the board is worth looking at on its own.",
+            "If it isn't only closeness — if most things are costing more than you've got right now — that's worth talking to someone about. A GP or a therapist. Not because of anything to do with dating. Because running that low in every part of life is worth looking at on its own.",
         },
       ],
     },
@@ -815,7 +817,7 @@ export const LETTING_SOMEONE_IN: PlaybookContent = {
       progression: [
         {
           id: "rung-c3-rate-2",
-          instruction: "Revisit the rate when things ease, rather than leaving it where it is.",
+          instruction: "Come back to the rate when things ease, rather than leaving it where it is.",
         },
       ],
     },

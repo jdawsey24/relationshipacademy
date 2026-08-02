@@ -33,6 +33,7 @@ import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C6_LITERATURE } from "./finding-security-literature";
 import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const FINDING_SECURITY: PlaybookContent = {
   playbookKey: "finding-security", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
@@ -42,7 +43,7 @@ export const FINDING_SECURITY: PlaybookContent = {
     title: "Before anything else",
     body: [
       "Wanting to know where you stand is one of the most ordinary things a person can want. Nothing here is going to work on making you need less.",
-      "What we'll look at instead is the route — because most people in this position aren't short of reassurance. It arrives, it helps, and then it drains.",
+      "What we'll look at instead is the route you take — because most people in this spot aren't short of reassurance. It comes, it helps, and then it drains away.",
       "We won't be telling you what kind of person you are.",
     ],
     manifestations: [
@@ -75,7 +76,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       pathwayPlayId: "ask-then-watch",
       headline: "I've read the message eleven times.",
       explanation:
-        "The eleventh read has the same information as the first. Only asking or waiting produces anything new.",
+        "The eleventh read has the same information as the first. Only asking or waiting gives you anything new.",
       secondaryExamples: [
         "I overanalyze every text.",
         "I keep checking when they were last online.",
@@ -101,7 +102,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       pathwayPlayId: "insecure-or-accurate",
       headline: "I can't tell if I'm being insecure or if something's actually changed.",
       explanation:
-        "Sometimes you're right. There's a usable way to check.",
+        "Sometimes you're right. There's a way you can actually use to check.",
       secondaryExamples: [
         "I don't know if I'm overreacting.",
         "I compare myself to their ex.",
@@ -132,7 +133,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "Ask, Then Watch",
       positioning:
-        "For when you've reread it eleven times and learned nothing. You write the question alone \u2014 then you ask it, because rereading never produces new information and asking does.",
+        "For when you've reread it eleven times and learned nothing. You write the question alone \u2014 then you ask it, because rereading never gives you new information, and asking does.",
       recognitionGate: {
         prompt: "Do you go back over messages looking for something you missed?",
       },
@@ -140,9 +141,9 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Analysis feels like progress. You're turning it over, considering angles, working on it.",
-            "But no new information is arriving, so nothing can resolve. What it produces is more possible meanings — which is the opposite of what you were after.",
-            "Only two things generate new information. Asking, and watching what happens over time.",
+            "Going over it feels like progress. You're turning it over, looking at every angle, working on it.",
+            "But no new information is coming in, so nothing can get settled. All it makes is more possible meanings — which is the opposite of what you were after.",
+            "Only two things make new information: asking, and watching what happens over time.",
           ],
         },
         {
@@ -203,7 +204,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "One specific answerable question is actually asked, and observation is then extended over time in place of re-analysis. Drafting is preparation; asking is the operation.",
+          "You actually ask one specific question that has an answer, and then you watch over time instead of going back over it. Writing the question is just getting ready; asking is the real move.",
         misuse: [
           "Re-asking the same question in different words.",
           "Going quiet to see what they do.",
@@ -228,7 +229,7 @@ export const FINDING_SECURITY: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "They've told you. It landed. And then it faded faster than seemed reasonable and you were back where you started.",
+            "They've told you. It landed. And then it faded — faster than seemed reasonable — and you were back where you started.",
             "So the problem isn't supply. It's what happens on the way in, and how quickly the ground goes soft again.",
           ],
         },
@@ -237,14 +238,14 @@ export const FINDING_SECURITY: PlaybookContent = {
           body: [
             "Information is something you didn't know and now do. It holds until something changes.",
             "Relief is the discomfort dropping for a while. Nothing was learned, so there's nothing to hold onto.",
-            "Most reassurance-seeking gets relief. That's why it evaporates — not because they didn't mean it.",
+            "Most reassurance-seeking gets relief. That's why it fades — not because they didn't mean it.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
             "Looking at how you take something apart is uncomfortable, especially when you'd rather just be able to believe it.",
-            "You're not doing it on purpose and it isn't a character failing. It's a habit with a reason behind it. Noticing is the whole ask here.",
+            "You're not doing it on purpose and it isn't a flaw in you. It's a habit with a reason behind it. Noticing is all we're asking here.",
           ],
         },
         {
@@ -322,7 +323,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "A specific instance is examined for whether it carried checkable content, and the point of deflection is named.",
+          "You look at one specific time and check whether it had anything you could check against, and you name the moment it got brushed off.",
         misuse: [
           "Using it as further proof that you're too much.",
           "Deciding their reassurance was insincere.",
@@ -336,7 +337,7 @@ export const FINDING_SECURITY: PlaybookContent = {
           id: "signpost-c6-worth-contingent",
           heading: "If it isn't only about them",
           body:
-            `Some of what people write here is less about the relationship and more about whether they're worth anything at all — where being wanted is the only thing that settles it. If that's nearer the mark for you, it can help to take it to someone who can stay with it — a therapist, a GP, or another professional. It's a bigger question than a dating tool can hold. ${CRISIS_ESCALATION}`,
+            `Some of what people write here is less about the relationship and more about whether they're worth anything at all — where being wanted is the only thing that settles it. If that's closer to it for you, it can help to take it to someone who can stay with it — a therapist, a GP, or another professional. It's a bigger question than a dating tool can hold. ${CRISIS_ESCALATION}`,
         },
       ],
     },
@@ -356,15 +357,15 @@ export const FINDING_SECURITY: PlaybookContent = {
           kind: "shift",
           body: [
             "Being anxious doesn't make you wrong. People do lose interest, and you may well be picking something up.",
-            "The trouble is that the feeling is identical whether or not there's something there. So the feeling can't be the test.",
+            "The trouble is that the feeling is the same whether or not there's really something there. So the feeling can't be the test.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Probably about them: you can point at a specific thing, something changed, and someone else would notice if you described it flatly.",
+            "Probably about them: you can point at a specific thing, something changed, and someone else would notice if you described it plainly.",
             "Probably the pattern: it's the same feeling as last month and the person before, it's loudest when nothing at all has happened, and it gets stronger rather than weaker after they reassure you.",
-            "That last one is the most useful tell in this cluster.",
+            "That last one is the most useful tell here.",
           ],
         },
         {
@@ -387,26 +388,26 @@ export const FINDING_SECURITY: PlaybookContent = {
               id: "sort-c6-quiet-afternoon",
               text: "It's a quiet Sunday and nothing has happened, and I'm certain something's wrong",
               correctBucket: "the-pattern",
-              correction: "Loudest when there's no input. That's the pattern.",
+              correction: "Loudest when nothing's happening. That's the pattern.",
             },
             {
               id: "sort-c6-worse-after",
               text: "They reassured me and I felt worse an hour later",
               correctBucket: "the-pattern",
               correction:
-                "Reassurance that makes it louder isn't tracking them. That's one of the clearest tells.",
+                "Reassurance that makes it louder isn't really about them. That's one of the clearest tells.",
             },
             {
               id: "sort-c6-friend-would-see",
               text: "If I described it without commentary, a friend would raise an eyebrow",
               correctBucket: "about-them",
-              correction: "Describable without editorialising usually means it's out in the world.",
+              correction: "If you can describe it without adding your own spin, it's usually really out there.",
             },
             {
               id: "sort-c6-same-as-last",
               text: "This is exactly how I felt about the last two people",
               correctBucket: "the-pattern",
-              correction: "Identical across different people points at the constant, not the variable.",
+              correction: "The same feeling across different people points at what stays the same, not at the person.",
             },
             {
               id: "sort-c6-their-ex",
@@ -464,7 +465,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "A read is checked for a specific change before being acted on or dismissed.",
+          "You check a read for a specific change before you act on it or push it away.",
         misuse: [
           "Using the pattern label to override something you actually saw.",
           "Running it repeatedly until it gives the answer you wanted.",
@@ -490,15 +491,15 @@ export const FINDING_SECURITY: PlaybookContent = {
           kind: "shift",
           body: [
             "This isn't about caring less, and it isn't a diagnosis of how you attach.",
-            "It's arithmetic. The rereading, the checking, the replaying, the working out what they meant — those hours come out of the same supply as everything else.",
+            "It's just math. The rereading, the checking, the replaying, the working out what they meant — those hours come out of the same pile as everything else.",
             "And the less of you there is elsewhere, the more weight the relationship has to carry, which makes every wobble in it enormous.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "You've probably tried to just stop checking. It doesn't take, and then that becomes another thing you've failed at.",
-            "Adding it up works better than banning it. Knowing the price lets you decide what you'd rather spend some of it on — which is a choice rather than a prohibition.",
+            "You've probably tried to just stop checking. It doesn't stick, and then that becomes another thing you've failed at.",
+            "Adding it up works better than banning it. Knowing the price lets you decide what you'd rather spend some of it on — that's a choice, not a ban.",
           ],
         },
         {
@@ -574,7 +575,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "The cost of monitoring is counted and one specific portion is reclaimed and reallocated.",
+          "You count what the watching costs, then take back one specific piece and put it somewhere else.",
         misuse: [
           "Using the limit as another standard to fail.",
           "Doing it to appear less interested.",
@@ -628,7 +629,7 @@ export const FINDING_SECURITY: PlaybookContent = {
       attemptMeaning:
         "You noticed. Believing it wasn't the ask.",
       suitability:
-        "If noticing turns into a fresh round of self-criticism, stop and read 'Wanting to know where you stand isn't a defect'.",
+        "If noticing turns into a fresh round of beating yourself up, stop and read 'Wanting to know where you stand isn't a defect'.",
       progression: [
         {
           id: "rung-c6-land-2",

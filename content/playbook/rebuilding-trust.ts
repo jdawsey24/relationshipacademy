@@ -36,6 +36,8 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C16_LITERATURE } from "./rebuilding-trust-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const REBUILDING_TRUST: PlaybookContent = {
   playbookKey: "rebuilding-trust",
   playbookVersion: 1,
@@ -45,8 +47,8 @@ export const REBUILDING_TRUST: PlaybookContent = {
     title: "Two questions, and only one comes first",
     body: [
       "Something happened. You're still here, and you don't know whether you're staying.",
-      "Most people work on whether trust can come back while that first question is still open. It's exhausting, and it's a lot of effort aimed at something you haven't decided to keep.",
-      "Nothing here leans either way. Both paths are legitimate and both are survivable.",
+      "Most people work on whether trust can come back while that first question is still open. That's exhausting. It's a lot of effort aimed at something you haven't decided to keep.",
+      "Nothing here leans either way. Both paths are real, and you can get through either one.",
     ],
     manifestations: [
       "I don't know if staying is weakness.",
@@ -64,7 +66,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
       pathwayPlayId: "which-question-am-i-asking",
       headline: "I don't know if staying is weakness or leaving is giving up.",
       explanation:
-        "Neither is true, and while one option means you're weak and the other means you failed, you can't actually weigh them.",
+        "Neither is true. But while one choice means you're weak and the other means you failed, you can't really weigh them.",
       secondaryExamples: [
         "I don't know if my heart is still in this.",
         "I love them, but I'm tired.",
@@ -90,7 +92,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
       pathwayPlayId: "has-anything-changed",
       headline: "I don't know if they've really changed.",
       explanation:
-        "You can't see inside someone. Change has an outside, though, and the outside is checkable.",
+        "You can't see inside someone. But change has an outside, and you can check the outside.",
       secondaryExamples: [
         "I wonder if they regret what they did.",
         "I want to believe things can be different.",
@@ -116,7 +118,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I don't know where support ends and enabling begins.",
       validationCopy:
-        "This Playbook is the wrong instrument for that, and we'd rather say so than half-help. Support-versus-enabling is a real and specific question with a body of knowledge behind it. Depending on what fits, that might be an addiction-informed therapist, a family-support service, or a peer-support group such as Al-Anon; if the worry is affecting your health, a GP can help. And if there's ever fear, coercion, or violence in it, a domestic-abuse service — or emergency services, if you're in immediate danger — comes first. Couples work can be part of the picture later, but it isn't the place to start when safety or coercion is involved. Some of what's here will still apply, but that question needs people who know the territory.",
+        "This Playbook is the wrong tool for that, and we'd rather say so than half-help. Support-versus-enabling is a real and specific question, and there's a whole field of knowledge behind it. Depending on what fits, that might be a therapist who knows addiction, a family-support service, or a peer-support group such as Al-Anon. If the worry is affecting your health, a GP can help. And if there's ever fear, coercion, or violence in it, a domestic-abuse service comes first — or emergency services, if you're in immediate danger. Couples work can be part of the picture later, but it isn't the place to start when safety or coercion is involved. Some of what's here will still apply, but that question needs people who know the territory.",
       secondaryExamples: [
         "I'm exhausted from worrying.",
         "Recovery has changed our relationship.",
@@ -143,15 +145,15 @@ export const REBUILDING_TRUST: PlaybookContent = {
             "There are two questions here and they've got tangled.",
             "Do I want to be in this? That's a decision, and it's yours alone.",
             "Can trust come back? A different question — and only worth answering if the first one is yes.",
-            "Most people work on the second while the first is unresolved. It's exhausting, and it's a lot of effort aimed at something you haven't decided to keep.",
+            "Most people work on the second while the first is still open. That's exhausting. It's a lot of effort aimed at something you haven't decided to keep.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "\u201cIs staying weakness?\u201d and \u201cis leaving giving up?\u201d arrive together and do the same job: they turn a decision into a verdict on your character.",
-            "Neither is true. Staying is often harder than leaving — it means living with what happened rather than moving away from it. And leaving is a judgement that something isn't recoverable, which isn't surrender.",
-            "While one option means you're weak and the other means you failed, you can't weigh them. You're choosing between two accusations.",
+            "\u201cIs staying weakness?\u201d and \u201cis leaving giving up?\u201d come together, and they do the same job. They turn a decision into a judgement about who you are.",
+            "Neither is true. Staying is often harder than leaving. It means living with what happened instead of moving away from it. And leaving is a decision that something can't be fixed — which isn't giving up.",
+            "While one choice means you're weak and the other means you failed, you can't weigh them. You're choosing between two accusations.",
           ],
         },
         {
@@ -183,7 +185,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
                 "If you knew for certain you were staying, what would you stop doing? And if you knew you were leaving?",
               input: "text",
               placeholder:
-                "Two answers. The gap between them is often the informative part.",
+                "Two answers. The gap between them is often the part that tells you the most.",
             },
           ],
         },
@@ -194,7 +196,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
           enoughLabel: "It's genuinely open",
           needMoreLabel: "I think I know and I've been avoiding it",
           needMoreIntro:
-            "Either is a real answer and neither obliges you to act. Knowing which one you're in changes what the rest of this is for.",
+            "Either is a real answer, and neither one forces you to act. Knowing which one you're in changes what the rest of this is for.",
           needToKnowLabel: "What I'd need before I could look at it properly",
           observableLabel: "Something that would have to happen or be said",
         },
@@ -202,7 +204,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
           kind: "output",
           heading: "Which question I'm on",
           body:
-            "Neither path is the better one. Knowing which you're walking is what makes the rest of it usable.",
+            "Neither path is the better one. Knowing which one you're on is what makes the rest of this useful.",
         },
         {
           kind: "portable",
@@ -223,8 +225,8 @@ export const REBUILDING_TRUST: PlaybookContent = {
         when: "When I'm working on trust and haven't decided whether I'm staying",
         move: "Separate whether I want this from whether trust could return",
         lookingFor: "Which question I've actually been spending my effort on",
-        watchOut: "Treating either answer as a verdict on my character",
-        remember: "Nobody needs a good enough reason to leave. \u201cI don't want to\u201d is sufficient.",
+        watchOut: "Treating either answer as a judgement about who I am",
+        remember: "Nobody needs a good enough reason to leave. \u201cI don't want to\u201d is enough.",
       },
       fidelity: {
         correct:
@@ -259,29 +261,29 @@ export const REBUILDING_TRUST: PlaybookContent = {
       name: "The Checking",
       positioning: "For the searching that never settles anything. For if you're still in it.",
       recognitionGate: {
-        prompt: "Are you looking for evidence, and finding that it never resolves?",
+        prompt: "Are you looking for evidence, and finding it never settles anything?",
       },
       screens: [
         {
           kind: "shift",
           body: [
             "First: this is what people do after a betrayal. It isn't a character flaw and you aren't being unreasonable.",
-            "It's also doing something specific. Checking is an attempt to convert uncertainty into certainty — to find the thing that would settle it either way.",
-            "And it can't, for a structural reason. Finding nothing doesn't prove anything. It proves nothing was found today.",
+            "It's also doing something specific. Checking is a way to try to turn not-knowing into knowing for sure — to find the thing that would settle it either way.",
+            "And it can't, and there's a built-in reason why. Finding nothing doesn't prove anything. It only proves nothing was found today.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "That's why it escalates. A clean check produces relief for a few hours, then the same uncertainty returns, so it has to be repeated.",
-            "The questions that \u201cdon't bring peace\u201d are the same mechanism in words. Each answer generates the next question, because no answer can do the job you need it to.",
-            "And the images work the same way — your mind filling a gap with the partial information it has. More detail usually makes it worse, which is why the questions and the images feed each other.",
+            "That's why it grows. A clean check gives you relief for a few hours. Then the same uncertainty comes back, so you have to check again.",
+            "The questions that \u201cdon't bring peace\u201d are the same pattern in words. Each answer leads to the next question, because no answer can do the job you need it to.",
+            "And the images work the same way — your mind filling a gap with the few bits of information it has. More detail usually makes it worse, which is why the questions and the images feed each other.",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "An honest count. Nothing here is a judgement about whether you're entitled to it.",
+            "An honest count. Nothing here is a judgement about whether you're allowed to do it.",
           fields: [
             {
               id: "what-i-do",
@@ -312,11 +314,11 @@ export const REBUILDING_TRUST: PlaybookContent = {
         {
           kind: "sufficiency",
           prompt:
-            "Is there any result the checking could produce that would actually settle it?",
+            "Is there any result the checking could give you that would actually settle it?",
           enoughLabel: "Yes — there's something that would",
           needMoreLabel: "No — nothing would be enough",
           needMoreIntro:
-            "That's the usual answer, and it's the important one. If no result would settle it, the checking isn't gathering information. It's managing a feeling, and it's expensive.",
+            "That's the usual answer, and it's the important one. If no result would settle it, the checking isn't gathering information. It's managing a feeling — and it costs you a lot.",
           needToKnowLabel: "What would actually settle it, if anything could",
           observableLabel: "Something that would have to happen outside my own searching",
         },
@@ -343,14 +345,14 @@ export const REBUILDING_TRUST: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I'm searching for something that would settle it",
-        move: "Look at what the checking costs and what it structurally can't deliver",
+        move: "Look at what the checking costs and what it can never give me",
         lookingFor: "Whether any result would actually settle it",
         watchOut: "Turning this into shame about checking — that isn't the exercise",
         remember: "Relief for a few hours, then the same uncertainty. That's the shape of it.",
       },
       fidelity: {
         correct:
-          "The checking is examined for what it costs and whether any result could settle the question, without judgement about entitlement.",
+          "The checking is looked at for what it costs and whether any result could settle the question, without judging whether you're allowed to do it.",
         misuse: [
           "Using it to conclude you're paranoid or unreasonable.",
           "Deciding to stop as an act of will and treating a relapse as failure.",
@@ -364,7 +366,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
           id: "signpost-c16-intrusive",
           heading: "If the images are constant",
           body:
-            "If you're not sleeping, or the images arrive as though it's happening now, or they're there most of the day — it can help to take that to a therapist rather than managing it alone. Experiences like this can occur after a painful breach of trust, and there is specific help for them. It doesn't mean anything has gone wrong with you.",
+            "If you're not sleeping, or the images come as though it's happening now, or they're there most of the day — it can help to take that to a therapist rather than managing it alone. Things like this can happen after a painful betrayal, and there is specific help for them. It doesn't mean anything has gone wrong with you.",
         },
       ],
     },
@@ -383,23 +385,23 @@ export const REBUILDING_TRUST: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "You can't see inside someone. That's the honest starting point, and it's why the question feels unanswerable.",
-            "But change has an outside, and the outside is checkable — which is the only part available to you.",
+            "You can't see inside someone. That's the honest starting point, and it's why the question feels impossible to answer.",
+            "But change has an outside, and you can check the outside — which is the only part you can see.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Remorse isn't change. It's real, and people can be genuinely devastated and do it again. \u201cI wonder if they regret it\u201d — almost certainly yes, and it tells you very little about what happens next.",
-            "Promises aren't change either, however specific. They become evidence once they've been kept for a while.",
-            "What is visible: something that cost them, reassurance they carry rather than wait to be asked for, being able to talk about it without it becoming about how hard it's been for them, time that has held, and not pushing you to be finished with it.",
+            "Remorse isn't change. It's real, and people can be truly devastated and still do it again. \u201cI wonder if they regret it\u201d — almost certainly yes, and it tells you very little about what happens next.",
+            "Promises aren't change either, no matter how specific. They become evidence once they've been kept for a while.",
+            "Here's what you can see: something that cost them; reassurance they offer instead of waiting to be asked for it; being able to talk about it without turning it into how hard it's been for them; time that has held; and not pushing you to be finished with it.",
           ],
         },
         {
           kind: "scenarioSort",
           prompt: "Which of these is evidence, and which is sincerity?",
           situation:
-            "It's been several months. They've said a great deal and done some things. You're trying to work out which counts.",
+            "It's been several months. They've said a lot and done some things. You're trying to work out which counts.",
           buckets: [
             { id: "evidence", label: "Evidence" },
             { id: "sincerity", label: "Sincere, but not evidence" },
@@ -410,7 +412,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
               text: "They were devastated and cried for days",
               correctBucket: "sincerity",
               correction:
-                "Real, and not predictive. People can be devastated and do it again.",
+                "Real, but it doesn't predict anything. People can be devastated and do it again.",
             },
             {
               id: "sort-c16-ended-friendship",
@@ -428,7 +430,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
               id: "sort-c16-been-therapy",
               text: "They've been in therapy for four months and still go",
               correctBucket: "evidence",
-              correction: "Sustained, and it cost them time. That counts.",
+              correction: "It's lasted, and it cost them time. That counts.",
             },
             {
               id: "sort-c16-said-never",
@@ -477,7 +479,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
           kind: "output",
           heading: "What I can actually see",
           body:
-            "None of this predicts. It's the best available information, and there isn't a guarantee available.",
+            "None of this predicts. It's the best information you have, and there isn't a guarantee to be had.",
         },
         {
           kind: "portable",
@@ -496,14 +498,14 @@ export const REBUILDING_TRUST: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I'm trying to work out whether they've really changed",
-        move: "Weigh what's visible and sustained, separately from what's sincere",
+        move: "Weigh what I can see and what has lasted, separately from what's sincere",
         lookingFor: "Something that cost them, and that has held over time",
-        watchOut: "Waiting for a guarantee — there isn't one available",
+        watchOut: "Waiting for a guarantee — there isn't one",
         remember: "This is the best information there is. It still doesn't predict.",
       },
       fidelity: {
         correct:
-          "Visible sustained change is weighed separately from remorse and promises, and the reader names what would be enough.",
+          "Change you can see that has lasted is weighed separately from remorse and promises, and the reader names what would be enough.",
         misuse: [
           "Counting a promise as a kept promise.",
           "Using it to build a case in either direction.",
@@ -520,7 +522,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "What Forgiving Would Take",
-      positioning: "For working out what it would require. Applies whichever way you go.",
+      positioning: "For working out what it would take. Applies whichever way you go.",
       recognitionGate: {
         prompt: "Do you want to forgive this and find you can't?",
       },
@@ -528,8 +530,8 @@ export const REBUILDING_TRUST: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Forgiving doesn't mean staying. That's the most useful thing in this Playbook and most people don't know it's available.",
-            "Four combinations, all of which exist. Forgive and stay. Forgive and leave. Stay and not forgive. Leave and not forgive.",
+            "Forgiving doesn't mean staying. That's the most useful thing in this Playbook, and most people don't know it's an option.",
+            "There are four combinations, and all of them are real. Forgive and stay. Forgive and leave. Stay and not forgive. Leave and not forgive.",
             "Forgive-and-leave is the one people rarely realise they can have — you can stop carrying it and still not want the relationship.",
           ],
         },
@@ -537,13 +539,13 @@ export const REBUILDING_TRUST: PlaybookContent = {
           kind: "learn",
           body: [
             "\u201cDoes forgiveness mean forgetting?\u201d No. You won't forget, and being asked to is unreasonable.",
-            "What it seems to be, more often, is deciding to stop charging interest. The debt stays on the books; you stop adding to it daily.",
-            "That's much smaller than what people usually mean by the word, and considerably more achievable.",
+            "More often, it's deciding to stop charging interest. The debt stays on the books; you just stop adding to it every day.",
+            "That's much smaller than what people usually mean by the word, and a lot more doable.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "What would it actually require? Be specific.",
+          intro: "What would it actually take? Be specific.",
           fields: [
             {
               id: "what-would-need",
@@ -580,11 +582,11 @@ export const REBUILDING_TRUST: PlaybookContent = {
         },
         {
           kind: "sufficiency",
-          prompt: "Is what forgiveness would require actually available to you?",
+          prompt: "Is what forgiveness would take actually open to you?",
           enoughLabel: "Yes, in principle",
           needMoreLabel: "No — or not from them",
           needMoreIntro:
-            "That matters rather than being hopeless. If what forgiving requires isn't available, then not being able to forgive isn't a failing of yours. It's arithmetic.",
+            "That matters rather than being hopeless. If what forgiving takes isn't there, then not being able to forgive isn't a failing of yours. It's arithmetic.",
           needToKnowLabel: "What that means for what happens next",
           observableLabel: "Something I could actually decide or ask for",
         },
@@ -592,7 +594,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
           kind: "output",
           heading: "What forgiving would require",
           body:
-            "Not forgiveness. A clear view of what it would cost and whether it's available.",
+            "Not forgiveness. A clear view of what it would cost and whether it's there for you.",
         },
         {
           kind: "portable",
@@ -611,21 +613,21 @@ export const REBUILDING_TRUST: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I want to let go of this and find I can't",
-        move: "Name what forgiving would require, and whether it's available",
+        move: "Name what forgiving would take, and whether it's there",
         lookingFor: "Whether the condition is something they could actually give",
-        watchOut: "Treating inability to forgive as a defect in me",
-        remember: "Forgiving something never properly acknowledged is a great deal to ask.",
+        watchOut: "Treating not being able to forgive as something wrong with me",
+        remember: "Forgiving something that was never really owned up to is a great deal to ask.",
       },
       fidelity: {
         correct:
-          "The condition forgiveness would require is named, its availability assessed, and forgiveness is held separate from the decision to stay or leave.",
+          "The thing forgiveness would take is named, whether it's available is checked, and forgiveness is held separate from the decision to stay or leave.",
         misuse: [
           "Using it to pressure them into an apology.",
           "Deciding you've forgiven when you haven't.",
           "Treating forgiveness as a requirement for either path.",
         ],
         notMeaning:
-          "It does not mean you will forgive, that you should, or that forgiving obliges you to stay.",
+          "It does not mean you will forgive, that you should, or that forgiving means you have to stay.",
       },
     },
   ],
@@ -679,9 +681,9 @@ export const REBUILDING_TRUST: PlaybookContent = {
       title: "Write the record, with dates",
       instruction:
         "Write down what they've actually done since it happened, with dates. Only actions. Read it back a week later.",
-      linkToOperation: "Assembling visible sustained change as a record",
+      linkToOperation: "Gathering the change you can see, over time, into a record",
       attemptMeaning:
-        "You looked at the record. A thin record is information, not a verdict.",
+        "You looked at the record. A thin record is information, not a final judgement.",
       suitability:
         "If the record is thin and that's painful, that's worth having someone alongside you for.",
       progression: [
@@ -698,7 +700,7 @@ export const REBUILDING_TRUST: PlaybookContent = {
       title: "Say the condition out loud",
       instruction:
         "Tell someone you trust what forgiving would require, and whether it's available. Not the person it's about.",
-      linkToOperation: "Externalising the condition for release",
+      linkToOperation: "Getting the thing forgiving would take out of your head and into words",
       attemptMeaning:
         "You said it. Hearing yourself say it is the point.",
       suitability:

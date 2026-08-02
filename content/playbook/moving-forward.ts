@@ -38,6 +38,7 @@
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C12B_LITERATURE } from "./moving-forward-literature";
 
@@ -50,7 +51,7 @@ export const MOVING_FORWARD: PlaybookContent = {
     title: "Questions nobody had to answer the first time",
     body: [
       "How much of it do I tell someone. When do I mention the divorce. Am I allowed to want this yet. And why does everyone get measured against someone I chose to leave.",
-      "This isn't about doing it differently — that has its own Playbook and it's better than anything we'd repeat here. This is the specific problem of having a history.",
+      "This isn't about doing it differently — that has its own Playbook, and it's better than anything we'd repeat here. This is the specific problem of having a history.",
       "Nothing here says you should be dating, or that you're ready.",
     ],
     manifestations: [
@@ -69,7 +70,7 @@ export const MOVING_FORWARD: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I want love, but I don't want more pain.",
       validationCopy:
-        "Said twice in this material, which suggests it's the honest centre of it. That isn't guilt or confusion — it's an accurate statement of the trade. There isn't a version without exposure, and anyone offering one is selling something. Knowing that plainly is a better position than hoping for a version that doesn't exist.",
+        "This comes up twice here, which suggests it's the honest heart of it. That isn't guilt or confusion — it's an honest look at the trade. There's no version of this that doesn't leave you open to being hurt, and anyone who says there is one is selling something. Knowing that plainly puts you in a better spot than hoping for a version that doesn't exist.",
       secondaryExamples: [
         "I'm afraid of getting hurt all over again.",
         "I want love again, but I want it to be different this time.",
@@ -82,7 +83,7 @@ export const MOVING_FORWARD: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm not there yet — I still can't stop thinking about them.",
       validationCopy:
-        "Then this is the wrong half. There's a paired Playbook for the part before this — the checking, the replaying, working out what was actually yours. You don't have to have finished that before reading this one, and going back to it isn't losing ground — plenty of people move between the two.",
+        "Then this is the wrong half. There's a matching Playbook for the part before this — the checking, the replaying, figuring out what was really yours. You don't have to finish that one before reading this one. And going back to it isn't a step backward — plenty of people move between the two.",
       secondaryExamples: [
         "I keep checking their social media.",
         "I keep replaying everything.",
@@ -95,7 +96,7 @@ export const MOVING_FORWARD: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I don't want to repeat my past, and I don't know what healthy looks like.",
       validationCopy:
-        "Those have their own Playbook and it's a better answer than anything here — it's built around turning \u201cI want to do it differently\u201d into something you could actually catch yourself doing. If trusting your own read is the harder part, there's another about that. This one is narrower: what to say about your history, the guilt, and the comparing.",
+        "Those have their own Playbook, and it's a better answer than anything here — it's built to turn \u201cI want to do it differently\u201d into something you can actually catch yourself doing. If trusting your own judgment is the harder part, there's another Playbook for that. This one covers less: what to say about your history, the guilt, and the comparing.",
       secondaryExamples: [
         "I don't want to make the same mistakes.",
         "I don't know what healthy dating looks like anymore.",
@@ -108,7 +109,7 @@ export const MOVING_FORWARD: PlaybookContent = {
       pathwayPlayId: "what-to-say",
       headline: "I don't know how much of my past to share.",
       explanation:
-        "Two different disclosures get treated as one. The fact is a sentence. The account is an intimacy, and intimacies are exchanged rather than delivered.",
+        "Two different kinds of sharing get treated as one. The fact is a sentence. The account is personal, and personal things get shared back and forth, not handed over.",
       secondaryExamples: [
         "I don't know when to talk about my divorce.",
         "I don't know how to date anymore.",
@@ -132,7 +133,7 @@ export const MOVING_FORWARD: PlaybookContent = {
       pathwayPlayId: "the-comparison",
       headline: "I compare everyone to my former partner.",
       explanation:
-        "Nearly universal. Worth knowing there are two versions of it, and only one fades on its own.",
+        "Almost everyone does this. Worth knowing there are two versions, and only one fades on its own.",
       secondaryExamples: [
         "Everything feels different now.",
         "I don't know what I'm looking for anymore.",
@@ -156,18 +157,18 @@ export const MOVING_FORWARD: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "The available advice splits into two unhelpful halves: be completely open, or don't burden them with it.",
-            "Most of the difficulty is that two different disclosures are being treated as one.",
-            "The fact — that you were married, that it ended, roughly when. Context someone needs fairly early to understand your life.",
-            "The account — what happened, whose fault, what it did to you. That's an intimacy, and intimacies are exchanged rather than delivered.",
+            "The advice out there splits into two unhelpful halves: be completely open, or don't burden them with it.",
+            "Most of the trouble is that two different kinds of sharing are being treated as one.",
+            "The fact — that you were married, that it ended, roughly when. This is context someone needs fairly early to understand your life.",
+            "The account — what happened, whose fault, what it did to you. That's personal. Personal things get shared back and forth, not handed over.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "The fact is small and fits in a sentence. Earlier than feels comfortable, because it shapes time, money, family and availability, and it only gets harder to raise.",
-            "The account has no timetable. There's no obligation to produce it, and producing it early usually changes what the conversation is about.",
-            "One check worth running: are you telling them because they need to know, or because you're bracing for them to find out? The second tends to produce the full account far too early.",
+            "The fact is small and fits in a sentence. Say it earlier than feels comfortable, because it shapes time, money, family, and how free you are — and it only gets harder to bring up.",
+            "The account has no timetable. You don't have to give it, and giving it early usually changes what the conversation is about.",
+            "One check worth running: are you telling them because they need to know, or because you're bracing for them to find out? The second one tends to bring out the whole account far too early.",
           ],
         },
         {
@@ -191,7 +192,7 @@ export const MOVING_FORWARD: PlaybookContent = {
               text: "Why it ended and who did what",
               correctBucket: "account",
               correction:
-                "An intimacy. Not information they can use yet, and it changes the conversation.",
+                "Personal. Not information they can use yet, and it changes the conversation.",
             },
             {
               id: "sort-c12b-kids",
@@ -203,7 +204,7 @@ export const MOVING_FORWARD: PlaybookContent = {
               id: "sort-c12b-how-it-felt",
               text: "What the last year of it did to you",
               correctBucket: "account",
-              correction: "Exchanged, over time. Not handed over on a third date.",
+              correction: "Shared over time. Not handed over on a third date.",
             },
             {
               id: "sort-c12b-still-untangling",
@@ -255,20 +256,20 @@ export const MOVING_FORWARD: PlaybookContent = {
           kind: "output",
           heading: "The fact, at the right size",
           body:
-            "How someone receives it is genuinely useful information, and the group who take it as an ordinary fact about an adult's life is larger than it feels.",
+            "How someone takes it is genuinely useful information. The group who treat it as an ordinary fact about an adult's life is bigger than it feels.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "The fact is a sentence. The account is an intimacy.",
+            "The fact is a sentence. The account is personal.",
             "Earlier than comfortable, less than feels honest. Both are right.",
             "Am I telling them, or bracing for them to find out?",
           ],
         },
       ],
       portable: [
-        "The fact is a sentence. The account is an intimacy.",
+        "The fact is a sentence. The account is personal.",
         "Earlier than comfortable, less than feels honest. Both are right.",
         "Am I telling them, or bracing for them to find out?",
       ],
@@ -277,15 +278,15 @@ export const MOVING_FORWARD: PlaybookContent = {
         move: "Separate the fact from the account, and say the fact early",
         lookingFor: "How they take an ordinary fact about an adult's life",
         watchOut: "Filling the pause afterwards with the account",
-        remember: "Withholding the fact doesn't protect anyone, and it gets harder to raise.",
+        remember: "Holding back the fact doesn't protect anyone, and it gets harder to bring up.",
       },
       fidelity: {
         correct:
-          "The factual disclosure is separated from the narrative account, and the fact is stated early and briefly without the account attached.",
+          "The fact is kept separate from the account, and the fact is said early and briefly, without the account attached.",
         misuse: [
-          "Delivering the account early because the silence felt like a question.",
-          "Withholding the fact to avoid the conversation.",
-          "Treating their reaction as a verdict on you rather than information about them.",
+          "Giving the account early because the silence felt like a question.",
+          "Holding back the fact to avoid the conversation.",
+          "Treating their reaction as a judgment on you rather than information about them.",
         ],
         notMeaning:
           "It does not mean they'll take it well, that the account never gets told, or that there's a correct moment.",
@@ -300,14 +301,14 @@ export const MOVING_FORWARD: PlaybookContent = {
       name: "The Guilt",
       positioning: "For feeling guilty about something nobody is objecting to.",
       recognitionGate: {
-        prompt: "Does wanting this again come with guilt you can't locate?",
+        prompt: "Does wanting this again come with guilt you can't place?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "This one surprises people, because there's often nobody obvious to be guilty toward. The relationship ended — possibly at your instigation — and the other person is alive and getting on with things.",
-            "Which means the guilt has no identified object, and guilt with no object is much harder to weigh than guilt with one.",
+            "This one surprises people, because there's often nobody obvious to feel guilty toward. The relationship ended — maybe you're the one who ended it — and the other person is alive and getting on with things.",
+            "So the guilt has no clear target, and guilt with no target is much harder to weigh than guilt with one.",
           ],
         },
         {
@@ -315,8 +316,8 @@ export const MOVING_FORWARD: PlaybookContent = {
           body: [
             "It's rarely about the ex. More often it's one of three things.",
             "Children, if there are any — not wanting to introduce something, or to be seen wanting something for yourself.",
-            "The marriage as a thing you meant. Moving on can feel like conceding it wasn't what you said it was, which is a loss on top of a loss.",
-            "Or a sense that wanting anything again is greedy, having already had a go.",
+            "The marriage as something you meant. Moving on can feel like admitting it wasn't what you said it was — and that's a loss on top of a loss.",
+            "Or a feeling that wanting anything again is greedy, since you've already had a turn.",
           ],
         },
         {
@@ -362,7 +363,7 @@ export const MOVING_FORWARD: PlaybookContent = {
           enoughLabel: "No \u2014 it happened either way",
           needMoreLabel: "It feels like it does",
           needMoreIntro:
-            "That's the assumption underneath, and it's worth sitting with rather than resolving. Wanting something again doesn't retroactively make the last thing less meant.",
+            "That's the assumption underneath, and it's worth sitting with rather than solving. Wanting something again doesn't reach back and make the last thing less meant.",
           needToKnowLabel: "What would still be true about it regardless",
           observableLabel: "Something I'd still say about that time",
         },
@@ -370,20 +371,20 @@ export const MOVING_FORWARD: PlaybookContent = {
           kind: "output",
           heading: "What the guilt is toward",
           body:
-            "Named rather than argued with. That's most of what's available, and it's more than it sounds.",
+            "Named, not argued with. That's most of what you can do here, and it's more than it sounds.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Guilt with no object is harder to weigh than guilt with one.",
+            "Guilt with no target is harder to weigh than guilt with one.",
             "It's rarely about them.",
             "Wanting something again doesn't make the last thing less meant.",
           ],
         },
       ],
       portable: [
-        "Guilt with no object is harder to weigh than guilt with one.",
+        "Guilt with no target is harder to weigh than guilt with one.",
         "It's rarely about them.",
         "Wanting something again doesn't make the last thing less meant.",
       ],
@@ -396,9 +397,9 @@ export const MOVING_FORWARD: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "The object of the guilt is identified specifically, and distinguished from whether anyone has actually objected.",
+          "The target of the guilt is named specifically, and kept separate from whether anyone has actually objected.",
         misuse: [
-          "Using it to conclude the guilt is irrational and should stop.",
+          "Using it to decide the guilt is irrational and should stop.",
           "Deciding what your children think without asking them.",
           "Treating the naming as permission.",
         ],
@@ -422,14 +423,14 @@ export const MOVING_FORWARD: PlaybookContent = {
           kind: "shift",
           body: [
             "It isn't them against the new person. It's someone met three weeks ago against someone you knew for years — their humour, their references, the shorthand, the way they knew what you meant.",
-            "That's not a fair comparison and it isn't fixable by trying to be fair. Familiarity is what's being missed, and nobody new has any.",
+            "That's not a fair comparison, and you can't fix it by trying to be fair. What you're missing is familiarity, and nobody new has any.",
           ],
         },
         {
           kind: "learn",
           body: [
             "There's a second version, and it's the one worth telling apart.",
-            "Sometimes the comparison isn't favourable at all — you're scanning for resemblance rather than superiority, checking whether this one will turn out the same way.",
+            "Sometimes the comparison isn't flattering at all — you're scanning for likeness rather than who's better, checking whether this one will turn out the same way.",
             "The first fades with time and familiarity. The second doesn't, and it can make an ordinary person look like evidence.",
           ],
         },
@@ -450,7 +451,7 @@ export const MOVING_FORWARD: PlaybookContent = {
               input: "chips",
               suggestions: [
                 "They came off worse \u2014 missing what was familiar",
-                "I was checking for resemblance",
+                "I was checking for likeness",
                 "Both at once",
                 "I can't tell",
               ],
@@ -467,7 +468,7 @@ export const MOVING_FORWARD: PlaybookContent = {
         {
           kind: "sufficiency",
           prompt:
-            "If it's the resemblance-scanning kind \u2014 is what you noticed something they did, or something you're expecting?",
+            "If it's the likeness-scanning kind \u2014 is what you noticed something they did, or something you're expecting?",
           enoughLabel: "Something they actually did",
           needMoreLabel: "Something I was watching for",
           needMoreIntro:
@@ -486,33 +487,33 @@ export const MOVING_FORWARD: PlaybookContent = {
           heading: "Take this with you",
           steps: [
             "Three weeks against years. That's not a comparison anyone wins.",
-            "Am I missing familiarity, or scanning for resemblance?",
+            "Am I missing familiarity, or scanning for likeness?",
             "Scanning finds what it's looking for.",
           ],
         },
       ],
       portable: [
         "Three weeks against years. That's not a comparison anyone wins.",
-        "Am I missing familiarity, or scanning for resemblance?",
+        "Am I missing familiarity, or scanning for likeness?",
         "Scanning finds what it's looking for.",
       ],
       myPlaysTemplate: {
         when: "When everyone new gets measured against them",
-        move: "Tell missing-the-familiarity apart from scanning-for-resemblance",
+        move: "Tell missing-the-familiarity apart from scanning-for-likeness",
         lookingFor: "Whether what I noticed was something they did or something I expected",
         watchOut: "Treating either kind as a reason to stop seeing someone",
         remember: "Nobody new has any familiarity. That's not a fault of theirs.",
       },
       fidelity: {
         correct:
-          "A specific comparison is examined and classified as missing familiarity or scanning for resemblance, with observed behaviour distinguished from expectation.",
+          "A specific comparison is looked at and sorted into missing familiarity or scanning for likeness, with what they actually did kept separate from what you expected.",
         misuse: [
-          "Using it to justify ending something.",
-          "Concluding that any comparison means you shouldn't be dating.",
-          "Dismissing a genuine observation as scanning.",
+          "Using it as a reason to end something.",
+          "Deciding that any comparison means you shouldn't be dating.",
+          "Brushing off something you really noticed as just scanning.",
         ],
         notMeaning:
-          "It does not mean the comparison stops, that the new person is right for you, or that a resemblance you noticed isn't real.",
+          "It does not mean the comparison stops, that the new person is right for you, or that a likeness you noticed isn't real.",
       },
     },
   ],
@@ -527,7 +528,7 @@ export const MOVING_FORWARD: PlaybookContent = {
       title: "Say the fact once, early",
       instruction:
         "Next time it's relevant, say the one-sentence version. Then stop, and note what they did with it.",
-      linkToOperation: "Disclosing factual history without the narrative account",
+      linkToOperation: "Sharing the fact of your history without the account",
       attemptMeaning:
         "You said it. How they took it is information about them.",
       suitability:
@@ -546,7 +547,7 @@ export const MOVING_FORWARD: PlaybookContent = {
       title: "Ask, if it's about your children",
       instruction:
         "If the guilt is toward children, ask them rather than deciding for them. Most people find the answer isn't the one they'd assumed.",
-      linkToOperation: "Checking an assumed objection rather than inferring it",
+      linkToOperation: "Checking an assumed objection instead of guessing at it",
       attemptMeaning:
         "You asked. Whatever they said, you now know rather than guess.",
       suitability:
@@ -564,8 +565,8 @@ export const MOVING_FORWARD: PlaybookContent = {
       playId: "the-comparison",
       title: "Catch three, and sort them",
       instruction:
-        "Over a fortnight, catch three comparisons and note which kind each was. Don't try to stop them.",
-      linkToOperation: "Distinguishing familiarity loss from resemblance scanning",
+        "Over two weeks, catch three comparisons and note which kind each was. Don't try to stop them.",
+      linkToOperation: "Telling familiarity loss apart from likeness scanning",
       attemptMeaning:
         "You sorted them. Stopping the comparing was never the ask.",
       suitability:
@@ -634,7 +635,7 @@ export const MOVING_FORWARD: PlaybookContent = {
         ],
       },
       performedOperation: {
-        label: "Did you identify what the guilt is toward?",
+        label: "Did you name what the guilt is toward?",
         options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
@@ -672,7 +673,7 @@ export const MOVING_FORWARD: PlaybookContent = {
         ],
       },
       performedOperation: {
-        label: "Did you classify the comparison and check the evidence?",
+        label: "Did you sort the comparison and check the evidence?",
         options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
@@ -681,7 +682,7 @@ export const MOVING_FORWARD: PlaybookContent = {
         options: [
           "That I'm mostly missing familiarity",
           "That I'm mostly scanning for resemblance",
-          "How unfair the comparison is by construction",
+          "How unfair the comparison is from the start",
           "Nothing new",
         ],
       },

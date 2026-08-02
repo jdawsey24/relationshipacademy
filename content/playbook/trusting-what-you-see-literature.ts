@@ -23,6 +23,7 @@
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const C5_LITERATURE: LiteratureEntry[] = [
   // ───────────────────────────────────────────────── CORE GUIDES ──
   {
@@ -45,7 +46,7 @@ export const C5_LITERATURE: LiteratureEntry[] = [
         label: "Two things that get called the same thing",
         body: [
           "Not seeing it. Rare, in our experience, for people who end up here.",
-          "Seeing it and overriding it. Much more common, and a completely different problem with a completely different fix.",
+          "Seeing it and pushing it aside. Much more common, and a completely different problem with a completely different fix.",
         ],
       },
       {
@@ -57,7 +58,7 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "Nothing here will make you certain. Certainty isn't available in the timeframe you need it. What's available is a way of deciding that doesn't require it.",
+          "Nothing here will make you certain. Certainty won't come in the time you need it. What you can have is a way of deciding that doesn't need it.",
         ],
       },
     ],
@@ -74,7 +75,7 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "We want to say this before anything else, because most advice for people like you starts by telling them to trust their gut, which is not obviously good advice for someone whose gut has been wrong.",
+          "We want to say this before anything else. Most advice for people like you starts by telling them to trust their gut. That's not obviously good advice for someone whose gut has been wrong.",
         ],
       },
       {
@@ -88,15 +89,15 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "If you have genuinely misread people more than once, then lowered confidence in your reading is a correct update. That's not damage. That's learning.",
-          "We're not going to tell you to trust yourself more. That would be asking you to ignore your own evidence, which is the exact habit we're trying to interrupt.",
+          "If you have really misread people more than once, then trusting your reading less is the right response. That's not damage. That's learning.",
+          "We're not going to tell you to trust yourself more. That would be asking you to ignore your own evidence, which is the exact habit we're trying to break.",
         ],
       },
       {
         kind: "distinction",
         label: "There is a different sentence that causes trouble",
         body: [
-          "\u201cMy read has been wrong before, so I'll check it against something\u201d is a working position.",
+          "\u201cMy read has been wrong before, so I'll check it against something\u201d is a position you can work with.",
           "\u201cI can't trust anything I think\u201d is a different thing. That one leaves you with nothing to decide with, and it hands the decision to whoever is most confident in the room.",
         ],
       },
@@ -120,7 +121,7 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "This is the question the whole cluster turns on, and there is a usable answer.",
+          "This is the question everything here turns on, and there is a usable answer.",
           "Not a perfect one. A usable one.",
         ],
       },
@@ -165,23 +166,23 @@ export const C5_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI saw the red flags but stayed anyway.\u201d \u201cI knew something was wrong.\u201d \u201cI ignored my intuition.\u201d",
-          "Notice that these are all in the past tense, and all of them contain the word knew. The information was there. It got overridden.",
+          "Notice that these are all in the past tense, and all of them contain the word knew. The information was there. It got pushed aside.",
         ],
       },
       {
         kind: "list",
-        label: "The usual ways it gets overridden",
+        label: "The usual ways it gets pushed aside",
         items: [
-          "Waiting for proof. The concern is real but not certain, so you park it until it's certain \u2014 and by then it's a bigger decision.",
+          "Waiting for proof. The concern is real but not certain, so you set it aside until it is \u2014 and by then it's a bigger decision.",
           "Deciding it says something bad about you. Being suspicious feels unkind, so you drop the suspicion rather than check it.",
-          "Explaining it away with something true. They're stressed, they're busy, it's early. All possibly accurate, and none of them tests the concern.",
+          "Explaining it away with something true. They're stressed, they're busy, it's early. All possibly true, and none of them tests the concern.",
           "Giving it one more chance, and then another, because each one is small.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The move is smaller than it sounds. Not act on every concern \u2014 that would be unliveable. Just don't let a concern disappear without doing something with it. Name it, and give it something to look for.",
+          "The move is smaller than it sounds. Not act on every concern \u2014 that would be no way to live. Just don't let a concern disappear without doing something with it. Name it, and give it something to look for.",
         ],
       },
     ],
@@ -198,16 +199,16 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Every individual chance is reasonable. That's what makes this hard.",
-          "Nobody stays five years because of one big decision. They stay because of forty small ones, each of which was defensible on the day.",
+          "Every single chance makes sense. That's what makes this hard.",
+          "Nobody stays five years because of one big decision. They stay because of forty small ones, each of which was easy to defend on the day.",
         ],
       },
       {
         kind: "distinction",
-        label: "Why an open-ended chance isn't a chance",
+        label: "Why a chance with no end isn't really a chance",
         body: [
-          "A chance with no end point can't be failed. If there's always another one, nothing is ever settled and you never have to decide.",
-          "A chance with an end point produces information. Either the thing changes by then, or it doesn't, and you learn something either way.",
+          "A chance with no end can't be failed. If there's always another one, nothing is ever settled and you never have to decide.",
+          "A chance with an end tells you something. Either the thing changes by then, or it doesn't, and you learn something either way.",
         ],
       },
       {
@@ -236,7 +237,7 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Physically, wanting someone and being unsettled by them feel almost identical. Racing pulse, preoccupation, checking your phone, the sense that something is at stake.",
+          "Physically, wanting someone and being unsettled by them feel almost the same. Racing pulse, can't stop thinking about them, checking your phone, the sense that something is at stake.",
           "You can't tell them apart by how they feel, because they feel the same.",
         ],
       },
@@ -245,19 +246,19 @@ export const C5_LITERATURE: LiteratureEntry[] = [
         label: "What does tell them apart",
         body: [
           "Chemistry is about them \u2014 how they talk, what they notice, how it is being near them. It's steady whether or not you've heard from them today.",
-          "The other thing is about the uncertainty. It spikes when you don't know where you stand, and it drops when you do. If it disappears the moment they're reliably interested, it wasn't about them.",
+          "The other thing is about the uncertainty. It jumps when you don't know where you stand, and it drops when you do. If it disappears the moment they're steadily interested, it wasn't about them.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "This is why \u201cchemistry\u201d is such an unreliable filter. It isn't that the feeling is fake. It's that the same feeling is produced by two very different situations.",
+          "This is why \u201cchemistry\u201d is such a bad thing to go by. It isn't that the feeling is fake. It's that the same feeling comes from two very different situations.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "We're not saying attraction doesn't matter, or that you should date someone you feel nothing for. We're saying the intensity of the feeling isn't evidence about the person.",
+          "We're not saying attraction doesn't matter, or that you should date someone you feel nothing for. We're saying how strong the feeling is isn't evidence about the person.",
         ],
       },
     ],
@@ -275,14 +276,14 @@ export const C5_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cHealthy relationships feel boring.\u201d \u201cI lose interest when someone is healthy.\u201d \u201cI miss the excitement, not necessarily the person.\u201d",
-          "This is one of the most disorienting things people notice about themselves, because it seems to say something terrible \u2014 that you don't want good things.",
+          "This is one of the most confusing things people notice about themselves, because it seems to say something terrible \u2014 that you don't want good things.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Here's a plainer reading. Uncertainty generates a lot of activity. Wondering, analysing, waiting, hoping. That activity feels like involvement.",
-          "When someone is straightforwardly available, all of that stops. And the absence of the activity can register as the absence of feeling \u2014 when actually it's just the absence of anxiety.",
+          "Here's a plainer reading. Uncertainty creates a lot of activity. Wondering, analysing, waiting, hoping. That activity feels like being involved.",
+          "When someone is simply available, all of that stops. And the quiet can feel like no feeling \u2014 when really it's just no anxiety.",
         ],
       },
       {
@@ -319,14 +320,14 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "guardrail",
         body: [
-          "We're going to describe this pattern and not explain it. There are a lot of confident explanations available \u2014 about your childhood, your attachment style, what's wrong with you \u2014 and we don't think any of them are established enough to hand you as fact. Notice the word familiar in that last sentence, though. Familiar means you've been here before. That's worth knowing without needing a theory about it.",
+          "We're going to describe this pattern and not explain it. There are a lot of confident explanations out there \u2014 about your childhood, your attachment style, what's wrong with you \u2014 and we don't think any of them are solid enough to give you as fact. Notice the word familiar in that last sentence, though. Familiar means you've been here before. That's worth knowing without needing a theory about it.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "What is observable: someone unavailable never becomes ordinary. There's always a next thing to find out, always a reason it hasn't settled. The wanting doesn't run out, because it never gets what it's after.",
-          "Someone available becomes ordinary quite fast. Not less good \u2014 less unresolved.",
+          "What you can actually see: someone unavailable never becomes ordinary. There's always a next thing to find out, always a reason it hasn't settled. The wanting doesn't run out, because it never gets what it's after.",
+          "Someone available becomes ordinary quite fast. Not less good \u2014 just more settled.",
         ],
       },
       {
@@ -350,7 +351,7 @@ export const C5_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cEveryone tells me my standards are too high.\u201d",
-          "That's a claim other people are making. It isn't a finding, and we're not going to treat it as one.",
+          "That's something other people are saying. It isn't a fact, and we're not going to treat it as one.",
         ],
       },
       {
@@ -364,14 +365,14 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "If you've built something demanding \u2014 a career, a family, a way of living you're not willing to give up \u2014 then wanting someone who can hold that isn't high standards. It's arithmetic. The person has to fit the actual life.",
-          "And that cuts both ways. Some requirements are load-bearing: without them the thing genuinely doesn't work. Others came from somewhere else \u2014 a film, a family, an idea you formed at twenty-two \u2014 and have never been examined.",
+          "If you've built something demanding \u2014 a career, a family, a way of living you're not willing to give up \u2014 then wanting someone who can hold that isn't high standards. It just adds up. The person has to fit the actual life.",
+          "And that cuts both ways. Some requirements are load-bearing: without them the thing genuinely doesn't work. Others came from somewhere else \u2014 a film, a family, an idea you formed at twenty-two \u2014 and have never been looked at.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nobody outside you can sort those two piles, which is why \u201cyou're too picky\u201d is unhelpful even when it's well meant. Only you know which requirements are structural.",
+          "Nobody outside you can sort those two piles, which is why \u201cyou're too picky\u201d is unhelpful even when it's well meant. Only you know which requirements are load-bearing.",
         ],
       },
     ],
@@ -388,7 +389,7 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Some of what you've said isn't a problem to solve. It's a description of what you need, and it's worth writing down as such.",
+          "Some of what you've said isn't a problem to solve. It's a description of what you need, and it's worth writing down that way.",
         ],
       },
       {
@@ -405,13 +406,13 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "None of those are difficulties in judgement. They're requirements. And they're the raw material for the standards question \u2014 you can't work out whether your standards fit you until you've said plainly what you need.",
+          "None of those are problems with judgement. They're requirements. And they're the starting point for the standards question \u2014 you can't work out whether your standards fit you until you've said plainly what you need.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "There's no tool here, and that's deliberate. This is a thing to know about yourself, not a thing to fix.",
+          "There's no tool here, and that's on purpose. This is a thing to know about yourself, not a thing to fix.",
         ],
       },
     ],
@@ -443,7 +444,7 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "The second one catches something the picky framing misses. Most people who worry about being too picky aren't applying strict criteria. They're applying a fast, feeling-based filter and then finding reasons afterwards.",
+          "The second one catches something the 'too picky' idea misses. Most people who worry about being too picky aren't using strict rules. They're going on a fast gut feeling and then finding reasons afterwards.",
           "Which is a different problem, and it isn't solved by lowering your standards.",
         ],
       },
@@ -467,14 +468,14 @@ export const C5_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "The version people usually want is a feeling \u2014 a reliable inner sense that tells you when someone is safe. We don't think that's coming back on demand, and we're not sure it was ever as reliable as it felt.",
-          "What's available instead is a way of deciding that doesn't rest on the feeling. You notice something, you name it, you give it something to look for, and you look on a particular day. That works whether or not you trust yourself.",
+          "The version people usually want is a feeling \u2014 a steady inner sense that tells you when someone is safe. We don't think that's coming back whenever you want it, and we're not sure it was ever as reliable as it felt.",
+          "What you can have instead is a way of deciding that doesn't depend on the feeling. You notice something, you name it, you give it something to look for, and you look on a particular day. That works whether or not you trust yourself.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If the question is heavier than dating \u2014 if you don't trust your judgement about anything, or the sense of being fundamentally unable to tell what's real has spread \u2014 that's worth taking to someone. Not because of anything to do with relationships.",
+          "If the question is heavier than dating \u2014 if you don't trust your judgement about anything, or the sense that you just can't tell what's real has spread \u2014 that's worth taking to someone. Not because of anything to do with relationships.",
         ],
       },
     ],

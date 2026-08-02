@@ -36,6 +36,8 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C20_LITERATURE } from "./finding-yourself-again-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
   playbookKey: "finding-yourself-again",
   playbookVersion: 1,
@@ -44,8 +46,8 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
   opening: {
     title: "It took something else with it",
     body: [
-      "Not just the person — the version of you that existed inside it. \u201cI don't recognise myself anymore\u201d is usually said with some embarrassment, as though it were an overreaction. It isn't.",
-      "Three losses are tangled here: the person, the future you'd assumed, and the structure a life had. They respond to different things, and most people try to address all three the same way.",
+      "Not just the person. It also took the version of you that lived inside it. People say \u201cI don't recognise myself anymore\u201d with some embarrassment, as if it's an overreaction. It isn't.",
+      "Three losses are tangled up here. The person. The future you thought you'd have. And the way your life was set up. Each one needs a different thing. But most people try to handle all three the same way.",
       "Nothing here says how long this takes.",
     ],
     manifestations: [
@@ -64,7 +66,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I feel like I failed.",
       validationCopy:
-        "Nearly everyone whose relationship ends says this, including people who were left and people who left. Failure implies a task with a defined success condition, and \u201cstayed together\u201d is the only one on offer — which makes every ending a failure regardless of what it contained. Nobody would apply that standard to a friendship, a job, or a city they moved away from.",
+        "Nearly everyone whose relationship ends says this. The people who were left, and the people who left. The word \u201cfailure\u201d means there was a task you could pass or fail. And the only way to pass is \u201cstaying together.\u201d That makes every ending a failure, no matter what was in it. Nobody uses that test on a friendship, a job, or a city they moved away from.",
       secondaryExamples: [
         "I never imagined this would be my story.",
         "I don't want my past to define me.",
@@ -77,7 +79,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       pathwayPlayId: null,
       headline: "My partner died.",
       validationCopy:
-        "This Playbook is for people whose relationship ended while both are still living, and some of it would land badly on you — the tools assume someone made a choice. Losing a partner to death is a different injury with different questions: whether continuing your life means leaving them behind, how to want companionship without it feeling like a betrayal. There's a paired Playbook for that, and it's the right one.",
+        "This Playbook is for people whose relationship ended while both are still alive. Some of it would land badly on you, because the tools assume someone made a choice. Losing a partner to death is a different kind of hurt, with different questions. Does going on with your life mean leaving them behind? How do you want company again without it feeling like a betrayal? There's a matching Playbook for that, and it's the right one.",
       secondaryExamples: [
         "Dating again feels like I'm betraying them.",
         "I don't want to replace them.",
@@ -90,7 +92,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       pathwayPlayId: "what-was-mine",
       headline: "I built my identity around my relationship.",
       explanation:
-        "Not a failure of independence. It's what long relationships do, and the cost only appears at the end when it's unclear which of it was ever separately yours.",
+        "This isn't you failing to be independent. It's what long relationships do. The cost only shows up at the end, when it's hard to tell which parts were ever just yours.",
       secondaryExamples: [
         "I don't know who I am without this relationship.",
         "I feel like I lost part of my identity.",
@@ -103,7 +105,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       pathwayPlayId: "the-future-i-lost",
       headline: "I'm grieving the future I imagined.",
       explanation:
-        "One of the least acknowledged losses there is, because nothing happened to it. It simply stopped being true.",
+        "This is one of the least talked-about losses there is, because nothing happened to it. It just stopped being true.",
       secondaryExamples: [
         "I miss the life I thought we'd have.",
         "I don't know what my future looks like anymore.",
@@ -116,7 +118,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       pathwayPlayId: "the-shape-of-a-life",
       headline: "Everything feels unfamiliar.",
       explanation:
-        "A relationship organises an enormous amount. When it goes, the result presents as an identity crisis and a good deal of it is not knowing what to do on a Tuesday.",
+        "A relationship holds a huge amount in place. When it ends, it can feel like an identity crisis. But a lot of it is just not knowing what to do on a Tuesday.",
       secondaryExamples: [
         "I don't know what life looks like now.",
         "I'm rebuilding my life from scratch.",
@@ -129,7 +131,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       pathwayPlayId: "what-im-choosing",
       headline: "I don't know what I want anymore.",
       explanation:
-        "Usually a sign of capacity rather than damage. Knowing what you want takes spare resource, and there hasn't been any.",
+        "Usually this is about not having spare energy, not about something being broken. Knowing what you want takes spare energy, and there hasn't been any.",
       secondaryExamples: [
         "I don't know who I'm becoming.",
         "I don't know how to dream again.",
@@ -145,33 +147,33 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "What Was Mine",
-      positioning: "For working out which parts of you were ever separately yours.",
+      positioning: "For working out which parts of you were ever just yours.",
       recognitionGate: {
-        prompt: "Is it unclear which of your life was yours and which was theirs?",
+        prompt: "Is it hard to tell which parts of your life were yours and which were theirs?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "Building an identity around a relationship isn't a failure of independence. It's what long relationships do, and it happens without anyone deciding to.",
-            "Two people living alongside each other for years develop shared preferences, friends, references, routines. That's not enmeshment — it's most of what closeness produces.",
-            "The cost only appears at the end, when it becomes unclear which of it was ever separately yours.",
+            "Building your identity around a relationship isn't you failing to be independent. It's what long relationships do. It happens without anyone choosing it.",
+            "Two people who live side by side for years share tastes, friends, in-jokes, and routines. That's not a sign of something unhealthy. It's most of what being close creates.",
+            "The cost only shows up at the end, when it's hard to tell which of it was ever just yours.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "The question isn't who you were before. That person is a decade out of date and isn't available.",
-            "It's which of what you have now is yours — and there are three categories, not two.",
-            "Things you brought and kept. Things they brought that you adopted and would keep. And things you did because they wanted to and never separately wanted.",
-            "Most people assume the middle category has to be surrendered. It doesn't. Liking something because you learned it from someone is how most people come to like most things.",
+            "The question isn't who you were before. That person is years out of date, and you can't go back to them.",
+            "The question is which parts of what you have now are yours. And there are three kinds, not two.",
+            "Things you brought in and kept. Things they brought that you took on and would keep. And things you only did because they wanted to, and never really wanted yourself.",
+            "Most people think the middle kind has to be given up. It doesn't. Learning to like something from someone else is how most people come to like most things.",
           ],
         },
         {
           kind: "scenarioSort",
           prompt: "Which of these would you keep?",
           situation:
-            "You're going through the ordinary furniture of your life \u2014 what you listen to, who you see, what you do at the weekend \u2014 and much of it arrived through them.",
+            "You're going through the everyday stuff of your life \u2014 what you listen to, who you see, what you do on the weekend \u2014 and a lot of it came from them.",
           buckets: [
             { id: "keep", label: "Mine, and I'd keep it" },
             { id: "falls-away", label: "Theirs, and it falls away" },
@@ -182,63 +184,63 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
               text: "Music they introduced you to that you genuinely love",
               correctBucket: "keep",
               correction:
-                "Adopting something doesn't make it borrowed. That's yours now.",
+                "Taking something on doesn't make it borrowed. That's yours now.",
             },
             {
               id: "sort-c20-their-sport",
               text: "The sport you watched because they did, and never cared about",
               correctBucket: "falls-away",
               correction:
-                "That's the third category, and losing it isn't losing yourself.",
+                "That's the third kind. Losing it isn't losing yourself.",
             },
             {
               id: "sort-c20-friends",
               text: "Friends who were originally theirs but became yours",
               correctBucket: "keep",
               correction:
-                "Complicated in practice, and the liking is real regardless.",
+                "It's messy in real life, but the friendship is real either way.",
             },
             {
               id: "sort-c20-sunday",
               text: "The Sunday routine you both had and you'd rather not continue",
               correctBucket: "falls-away",
-              correction: "Shared, and it doesn't survive without both people.",
+              correction: "This was shared, and it doesn't last without both of you.",
             },
             {
               id: "sort-c20-cooking",
               text: "Cooking properly, which you learned from them",
               correctBucket: "keep",
-              correction: "Learned from someone, held by you. It stays.",
+              correction: "You learned it from someone, but you hold it now. It stays.",
             },
             {
               id: "sort-c20-their-family",
               text: "The way you spent every Christmas, at their family's",
               correctBucket: "falls-away",
               correction:
-                "Genuinely a loss, and not one that says anything about you.",
+                "This is a real loss, and it doesn't say anything about you.",
             },
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Not an audit to complete. A first pass, and it changes over months.",
+            "This isn't a checklist to finish. It's a first pass, and it changes over months.",
           fields: [
             {
               id: "brought-and-kept",
               label: "What did you bring in that's still yours?",
               input: "text",
-              placeholder: "Things that predate them and survived.",
+              placeholder: "Things you had before them that are still here.",
             },
             {
               id: "adopted-and-keeping",
               label: "What did you get from them that you'd keep?",
               input: "text",
-              placeholder: "This is the category most people wrongly surrender.",
+              placeholder: "This is the kind most people give up by mistake.",
             },
             {
               id: "falls-away",
-              label: "What are you letting go of that was never separately yours?",
+              label: "What are you letting go of that was never just yours?",
               input: "text",
               placeholder: "Losing this isn't losing yourself.",
             },
@@ -248,7 +250,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
           kind: "output",
           heading: "What stays",
           body:
-            "The middle column is the one worth protecting. Liking something because you learned it from someone is how most people come to like most things.",
+            "The middle column is the one worth protecting. Learning to like something from someone else is how most people come to like most things.",
         },
         {
           kind: "portable",
@@ -256,7 +258,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
           steps: [
             "Building around a relationship is what long relationships do.",
             "Not who was I before \u2014 which of what I have now is mine.",
-            "Adopting something doesn't make it borrowed.",
+            "Taking something on doesn't make it borrowed.",
           ],
         },
       ],
@@ -267,21 +269,21 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I can't tell which parts of me were mine",
-        move: "Sort what I have into brought, adopted, and never separately wanted",
-        lookingFor: "The adopted things I'd keep — that's the column people surrender wrongly",
-        watchOut: "Trying to reconstruct who I was before. That person isn't available.",
+        move: "Sort what I have into brought in, took on, and never wanted on my own",
+        lookingFor: "The things I took on that I'd keep — that's the column people give up by mistake",
+        watchOut: "Trying to rebuild who I was before. That person isn't around to go back to.",
         remember: "The cost only appeared at the end. That doesn't mean it was a mistake.",
       },
       fidelity: {
         correct:
-          "Personal attributes and habits are sorted by origin and by whether they would be kept, with the adopted-and-kept category preserved rather than surrendered.",
+          "You sort your traits and habits by where they came from and by whether you'd keep them, holding on to the took-on-and-kept ones rather than giving them up.",
         misuse: [
-          "Discarding everything associated with the other person.",
-          "Trying to reconstruct a pre-relationship self.",
-          "Treating it as an audit to be completed once.",
+          "Throwing out everything tied to the other person.",
+          "Trying to rebuild the self you were before the relationship.",
+          "Treating it as a checklist to finish in one go.",
         ],
         notMeaning:
-          "It does not mean you'll feel like yourself, that the sorting is final, or that what falls away wasn't a real loss.",
+          "It doesn't mean you'll feel like yourself, that the sorting is final, or that what falls away wasn't a real loss.",
       },
     },
 
@@ -293,57 +295,57 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       name: "The Future I Lost",
       positioning: "For the loss nobody else can see.",
       recognitionGate: {
-        prompt: "Are you mourning a life that was never going to be witnessed by anyone?",
+        prompt: "Are you mourning a life that nobody else was ever going to see?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "\u201cI'm grieving the future I imagined.\u201d This is one of the least acknowledged losses there is, because nothing happened to it. There's no event, no date, nothing anyone can point at.",
-            "But you'd been living toward it — arranging things around it, declining things because of it, assuming it. That's a substantial amount of a life, organised around something that has now stopped being true.",
+            "\u201cI'm grieving the future I imagined.\u201d This is one of the least talked-about losses there is, because nothing happened to it. There's no event, no date, nothing anyone can point to.",
+            "But you'd been living toward it. You arranged things around it. You said no to things because of it. You counted on it. That's a big part of a life, built around something that has now stopped being true.",
           ],
         },
         {
           kind: "learn",
           body: [
             "It's harder to grieve than the relationship for two reasons.",
-            "Nobody else can see it. There's no version friends witnessed, so there's nothing to commiserate about.",
-            "And it feels illegitimate — mourning something that never existed sounds like sentimentality rather than loss.",
-            "It isn't. Losing an assumed future is a recognised part of this and accounts for a great deal of the disorientation.",
+            "Nobody else can see it. Friends never saw it, so there's nothing for them to share the sadness over.",
+            "And it feels like you're not allowed to. Mourning something that never happened sounds like being sentimental, not like real loss.",
+            "It isn't. Losing a future you'd counted on is a known part of this, and it explains a lot of feeling lost.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
-            "Naming it specifically tends to be worse before it's better. A vague sense of loss is more bearable than a list.",
-            "It's also the thing that lets it be grieved rather than carried indefinitely as a mood.",
+            "Naming it exactly tends to feel worse before it feels better. A fuzzy sense of loss is easier to carry than a clear list.",
+            "But naming it is also what lets you grieve it, instead of carrying it forever as a mood.",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Be specific. Vague losses can't be mourned, only carried.",
+            "Be specific. A fuzzy loss can't be mourned, only carried.",
           fields: [
             {
               id: "the-picture",
-              label: "What was the life you'd assumed?",
+              label: "What was the life you'd counted on?",
               input: "text",
-              placeholder: "Concrete. Where, who, what a normal week contained.",
+              placeholder: "Be concrete. Where, who, what a normal week looked like.",
             },
             {
               id: "what-i-arranged",
-              label: "What did you arrange, or decline, because of it?",
+              label: "What did you set up, or say no to, because of it?",
               input: "text",
-              placeholder: "Decisions made on the strength of it.",
+              placeholder: "Choices you made because you were counting on it.",
             },
             {
               id: "who-knows",
               label: "Does anyone know you're mourning this?",
               input: "chips",
               suggestions: [
-                "No \u2014 I've only mourned the person out loud",
+                "No \u2014 I've only grieved the person out loud",
                 "One person",
-                "It's come up vaguely",
+                "It's come up, but not clearly",
                 "Yes, I've said it plainly",
               ],
             },
@@ -355,7 +357,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
           enoughLabel: "It's been grieved",
           needMoreLabel: "Carried, mostly",
           needMoreIntro:
-            "That's the usual answer. An unnamed loss doesn't resolve — it becomes a general heaviness that seems to be about everything.",
+            "That's the usual answer. A loss you never name doesn't go away. It turns into a heaviness that seems to be about everything.",
           needToKnowLabel: "What I'd want someone to understand about it",
           observableLabel: "Something I could actually say out loud",
         },
@@ -363,15 +365,15 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
           kind: "output",
           heading: "The future I was living toward",
           body:
-            "A real loss, named. Not sentimentality \u2014 you'd made decisions on the strength of it.",
+            "A real loss, named. Not being sentimental. You made choices because you were counting on it.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
             "Nothing happened to it. It stopped being true.",
-            "Nobody witnessed it, so nobody can commiserate about it.",
-            "A vague loss can't be mourned. Only carried.",
+            "Nobody saw it, so nobody can share the sadness of it.",
+            "A fuzzy loss can't be mourned. Only carried.",
           ],
         },
       ],
@@ -382,21 +384,21 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I'm mourning a life that never happened",
-        move: "Name the specific future I was living toward",
-        lookingFor: "Whether it's been grieved or only carried as a general heaviness",
-        watchOut: "Dismissing it as sentimentality — I made decisions on the strength of it",
-        remember: "It gets worse before better when named. That's the naming working.",
+        move: "Name the exact future I was living toward",
+        lookingFor: "Whether I've grieved it or just carried it as a heaviness",
+        watchOut: "Brushing it off as sentimental. I made real choices because of it",
+        remember: "It feels worse before better when I name it. That's the naming working.",
       },
       fidelity: {
         correct:
-          "The assumed future is described specifically, including decisions made on the strength of it, and recognised as a loss rather than a mood.",
+          "You describe the future you'd counted on in detail, including the choices you made because of it, and treat it as a real loss rather than a mood.",
         misuse: [
-          "Using it to construct a case that they ruined your life.",
-          "Keeping it vague to make it more bearable.",
-          "Treating it as sentimentality not worth naming.",
+          "Using it to build a case that they ruined your life.",
+          "Keeping it fuzzy to make it easier to bear.",
+          "Treating it as sentimental and not worth naming.",
         ],
         notMeaning:
-          "It does not mean the future would have happened, that naming it resolves it, or that anyone else will understand it.",
+          "It doesn't mean the future would have happened, that naming it fixes it, or that anyone else will understand it.",
       },
     },
 
@@ -408,32 +410,32 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       name: "The Shape of a Life",
       positioning: "For the part of \u201ceverything is unfamiliar\u201d that's practical.",
       recognitionGate: {
-        prompt: "Has your week lost its structure entirely?",
+        prompt: "Has your week completely lost its shape?",
       },
       screens: [
         {
           kind: "shift",
           body: [
-            "A relationship organises an enormous amount. Evenings, weekends, meals, who you tell about your day, what happens on a Sunday, who you'd call first.",
-            "All of it loses its scaffolding at once, and the result presents as an identity crisis.",
+            "A relationship holds a huge amount in place. Evenings, weekends, meals, who you tell about your day, what happens on a Sunday, who you'd call first.",
+            "All of it loses its frame at once, and it can feel like an identity crisis.",
             "A good deal of it is not knowing what to do on a Tuesday.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Worth separating, because the structural part responds to ordinary things. Not insight — arrangements. Something in the diary, someone to see, something that happens whether or not you feel like it.",
-            "It's disproportionate to the size of the problem, and it's one of the few things that reliably helps.",
-            "\u201cI don't know how to be alone\u201d is a real skill most people have had no reason to develop. It comes with practice rather than acceptance, and it's usually worse for the first stretch than it stays.",
+            "It's worth pulling these apart, because the practical part answers to ordinary things. Not deep insight. Plans. Something on the calendar, someone to see, something that happens whether or not you feel like it.",
+            "It seems too small for the size of the problem, but it's one of the few things that reliably helps.",
+            "\u201cI don't know how to be alone\u201d points to a real skill, and most people have had no reason to build it. It comes with practice, not with accepting it, and it's usually worse at the start than it stays.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "One week. What's actually in it, and what left.",
+          intro: "One week. What's really in it, and what's gone.",
           fields: [
             {
               id: "what-went",
-              label: "What did the relationship organise that's now unorganised?",
+              label: "What did the relationship hold in place that's now loose?",
               input: "chips",
               suggestions: [
                 "Evenings",
@@ -446,16 +448,16 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
             },
             {
               id: "one-fixed",
-              label: "One thing you could put in the week that happens regardless?",
+              label: "One thing you could put in the week that happens no matter what?",
               input: "text",
               placeholder:
-                "Small and fixed. Something that occurs whether or not you feel like it.",
+                "Small and set. Something that happens whether or not you feel like it.",
             },
             {
               id: "one-person",
-              label: "Who could you arrange to see, who you'd have to turn up for?",
+              label: "Who could you arrange to see, who you'd have to show up for?",
               input: "text",
-              placeholder: "Turning up for someone works better than turning up for yourself.",
+              placeholder: "Showing up for someone else works better than showing up for yourself.",
             },
           ],
         },
@@ -465,7 +467,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
           enoughLabel: "Yes",
           needMoreLabel: "Not really",
           needMoreIntro:
-            "Common, and worth naming rather than getting round. Long relationships often absorb the role that several friendships used to hold, and rebuilding that is slower than rebuilding a routine.",
+            "This is common, and worth naming instead of stepping around. Long relationships often take over the role that several friendships used to fill, and building that back is slower than building back a routine.",
           needToKnowLabel: "Who might take that place, even partly",
           observableLabel: "Something I could arrange this month",
         },
@@ -473,15 +475,15 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
           kind: "output",
           heading: "One fixed thing, one person",
           body:
-            "Not a solution to the loss. Structure for the part that's structural.",
+            "Not a fix for the loss. Some shape for the part that needs shape.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
             "Some of \u201cI don't recognise my life\u201d is not knowing what to do on a Tuesday.",
-            "Arrangements, not insight.",
-            "Turning up for someone works better than turning up for myself.",
+            "Plans, not deep insight.",
+            "Showing up for someone else works better than showing up for myself.",
           ],
         },
       ],
@@ -492,28 +494,28 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When the week has lost its shape",
-        move: "Put one fixed thing and one person in it",
-        lookingFor: "Which part is grief and which part is missing structure",
+        move: "Put one set thing and one person in it",
+        lookingFor: "Which part is grief and which part is a missing routine",
         watchOut: "Filling the week to avoid feeling anything",
-        remember: "It's disproportionate to the problem. It still helps.",
+        remember: "It seems too small for the problem. It still helps.",
       },
       fidelity: {
         correct:
-          "The structural loss is separated from the emotional one, and one fixed commitment and one social arrangement are placed in the week.",
+          "You pull the practical loss apart from the emotional one, and put one set commitment and one plan to see someone into the week.",
         misuse: [
-          "Filling the diary to avoid the feeling.",
-          "Treating structure as a solution to the grief.",
+          "Packing the calendar to dodge the feeling.",
+          "Treating routine as a fix for the grief.",
           "Waiting to feel better before arranging anything.",
         ],
         notMeaning:
-          "It does not mean the grief is structural, that a full week helps, or that you should be doing more.",
+          "It doesn't mean the grief is just a missing routine, that a full week helps, or that you should be doing more.",
       },
       supportSignposts: [
         {
           id: "signpost-c20-practical",
           heading: "The practical side needs different people",
           body:
-            "Splitting finances, sorting housing, working out arrangements for children \u2014 none of that is what this is for, and doing it badly early is expensive. A solicitor, a mediator, or a family service is the right place. Co-parenting in particular has a substantial body of specific guidance behind it and is worth going to someone for rather than working out alone.",
+            "Splitting finances, sorting out housing, working out plans for the children. None of that is what this is for, and getting it wrong early costs a lot. A lawyer, a mediator, or a family service is the right place. Co-parenting especially has a large body of specific guidance behind it, and it's worth going to someone for rather than working it out on your own.",
         },
       ],
     },
@@ -524,7 +526,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "What I'm Choosing",
-      positioning: "For \u201cI don't know what I want\u201d, without interrogating it.",
+      positioning: "For \u201cI don't know what I want,\u201d without grilling yourself about it.",
       recognitionGate: {
         prompt: "Does the question of what you want come back blank?",
       },
@@ -532,27 +534,27 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "\u201cI don't know what I want anymore\u201d is usually taken as a sign of damage. It's more often a sign of capacity — knowing what you want takes spare resource, and there hasn't been any.",
-            "There's also a second version: if a lot of what you wanted was calibrated against someone else's wants, the standalone version may never have been formed.",
-            "Both improve, and neither improves by being interrogated.",
+            "\u201cI don't know what I want anymore\u201d is usually read as a sign something's broken. More often it's a sign you're stretched thin. Knowing what you want takes spare energy, and there hasn't been any.",
+            "There's also a second version. If a lot of what you wanted was measured against what someone else wanted, the on-your-own version may never have formed.",
+            "Both get better, and neither gets better by grilling yourself about it.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "What tends to work is small and concrete — noticing what you choose when nobody's preference is in the room.",
-            "Not deciding what you want. Observing what you pick, over weeks, with nobody to accommodate.",
-            "That's a much lower bar than working out who you're becoming, and it's the only version that produces evidence.",
+            "What tends to work is small and concrete. Noticing what you pick when nobody else's wishes are in the room.",
+            "Not deciding what you want. Watching what you pick, over weeks, with nobody to please.",
+            "That's a much easier task than figuring out who you're becoming, and it's the only version that gives you real proof.",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Small things. Deliberately small — this doesn't work at the scale of life decisions.",
+            "Small things. On purpose small. This doesn't work for big life decisions.",
           fields: [
             {
               id: "recent-choices",
-              label: "What have you chosen recently, with nobody else to consider?",
+              label: "What have you picked lately, with nobody else to think about?",
               input: "text",
               placeholder: "Food, music, how you spent an evening. Small counts.",
             },
@@ -561,7 +563,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
               label: "Has anything surprised you?",
               input: "text",
               placeholder:
-                "Things you assumed you liked and didn't, or the other way round.",
+                "Things you thought you liked and didn't, or the other way around.",
             },
             {
               id: "coming-back",
@@ -580,10 +582,10 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
         {
           kind: "sufficiency",
           prompt: "Is \u201cnothing yet\u201d the honest answer?",
-          enoughLabel: "No — some things are returning",
+          enoughLabel: "No — some things are coming back",
           needMoreLabel: "Yes, genuinely nothing",
           needMoreIntro:
-            "That's an honest answer and it's information rather than failure. Preference is one of the first things to go under strain and one of the later ones to return — it's not a thing to force.",
+            "That's an honest answer, and it's information, not failure. What you prefer is one of the first things to go under strain and one of the last to come back. It's not something to force.",
           needToKnowLabel: "What I'd notice first, if it started coming back",
           observableLabel: "Something small I'd catch myself wanting",
         },
@@ -591,15 +593,15 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
           kind: "output",
           heading: "What I've been choosing",
           body:
-            "Not who you're becoming. What you pick when nobody's preference is in the room.",
+            "Not who you're becoming. What you pick when nobody else's wishes are in the room.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Not knowing what I want is usually capacity, not damage.",
-            "Observe what I pick. Don't interrogate what I want.",
-            "Preference goes early and returns late. That's the order.",
+            "Not knowing what I want is usually about being stretched thin, not broken.",
+            "Watch what I pick. Don't grill myself about what I want.",
+            "What I prefer goes early and comes back late. That's the order.",
           ],
         },
       ],
@@ -610,21 +612,21 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When the question of what I want comes back blank",
-        move: "Notice what I choose when nobody's preference is in the room",
-        lookingFor: "Small surprises — things I assumed I liked and don't",
-        watchOut: "Trying to answer it at the scale of life decisions",
-        remember: "Neither version of not-knowing improves by being interrogated.",
+        move: "Notice what I pick when nobody else's wishes are in the room",
+        lookingFor: "Small surprises. Things I thought I liked and don't",
+        watchOut: "Trying to answer it with big life decisions",
+        remember: "Neither kind of not-knowing gets better by grilling myself about it.",
       },
       fidelity: {
         correct:
-          "Small autonomous choices are observed over time rather than preferences being interrogated or decided.",
+          "You watch small choices you make on your own over time, instead of grilling yourself about what you want or deciding it.",
         misuse: [
-          "Applying it to large life decisions.",
+          "Using it for big life decisions.",
           "Treating \u201cnothing yet\u201d as a failure.",
           "Deciding what you should want and calling it noticing.",
         ],
         notMeaning:
-          "It does not mean your preferences will return, that you'll know soon, or that noticing accelerates it.",
+          "It doesn't mean your preferences will come back, that you'll know soon, or that noticing speeds it up.",
       },
     },
   ],
@@ -641,13 +643,13 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
         "Pick something you got from them that you'd keep, and do it once — knowing where it came from and keeping it anyway.",
       linkToOperation: "Retaining adopted attributes as one's own",
       attemptMeaning:
-        "You kept it. Feeling odd about it is expected and doesn't mean it's borrowed.",
+        "You kept it. Feeling odd about it is normal and doesn't mean it's borrowed.",
       suitability:
-        "If everything associated with them is currently unbearable, this is too early. Come back to it.",
+        "If everything tied to them is too much to bear right now, this is too early. Come back to it later.",
       progression: [
         {
           id: "rung-c20-mine-2",
-          instruction: "Do the sort again in three months and see what's moved.",
+          instruction: "Do the sort again in three months and see what's changed.",
         },
       ],
     },
@@ -657,16 +659,16 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       playId: "the-future-i-lost",
       title: "Say it to one person",
       instruction:
-        "Tell someone you trust that you're mourning the future, not just the person. Most people have never heard it named.",
+        "Tell someone you trust that you're mourning the future, not just the person. Most people have never heard it said out loud.",
       linkToOperation: "Naming an unwitnessed loss to another person",
       attemptMeaning:
         "You said it. Whether they understood is separate.",
       suitability:
-        "Pick someone who won't tell you there'll be another future. That's the wrong response and it's the common one.",
+        "Pick someone who won't tell you there'll be another future. That's the wrong thing to say, and it's the common one.",
       progression: [
         {
           id: "rung-c20-future-2",
-          instruction: "Name a second one — a smaller assumed future you also lost.",
+          instruction: "Name a second one. A smaller future you'd counted on and also lost.",
         },
       ],
     },
@@ -676,16 +678,16 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       playId: "the-shape-of-a-life",
       title: "Three weeks of the fixed thing",
       instruction:
-        "Do it three weeks running, whether or not you feel like it. Note only whether you went.",
+        "Do it three weeks in a row, whether or not you feel like it. Note only whether you went.",
       linkToOperation: "Reorganising life structure after relational loss",
       attemptMeaning:
-        "You went. Whether it helped isn't the measure for the first three.",
+        "You went. Whether it helped isn't the point for the first three.",
       suitability:
-        "If three is too many, do one. The point is that it happens regardless of how you feel.",
+        "If three is too many, do one. The point is that it happens no matter how you feel.",
       progression: [
         {
           id: "rung-c20-week-2",
-          instruction: "Add the person — arrange to see someone you'd have to turn up for.",
+          instruction: "Add the person. Arrange to see someone you'd have to show up for.",
         },
       ],
     },
@@ -695,16 +697,16 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
       playId: "what-im-choosing",
       title: "Notice for two weeks",
       instruction:
-        "For two weeks, note small things you chose with nobody else to consider. Don't evaluate them.",
+        "For two weeks, note small things you chose with nobody else to think about. Don't judge them.",
       linkToOperation: "Observing autonomous preference as it returns",
       attemptMeaning:
         "You noticed. An empty list after two weeks is information, not failure.",
       suitability:
-        "If it becomes another way of assessing whether you're recovering properly, stop.",
+        "If it turns into one more way of checking whether you're recovering right, stop.",
       progression: [
         {
           id: "rung-c20-choosing-2",
-          instruction: "Choose one thing deliberately that they'd have disliked.",
+          instruction: "Choose one thing on purpose that they'd have disliked.",
         },
       ],
     },
@@ -719,23 +721,23 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
         label: "What did you do differently?",
         multi: true,
         options: [
-          "Sorted into three categories, not two",
-          "Kept something adopted",
+          "Sorted into three kinds, not two",
+          "Kept something I took on",
           "Let something go without it feeling like loss",
-          "Discarded everything associated with them",
+          "Threw out everything tied to them",
         ],
       },
       performedOperation: {
-        label: "Did you sort by origin and by whether you'd keep it?",
+        label: "Did you sort by where it came from and whether you'd keep it?",
         options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
         multi: true,
         options: [
-          "How much is genuinely mine",
-          "That the adopted things are mine too",
-          "How much was never separately mine",
+          "How much is really mine",
+          "That the things I took on are mine too",
+          "How much was never just mine",
           "Nothing new",
         ],
       },
@@ -757,21 +759,21 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
         label: "What did you do differently?",
         multi: true,
         options: [
-          "Named the specific future",
+          "Named the exact future",
           "Named what I'd arranged around it",
           "Said it to someone",
-          "Kept it vague",
+          "Kept it fuzzy",
         ],
       },
       performedOperation: {
-        label: "Did you describe the assumed future specifically?",
+        label: "Did you describe the future you'd counted on in detail?",
         options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
         multi: true,
         options: [
-          "That it's a real loss, not sentimentality",
+          "That it's a real loss, not being sentimental",
           "How much I'd arranged around it",
           "That I'd never named it out loud",
           "Nothing new",
@@ -795,21 +797,21 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
         label: "What did you do differently?",
         multi: true,
         options: [
-          "Put one fixed thing in",
+          "Put one set thing in",
           "Went when I didn't feel like it",
           "Arranged to see someone",
           "Waited to feel better first",
         ],
       },
       performedOperation: {
-        label: "Did you put a fixed thing and a person in the week?",
+        label: "Did you put a set thing and a person in the week?",
         options: ["Yes", "Partly", "No"],
       },
       becameClearer: {
         label: "What got clearer?",
         multi: true,
         options: [
-          "How much was missing structure",
+          "How much was a missing routine",
           "That there's nobody I'd call first",
           "That going helped a little",
           "Nothing new",
@@ -820,7 +822,7 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
         options: [
           "I couldn't make myself go",
           "There wasn't anyone to arrange with",
-          "I filled the week and felt worse",
+          "I packed the week and felt worse",
           "Nothing stuck",
         ],
       },
@@ -834,13 +836,13 @@ export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
         multi: true,
         options: [
           "Noticed small choices",
-          "Didn't evaluate them",
+          "Didn't judge them",
           "Kept it small",
-          "Tried to answer it at life scale",
+          "Tried to answer it with big decisions",
         ],
       },
       performedOperation: {
-        label: "Did you observe small choices rather than interrogate preferences?",
+        label: "Did you watch small choices instead of grilling yourself about what you want?",
         options: ["Yes", "Partly", "No"],
       },
       becameClearer: {

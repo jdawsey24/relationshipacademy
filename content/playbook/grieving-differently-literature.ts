@@ -59,21 +59,21 @@ export const ADDON_GRIEVING_DIFFERENTLY_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "This is about what has happened between the two of you. Not about the loss itself \u2014 that needs people who work with it, and we'd rather say so plainly than offer you something thinner.",
+          "This is about what has happened between the two of you. Not about the loss itself. That needs people who work with it, and we'd rather say so plainly than give you something thinner.",
         ],
       },
       {
         kind: "distinction",
         label: "Two different weights",
         body: [
-          "The grief. Yours, and it isn't something a relationship guide should be handling. Fertility counsellors and pregnancy loss services exist precisely for this and they are considerably better at it than anything written generally.",
-          "What it has done to the two of you \u2014 the different ways you're each responding, the distance that's opened, the questions from other people. That part has very little written for it, and it's what's here.",
+          "The grief. That's yours, and it isn't something a relationship guide should be handling. Fertility counsellors and pregnancy loss services are there for exactly this, and they're a lot better at it than anything written for people in general.",
+          "What it has done to the two of you. The different ways you're each responding. The distance that's opened. The questions from other people. That part has very little written for it, and it's what's here.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here suggests an alternative, mentions what else you could do, or has a view about what happens next. Those are the most common responses people offer and they are not this add-on's business.",
+          "Nothing here suggests another option, brings up what else you could do, or has a view about what happens next. Those are the most common things people say, and they're not this add-on's business.",
         ],
       },
     ],
@@ -90,27 +90,27 @@ export const ADDON_GRIEVING_DIFFERENTLY_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "This is one of the most common things couples say after a loss of this kind, and one of the most damaging \u2014 not because either way of grieving is wrong, but because each reads the other's as a verdict.",
+          "This is one of the most common things couples say after a loss like this. It's also one of the most damaging. Not because either way of grieving is wrong, but because each person reads the other's way as a judgment.",
         ],
       },
       {
         kind: "distinction",
-        label: "What each usually concludes about the other",
+        label: "What each one usually decides about the other",
         body: [
           "The one who talks about it hears the silence as not caring, or as having moved on.",
-          "The one who doesn't hears the talking as being unable to let it rest, and often stays quiet specifically to avoid making it worse.",
+          "The one who doesn't hears the talking as not being able to let it rest, and often stays quiet on purpose, to avoid making it worse.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Each may be reading the other without enough to go on, and both are behaving reasonably given what they think is happening. Which is why it can compound \u2014 each response seems to confirm the other's reading.",
+          "Each of you may be reading the other without enough to go on, and both of you are acting reasonably, given what you think is happening. That's why it can build. Each response seems to confirm what the other already believes.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Grieving differently isn't a problem to be aligned. Nothing here will suggest you grieve the same way, or that one of you should adjust. What can change is what each of you concludes from the other's way.",
+          "Grieving differently isn't a problem to line up. Nothing here will suggest you grieve the same way, or that one of you should change. What can change is what each of you decides from the other's way.",
         ],
       },
     ],
@@ -127,27 +127,27 @@ export const ADDON_GRIEVING_DIFFERENTLY_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Often said by both people, about each other, at the same time. Which is worth knowing on its own.",
+          "Often said by both people, about each other, at the same time. That's worth knowing on its own.",
         ],
       },
       {
         kind: "distinction",
-        label: "Why the usual approach stalls",
+        label: "Why the usual way stalls",
         body: [
           "Most people support someone the way they'd want to be supported. If you need to talk, you ask questions. If you need quiet, you give space.",
-          "When two people need different things, both are offering something the other doesn't want \u2014 and both are then hurt that their offer wasn't taken.",
+          "When two people need different things, each one offers something the other doesn't want. And both are then hurt that their offer wasn't taken.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The version that helps is unglamorous: asking rather than inferring. Not \u201chow are you\u201d, which produces \u201cfine\u201d, but what they'd actually want when it's bad \u2014 which most couples have never asked each other directly.",
+          "The version that helps is plain: asking instead of guessing. Not \u201chow are you\u201d, which gets you \u201cfine\u201d, but what they'd actually want when it's bad. Most couples have never asked each other that directly.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "It's also worth accepting that you may not be able to support each other well through this. Two people grieving the same loss are both depleted, and sometimes the support has to come from outside. That isn't a failure of the relationship.",
+          "It's also worth accepting that you may not be able to support each other well through this. Two people grieving the same loss are both worn down, and sometimes the support has to come from outside. That isn't a failure of the relationship.",
         ],
       },
     ],
@@ -164,27 +164,27 @@ export const ADDON_GRIEVING_DIFFERENTLY_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It probably is. Something happened to both of you, and relationships don't pass through that unchanged.",
+          "It probably is. Something happened to both of you, and relationships don't come through that unchanged.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Some of what's different is grief, which is temporary in shape if not in fact. Some is the accumulated effect of months of each of you misreading the other. And some is that the future you'd both been assuming stopped being available, which is its own loss and rarely named as one.",
+          "Some of what's different is grief, which is temporary in shape if not in fact. Some is the built-up effect of months of each of you misreading the other. And some is that the future you'd both been expecting stopped being available. That's its own loss, and it's rarely named as one.",
         ],
       },
       {
         kind: "distinction",
-        label: "Worth separating, because they don't move together",
+        label: "Worth keeping apart, because they don't move together",
         body: [
-          "The grief changes on its own timescale — it can't be forced or scheduled — though support and the ways you look after yourself may affect how it's carried.",
+          "The grief changes at its own pace. It can't be forced or scheduled. Still, support and the ways you look after yourself may affect how it's carried.",
           "The misreading is the part that responds to anything, and it's the part this can work on.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI feel alone in this experience\u201d is often true even when both people are present. Being in the same house as someone grieving the same thing differently is a specific kind of alone, and it isn't evidence that either of you has withdrawn.",
+          "\u201cI feel alone in this experience\u201d is often true even when both people are there. Being in the same house as someone who's grieving the same thing in a different way is its own kind of alone. It isn't evidence that either of you has pulled away.",
         ],
       },
     ],
@@ -209,20 +209,20 @@ export const ADDON_GRIEVING_DIFFERENTLY_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "The two costs of it",
         body: [
-          "The moment itself \u2014 being asked, and having to produce something.",
-          "The anticipation. Once it's happened a few times, whole occasions get weighed in advance for whether the question will come up, which is more tiring than the question.",
+          "The moment itself. Being asked, and having to come up with something.",
+          "The bracing. Once it's happened a few times, you weigh whole occasions ahead of time for whether the question will come up. That's more tiring than the question.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Having a line ready mostly addresses the second. Not because the answer matters, but because knowing what you'll say removes the need to brace for it.",
+          "Having a line ready mostly takes care of the second. Not because the answer matters, but because knowing what you'll say removes the need to brace for it.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "It's also worth agreeing with each other what gets said, and to whom. Couples are frequently caught out by one of them having told someone and the other not knowing \u2014 which is a small thing that lands as a betrayal when everything is already raw.",
+          "It's also worth agreeing with each other what gets said, and to whom. Couples often get caught out when one of them has told someone and the other didn't know. That's a small thing, but it lands as a betrayal when everything is already raw.",
         ],
       },
     ],
