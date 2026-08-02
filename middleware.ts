@@ -3,8 +3,10 @@ import { NextResponse, type NextRequest } from "next/server";
 
 // Gates two SEPARATE protected areas on a valid Supabase Auth session:
 //   • /admin + /api/admin   — STAFF. MFA-enforced, own login at /admin/login.
-//   • /academy + /api/academy — MEMBERS (students). No MFA, own login at
-//     /academy/login. Membership tier is checked per-page/route, not here.
+//   • /academy + /api/academy — MEMBERS (students). No MFA. Sign-in is the neutral
+//     /account doorway; the portal PAGES are gated here on paid Academy membership
+//     (a bare/free account is sent to the /academy join page). Content APIs keep
+//     their own per-route auth so a free user can still call checkout to join.
 // It also refreshes the session cookie on each request so sessions stay alive.
 
 // Academy paths that must stay reachable without a session.
@@ -14,7 +16,9 @@ const ACADEMY_PUBLIC = new Set([
   "/academy/signup",
   "/academy/reset-password",
 ]);
-const ACADEMY_AUTH_PAGES = new Set(["/academy/login", "/academy/signup"]);
+// Tiers that count as "in the Academy" (paid). A free/bare account is NOT in the
+// Academy — it just has a shared account (e.g. from a Playbook purchase).
+const ACADEMY_TIERS = new Set(["academy", "academy_plus", "professional"]);
 
 // Companion paths reachable without a session (login + post-purchase access flow).
 const COMPANION_PUBLIC = new Set([
@@ -64,24 +68,47 @@ export async function middleware(request: NextRequest) {
     // Public academy APIs reachable without a session (e.g. self-serve signup).
     const isPublicAcademyApi = pathname === "/api/academy/signup";
 
+    // The old Academy auth pages forward to the neutral account doorway (Part A).
+    // Preserves the ?next= query (clone keeps search).
+    if (pathname === "/academy/login" || pathname === "/academy/signup") {
+      const url = request.nextUrl.clone();
+      url.pathname = pathname === "/academy/signup" ? "/account/signup" : "/account/login";
+      return NextResponse.redirect(url);
+    }
+
     if (!user) {
       if (isAcademyApi && !isPublicAcademyApi) {
         return NextResponse.json({ error: "Sign in required." }, { status: 401 });
       }
       if (isPublicAcademyApi) return response;
+      // Non-members start at the public Academy (join) page.
       if (!ACADEMY_PUBLIC.has(pathname)) {
         const url = request.nextUrl.clone();
-        url.pathname = "/academy/login";
+        url.pathname = "/academy";
         return NextResponse.redirect(url);
       }
       return response;
     }
 
-    // Signed in but sitting on the login/signup page: send to the dashboard.
-    if (ACADEMY_AUTH_PAGES.has(pathname)) {
-      const url = request.nextUrl.clone();
-      url.pathname = "/academy/dashboard";
-      return NextResponse.redirect(url);
+    // Signed in. Gate the portal PAGES behind paid Academy membership; staff bypass
+    // for previews. Public pages (/academy, reset-password) and APIs stay reachable
+    // (checkout must work so a free account can JOIN). Read the member's own row.
+    if (!isAcademyApi && !ACADEMY_PUBLIC.has(pathname)) {
+      const role = (user.app_metadata as { role?: string } | undefined)?.role;
+      const isStaff = role === "owner" || role === "editor" || role === "viewer";
+      if (!isStaff) {
+        const { data: prof } = await supabase
+          .from("profiles")
+          .select("membership_tier")
+          .eq("id", user.id)
+          .maybeSingle();
+        const tier = (prof as { membership_tier?: string } | null)?.membership_tier ?? "free";
+        if (!ACADEMY_TIERS.has(tier)) {
+          const url = request.nextUrl.clone();
+          url.pathname = "/academy";
+          return NextResponse.redirect(url);
+        }
+      }
     }
     return response;
   }

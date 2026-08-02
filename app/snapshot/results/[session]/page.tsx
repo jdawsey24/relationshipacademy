@@ -219,7 +219,7 @@ function PlaybookCard({ session, clusterId, title, subtitle, whyThisPlaybook, ct
         body: JSON.stringify({ cluster_id: clusterId, session_id: session }),
       });
       if (res.status === 401) {
-        window.location.href = `/academy/login?next=${encodeURIComponent(`/snapshot/results/${session}`)}`;
+        window.location.href = `/account/login?next=${encodeURIComponent(`/snapshot/results/${session}`)}`;
         return;
       }
       const d = await res.json().catch(() => ({}));
