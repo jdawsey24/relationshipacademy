@@ -16,15 +16,21 @@
 // as today (production behaviour unchanged; the scaffold tests stay green).
 //
 // ⚠ BEFORE ENABLING — owner decisions (all do-not-revert once money/URLs move):
-//   1. ENTITLEMENT IS PER-CLUSTER (playbook_entitlements.cluster_id). Two clusters
-//      are a SINGLE product authored as multiple modules, so one purchase grants
-//      both parts (intended — not a discount bundle):
-//        • C12 → letting-go + moving-forward
-//        • C21 → building-a-shared-future + asking-better-questions
-//   2. keyForClusterId (Snapshot result → "open your Playbook") returns ONE key
-//      per cluster. Primaries are set in CLUSTER_PRIMARY_KEY (the quiz-result
-//      Playbook); companions are reached via cross-Playbook routing
-//      (lib/playbook/crossPlaybookRoutes). Confirm the primaries.
+//   1. ENTITLEMENT IS PER-MODULE (owner ruling 2026-08-01, REVERSES the earlier
+//      "per-cluster / one purchase grants both" decision). C12 and C21 each had two
+//      modules sharing one cluster id; the paired modules now entitle via their OWN
+//      reserved ids (PAIRED_KEY_TO_CLUSTER) so buying one module does NOT unlock
+//      the other. Each of the four is bought and owned independently:
+//        • C12: letting-go (12) — paired module moving-forward → 912
+//        • C21: building-a-shared-future (21) — paired module asking-better-questions → 921
+//   2. keyForClusterId (Snapshot result → "open your Playbook") returns the module
+//      for the assessed cluster (letting-go for C12, building-a-shared-future for
+//      C21 — they're the sole DRAFT key for their cluster now). The paired modules are
+//      standalone products, not quiz-detectable, reached via cross-Playbook routing
+//      (lib/playbook/crossPlaybookRoutes) and the /playbooks catalog.
+//      ⚠ DB COPY FOLLOW-UP: the C12/C21 snapshot_clusters result_title /
+//      playbook_subtitle may read as combined (e.g. "Letting Go and Moving Forward").
+//      Rename to the single module so it no longer implies buying both.
 //   3. ADD-ONS — sold INDIVIDUALLY (owner ruling 2026-07-31: no bundle). Each is
 //      its own product for anyone in the Expansion phase, at the flat
 //      playbook_onetime price ($29.99); a Stripe PROMOTION CODE applies any discount
@@ -57,16 +63,14 @@ export const DRAFT_PLAYBOOK_KEY_TO_CLUSTER: Record<string, number> = {
   "rebuilding-physical-connection": 9,
   "building-a-true-partnership": 10,
   "accepting-what-is": 11,
-  "letting-go": 12, // C12 primary
-  "moving-forward": 12, // C12 companion (Renewal)
+  "letting-go": 12, // paired module moving-forward split out → PAIRED_KEY_TO_CLUSTER
   "opening-your-heart-again": 13,
   "learning-to-say-no": 14,
   "feeling-seen": 15,
   "rebuilding-trust": 16,
   "staying-connected": 18,
   "finding-yourself-again": 20,
-  "building-a-shared-future": 21, // C21 primary
-  "asking-better-questions": 21, // C21 companion (still dating)
+  "building-a-shared-future": 21, // paired module asking-better-questions split out → PAIRED_KEY_TO_CLUSTER
   "staying-yourself": 22,
   "making-confident-decisions": 23,
   "lean-in-or-let-go": 24,
@@ -90,20 +94,39 @@ export const ADDON_KEY_TO_CLUSTER: Record<string, number> = {
 export const ADDON_KEYS = Object.keys(ADDON_KEY_TO_CLUSTER);
 const ADDON_ENTITLEMENT_IDS = new Set<number>(Object.values(ADDON_KEY_TO_CLUSTER));
 
+// PAIRED MODULES — the second module of the two formerly-combined clusters, now sold
+// SEPARATELY (owner ruling 2026-08-01; see header #1). Each entitles via its OWN
+// reserved id (parent cluster + 900, so buying the primary does NOT unlock these,
+// and vice-versa). NOT add-ons — full-price standalone playbooks, no coupon; not
+// quiz-detectable, reached via cross-Playbook routing + the /playbooks catalog.
+// Their marketing pages are sourced from the content registry (no snapshot_clusters
+// row) — see lib/playbookMarketing.ts.
+export const PAIRED_KEY_TO_CLUSTER: Record<string, number> = {
+  "moving-forward": 912,          // paired module of C12 (letting-go)
+  "asking-better-questions": 921, // paired module of C21 (building-a-shared-future)
+};
+export const PAIRED_KEYS = Object.keys(PAIRED_KEY_TO_CLUSTER);
+
+// Parent Snapshot cluster → its paired Playbook key. Used to nudge the paired module
+// (a separate product) on the results handoff for a C12/C21 result.
+export const CLUSTER_PAIRED_KEY: Record<number, string> = {
+  12: "moving-forward",
+  21: "asking-better-questions",
+};
+
 /** True if this entitlement id is an add-on (900-block) rather than a Snapshot
  *  cluster. Used by checkout to auto-apply the add-on coupon on the back end. */
 export function isAddonEntitlementId(id: number | null | undefined): boolean {
   return id != null && ADDON_ENTITLEMENT_IDS.has(id);
 }
 
-// For clusters with more than one Playbook, the key a Snapshot result opens.
-export const CLUSTER_PRIMARY_KEY: Record<number, string> = {
-  12: "letting-go",
-  21: "building-a-shared-future",
-};
+// For clusters that map to more than one Snapshot-result Playbook, the key a result
+// opens. Empty since the C12/C21 split (each cluster now has a single result key);
+// the reverse map below falls back to first-wins. Kept for any future multi-key cluster.
+export const CLUSTER_PRIMARY_KEY: Record<number, string> = {};
 
 export const PLAYBOOK_KEY_TO_CLUSTER: Record<string, number> = CORPUS_ENABLED
-  ? { ...FLAGSHIP_KEY_TO_CLUSTER, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER, ...ADDON_KEY_TO_CLUSTER }
+  ? { ...FLAGSHIP_KEY_TO_CLUSTER, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER, ...PAIRED_KEY_TO_CLUSTER, ...ADDON_KEY_TO_CLUSTER }
   : { ...FLAGSHIP_KEY_TO_CLUSTER };
 
 // Reverse map: cluster → its PRIMARY playbook_key (explicit for multi-Playbook
@@ -119,6 +142,7 @@ for (const [key, cluster] of Object.entries(PLAYBOOK_KEY_TO_CLUSTER)) {
 const ALL_INTERACTIVE_KEYS: string[] = [
   "moving-beyond-rejection",
   ...Object.keys(DRAFT_PLAYBOOK_KEY_TO_CLUSTER),
+  ...PAIRED_KEYS,
   ...ADDON_KEYS,
 ];
 
