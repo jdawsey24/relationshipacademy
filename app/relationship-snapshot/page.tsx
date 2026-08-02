@@ -6,7 +6,7 @@ import QuestionMock from "@/components/landing/QuestionMock";
 import FaqAccordion, { type Faq } from "@/components/landing/FaqAccordion";
 
 export const metadata = {
-  title: "The Relationship Snapshot™ — How's your relationship life, really?",
+  title: "The Relationship Snapshot™ — How's your love life, really?",
   description:
     "It's easy to name your relationship status. It's harder to see what's actually shaping your relationship life. Take the free Relationship Snapshot™ — a 5-minute assessment that names the pattern you're in, what's working, and what to focus on next. Single, dating, or years in.",
 };
@@ -64,7 +64,7 @@ export default function RelationshipSnapshotLanding() {
           <div className="text-center lg:text-left">
             <SectionLabel className="mb-4">The Relationship Snapshot&trade;</SectionLabel>
             <h1 className="text-balance font-display text-hero font-semibold text-midnight-navy sm:text-6xl">
-              How&apos;s your relationship life, really?
+              How&apos;s your love life, really?
             </h1>
             <div className="mx-auto mt-6 max-w-[520px] space-y-3 font-body text-lg leading-relaxed text-charcoal/80 lg:mx-0">
               <p>It&apos;s easy to name your relationship status.</p>
