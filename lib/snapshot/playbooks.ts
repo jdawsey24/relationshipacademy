@@ -28,6 +28,17 @@ export function hasPlaybook(clusterId: number | null | undefined): boolean {
   return clusterId != null && PLAYBOOK_CLUSTERS.has(clusterId);
 }
 
+// Clusters that ship a bundled PDF file (content/playbooks/cluster-{id}.pdf). The
+// interactive corpus does NOT ship PDFs — delivery there is the /playbook/[key]
+// experience — so the PDF download affordance must be gated on this set, not on
+// hasPlaybook (which is true for the whole corpus when the flag is on).
+export const PDF_PLAYBOOK_CLUSTERS = new Set<number>([1, 3, 4, 5, 6, 24]);
+
+/** True if a downloadable PDF file actually exists for this cluster. */
+export function hasPlaybookPdf(clusterId: number | null | undefined): boolean {
+  return clusterId != null && PDF_PLAYBOOK_CLUSTERS.has(clusterId);
+}
+
 /**
  * Ownership-gated download route for a cluster's Playbook, or null if none.
  * This is NOT a public file — the route authorizes the signed-in owner and

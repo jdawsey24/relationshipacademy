@@ -37,6 +37,8 @@
 
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const C23_LITERATURE: LiteratureEntry[] = [
   {
     id: "lit-c23-what-this-is",
@@ -49,27 +51,27 @@ export const C23_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Two things that look separate and aren't. A demand that the next decision be right, and a quiet shame about the last one.",
+          "Two things that look separate and aren't. You feel the next decision has to be right. And you carry a quiet shame about the last one.",
         ],
       },
       {
         kind: "distinction",
-        label: "They're the same mechanism, pointed in two directions",
+        label: "They're the same thing, pointed in two directions",
         body: [
-          "Backwards: I got it wrong, and that says something about me.",
-          "Forwards: so this one has to be right, and I can't move until I'm sure.",
+          "Looking back: I got it wrong, and that says something about me.",
+          "Looking ahead: so this one has to be right, and I can't move until I'm sure.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Which is why working only on the forwards half doesn't hold. Being told to take a chance doesn't help much while getting it wrong still means what it currently means.",
+          "That's why working on only the forward half doesn't hold. Being told to take a chance doesn't help much while getting it wrong still means what it means to you now.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI'm afraid I'm too damaged\u201d sits between the two. It's a fear rather than an assessment, and it's the most common thing people in this position don't say out loud.",
+          "\u201cI'm afraid I'm too damaged\u201d sits between the two. It's a fear, not a fact about you, and it's the most common thing people in this spot don't say out loud.",
         ],
       },
     ],
@@ -87,7 +89,7 @@ export const C23_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI feel like I have to get relationships right.\u201d \u201cI expect too much from myself.\u201d \u201cI don't want to make another mistake.\u201d",
-          "The standard is unusually high and it's usually applied to only one area. Most people here are considerably more forgiving of themselves at work.",
+          "The standard is unusually high, and you usually apply it to just one area. Most people here are far easier on themselves at work.",
         ],
       },
       {
@@ -95,19 +97,19 @@ export const C23_LITERATURE: LiteratureEntry[] = [
         label: "Why relationships get the strictest standard",
         body: [
           "The cost of getting it wrong is genuinely high \u2014 years, sometimes.",
-          "And the mistake feels like a verdict rather than an outcome. A poor decision at work is a poor decision. A poor relationship decision gets read as a fact about your judgement, and then about you.",
+          "And the mistake feels like a verdict, not just an outcome. A bad decision at work is just a bad decision. A bad relationship decision gets read as a fact about your judgement, and then about you.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "That second one is where the demand comes from. If getting it wrong means something about who you are, then getting it right isn't a preference \u2014 it's a defence.",
+          "That second one is where the demand comes from. If getting it wrong means something about who you are, then getting it right isn't optional \u2014 it's a defence.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI expect too much from other people\u201d belongs here too, and it's usually the same standard turned outward. People holding themselves to an impossible line rarely hold others to a generous one.",
+          "\u201cI expect too much from other people\u201d belongs here too, and it's usually the same standard turned outward. People who hold themselves to an impossible line rarely hold others to a gentle one.",
         ],
       },
     ],
@@ -124,27 +126,27 @@ export const C23_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "A real question, and it has no external answer. There's no threshold and nobody can supply one.",
+          "A real question, and it has no outside answer. There's no set line, and nobody can give you one.",
         ],
       },
       {
         kind: "distinction",
         label: "What it usually means when it's being asked",
         body: [
-          "Sometimes: is this relationship good enough? Answerable only against your own terms, and only if you've named them.",
-          "More often: am I allowed to stop scrutinising? That's a different question, and it isn't about the relationship at all.",
+          "Sometimes: is this relationship good enough? You can only answer that against your own terms — and only if you've named them.",
+          "More often: am I allowed to stop picking it apart? That's a different question, and it isn't about the relationship at all.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The second version doesn't resolve by more information, which is why the scrutinising doesn't end. There's no amount of looking that produces permission.",
+          "The second version doesn't get solved by more information, which is why the picking-apart doesn't end. No amount of looking gives you permission.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Worth being honest that some things genuinely aren't good enough, and the scrutiny is sometimes correct. The distinguishing question is whether more looking has ever changed the answer.",
+          "To be honest, some things genuinely aren't good enough, and the scrutiny is sometimes right. The question that sorts it out: has more looking ever changed the answer?",
         ],
       },
     ],
@@ -162,27 +164,27 @@ export const C23_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI keep waiting until I'm ready.\u201d \u201cI don't know if I'll ever feel ready.\u201d \u201cI keep trying to find certainty before I move forward.\u201d",
-          "The second sentence answers the first. If you don't know whether it'll ever arrive, waiting for it isn't a plan \u2014 it's an indefinite position that feels like one.",
+          "The second sentence answers the first. If you don't know whether it'll ever come, then waiting for it isn't a plan \u2014 it's a wait with no end that feels like one.",
         ],
       },
       {
         kind: "distinction",
         label: "Two things readiness could mean",
         body: [
-          "Practically ready: the circumstances allow it. Checkable, and sometimes genuinely no.",
-          "Feeling ready: the doubt has gone. That one doesn't arrive by waiting, because doubt about something uncertain is an accurate response rather than an obstacle.",
+          "Practically ready: your circumstances allow it. You can check that, and sometimes the answer is genuinely no.",
+          "Feeling ready: the doubt is gone. That one doesn't come from waiting, because doubt about something uncertain is an accurate response, not an obstacle.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Which means the certainty you're looking for isn't available, and its absence isn't information about whether to proceed. That's an unsatisfying thing to be told and it's the honest version.",
+          "So the certainty you're looking for isn't there to be had. And not having it doesn't tell you whether to go ahead. That's an unsatisfying thing to hear, and it's the honest version.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Not deciding is also a decision, and it costs the same time as deciding wrongly \u2014 with less information at the end.",
+          "Not deciding is also a decision. It costs the same time as deciding wrongly \u2014 with less information at the end.",
         ],
       },
     ],
@@ -200,27 +202,27 @@ export const C23_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI'm embarrassed by my relationship history.\u201d \u201cI feel ashamed that I ignored the signs.\u201d \u201cI feel like I failed.\u201d",
-          "We're not going to tell you these are untrue. Being argued out of shame doesn't work, and it usually adds a second layer about being unreasonable.",
+          "We're not going to tell you these are untrue. Being argued out of shame doesn't work, and it usually adds a second layer — feeling unreasonable on top of it.",
         ],
       },
       {
         kind: "distinction",
         label: "One thing worth separating",
         body: [
-          "Regret: I wish I'd done that differently. Points at an action, and there's something in it.",
-          "Shame: what happened says something about what I am. Points at you, and there's nothing in it to act on.",
+          "Regret: I wish I'd done that differently. It points at an action, and there's something in it.",
+          "Shame: what happened says something about what I am. It points at you, and there's nothing in it to act on.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Most people here have both, tangled. The regret is often accurate and useful. The shame is the part that makes it unspeakable \u2014 and unspeakable is where most of the cost is.",
+          "Most people here have both, tangled together. The regret is often accurate and useful. The shame is the part that makes it unspeakable \u2014 and unspeakable is where most of the cost sits.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "\u201cI feel ashamed that I ignored the signs\u201d is worth one correction, not because the shame is unreasonable but because the picture usually is. In hindsight it looks like a clear signal overridden. At the time it was almost certainly a quiet uncertainty competing with love, hope, and someone telling you it was fine.",
+          "\u201cI feel ashamed that I ignored the signs\u201d is worth one correction \u2014 not because the shame is unreasonable, but because the picture usually is. Looking back, it looks like a clear signal you overrode. At the time it was almost certainly a quiet doubt, up against love, hope, and someone telling you it was fine.",
         ],
       },
     ],
@@ -238,21 +240,21 @@ export const C23_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "\u201cI pretend everything is okay.\u201d \u201cI don't want people to pity me.\u201d \u201cI don't like asking for help.\u201d \u201cI'm tired of carrying this alone.\u201d",
-          "That last one is the tell. Nobody says it about a load they're content to carry.",
+          "That last one is the tell. Nobody says it about a load they're happy to carry.",
         ],
       },
       {
         kind: "distinction",
         label: "What hiding buys and what it costs",
         body: [
-          "Buys: nobody's pity, nobody's opinion, nobody's version of what you should have done. Those are real and worth something.",
-          "Costs: everyone around you is operating on the pretend version, so nothing they offer can be aimed at what's actually happening.",
+          "Buys: no one's pity, no one's opinion, no one's version of what you should have done. Those are real and worth something.",
+          "Costs: everyone around you is going on the pretend version, so nothing they offer can be aimed at what's really happening.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "It also compounds. The longer the pretend version has been running, the bigger the correction feels, and the more it seems like something that would need announcing rather than mentioning.",
+          "It also builds up. The longer the pretend version has been running, the bigger the correction feels — and the more it seems like something you'd have to announce, not just mention.",
         ],
       },
       {
@@ -275,7 +277,7 @@ export const C23_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "The version of this that works is smaller than people imagine. Not telling everyone, not a full account, not an announcement.",
+          "The version of this that works is smaller than people think. Not telling everyone. Not a full account. Not an announcement.",
           "One person. One true thing. Nothing else attached.",
         ],
       },
@@ -283,20 +285,20 @@ export const C23_LITERATURE: LiteratureEntry[] = [
         kind: "distinction",
         label: "Who to pick matters more than what you say",
         body: [
-          "Someone who won't immediately tell you what to do. Advice is what most people reach for and it's rarely what's needed.",
-          "Someone who won't relay it. The fear of it circulating is often the actual obstacle rather than the telling itself.",
+          "Someone who won't jump to telling you what to do. Advice is what most people reach for, and it's rarely what's needed.",
+          "Someone who won't pass it on. The fear of it getting around is often the real obstacle — more than the telling itself.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI don't like asking for help\u201d is worth noticing as separate from not wanting help. Most people here would accept help offered and can't initiate the request \u2014 which is a specific difficulty rather than a general independence.",
+          "\u201cI don't like asking for help\u201d is worth noticing as separate from not wanting help. Most people here would take help if it were offered, but can't ask for it themselves \u2014 which is one specific difficulty, not a general independence.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Nothing here promises it helps. Sometimes people respond badly, and that's information about them rather than confirmation of why you didn't. It's worth choosing carefully rather than testing the principle on the hardest case.",
+          "Nothing here promises it helps. Sometimes people respond badly — and that's information about them, not proof you were right to stay quiet. It's worth choosing carefully, rather than testing the idea on the hardest case.",
         ],
       },
     ],
@@ -322,19 +324,19 @@ export const C23_LITERATURE: LiteratureEntry[] = [
         label: "What the fear is actually protecting against",
         body: [
           "Not the wrong choice, exactly. The meaning of it \u2014 that choosing wrong twice would prove something the first time only suggested.",
-          "Which is why the stakes feel so much higher than the decision warrants.",
+          "That's why the stakes feel so much higher than the decision calls for.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The honest position: a second poor choice would be painful and would not be a verdict. Plenty of people who choose badly twice choose well afterwards, and the second one is frequently more informative than the first.",
+          "The honest position: a second poor choice would hurt, and it would not be a verdict. Plenty of people who choose badly twice choose well after that, and the second one often teaches you more than the first.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "There's also no risk-free option. Waiting carries a cost, choosing carries a cost, and the cost of waiting is the one that's currently being paid.",
+          "There's also no risk-free option. Waiting has a cost, choosing has a cost, and the cost of waiting is the one you're paying right now.",
         ],
       },
     ],
@@ -351,21 +353,21 @@ export const C23_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Some people will, and it's genuinely unpleasant. Worth saying rather than reassuring around.",
+          "Some people will, and it's genuinely unpleasant. Worth saying plainly, rather than talking around it.",
         ],
       },
       {
         kind: "distinction",
         label: "What pity usually is",
         body: [
-          "Mostly discomfort. People who don't know what to say produce something that lands as pity, and it's about their difficulty rather than their assessment of you.",
-          "It also tends to be brief. Pity is hard to sustain; most people move to ordinary treatment within a conversation or two.",
+          "Mostly discomfort. People who don't know what to say come out with something that lands as pity, and it's about their awkwardness, not their view of you.",
+          "It also tends to be brief. Pity is hard to keep up; most people go back to treating you normally within a conversation or two.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Choosing well matters more here than anything you could say. One person who handles it well is worth more than a careful script delivered to someone who won't.",
+          "Choosing well matters more here than anything you could say. One person who handles it well is worth more than a careful script given to someone who won't.",
         ],
       },
     ],

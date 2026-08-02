@@ -5,6 +5,9 @@ import type { CSSProperties } from "react";
 import { useParams } from "next/navigation";
 import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
 import { IconTile } from "@/components/site/IconTile";
+import { getPlaybookContent } from "@/content/playbook";
+import { CLUSTER_PAIRED_KEY, keyForClusterId, isPlaybookKey } from "@/lib/playbook/keys";
+import { routesFrom } from "@/lib/playbook/crossPlaybookRoutes";
 
 interface Primary {
   id: number; name: string; result_title: string; core_pattern: string;
@@ -56,6 +59,15 @@ export default function ResultsPage() {
   if (!unlocked) {
     return <EmailGate session={session} onUnlock={() => setUnlocked(true)} />;
   }
+
+  // Related-Playbook nudge — only for the two clusters with a second, separately-sold module,
+  // and only when it's actually served (isPlaybookKey is corpus-flag-aware).
+  const pairedKey = CLUSTER_PAIRED_KEY[p.id];
+  const paired = pairedKey && isPlaybookKey(pairedKey) ? getPlaybookContent(pairedKey) : null;
+  const primaryKey = keyForClusterId(p.id);
+  const pairedReason = paired && primaryKey
+    ? routesFrom(primaryKey).find((r) => r.to === pairedKey)?.reason ?? null
+    : null;
 
   return (
     <main className="mx-auto max-w-2xl px-6 pb-24 pt-8" style={{ "--hue": hue } as CSSProperties}>
@@ -114,6 +126,19 @@ export default function ResultsPage() {
         ctaLabel={p.call_to_action}
         available={available}
       />
+
+      {/* Related Playbook — a separate next step (own product), for C12/C21 results */}
+      {paired && pairedKey && (
+        <section className="mt-6 rounded-2xl border border-dashed border-midnight-navy/25 bg-white/60 p-5">
+          <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal/45">A related Playbook</p>
+          <p className="mt-1 font-display text-lg font-semibold text-midnight-navy">{paired.displayName}</p>
+          {pairedReason && <p className="mt-1 font-body text-body text-charcoal/75">{pairedReason}</p>}
+          <a href={`/playbooks/${pairedKey}`} className="mt-3 inline-flex items-center gap-1 font-ui text-sm font-semibold text-midnight-navy underline underline-offset-4 hover:opacity-80">
+            See {paired.displayName} →
+          </a>
+          <p className="mt-2 font-body text-xs text-charcoal/45">A separate Playbook, bought on its own.</p>
+        </section>
+      )}
 
       {/* Secondary — named + one line, no CTA */}
       {data.secondary && (

@@ -36,6 +36,7 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C24_LITERATURE } from "./lean-in-or-let-go-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const LEAN_IN_OR_LET_GO: PlaybookContent = {
   playbookKey: "lean-in-or-let-go", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
@@ -45,8 +46,8 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
     title: "Most of your questions don't have answers",
     body: [
       "How long should I wait. Am I settling. Is there someone better. Is love supposed to feel different. None of those have answers, and waiting for them is where the time goes.",
-      "You're not stuck in a pattern — you can see this perfectly well. You're stuck in a decision, waiting for a certainty that isn't coming.",
-      "What this does is trade the questions that can't be answered for ones that can. Smaller offer, honest one.",
+      "You're not stuck in a pattern — you can see this clearly. You're stuck in a decision, waiting to feel sure — and that sureness isn't coming.",
+      "What this does is swap the questions that can't be answered for ones that can. It's a smaller offer, and an honest one.",
     ],
     manifestations: [
       "Where is this going?",
@@ -64,7 +65,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I feel like I should just know by now.",
       validationCopy:
-        "Some people do report knowing. Plenty who report it turn out to have been wrong, and plenty who were uncertain for a year turn out fine. The feeling of certainty isn't a reliable signal about the relationship — it's a signal about the person having it. Waiting to know may be waiting for something that isn't coming, and isn't diagnostic even when it does.",
+        "Some people do say they just knew. Plenty who say that turn out to have been wrong, and plenty who were unsure for a year turn out fine. Feeling sure isn't a reliable sign about the relationship — it's more a sign about the person who feels it. Waiting to know may be waiting for something that isn't coming. And even when it does come, it doesn't reliably tell you the truth.",
       secondaryExamples: [
         "I keep second-guessing relationships.",
         "I'm afraid I'll choose the wrong person.",
@@ -76,7 +77,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I already said yes, and now I'm not sure.",
       validationCopy:
-        "This Playbook is for deciding whether to commit. What you're describing is different — you committed, and the doubt arrived afterwards. That's a real thing and a common one, and it needs different handling: the question isn't 'should I' but 'can this hold up, and do I still want it'. This Playbook won't fit it. Look for one about the point where it becomes real.",
+        "This Playbook is for deciding whether to commit. What you're describing is different — you committed, and the doubt came after. That's real, and it's common. It needs a different approach: the question isn't 'should I' but 'can this hold up, and do I still want it'. This Playbook won't fit it. Look for one about the point where it becomes real.",
       secondaryExamples: [
         "Now that it's real, I don't know if I still want it.",
         "Everything felt easier before we called it something.",
@@ -89,7 +90,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       pathwayPlayId: "just-ask-what-this-is",
       headline: "I don't know what we actually are.",
       explanation:
-        "This one is answerable. Uncomfortable, and answerable — which puts it in a small and useful category.",
+        "This one has an answer. It's uncomfortable, but it has an answer — and that puts it in a small, useful group.",
       secondaryExamples: [
         "Are we dating or just hanging out?",
         "Should I ask what we are?",
@@ -102,7 +103,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       pathwayPlayId: "what-would-i-need-to-see",
       headline: "I don't know how long to give this.",
       explanation:
-        "There's no correct number of weeks. But 'what would I need to see, and by when' is answerable by you, today.",
+        "There's no right number of weeks. But 'what would I need to see, and by when' is something you can answer yourself, today.",
       secondaryExamples: [
         "How long should I wait?",
         "I don't want to waste my time.",
@@ -115,7 +116,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       pathwayPlayId: "my-actual-terms",
       headline: "I don't know if I'm settling.",
       explanation:
-        "There's no standard to be settling against. Only your own terms — and most people have never written them down.",
+        "There's no set standard to measure 'settling' against. There are only your own terms — and most people have never written those down.",
       secondaryExamples: [
         "I don't know if this is enough.",
         "I wonder if there's someone better.",
@@ -132,7 +133,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       outputSchemaVersion: 1,
       name: "Just Ask What This Is",
       positioning:
-        "For the question you've been not asking. You build it alone — then you ask, because asking is the only thing that produces an answer.",
+        "For the question you've been not asking. You build it on your own — then you ask, because asking is the only thing that gets you an answer.",
       recognitionGate: {
         prompt: "Have you been wondering what you are to each other without asking?",
       },
@@ -140,17 +141,17 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Most of what's on your mind has no answer. This one does, and the answer is held by someone you speak to regularly.",
-            "The case against asking is that it seems needy, or it'll scare them off, or you should be able to tell. All three assume the question costs you something.",
-            "What it costs is finding out. If a direct question about what you're doing together puts someone off, that's information rather than a mistake.",
+            "Most of what's on your mind has no answer. This one does — and the answer is held by someone you talk to often.",
+            "The reasons people give not to ask: it seems needy, it'll scare them off, or you should be able to tell. All three assume the question costs you something.",
+            "What it really costs is finding out. If a direct question about what you're doing together puts someone off, that tells you something — it's not a mistake.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "\u201cWhere is this going?\u201d asks them to guess what you want to know. It reliably produces a vague answer, which you then analyse for weeks.",
+            "\u201cWhere is this going?\u201d asks them to guess what you want to know. It almost always gets a vague answer \u2014 which you then pick apart for weeks.",
             "\u201cAre we seeing other people?\u201d or \u201cAre you looking for something serious?\u201d can be answered yes or no.",
-            "The narrower it is, the harder it is to answer with warmth alone.",
+            "The more specific the question, the harder it is to answer with warmth alone.",
           ],
         },
         {
@@ -194,13 +195,13 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
               text: "\u201cHow do you feel about me?\u201d",
               correctBucket: "vague",
               correction:
-                "Produces reassurance rather than information, and you won't believe it anyway.",
+                "Gets you reassurance, not real information — and you won't believe it anyway.",
             },
             {
               id: "sort-c24-exclusive-soon",
               text: "\u201cIs being exclusive something you'd want at some point?\u201d",
               correctBucket: "answerable",
-              correction: "Specific, future-facing, and answerable without pressure.",
+              correction: "Specific, about the future, and easy to answer without pressure.",
             },
           ],
         },
@@ -208,7 +209,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
           kind: "sentenceBuilder",
           label: "The question, in your words",
           helper:
-            "One thing, answerable yes or no — or with two options offered. You might start with “Can I ask you something directly?” or “I'd rather ask than keep wondering…”",
+            "One thing they can answer yes or no — or with two choices offered. You might start with “Can I ask you something directly?” or “I'd rather ask than keep wondering…”",
         },
         {
           kind: "realWorldUse",
@@ -219,7 +220,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
         {
           kind: "output",
           heading: "What I asked, and what they said",
-          body: "Whatever came back, you now know something you were previously inferring.",
+          body: "Whatever came back, you now know something you were only guessing at before.",
         },
         {
           kind: "portable",
@@ -238,21 +239,21 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I've been wondering what we are without asking",
-        move: "Ask one specific answerable question, directly",
+        move: "Ask one clear question that has an answer, directly",
         lookingFor: "A real answer — including one I don't want",
         watchOut: "Asking something so open it can't be answered",
         remember: "This is one of the few questions here that actually has an answer.",
       },
       fidelity: {
         correct:
-          "One specific, answerable question about the state of the relationship is actually asked, and the answer taken at face value.",
+          "You actually ask one specific question about where the relationship stands — one that has an answer — and you take the answer at face value.",
         misuse: [
-          "Asking something open enough to produce reassurance rather than information.",
-          "Asking and then discounting the answer.",
-          "Asking repeatedly until the answer changes.",
+          "Asking something so open it gets you reassurance instead of real information.",
+          "Asking, then brushing off the answer.",
+          "Asking again and again until the answer changes.",
         ],
         notMeaning:
-          "It does not mean the answer will be the one you want, that asking makes commitment more likely, or that one answer settles it permanently.",
+          "It doesn't mean the answer will be the one you want. It doesn't mean asking makes them more likely to commit. And it doesn't mean one answer settles it for good.",
       },
     },
 
@@ -262,7 +263,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "What Would I Need to See?",
-      positioning: "For replacing \u201chow long should I wait\u201d with something answerable.",
+      positioning: "For swapping \u201chow long should I wait\u201d for something you can actually answer.",
       recognitionGate: {
         prompt: "Are you waiting to find out whether this is going somewhere?",
       },
@@ -270,16 +271,16 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "There is no correct number of weeks, and anyone who gives you one is guessing with confidence.",
-            "But \u201cwhat would I need to see, and by when\u201d is answerable \u2014 by you, today, without anyone else's cooperation.",
+            "There's no right number of weeks. Anyone who gives you one is just guessing, confidently.",
+            "But \u201cwhat would I need to see, and by when\u201d is something you can answer \u2014 by yourself, today, without needing anyone else to help.",
             "That's the swap. You give up the question you wanted answered and get one you can actually work with.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "A wait with no end point can't conclude. There's always a reason to give it a bit longer, and each individual reason is sound.",
-            "A wait with an end point produces information. Either the thing you named happens by then, or it doesn't, and you learn something either way.",
+            "A wait with no end point can't end. There's always a reason to give it a bit longer, and each single reason makes sense.",
+            "A wait with an end point gives you information. Either the thing you named happens by then, or it doesn't — and you learn something either way.",
             "This isn't a deadline for them. It's a date on which you look.",
           ],
         },
@@ -292,7 +293,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
               input: "text",
               label: "What would you need to see for this to feel like it's going somewhere?",
               placeholder:
-                "Something observable. Not \u201cmore effort\u201d \u2014 something you could point at.",
+                "Something you can actually see. Not \u201cmore effort\u201d \u2014 something you could point at.",
             },
             {
               id: "by-when",
@@ -316,11 +317,11 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
         {
           kind: "sufficiency",
           prompt: "Is what you named something you could actually notice happening?",
-          enoughLabel: "Yes — it's observable",
+          enoughLabel: "Yes — I could see it happen",
           needMoreLabel: "Not really — it's a feeling",
           needMoreIntro:
-            "Common, and worth fixing. \u201cI'd need to feel more secure\u201d can't be observed. \u201cI'd need them to make a plan more than a week ahead\u201d can.",
-          needToKnowLabel: "What would make it observable",
+            "Common, and worth fixing. \u201cI'd need to feel more secure\u201d can't be seen. \u201cI'd need them to make a plan more than a week ahead\u201d can.",
+          needToKnowLabel: "What would make it something I can see",
           observableLabel: "Something I could point at",
         },
         {
@@ -333,33 +334,33 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
           heading: "Take this with you",
           steps: [
             "\u201cHow long\u201d has no answer. \u201cWhat would I need to see\u201d does.",
-            "A wait with no end point can't conclude.",
+            "A wait with no end point can't end.",
             "It's a date on which I look, not a deadline for them.",
           ],
         },
       ],
       portable: [
         "\u201cHow long\u201d has no answer. \u201cWhat would I need to see\u201d does.",
-        "A wait with no end point can't conclude.",
+        "A wait with no end point can't end.",
         "It's a date on which I look, not a deadline for them.",
       ],
       myPlaysTemplate: {
         when: "When I'm waiting to see if this goes anywhere",
-        move: "Name something observable, and a date to look at it",
+        move: "Name something I can see happen, and a date to check it",
         lookingFor: "Whether the thing I named has happened by then",
         watchOut: "Naming a feeling instead of something I could point at",
         remember: "Not deciding is also a decision, and it costs the same time.",
       },
       fidelity: {
         correct:
-          "An observable condition and a review date are named in advance, and the review is actually taken.",
+          "You name — ahead of time — something you can see happen and a date to check it, and you actually do the check.",
         misuse: [
-          "Naming a feeling rather than something observable.",
+          "Naming a feeling instead of something you can see.",
           "Moving the date when it arrives.",
           "Telling them the date as a warning.",
         ],
         notMeaning:
-          "It does not mean the thing will happen, that the date is the right length, or that reaching it obliges you to act.",
+          "It doesn't mean the thing will happen. It doesn't mean the date is the right length. And it doesn't mean reaching it forces you to do anything.",
       },
     },
 
@@ -377,8 +378,8 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "\u201cAm I settling\u201d assumes a scale everyone is placed on. There isn't one, which is why the question can be asked for years without resolving.",
-            "What exists is your terms — the specific things without which this doesn't work for you. Most people have never written them down, which is why \u201cis this enough\u201d has nothing to measure against.",
+            "\u201cAm I settling\u201d assumes there's a scale everyone gets placed on. There isn't one \u2014 which is why you can ask the question for years and never get an answer.",
+            "What does exist is your terms — the specific things this doesn't work without. Most people have never written them down, which is why \u201cis this enough\u201d has nothing to measure against.",
           ],
         },
         {
@@ -393,7 +394,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
           kind: "scenarioSort",
           prompt: "Which of these could you check?",
           situation:
-            "You're trying to work out whether this is enough, and you've never actually written down what enough would be.",
+            "You're trying to figure out whether this is enough, and you've never actually written down what enough would be.",
           buckets: [
             { id: "checkable", label: "Checkable" },
             { id: "vague", label: "Can't be checked" },
@@ -403,13 +404,13 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
               id: "sort-c24-chemistry",
               text: "Real chemistry",
               correctBucket: "vague",
-              correction: "No way to check it and no agreed meaning. Needs unpacking.",
+              correction: "No way to check it, and no agreed meaning. It needs unpacking.",
             },
             {
               id: "sort-c24-says-annoyed",
               text: "Tells me when something's bothering them",
               correctBucket: "checkable",
-              correction: "Observable over a few weeks. That's a term.",
+              correction: "You can see it over a few weeks. That's a term.",
             },
             {
               id: "sort-c24-makes-me-happy",
@@ -422,7 +423,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
               id: "sort-c24-wants-kids",
               text: "Wants children, or definitely doesn't",
               correctBucket: "checkable",
-              correction: "Answerable by asking. One of the clearest terms there is.",
+              correction: "You can find out by asking. One of the clearest terms there is.",
             },
             {
               id: "sort-c24-good-person",
@@ -434,7 +435,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
               id: "sort-c24-own-friends",
               text: "Has their own friends and things they do",
               correctBucket: "checkable",
-              correction: "Observable, and more predictive than it sounds.",
+              correction: "You can see it, and it says more about how things will go than it sounds.",
             },
           ],
         },
@@ -462,14 +463,14 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
           enoughLabel: "They're not all met, and that's the issue",
           needMoreLabel: "They are met, and I'm still not sure",
           needMoreIntro:
-            "That's useful rather than confusing. It means the unease isn't about whether this is enough — it's about something else, possibly about deciding at all.",
+            "That's useful, not confusing. It means the unease isn't about whether this is enough — it's about something else, maybe about deciding at all.",
           needToKnowLabel: "What the unease might actually be about",
           observableLabel: "Something I could notice or check",
         },
         {
           kind: "output",
           heading: "My terms, and where they stand",
-          body: "\u201cAm I settling\u201d is now a checkable question rather than an anxious one.",
+          body: "\u201cAm I settling\u201d is now a question you can check, not just an anxious one.",
         },
         {
           kind: "portable",
@@ -488,21 +489,21 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I don't know whether this is enough",
-        move: "Name three or four checkable terms and see where they stand",
+        move: "Name three or four terms I can check, and see where they stand",
         lookingFor: "Which are actually met, and which I'd been assuming",
         watchOut: "Writing terms so vague they can't be checked",
         remember: "\u201cSomeone better exists\u201d isn't the test. \u201cSomething I need is missing\u201d is.",
       },
       fidelity: {
         correct:
-          "Three or four checkable terms are named and assessed against the current situation.",
+          "You name three or four terms you can check, and weigh them against the situation you're in.",
         misuse: [
-          "Writing terms that can't be observed.",
-          "Writing them to justify a decision already made.",
-          "Treating the list as a screening checklist for future people.",
+          "Writing terms you can't actually see or check.",
+          "Writing them to back up a decision you've already made.",
+          "Using the list as a checklist to screen future people.",
         ],
         notMeaning:
-          "It does not mean the terms are correct, that meeting them guarantees anything, or that unmet terms mean you should leave.",
+          "It doesn't mean your terms are the right ones. It doesn't mean meeting them guarantees anything. And it doesn't mean unmet terms mean you should leave.",
       },
     },
   ],
@@ -516,7 +517,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       playId: "just-ask-what-this-is",
       title: "Ask a second thing",
       instruction:
-        "You asked in the tool. Ask one more — something you'd normally have inferred from behaviour instead.",
+        "You asked in the tool. Ask one more — something you'd normally have just figured out from how they act.",
       linkToOperation: "Direct clarification of relational status",
       attemptMeaning:
         "You asked. An unwelcome answer is a completed attempt.",
@@ -537,7 +538,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       attemptMeaning:
         "You looked on the day. Moving the date is information too.",
       suitability:
-        "If you moved it, that's worth knowing rather than hiding — it usually means the condition wasn't the real question.",
+        "If you moved it, that's worth knowing, not hiding — it usually means the condition wasn't the real question.",
       progression: [
         { id: "rung-c24-see-2", instruction: "Set the next one shorter than the last." },
       ],
@@ -553,7 +554,7 @@ export const LEAN_IN_OR_LET_GO: PlaybookContent = {
       attemptMeaning:
         "You said them. Wobbling on one isn't a reason to drop it.",
       suitability:
-        "Pick someone who won't immediately tell you you're too picky. That's the input you're trying to get away from.",
+        "Pick someone who won't right away tell you you're too picky. That's the kind of input you're trying to get away from.",
       progression: [
         { id: "rung-c24-terms-2", instruction: "Take one vague term and make it checkable." },
       ],

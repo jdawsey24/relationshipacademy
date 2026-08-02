@@ -39,6 +39,8 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C25_LITERATURE } from "./from-the-ground-up-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const FROM_THE_GROUND_UP: PlaybookContent = {
   playbookKey: "from-the-ground-up",
   playbookVersion: 1,
@@ -47,9 +49,9 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
   opening: {
     title: "You've already worked out the hard part",
     body: [
-      "That relationships involve skills, that nobody taught you them, and that goodwill hasn't been enough on its own. Most people never get there.",
-      "It's also, awkwardly, most of the way to the answer — which means there's less to do here than the size of the realisation suggests.",
-      "We're not going to tell you that wanting tools is the right instinct and then hand you a list. Three things, and most of this gets left alone on purpose.",
+      "That relationships take skills. That nobody taught you those skills. And that goodwill alone hasn't been enough. Most people never get this far.",
+      "It's also, oddly, most of the way to the answer. So there's less to do here than a realisation this big might suggest.",
+      "We're not going to tell you that wanting tools is the right instinct and then hand you a list. Three things. And most of this gets left alone on purpose.",
     ],
     manifestations: [
       "We love each other, but we're still struggling.",
@@ -67,7 +69,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I want tools, not just encouragement.",
       validationCopy:
-        "Right instinct, and worth one honest caveat: collecting tools can become its own way of not practising any. Reading is good at naming things — having a word for what happens between you makes it discussable, and that's real. It's poor at the moment itself. Nothing you've read is available ninety seconds into a difficult conversation. Only what you've practised is.",
+        "Right instinct — and worth one honest caveat. Collecting tools can become its own way of not practising any of them. Reading is good at naming things. Having a word for what happens between you makes it easier to talk about, and that's real. But reading is poor at the moment itself. Nothing you've read is there for you ninety seconds into a hard conversation. Only what you've practised is.",
       secondaryExamples: [
         "I want practical guidance, not clich\u00e9s.",
         "I don't just want advice \u2014 I want understanding.",
@@ -80,7 +82,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       pathwayPlayId: "love-and-skill",
       headline: "We love each other and we're still struggling.",
       explanation:
-        "Love is not a skill and doesn't contain any. It supplies the motivation; something else has to supply the method.",
+        "Love is not a skill, and it doesn't hold any skills. It gives the motivation. Something else has to give the method.",
       secondaryExamples: [
         "Love isn't fixing our problems.",
         "I thought love would be enough.",
@@ -93,7 +95,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       pathwayPlayId: "the-recurring-move",
       headline: "Why do I keep ending up here?",
       explanation:
-        "We're going to decline the explanation and give you something smaller instead — the move itself, rather than the reason for it.",
+        "We're going to turn down the explanation and give you something smaller instead. The move itself, not the reason behind it.",
       secondaryExamples: [
         "I want to stop attracting unhealthy relationships.",
         "I'm trying to unlearn what I grew up with.",
@@ -106,7 +108,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       pathwayPlayId: "one-thing-practised",
       headline: "I want to become emotionally healthier.",
       explanation:
-        "True and not yet available on a Tuesday. Intentions arrive when you're calm; habits arrive when it matters.",
+        "True — and not yet there for you on a Tuesday. Intentions show up when you're calm. Habits show up when it matters.",
       secondaryExamples: [
         "I want to communicate better.",
         "I want to become a better partner.",
@@ -122,7 +124,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "Love and Skill",
-      positioning: "For two people who care a great deal and keep getting nowhere.",
+      positioning: "For two people who care a lot and keep getting nowhere.",
       recognitionGate: {
         prompt: "Do you care about each other and still keep having the same trouble?",
       },
@@ -130,17 +132,17 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Love is not a skill and does not contain any. That's the whole reframe.",
-            "Love supplies the motivation — it's why you'd bother repairing something, and why it matters when it goes wrong. Skill supplies the method.",
-            "Having the first without the second produces exactly what you're describing: two people who care, trying hard, getting nowhere.",
+            "Love is not a skill, and it doesn't hold any skills. That's the whole shift.",
+            "Love gives the motivation. It's why you'd bother to repair something, and why it matters when it goes wrong. Skill gives the method.",
+            "Having the first without the second gives you exactly what you're describing. Two people who care, trying hard, getting nowhere.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "\u201cNeither of us is a bad person\u201d is usually true and usually not much comfort — if nobody's at fault, there's nothing obvious to change.",
-            "But most difficulty between decent people is procedural. It isn't what either of you wants. It's what happens in the ninety seconds after something lands badly — and neither of you chose that procedure. You each brought one.",
-            "\u201cWe don't know how\u201d is a much better position than \u201cwe don't care enough\u201d, because it's the one that responds to anything.",
+            "\u201cNeither of us is a bad person\u201d is usually true. And usually not much comfort — if no one's at fault, there's nothing obvious to change.",
+            "But most trouble between good people comes down to the procedure. It isn't what either of you wants. It's what happens in the ninety seconds after something lands badly — and neither of you chose that procedure. You each brought one.",
+            "\u201cWe don't know how\u201d is a much better place to be than \u201cwe don't care enough\u201d. It's the one that responds to anything.",
           ],
         },
         {
@@ -169,27 +171,27 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
               id: "sort-c25-no-repair",
               text: "Neither of us knows how to end an argument",
               correctBucket: "method",
-              correction: "Very common, entirely procedural, and learnable.",
+              correction: "Very common, all about the procedure, and something you can learn.",
             },
             {
               id: "sort-c25-try-hard",
               text: "We both try, and it still goes wrong the same way",
               correctBucket: "method",
               correction:
-                "Trying harder at the wrong method produces more of the same, harder.",
+                "Trying harder at the wrong method just gives you more of the same, harder.",
             },
             {
               id: "sort-c25-contempt",
               text: "There's contempt in how we talk to each other now",
               correctBucket: "caring",
               correction:
-                "That's further along and it needs more than a method. Worth taking to someone.",
+                "That's further along, and it needs more than a method. It's worth taking to someone.",
             },
             {
               id: "sort-c25-raise-badly",
               text: "We only raise things when we're already annoyed",
               correctBucket: "method",
-              correction: "Timing is a procedure. One of the most changeable ones.",
+              correction: "Timing is a procedure. And one of the easiest to change.",
             },
           ],
         },
@@ -218,7 +220,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
           enoughLabel: "The method — we both still care",
           needMoreLabel: "I'm not sure the caring is still there",
           needMoreIntro:
-            "Then this isn't the problem you have, and skill won't reach it. That's worth knowing rather than working around, and it's a conversation to have with someone rather than a tool to apply.",
+            "Then this isn't the problem you have, and skill won't reach it. That's worth knowing, not working around. And it's a conversation to have with someone, not a tool to apply.",
           needToKnowLabel: "What would tell me either way",
           observableLabel: "Something one of us would actually have to do",
         },
@@ -232,34 +234,34 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Love supplies the motivation. Something else has to supply the method.",
+            "Love gives the motivation. Something else has to give the method.",
             "Neither of us chose the procedure. We each brought one.",
-            "\u201cWe don't know how\u201d is a better position than \u201cwe don't care enough.\u201d",
+            "\u201cWe don't know how\u201d is a better place to be than \u201cwe don't care enough.\u201d",
           ],
         },
       ],
       portable: [
         "Love supplies the motivation. Something else has to supply the method.",
         "Neither of us chose the procedure. We each brought one.",
-        "\u201cWe don't know how\u201d is a better position than \u201cwe don't care enough.\u201d",
+        "\u201cWe don't know how\u201d is a better place to be than \u201cwe don't care enough.\u201d",
       ],
       myPlaysTemplate: {
         when: "When we both care and keep getting nowhere",
         move: "Name what happens in the ninety seconds, and which part is mine",
         lookingFor: "Whether the trouble is method or motivation",
         watchOut: "Naming their half — it isn't available to me",
-        remember: "Trying harder at the wrong method produces more of the same, harder.",
+        remember: "Trying harder at the wrong method just gives you more of the same, harder.",
       },
       fidelity: {
         correct:
-          "The procedural sequence following a difficulty is described, with the reader's own part distinguished, and motivation separated from method.",
+          "The step-by-step that follows a difficulty is described, the reader's own part in it is marked out, and motivation is kept separate from method.",
         misuse: [
-          "Using it to establish that the other person is the problem.",
-          "Applying it where the caring has genuinely gone.",
+          "Using it to prove the other person is the problem.",
+          "Using it where the caring has truly gone.",
           "Describing what you both want rather than what you both do.",
         ],
         notMeaning:
-          "It does not mean the method can be fixed, that both of you will change it, or that caring is sufficient.",
+          "It does not mean the method can be fixed, that both of you will change it, or that caring is enough.",
       },
     },
 
@@ -277,17 +279,17 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "\u201cI want someone to explain why I keep ending up here.\u201d Fair request, and we're going to decline it.",
-            "Confident explanations exist — about your childhood, your attachment, what you're drawn to. Some may even be true for you. None are established enough to hand someone as fact.",
-            "And a wrong explanation held confidently is worse than none. It reorganises how you see yourself around something that might not be so.",
+            "\u201cI want someone to explain why I keep ending up here.\u201d Fair to ask. And we're going to turn it down.",
+            "Confident explanations exist — about your childhood, how you attach, what you're drawn to. Some may even be true for you. But none are solid enough to hand someone as fact.",
+            "And a wrong explanation, held with confidence, is worse than none. It reshapes how you see yourself around something that might not be true.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "What's available instead is smaller and more reliable: the move itself. Not why you do it — what it is, and when it shows up.",
-            "That's less satisfying than a reason. It's also the part that can be acted on, and \u201cwhy\u201d turns out not to be required.",
-            "\u201cI'm trying to unlearn what I grew up with\u201d is the same work. Nothing gets removed — at best a second option becomes available alongside the first, and the first still arrives first for a long time.",
+            "What you can have instead is smaller and more reliable: the move itself. Not why you do it — what it is, and when it shows up.",
+            "That's less satisfying than a reason. But it's the part you can actually act on \u2014 and \u201cwhy\u201d turns out not to be needed.",
+            "\u201cI'm trying to unlearn what I grew up with\u201d is the same work. Nothing gets removed. At best, a second option opens up alongside the first — and the first still comes first for a long time.",
           ],
         },
         {
@@ -299,14 +301,14 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
               id: "the-similar-ending",
               label: "Where do you keep arriving?",
               input: "text",
-              placeholder: "The familiar place, described plainly.",
+              placeholder: "The familiar place, in plain words.",
             },
             {
               id: "the-move",
               label: "What did YOU do, early, in each of them?",
               input: "text",
               placeholder:
-                "Something small and repeated. Earlier than feels significant.",
+                "Something small that repeats. Earlier than feels important.",
             },
             {
               id: "when-it-shows",
@@ -328,7 +330,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
           enoughLabel: "Yes — I'd notice it",
           needMoreLabel: "Not yet — it's still a description",
           needMoreIntro:
-            "Go smaller. The usable version is usually one step before the thing you first thought of, and it usually feels too minor to matter.",
+            "Go smaller. The version you can use is usually one step before the thing you first thought of. And it usually feels too small to matter.",
           needToKnowLabel: "The smaller version of it",
           observableLabel: "Something I'd catch myself doing",
         },
@@ -336,15 +338,15 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
           kind: "output",
           heading: "The move, and when it shows up",
           body:
-            "Not the reason. The thing itself \u2014 which is the part that can be acted on.",
+            "Not the reason. The thing itself \u2014 which is the part you can act on.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "A wrong explanation held confidently is worse than none.",
+            "A wrong explanation, held with confidence, is worse than none.",
             "Not why I do it. What it is, and when it shows up.",
-            "Nothing gets removed. A second option becomes available.",
+            "Nothing gets removed. A second option opens up.",
           ],
         },
       ],
@@ -355,18 +357,18 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I keep arriving somewhere familiar",
-        move: "Find the recurring move, without requiring the reason for it",
+        move: "Find the recurring move, without needing the reason for it",
         lookingFor: "Something small, mine, and repeated across situations",
-        watchOut: "Adopting a confident explanation because it's satisfying",
-        remember: "A recurrence isn't evidence nothing has changed. It's the expected condition.",
+        watchOut: "Taking on a confident explanation because it feels satisfying",
+        remember: "A repeat isn't proof that nothing has changed. It's what you should expect.",
       },
       fidelity: {
         correct:
-          "A small, repeated behaviour of the reader's own is identified across situations, without an explanatory account being adopted.",
+          "A small, repeated action of the reader's own is spotted across situations, without taking on an explanation for it.",
         misuse: [
-          "Adopting a confident causal explanation of yourself.",
+          "Taking on a confident cause-and-effect explanation of yourself.",
           "Naming something the other people did.",
-          "Treating a recurrence as proof that nothing has changed.",
+          "Treating a repeat as proof that nothing has changed.",
         ],
         notMeaning:
           "It does not mean the pattern stops, that you now understand yourself, or that noticing prevents it.",
@@ -376,7 +378,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
           id: "signpost-c25-the-why",
           heading: "If you want the why",
           body:
-            "Wanting to understand where it comes from is legitimate, and a therapist can provide an appropriate place to explore it \u2014 someone who knows your history, can be wrong out loud with you, and can revise it as you go. That's a different thing from a text that has to guess, and it can be worth having if the question matters to you.",
+            "Wanting to understand where it comes from is fair, and a therapist can be a good place to explore it \u2014 someone who knows your history, can be wrong out loud with you, and can update it as you go. That's a different thing from a text that has to guess. And it can be worth having if the question matters to you.",
         },
       ],
     },
@@ -387,7 +389,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "One Thing, Practised",
-      positioning: "For turning an aspiration into something available on a Tuesday.",
+      positioning: "For turning a goal into something you can use on a Tuesday.",
       recognitionGate: {
         prompt: "Do you know what you want to become and not what to do about it?",
       },
@@ -396,21 +398,21 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
           kind: "shift",
           body: [
             "\u201cI want to communicate better.\u201d \u201cI want to become emotionally healthier.\u201d \u201cI want to feel secure.\u201d",
-            "All true, all sincere, and none of them available at the moment they'd be needed.",
-            "Intentions arrive when you're calm and thinking about the relationship — which is exactly when they aren't needed. Habits arrive at the moment of difficulty, when you aren't thinking about intentions at all.",
+            "All true, all heartfelt, and none of them there at the moment you'd need them.",
+            "Intentions show up when you're calm and thinking about the relationship — which is exactly when they aren't needed. Habits show up at the hard moment, when you aren't thinking about intentions at all.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "So the useful unit is small and specific enough to survive the moment. \u201cI want to communicate better\u201d isn't available mid-argument. \u201cI'll ask what they meant before I answer\u201d might be.",
-            "One of them. Not a set. A list of good practices behaves exactly like a list of good intentions, and neither is present when it matters.",
+            "So the useful piece is small and clear enough to survive the moment. \u201cI want to communicate better\u201d isn't there mid-argument. \u201cI'll ask what they meant before I answer\u201d might be.",
+            "One of them. Not a set. A list of good practices acts exactly like a list of good intentions — and neither is there when it matters.",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Take one aspiration and bring it down two levels — to a thing you'd do in a specific moment.",
+            "Take one goal and bring it down two levels — to a thing you'd do in one specific moment.",
           fields: [
             {
               id: "the-aspiration",
@@ -427,9 +429,9 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
             },
             {
               id: "the-moment",
-              label: "In what specific moment would it be needed?",
+              label: "In what exact moment would you need it?",
               input: "text",
-              placeholder: "Concrete. \u201cWhen they go quiet\u201d, \u201cwhen I feel dismissed\u201d.",
+              placeholder: "Be specific. \u201cWhen they go quiet\u201d, \u201cwhen I feel dismissed\u201d.",
             },
             {
               id: "the-practice",
@@ -452,7 +454,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
             "Name what I'm feeling rather than act on it",
           ],
           controlCheck:
-            "One practice, done badly at first, beats a list of good ones \\u2014 a set of practices behaves exactly like a set of intentions.",
+            "One practice, done badly at first, beats a list of good ones. A set of practices acts exactly like a set of intentions.",
         },
         {
           kind: "output",
@@ -464,9 +466,9 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Intentions arrive when they aren't needed. Habits arrive when they are.",
+            "Intentions show up when they aren't needed. Habits show up when they are.",
             "One practice, not a set. A set is just intentions again.",
-            "Badly, repeatedly, is the mechanism.",
+            "Doing it badly, over and over, is how it works.",
           ],
         },
       ],
@@ -477,18 +479,18 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I know what I want to become and not what to do",
-        move: "Bring one aspiration down to one thing in one moment",
+        move: "Bring one goal down to one thing in one moment",
         lookingFor: "Whether it's small enough to remember while it's happening",
         watchOut: "Choosing several — a set of practices is just intentions again",
         remember: "Collecting tools can become its own way of not practising any.",
       },
       fidelity: {
         correct:
-          "One aspiration is reduced to a single specific practice tied to a specific moment.",
+          "One goal is boiled down to a single clear practice tied to a specific moment.",
         misuse: [
           "Choosing several practices at once.",
-          "Choosing something too abstract to perform under pressure.",
-          "Treating a poor first attempt as evidence it doesn't work.",
+          "Choosing something too vague to do under pressure.",
+          "Treating a poor first try as proof it doesn't work.",
         ],
         notMeaning:
           "It does not mean the practice will work, that you'll remember it, or that one practice changes the pattern.",
@@ -507,9 +509,9 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       instruction:
         "Next time something lands badly, watch what the two of you do. Don't change it. Note your half afterwards.",
       linkToOperation: "Observing the procedural sequence following a difficulty",
-      attemptMeaning: "You watched. Changing it wasn't the ask.",
+      attemptMeaning: "You watched. Changing it wasn't the point.",
       suitability:
-        "If watching turns into building a case about their half, stop — that's the misuse and it's an easy one to fall into.",
+        "If watching turns into building a case about their half, stop. That's the misuse, and it's an easy one to fall into.",
       progression: [
         {
           id: "rung-c25-procedure-2",
@@ -523,7 +525,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       playId: "the-recurring-move",
       title: "Watch for the move for a month",
       instruction:
-        "Keep it in mind. If you catch it, note when — during, just after, or weeks later. That progression is the measure.",
+        "Keep it in mind. If you catch it, note when — during, just after, or weeks later. That progress is the measure.",
       linkToOperation: "Recognising a recurring behaviour as it activates",
       attemptMeaning:
         "You watched. Catching it late is still catching it.",
@@ -542,7 +544,7 @@ export const FROM_THE_GROUND_UP: PlaybookContent = {
       playId: "one-thing-practised",
       title: "Do the one thing, three times",
       instruction:
-        "Three occasions. Badly is fine. Note only whether you did it, not how well it went.",
+        "Three times. Doing it badly is fine. Note only whether you did it, not how well it went.",
       linkToOperation: "Converting an intention into a practised habit",
       attemptMeaning:
         "You did it. Doing it badly is the expected first version.",

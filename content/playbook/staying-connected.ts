@@ -27,6 +27,7 @@
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { SAFETY_RECOGNITION_CARD } from "./shared/safety-not-safe";
 import { C18_LITERATURE } from "./staying-connected-literature";
@@ -39,8 +40,8 @@ export const STAYING_CONNECTED: PlaybookContent = {
   opening: {
     title: "It looks like two problems",
     body: [
-      "Money, and the fact that work keeps winning. Underneath they're the same question, and it's a bigger one: are we building the same thing?",
-      "Which is why the spreadsheet and the date night don't fix it. Good ideas, wrong layer.",
+      "Money, and the fact that work keeps winning. Underneath, they're the same question. And it's a bigger one: are we building the same thing?",
+      "That's why the spreadsheet and the date night don't fix it. Good ideas, aimed at the wrong thing.",
       "Nothing here tells you how to budget. That's a different kind of help and worth getting separately.",
     ],
     manifestations: [
@@ -73,7 +74,7 @@ export const STAYING_CONNECTED: PlaybookContent = {
       pathwayPlayId: "are-we-building-the-same-thing",
       headline: "I don't know if we want the same future.",
       explanation:
-        "The real question underneath both the money and the work. Worth asking directly rather than inferring it over years.",
+        "The real question underneath both the money and the work. Worth asking straight out rather than guessing at it over years.",
       secondaryExamples: [
         "I don't know if we're financially compatible.",
         "I don't know if our dreams still align.",
@@ -111,15 +112,15 @@ export const STAYING_CONNECTED: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "That's the uncomfortable part. Saving harder is sensible. Spending on a life you're actually living is also sensible. Neither of you is failing to see something obvious.",
-            "Which changes what you're trying to do. Not convince them — that's what's been happening and it doesn't work, because they aren't being irrational.",
+            "That's the uncomfortable part. Saving harder makes sense. Spending on a life you're actually living makes sense too. Neither of you is missing something obvious.",
+            "That changes what you're trying to do. Not convince them — that's what's been happening, and it doesn't work, because they aren't being unreasonable.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "For some people a savings figure is the difference between fine and not fine, and spending it feels like risk. For others money is only useful spent, and saving feels like a life deferred.",
-            "Add fairness, status, and whatever you each grew up with, and \u201cdifferent financial priorities\u201d turns out to be shorthand for something neither of you has said out loud.",
+            "For some people, a set amount of savings is the line between fine and not fine, and spending it feels like risk. For others, money is only useful once it's spent, and saving feels like a life put on hold.",
+            "Add fairness, status, and whatever you each grew up with, and \u201cdifferent financial priorities\u201d turns out to be a short way of saying something neither of you has said out loud.",
             "This is why a spreadsheet doesn't settle it. A spreadsheet settles the numbers. The argument was never about the numbers.",
           ],
         },
@@ -154,7 +155,7 @@ export const STAYING_CONNECTED: PlaybookContent = {
           thenLabel: "And how I'll open it",
           actions: [
             "When nothing has gone wrong",
-            "As a scheduled, boring, low-stakes conversation",
+            "As a planned, boring, low-pressure conversation",
             "Not straight after a bill or a purchase",
             "This week, before something forces it",
           ],
@@ -165,12 +166,12 @@ export const STAYING_CONNECTED: PlaybookContent = {
           kind: "realWorldUse",
           useWhen: "Nothing has gone wrong and neither of you is busy.",
           doThis:
-            "Have the conversation about what money means to each of you. Don't decide anything in the same conversation \u2014 getting both meanings said is the whole outcome.",
+            "Have the conversation about what money means to each of you. Don't decide anything in the same conversation \u2014 getting both meanings out loud is the whole point.",
         },
         {
           kind: "output",
           heading: "What each of us said it means",
-          body: "Two meanings, known rather than assumed. Decisions come later.",
+          body: "Two meanings, known instead of guessed at. Decisions come later.",
         },
         {
           kind: "portable",
@@ -188,15 +189,15 @@ export const STAYING_CONNECTED: PlaybookContent = {
         "A spreadsheet settles numbers. This was never about numbers.",
       ],
       myPlaysTemplate: {
-        when: "When money is tense and we only discuss it reactively",
-        move: "Have a scheduled conversation about what money means to each of us",
+        when: "When money is tense and we only talk about it after something goes wrong",
+        move: "Have a planned talk about what money means to each of us",
         lookingFor: "What it stands for on their side — safety, freedom, fairness",
         watchOut: "Trying to win it, or deciding something in the same conversation",
-        remember: "They're not being irrational. They're weighting something differently.",
+        remember: "They're not being unreasonable. They just weigh things differently.",
       },
       fidelity: {
         correct:
-          "A non-reactive conversation is held in which both meanings are stated, with no decision attached.",
+          "You have a calm, planned talk — not one triggered by something going wrong — where both meanings get said, and no decision is attached.",
         misuse: [
           "Using it to argue for your position.",
           "Raising it after a purchase or a bill.",
@@ -210,7 +211,7 @@ export const STAYING_CONNECTED: PlaybookContent = {
           id: "signpost-c18-financial-control",
           heading: "If money is being controlled rather than disagreed about",
           body:
-            "Sharing a budget, talking over big purchases, or agreeing how you'll handle money together is ordinary — this isn't about that. But if you're denied access to money, stopped from working, monitored or punished for what you spend, have money taken without agreement, are kept in the dark about the finances, or decisions are made over you under pressure or threat — that isn't a compatibility disagreement, and this tool doesn't apply. Financial control can be a form of abuse. Please read 'If you don't feel safe', and consider talking to a domestic-abuse service. You don't have to be certain to ask.",
+            "Sharing a budget, talking over big purchases, or agreeing how you'll handle money together is ordinary — this isn't about that. But if you're denied access to money, stopped from working, watched or punished for what you spend, have money taken without agreement, are kept in the dark about the finances, or decisions are made over you under pressure or threat — that isn't a compatibility disagreement, and this tool doesn't apply. Financial control can be a form of abuse. Please read 'If you don't feel safe', and think about talking to a domestic-abuse service. You don't have to be certain to ask.",
         },
       ],
     },
@@ -230,16 +231,16 @@ export const STAYING_CONNECTED: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Money and careers look like separate problems. Both are versions of the same one: are we building the same thing?",
-            "Most couples have never asked it directly. They inferred an answer years ago and have been operating on the inference since.",
+            "Money and careers look like separate problems. They're really the same one: are we building the same thing?",
+            "Most couples have never asked it straight out. They guessed an answer years ago and have run on that guess ever since.",
           ],
         },
         {
           kind: "learn",
           body: [
             "Assuming you agree because you agreed once. People change, and the version you agreed on may be a decade old.",
-            "Assuming you disagree because of one visible difference. Different spending habits don't necessarily mean different destinations.",
-            "Both are inferences. Only asking produces an answer.",
+            "Assuming you disagree because of one visible difference. Different spending habits don't always mean you're headed different places.",
+            "Both are guesses. Only asking gives you an answer.",
           ],
         },
         {
@@ -250,13 +251,13 @@ export const STAYING_CONNECTED: PlaybookContent = {
               id: "my-picture",
               input: "text",
               label: "In five years, what does the life you want look like?",
-              placeholder: "Concrete. Where, how, what a normal week contains.",
+              placeholder: "Be specific. Where, how, what a normal week looks like.",
             },
             {
               id: "what-i-keep",
               input: "text",
-              label: "What's non-negotiable in that? What can't you give up?",
-              placeholder: "One or two things. The load-bearing ones.",
+              label: "What in that is a must-have? What can't you give up?",
+              placeholder: "One or two things. The ones that hold everything up.",
             },
             {
               id: "do-they-know",
@@ -281,27 +282,27 @@ export const STAYING_CONNECTED: PlaybookContent = {
           kind: "realWorldUse",
           useWhen: "You've written your own picture of the next five years.",
           doThis:
-            "Say yours first, then ask theirs. Listen without correcting it \u2014 you're collecting an answer, not negotiating one.",
+            "Say yours first, then ask theirs. Listen without correcting it \u2014 you're collecting an answer, not bargaining over one.",
         },
         {
           kind: "output",
           heading: "Both pictures",
-          body: "Two answers, said out loud. Whether they match is now knowable.",
+          body: "Two answers, said out loud. Now you can actually know whether they match.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "We inferred an answer years ago and never checked.",
+            "We guessed an answer years ago and never checked.",
             "Say mine first. It makes theirs easier to say.",
-            "Different habits don't necessarily mean different destinations.",
+            "Different habits don't always mean we want different things.",
           ],
         },
       ],
       portable: [
-        "We inferred an answer years ago and never checked.",
+        "We guessed an answer years ago and never checked.",
         "Say mine first. It makes theirs easier to say.",
-        "Different habits don't necessarily mean different destinations.",
+        "Different habits don't always mean we want different things.",
       ],
       myPlaysTemplate: {
         when: "When I don't know whether we still want the same future",
@@ -312,14 +313,14 @@ export const STAYING_CONNECTED: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "The reader's own picture is stated first, and the other person's is asked for and heard without correction.",
+          "You say your own picture first, then ask for theirs and hear it without correcting it.",
         misuse: [
-          "Framing it as a decision point or an ultimatum.",
-          "Correcting or negotiating their answer in the moment.",
+          "Making it a decision point or an ultimatum.",
+          "Correcting or bargaining over their answer in the moment.",
           "Asking theirs without offering your own.",
         ],
         notMeaning:
-          "It does not mean the pictures match, that a mismatch is fatal, or that anything is settled by asking.",
+          "It does not mean the pictures match, that a mismatch ends the relationship, or that anything is settled just by asking.",
       },
     },
 
@@ -339,15 +340,15 @@ export const STAYING_CONNECTED: PlaybookContent = {
           kind: "shift",
           body: [
             "Work has other people waiting and consequences for not showing up. The relationship has neither, so it loses — not because it matters less, but because nothing forces it.",
-            "That's structural rather than personal, which is oddly reassuring and also means it won't resolve by itself.",
+            "That's about how things are set up, not about you two as people — which is oddly reassuring, and also means it won't fix itself.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "A season: something is genuinely demanding now, and it ends. Survivable — if it's named as temporary and actually is.",
-            "An arrangement: this is simply how it is, and nobody decided it. Waiting doesn't fix that one.",
-            "Most people describe theirs as a season for several years running.",
+            "A season: something is really demanding right now, and it ends. You can get through it — if it's named as temporary and really is.",
+            "An arrangement: this is just how it is, and nobody decided it. Waiting doesn't fix that one.",
+            "Most people call theirs a season for several years running.",
           ],
         },
         {
@@ -385,7 +386,7 @@ export const STAYING_CONNECTED: PlaybookContent = {
           enoughLabel: "Yes, we've discussed it",
           needMoreLabel: "No — they'd probably say it's a season",
           needMoreIntro:
-            "That gap is the thing. Two people can be living in the same house with different beliefs about whether this is temporary.",
+            "That gap is the thing. Two people can live in the same house and believe different things about whether this is temporary.",
           needToKnowLabel: "What I'd want them to know",
           observableLabel: "Something specific I could say",
         },
@@ -420,11 +421,11 @@ export const STAYING_CONNECTED: PlaybookContent = {
         move: "Work out whether it's a season or an arrangement, and say which",
         lookingFor: "Whether there's a real end date, and whether they'd say the same",
         watchOut: "Turning it into a demand rather than a statement of where I am",
-        remember: "Somebody slowing down because they concluded they had to arrives as resentment later.",
+        remember: "Somebody slowing down because they decided they had no choice turns into resentment later.",
       },
       fidelity: {
         correct:
-          "The situation is classified honestly as season or arrangement, and the reader's own position and losses are stated.",
+          "You honestly name it as a season or an arrangement, and say your own position and what you're losing.",
         misuse: [
           "Using it as a demand that they cut back.",
           "Calling it a season when the end date keeps moving.",
@@ -445,10 +446,10 @@ export const STAYING_CONNECTED: PlaybookContent = {
       playId: "the-money-conversation",
       title: "Book the next one",
       instruction:
-        "You had the first in the tool. Put a second in the diary — dull, scheduled, nothing gone wrong. That regularity is the point.",
-      linkToOperation: "Non-reactive financial conversation",
+        "You had the first one in the tool. Put a second on the calendar — dull, planned, nothing gone wrong. Doing it regularly is the point.",
+      linkToOperation: "A money talk when nothing has gone wrong",
       attemptMeaning:
-        "You had it. Agreeing wasn't the objective.",
+        "You had it. Agreeing wasn't the goal.",
       suitability:
         "If money is controlled rather than disagreed about, this isn't the tool. Read the signpost on that Play.",
       progression: [
@@ -461,10 +462,10 @@ export const STAYING_CONNECTED: PlaybookContent = {
       playId: "are-we-building-the-same-thing",
       title: "Ask again in a month",
       instruction:
-        "You asked in the tool. Ask again a month on — answers shift once people have had time to think.",
-      linkToOperation: "Stating and eliciting future intent",
+        "You asked in the tool. Ask again a month later — answers change once people have had time to think.",
+      linkToOperation: "Saying what future you want and asking theirs",
       attemptMeaning:
-        "Both pictures are now known rather than assumed. A mismatch is information.",
+        "Both pictures are now known instead of guessed at. A mismatch is information.",
       suitability:
         "If the answers were far apart, that's worth taking to someone rather than solving over a weekend.",
       progression: [
@@ -478,11 +479,11 @@ export const STAYING_CONNECTED: PlaybookContent = {
       title: "Hold the date, or admit there isn't one",
       instruction:
         "If you named an end date, check on it when it arrives. If it moves again, that's your answer about which one this is.",
-      linkToOperation: "Distinguishing temporary demand from settled arrangement",
+      linkToOperation: "Telling a temporary demand apart from a settled arrangement",
       attemptMeaning:
-        "You checked honestly. Finding out it's an arrangement is a real outcome.",
+        "You checked honestly. Finding out it's an arrangement is a real result.",
       suitability:
-        "If it's an arrangement and neither of you wants to change it, that's a legitimate position — worth saying rather than resenting.",
+        "If it's an arrangement and neither of you wants to change it, that's a fair choice — worth saying out loud rather than resenting.",
       progression: [
         { id: "rung-c18-season-2", instruction: "Ask them directly whether they'd call it a season or an arrangement." },
       ],

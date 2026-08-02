@@ -37,6 +37,8 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { ADDON_BEREAVEMENT_LITERATURE } from "./losing-a-partner-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
   playbookKey: "addon-losing-a-partner",
   playbookVersion: 1,
@@ -45,9 +47,9 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
   opening: {
     title: "The usual material doesn't fit this",
     body: [
-      "Almost everything written about relationships ending is about ones that ended by choice. There's no decision to examine, nobody to be angry with in the usual way, and none of the questions about what went wrong apply.",
-      "The question running underneath most of this is different: how do I go on living without it meaning I've left them behind.",
-      "Nothing here will suggest you move on, and nothing puts a timeline on anything — in either direction.",
+      "Almost everything written about relationships ending is about ones that ended by choice. There's no decision to look at here. There's no one to be angry with in the usual way. And none of the questions about what went wrong fit.",
+      "The question underneath most of this is different. It's this: how do I keep living without it meaning I've left them behind?",
+      "Nothing here will suggest you move on, and nothing puts a time limit on anything — in either direction.",
     ],
     manifestations: [
       "I feel guilty for laughing again.",
@@ -65,7 +67,7 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
       pathwayPlayId: null,
       headline: "No one understands this kind of grief.",
       validationCopy:
-        "That's substantially accurate rather than a feeling to be corrected. The scripts people have are built for divorce — you'll be better off, you'll find someone, it takes about a year — and none of them are aimed at what's happened. So people who genuinely care produce things that land as though they haven't understood, because in a specific sense they haven't.",
+        "That's mostly true. It's not a feeling that needs correcting. The lines people have ready are built for divorce — you'll be better off, you'll find someone, it takes about a year — and none of them are aimed at what's happened. So people who really care say things that land as if they don't understand. In a specific way, they don't.",
       secondaryExamples: [
         "I don't know who understands this kind of loss.",
         "My world changed overnight.",
@@ -78,7 +80,7 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
       pathwayPlayId: "allowed-to-be-all-right",
       headline: "I feel guilty for laughing again.",
       explanation:
-        "Grief is one of the few remaining forms of contact. Anything that reduces it can feel like a second loss rather than a relief.",
+        "Grief is one of the few kinds of contact you have left. So anything that eases it can feel like a second loss, not a relief.",
       secondaryExamples: [
         "I don't know if I'm allowed to be happy.",
         "I'm afraid moving forward means leaving them behind.",
@@ -91,7 +93,7 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
       pathwayPlayId: "what-do-i-say",
       headline: "I don't know how to introduce myself anymore.",
       explanation:
-        "The small constant ones, several times a day. What to say can be settled without settling what's true.",
+        "These are the small ones, and they come several times a day. What to say can be worked out without working out what's true.",
       secondaryExamples: [
         "I still think of us as \u201cwe.\u201d",
         "I still wear my ring.",
@@ -104,7 +106,7 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
       pathwayPlayId: "company-not-replacement",
       headline: "I want companionship, but I don't know if my heart is ready.",
       explanation:
-        "\u201cReplace\u201d assumes a single slot. Most people who do this find it doesn't work that way — the previous place isn't vacated.",
+        "\u201cReplace\u201d assumes there's only one slot. Most people who do this find it doesn't work that way — the old place isn't emptied out.",
       secondaryExamples: [
         "Dating again feels like I'm betraying them.",
         "I don't want to replace them.",
@@ -120,7 +122,7 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "Allowed to Be All Right",
-      positioning: "For the guilt that arrives when something is briefly fine.",
+      positioning: "For the guilt that shows up when things are briefly okay.",
       recognitionGate: {
         prompt: "Does feeling better bring something that feels like betrayal?",
       },
@@ -128,23 +130,23 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Grief is one of the few remaining forms of contact. While it's acute, they're still present in the day.",
-            "So anything that reduces it can feel like a second loss — not a relief but a further separation.",
-            "That's why an afternoon of being all right can produce something that feels like betrayal. It isn't irrational, and it doesn't respond to being told it is.",
+            "Grief is one of the few kinds of contact you have left. While it's sharp, they're still here in your day.",
+            "So anything that eases it can feel like a second loss — not a relief but one more step away from them.",
+            "That's why an afternoon of feeling all right can bring something that feels like betrayal. It isn't irrational. And telling it that it is doesn't make it go away.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "It also explains why the usual reassurance lands badly. \u201cThey'd want you to be happy\u201d misses the point — the difficulty isn't whether it's permitted, it's that feeling better feels like moving away.",
+            "It also explains why the usual comfort lands badly. \u201cThey'd want you to be happy\u201d misses the point. The hard part isn't whether you're allowed to be happy. It's that feeling better feels like moving away from them.",
             "We don't know what they'd have wanted and neither does anyone else. Nothing here will tell you what the dead would think.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
-            "Looking at this directly is uncomfortable, because part of what makes the guilt bearable is not examining it.",
-            "Nothing about this asks you to feel less guilty. Only to notice what it's assuming.",
+            "Looking at this straight on is uncomfortable. Part of what makes the guilt bearable is not looking at it too closely.",
+            "Nothing here asks you to feel less guilty. Only to notice what it's assuming.",
           ],
         },
         {
@@ -179,7 +181,7 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
           enoughLabel: "It just feels that way",
           needMoreLabel: "I'm not sure",
           needMoreIntro:
-            "Not sure is a reasonable answer and it doesn't need resolving today. What's worth noticing is that the guilt rests on it \u2014 and it's rarely been examined.",
+            "Not sure is a fair answer, and it doesn't need solving today. What's worth noticing is that the guilt rests on it \u2014 and it's rarely been looked at.",
           needToKnowLabel: "What would still be true of them on a good day",
           observableLabel: "Something I'd still do or still keep",
         },
@@ -205,7 +207,7 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
         "Noticing what the guilt assumes isn't the same as arguing with it.",
       ],
       myPlaysTemplate: {
-        when: "When something is briefly fine and the guilt arrives",
+        when: "When something is briefly okay and the guilt shows up",
         move: "Notice what the guilt is assuming about distance",
         lookingFor: "Whether feeling better actually changes anything about them",
         watchOut: "Trying to talk myself out of it — that isn't what this is",
@@ -213,10 +215,10 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
       },
       fidelity: {
         correct:
-          "The assumption underneath the guilt is named and examined, without any attempt to reduce or argue with the guilt itself.",
+          "The assumption underneath the guilt is named and looked at, without any attempt to reduce or argue with the guilt itself.",
         misuse: [
           "Using it to talk yourself out of grieving.",
-          "Concluding you should be further along.",
+          "Deciding you should be further along.",
           "Deciding what they would have wanted.",
         ],
         notMeaning:
@@ -241,14 +243,14 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
           body: [
             "\u201cI don't know how to introduce myself anymore.\u201d \u201cI still think of us as we.\u201d \u201cI don't know how to stop feeling married.\u201d",
             "Two different things are tangled here, and only one of them needs solving.",
-            "What's true — whether you're still married, still a we, still someone's. Those don't have clean answers and don't have to be resolved.",
+            "What's true — whether you're still married, still a we, still someone's. Those don't have clean answers, and they don't have to be settled.",
             "What to say — what comes out of your mouth when someone asks at a party. That's practical, and it has practical answers.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "The second can be settled without settling the first. Having a sentence ready removes a daily small ambush, and it commits you to nothing.",
+            "The second can be settled without settling the first. Having a sentence ready takes away a small daily ambush, and it commits you to nothing.",
             "It also doesn't have to be the same sentence everywhere. Most people end up with two or three — one for strangers, one for people who'll ask a follow-up, one for people who already know.",
           ],
         },
@@ -290,7 +292,7 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
           doThis:
             "Use the sentence. Say it and stop — you don't owe a follow-up, and you don't have to manage their reaction to it.",
           safetyNote:
-            "If saying it out loud is more than you can do at the moment, that's a fair position and not a stage you're failing to reach. Having the sentence written down is worth something on its own.",
+            "If saying it out loud is more than you can do right now, that's a fair place to be — not a stage you're failing to reach. Having the sentence written down is worth something on its own.",
         },
         {
           kind: "output",
@@ -347,23 +349,23 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "\u201cI don't want to replace them.\u201d That sentence contains the whole difficulty, and it rests on an assumption worth looking at.",
-            "Replacement assumes a single slot — that a new person would occupy the place the last one had, and therefore displace them.",
-            "Most people who do this find it doesn't work like that. The new relationship occupies its own place, and the previous one isn't vacated. People routinely hold both.",
+            "\u201cI don't want to replace them.\u201d That one sentence holds the whole problem. And it rests on an assumption worth a look.",
+            "Replacing assumes there's a single slot — that a new person would take the place the last one had, and so push them out.",
+            "Most people who do this find it doesn't work like that. The new relationship has its own place, and the old one isn't emptied out. People hold both all the time.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "\u201cHow do I love someone new while honouring my past\u201d is the right question, and the answer most people arrive at is unglamorous: by not hiding it.",
-            "Relationships that begin with the previous one acknowledged tend to hold both more easily than ones where it's managed around.",
-            "Which turns readiness into something checkable: not whether the ache has gone, but whether you'd be able to talk about them.",
+            "\u201cHow do I love someone new while honouring my past\u201d is the right question, and the answer most people land on is a plain one: by not hiding it.",
+            "Relationships that start out with the old one out in the open tend to hold both more easily than ones where it's worked around.",
+            "That turns readiness into something you can check: not whether the ache is gone, but whether you could talk about them.",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "None of this is an argument for dating. Wanting company and not wanting to date are both coherent.",
+            "None of this is an argument for dating. Wanting company and not wanting to date both make sense.",
           fields: [
             {
               id: "what-i-want",
@@ -392,7 +394,7 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
             {
               id: "company-or-ache",
               label:
-                "Is it company you want, or for the ache to stop? Both are legitimate.",
+                "Is it company you want, or for the ache to stop? Both are fair.",
               input: "text",
               placeholder: "Honestly. They lead to different decisions.",
             },
@@ -412,29 +414,29 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
           kind: "output",
           heading: "What I want, and what it would cost",
           body:
-            "Missing someone permanently is compatible with a good deal, including another relationship.",
+            "Missing someone forever can go along with a lot in your life — including another relationship.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Replacement assumes a single slot. There isn't one.",
+            "Replacing assumes there's a single slot. There isn't one.",
             "Readiness isn't the ache stopping. It's whether I could talk about them.",
-            "Wanting company and not wanting to date are both coherent.",
+            "Wanting company and not wanting to date both make sense.",
           ],
         },
       ],
       portable: [
-        "Replacement assumes a single slot. There isn't one.",
+        "Replacing assumes there's a single slot. There isn't one.",
         "Readiness isn't the ache stopping. It's whether I could talk about them.",
-        "Wanting company and not wanting to date are both coherent.",
+        "Wanting company and not wanting to date both make sense.",
       ],
       myPlaysTemplate: {
         when: "When I want company and the wanting feels like a betrayal",
         move: "Check whether wanting someone new would actually require anything of them",
         lookingFor: "Whether I could talk about them to someone new",
         watchOut: "Treating this as a nudge toward dating — it isn't one",
-        remember: "Missing them permanently is compatible with a great deal.",
+        remember: "Missing them forever can go along with a great deal.",
       },
       fidelity: {
         correct:
@@ -464,7 +466,7 @@ export const ADDON_LOSING_A_PARTNER: PlaybookContent = {
       attemptMeaning:
         "You noticed. Feeling differently was never the ask.",
       suitability:
-        "If examining it makes things much worse rather than clearer, leave it. This one is better with someone alongside you.",
+        "If looking at it makes things much worse instead of clearer, leave it. This one is better with someone alongside you.",
       progression: [
         {
           id: "rung-bereave-guilt-2",

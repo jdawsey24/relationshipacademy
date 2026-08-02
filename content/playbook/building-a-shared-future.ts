@@ -29,6 +29,7 @@
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.
  */
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C21_LITERATURE } from "./building-a-shared-future-literature";
 
@@ -41,8 +42,8 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
     title: "Not every difference is the same size",
     body: [
       "You've noticed a gap — not a fight, not a betrayal, but a difference in what you each want your life to look like.",
-      "Most differences are permanent and completely fine. A few are permanent and load-bearing, and those get decided about rather than worked on. And some aren't differences at all — they're the same misunderstanding in a new costume.",
-      "Most of the exhaustion here comes from treating all three the same way.",
+      "Most differences last forever, and that's completely fine. A few last forever and are load-bearing — you don't work on those, you decide about them. And some aren't really differences at all. They're the same misunderstanding wearing a new costume.",
+      "Most of what wears you out here comes from treating all three the same way.",
     ],
     manifestations: [
       "We're becoming different people.",
@@ -60,7 +61,7 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I'm still dating and trying to work out what matters.",
       validationCopy:
-        "This Playbook is for people already together who've found a gap. What you're describing sounds earlier — working out when to raise the big things, and how much difference actually matters before you're committed. That's a different situation with different answers, and the tools here assume a shared life that's already being built. Look for the one about asking better questions early.",
+        "This Playbook is for people already together who've found a gap. What you're describing sounds earlier — figuring out when to bring up the big things, and how much difference really matters before you're committed. That's a different situation with different answers. The tools here assume a shared life that's already being built. Look for the one about asking better questions early.",
       secondaryExamples: [
         "I don't know when to talk about marriage.",
         "I want to ask better questions early.",
@@ -86,7 +87,7 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
       pathwayPlayId: "the-thing-neither-of-us-says",
       headline: "I feel like I've outgrown my relationship.",
       explanation:
-        "Uncomfortable in both directions, which is why it's usually silent — and whole years get spent on a mismatch nobody has described out loud.",
+        "Uncomfortable both ways, which is why it usually stays silent — and whole years get spent on a mismatch nobody has said out loud.",
       secondaryExamples: [
         "I feel like I'm growing alone.",
         "I want more out of life than my partner does.",
@@ -112,7 +113,7 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
       pathwayPlayId: "what-i-want-us-to-be",
       headline: "I don't want our differences to become divisions.",
       explanation:
-        "Notice that this doesn't ask them to change. It describes a way of being together that holds difference rather than resolving it.",
+        "Notice that this doesn't ask them to change. It describes a way of being together that holds difference instead of solving it.",
       secondaryExamples: [
         "I want us to feel like a team despite our differences.",
         "I don't want either of us to lose ourselves.",
@@ -137,23 +138,23 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
           kind: "shift",
           body: [
             "A load-bearing difference is one where the life you each want cannot both happen. Not one where it would be harder — one where it can't.",
-            "Most differences aren't. Two people are never going to want identical lives, and nearly every long relationship contains people who want somewhat different ones.",
-            "The exhausting part is treating them all the same way: working hard on the permanent ones and letting the workable ones repeat.",
+            "Most differences aren't. Two people are never going to want the exact same life, and nearly every long relationship holds two people who want somewhat different ones.",
+            "The tiring part is treating them all the same way: working hard on the permanent ones, and letting the workable ones keep happening.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "The ones that most often turn out structural: children, where you live when it's genuinely fixed, how much of the week faith or practice shapes, whether it's monogamous, and what money is for.",
-            "The ones that look structural and usually aren't: different interests, different politics, different social appetites, different paces.",
-            "You're the only one who can say which of yours is which. \u201cThat wouldn't bother me\u201d from someone else isn't information about your relationship.",
+            "The ones that most often turn out to be structural: children; where you live, when that's truly set; how much of the week faith or practice shapes; whether it's monogamous; and what money is for.",
+            "The ones that look structural and usually aren't: different interests, different politics, wanting different amounts of time around people, moving at different speeds.",
+            "You're the only one who can say which of yours is which. When someone else says \u201cthat wouldn't bother me,\u201d that tells you nothing about your relationship.",
           ],
         },
         {
           kind: "scenarioSort",
           prompt: "Structural, or livable?",
           situation:
-            "You've been together a few years. Several differences have surfaced and you're trying to work out which of them actually decides anything.",
+            "You've been together a few years. Several differences have come up, and you're trying to work out which of them actually decides anything.",
           buckets: [
             { id: "structural", label: "Both lives can't happen" },
             { id: "livable", label: "Harder, but livable" },
@@ -164,7 +165,7 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
               text: "One of you wants children and the other doesn't",
               correctBucket: "structural",
               correction:
-                "The clearest one there is. It doesn't resolve — it gets decided about.",
+                "The clearest one there is. It doesn't get solved — it gets decided about.",
             },
             {
               id: "sort-c21-politics",
@@ -178,27 +179,27 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
               text: "Their job is fixed in one city and yours is fixed in another",
               correctBucket: "structural",
               correction:
-                "If both are genuinely fixed, this is arithmetic rather than attitude.",
+                "If both are truly fixed, this is math, not attitude.",
             },
             {
               id: "sort-c21-social",
-              text: "One of you wants people round constantly and the other doesn't",
+              text: "One of you wants people around all the time and the other doesn't",
               correctBucket: "livable",
-              correction: "A negotiation about the calendar, not about the life.",
+              correction: "Something to work out about the calendar, not about the life.",
             },
             {
               id: "sort-c21-practice",
               text: "Faith shapes most of one person's week and none of the other's",
               correctBucket: "structural",
               correction:
-                "It's the practice rather than the belief that decides this one.",
+                "It's the practice, not the belief, that decides this one.",
             },
             {
               id: "sort-c21-ambition",
               text: "One of you is more ambitious than the other",
               correctBucket: "livable",
               correction:
-                "Usually a difference in appetite, not in values — though it needs saying out loud.",
+                "Usually a difference in how much you each want, not in values — though it needs saying out loud.",
             },
           ],
         },
@@ -214,16 +215,16 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
             },
             {
               id: "which-structural",
-              label: "Which of those means both lives genuinely can't happen?",
+              label: "Which of those means both lives truly can't happen?",
               input: "text",
               placeholder:
-                "Usually fewer than expected. If none, that's a real finding.",
+                "Usually fewer than you'd think. If none, that's a real finding.",
             },
           ],
         },
         {
           kind: "sufficiency",
-          prompt: "Has the structural one — if there is one — ever been discussed directly?",
+          prompt: "Has the structural one — if there is one — ever been talked about directly?",
           enoughLabel: "Yes, properly",
           needMoreLabel: "Not directly",
           needMoreIntro:
@@ -235,7 +236,7 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
           kind: "output",
           heading: "What's actually load-bearing",
           body:
-            "A shorter list than you started with, usually. That's the point of the exercise, not a conclusion about the relationship.",
+            "Usually a shorter list than you started with. That's the point of the exercise, not a conclusion about the relationship.",
         },
         {
           kind: "portable",
@@ -254,7 +255,7 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I can't tell how much our differences actually matter",
-        move: "Sort them into what can be lived with and what genuinely can't",
+        move: "Sort them into what can be lived with and what truly can't",
         lookingFor: "Whether both lives can actually happen, not whether it'd be hard",
         watchOut: "Sorting to reach a conclusion I've already come to",
         remember: "Someone else's list won't fit me. Nor will mine fit them.",
@@ -288,15 +289,15 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
           kind: "shift",
           body: [
             "\u201cI feel like I'm growing alone.\u201d \u201cI've outgrown this.\u201d \u201cI want more out of life than they do.\u201d",
-            "These go unsaid for a specific reason. The one who's moving can't mention it without sounding like they think they're better. The one who isn't can't mention it without sounding resentful of someone else's momentum.",
-            "So the gap grows in silence, and both people privately conclude the other doesn't care.",
+            "These go unsaid for a specific reason. The one who's moving can't bring it up without sounding like they think they're better. The one who isn't can't bring it up without sounding bitter about the other person moving forward.",
+            "So the gap grows in silence, and each person quietly decides the other doesn't care.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Wanting more from your life isn't a criticism of someone who wants less. Those are different appetites, not different values — though they get treated as the second, which is what makes it so hard to raise.",
-            "Surprisingly often the other person doesn't know. Whole years get spent on a mismatch that has never actually been described out loud.",
+            "Wanting more from your life isn't a criticism of someone who wants less. Those are different wants, not different values — but they get treated like different values, and that's what makes it so hard to bring up.",
+            "Surprisingly often, the other person doesn't know. Whole years get spent on a mismatch that has never actually been said out loud.",
             "Which means the first move isn't a decision. It's a description.",
           ],
         },
@@ -304,13 +305,13 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
           kind: "emotionBeat",
           body: [
             "Saying this out loud can feel like starting something you can't stop.",
-            "It might be. It's also worth knowing that the silence has a cost that's already being paid, and it compounds.",
+            "It might be. It's also worth knowing that the silence already has a cost you're paying, and that cost keeps adding up.",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Describe it rather than conclude it. A description invites a response; a verdict invites a defence.",
+            "Describe it, don't conclude it. A description invites an answer. A verdict makes people defend themselves.",
           fields: [
             {
               id: "the-gap",
@@ -335,7 +336,7 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
           kind: "sentenceBuilder",
           label: "How you'll say it",
           helper:
-            "A description, not a verdict — and about you rather than about them. You might start with \u201cThere's something I've been carrying and I want to say it badly rather than not at all\u201d or \u201cI don't think this is a criticism, but\u2026\u201d",
+            "A description, not a verdict — and about you, not about them. You might start with \u201cThere's something I've been carrying, and I want to say it badly rather than not at all\u201d or \u201cI don't think this is a criticism, but\u2026\u201d",
         },
         {
           kind: "realWorldUse",
@@ -355,23 +356,23 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Different appetites, not different values.",
+            "Different wants, not different values.",
             "Describe it. Don't conclude it.",
-            "They may not know. Years get spent on a mismatch nobody has described.",
+            "They may not know. Years get spent on a mismatch nobody has said out loud.",
           ],
         },
       ],
       portable: [
-        "Different appetites, not different values.",
+        "Different wants, not different values.",
         "Describe it. Don't conclude it.",
-        "They may not know. Years get spent on a mismatch nobody has described.",
+        "They may not know. Years get spent on a mismatch nobody has said out loud.",
       ],
       myPlaysTemplate: {
         when: "When there's a gap between us that's never been said out loud",
         move: "Describe where I am, once, without attaching a conclusion",
         lookingFor: "Whether they knew, and whether they have their own version",
         watchOut: "Turning a description into a verdict — that gets defended against",
-        remember: "The silence is already costing something, and it compounds.",
+        remember: "The silence is already costing something, and it keeps adding up.",
       },
       fidelity: {
         correct:
@@ -401,22 +402,22 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
           kind: "shift",
           body: [
             "A misunderstanding that repeats isn't a misunderstanding anymore. It's a pattern — and patterns are workable in a way single events aren't.",
-            "What makes them repeat is that each instance gets handled as an instance. This particular Christmas, this particular comment, this particular relative.",
-            "The rule underneath never gets stated — whose family takes precedence, what gets explained and what gets assumed, who does the accommodating and how often.",
+            "What makes them repeat is that each time gets handled on its own. This particular Christmas, this particular comment, this particular relative.",
+            "The rule underneath never gets said out loud — whose family comes first, what gets explained and what gets assumed, who does the bending and how often.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Some of what looks like a repeating misunderstanding is actually a permanent difference, and that's worth separating. You do experience the world differently, and that isn't a gap that closes with effort.",
+            "Some of what looks like a repeating misunderstanding is really a permanent difference, and that's worth telling apart. You do experience the world differently, and that isn't a gap that closes with effort.",
             "Nothing here suggests either of you should become less yourself. The difference isn't the target. The unnamed rule is.",
-            "And where one person is describing something the other hasn't lived, the conversation will sometimes be painful even when it's going well. That isn't a sign it's going badly.",
+            "And when one person is describing something the other hasn't lived, the conversation will sometimes be painful even when it's going well. That doesn't mean it's going badly.",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "Find the rule rather than the instance. The instances are the symptom.",
+            "Find the rule, not the instance. The instances are just the symptom.",
           fields: [
             {
               id: "the-instances",
@@ -426,10 +427,10 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
             },
             {
               id: "the-rule",
-              label: "What's the unstated rule underneath them?",
+              label: "What's the unspoken rule underneath them?",
               input: "text",
               placeholder:
-                "Whose family goes first, who explains, who accommodates, what gets assumed.",
+                "Whose family goes first, who explains, who bends, what gets assumed.",
             },
             {
               id: "permanent-or-pattern",
@@ -447,51 +448,51 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
         {
           kind: "ruleBuilder",
           intro:
-            "Name the rule when nothing is imminent. Mid-instance almost never works.",
+            "Name the rule when nothing is about to happen. Doing it in the middle of one almost never works.",
           conditionLabel: "The rule I want to name",
-          thenLabel: "And when I'll raise it",
+          thenLabel: "And when I'll bring it up",
           actions: [
-            "On an ordinary evening, nothing pending",
+            "On an ordinary evening, with nothing else going on",
             "Before the next occasion, not during it",
             "After this one has fully settled",
             "This week, while it's clear in my head",
           ],
           controlCheck:
-            "I'm naming a rule we could agree, not asking them to be less themselves \u2014 and I'm ready for their version of the rule to differ from mine.",
+            "I'm naming a rule we could agree on, not asking them to be less themselves \u2014 and I'm ready for their version of the rule to be different from mine.",
         },
         {
           kind: "output",
           heading: "The rule underneath",
           body:
-            "Naming it is a bigger conversation than any single instance, and it's the only one that stops the repetition.",
+            "Naming it is a bigger conversation than any single instance, and it's the only one that stops it from repeating.",
         },
         {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "Resolve the instance and it returns in a new costume.",
+            "Solve the instance and it comes back in a new costume.",
             "The difference isn't the target. The unnamed rule is.",
-            "Not mid-instance. When nothing is pending.",
+            "Not in the middle of one. When nothing else is going on.",
           ],
         },
       ],
       portable: [
-        "Resolve the instance and it returns in a new costume.",
+        "Solve the instance and it comes back in a new costume.",
         "The difference isn't the target. The unnamed rule is.",
-        "Not mid-instance. When nothing is pending.",
+        "Not in the middle of one. When nothing else is going on.",
       ],
       myPlaysTemplate: {
-        when: "When the same misunderstanding keeps returning",
-        move: "Name the unstated rule rather than resolving another instance",
-        lookingFor: "Whether it's a rule that could be agreed or a difference that just is",
+        when: "When the same misunderstanding keeps coming back",
+        move: "Name the unspoken rule instead of solving another instance",
+        lookingFor: "Whether it's a rule we could agree on, or a difference that just is",
         watchOut: "Treating a permanent difference as a pattern to be fixed",
         remember: "Neither of us should have to become less ourselves.",
       },
       fidelity: {
         correct:
-          "The unstated rule beneath a repeating instance is named, at a time when nothing is pending, and distinguished from a permanent difference.",
+          "The unspoken rule beneath a repeating instance is named, at a time when nothing else is going on, and told apart from a permanent difference.",
         misuse: [
-          "Raising it mid-instance.",
+          "Bringing it up in the middle of one.",
           "Naming a rule that requires the other person to be less themselves.",
           "Treating a permanent difference as a pattern to correct.",
         ],
@@ -515,7 +516,7 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "In amongst all of this, people say what they actually want, and it's usually the most concrete thing in the whole conversation.",
+            "In the middle of all this, people say what they actually want — and it's usually the clearest thing in the whole conversation.",
             "I don't want either of us to lose ourselves. I want a relationship that helps us both become better. I don't want our differences to become divisions. I want us to feel like a team.",
             "Notice that none of those ask the other person to change.",
           ],
@@ -523,9 +524,9 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
         {
           kind: "learn",
           body: [
-            "They describe a way of being together that holds difference rather than resolving it — which is a different and more achievable aim than agreement.",
+            "They describe a way of being together that holds difference instead of solving it — which is a different goal than agreement, and an easier one to reach.",
             "They're also generous, and specific, and most partners in this situation have never heard them. They've only heard the differences.",
-            "Which means saying one is genuinely new information, not a repeat of a conversation you've already had.",
+            "Which means saying one is really new information, not a repeat of a conversation you've already had.",
           ],
         },
         {
@@ -548,7 +549,7 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
               id: "in-my-words",
               label: "Say it in your own words",
               input: "text",
-              placeholder: "Specific to you and them, rather than general.",
+              placeholder: "About you and them, not general.",
             },
           ],
         },
@@ -557,7 +558,7 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
           useWhen:
             "An ordinary moment, not after a disagreement and not as part of a bigger conversation.",
           doThis:
-            "Say the one thing. Nothing attached — no request, no comparison, no 'but'. Then let it sit rather than explaining it.",
+            "Say the one thing. Nothing attached — no request, no comparison, no 'but'. Then let it sit instead of explaining it.",
         },
         {
           kind: "output",
@@ -570,14 +571,14 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
           heading: "Take this with you",
           steps: [
             "None of what I want asks them to change.",
-            "Holding difference is a more achievable aim than agreement.",
+            "Holding difference is an easier goal than agreement.",
             "They've only ever heard the differences.",
           ],
         },
       ],
       portable: [
         "None of what I want asks them to change.",
-        "Holding difference is a more achievable aim than agreement.",
+        "Holding difference is an easier goal than agreement.",
         "They've only ever heard the differences.",
       ],
       myPlaysTemplate: {
@@ -592,8 +593,8 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
           "A statement of what the reader wants the relationship to become is said plainly, with no request or comparison attached.",
         misuse: [
           "Attaching a demand to it.",
-          "Saying it immediately after a disagreement as a repair move.",
-          "Using it as the preamble to raising a difference.",
+          "Saying it right after a disagreement as a way to patch things up.",
+          "Using it as the lead-in to bringing up a difference.",
         ],
         notMeaning:
           "It does not mean they'll want the same thing, that the differences shrink, or that saying it changes anything on its own.",
@@ -610,12 +611,12 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
       playId: "which-differences-are-load-bearing",
       title: "Say the structural one out loud",
       instruction:
-        "If you found one, say it plainly to them — as a fact about what you each need, not as an ultimatum.",
+        "If you found one, say it plainly to them — as a fact about what you each need, not as a take-it-or-leave-it.",
       linkToOperation: "Naming a structural difference directly",
       attemptMeaning:
         "You named it. It doesn't decide anything by itself.",
       suitability:
-        "If you found none, that's a real result and worth sitting with rather than looking harder.",
+        "If you found none, that's a real result — worth sitting with instead of looking harder.",
       progression: [
         {
           id: "rung-c21-sort-2",
@@ -627,14 +628,14 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
       id: "mission-c21-say-it",
       version: 1,
       playId: "the-thing-neither-of-us-says",
-      title: "Come back to it a fortnight later",
+      title: "Come back to it two weeks later",
       instruction:
-        "You said it in the tool. Two weeks on, ask what they made of it — rather than waiting to see.",
+        "You said it in the tool. Two weeks later, ask what they made of it — instead of waiting to see.",
       linkToOperation: "Describing an unspoken gap and following it up",
       attemptMeaning:
         "You followed up. A flat response is information about where they are.",
       suitability:
-        "If saying it opened something bigger than expected, that's worth having someone alongside you for.",
+        "If saying it opened something bigger than you expected, that's worth having someone alongside you for.",
       progression: [
         {
           id: "rung-c21-say-it-2",
@@ -646,18 +647,18 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
       id: "mission-c21-rule",
       version: 1,
       playId: "the-rule-underneath",
-      title: "Name the rule, once, when nothing is pending",
+      title: "Name the rule, once, when nothing else is going on",
       instruction:
-        "Raise the rule rather than the next instance. On an ordinary day, with time afterwards.",
-      linkToOperation: "Naming an unstated rule beneath a repeating pattern",
+        "Bring up the rule instead of the next instance. On an ordinary day, with time afterwards.",
+      linkToOperation: "Naming an unspoken rule beneath a repeating pattern",
       attemptMeaning:
-        "You named it. Their version differing from yours is the expected outcome, not a failure.",
+        "You named it. Their version being different from yours is what you'd expect, not a failure.",
       suitability:
-        "If the repeating thing is a permanent difference rather than a rule, this won't help — and knowing that is the useful part.",
+        "If the repeating thing is a permanent difference instead of a rule, this won't help — and knowing that is the useful part.",
       progression: [
         {
           id: "rung-c21-rule-2",
-          instruction: "Agree what happens at the next specific occasion, in advance.",
+          instruction: "Agree ahead of time what happens at the next specific occasion.",
         },
       ],
     },
@@ -670,9 +671,9 @@ export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
         "You said one in the tool. Say another in a few weeks — a different one, still with nothing attached.",
       linkToOperation: "Stating a generous aim without a request attached",
       attemptMeaning:
-        "You said it. Whether they respond in kind isn't the measure.",
+        "You said it. Whether they say something back the same way isn't the measure.",
       suitability:
-        "If attaching a 'but' feels unavoidable, that's worth noticing — it usually means there's a request that wants making separately.",
+        "If you can't help attaching a 'but', that's worth noticing — it usually means there's a request that needs making on its own.",
       progression: [
         {
           id: "rung-c21-want-2",

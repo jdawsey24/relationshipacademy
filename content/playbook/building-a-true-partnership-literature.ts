@@ -29,6 +29,7 @@
  *   equal.
  */
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { LiteratureEntry } from "@/lib/playbook/contentSchema";
 
 export const C10_LITERATURE: LiteratureEntry[] = [
@@ -44,27 +45,27 @@ export const C10_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "It isn't the tasks. That's the thing most people get wrong about this, including the person living it.",
-          "You could hand over half the tasks tomorrow and still feel exactly like this, because what's actually tiring is being the one who holds the whole thing in mind.",
+          "You could hand over half the tasks tomorrow and still feel exactly like this. What's really tiring is being the one who holds the whole thing in mind.",
         ],
       },
       {
         kind: "distinction",
         label: "Two different loads",
         body: [
-          "Doing things. Visible, countable, and shareable.",
-          "Keeping track of what needs doing, noticing when something's wrong, remembering, anticipating, deciding when to raise it. Invisible, uncountable, and it doesn't get shared by delegating tasks.",
+          "Doing things. You can see them, count them, and share them.",
+          "Keeping track of what needs doing, noticing when something's wrong, remembering, seeing what's coming, deciding when to bring it up. You can't see it or count it, and handing off tasks doesn't share it.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "\u201cI notice everything; they notice nothing\u201d is the sentence that gets at it. Not that they do nothing \u2014 that the noticing is entirely yours.",
+          "\u201cI notice everything; they notice nothing\u201d is the sentence that gets at it. Not that they do nothing \u2014 it's that the noticing is all yours.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "This is also the cluster where the obvious advice makes things worse. \u201cCommunicate more clearly\u201d and \u201cask them to do more\u201d are both more managing, done by the person already doing all of it. We'll try not to do that.",
+          "This is also the one where the obvious advice makes things worse. \u201cCommunicate more clearly\u201d and \u201cask them to do more\u201d are both more managing, done by the person already doing all of it. We'll try not to do that.",
         ],
       },
     ],
@@ -81,7 +82,7 @@ export const C10_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "There's a category of work that only exists in your head, and it's the part that doesn't show up in any fair division of labour.",
+          "There's a kind of work that only exists in your head. It's the part that doesn't show up in any fair split of the work.",
         ],
       },
       {
@@ -91,22 +92,22 @@ export const C10_LITERATURE: LiteratureEntry[] = [
           "Knowing what's coming up and when.",
           "Noticing that something has started to go wrong before it goes wrong.",
           "Remembering what was agreed.",
-          "Deciding whether now is a good moment to raise something.",
-          "Anticipating what will be needed and by whom.",
-          "Holding the whole picture, continuously, in the background.",
+          "Deciding whether now is a good time to bring something up.",
+          "Working out ahead of time what will be needed, and by who.",
+          "Holding the whole picture in your head, all the time, in the background.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "None of that is visible from outside. Which means your partner may be entirely willing and genuinely unaware, and both of those can be true at once.",
-          "It also means \u201cI do more\u201d conversations tend to go badly. You're describing something they can't see, and they respond by listing the tasks they do \u2014 which is the wrong list, and then you're both frustrated.",
+          "None of that shows from the outside. So your partner may be fully willing and truly unaware — and both of those can be true at the same time.",
+          "It also means \u201cI do more\u201d talks tend to go badly. You're describing something they can't see, and they answer by listing the tasks they do \u2014 which is the wrong list, and then you're both frustrated.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Naming the invisible part specifically is much more effective than arguing about the tasks. Not because it wins the argument, but because it's the thing you actually mean.",
+          "Naming the invisible part clearly works much better than arguing about the tasks. Not because it wins the argument, but because it's the thing you really mean.",
         ],
       },
     ],
@@ -123,30 +124,30 @@ export const C10_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Nobody agreed to this arrangement. It assembled itself, and it usually happened in one of a few ways.",
+          "Nobody agreed to this setup. It built up on its own, and it usually happened in one of a few ways.",
         ],
       },
       {
         kind: "list",
-        label: "The usual routes",
+        label: "The usual ways it happens",
         items: [
-          "You noticed first. Repeatedly. And noticing first turns into owning it.",
-          "You're better at it, so it was efficient. Efficient once becomes permanent.",
-          "You asked, it was done badly or late, and redoing it was easier than the conversation.",
-          "You pre-empted. You did it before it needed asking for, so the asking never happened.",
-          "Something got busy \u2014 a baby, a job, an illness \u2014 and the temporary arrangement never got renegotiated.",
+          "You noticed first. Again and again. And noticing first turns into owning it.",
+          "You're better at it, so it made sense at first. What made sense once became the way it always is.",
+          "You asked, it got done badly or late, and doing it over was easier than the talk about it.",
+          "You did it first. You handled it before anyone had to ask, so the asking never happened.",
+          "Something got busy \u2014 a baby, a job, an illness \u2014 and the temporary setup never got worked out again.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Every one of those was reasonable at the time. That's why this isn't anybody's fault in the way it feels like it should be.",
+          "Every one of those made sense at the time. That's why this isn't anybody's fault in the way it feels like it should be.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "It's also why \u201cwhy don't they just\u201d has no useful answer. Mostly because you got there first, for years, and they adapted to a world in which they didn't have to.",
+          "It's also why \u201cwhy don't they just\u201d has no useful answer. Mostly because you got there first, for years, and they got used to a world where they didn't have to.",
         ],
       },
     ],
@@ -169,22 +170,22 @@ export const C10_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Because as long as you're pre-empting, there's no gap for anyone to step into. The thing gets handled, so it never becomes visible as something that needed handling.",
-          "Leaving a gap means something may go wrong. Briefly, visibly, and in a way you could have prevented. That's the actual cost, and it's why most people don't do it.",
+          "Because as long as you handle things first, there's no gap for anyone to step into. The thing gets done, so it never shows up as something that needed doing.",
+          "Leaving a gap means something may go wrong. For a bit, out in the open, and in a way you could have stopped. That's the real cost, and it's why most people don't do it.",
         ],
       },
       {
         kind: "distinction",
-        label: "Two things that look identical",
+        label: "Two things that look the same",
         body: [
           "Making room \u2014 not doing something, and saying you're not doing it, so it can be picked up.",
-          "Withdrawing to prove a point \u2014 not doing something silently and waiting to see what happens.",
+          "Pulling back to prove a point \u2014 not doing something in silence, and waiting to see what happens.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "The second one is tempting and it doesn't work. It produces a mess and a row, and the row is about the mess rather than about the arrangement.",
+          "The second one is tempting, and it doesn't work. It makes a mess and a fight, and the fight is about the mess instead of about the setup.",
         ],
       },
     ],
@@ -201,27 +202,27 @@ export const C10_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Handing over a task and handing over the noticing are different, and only the second one reduces the load.",
+          "Handing over a task and handing over the noticing are two different things, and only the second one makes the load lighter.",
         ],
       },
       {
         kind: "distinction",
-        label: "The difference in practice",
+        label: "The difference in real life",
         body: [
-          "\u201cCan you do the bins tonight?\u201d \u2014 you still own the bins. You're delegating an instance and keeping the tracking.",
-          "\u201cThe bins are yours now. I'm not going to remind you.\u201d \u2014 that's the transfer. It includes the part where you don't remind them, which is the whole point and the hard bit.",
+          "\u201cCan you do the bins tonight?\u201d \u2014 you still own the bins. You're handing over this one time and keeping the tracking.",
+          "\u201cThe bins are yours now. I'm not going to remind you.\u201d \u2014 that's the real handover. It includes the part where you don't remind them, which is the whole point, and the hard part.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "The second one means it will sometimes be forgotten. If you can't tolerate that, the transfer hasn't happened \u2014 you've just added anxiety to a job you still own.",
+          "The second one means it will sometimes be forgotten. If you can't stand that, the handover hasn't happened \u2014 you've just added worry to a job you still own.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "Start with something where the consequence of it being forgotten is genuinely small. Not the school forms. Something you could survive going wrong twice.",
+          "Start with something where being forgotten really doesn't cost much. Not the school forms. Something you could survive going wrong twice.",
         ],
       },
     ],
@@ -238,34 +239,34 @@ export const C10_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "It's one of the most common sentences in this territory and one of the most corrosive, because of what it does to how you see them.",
+          "It's one of the most common sentences in this area, and one of the most damaging, because of what it does to how you see them.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "Once someone is a person you manage, a lot of other things become difficult. Attraction, mostly. Asking them for anything. Being looked after yourself \u2014 which is hard to accept from someone you've cast as needing supervision.",
+          "Once someone is a person you manage, a lot of other things get hard. Attraction, mostly. Asking them for anything. Being looked after yourself \u2014 which is hard to accept from someone you now see as needing to be looked after.",
         ],
       },
       {
         kind: "distinction",
-        label: "Two situations that look identical from inside",
+        label: "Two situations that look the same from the inside",
         body: [
-          "Usually: someone who stopped participating because it was consistently done for them, and has adapted to a world where they didn't have to. This is the common one, and it moves \u2014 slowly, and only once the doing-for stops.",
-          "Occasionally: someone who genuinely can't or won't participate at all. Real, and this Playbook won't fix it.",
+          "Usually: someone who stopped taking part because it was always done for them, and got used to a world where they didn't have to. This is the common one, and it moves \u2014 slowly, and only once the doing-for stops.",
+          "Occasionally: someone who truly can't or won't take part at all. Real, and this Playbook won't fix it.",
         ],
       },
       {
         kind: "paragraph",
         body: [
-          "It's worth knowing that the first is far more common than it feels from where you're standing. When you've been carrying everything for years, the obvious explanation is that they're incapable \u2014 and the more likely one is that they adapted to a system that never required them.",
-          "That's not a defence of them. It's the difference between a person and a pattern, and only one of those can change.",
+          "It's worth knowing that the first is far more common than it feels from where you're standing. When you've been carrying everything for years, the obvious answer is that they can't do it \u2014 and the more likely one is that they got used to a setup that never needed them.",
+          "That's not making excuses for them. It's the difference between a person and a pattern, and only one of those can change.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "We can't tell you which you have, and you probably can't tell from inside it either. What you can do is stop the doing-for and find out \u2014 which is what the tools here are for. If nothing moves after a real attempt, that's when you've learned something about the person rather than the arrangement.",
+          "We can't tell you which one you have, and you probably can't tell from the inside either. What you can do is stop the doing-for and find out \u2014 which is what the tools here are for. If nothing moves after a real try, that's when you've learned something about the person, not the setup.",
         ],
       },
     ],
@@ -282,7 +283,7 @@ export const C10_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Three sentences people say here, and they're the clearest statements of want anywhere in this material.",
+          "Three sentences people say here, and they're the clearest wants anywhere in all of this.",
         ],
       },
       {
@@ -296,13 +297,13 @@ export const C10_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Those aren't complaints. They're a description of what partnership means to you, and it's worth noticing how specific it is: you want someone who arrives already carrying half of it, rather than someone who can be trained into carrying half of it.",
+          "Those aren't complaints. They describe what partnership means to you, and it's worth noticing how exact it is: you want someone who arrives already carrying half of it, not someone who can be trained into carrying half of it.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "That's a legitimate thing to want, and we're not going to talk you into settling for the trained version. It's also worth being honest that the difference between \u201cthey won't\u201d and \u201cthey haven't been given room to\u201d matters enormously here, and only one of those is workable.",
+          "That's a fair thing to want, and we're not going to talk you into settling for the trained version. It's also worth being honest that the difference between \u201cthey won't\u201d and \u201cthey haven't been given room to\u201d matters a lot here, and only one of those can work.",
         ],
       },
     ],
@@ -321,7 +322,7 @@ export const C10_LITERATURE: LiteratureEntry[] = [
         kind: "paragraph",
         body: [
           "Ideally, yes. And it's exhausting that they don't.",
-          "The honest position is that some of it they genuinely can't see, and some of it they've stopped looking for because it was always handled. Neither is a defence, and both are real.",
+          "The honest truth is that some of it they truly can't see, and some of it they've stopped looking for because it was always handled. Neither is an excuse, and both are real.",
         ],
       },
       {
@@ -329,7 +330,7 @@ export const C10_LITERATURE: LiteratureEntry[] = [
         label: "Why \u201cthey should just know\u201d is a dead end",
         body: [
           "It might be true and there's nothing in it to do.",
-          "The version with something in it: they can't see the invisible work, so it has to be described \u2014 once, specifically \u2014 before you find out whether they'd have carried it.",
+          "The version with something in it: they can't see the invisible work, so it has to be described \u2014 once, clearly \u2014 before you find out whether they'd have carried it.",
         ],
       },
       {
@@ -352,21 +353,21 @@ export const C10_LITERATURE: LiteratureEntry[] = [
       {
         kind: "paragraph",
         body: [
-          "Then you'll know something you don't currently know, which is worth more than it sounds.",
+          "Then you'll know something you don't know right now, which is worth more than it sounds.",
         ],
       },
       {
         kind: "distinction",
-        label: "What you'd have established",
+        label: "What you'd have figured out",
         body: [
-          "Right now you can't tell whether they won't participate or whether they've never had to. Those look the same from inside.",
-          "Make room, describe the invisible part once, hand something over properly \u2014 and if nothing moves, you've distinguished them. That's a hard answer and it's an actual answer.",
+          "Right now you can't tell whether they won't take part or whether they've never had to. Those look the same from the inside.",
+          "Make room, describe the invisible part once, hand something over properly \u2014 and if nothing moves, you've told the two apart. That's a hard answer, and it's a real answer.",
         ],
       },
       {
         kind: "guardrail",
         body: [
-          "If you get there, the next step isn't more of this. It's the two of you with someone else in the room \u2014 or a decision, which is a different conversation and a legitimate one.",
+          "If you get there, the next step isn't more of this. It's the two of you with someone else in the room \u2014 or a decision, which is a different talk, and a fair one.",
         ],
       },
     ],

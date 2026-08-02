@@ -32,6 +32,7 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C21B_LITERATURE } from "./asking-better-questions-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
   playbookKey: "asking-better-questions",
   playbookVersion: 1,
@@ -41,7 +42,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
     title: "You're not in trouble",
     body: [
       "Most of what's written for people dating assumes something has gone wrong. This isn't that.",
-      "You already know what matters to you, which is further than most people get. What's missing is the mechanics — when to raise the big things, how to do it without it becoming an interview, and how to tell which differences will actually matter.",
+      "You already know what matters to you. That's further than most people get. What's missing is the how-to: when to bring up the big things, how to do it without it turning into an interview, and how to tell which differences will really matter.",
       "There are no rules here about timing. Anyone giving you a number of dates is guessing.",
     ],
     manifestations: [
@@ -50,7 +51,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       "I want to know someone beyond attraction.",
       "I want wisdom more than chemistry.",
     ],
-    cta: "Start with what's actually knowable early",
+    cta: "Start with what you can actually learn early",
   },
 
   recognitionCards: [
@@ -60,7 +61,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       pathwayPlayId: null,
       headline: "We're already together and we've found a gap.",
       validationCopy:
-        "This one is for people still working out whether to build something. If you're already in it and you've discovered you want different things, that's a different situation with different tools — the differences are no longer hypothetical and there's a shared life in the way. Look for the Playbook about building a shared future.",
+        "This one is for people still working out whether to build something. If you're already together and you've found you want different things, that's a different situation with different tools. The differences aren't just 'what if' anymore, and there's a shared life in the way. Look for the Playbook about building a shared future.",
       secondaryExamples: [
         "We're becoming different people.",
         "Our goals don't match anymore.",
@@ -73,7 +74,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       pathwayPlayId: "raising-it-early",
       headline: "I don't know when to bring up the big things.",
       explanation:
-        "No correct week exists. What does exist is an asymmetry — the cost of early is immediate and small, the cost of late is large and hypothetical until it isn't.",
+        "There's no correct week. What there is is a mismatch: asking early costs a little, and right away. Asking late costs a lot — though that cost feels like a 'maybe' until it isn't.",
       secondaryExamples: [
         "I don't know when to talk about marriage.",
         "I don't know when to talk about children.",
@@ -86,7 +87,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       pathwayPlayId: "which-differences-will-matter",
       headline: "I don't know if we're aligned on what matters most.",
       explanation:
-        "Nearly every couple differs in ways that don't matter. The test is whether both lives can still happen.",
+        "Nearly every couple is different in ways that don't matter. The test is whether both lives can still happen.",
       secondaryExamples: [
         "I don't know if our lifestyles are compatible.",
         "I don't know how much compromise is healthy.",
@@ -99,7 +100,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       pathwayPlayId: "the-conversation-not-the-debate",
       headline: "These conversations turn into debates.",
       explanation:
-        "They go wrong the same way — arguing about whether the position is correct, when what you wanted was to know what it means to them.",
+        "They go wrong the same way. You end up arguing about who's right, when all you wanted was to know what it means to them.",
       secondaryExamples: [
         "I don't know how to discuss politics respectfully.",
         "I don't know how to have hard conversations about faith.",
@@ -112,7 +113,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       pathwayPlayId: "dating-on-my-own-terms",
       headline: "I want to date in a way that matches what I believe.",
       explanation:
-        "The difficulty isn't knowing your values. It's that dating has strong defaults, and holding a different position means explaining it to people who didn't ask.",
+        "The hard part isn't knowing your values. It's that dating has strong defaults, so holding a different position means explaining it to people who didn't ask.",
       secondaryExamples: [
         "I don't know how to date with integrity.",
         "I don't want to compromise my beliefs.",
@@ -137,17 +138,17 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "There's no correct week and no agreed norm. What there is: an asymmetry.",
-            "Raise it early and you risk seeming intense, or ending something that might have been good. Raise it late and you risk two years, real attachment, and finding out something that was knowable at week three.",
-            "Most people wait far longer than that asymmetry justifies, because the early cost is immediate and the late cost is hypothetical until it isn't.",
+            "There's no correct week, and no rule everyone agrees on. What there is: a mismatch.",
+            "Bring it up early and you risk seeming intense, or ending something that might have been good. Bring it up late and you risk two years, real attachment, and finding out something you could have known in week three.",
+            "Most people wait far longer than makes sense, because the early cost is right now and the late cost feels like a 'maybe' until it isn't.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "The fear isn't really the question. It's that asking turns a nice evening into an assessment — and it can, if you put a question to someone without going first.",
-            "\u201cDo you want children?\u201d requires an answer and arrives without context. \u201cI've always assumed I'd have children — what about you?\u201d is an exchange.",
-            "Going first also tells them what you think, which is exactly what you're hoping they'll do. People match the register they're given.",
+            "The fear isn't really the question. It's that asking turns a nice evening into a test — and it can, if you put a question to someone without going first.",
+            "\u201cDo you want children?\u201d asks for an answer and comes with no lead-in. \u201cI've always assumed I'd have children — what about you?\u201d is a two-way exchange.",
+            "Going first also tells them what you think — which is exactly what you're hoping they'll do. People match the tone they're given.",
           ],
         },
         {
@@ -185,12 +186,12 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
           kind: "sentenceBuilder",
           label: "How you'll open it",
           helper:
-            "Your position first, then the question. You might start with \u201cI've always assumed\u2026 what about you?\u201d or \u201cSomething I know about myself is\u2026 where are you on that?\u201d One question, not three.",
+            "Your own answer first, then the question. You might start with \u201cI've always assumed\u2026 what about you?\u201d or \u201cSomething I know about myself is\u2026 where are you on that?\u201d One question, not three.",
         },
         {
           kind: "realWorldUse",
           useWhen:
-            "An ordinary conversation with time in it — not the end of an evening, and not alongside two other big questions.",
+            "An ordinary conversation with time in it — not at the end of an evening, and not next to two other big questions.",
           doThis:
             "Say your bit, then ask theirs. Then stop and let them answer at their own length. If it turns into a longer conversation, that's fine; if it doesn't, don't chase it.",
         },
@@ -205,29 +206,29 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
           heading: "Take this with you",
           steps: [
             "Early costs a second date. Late costs two years.",
-            "Go first. People match the register they're given.",
+            "Go first. People match the tone they're given.",
             "One question, not three. Three is an interview.",
           ],
         },
       ],
       portable: [
         "Early costs a second date. Late costs two years.",
-        "Go first. People match the register they're given.",
+        "Go first. People match the tone they're given.",
         "One question, not three. Three is an interview.",
       ],
       myPlaysTemplate: {
         when: "When there's something big I've been saving for the right moment",
-        move: "Offer my own position, then ask theirs",
+        move: "Give my own answer, then ask theirs",
         lookingFor: "A real answer, at whatever length they give it",
         watchOut: "Stacking three big questions into one evening",
         remember: "If it scares someone off, that's usually the thing I was trying to find out.",
       },
       fidelity: {
         correct:
-          "One significant question is raised with the reader's own position offered first, at a time with room for an answer.",
+          "One big question is raised, with your own answer given first, at a time with room for an answer.",
         misuse: [
           "Asking several big questions in a single conversation.",
-          "Asking without offering your own position.",
+          "Asking without giving your own answer first.",
           "Treating the answer as final rather than as a starting point.",
         ],
         notMeaning:
@@ -251,7 +252,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
           body: [
             "Nearly every couple is different in ways that don't matter and similar in ways that don't help. The sorting is the useful part.",
             "One test does most of the work: does this difference mean the lives you each want can't both happen?",
-            "If yes, it's structural — and structural things don't resolve, they get decided about. If it would just be harder, it's a preference. Most differences are preferences.",
+            "If yes, it's structural — and structural things don't get worked out, they get decided about. If it would just be harder, it's a preference. Most differences are preferences.",
           ],
         },
         {
@@ -266,7 +267,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
           kind: "scenarioSort",
           prompt: "Structural, or a preference?",
           situation:
-            "It's going well. A few differences have surfaced and you're trying to work out which of them would actually decide anything.",
+            "It's going well. A few differences have come up, and you're trying to work out which of them would actually decide anything.",
           buckets: [
             { id: "structural", label: "Both lives can't happen" },
             { id: "preference", label: "Harder, but workable" },
@@ -277,7 +278,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
               text: "One of you wants children and the other is fairly sure they don't",
               correctBucket: "structural",
               correction:
-                "The clearest one there is, and the one most often postponed.",
+                "The clearest one there is, and the one people put off most.",
             },
             {
               id: "sort-c21b-tidiness",
@@ -297,19 +298,19 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
               text: "You vote differently",
               correctBucket: "preference",
               correction:
-                "For many couples workable — though it depends how much of the week it touches.",
+                "Workable for many couples — though it depends how much of the week it touches.",
             },
             {
               id: "sort-c21b-city",
               text: "Their whole life is in one city and yours is fixed in another",
               correctBucket: "structural",
-              correction: "If both are genuinely fixed, this is arithmetic.",
+              correction: "If both are truly fixed, it's just math.",
             },
             {
               id: "sort-c21b-social",
               text: "They want people round constantly; you want quiet",
               correctBucket: "preference",
-              correction: "A negotiation about the calendar, not about the life.",
+              correction: "Something to work out on the calendar, not about the life.",
             },
           ],
         },
@@ -326,19 +327,19 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
             },
             {
               id: "structural-ones",
-              label: "Which of those means both lives genuinely can't happen?",
+              label: "Which of those means both lives really can't happen?",
               input: "text",
-              placeholder: "Usually fewer than expected. If none, that's a real finding.",
+              placeholder: "Usually fewer than you'd expect. If none, that's a real finding.",
             },
           ],
         },
         {
           kind: "sufficiency",
-          prompt: "Do you actually know their position on the structural ones — or are you assuming?",
+          prompt: "Do you actually know where they stand on the structural ones — or are you assuming?",
           enoughLabel: "They've told me directly",
-          needMoreLabel: "I'm inferring it",
+          needMoreLabel: "I'm assuming it",
           needMoreIntro:
-            "Very common, and it's exactly the thing worth checking early. Inferred positions on structural questions are where the two-year surprises come from.",
+            "Very common, and it's exactly the thing worth checking early. Guessed answers on structural questions are where the two-year surprises come from.",
           needToKnowLabel: "What I'd want to actually hear them say",
           observableLabel: "Something they could tell me plainly",
         },
@@ -346,7 +347,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
           kind: "output",
           heading: "What would actually matter",
           body:
-            "A shorter list than you started with, usually. And a note of which ones you're assuming rather than know.",
+            "A shorter list than you started with, usually. Plus a note of which ones you're assuming instead of actually knowing.",
         },
         {
           kind: "portable",
@@ -366,20 +367,20 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       myPlaysTemplate: {
         when: "When I can't tell whether a difference is serious",
         move: "Sort by whether both lives can still happen",
-        lookingFor: "Which structural positions I'm assuming rather than knowing",
+        lookingFor: "Which structural things I'm assuming instead of knowing",
         watchOut: "Using someone else's list of what should matter",
         remember: "Most differences are preferences. A few aren't, and those get decided about.",
       },
       fidelity: {
         correct:
-          "Differences are sorted by whether both lives can happen, and assumed positions are distinguished from known ones.",
+          "Differences are sorted by whether both lives can happen, and the ones you're assuming are kept separate from the ones you know.",
         misuse: [
           "Treating every difference as structural.",
           "Using someone else's list.",
-          "Sorting to justify a conclusion already reached.",
+          "Sorting to back up an answer you'd already decided on.",
         ],
         notMeaning:
-          "It does not mean a structural difference is fatal, that preferences are easy, or that sorting settles anything.",
+          "It does not mean a structural difference is the end, that preferences are easy, or that sorting settles anything.",
       },
     },
 
@@ -397,33 +398,33 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "They go wrong the same way, whatever the subject. It becomes an argument about whether the position is correct — when what you were trying to find out was what it means to the person.",
-            "Two different conversations. \u201cIs this view right?\u201d is unwinnable, and neither of you is changing your mind over dinner.",
-            "\u201cWhat does holding this do to your life?\u201d is answerable, interesting, and the actual information you need.",
+            "They go wrong the same way, whatever the subject. It turns into an argument about who's right — when what you were trying to find out was what it means to the person.",
+            "Two different conversations. \u201cIs this view right?\u201d is one nobody wins, and neither of you is changing your mind over dinner.",
+            "\u201cWhat does holding this do to your life?\u201d is one you can answer, it's interesting, and it's the real information you need.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "The second version also goes better socially, because it's a genuine question rather than an opening position — and people can tell the difference immediately.",
-            "It's especially useful with faith, where the belief matters much less than what it does to the week. What someone believes can differ enormously from you and cause no friction. What they do on Sundays might.",
+            "The second version also goes over better, because it's a real question rather than an opinion in disguise — and people can tell the difference right away.",
+            "It's especially useful with faith, where the belief matters much less than what it does to the week. What someone believes can be very different from you and cause no trouble. What they do on Sundays might.",
           ],
         },
         {
           kind: "scenarioSort",
-          prompt: "Which of these is a question, and which is an opening position?",
+          prompt: "Which of these is a real question, and which is an opinion in disguise?",
           situation:
             "Something has come up — a political view, or how they were raised, or what they do on a Sunday — and you want to understand it rather than argue about it.",
           buckets: [
-            { id: "question", label: "A genuine question" },
-            { id: "position", label: "An opening position" },
+            { id: "question", label: "A real question" },
+            { id: "position", label: "An opinion in disguise" },
           ],
           items: [
             {
               id: "sort-c21b-how-did-you",
               text: "\u201cHow did you come to think that?\u201d",
               correctBucket: "question",
-              correction: "Genuinely curious, and almost always answered well.",
+              correction: "Truly curious, and almost always answered well.",
             },
             {
               id: "sort-c21b-but-surely",
@@ -442,13 +443,13 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
               id: "sort-c21b-dont-you-think",
               text: "\u201cDon't you think that's a bit\u2026?\u201d",
               correctBucket: "position",
-              correction: "A judgement, offered for agreement.",
+              correction: "A judgement, put out there hoping they'll agree.",
             },
             {
               id: "sort-c21b-what-would-you-want",
               text: "\u201cWhat would you want for children, if you had them?\u201d",
               correctBucket: "question",
-              correction: "Concrete, forward-looking, and hard to argue with.",
+              correction: "Down-to-earth, about the future, and hard to argue with.",
             },
             {
               id: "sort-c21b-how-can-you",
@@ -468,7 +469,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
           kind: "output",
           heading: "The question I'll ask",
           body:
-            "A conversation that reveals an incompatibility hasn't gone wrong. That's what asking was for.",
+            "A conversation that turns up a real mismatch hasn't gone wrong. That's what asking was for.",
         },
         {
           kind: "portable",
@@ -476,29 +477,29 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
           steps: [
             "Not \u201cis this right\u201d. \u201cWhat does holding it do to your life?\u201d",
             "Belief matters less than what it does to the week.",
-            "Finding an incompatibility isn't the conversation failing.",
+            "Finding a real mismatch isn't the conversation failing.",
           ],
         },
       ],
       portable: [
         "Not \u201cis this right\u201d. \u201cWhat does holding it do to your life?\u201d",
         "Belief matters less than what it does to the week.",
-        "Finding an incompatibility isn't the conversation failing.",
+        "Finding a real mismatch isn't the conversation failing.",
       ],
       myPlaysTemplate: {
         when: "When faith or politics turns into a debate",
         move: "Ask what holding it does to their life, rather than whether it's right",
         lookingFor: "What it actually changes about their week",
         watchOut: "An argument wearing a question mark",
-        remember: "A conversation that reveals an incompatibility has worked.",
+        remember: "A conversation that turns up a real mismatch has worked.",
       },
       fidelity: {
         correct:
-          "A question about the practical effect of a position is asked, in place of a challenge to whether the position is correct.",
+          "You ask what a view does in real life, instead of challenging whether the view is right.",
         misuse: [
-          "Asking the practical question as a way into the argument.",
-          "Using it to demonstrate that their position is inconsistent.",
-          "Treating a difference discovered this way as a failure.",
+          "Asking the real-life question just to get into the argument.",
+          "Using it to show their view doesn't add up.",
+          "Treating a difference you find this way as a failure.",
         ],
         notMeaning:
           "It does not mean you'll agree, that the difference is workable, or that asking well prevents conflict.",
@@ -511,7 +512,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "Dating on My Own Terms",
-      positioning: "For holding a position against the default.",
+      positioning: "For sticking to your own way when it cuts against the default.",
       recognitionGate: {
         prompt: "Do you find yourself explaining your values to people who didn't ask?",
       },
@@ -519,16 +520,16 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "The difficulty isn't knowing your values. You know them — that's further than most people get.",
-            "It's that dating has strong defaults, and holding a different position means explaining it, repeatedly, to people who didn't ask and sometimes to people who want to argue.",
+            "The hard part isn't knowing your values. You know them — that's further than most people get.",
+            "It's that dating has strong defaults. Holding a different position means explaining it, over and over, to people who didn't ask — and sometimes to people who want to argue.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Two things make it easier. Stating it as a fact about you rather than a position to be defended — \u201cI don't do that\u201d needs no argument attached.",
-            "And saying it before it's contested rather than at the moment of contest. It's much easier as information than as a refusal.",
-            "You'll lose some people this way. That isn't the method failing — it's the method working, earlier and more cheaply than it would have otherwise.",
+            "Two things make it easier. First, saying it as a fact about you rather than a stand you have to defend — \u201cI don't do that\u201d needs no argument attached.",
+            "Second, saying it before anyone pushes back rather than in the moment they do. It's much easier as a simple fact than as a “no”.",
+            "You'll lose some people this way. That isn't the method failing — it's the method working, sooner and at less cost than it would have otherwise.",
           ],
         },
         {
@@ -548,7 +549,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
               input: "chips",
               suggestions: [
                 "Before anything happens",
-                "When it's about to be relevant",
+                "When it's about to matter",
                 "When I'm already having to refuse",
                 "It doesn't — I just manage around it",
               ],
@@ -557,9 +558,9 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
         },
         {
           kind: "ruleBuilder",
-          intro: "As information, before it's contested.",
+          intro: "As a simple fact, before anyone pushes back.",
           conditionLabel: "The one I'll say plainly, and when",
-          thenLabel: "And if someone wants me to justify it, I'll",
+          thenLabel: "And if someone wants me to defend it, I'll",
           actions: [
             "Say \u201cthat's just how I do it\u201d and leave it",
             "Explain it once, and only once",
@@ -567,11 +568,11 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
             "Take the pushback as information",
           ],
           controlCheck:
-            "This is a fact about me offered early, not a rule I'm imposing \\u2014 and nobody is owed a justification for something that only affects me.",
+            "This is a fact about me, said early — not a rule I'm forcing on anyone. And nobody is owed a reason for something that only affects me.",
         },
         {
           kind: "output",
-          heading: "My terms, said as information",
+          heading: "My terms, said as a simple fact",
           body:
             "Losing some people is the method working, not failing.",
         },
@@ -580,30 +581,30 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
           heading: "Take this with you",
           steps: [
             "\u201cThat's just how I do it\u201d is a complete sentence.",
-            "Information before it's contested, not a refusal at the moment of contest.",
-            "Someone requiring justification for something that affects only me is information.",
+            "A simple fact before anyone pushes back, not a “no” in the moment they do.",
+            "If someone demands a reason for something that only affects me, that's information.",
           ],
         },
       ],
       portable: [
         "\u201cThat's just how I do it\u201d is a complete sentence.",
-        "Information before it's contested, not a refusal at the moment of contest.",
-        "Someone requiring justification for something that affects only me is information.",
+        "A simple fact before anyone pushes back, not a “no” in the moment they do.",
+        "If someone demands a reason for something that only affects me, that's information.",
       ],
       myPlaysTemplate: {
         when: "When my way of doing things runs against the default",
-        move: "Say it early, as a fact about me rather than a position to defend",
-        lookingFor: "How someone responds to a position that costs them nothing",
-        watchOut: "Explaining it repeatedly — once is the whole allowance",
-        remember: "Losing people this way is the method working, and it's cheaper early.",
+        move: "Say it early, as a fact about me rather than a stand to defend",
+        lookingFor: "How someone responds to something that costs them nothing",
+        watchOut: "Explaining it over and over — once is all I get",
+        remember: "Losing people this way is the method working, and it costs less early.",
       },
       fidelity: {
         correct:
-          "A personal term is stated early as information, without justification, and pushback is treated as information.",
+          "You state a personal term early, as a simple fact, without defending it, and you treat pushback as information.",
         misuse: [
-          "Explaining it repeatedly to win agreement.",
-          "Stating it as a rule imposed on the other person.",
-          "Waiting until the moment of contest and delivering it as a refusal.",
+          "Explaining it over and over to win them over.",
+          "Stating it as a rule forced on the other person.",
+          "Waiting until someone pushes back, then delivering it as a “no”.",
         ],
         notMeaning:
           "It does not mean people will accept it, that stating it protects it, or that anyone who disagrees is wrong for you.",
@@ -620,8 +621,8 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       playId: "raising-it-early",
       title: "Ask a second one, a fortnight later",
       instruction:
-        "You asked the first in the tool. Ask another in two weeks — one question, your position first.",
-      linkToOperation: "Raising a significant question with one's own position offered first",
+        "You asked the first one in the tool. Ask another in two weeks — one question, your own answer first.",
+      linkToOperation: "Raising a big question with your own answer offered first",
       attemptMeaning:
         "You asked. An answer that doesn't suit you is still a completed attempt.",
       suitability:
@@ -637,10 +638,10 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       id: "mission-c21b-sort",
       version: 1,
       playId: "which-differences-will-matter",
-      title: "Check one assumed position",
+      title: "Check one thing you've been assuming",
       instruction:
-        "Take one structural thing you've been inferring and actually ask about it. Note whether you had it right.",
-      linkToOperation: "Converting an inferred structural position into a known one",
+        "Take one structural thing you've been guessing at and actually ask about it. Note whether you had it right.",
+      linkToOperation: "Turning a guessed structural answer into a known one",
       attemptMeaning:
         "You checked. Being wrong about what you assumed is the useful outcome.",
       suitability:
@@ -659,7 +660,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       title: "Use the week question once",
       instruction:
         "Next time a belief or a view comes up, ask what it looks like in their week rather than whether it's right.",
-      linkToOperation: "Asking about practical effect rather than correctness",
+      linkToOperation: "Asking what it does in real life rather than whether it's right",
       attemptMeaning:
         "You asked it. Where it goes afterwards isn't the measure.",
       suitability:
@@ -675,10 +676,10 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
       id: "mission-c21b-terms",
       version: 1,
       playId: "dating-on-my-own-terms",
-      title: "Say one term before it's relevant",
+      title: "Say one term before it matters",
       instruction:
-        "Say one of your terms early, as information, before it's about to be contested. Note how it's received.",
-      linkToOperation: "Stating a personal term as information rather than as a refusal",
+        "Say one of your terms early, as a simple fact, before anyone's about to push back. Note how it lands.",
+      linkToOperation: "Saying a personal term as a simple fact rather than as a “no”",
       attemptMeaning:
         "You said it. Someone reacting badly is the information you were after.",
       suitability:
@@ -816,7 +817,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
         label: "What did you do differently?",
         multi: true,
         options: [
-          "Said it early, as information",
+          "Said it early, as a simple fact",
           "Didn't justify it",
           "Took the reaction as information",
           "Waited until I had to refuse",
@@ -831,7 +832,7 @@ export const ASKING_BETTER_QUESTIONS: PlaybookContent = {
         multi: true,
         options: [
           "That it's easier said early",
-          "How someone responds to a position that costs them nothing",
+          "How someone responds to something that costs them nothing",
           "That I'd been managing around it",
           "Nothing new",
         ],

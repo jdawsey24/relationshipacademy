@@ -36,6 +36,8 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C26_LITERATURE } from "./a-different-legacy-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
+
 export const A_DIFFERENT_LEGACY: PlaybookContent = {
   playbookKey: "a-different-legacy",
   playbookVersion: 1,
@@ -45,7 +47,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
     title: "Most of this isn't a problem",
     body: [
       "You've noticed something that ran in the family you grew up in, and you'd rather it stopped running. Most people never notice at all.",
-      "So this is a short one — two tools. The gap it works on is between wanting to break a pattern and having something small enough to do this week.",
+      "So this is a short one — two tools. It works on one gap: you want to break a pattern, but you need something small enough to do this week.",
       "Nothing here is about how to raise children, and none of it assumes your family was bad.",
     ],
     manifestations: [
@@ -64,7 +66,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
       pathwayPlayId: null,
       headline: "I want to leave a different legacy than I inherited.",
       validationCopy:
-        "That's a clearly held value, arrived at by someone who has thought about it. Most people never articulate it and a good number never notice the pattern at all — noticing is the part that's hard to acquire, and you've done it. There isn't much here that needs fixing.",
+        "That's a clear value, held by someone who has thought about it. Most people never put it into words, and plenty never notice the pattern at all. Noticing is the hard part to learn, and you've done it. There isn't much here that needs fixing.",
       secondaryExamples: [
         "I want my relationships to reflect my values.",
         "I want to build something that lasts beyond me.",
@@ -77,7 +79,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
       pathwayPlayId: "the-specific-thing",
       headline: "I want to break generational patterns.",
       explanation:
-        "A direction, not yet a thing you could do. Inherited patterns are hard to see because they were the water — what happened in your house was simply what happens.",
+        "It's a direction, not yet a thing you could do. Inherited patterns are hard to see because they were the water — whatever happened in your house was simply what happens.",
       secondaryExamples: [
         "I don't want dysfunction to become normal.",
         "I want to create a healthier family than the one I grew up in.",
@@ -90,7 +92,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
       pathwayPlayId: "what-they-see",
       headline: "I don't want my children to repeat my mistakes.",
       explanation:
-        "The operative word is what they see. What's absorbed isn't the good moments — it's what happens when something goes wrong.",
+        "The key word is what they see. What gets taken in isn't the good moments — it's what happens when something goes wrong.",
       secondaryExamples: [
         "I want my children to see a healthy relationship.",
         "I want my relationships to reflect my values.",
@@ -114,17 +116,17 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
           kind: "shift",
           body: [
             "Inherited patterns are hard to see for a specific reason: they were the water.",
-            "Whatever happened in your house was, for years, simply what happens. That background quality persists long after you can name it as a pattern.",
-            "Which is why \u201cI don't want dysfunction to become normal\u201d describes a category rather than telling you what to watch for.",
+            "Whatever happened in your house was, for years, simply what happens. That background feeling stays with you long after you can name it as a pattern.",
+            "That's why \u201cI don't want dysfunction to become normal\u201d names a whole category. It doesn't tell you what to watch for.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "There are two levels, and only one is workable.",
+            "There are two levels, and only one is something you can work with.",
             "\u201cThere was a lot of conflict\u201d or \u201cnobody talked about anything\u201d is a description of the climate. True, and too broad to act on.",
             "\u201cWhen someone was upset, everyone left the room\u201d or \u201cyou apologised by making a joke\u201d is a specific move, repeated. That's a thing you could catch yourself doing.",
-            "The specific version is nearly always small and procedural \u2014 what happened at the moment of difficulty. Who spoke, who left, what got said instead of the real thing.",
+            "The specific version is nearly always small and about what you actually did \u2014 what happened at the moment of difficulty. Who spoke, who left, what got said instead of the real thing.",
           ],
         },
         {
@@ -141,7 +143,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
               id: "sort-c26-left-room",
               text: "When someone's upset, I leave the room",
               correctBucket: "specific",
-              correction: "Small, procedural, and catchable. That's the level.",
+              correction: "Small, about what you did, and easy to catch. That's the level.",
             },
             {
               id: "sort-c26-cold",
@@ -166,7 +168,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
               text: "After an argument, nobody mentions it again",
               correctBucket: "specific",
               correction:
-                "A procedure, and one of the most commonly inherited ones.",
+                "A move, and one of the most commonly inherited ones.",
             },
             {
               id: "sort-c26-dysfunction",
@@ -180,7 +182,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
         {
           kind: "ownTurn",
           intro:
-            "One move, not the climate. Think about the moment something went wrong rather than the general atmosphere.",
+            "One move, not the climate. Think about the moment something went wrong rather than the general mood.",
           fields: [
             {
               id: "the-move",
@@ -209,14 +211,14 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
           needMoreLabel: "Not quite — it's still a description",
           needMoreIntro:
             "Go one level down. Ask what actually happened in the room, physically, in the first thirty seconds after something went wrong.",
-          needToKnowLabel: "The smaller, more procedural version",
+          needToKnowLabel: "The smaller, step-by-step version",
           observableLabel: "Something I'd catch myself doing",
         },
         {
           kind: "output",
           heading: "The specific thing",
           body:
-            "One move, small enough to notice. Not a verdict on anyone who taught it to you.",
+            "One move, small enough to notice. Not a judgment on anyone who taught it to you.",
         },
         {
           kind: "portable",
@@ -236,17 +238,17 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
       myPlaysTemplate: {
         when: "When I want to break a pattern and don't know what to watch for",
         move: "Name the specific move at the moment of difficulty, not the climate",
-        lookingFor: "Something procedural and small enough to catch myself doing",
-        watchOut: "Describing the atmosphere \u2014 there's nothing in it to act on",
+        lookingFor: "Something small and step-by-step, so I can catch myself doing it",
+        watchOut: "Describing the mood \u2014 there's nothing in it to act on",
         remember: "Whoever taught me this was almost certainly taught it too.",
       },
       fidelity: {
         correct:
-          "A specific, procedural inherited move is named at the level of what happens at the moment of difficulty.",
+          "A specific inherited move gets named — the thing that actually happens at the moment of difficulty.",
         misuse: [
           "Naming the climate rather than the move.",
-          "Turning it into an account of what a parent did wrong.",
-          "Treating the naming as sufficient on its own.",
+          "Turning it into a story of what a parent did wrong.",
+          "Treating the naming as enough on its own.",
         ],
         notMeaning:
           "It does not mean the pattern stops, that you're doing it, or that anyone is to blame for it.",
@@ -256,7 +258,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
           id: "signpost-c26-harm",
           heading: "If what you inherited was harmful rather than unhelpful",
           body:
-            "There's a difference between a habit you'd rather not carry forward and something that genuinely harmed you. If it's the second, that's a different weight and worth having someone alongside you for — a therapist, or a service that works with people who grew up in it. A Playbook is a reasonable place to work on a habit and the wrong place to work on that.",
+            "There's a difference between a habit you'd rather not carry forward and something that truly harmed you. If it's the second, that's a heavier thing, and it's worth having someone alongside you for it — a therapist, or a service that works with people who grew up in it. A Playbook is a fine place to work on a habit, and the wrong place to work on that.",
         },
       ],
     },
@@ -267,7 +269,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
       playVersion: 1,
       outputSchemaVersion: 1,
       name: "What They See",
-      positioning: "For what a relationship demonstrates, rather than what it says.",
+      positioning: "For what a relationship shows, rather than what it says.",
       recognitionGate: {
         prompt: "Do you want the next generation to see something different?",
       },
@@ -275,23 +277,23 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "\u201cI want my children to see a healthy relationship.\u201d The operative word is *see*.",
-            "Whatever anyone is told about relationships, what gets absorbed is what's demonstrated. And mostly not the good moments \u2014 those are noticed and enjoyed and don't teach much.",
-            "What's absorbed is what happens when something goes wrong.",
+            "\u201cI want my children to see a healthy relationship.\u201d The key word is *see*.",
+            "Whatever anyone is told about relationships, what gets taken in is what's shown. And mostly not the good moments \u2014 those get noticed and enjoyed, but they don't teach much.",
+            "What gets taken in is what happens when something goes wrong.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Which is unexpectedly good news. It means you don't need a relationship without conflict \u2014 you couldn't have one, and a household with no visible disagreement teaches something too.",
-            "A repaired disagreement demonstrates more than an avoided one. Someone watching learns that things can go wrong and be put right, which is the more useful lesson and the harder one to come by.",
-            "This also applies whether or not anyone is watching. What gets demonstrated is what gets practised, and it's the practice that carries.",
+            "This is surprisingly good news. It means you don't need a relationship without conflict \u2014 you couldn't have one \u2014 and a home where no disagreement is ever seen teaches something too.",
+            "A repaired disagreement shows more than an avoided one. Someone watching learns that things can go wrong and then be put right. That's the more useful lesson, and the harder one to come by.",
+            "This is true whether or not anyone is watching. What gets shown is what gets practised, and it's the practice that carries.",
           ],
         },
         {
           kind: "ownTurn",
           intro:
-            "The moment of difficulty is the one that teaches. What does yours currently look like?",
+            "The moment of difficulty is the one that teaches. What does yours look like right now?",
           fields: [
             {
               id: "what-happens-now",
@@ -313,26 +315,26 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
             },
             {
               id: "the-different-thing",
-              label: "What's one thing you'd want visible that currently isn't?",
+              label: "What's one thing you'd want visible that isn't right now?",
               input: "text",
               placeholder:
-                "Usually the repair. Small \u2014 not a demonstration, just a thing that happens.",
+                "Usually the repair. Small \u2014 not a show, just a thing that happens.",
             },
           ],
         },
         {
           kind: "sufficiency",
-          prompt: "Is the repair currently visible, or does it happen out of sight?",
+          prompt: "Is the repair visible right now, or does it happen out of sight?",
           enoughLabel: "It's visible",
           needMoreLabel: "It happens privately, or not at all",
           needMoreIntro:
-            "Very common, and worth knowing. Households often argue in front of people and repair behind closed doors \u2014 which demonstrates half the lesson, and the harder half.",
+            "Very common, and worth knowing. Homes often argue in front of people and repair behind closed doors \u2014 which shows half the lesson, and the harder half.",
           needToKnowLabel: "What a visible repair would look like",
-          observableLabel: "Something someone could actually witness",
+          observableLabel: "Something someone could actually see",
         },
         {
           kind: "output",
-          heading: "What's demonstrated",
+          heading: "What's shown",
           body:
             "Not a performance. What already happens, with the useful half made visible.",
         },
@@ -340,34 +342,34 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
           kind: "portable",
           heading: "Take this with you",
           steps: [
-            "What's absorbed isn't the good moments. It's what happens when things go wrong.",
+            "What gets taken in isn't the good moments. It's what happens when things go wrong.",
             "A repaired disagreement teaches more than an avoided one.",
             "Arguing in front of people and repairing in private teaches half the lesson.",
           ],
         },
       ],
       portable: [
-        "What's absorbed isn't the good moments. It's what happens when things go wrong.",
+        "What gets taken in isn't the good moments. It's what happens when things go wrong.",
         "A repaired disagreement teaches more than an avoided one.",
         "Arguing in front of people and repairing in private teaches half the lesson.",
       ],
       myPlaysTemplate: {
         when: "When I want the next generation to see something different",
-        move: "Notice what the moment of difficulty currently demonstrates",
+        move: "Notice what the moment of difficulty shows right now",
         lookingFor: "Whether the repair is visible or happens out of sight",
         watchOut: "Performing a relationship rather than making the real repair visible",
         remember: "I don't need a relationship without conflict. I couldn't have one.",
       },
       fidelity: {
         correct:
-          "What the moment of difficulty demonstrates is examined, and the visibility of repair is distinguished from the visibility of conflict.",
+          "You look at what the moment of difficulty shows, and you separate how visible the repair is from how visible the conflict is.",
         misuse: [
-          "Performing harmony for an audience.",
-          "Suppressing disagreement so nothing is seen.",
-          "Using it as leverage in an argument with a partner.",
+          "Putting on a show of harmony for an audience.",
+          "Holding down disagreement so nothing is seen.",
+          "Using it to get the upper hand in an argument with a partner.",
         ],
         notMeaning:
-          "It does not mean children won't repeat the pattern, that visible repair is sufficient, or that anything about your relationship is currently wrong.",
+          "It does not mean children won't repeat the pattern, that visible repair is enough, or that anything about your relationship is wrong right now.",
       },
     },
   ],
@@ -382,11 +384,11 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
       title: "Watch for the move for a month",
       instruction:
         "Keep the specific move in mind. If you catch yourself doing it, note when — during, just after, or days later.",
-      linkToOperation: "Recognising an inherited pattern as it activates",
+      linkToOperation: "Spotting an inherited pattern as it happens",
       attemptMeaning:
         "You watched. Catching it late is still catching it.",
       suitability:
-        "If nothing comes up, that's fine. The move is worth having named regardless.",
+        "If nothing comes up, that's fine. The move is worth having named anyway.",
       progression: [
         {
           id: "rung-c26-catch-2",
@@ -401,7 +403,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
       title: "Make one repair visible",
       instruction:
         "Next time something goes wrong and gets put right, let the putting-right happen where it can be seen. Once.",
-      linkToOperation: "Demonstrating repair rather than only conflict",
+      linkToOperation: "Showing repair, not just conflict",
       attemptMeaning:
         "You made it visible. Whether anyone noticed isn't the measure.",
       suitability:
@@ -431,7 +433,7 @@ export const A_DIFFERENT_LEGACY: PlaybookContent = {
         ],
       },
       performedOperation: {
-        label: "Did you name a specific procedural move?",
+        label: "Did you name a specific move you actually do?",
         options: ["Yes", "Partly", "No"],
       },
       becameClearer: {

@@ -9,6 +9,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import PlaybookBuyButton from "@/components/site/PlaybookBuyButton";
+import { hasPlaybookPdf } from "@/lib/snapshot/playbooks";
 
 interface Access {
   signedIn: boolean;
@@ -57,9 +58,11 @@ export default function PlaybookCta({
         >
           Open your Playbook →
         </Link>
-        <a href={`/api/playbooks/${clusterId}/download`} className="font-ui text-sm text-charcoal/55 underline hover:text-charcoal">
-          Prefer the PDF? Download it
-        </a>
+        {hasPlaybookPdf(clusterId) && (
+          <a href={`/api/playbooks/${clusterId}/download`} className="font-ui text-sm text-charcoal/55 underline hover:text-charcoal">
+            Prefer the PDF? Download it
+          </a>
+        )}
       </div>
     );
   }

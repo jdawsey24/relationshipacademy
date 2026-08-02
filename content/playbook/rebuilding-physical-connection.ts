@@ -30,6 +30,7 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { C9_LITERATURE } from "./rebuilding-physical-connection-literature";
 
+// Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
   playbookKey: "rebuilding-physical-connection", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
@@ -38,7 +39,7 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
   opening: {
     title: "Two things before we start",
     body: [
-      "First: rule out the physical causes. Medication, menopause, thyroid, pain, the year after a baby — all common, all treatable, all frequently missed. Read 'Before you work on this' before anything else.",
+      "First: rule out the physical causes. Medication, menopause, thyroid, pain, the year after a baby — all common, all treatable, and all easy to miss. Read 'Before you work on this' before anything else.",
       "Second: this one can't be done alone. Everything here ends in a conversation, because that's the only place this work happens. If you're hoping for something you can practise quietly on your own side, that isn't this.",
     ],
     manifestations: [
@@ -57,7 +58,7 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
       pathwayPlayId: null,
       headline: "Something's changed and I don't know why.",
       validationCopy:
-        "Changes in desire can have physical, medication-related, hormonal, emotional, relational, or combined causes. Antidepressants and other medications, pregnancy or the postpartum period, perimenopause or menopause, thyroid conditions, pain, stress, and relationship difficulties may all contribute. A GP or appropriate healthcare professional can help rule out or treat medical factors while you consider the relationship context. Finding a physical contributor doesn't mean the relational experience is irrelevant — or the other way round.",
+        "Changes in desire can come from many places: your body, a medication, hormones, feelings, the relationship, or a mix of these. Antidepressants and other medicines, pregnancy or the months after a baby, perimenopause or menopause, thyroid conditions, pain, stress, and relationship trouble can all play a part. A GP or the right healthcare professional can help rule out or treat medical causes while you look at the relationship side too. Finding a physical cause doesn't mean the relationship side doesn't matter — and the other way round too.",
       secondaryExamples: [
         "This started fairly suddenly.",
         "One of us is on medication or has had a health change.",
@@ -69,7 +70,7 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
       pathwayPlayId: "what-you-actually-miss",
       headline: "I don't feel wanted anymore.",
       explanation:
-        "This usually presents as a frequency problem and isn't one. More sex doesn't fix not feeling wanted.",
+        "This usually looks like a problem about how often you have sex, but it isn't. More sex doesn't fix not feeling wanted.",
       secondaryExamples: [
         "I don't feel desired.",
         "I feel rejected by my partner.",
@@ -82,7 +83,7 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
       pathwayPlayId: "saying-it-out-loud",
       headline: "I don't know how to bring this up.",
       explanation:
-        "Most couples together a long time have never had a straightforward conversation about this. There's no good moment and no good opening line.",
+        "Most couples who've been together a long time have never talked about this in a plain, direct way. There's no good moment and no good way to start.",
       secondaryExamples: [
         "We avoid talking about sex.",
         "I don't know how to talk about what I want.",
@@ -118,17 +119,17 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "It presents as: we don't have sex anymore. It usually means: I don't feel wanted.",
-            "Those need different conversations. People who ask for more sex and get it, and still don't feel wanted, will tell you the first didn't fix the second.",
-            "So it's worth being precise before you say anything, because the wrong ask gets you the wrong thing.",
+            "It shows up as: we don't have sex anymore. It usually means: I don't feel wanted.",
+            "Those two need different conversations. Some people ask for more sex and get it, and still don't feel wanted. They'll tell you the first thing didn't fix the second.",
+            "So it's worth being clear before you say anything. The wrong ask gets you the wrong thing.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "In long relationships, contact often stops being ordinary and becomes a signal — a hand on the back means something is being started.",
-            "So the person who doesn't want sex right now stops touching at all, to avoid seeming to begin something. And the other reads that absence as not being wanted.",
-            "Both are being reasonable, and the result is two people who miss each other and have stopped making contact.",
+            "In long relationships, touch often stops being ordinary. It turns into a signal — a hand on the back now means something is being started.",
+            "So the person who doesn't want sex right now stops touching at all, so they don't seem to be starting something. And the other person reads that missing touch as not being wanted.",
+            "Both of them make sense. The result is two people who miss each other and have stopped touching.",
           ],
         },
         {
@@ -146,7 +147,7 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
               text: "The same as now, but more often",
               correctBucket: "wouldnt",
               correction:
-                "For most people here, more of the same isn't it. Worth checking, though — for some it genuinely is.",
+                "For most people here, more of the same isn't it. Still worth checking — for some, it really is.",
             },
             {
               id: "sort-c9-reached-for",
@@ -165,21 +166,21 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
               text: "A regular slot in the diary",
               correctBucket: "wouldnt",
               correction:
-                "It fixes frequency and doesn't touch wanted-ness. Useful for some couples, not for this.",
+                "It fixes how often, but not feeling wanted. Useful for some couples, not for this.",
             },
             {
               id: "sort-c9-they-start",
               text: "Them starting it, rather than you",
               correctBucket: "would",
               correction:
-                "Being pursued rather than doing the pursuing. Very common answer.",
+                "Being chased rather than doing the chasing. Very common answer.",
             },
             {
               id: "sort-c9-new-things",
               text: "Trying something different in bed",
               correctBucket: "wouldnt",
               correction:
-                "That answers routine. Different question — see 'When it's gone routine'.",
+                "That's about routine. Different question — see 'When it's gone routine'.",
             },
           ],
         },
@@ -204,7 +205,7 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
         {
           kind: "output",
           heading: "What I actually miss",
-          body: "Precise enough to ask for. That's the whole job of this one.",
+          body: "Clear enough to ask for. That's the whole job of this one.",
         },
         {
           kind: "portable",
@@ -223,20 +224,20 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When I feel less wanted and I'm about to ask for the wrong thing",
-        move: "Work out precisely what I miss before saying anything",
-        lookingFor: "Whether it's frequency or wanted-ness — they need different conversations",
+        move: "Work out exactly what I miss before saying anything",
+        lookingFor: "Whether it's about how often, or about feeling wanted — they need different conversations",
         watchOut: "Asking for more sex when what I want is to be reached for",
         remember: "Wanting to be wanted isn't the same as wanting more sex.",
       },
       fidelity: {
         correct:
-          "The missing thing is identified specifically, and distinguished from frequency.",
+          "I've named the missing thing exactly, and kept it separate from how often.",
         misuse: [
           "Turning it into a list of what they've failed to do.",
           "Deciding what they'd say before asking them.",
         ],
         notMeaning:
-          "It does not mean you'll get it, that they'll agree with your read, or that naming it changes anything on its own.",
+          "It does not mean you'll get it, that they'll agree with how you see it, or that naming it changes anything on its own.",
       },
     },
 
@@ -254,29 +255,29 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
         {
           kind: "shift",
           body: [
-            "Not because they're avoidant. Because there's no good moment and no good opening line, and the longer it goes unsaid the bigger a deal saying it becomes.",
+            "Not because they're avoiding it. It's because there's no good moment and no good way to start. And the longer it goes unsaid, the bigger a deal saying it becomes.",
             "There isn't a version of this that isn't awkward. The aim is to get through it, not to do it well.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Clothes on, nothing pending. Not in bed. Not after a knock-back. Somewhere neither of you is exposed.",
-            "Say what you miss, not what's missing. \u201cI miss you reaching for me\u201d is receivable. \u201cYou never touch me anymore\u201d is a charge, and it gets a defence.",
+            "Clothes on, nothing about to happen. Not in bed. Not after being turned down. Somewhere neither of you feels exposed.",
+            "Say what you miss, not what's missing. \u201cI miss you reaching for me\u201d is something they can take in. \u201cYou never touch me anymore\u201d sounds like an accusation, and they'll get defensive.",
           ],
         },
         {
           kind: "emotionBeat",
           body: [
-            "Raising it means saying out loud that you want something you're not getting, to the person not giving it. That's exposing in a way most conversations aren't.",
-            "It's also the only route. There's no version where they work it out and you don't have to say it.",
+            "Bringing it up means saying out loud that you want something you're not getting — to the person not giving it. That leaves you exposed in a way most talks don't.",
+            "It's also the only way. There's no version where they figure it out and you don't have to say it.",
           ],
         },
         {
           kind: "sentenceBuilder",
           label: "How you'll open it",
           helper:
-            "Short, and what you miss rather than what's missing. You might start with “Can I say something that's a bit awkward?” or “Something I miss, and I don't want it to sound like a complaint…”",
+            "Keep it short, and say what you miss rather than what's missing. You might start with “Can I say something that's a bit awkward?” or “Something I miss, and I don't want it to sound like a complaint…”",
         },
         {
           kind: "ruleBuilder",
@@ -295,7 +296,7 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
         {
           kind: "output",
           heading: "What I'm going to say, and when",
-          body: "The awkwardness is unavoidable. Getting through it is the win.",
+          body: "You can't make it not awkward. Getting through it is the win.",
         },
         {
           kind: "portable",
@@ -314,18 +315,18 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
       ],
       myPlaysTemplate: {
         when: "When neither of us has ever raised this directly",
-        move: "Say what I miss, out loud, at a time when nothing is pending",
+        move: "Say what I miss, out loud, at a time when nothing's about to happen",
         lookingFor: "Whether it can be a conversation rather than a negotiation",
         watchOut: "Raising it in bed, or straight after being turned down",
         remember: "There's no non-awkward version. That isn't a sign to wait.",
       },
       fidelity: {
         correct:
-          "The subject is raised at a neutral time, framed as something missed rather than something withheld.",
+          "I've brought it up at a calm time, as something I miss rather than something they're holding back.",
         misuse: [
-          "Raising it in bed or immediately after a refusal.",
-          "Framing it as what they've failed to provide.",
-          "Turning one conversation into a full audit.",
+          "Bringing it up in bed, or right after being turned down.",
+          "Making it about what they've failed to give.",
+          "Turning one conversation into a full review of everything.",
         ],
         notMeaning:
           "It does not mean they'll respond well, that anything changes, or that one conversation settles it.",
@@ -347,21 +348,21 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
           kind: "shift",
           body: [
             "We want to be plain about this before anything else, because nearly all advice in this area points the other way.",
-            "A difference in wanting isn't fixed by initiating better, being more attractive, or trying harder. Done for long enough, that becomes pressure — and pressure reliably reduces desire in the person on the other end of it.",
-            "So this tool doesn't help you get more. It helps you have the conversation about the difference, which is a different thing and the only one available to you alone.",
+            "A difference in wanting isn't fixed by starting things better, being more attractive, or trying harder. Do that long enough and it turns into pressure — and pressure lowers desire in the person on the receiving end, again and again.",
+            "So this tool doesn't help you get more. It helps you have the talk about the difference. That's a different thing — and it's the only part you can do on your own.",
           ],
         },
         {
           kind: "learn",
           body: [
-            "Not to negotiate a number. Numbers agreed under pressure don't hold and both people know it.",
-            "It's to get both positions said out loud, once, without either of you having to defend one. Including if the honest answer from either side is \u201cless, at the moment\u201d.",
-            "Most couples in this position have never done that. They've had rounds of it at the wrong moment instead.",
+            "This isn't about agreeing on a number. Numbers agreed under pressure don't last, and both people know it.",
+            "It's about getting both sides said out loud, once, without either of you having to defend it. That includes if the honest answer from either side is \u201cless, at the moment\u201d.",
+            "Most couples in this spot have never done that. They've had rounds of it at the wrong moment instead.",
           ],
         },
         {
           kind: "ownTurn",
-          intro: "Your position, honestly",
+          intro: "Where you stand, honestly",
           fields: [
             {
               id: "my-position",
@@ -394,14 +395,14 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
           enoughLabel: "They've told me directly",
           needMoreLabel: "I'm working it out from behaviour",
           needMoreIntro:
-            "Very common, and it's why this conversation is worth having. Silence has a lot of possible causes and you're currently picking one.",
+            "Very common — and it's why this conversation is worth having. Silence can mean a lot of things, and right now you're picking one.",
           needToKnowLabel: "What I'd want to actually know",
           observableLabel: "Something they could tell me",
         },
         {
           kind: "output",
           heading: "Both positions, said once",
-          body: "Not an agreement. Two things known rather than assumed.",
+          body: "Not an agreement. Two things now known instead of guessed at.",
         },
         {
           kind: "portable",
@@ -415,33 +416,33 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
       ],
       portable: [
         "A difference in wanting isn't mine to solve.",
-        "Not negotiating a number. Getting both positions said.",
-        "Pressure reduces desire. It doesn't increase it.",
+        "Not agreeing on a number. Getting both sides said.",
+        "Pressure lowers desire. It doesn't raise it.",
       ],
       myPlaysTemplate: {
-        when: "When we want different amounts and it's never been discussed",
-        move: "Get both positions said out loud, once, without either being defended",
-        lookingFor: "What's actually true for them, rather than what I've inferred",
+        when: "When we want different amounts and we've never talked about it",
+        move: "Get both sides said out loud, once, without either being defended",
+        lookingFor: "What's actually true for them, rather than what I've guessed",
         watchOut: "Turning it into a negotiation, or a case for why I should get more",
         remember: "This isn't a problem I can solve on my own, and trying harder makes it worse.",
       },
       fidelity: {
         correct:
-          "Both positions are stated once, at a neutral time, without either being negotiated or defended.",
+          "Both sides are said once, at a calm time, without either being negotiated or defended.",
         misuse: [
           "Using it to argue for more.",
-          "Agreeing a frequency under pressure.",
+          "Agreeing on how often, under pressure.",
           "Repeating the conversation until the answer changes.",
         ],
         notMeaning:
-          "It does not mean the difference resolves, that they'll want more, or that having the conversation entitles you to anything.",
+          "It does not mean the difference goes away, that they'll want more, or that having the conversation means you're owed anything.",
       },
       supportSignposts: [
         {
           id: "signpost-c9-pressure",
           heading: "If they've already said no",
           body:
-            "If your partner has told you they don't want to, the answer isn't a better approach. Wanting more than your partner does is genuinely painful, and it isn't something you can fix on your own — and continuing to try turns into pressure, whatever the intention. A qualified sex therapist can help partners explore desire differences without ever treating consent as negotiable, and it's a reasonable thing to want help with rather than keep working at alone. Where there's fear, coercion, or retaliation, joint work isn't the right setting — individual support comes first.",
+            "If your partner has told you they don't want to, the answer isn't a better approach. Wanting more than your partner does really does hurt, and it isn't something you can fix on your own — and if you keep trying, it turns into pressure, whatever you mean by it. A qualified sex therapist can help partners look at differences in desire without ever treating consent as negotiable. It's a reasonable thing to want help with, rather than keep working at it alone. Where there's fear, coercion, or retaliation, joint work isn't the right setting — individual support comes first.",
         },
       ],
     },
@@ -456,8 +457,8 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
       playId: "what-you-actually-miss",
       title: "Say the one sentence",
       instruction:
-        "Tell them the thing you worked out you miss. One sentence, at a neutral time. Then let it sit.",
-      linkToOperation: "Naming the missing thing specifically",
+        "Tell them the thing you worked out you miss. One sentence, at a calm time. Then let it sit.",
+      linkToOperation: "Naming the missing thing exactly",
       attemptMeaning:
         "You said it. How they took it isn't the measure.",
       suitability:
@@ -472,12 +473,12 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
       playId: "saying-it-out-loud",
       title: "Have the conversation",
       instruction:
-        "Say your opening, at the time you chose. Clothes on, nothing pending. See where it goes.",
-      linkToOperation: "Opening the subject directly at a neutral time",
+        "Say your opening, at the time you chose. Clothes on, nothing about to happen. See where it goes.",
+      linkToOperation: "Opening the subject directly at a calm time",
       attemptMeaning:
         "You raised it. Awkward counts. Badly counts.",
       suitability:
-        "Not in bed and not after a knock-back. If those are the only times it comes up, that's worth noticing on its own.",
+        "Not in bed and not after being turned down. If those are the only times it comes up, that's worth noticing on its own.",
       progression: [
         { id: "rung-c9-talk-2", instruction: "Come back to it a week later rather than leaving it as one conversation." },
       ],
@@ -491,7 +492,7 @@ export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
         "Say yours. Ask theirs. Don't negotiate anything in the same conversation.",
       linkToOperation: "Stating both positions without negotiation",
       attemptMeaning:
-        "Both positions are now known rather than assumed. That's the whole outcome.",
+        "Both positions are now known rather than guessed at. That's the whole outcome.",
       suitability:
         "If they've already told you they don't want to, don't do this one. Read the signpost on that Play instead.",
       progression: [
