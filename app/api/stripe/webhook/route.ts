@@ -155,6 +155,33 @@ async function applyPlaybookGrant(event: Stripe.Event) {
   const customerId = typeof s.customer === "string" ? s.customer : s.customer?.id ?? null;
   const { grantPlaybookFromStripeSession } = await import("@/lib/snapshot/playbookGrants");
   await grantPlaybookFromStripeSession({ userId, clusterId, customerId, ref: s.id });
+
+  // Post-purchase side effects (resilient — must never fail the grant):
+  // 1) exit the Snapshot nurture immediately (spec: purchasers leave the sequence
+  //    the moment they buy) — by the exact quiz session that started checkout
+  //    (metadata.session_id) AND by purchaser email + cluster (catalog buys);
+  // 2) send the Playbook delivery email (start of the post-purchase flow).
+  try {
+    const { exitNurtureOnPurchase } = await import("@/lib/snapshot/nurture");
+    const buyerEmail = s.customer_details?.email ?? null;
+    let accountEmail: string | null = null;
+    try {
+      const { getSupabaseAdminClient } = await import("@/lib/supabase");
+      const { data } = await getSupabaseAdminClient().auth.admin.getUserById(userId);
+      accountEmail = data.user?.email ?? null;
+    } catch { /* noop */ }
+    await exitNurtureOnPurchase({ sessionId: s.metadata?.session_id ?? null, email: buyerEmail, clusterId });
+    if (accountEmail && accountEmail.toLowerCase() !== (buyerEmail ?? "").toLowerCase()) {
+      await exitNurtureOnPurchase({ email: accountEmail, clusterId });
+    }
+    const to = accountEmail || buyerEmail;
+    if (to) {
+      const { sendPlaybookDeliveryEmail } = await import("@/lib/email/playbookDelivery");
+      await sendPlaybookDeliveryEmail({ to, clusterId });
+    }
+  } catch (e) {
+    console.error("[stripe/webhook] playbook post-purchase side effects:", e instanceof Error ? e.message : e);
+  }
 }
 
 // ---- 2) Finance sync ----

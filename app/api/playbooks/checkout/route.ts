@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { requireMember } from "@/lib/academyAuth";
 import { getStripe, stripeConfigured } from "@/lib/stripe";
-import { readJsonBody } from "@/lib/apiSecurity";
+import { readJsonBody, isUuid } from "@/lib/apiSecurity";
 import { PLAYBOOK_PRICE_LOOKUP_KEY, PLAYBOOK_PRODUCT_KEY, hasPlaybook } from "@/lib/snapshot/playbooks";
 import { isAddonEntitlementId } from "@/lib/playbook/keys";
 
@@ -50,7 +50,12 @@ export async function POST(request: Request) {
       await admin.from("profiles").upsert({ id: member.user.id, stripe_customer_id: customerId }, { onConflict: "id" });
     }
 
-    const meta = { user_id: member.user.id, product_key: PLAYBOOK_PRODUCT_KEY, billing_type: "one_time", cluster_id: String(clusterId) };
+    // Carry the quiz session (when the buy started on a results page) so the
+    // webhook can exit that session's nurture sequence the moment payment lands.
+    const rawSession = (body as { session_id?: unknown } | null)?.session_id;
+    const quizSessionId = typeof rawSession === "string" && isUuid(rawSession) ? rawSession : null;
+    const meta: Record<string, string> = { user_id: member.user.id, product_key: PLAYBOOK_PRODUCT_KEY, billing_type: "one_time", cluster_id: String(clusterId) };
+    if (quizSessionId) meta.session_id = quizSessionId;
     const params: Parameters<typeof stripe.checkout.sessions.create>[0] = {
       mode: "payment",
       customer: customerId,
