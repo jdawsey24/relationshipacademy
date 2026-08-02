@@ -249,6 +249,13 @@ interface SessionRow {
 
 const SESSION_COLS = "id, contact_email, primary_cluster_id, secondary_cluster_id, converted_at, nurture_status, nurture_step, nurture_last_sent_at";
 
+// Emails reference the result as a LABEL inside sentences, so the leading
+// "You're " of result_title is stripped (owner decision 2026-08-02):
+// "You're Feeling Unseen and Unappreciated" → "Feeling Unseen and Unappreciated".
+// Titles without the prefix (e.g. "Guarded From Getting Used") pass through.
+// The results PAGE keeps the full second-person headline — this is email-only.
+const stripYoure = (t: string) => t.replace(/^You['’]re\s+/i, "");
+
 export async function varsFor(row: Pick<SessionRow, "id" | "primary_cluster_id" | "secondary_cluster_id">): Promise<Vars | null> {
   const s = getSupabaseAdminClient();
   if (row.primary_cluster_id == null) return null;
@@ -264,8 +271,8 @@ export async function varsFor(row: Pick<SessionRow, "id" | "primary_cluster_id" 
   const arr = (x: unknown) => (Array.isArray(x) ? (x as string[]) : []);
   const blindSpots = arr(c.blind_spots);
   return {
-    resultTitle: str(c.result_title) || str(c.name),
-    secondaryResultTitle: sec ? (str(sec.result_title) || str(sec.name) || null) : null,
+    resultTitle: stripYoure(str(c.result_title)) || str(c.name),
+    secondaryResultTitle: sec ? (stripYoure(str(sec.result_title)) || str(sec.name) || null) : null,
     corePattern: str(c.core_pattern),
     whyThisHappens: str(c.why_this_happens),
     howItMayShowUp: arr(c.how_it_may_show_up),
