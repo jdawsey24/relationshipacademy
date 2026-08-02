@@ -8,6 +8,10 @@ void React; // ensure the classic JSX runtime has React in scope
 // Renders the real Snapshot analytics view (same component the authed page uses)
 // with an empty and a populated payload, asserting each branch renders correctly.
 // This substitutes for a browser check, which is blocked by admin auth/MFA.
+//
+// Run:  npm run verify:snapshot
+// (Uses tsconfig.verify.json for jsx:react-jsx — the components rely on the
+//  automatic JSX runtime, so a bare `tsx` run under the base jsx:preserve fails.)
 
 const empty: SnapshotAnalytics = {
   overall: { completed: 0, converted: 0, lowConfidencePct: 0, conversionPct: 0 },
