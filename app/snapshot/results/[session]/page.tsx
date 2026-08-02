@@ -23,6 +23,7 @@ interface Results {
   primary: Primary | null;
   secondary: { id: number; name: string; result_title: string; secondary_blurb: string } | null;
   playbook_url: string | null;
+  converted?: boolean;
 }
 
 const SAGE = "#8A9D8F"; // strengths / steady
@@ -38,7 +39,12 @@ export default function ResultsPage() {
   useEffect(() => {
     fetch(`/api/snapshot/results?session=${session}`)
       .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
-      .then((d: Results) => setData(d))
+      .then((d: Results) => {
+        setData(d);
+        // Email already captured for this session (e.g. arriving from a nurture
+        // email on another device) — don't gate a converted lead twice.
+        if (d.converted) setUnlocked(true);
+      })
       .catch(() => setError(true));
   }, [session]);
 
