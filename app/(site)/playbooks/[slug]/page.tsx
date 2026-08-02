@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPlaybookBySlug, PLAYBOOK_SLUGS, PLAYBOOK_PRICE_DISPLAY } from "@/lib/playbookMarketing";
+import { getPlaybookBySlug, PLAYBOOK_PRICE_DISPLAY } from "@/lib/playbookMarketing";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import PlaybookCta from "@/components/site/PlaybookCta";
@@ -9,11 +9,11 @@ import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
 import { IconTile } from "@/components/site/IconTile";
 import type { CSSProperties } from "react";
 
-export const revalidate = 300;
-
-export function generateStaticParams() {
-  return Object.keys(PLAYBOOK_SLUGS).map((slug) => ({ slug }));
-}
+// Render per-request (like the /playbooks index) rather than statically pre-building
+// every slug at deploy. Pre-building ~26 pages fired concurrent Supabase queries at
+// build; failures baked notFound()→404 that only healed on the first request. Dynamic
+// rendering runs one query at request time (reliable) — no post-deploy 404 window.
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const p = await getPlaybookBySlug((await params).slug);
