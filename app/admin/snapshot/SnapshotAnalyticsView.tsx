@@ -74,6 +74,33 @@ export function SnapshotAnalyticsView({ data: a }: { data: SnapshotAnalytics }) 
             </table>
           </div>
 
+          {/* Where each situation lands — per-marker cluster distribution */}
+          {a.perMarkerClusters.length > 0 && (
+            <div className="mt-8 rounded-xl border border-light-gray bg-white p-5">
+              <p className="text-sm font-semibold text-midnight-navy">Where each situation lands</p>
+              <p className="mt-0.5 text-xs text-charcoal/55">For each starting situation, the clusters people end up in.</p>
+              <div className="mt-4 grid gap-6 md:grid-cols-2">
+                {a.perMarkerClusters.map((m) => {
+                  const top = m.clusters[0]?.count || 1;
+                  return (
+                    <div key={m.markerId}>
+                      <p className="text-xs font-semibold text-midnight-navy">{m.markerDisplay} <span className="text-charcoal/45">· {m.total}</span></p>
+                      <div className="mt-2.5 space-y-2">
+                        {m.clusters.map((c) => (
+                          <div key={c.clusterId} className="flex items-center gap-3">
+                            <span className="w-40 shrink-0 truncate text-xs text-charcoal/75" title={c.name}>{c.name}</span>
+                            <div className="flex-1"><Bar pct={(c.count / top) * 100} /></div>
+                            <span className="w-16 shrink-0 text-right text-xs text-charcoal/60">{c.count} · {Math.round((c.count / m.total) * 100)}%</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
             {/* Neutral hotspots */}
             <div className="rounded-xl border border-light-gray bg-white p-5">

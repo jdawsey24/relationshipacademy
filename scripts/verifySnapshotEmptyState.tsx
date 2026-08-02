@@ -11,12 +11,13 @@ void React; // ensure the classic JSX runtime has React in scope
 
 const empty: SnapshotAnalytics = {
   overall: { completed: 0, converted: 0, lowConfidencePct: 0, conversionPct: 0 },
-  perMarker: [], primaryClusters: [], hotspots: [], hasData: false,
+  perMarker: [], primaryClusters: [], perMarkerClusters: [], hotspots: [], hasData: false,
 };
 const populated: SnapshotAnalytics = {
   overall: { completed: 42, converted: 9, lowConfidencePct: 12.5, conversionPct: 21.4 },
   perMarker: [{ id: "in_a_relationship", display: "In a Relationship", completed: 42, converted: 9, avgNeutralPct: 8.3, lowConfidencePct: 12.5, conversionPct: 21.4, tiedPct: 4.8 }],
   primaryClusters: [{ clusterId: 8, name: "Feeling Like We're Growing Apart", count: 12 }],
+  perMarkerClusters: [{ markerId: "in_a_relationship", markerDisplay: "In a Relationship", total: 42, clusters: [{ clusterId: 8, name: "Feeling Like We're Growing Apart", count: 12 }, { clusterId: 15, name: "Feeling Like I'm Taken for Granted", count: 9 }] }],
   hotspots: [{ marker: "in_a_relationship", markerDisplay: "In a Relationship", questionOrder: 7, neutralPct: 34.2, answers: 38, clusters: ["Fear of Being Fully Known", "Difficulty Saying No"] }],
   hasData: true,
 };
@@ -33,6 +34,7 @@ const checks: [string, boolean][] = [
   ["populated: renders the per-marker table", fullHtml.includes("Avg neutral")],
   ["populated: renders hotspots panel", fullHtml.includes("Neutral hotspots") && fullHtml.includes("None of these fit")],
   ["populated: renders result distribution", fullHtml.includes("Result distribution")],
+  ["populated: renders per-marker cluster distribution", fullHtml.includes("Where each situation lands") && fullHtml.includes("Feeling Like I&#x27;m Taken for Granted")],
   ["populated: shows a real marker + stat", fullHtml.includes("In a Relationship") && fullHtml.includes("42")],
 ];
 
