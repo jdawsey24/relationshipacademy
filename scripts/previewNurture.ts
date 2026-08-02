@@ -35,17 +35,17 @@ async function main() {
     const v = await varsFor({ id: "00000000-0000-0000-0000-000000000000", primary_cluster_id: variant.primary, secondary_cluster_id: variant.secondary });
     if (!v) { console.log(`!! no vars for ${variant.slug} (missing cluster content?)`); continue; }
     indexRows.push(`<h2 style="font-family:Arial;margin:24px 0 8px;">${variant.label}</h2>`);
-    SEQUENCE.forEach((step, i) => {
-      const day = i + 1;
+    SEQUENCE.forEach((step) => {
+      const day = step.offsetDays; // send day (offset from conversion)
       if (step.skip?.(v)) {
-        indexRows.push(`<p style="font-family:Arial;color:#999;">Day ${day} — <em>skipped for this cluster (${step.key})</em></p>`);
+        indexRows.push(`<p style="font-family:Arial;color:#999;">Send day ${day} — <em>skipped for this cluster (${step.key})</em></p>`);
         return;
       }
       const { html, text } = step.body(v);
-      const f = `${variant.slug}-day${String(day).padStart(2, "0")}.html`;
+      const f = `${variant.slug}-sendday${String(day).padStart(2, "0")}-${step.key}.html`;
       writeFileSync(join(OUT, f), html);
       writeFileSync(join(OUT, f.replace(/\.html$/, ".txt")), `Subject: ${step.subject(v)}\nPreview: ${step.preview}\n\n${text}`);
-      indexRows.push(`<p style="font-family:Arial;"><a href="${f}">Day ${day}</a> — <strong>${step.subject(v)}</strong> <span style="color:#888;">· ${step.preview}</span></p>`);
+      indexRows.push(`<p style="font-family:Arial;"><a href="${f}">Send day ${day}</a> — <strong>${step.subject(v)}</strong> <span style="color:#888;">· ${step.preview}</span></p>`);
     });
     console.log(`rendered variant ${variant.slug}: "${v.resultTitle}" (playbook ${v.playbookAvailable ? `available: ${v.playbookSubtitle}` : "NOT available — degrade path"})`);
   }
