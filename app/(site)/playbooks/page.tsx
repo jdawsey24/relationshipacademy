@@ -5,6 +5,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getOwnedPlaybookClusterIds } from "@/lib/snapshot/playbookGrants";
 import { getPlaybookMarketing, PLAYBOOK_PRICE_DISPLAY } from "@/lib/playbookMarketing";
 import { keyForClusterId } from "@/lib/playbook/keys";
+import { getPlaybookContent } from "@/content/playbook";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
@@ -25,8 +26,56 @@ export const metadata: Metadata = {
 export default async function PlaybooksPage({ searchParams }: { searchParams: Promise<{ purchase?: string }> }) {
   const member = await getMember();
   const { purchase } = await searchParams;
-  if (member) return <Library userId={member.user.id} purchaseSuccess={purchase === "success"} />;
+  // Signed-in: their library FIRST, then the full catalog so an owner can still
+  // browse and buy the other Playbooks (before the corpus launch there were only a
+  // handful; now there are ~26 — owners are the best-qualified buyers).
+  if (member) {
+    return (
+      <>
+        <Library userId={member.user.id} purchaseSuccess={purchase === "success"} />
+        <MoreToExplore />
+      </>
+    );
+  }
   return <Landing />;
+}
+
+// ---------------------------------------------------------------------------
+// Catalog for signed-in owners — same cards as the public landing, minus the
+// marketing hero, so a member can browse/buy the rest of the Playbooks.
+// ---------------------------------------------------------------------------
+async function MoreToExplore() {
+  const playbooks = await getPlaybookMarketing();
+  if (!playbooks.length) return null;
+  return (
+    <section className="mx-auto max-w-4xl px-6 pb-24">
+      <div className="border-t border-light-gray pt-12 text-center">
+        <SectionLabel>More to explore</SectionLabel>
+        <h2 className="mt-3 font-display text-2xl font-semibold text-midnight-navy sm:text-3xl">Other patterns you can go deep on</h2>
+        <p className="mx-auto mt-3 max-w-lg font-body text-charcoal/65">Each Playbook stands on its own. {PLAYBOOK_PRICE_DISPLAY} each &middot; yours to keep.</p>
+      </div>
+      <div className="mt-10 grid gap-5 sm:grid-cols-2">
+        {playbooks.map((p) => {
+          const hue = playbookHue(p.clusterId);
+          return (
+            <Link key={p.slug} href={`/playbooks/${p.slug}`}
+              style={{ "--hue": hue } as CSSProperties}
+              className={`group flex flex-col rounded-2xl border border-midnight-navy/10 bg-white p-6 ${CARD_HOVER}`}>
+              <IconTile hue={hue}>
+                <PlaybookMark clusterId={p.clusterId} className="h-[26px] w-[26px]" />
+              </IconTile>
+              <h3 className="mt-4 font-display text-xl font-semibold leading-tight text-midnight-navy">{p.subtitle}</h3>
+              {p.corePattern && <p className="mt-2 font-body text-body text-charcoal/70">{p.corePattern}</p>}
+              <span className="mt-4 inline-flex items-center gap-1.5 font-ui text-sm font-semibold text-midnight-navy">
+                Open this Playbook <span aria-hidden="true" style={{ color: hue }} className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+      <AddonsForSale />
+    </section>
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -133,11 +182,23 @@ async function Landing() {
 // ---------------------------------------------------------------------------
 async function Library({ userId, purchaseSuccess }: { userId: string; purchaseSuccess: boolean }) {
   const clusterIds = await getOwnedPlaybookClusterIds(userId);
+  // CONSUMER name only. `snapshot_clusters.name` is the internal clinical label
+  // ("Difficulty Feeling Chosen") and must never reach a reader — use
+  // playbook_subtitle ("Moving Beyond Rejection"), falling back to the authored
+  // content's displayName for 900-block ids (paired modules / add-ons have no
+  // snapshot_clusters row).
   let names = new Map<number, string>();
   if (clusterIds.length) {
-    const { data } = await getSupabaseAdminClient().from("snapshot_clusters").select("id, name").in("id", clusterIds);
-    names = new Map(((data ?? []) as { id: number; name: string }[]).map((c) => [c.id, c.name]));
+    const { data } = await getSupabaseAdminClient().from("snapshot_clusters").select("id, playbook_subtitle").in("id", clusterIds);
+    names = new Map(((data ?? []) as { id: number; playbook_subtitle: string | null }[])
+      .filter((c) => !!c.playbook_subtitle).map((c) => [c.id, c.playbook_subtitle as string]));
   }
+  const displayNameFor = (id: number) => {
+    const fromDb = names.get(id);
+    if (fromDb) return fromDb;
+    const k = keyForClusterId(id);
+    return (k ? getPlaybookContent(k)?.displayName : null) ?? "Your Playbook";
+  };
   return (
     <main className="mx-auto max-w-2xl px-6 pb-24 pt-10">
       <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">The Relationship Playbook&trade;</p>
@@ -167,7 +228,7 @@ async function Library({ userId, purchaseSuccess }: { userId: string; purchaseSu
                   <svg viewBox="0 0 24 24" width={20} height={20} fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M10 9l5 3-5 3z" /></svg>
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block font-display text-lg font-semibold leading-tight text-midnight-navy">{names.get(id) ?? "Your Playbook"}</span>
+                  <span className="block font-display text-lg font-semibold leading-tight text-midnight-navy">{displayNameFor(id)}</span>
                   <span className="mt-0.5 block font-body text-micro text-charcoal/55">Interactive Playbook</span>
                 </span>
                 {key ? (
