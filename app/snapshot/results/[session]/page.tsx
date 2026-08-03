@@ -161,17 +161,18 @@ export default function ResultsPage() {
 // Email gate — the personalized results are the incentive to hand over an email.
 // Captures the lead (same endpoint as before), remembers the unlock, then reveals.
 function EmailGate({ session, onUnlock }: { session: string; onUnlock: () => void }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.trim()) return;
+    if (!email.trim() || !name.trim()) return;
     setBusy(true); setErr(null);
     const res = await fetch(`/api/snapshot/convert`, {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: session, email: email.trim() }),
+      body: JSON.stringify({ session_id: session, email: email.trim(), name: name.trim() }),
     }).catch(() => null);
     const d = res ? await res.json().catch(() => ({})) : {};
     if (!res || !res.ok) { setErr((d as { error?: string }).error ?? "Something went wrong. Please try again."); setBusy(false); return; }
@@ -193,11 +194,16 @@ function EmailGate({ session, onUnlock }: { session: string; onUnlock: () => voi
       </p>
       <form onSubmit={submit} className="mt-8 w-full">
         <input
-          value={email} onChange={(e) => setEmail(e.target.value)} type="email" required
-          autoComplete="email" placeholder="you@example.com"
+          value={name} onChange={(e) => setName(e.target.value)} type="text" required
+          autoComplete="given-name" placeholder="First name" maxLength={80}
           className="h-12 w-full rounded-full border border-midnight-navy/20 bg-white px-5 font-body text-base text-charcoal outline-none focus:border-midnight-navy"
         />
-        <button type="submit" disabled={busy || !email.trim()}
+        <input
+          value={email} onChange={(e) => setEmail(e.target.value)} type="email" required
+          autoComplete="email" placeholder="you@example.com"
+          className="mt-3 h-12 w-full rounded-full border border-midnight-navy/20 bg-white px-5 font-body text-base text-charcoal outline-none focus:border-midnight-navy"
+        />
+        <button type="submit" disabled={busy || !email.trim() || !name.trim()}
           className="mt-3 h-12 w-full rounded-full bg-midnight-navy font-ui text-base font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60">
           {busy ? "Loading your results…" : "Show me my results →"}
         </button>

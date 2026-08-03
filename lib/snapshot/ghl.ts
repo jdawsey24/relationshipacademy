@@ -14,6 +14,7 @@ export function ghlConfigured(): boolean {
 interface SessionRow {
   id: string;
   contact_email: string | null;
+  contact_name: string | null;
   assessment_id: string;
   primary_cluster_id: number | null;
   secondary_cluster_id: number | null;
@@ -27,7 +28,7 @@ export async function pushLeadToGHL(sessionId: string): Promise<void> {
   try {
     const s = getSupabaseAdminClient();
     const { data } = await s.from("snapshot_quiz_sessions")
-      .select("id, contact_email, assessment_id, primary_cluster_id, secondary_cluster_id, converted_at, is_low_confidence")
+      .select("id, contact_email, contact_name, assessment_id, primary_cluster_id, secondary_cluster_id, converted_at, is_low_confidence")
       .eq("id", sessionId).maybeSingle();
     const row = data as SessionRow | null;
     if (!row?.contact_email || !row.converted_at) return;
@@ -41,6 +42,7 @@ export async function pushLeadToGHL(sessionId: string): Promise<void> {
 
     const payload = {
       email: row.contact_email,
+      first_name: row.contact_name ?? "",
       source: "relationship_snapshot",
       session_id: row.id,
       assessment_id: row.assessment_id,

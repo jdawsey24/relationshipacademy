@@ -32,6 +32,7 @@ const NAVY = "#1C3557", CORAL = "#D9777D", IVORY = "#F7F4EF", CHARCOAL = "#33333
 const PLAYBOOK_FALLBACK_NAME = "Your Personalized Relationship Playbook";
 
 export interface Vars {
+  firstName: string | null;              // first word of contact_name; null → "there"
   resultTitle: string;                 // consumer identity of the result (quoted inline)
   secondaryResultTitle: string | null; // omit the paragraph when null
   corePattern: string;
@@ -78,7 +79,10 @@ const q = (t: string) => `&ldquo;${t}&rdquo;`;
 const tq = (t: string) => `“${t}”`;
 const tList = (items: string[]) => items.map((i) => `- ${i}`).join("\n");
 const foot = (v: Vars) => `\n\nJanelle\nThe Relationship Life Cycle\n\n—\nYou're receiving this because you took the Relationship Snapshot.\nUnsubscribe: ${v.unsubscribeUrl}\nJanelle Dawsey, LMFT · Relationship Life Cycle`;
-const HI = "Hi there,"; // first name is not captured at the email gate — approved fallback
+const escapeHtml = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+// Greeting: "Hi {first name}," when captured at the email gate, else "Hi there,".
+const hiHtml = (v: Vars) => `Hi ${escapeHtml(v.firstName ?? "there")},`;
+const hiText = (v: Vars) => `Hi ${v.firstName ?? "there"},`;
 
 interface Step {
   key: string;
@@ -99,7 +103,7 @@ export const SEQUENCE: Step[] = [
     preview: "Your result reflects a pattern across your answers, not a single moment.",
     body: (v) => ({
       html: layout(
-        h1("Your result was not random") + p(HI) +
+        h1("Your result was not random") + p(hiHtml(v)) +
         p(`Your Relationship Snapshot&trade; result &mdash; ${q(v.resultTitle)} &mdash; was not selected because of one answer.`) +
         p("It surfaced because this experience appeared consistently across the choices that resonated with you.") +
         p("That matters.") +
@@ -109,7 +113,7 @@ export const SEQUENCE: Step[] = [
         p("You do not have to figure all of that out today. For now, take another look at your result and notice what feels especially familiar.") +
         p("Over the next several days, I&rsquo;ll help you look beneath the result so you can better understand what it may mean for you."),
         v, { label: "Revisit My Snapshot Results", url: v.resultsUrl }),
-      text: `${HI}\n\nYour Relationship Snapshot result — ${tq(v.resultTitle)} — was not selected because of one answer.\n\nIt surfaced because this experience appeared consistently across the choices that resonated with you.\n\nThat matters.\n\nOne difficult conversation, disappointing date, or stressful season does not always tell us very much by itself. But when the same experience keeps showing up in different forms, it may be pointing to a pattern worth understanding.\n\nFor you, that pattern may look like this:\n\n${v.corePattern}\n\nThe purpose of your result is not to put you in a box or tell you what decision to make. It is to help you recognize what may be influencing the way you connect, protect yourself, respond, or make relationship decisions right now.\n\nYou do not have to figure all of that out today. For now, take another look at your result and notice what feels especially familiar:\n${v.resultsUrl}\n\nOver the next several days, I'll help you look beneath the result so you can better understand what it may mean for you.${foot(v)}`,
+      text: `${hiText(v)}\n\nYour Relationship Snapshot result — ${tq(v.resultTitle)} — was not selected because of one answer.\n\nIt surfaced because this experience appeared consistently across the choices that resonated with you.\n\nThat matters.\n\nOne difficult conversation, disappointing date, or stressful season does not always tell us very much by itself. But when the same experience keeps showing up in different forms, it may be pointing to a pattern worth understanding.\n\nFor you, that pattern may look like this:\n\n${v.corePattern}\n\nThe purpose of your result is not to put you in a box or tell you what decision to make. It is to help you recognize what may be influencing the way you connect, protect yourself, respond, or make relationship decisions right now.\n\nYou do not have to figure all of that out today. For now, take another look at your result and notice what feels especially familiar:\n${v.resultsUrl}\n\nOver the next several days, I'll help you look beneath the result so you can better understand what it may mean for you.${foot(v)}`,
     }),
   },
   // Day 4 — How the pattern may show up
@@ -126,7 +130,7 @@ export const SEQUENCE: Step[] = [
         : "";
       return {
         html: layout(
-          h1("How the pattern may show up") + p(HI) +
+          h1("How the pattern may show up") + p(hiHtml(v)) +
           p("Knowing the name of a pattern is helpful. Recognizing it while it is happening is even more useful.") +
           p(`Your result, ${q(v.resultTitle)}, may influence more than what you do. It may also affect:`) +
           ul(["What you expect from another person", "How you interpret their behavior", "What you assume will happen next", "What you say or avoid saying", "What you tolerate, pursue, question, or protect"]) +
@@ -137,7 +141,7 @@ export const SEQUENCE: Step[] = [
           secondaryHtml +
           p("You are not trying to judge your response. You are learning to see it clearly."),
           v, { label: "Return to My Snapshot Results", url: v.resultsUrl }),
-        text: `${HI}\n\nKnowing the name of a pattern is helpful. Recognizing it while it is happening is even more useful.\n\nYour result, ${tq(v.resultTitle)}, may influence more than what you do. It may also affect:\n\n- What you expect from another person\n- How you interpret their behavior\n- What you assume will happen next\n- What you say or avoid saying\n- What you tolerate, pursue, question, or protect\n\nThink about a recent relationship moment connected to your result.\n\nThen finish these three sentences:\n\n- I noticed: What happened?\n- I told myself: What meaning did you give it?\n- I responded by: What did you do next?\n\nThere are no perfect answers. The goal is to notice the path between the event and your response.${secondaryText}\n\nYou are not trying to judge your response. You are learning to see it clearly.\n\nReturn to your results: ${v.resultsUrl}${foot(v)}`,
+        text: `${hiText(v)}\n\nKnowing the name of a pattern is helpful. Recognizing it while it is happening is even more useful.\n\nYour result, ${tq(v.resultTitle)}, may influence more than what you do. It may also affect:\n\n- What you expect from another person\n- How you interpret their behavior\n- What you assume will happen next\n- What you say or avoid saying\n- What you tolerate, pursue, question, or protect\n\nThink about a recent relationship moment connected to your result.\n\nThen finish these three sentences:\n\n- I noticed: What happened?\n- I told myself: What meaning did you give it?\n- I responded by: What did you do next?\n\nThere are no perfect answers. The goal is to notice the path between the event and your response.${secondaryText}\n\nYou are not trying to judge your response. You are learning to see it clearly.\n\nReturn to your results: ${v.resultsUrl}${foot(v)}`,
       };
     },
   },
@@ -158,7 +162,7 @@ export const SEQUENCE: Step[] = [
         : { label: "Revisit My Snapshot Results", url: v.resultsUrl };
       return {
         html: layout(
-          h1("What staying in the pattern can cost") + p(HI) +
+          h1("What staying in the pattern can cost") + p(hiHtml(v)) +
           p("Not every relationship pattern creates an immediate crisis.") +
           p("Some patterns are quieter than that.") +
           p("They affect one decision, one conversation, or one relationship at a time. Eventually, the person may realize they have been living with the same uncertainty, distance, fear, or frustration in different forms.") +
@@ -170,7 +174,7 @@ export const SEQUENCE: Step[] = [
           p("You do not need to panic or force an answer. But you do deserve to understand what the pattern is asking of you.") +
           playbookHtml,
           v, cta),
-        text: `${HI}\n\nNot every relationship pattern creates an immediate crisis.\n\nSome patterns are quieter than that.\n\nThey affect one decision, one conversation, or one relationship at a time. Eventually, the person may realize they have been living with the same uncertainty, distance, fear, or frustration in different forms.\n\nFor ${tq(v.resultTitle)}, the cost of leaving the pattern unexamined may include:\n\n${v.costOfStayingHere}\n\nThis is not a prediction. Your Snapshot cannot tell you exactly what will happen next.\n\nIt is an invitation to consider whether this experience is taking something from you that you no longer want to keep giving.\n\nMaybe the cost is peace.\nMaybe it is confidence in your own judgment.\nMaybe it is emotional closeness.\nMaybe it is time.\nMaybe it is the ability to make a clear decision.\n\nYou do not need to panic or force an answer. But you do deserve to understand what the pattern is asking of you.${playbookText}\n\n${cta.label}: ${v.resultsUrl}${foot(v)}`,
+        text: `${hiText(v)}\n\nNot every relationship pattern creates an immediate crisis.\n\nSome patterns are quieter than that.\n\nThey affect one decision, one conversation, or one relationship at a time. Eventually, the person may realize they have been living with the same uncertainty, distance, fear, or frustration in different forms.\n\nFor ${tq(v.resultTitle)}, the cost of leaving the pattern unexamined may include:\n\n${v.costOfStayingHere}\n\nThis is not a prediction. Your Snapshot cannot tell you exactly what will happen next.\n\nIt is an invitation to consider whether this experience is taking something from you that you no longer want to keep giving.\n\nMaybe the cost is peace.\nMaybe it is confidence in your own judgment.\nMaybe it is emotional closeness.\nMaybe it is time.\nMaybe it is the ability to make a clear decision.\n\nYou do not need to panic or force an answer. But you do deserve to understand what the pattern is asking of you.${playbookText}\n\n${cta.label}: ${v.resultsUrl}${foot(v)}`,
       };
     },
   },
@@ -182,7 +186,7 @@ export const SEQUENCE: Step[] = [
     preview: "Your Playbook begins with the pattern your answers identified.",
     body: (v) => ({
       html: layout(
-        h1("What makes the Playbook personal") + p(HI) +
+        h1("What makes the Playbook personal") + p(hiHtml(v)) +
         p("Your Relationship Playbook&trade; is not a general collection of relationship tips.") +
         p(`Your version, <strong>${v.playbookSubtitle}</strong>, begins with the experience identified through your Snapshot:`) +
         quoteBlock(v.resultTitle) +
@@ -203,7 +207,7 @@ export const SEQUENCE: Step[] = [
         p(`The Playbook helps you begin answering, ${q("What can I do with what I now understand?")}`) +
         p(`Your personalized Playbook is available for <strong>${v.price}</strong>.`),
         v, { label: "Get My Personalized Relationship Playbook", url: v.resultsUrl }),
-      text: `${HI}\n\nYour Relationship Playbook is not a general collection of relationship tips.\n\nYour version, ${v.playbookSubtitle}, begins with the experience identified through your Snapshot:\n\n${tq(v.resultTitle)}\n\nThat result shapes the focus of the Playbook.\n\nThe Snapshot helped you recognize the pattern and understand what it may mean. The Playbook takes you further by helping you explore the pattern, reflect on how it appears in your life, and practice responses that support your growth.\n\nYour central takeaway from the Snapshot is:\n\n${v.keyTakeaway}\n\nYour Playbook helps you do something with that insight.\n\nIt is designed to help you:\n- Understand the pattern beyond its surface behavior\n- Recognize what tends to activate it\n- Examine the beliefs and protective responses connected to it\n- Reflect on how it affects your relationship choices\n- Practice healthier and more intentional responses\n- Move toward this: ${v.growthLooksLike}\n\nThe Snapshot answers, "What experience may be shaping me right now?"\nThe Playbook helps you begin answering, "What can I do with what I now understand?"\n\nYour personalized Playbook is available for ${v.price}.\n\nGet it here: ${v.resultsUrl}${foot(v)}`,
+      text: `${hiText(v)}\n\nYour Relationship Playbook is not a general collection of relationship tips.\n\nYour version, ${v.playbookSubtitle}, begins with the experience identified through your Snapshot:\n\n${tq(v.resultTitle)}\n\nThat result shapes the focus of the Playbook.\n\nThe Snapshot helped you recognize the pattern and understand what it may mean. The Playbook takes you further by helping you explore the pattern, reflect on how it appears in your life, and practice responses that support your growth.\n\nYour central takeaway from the Snapshot is:\n\n${v.keyTakeaway}\n\nYour Playbook helps you do something with that insight.\n\nIt is designed to help you:\n- Understand the pattern beyond its surface behavior\n- Recognize what tends to activate it\n- Examine the beliefs and protective responses connected to it\n- Reflect on how it affects your relationship choices\n- Practice healthier and more intentional responses\n- Move toward this: ${v.growthLooksLike}\n\nThe Snapshot answers, "What experience may be shaping me right now?"\nThe Playbook helps you begin answering, "What can I do with what I now understand?"\n\nYour personalized Playbook is available for ${v.price}.\n\nGet it here: ${v.resultsUrl}${foot(v)}`,
     }),
   },
   // Day 10 — A decision without pressure
@@ -225,7 +229,7 @@ export const SEQUENCE: Step[] = [
         : "";
       return {
         html: layout(
-          h1("A decision without pressure") + p(HI) +
+          h1("A decision without pressure") + p(hiHtml(v)) +
           p("Over the past several days, we have looked more closely at your Relationship Snapshot&trade; result:") +
           quoteBlock(v.resultTitle) +
           p("You have considered what the pattern may mean, why it may happen, how it shows up, what it may be protecting, and what growth could look like.") +
@@ -234,7 +238,7 @@ export const SEQUENCE: Step[] = [
           playbookHtml + secondary +
           p("You do not have to rush your process. Just do not confuse needing time with needing to remain stuck."),
           v, cta),
-        text: `${HI}\n\nOver the past several days, we have looked more closely at your Relationship Snapshot result:\n\n${tq(v.resultTitle)}\n\nYou have considered what the pattern may mean, why it may happen, how it shows up, what it may be protecting, and what growth could look like.\n\nYour result is still yours whether or not you purchase anything.\n\nYou can return to it, reflect on it, and use it as language for something you may not have known how to explain before.${v.playbookAvailable ? `\n\nBut if you are ready to go beyond recognition, your personalized Relationship Playbook, ${v.playbookSubtitle}, is your next step.\n\nIt was created to help you work through this particular experience with more structure, reflection, and practical guidance.\n\nYour Snapshot gave you a place to begin.\nYour Playbook helps you continue.\n\nGet your Playbook: ${v.resultsUrl}\n\nIf now is not the right time, you can still revisit your result here: ${v.resultsUrl}` : `\n\nYour Snapshot gave you a place to begin — and it will be here whenever you want to come back to it.\n\nReturn to your results: ${v.resultsUrl}`}\n\nYou do not have to rush your process. Just do not confuse needing time with needing to remain stuck.${foot(v)}`,
+        text: `${hiText(v)}\n\nOver the past several days, we have looked more closely at your Relationship Snapshot result:\n\n${tq(v.resultTitle)}\n\nYou have considered what the pattern may mean, why it may happen, how it shows up, what it may be protecting, and what growth could look like.\n\nYour result is still yours whether or not you purchase anything.\n\nYou can return to it, reflect on it, and use it as language for something you may not have known how to explain before.${v.playbookAvailable ? `\n\nBut if you are ready to go beyond recognition, your personalized Relationship Playbook, ${v.playbookSubtitle}, is your next step.\n\nIt was created to help you work through this particular experience with more structure, reflection, and practical guidance.\n\nYour Snapshot gave you a place to begin.\nYour Playbook helps you continue.\n\nGet your Playbook: ${v.resultsUrl}\n\nIf now is not the right time, you can still revisit your result here: ${v.resultsUrl}` : `\n\nYour Snapshot gave you a place to begin — and it will be here whenever you want to come back to it.\n\nReturn to your results: ${v.resultsUrl}`}\n\nYou do not have to rush your process. Just do not confuse needing time with needing to remain stuck.${foot(v)}`,
       };
     },
   },
@@ -243,11 +247,11 @@ export const SEQUENCE: Step[] = [
 // ── engine (enrollment, sends, purchase exit, unsubscribe) ────────────────────
 
 interface SessionRow {
-  id: string; contact_email: string | null; primary_cluster_id: number | null; secondary_cluster_id: number | null;
+  id: string; contact_email: string | null; contact_name: string | null; primary_cluster_id: number | null; secondary_cluster_id: number | null;
   converted_at: string | null; nurture_status: string; nurture_step: number; nurture_last_sent_at: string | null;
 }
 
-const SESSION_COLS = "id, contact_email, primary_cluster_id, secondary_cluster_id, converted_at, nurture_status, nurture_step, nurture_last_sent_at";
+const SESSION_COLS = "id, contact_email, contact_name, primary_cluster_id, secondary_cluster_id, converted_at, nurture_status, nurture_step, nurture_last_sent_at";
 
 // Emails reference the result as a LABEL inside sentences, so the leading
 // "You're " of result_title is stripped (owner decision 2026-08-02):
@@ -256,7 +260,7 @@ const SESSION_COLS = "id, contact_email, primary_cluster_id, secondary_cluster_i
 // The results PAGE keeps the full second-person headline — this is email-only.
 const stripYoure = (t: string) => t.replace(/^You['’]re\s+/i, "");
 
-export async function varsFor(row: Pick<SessionRow, "id" | "primary_cluster_id" | "secondary_cluster_id">): Promise<Vars | null> {
+export async function varsFor(row: Pick<SessionRow, "id" | "primary_cluster_id" | "secondary_cluster_id"> & { contact_name?: string | null }): Promise<Vars | null> {
   const s = getSupabaseAdminClient();
   if (row.primary_cluster_id == null) return null;
   const ids = [row.primary_cluster_id, row.secondary_cluster_id].filter((x): x is number => typeof x === "number");
@@ -270,7 +274,9 @@ export async function varsFor(row: Pick<SessionRow, "id" | "primary_cluster_id" 
   const str = (x: unknown) => (typeof x === "string" ? x : "");
   const arr = (x: unknown) => (Array.isArray(x) ? (x as string[]) : []);
   const blindSpots = arr(c.blind_spots);
+  const firstName = (row.contact_name ?? "").trim().split(/\s+/)[0]?.slice(0, 40) || null;
   return {
+    firstName,
     resultTitle: stripYoure(str(c.result_title)) || str(c.name),
     secondaryResultTitle: sec ? (stripYoure(str(sec.result_title)) || str(sec.name) || null) : null,
     corePattern: str(c.core_pattern),
