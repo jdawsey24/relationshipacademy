@@ -24,15 +24,15 @@ async function main() {
   const OUT = join(process.cwd(), "artifacts", "nurture-preview");
   mkdirSync(OUT, { recursive: true });
 
-  const variants: { label: string; slug: string; primary: number; secondary: number | null }[] = [
-    { label: "Cluster 15 (Feeling Seen) + secondary c23 — playbook available", slug: "c15", primary: 15, secondary: 23 },
-    { label: "Cluster 1 (Flagship), no secondary", slug: "c1", primary: 1, secondary: null },
+  const variants: { label: string; slug: string; primary: number; secondary: number | null; name?: string }[] = [
+    { label: "Cluster 15 (Feeling Seen) + secondary c23 — playbook available — WITH first name", slug: "c15", primary: 15, secondary: 23, name: "Janelle" },
+    { label: "Cluster 1 (Flagship), no secondary, no name (fallback greeting)", slug: "c1", primary: 1, secondary: null },
     { label: "Cluster 19 (Parenthood) — NO purchasable playbook (degrade path)", slug: "c19", primary: 19, secondary: null },
   ];
 
   const indexRows: string[] = [];
   for (const variant of variants) {
-    const v = await varsFor({ id: "00000000-0000-0000-0000-000000000000", primary_cluster_id: variant.primary, secondary_cluster_id: variant.secondary });
+    const v = await varsFor({ id: "00000000-0000-0000-0000-000000000000", primary_cluster_id: variant.primary, secondary_cluster_id: variant.secondary, contact_name: variant.name ?? null });
     if (!v) { console.log(`!! no vars for ${variant.slug} (missing cluster content?)`); continue; }
     indexRows.push(`<h2 style="font-family:Arial;margin:24px 0 8px;">${variant.label}</h2>`);
     SEQUENCE.forEach((step) => {

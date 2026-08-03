@@ -28,10 +28,10 @@ export function SnapshotLeadsView() {
   };
 
   function exportCsv() {
-    const header = ["Email", "Captured", "Situation", "Pattern", "Also relates to", "Low confidence", "Results URL"];
+    const header = ["Name", "Email", "Captured", "Situation", "Pattern", "Also relates to", "Low confidence", "Results URL"];
     const esc = (v: string) => `"${String(v).replace(/"/g, '""')}"`;
     const rows = (leads ?? []).map((l) =>
-      [l.email, l.convertedAt ?? "", l.assessment, l.primaryCluster, l.secondaryCluster, l.lowConfidence ? "yes" : "", l.resultsUrl].map(esc).join(","),
+      [l.name, l.email, l.convertedAt ?? "", l.assessment, l.primaryCluster, l.secondaryCluster, l.lowConfidence ? "yes" : "", l.resultsUrl].map(esc).join(","),
     );
     const blob = new Blob([[header.map(esc).join(","), ...rows].join("\n")], { type: "text/csv" });
     const a = document.createElement("a");
@@ -61,6 +61,7 @@ export function SnapshotLeadsView() {
           <table className="w-full text-left text-sm">
             <thead className="bg-charcoal/[0.03] text-xs uppercase tracking-wide text-charcoal/50">
               <tr>
+                <th className="px-4 py-2.5 font-medium">Name</th>
                 <th className="px-4 py-2.5 font-medium">Email</th>
                 <th className="px-4 py-2.5 font-medium">Captured</th>
                 <th className="px-4 py-2.5 font-medium">Situation</th>
@@ -71,7 +72,8 @@ export function SnapshotLeadsView() {
             <tbody className="divide-y divide-charcoal/10">
               {leads.map((l) => (
                 <tr key={l.sessionId} className="hover:bg-charcoal/[0.02]">
-                  <td className="px-4 py-2.5 font-medium text-charcoal">
+                  <td className="px-4 py-2.5 font-medium text-charcoal">{l.name || <span className="text-charcoal/40">—</span>}</td>
+                  <td className="px-4 py-2.5 text-charcoal">
                     <a href={`mailto:${l.email}`} className="hover:underline">{l.email}</a>
                   </td>
                   <td className="whitespace-nowrap px-4 py-2.5 text-charcoal/70">{fmt(l.convertedAt)}</td>
@@ -126,7 +128,8 @@ function AnswersDrawer({ sessionId, fmt, onClose }: { sessionId: string; fmt: (i
         ) : (
           <>
             <div className="mt-4 rounded-lg border border-charcoal/10 bg-charcoal/[0.02] p-4 text-sm">
-              <p className="text-charcoal"><span className="text-charcoal/55">Email:</span> {detail.email ?? "—"}</p>
+              <p className="text-charcoal"><span className="text-charcoal/55">Name:</span> {detail.name ?? "—"}</p>
+              <p className="mt-1 text-charcoal"><span className="text-charcoal/55">Email:</span> {detail.email ?? "—"}</p>
               <p className="mt-1 text-charcoal"><span className="text-charcoal/55">Situation:</span> {detail.assessment}</p>
               <p className="mt-1 text-charcoal"><span className="text-charcoal/55">Result:</span> {detail.primaryCluster || "—"}
                 {detail.secondaryCluster && <span className="text-charcoal/55"> (also: {detail.secondaryCluster})</span>}

@@ -18,8 +18,11 @@ export async function POST(request: Request) {
   try { body = (await readJsonBody(request)) as Record<string, unknown>; } catch { return NextResponse.json({ error: "Invalid request." }, { status: 400 }); }
   const sessionId = String(body.session_id ?? "");
   const email = String(body.email ?? "").trim();
+  // First name for the CRM + email greeting. Optional at the API level (older
+  // clients / legacy sessions), trimmed and capped; never blocks a conversion.
+  const name = String(body.name ?? "").trim().slice(0, 80) || null;
   if (!isUuid(sessionId) || !EMAIL_RE.test(email)) return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
-  const ok = await convertSession(sessionId, email);
+  const ok = await convertSession(sessionId, email, name);
   if (!ok) return NextResponse.json({ error: "Something went wrong." }, { status: 502 });
   // Enroll in the per-cluster nurture (first email) and push the lead to GHL.
   // Both are resilient — a failure in either never fails the conversion.

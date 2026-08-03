@@ -164,10 +164,17 @@ export async function resolveTiebreak(sessionId: string, winnerClusterId: number
   return !error;
 }
 
-export async function convertSession(sessionId: string, email: string): Promise<boolean> {
+export async function convertSession(sessionId: string, email: string, name?: string | null): Promise<boolean> {
   const s = getSupabaseAdminClient();
+  const base = { contact_email: email, converted_at: new Date().toISOString() };
   const { error } = await s.from("snapshot_quiz_sessions")
-    .update({ contact_email: email, converted_at: new Date().toISOString() }).eq("id", sessionId);
+    .update(name ? { ...base, contact_name: name } : base).eq("id", sessionId);
+  if (error && name) {
+    // Belt-and-braces: if the contact_name column is somehow absent (migration
+    // not yet run), the capture itself must still succeed.
+    const retry = await s.from("snapshot_quiz_sessions").update(base).eq("id", sessionId);
+    return !retry.error;
+  }
   return !error;
 }
 

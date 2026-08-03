@@ -9,6 +9,7 @@ const SITE = process.env.SITE_URL || process.env.URL || "https://relationshiplc.
 export interface SnapshotLead {
   sessionId: string;
   email: string;
+  name: string;
   convertedAt: string | null;
   assessment: string;
   primaryCluster: string;
@@ -20,6 +21,7 @@ export interface SnapshotLead {
 interface SessionRow {
   id: string;
   contact_email: string | null;
+  contact_name: string | null;
   converted_at: string | null;
   assessment_id: string;
   primary_cluster_id: number | null;
@@ -30,7 +32,7 @@ interface SessionRow {
 export async function getSnapshotLeads(limit = 1000): Promise<SnapshotLead[]> {
   const s = getSupabaseAdminClient();
   const { data } = await s.from("snapshot_quiz_sessions")
-    .select("id, contact_email, converted_at, assessment_id, primary_cluster_id, secondary_cluster_id, is_low_confidence")
+    .select("id, contact_email, contact_name, converted_at, assessment_id, primary_cluster_id, secondary_cluster_id, is_low_confidence")
     .not("contact_email", "is", null)
     .order("converted_at", { ascending: false })
     .limit(limit);
@@ -48,6 +50,7 @@ export async function getSnapshotLeads(limit = 1000): Promise<SnapshotLead[]> {
   return rows.map((r) => ({
     sessionId: r.id,
     email: r.contact_email ?? "",
+    name: r.contact_name ?? "",
     convertedAt: r.converted_at,
     assessment: asmName.get(r.assessment_id) ?? r.assessment_id,
     primaryCluster: cName(r.primary_cluster_id),
@@ -68,6 +71,7 @@ export interface SessionAnswer {
 export interface SessionDetail {
   sessionId: string;
   email: string | null;
+  name: string | null;
   assessment: string;
   convertedAt: string | null;
   completed: boolean;
@@ -80,7 +84,7 @@ export interface SessionDetail {
 }
 
 interface DetailSessionRow {
-  id: string; contact_email: string | null; converted_at: string | null; completed_at: string | null;
+  id: string; contact_email: string | null; contact_name: string | null; converted_at: string | null; completed_at: string | null;
   assessment_id: string; primary_cluster_id: number | null; secondary_cluster_id: number | null;
   is_low_confidence: boolean | null; is_tied: boolean | null;
 }
@@ -88,7 +92,7 @@ interface DetailSessionRow {
 export async function getSessionDetail(sessionId: string): Promise<SessionDetail | null> {
   const s = getSupabaseAdminClient();
   const { data: sessData } = await s.from("snapshot_quiz_sessions")
-    .select("id, contact_email, converted_at, completed_at, assessment_id, primary_cluster_id, secondary_cluster_id, is_low_confidence, is_tied")
+    .select("id, contact_email, contact_name, converted_at, completed_at, assessment_id, primary_cluster_id, secondary_cluster_id, is_low_confidence, is_tied")
     .eq("id", sessionId).maybeSingle();
   const sess = sessData as DetailSessionRow | null;
   if (!sess) return null;
@@ -118,6 +122,7 @@ export async function getSessionDetail(sessionId: string): Promise<SessionDetail
   return {
     sessionId: sess.id,
     email: sess.contact_email,
+    name: sess.contact_name,
     assessment: asmName.get(sess.assessment_id) ?? sess.assessment_id,
     convertedAt: sess.converted_at,
     completed: !!sess.completed_at,
