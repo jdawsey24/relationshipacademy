@@ -2,6 +2,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { emailConfigured, sendEmail } from "@/lib/email/client";
 import { playbookUrl, PLAYBOOK_CLUSTERS } from "@/lib/snapshot/playbooks";
 import { PLAYBOOK_PRICE_DISPLAY } from "@/lib/playbookMarketing";
+import { resultLabel } from "@/lib/snapshot/resultTitle";
 
 // 10-day post-Snapshot nurture (owner-approved copy, 2026-08-02) — FIVE emails
 // across the 10 days (owner decision 2026-08-02: days 1/4/6/9/10 of the original
@@ -253,12 +254,6 @@ interface SessionRow {
 
 const SESSION_COLS = "id, contact_email, contact_name, primary_cluster_id, secondary_cluster_id, converted_at, nurture_status, nurture_step, nurture_last_sent_at";
 
-// Emails reference the result as a LABEL inside sentences, so the leading
-// "You're " of result_title is stripped (owner decision 2026-08-02):
-// "You're Feeling Unseen and Unappreciated" → "Feeling Unseen and Unappreciated".
-// Titles without the prefix (e.g. "Guarded From Getting Used") pass through.
-// The results PAGE keeps the full second-person headline — this is email-only.
-const stripYoure = (t: string) => t.replace(/^You['’]re\s+/i, "");
 
 export async function varsFor(row: Pick<SessionRow, "id" | "primary_cluster_id" | "secondary_cluster_id"> & { contact_name?: string | null }): Promise<Vars | null> {
   const s = getSupabaseAdminClient();
@@ -277,8 +272,8 @@ export async function varsFor(row: Pick<SessionRow, "id" | "primary_cluster_id" 
   const firstName = (row.contact_name ?? "").trim().split(/\s+/)[0]?.slice(0, 40) || null;
   return {
     firstName,
-    resultTitle: stripYoure(str(c.result_title)) || str(c.name),
-    secondaryResultTitle: sec ? (stripYoure(str(sec.result_title)) || str(sec.name) || null) : null,
+    resultTitle: resultLabel(str(c.result_title)) || str(c.name),
+    secondaryResultTitle: sec ? (resultLabel(str(sec.result_title)) || str(sec.name) || null) : null,
     corePattern: str(c.core_pattern),
     whyThisHappens: str(c.why_this_happens),
     howItMayShowUp: arr(c.how_it_may_show_up),
