@@ -15,6 +15,8 @@ import type { CSSProperties } from "react";
 // rendering runs one query at request time (reliable) — no post-deploy 404 window.
 export const dynamic = "force-dynamic";
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const p = await getPlaybookBySlug((await params).slug);
   if (!p) return { title: "Playbook not found" };
@@ -24,8 +26,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function PlaybookDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function PlaybookDetailPage(
+  { params, searchParams }: { params: Promise<{ slug: string }>; searchParams?: Promise<{ s?: string }> },
+) {
   const { slug } = await params;
+  // Optional quiz session forwarded from the Snapshot results CTA (?s=…). Passed
+  // into checkout metadata so a purchase can exit that session's nurture exactly.
+  const rawSession = (await searchParams)?.s;
+  const sessionId = typeof rawSession === "string" && UUID_RE.test(rawSession) ? rawSession : undefined;
   const p = await getPlaybookBySlug(slug);
   if (!p) notFound();
   const hue = playbookHue(p.clusterId);
@@ -42,7 +50,7 @@ export default async function PlaybookDetailPage({ params }: { params: Promise<{
         <SectionLabel>The Relationship Playbook&trade;</SectionLabel>
         <h1 className="mt-3 text-balance font-display text-4xl font-semibold leading-tight text-midnight-navy sm:text-[44px]">{p.subtitle}</h1>
         {p.corePattern && <p className="mt-5 text-balance font-body text-lg leading-relaxed text-charcoal/75">{p.corePattern}</p>}
-        <div className="mt-8"><PlaybookCta clusterId={p.clusterId} slug={slug} buyLabel={`Get this Playbook — ${PLAYBOOK_PRICE_DISPLAY}`} className="!justify-start" /></div>
+        <div className="mt-8"><PlaybookCta clusterId={p.clusterId} slug={slug} sessionId={sessionId} buyLabel={`Get this Playbook — ${PLAYBOOK_PRICE_DISPLAY}`} className="!justify-start" /></div>
         <p className="mt-3 font-body text-sm text-charcoal/50">One-time purchase · instant access · yours to keep · by Janelle Dawsey, LMFT</p>
       </section>
 
@@ -99,7 +107,7 @@ export default async function PlaybookDetailPage({ params }: { params: Promise<{
       <section className="mt-14 text-center">
         <h2 className="font-display text-2xl font-semibold text-midnight-navy">Ready to dig in?</h2>
         <div className="mt-6 flex flex-col items-center gap-3">
-          <PlaybookCta clusterId={p.clusterId} slug={slug} buyLabel={`Get this Playbook — ${PLAYBOOK_PRICE_DISPLAY}`} />
+          <PlaybookCta clusterId={p.clusterId} slug={slug} sessionId={sessionId} buyLabel={`Get this Playbook — ${PLAYBOOK_PRICE_DISPLAY}`} />
           <Link href="/snapshot" className="font-ui text-sm text-midnight-navy/70 underline underline-offset-4 hover:text-midnight-navy">Not sure this is the one? Take the free Snapshot</Link>
         </div>
       </section>

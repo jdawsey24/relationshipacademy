@@ -6,7 +6,7 @@ import { useState } from "react";
 // attach to an account, so an unauthenticated buyer is routed to sign in and
 // returned. Uses the neutral /account doorway (a purchase is not the Academy).
 // Mirrors the Snapshot results buy flow.
-export default function PlaybookBuyButton({ clusterId, label, className = "" }: { clusterId: number; label: string; className?: string }) {
+export default function PlaybookBuyButton({ clusterId, label, sessionId, className = "" }: { clusterId: number; label: string; sessionId?: string; className?: string }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
@@ -15,7 +15,7 @@ export default function PlaybookBuyButton({ clusterId, label, className = "" }: 
     try {
       const res = await fetch("/api/playbooks/checkout", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cluster_id: clusterId }),
+        body: JSON.stringify(sessionId ? { cluster_id: clusterId, session_id: sessionId } : { cluster_id: clusterId }),
       });
       if (res.status === 401) { window.location.href = `/account/login?next=${encodeURIComponent(window.location.pathname)}`; return; }
       const d = await res.json().catch(() => ({}));

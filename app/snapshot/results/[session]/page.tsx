@@ -304,31 +304,16 @@ function TwoUp({ strengths, blindSpots, hue }: { strengths: string[]; blindSpots
 function PlaybookOffer({ session, clusterId, title, subtitle, whyThisPlaybook, ctaLabel, available, variant }: {
   session: string; clusterId: number; title: string; subtitle: string; whyThisPlaybook: string; ctaLabel: string; available: boolean; variant: "full" | "compact";
 }) {
-  const [buying, setBuying] = useState(false);
-  const [buyErr, setBuyErr] = useState<string | null>(null);
+  // The CTA sends people to the Playbook's SALES page rather than straight into
+  // checkout/sign-up (owner decision): they see the full pitch first, and account
+  // creation only happens at the actual purchase. `?s=` carries the quiz session so
+  // the checkout there can still stamp it into Stripe metadata — that's what lets
+  // the webhook exit THIS session's nurture the moment they buy.
+  // slug === playbook_key (see lib/playbook/keys.ts).
+  const slug = keyForClusterId(clusterId);
+  const salesHref = slug ? `/playbooks/${slug}?s=${encodeURIComponent(session)}` : null;
 
-  // Ownership must attach to an account, so an unauthenticated buyer signs in via
-  // the neutral account doorway and is returned here to finish.
-  async function buy() {
-    setBuying(true); setBuyErr(null);
-    try {
-      const res = await fetch(`/api/playbooks/checkout`, {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cluster_id: clusterId, session_id: session }),
-      });
-      if (res.status === 401) {
-        window.location.href = `/account/login?next=${encodeURIComponent(`/snapshot/results/${session}`)}`;
-        return;
-      }
-      const d = await res.json().catch(() => ({}));
-      if (!res.ok || !d.url) { setBuyErr(d.error ?? "Could not start checkout."); setBuying(false); return; }
-      const w = window as unknown as { fbq?: (...a: unknown[]) => void };
-      try { w.fbq?.("track", "InitiateCheckout", { content_name: "Relationship Playbook" }); } catch { /* noop */ }
-      window.location.href = d.url;
-    } catch {
-      setBuyErr("Could not start checkout."); setBuying(false);
-    }
-  }
+  const ctaCopy = "Get Your Playbook →";
 
   // No purchasable Playbook for this cluster yet — a quiet "coming soon" note.
   if (!available) {
@@ -347,11 +332,12 @@ function PlaybookOffer({ session, clusterId, title, subtitle, whyThisPlaybook, c
         <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.12em] text-plum">Your matched Playbook</p>
         <h2 className="mt-1 font-display text-xl font-semibold text-midnight-navy sm:text-2xl">{title}</h2>
         {subtitle && <p className="mx-auto mt-2 max-w-md font-body text-body text-charcoal/70">{subtitle}</p>}
-        <button onClick={buy} disabled={buying}
-          className="mt-5 inline-flex min-h-[52px] items-center justify-center rounded-full bg-midnight-navy px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60">
-          {buying ? "Starting checkout…" : "Get Your Playbook →"}
-        </button>
-        {buyErr && <p className="mt-3 font-body text-sm text-coral-rose">{buyErr}</p>}
+        {salesHref && (
+          <a href={salesHref}
+            className="mt-5 inline-flex min-h-[52px] items-center justify-center rounded-full bg-midnight-navy px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
+            {ctaCopy}
+          </a>
+        )}
       </section>
     );
   }
@@ -367,11 +353,12 @@ function PlaybookOffer({ session, clusterId, title, subtitle, whyThisPlaybook, c
       <p className="mx-auto mt-2 max-w-md font-body text-reading text-white/85">{subtitle}</p>
       {whyThisPlaybook && <p className="mx-auto mt-3 max-w-md font-body text-body text-white/70">{whyThisPlaybook}</p>}
       {ctaLabel && <p className="mx-auto mt-5 max-w-md font-body text-body text-white/75">{ctaLabel}</p>}
-      <button onClick={buy} disabled={buying}
-        className="mt-5 inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60">
-        {buying ? "Starting checkout…" : "Get Your Playbook →"}
-      </button>
-      {buyErr && <p className="mt-3 font-body text-sm text-soft-coral">{buyErr}</p>}
+      {salesHref && (
+        <a href={salesHref}
+          className="mt-5 inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
+          {ctaCopy}
+        </a>
+      )}
     </section>
   );
 }
