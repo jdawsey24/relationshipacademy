@@ -25,11 +25,14 @@ export default function PlaybookCta({
   clusterId,
   slug,
   buyLabel,
+  sessionId,
   className = "",
 }: {
   clusterId: number;
   slug: string;
   buyLabel: string;
+  /** Quiz session forwarded from the Snapshot results CTA — rides into checkout metadata. */
+  sessionId?: string;
   className?: string;
 }) {
   const [access, setAccess] = useState<Access | undefined>(undefined);
@@ -67,5 +70,5 @@ export default function PlaybookCta({
     );
   }
 
-  return <PlaybookBuyButton clusterId={clusterId} label={buyLabel} className={className} />;
+  return <PlaybookBuyButton clusterId={clusterId} label={buyLabel} sessionId={sessionId} className={className} />;
 }
