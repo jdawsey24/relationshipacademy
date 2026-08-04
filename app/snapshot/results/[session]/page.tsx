@@ -88,11 +88,12 @@ export default function ResultsPage() {
         {p.core_pattern && <p className="mx-auto mt-4 max-w-xl text-balance font-body text-lg leading-relaxed text-charcoal/70">{p.core_pattern}</p>}
       </section>
 
-      {/* First paragraph, then the matched Playbook — the recommendation comes early. */}
+      {/* First paragraph, then a SHORT matched-Playbook suggestion — the
+          recommendation lands early, the detailed pitch waits for the bottom. */}
       <Prose label="What this means" text={p.what_this_means} />
 
       <PlaybookOffer
-        variant="full"
+        variant="compact"
         session={session}
         clusterId={p.id}
         title={p.playbook_title}
@@ -121,9 +122,9 @@ export default function ResultsPage() {
         </section>
       )}
 
-      {/* Bottom CTA — the funnel again, for readers who scrolled the whole thing. */}
+      {/* Bottom CTA — the full pitch, for readers who've now seen everything. */}
       <PlaybookOffer
-        variant="compact"
+        variant="full"
         session={session}
         clusterId={p.id}
         title={p.playbook_title}
@@ -343,7 +344,7 @@ function PlaybookOffer({ session, clusterId, title, subtitle, whyThisPlaybook, c
   if (variant === "compact") {
     return (
       <section className="mt-12 rounded-2xl border border-midnight-navy/15 bg-white p-6 text-center">
-        <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.12em] text-plum">Your next step</p>
+        <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.12em] text-plum">Your matched Playbook</p>
         <h2 className="mt-1 font-display text-xl font-semibold text-midnight-navy sm:text-2xl">{title}</h2>
         {subtitle && <p className="mx-auto mt-2 max-w-md font-body text-body text-charcoal/70">{subtitle}</p>}
         <button onClick={buy} disabled={buying}
@@ -361,7 +362,7 @@ function PlaybookOffer({ session, clusterId, title, subtitle, whyThisPlaybook, c
       <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
         <PlaybookMark clusterId={clusterId} className="h-7 w-7 text-white" />
       </span>
-      <p className="mt-3 font-ui text-xs uppercase tracking-wide text-white/60">Your matched Playbook</p>
+      <p className="mt-3 font-ui text-xs uppercase tracking-wide text-white/60">Your next step</p>
       <h2 className="mt-1 font-display text-2xl font-semibold sm:text-3xl">{title}</h2>
       <p className="mx-auto mt-2 max-w-md font-body text-reading text-white/85">{subtitle}</p>
       {whyThisPlaybook && <p className="mx-auto mt-3 max-w-md font-body text-body text-white/70">{whyThisPlaybook}</p>}
