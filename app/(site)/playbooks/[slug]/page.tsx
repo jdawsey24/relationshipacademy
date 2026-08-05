@@ -161,7 +161,7 @@ export default async function PlaybookDetailPage(
           className="h-20 w-20 shrink-0 rounded-full object-cover object-top sm:h-24 sm:w-24"
         />
         <div>
-          <p className="font-display text-lg font-semibold text-midnight-navy">Written by Janelle Dawsey, LMFT</p>
+          <p className="font-display text-lg font-semibold text-midnight-navy">Janelle Dawsey, LMFT</p>
           <p className="mt-1.5 font-body text-base leading-relaxed text-charcoal/70">
             Licensed marriage and family therapist, and the creator of the Relationship Life Cycle&trade;
             framework your Snapshot is built on.
