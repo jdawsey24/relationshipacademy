@@ -2,19 +2,35 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { loadStripe } from "@stripe/stripe-js";
+import type { Stripe } from "@stripe/stripe-js";
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
 
 // Stripe's embedded Checkout, rendered inside the sales page instead of sending
 // people to Stripe's hosted page. The CTA stays a plain button until it's pressed
 // — nothing loads Stripe on page view.
 //
-// Access still attaches to an account, so a signed-out visitor is sent to the
-// neutral /account doorway and returned here to complete. (Guest checkout — pay
-// first, account created from the Stripe email — is approved but not built yet.)
+// No sign-in required (owner decision 2026-08-04): a guest pays first, and the
+// webhook creates their account from the email Stripe collected, so the Playbook
+// is already waiting when they set a password. Signed-in buyers are unchanged —
+// the purchase attaches straight to their account.
 
 const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
-const stripePromise = publishableKey ? loadStripe(publishableKey) : null;
+
+// Load Stripe.js only when someone actually presses buy, and memoize it. Imported
+// lazily (not at module scope) so the script isn't fetched on page view.
+let stripeJs: Promise<Stripe | null> | null = null;
+function getStripeJs(): Promise<Stripe | null> {
+  if (!publishableKey) return Promise.resolve(null);
+  if (!stripeJs) {
+    stripeJs = import("@stripe/stripe-js")
+      .then((m) => m.loadStripe(publishableKey))
+      .catch(() => null);
+    // A rejected memo would poison every later attempt; reset so a retry can work
+    // (this is the offline / blocked-script / ad-blocker case).
+    stripeJs.then((s) => { if (!s) stripeJs = null; });
+  }
+  return stripeJs;
+}
 
 interface Access { signedIn: boolean; interactive: boolean; owned: boolean }
 
@@ -56,17 +72,30 @@ export default function PlaybookEmbeddedCheckout({
     return d.client_secret as string;
   }, [clusterId, sessionId]);
 
-  function start() {
+  // Fall back to Stripe's own hosted page when the embedded script can't load
+  // (blocked, offline, ad-blocker). Losing the in-page experience is fine; losing
+  // the sale is not.
+  const startHosted = useCallback(async () => {
+    try {
+      const res = await fetch("/api/playbooks/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(sessionId ? { cluster_id: clusterId, session_id: sessionId } : { cluster_id: clusterId }),
+      });
+      const d = await res.json().catch(() => ({}));
+      if (res.ok && d.url) { window.location.href = d.url as string; return true; }
+    } catch { /* fall through to the error message */ }
+    return false;
+  }, [clusterId, sessionId]);
+
+  async function start() {
     setErr(null);
-    // Ownership attaches to an account — send a signed-out buyer to sign in first
-    // and bring them straight back to this page (with ?s= intact).
-    if (access && !access.signedIn) {
-      const here = window.location.pathname + window.location.search;
-      window.location.href = `/account/login?next=${encodeURIComponent(here)}`;
-      return;
-    }
     setStarting(true);
-    setOpen(true);
+    const stripe = await getStripeJs();
+    if (stripe) { setOpen(true); return; }
+    if (await startHosted()) return; // navigating away; leave the button busy
+    setStarting(false);
+    setErr("We couldn't open the payment form. Please check your connection or disable your ad blocker, then try again.");
   }
 
   // Already owns it — send them to the Playbook instead of selling it again.
@@ -82,17 +111,14 @@ export default function PlaybookEmbeddedCheckout({
     );
   }
 
-  if (!open || !stripePromise) {
+  if (!open) {
     return (
       <div className="flex flex-col items-center gap-3">
         <button onClick={start} disabled={starting}
           className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-midnight-navy px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60">
           {starting ? "Opening checkout…" : buyLabel}
         </button>
-        {err && <p className="font-body text-sm text-coral-rose">{err}</p>}
-        {!stripePromise && open && (
-          <p className="font-body text-sm text-coral-rose">Payment isn&apos;t available right now.</p>
-        )}
+        {err && <p className="max-w-sm text-center font-body text-sm text-coral-rose">{err}</p>}
       </div>
     );
   }
@@ -100,11 +126,13 @@ export default function PlaybookEmbeddedCheckout({
   return (
     <div className="mx-auto w-full max-w-xl">
       <p className="mb-5 text-center font-body text-base text-charcoal/70">
-        <strong className="text-midnight-navy">{playbookName}</strong> — complete your purchase below and it&apos;s
-        added to your library right away.
+        <strong className="text-midnight-navy">{playbookName}</strong> —{" "}
+        {access?.signedIn
+          ? "complete your purchase below and it's added to your library right away."
+          : "complete your purchase below, then set a password and it's waiting in your library."}
       </p>
       <div className="overflow-hidden rounded-2xl border border-midnight-navy/10 bg-white p-2">
-        <EmbeddedCheckoutProvider stripe={stripePromise} options={{ fetchClientSecret }}>
+        <EmbeddedCheckoutProvider stripe={getStripeJs()} options={{ fetchClientSecret }}>
           <EmbeddedCheckout />
         </EmbeddedCheckoutProvider>
       </div>

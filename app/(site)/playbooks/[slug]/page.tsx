@@ -188,7 +188,8 @@ export default async function PlaybookDetailPage(
             { q: "Is it personalized?", a: "It's matched to your result. Everything inside is built around that specific pattern rather than relationships in general." },
             { q: "Can I use it if I'm single?", a: "Yes. It works on the pattern, not on a relationship status." },
             { q: "Is it for couples?", a: "It's written for you as an individual. Nothing requires your partner's participation." },
-            { q: "What happens after I buy?", a: "You go straight to your Playbook, and it stays in your library." },
+            { q: "Do I need an account first?", a: "No. Pay first, and we'll email you a link to choose a password — your Playbook is already waiting behind it." },
+            { q: "What happens after I buy?", a: "Your Playbook is added to your library right away, and it stays there. It's yours to keep." },
           ].map((f) => (
             <details key={f.q} className="group py-5">
               <summary className="cursor-pointer list-none font-body text-lg text-midnight-navy marker:hidden">{f.q}</summary>

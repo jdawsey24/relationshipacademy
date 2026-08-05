@@ -3,6 +3,7 @@ import { getStripe, stripeConfigured } from "@/lib/stripe";
 import { keyForClusterId } from "@/lib/playbook/keys";
 import { getPlaybookContent } from "@/content/playbook";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { getMember } from "@/lib/academyAuth";
 import SectionLabel from "@/components/site/SectionLabel";
 
 export const dynamic = "force-dynamic";
@@ -25,6 +26,10 @@ export default async function PurchaseCompletePage(
   { searchParams }: { searchParams?: Promise<{ session_id?: string }> },
 ) {
   const checkoutSessionId = (await searchParams)?.session_id;
+  // A guest bought without signing in — their account was created from the Stripe
+  // email, so the next step is the set-password link we emailed them, not a
+  // library link they can't open yet.
+  const guest = !(await getMember());
 
   let paid = false;
   let key: string | null = null;
@@ -49,21 +54,32 @@ export default async function PurchaseCompletePage(
         {paid ? `${name} is yours.` : "Your purchase is being confirmed."}
       </h1>
       <p className="mt-6 font-body text-lg leading-relaxed text-charcoal/75">
-        {paid
-          ? "It's in your library from now on — take it at your own pace and come back whenever you need it."
-          : "This can take a few seconds. Your Playbook will appear in your library as soon as it's confirmed."}
+        {!paid
+          ? "This can take a few seconds. Your Playbook will appear in your library as soon as it's confirmed."
+          : guest
+            ? "Check your email — there's a link to choose a password. Your Playbook is already waiting behind it, and it's yours to keep."
+            : "It's in your library from now on — take it at your own pace and come back whenever you need it."}
       </p>
 
       <div className="mt-10 flex flex-col items-center gap-4">
-        {key && (
-          <Link href={`/playbook/${key}`}
-            className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
-            Open {name} →
-          </Link>
+        {guest ? (
+          <p className="max-w-md font-body text-sm leading-relaxed text-charcoal/55">
+            Nothing after a few minutes? Check your spam folder, or reply to any email from us and we&rsquo;ll
+            get you in.
+          </p>
+        ) : (
+          <>
+            {key && (
+              <Link href={`/playbook/${key}`}
+                className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-coral-rose px-8 font-ui text-base font-semibold text-white transition-opacity hover:opacity-90">
+                Open {name} →
+              </Link>
+            )}
+            <Link href="/playbooks" className="font-ui text-sm text-midnight-navy/70 underline underline-offset-4 hover:text-midnight-navy">
+              Go to my library
+            </Link>
+          </>
         )}
-        <Link href="/playbooks" className="font-ui text-sm text-midnight-navy/70 underline underline-offset-4 hover:text-midnight-navy">
-          Go to my library
-        </Link>
       </div>
     </main>
   );

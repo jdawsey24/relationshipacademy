@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { requireMember } from "@/lib/academyAuth";
+import { getMember } from "@/lib/academyAuth";
 import { getStripe, stripeConfigured } from "@/lib/stripe";
 import { readJsonBody, isUuid } from "@/lib/apiSecurity";
 import { PLAYBOOK_PRICE_LOOKUP_KEY, PLAYBOOK_PRODUCT_KEY, hasPlaybook } from "@/lib/snapshot/playbooks";
@@ -18,14 +18,13 @@ export const dynamic = "force-dynamic";
  * embedded form is submitted, and the existing webhook (product_key "playbook")
  * remains the single source of truth for granting access.
  *
- * Still requires a signed-in member: entitlements attach to a user_id. Guest
- * checkout (pay first, account provisioned from the Stripe email afterwards) is
- * approved but NOT built yet — it needs the webhook to create/find the account,
- * which must be verified before real money depends on it.
+ * GUEST CHECKOUT (owner decision 2026-08-04): signing in is NOT required. Pay
+ * first, and the webhook resolves-or-creates the account from the email Stripe
+ * collected, so the Playbook is already in the library when they set a password.
+ * A signed-in buyer still purchases against their own user_id and customer.
  */
 export async function POST(request: Request) {
-  const member = await requireMember();
-  if (member instanceof NextResponse) return member;
+  const member = await getMember(); // null = guest; not an error any more
   if (!stripeConfigured()) return NextResponse.json({ error: "Purchasing isn't available yet." }, { status: 503 });
 
   const body = await readJsonBody(request).catch(() => null);
@@ -45,43 +44,55 @@ export async function POST(request: Request) {
     const price = prices.data[0];
     if (!price) return NextResponse.json({ error: "Playbooks aren't available for purchase yet." }, { status: 400 });
 
-    // Reuse the shared Stripe customer on the profile (never mint a second), and
-    // self-heal an id that doesn't exist in this Stripe mode.
-    let customerId = member.profile.stripe_customer_id ?? null;
-    if (customerId) {
-      try {
-        const existing = await stripe.customers.retrieve(customerId);
-        if ((existing as { deleted?: boolean }).deleted) customerId = null;
-      } catch { customerId = null; }
-    }
-    if (!customerId) {
-      const customer = await stripe.customers.create({
-        email: member.user.email ?? undefined,
-        name: member.profile.full_name ?? undefined,
-        metadata: { user_id: member.user.id },
-      });
-      customerId = customer.id;
-      await admin.from("profiles").upsert({ id: member.user.id, stripe_customer_id: customerId }, { onConflict: "id" });
+    // Signed-in buyer: reuse the shared Stripe customer on the profile (never mint
+    // a second), and self-heal an id that doesn't exist in this Stripe mode.
+    // Guest: no customer up front — Stripe collects the email at checkout and
+    // customer_creation below mints one, which the webhook provisions against.
+    let customerId: string | null = null;
+    if (member) {
+      customerId = member.profile.stripe_customer_id ?? null;
+      if (customerId) {
+        try {
+          const existing = await stripe.customers.retrieve(customerId);
+          if ((existing as { deleted?: boolean }).deleted) customerId = null;
+        } catch { customerId = null; }
+      }
+      if (!customerId) {
+        const customer = await stripe.customers.create({
+          email: member.user.email ?? undefined,
+          name: member.profile.full_name ?? undefined,
+          metadata: { user_id: member.user.id },
+        });
+        customerId = customer.id;
+        await admin.from("profiles").upsert({ id: member.user.id, stripe_customer_id: customerId }, { onConflict: "id" });
+      }
     }
 
     const meta: Record<string, string> = {
-      user_id: member.user.id,
       product_key: PLAYBOOK_PRODUCT_KEY,
       billing_type: "one_time",
       cluster_id: String(clusterId),
     };
+    // Only a signed-in purchase carries a user_id; its absence is what tells the
+    // webhook to provision the account from the email Stripe collected.
+    if (member) meta.user_id = member.user.id;
     if (quizSessionId) meta.session_id = quizSessionId;
 
     const params: NonNullable<Parameters<typeof stripe.checkout.sessions.create>[0]> = {
       // NOTE: this SDK/API version renames the modes — "embedded_page", not "embedded".
       ui_mode: "embedded_page",
       mode: "payment",
-      customer: customerId,
       line_items: [{ price: price.id, quantity: 1 }],
       return_url: `${origin}/playbooks/purchase-complete?session_id={CHECKOUT_SESSION_ID}`,
       metadata: meta,
       payment_intent_data: { metadata: meta },
     };
+
+    // A guest has no customer yet; Stripe collects the email on the form and mints
+    // one, so customer_details.email always reaches the webhook. Access depends on
+    // that address, so it must be captured on every guest purchase.
+    if (customerId) params.customer = customerId;
+    else params.customer_creation = "always";
 
     const addonCoupon = process.env.STRIPE_ADDON_COUPON_ID;
     if (isAddonEntitlementId(clusterId) && addonCoupon) params.discounts = [{ coupon: addonCoupon }];
