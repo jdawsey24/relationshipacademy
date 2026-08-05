@@ -149,9 +149,34 @@ async function applyPlaybookGrant(event: Stripe.Event) {
   if (event.type !== "checkout.session.completed") return;
   const s = event.data.object as Stripe.Checkout.Session;
   if (s.metadata?.product_key !== "playbook") return;
-  const userId = s.metadata?.user_id;
   const clusterId = Number(s.metadata?.cluster_id);
-  if (!userId || !Number.isInteger(clusterId)) return;
+  if (!Number.isInteger(clusterId)) return;
+  const buyerEmail = s.customer_details?.email ?? null;
+
+  // Who owns this purchase?
+  //   • Signed-in buyer  -> metadata.user_id, set at checkout (unchanged behaviour).
+  //   • GUEST buyer      -> no user_id; resolve-or-create the account from the email
+  //     they paid with (owner decision 2026-08-04: pay first, then create the
+  //     account, and the Playbook is already there). If that email already has an
+  //     account, the purchase attaches to it rather than making a second one.
+  let userId: string | null = s.metadata?.user_id ?? null;
+  let accountWasCreated = false;
+  if (!userId) {
+    const { resolveOrCreatePurchaser } = await import("@/lib/snapshot/purchaseAccount");
+    const provisioned = await resolveOrCreatePurchaser(buyerEmail);
+    userId = provisioned.userId;
+    accountWasCreated = provisioned.created;
+    if (!userId) {
+      // Money took, access not granted — the one failure that must be loud, since
+      // it needs a human to place the entitlement by hand.
+      console.error(
+        `[stripe/webhook] PLAYBOOK GRANT ORPHANED — paid session ${s.id} (${buyerEmail ?? "no email"}), ` +
+          `cluster ${clusterId}: ${provisioned.error ?? "could not provision an account"}`
+      );
+      return;
+    }
+  }
+
   const customerId = typeof s.customer === "string" ? s.customer : s.customer?.id ?? null;
   const { grantPlaybookFromStripeSession } = await import("@/lib/snapshot/playbookGrants");
   await grantPlaybookFromStripeSession({ userId, clusterId, customerId, ref: s.id });
@@ -163,7 +188,6 @@ async function applyPlaybookGrant(event: Stripe.Event) {
   // 2) send the Playbook delivery email (start of the post-purchase flow).
   try {
     const { exitNurtureOnPurchase } = await import("@/lib/snapshot/nurture");
-    const buyerEmail = s.customer_details?.email ?? null;
     let accountEmail: string | null = null;
     try {
       const { getSupabaseAdminClient } = await import("@/lib/supabase");
@@ -176,8 +200,17 @@ async function applyPlaybookGrant(event: Stripe.Event) {
     }
     const to = accountEmail || buyerEmail;
     if (to) {
+      // A guest whose account we just created has no password yet, so the delivery
+      // email carries a one-time link to set one — that link IS "creating the
+      // account", and the Playbook is already sitting in their library behind it.
+      let setPasswordLink: string | null = null;
+      if (accountWasCreated) {
+        const { generateSetPasswordLink } = await import("@/lib/snapshot/purchaseAccount");
+        const site = process.env.SITE_URL || process.env.URL || "https://relationshiplc.com";
+        setPasswordLink = await generateSetPasswordLink(to, `${site}/account/set-password`);
+      }
       const { sendPlaybookDeliveryEmail } = await import("@/lib/email/playbookDelivery");
-      await sendPlaybookDeliveryEmail({ to, clusterId });
+      await sendPlaybookDeliveryEmail({ to, clusterId, setPasswordLink });
     }
   } catch (e) {
     console.error("[stripe/webhook] playbook post-purchase side effects:", e instanceof Error ? e.message : e);

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { requireMember } from "@/lib/academyAuth";
+import { getMember } from "@/lib/academyAuth";
 import { getStripe, stripeConfigured } from "@/lib/stripe";
 import { readJsonBody, isUuid } from "@/lib/apiSecurity";
 import { PLAYBOOK_PRICE_LOOKUP_KEY, PLAYBOOK_PRODUCT_KEY, hasPlaybook } from "@/lib/snapshot/playbooks";
@@ -9,13 +9,14 @@ import { isAddonEntitlementId } from "@/lib/playbook/keys";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// One-time Playbook purchase. Requires a signed-in member (ownership must attach
-// to an account so the gated download + the Companion discount can see it).
-// Same shared price for every playbook; the specific playbook is the cluster_id
-// carried in metadata. Inert until Stripe is configured AND the price exists.
+// One-time Playbook purchase. Signing in is OPTIONAL (owner decision 2026-08-04):
+// a guest pays first and the webhook resolves-or-creates their account from the
+// email Stripe collected, so ownership still attaches to a user_id by the time the
+// entitlement is written. Same shared price for every playbook; the specific
+// playbook is the cluster_id carried in metadata. Inert until Stripe is configured
+// AND the price exists.
 export async function POST(request: Request) {
-  const member = await requireMember();
-  if (member instanceof NextResponse) return member;
+  const member = await getMember(); // null = guest
   if (!stripeConfigured()) return NextResponse.json({ error: "Purchasing isn't available yet." }, { status: 503 });
 
   const body = await readJsonBody(request).catch(() => null);
@@ -33,32 +34,38 @@ export async function POST(request: Request) {
     const price = prices.data[0];
     if (!price) return NextResponse.json({ error: "Playbooks aren't available for purchase yet." }, { status: 400 });
 
-    // Reuse the shared Stripe customer on the profile (never mint a second).
-    let customerId = member.profile.stripe_customer_id ?? null;
+    // Signed-in buyer: reuse the shared Stripe customer on the profile (never mint
+    // a second). A guest has none yet — Stripe collects the email and mints one.
     // Self-heal: a stored id that doesn't exist in THIS Stripe mode (e.g. a stale
     // TEST-mode customer from earlier dev) would make checkout throw. Verify it, and
     // fall through to create a fresh customer (overwriting the bad id) if invalid.
-    if (customerId) {
-      try {
-        const existing = await stripe.customers.retrieve(customerId);
-        if ((existing as { deleted?: boolean }).deleted) customerId = null;
-      } catch { customerId = null; }
-    }
-    if (!customerId) {
-      const customer = await stripe.customers.create({ email: member.user.email ?? undefined, name: member.profile.full_name ?? undefined, metadata: { user_id: member.user.id } });
-      customerId = customer.id;
-      await admin.from("profiles").upsert({ id: member.user.id, stripe_customer_id: customerId }, { onConflict: "id" });
+    let customerId: string | null = null;
+    if (member) {
+      customerId = member.profile.stripe_customer_id ?? null;
+      if (customerId) {
+        try {
+          const existing = await stripe.customers.retrieve(customerId);
+          if ((existing as { deleted?: boolean }).deleted) customerId = null;
+        } catch { customerId = null; }
+      }
+      if (!customerId) {
+        const customer = await stripe.customers.create({ email: member.user.email ?? undefined, name: member.profile.full_name ?? undefined, metadata: { user_id: member.user.id } });
+        customerId = customer.id;
+        await admin.from("profiles").upsert({ id: member.user.id, stripe_customer_id: customerId }, { onConflict: "id" });
+      }
     }
 
     // Carry the quiz session (when the buy started on a results page) so the
     // webhook can exit that session's nurture sequence the moment payment lands.
     const rawSession = (body as { session_id?: unknown } | null)?.session_id;
     const quizSessionId = typeof rawSession === "string" && isUuid(rawSession) ? rawSession : null;
-    const meta: Record<string, string> = { user_id: member.user.id, product_key: PLAYBOOK_PRODUCT_KEY, billing_type: "one_time", cluster_id: String(clusterId) };
+    const meta: Record<string, string> = { product_key: PLAYBOOK_PRODUCT_KEY, billing_type: "one_time", cluster_id: String(clusterId) };
+    // Only a signed-in purchase carries a user_id; its absence is what tells the
+    // webhook to provision the account from the email Stripe collected.
+    if (member) meta.user_id = member.user.id;
     if (quizSessionId) meta.session_id = quizSessionId;
     const params: Parameters<typeof stripe.checkout.sessions.create>[0] = {
       mode: "payment",
-      customer: customerId,
       line_items: [{ price: price.id, quantity: 1 }],
       success_url: `${origin}/playbooks?purchase=success`,
       cancel_url: `${origin}/snapshot/results/${(body as { session_id?: string } | null)?.session_id ?? ""}`,
@@ -69,6 +76,9 @@ export async function POST(request: Request) {
     // Add-ons carry a back-end coupon (auto-applied, not customer-entered) when
     // STRIPE_ADDON_COUPON_ID is configured. Stripe forbids `discounts` alongside
     // `allow_promotion_codes`, so it's one or the other.
+    if (customerId) params.customer = customerId;
+    else params.customer_creation = "always";
+
     const addonCoupon = process.env.STRIPE_ADDON_COUPON_ID;
     if (isAddonEntitlementId(clusterId) && addonCoupon) params.discounts = [{ coupon: addonCoupon }];
     else params.allow_promotion_codes = true;
