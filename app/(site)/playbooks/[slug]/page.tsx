@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPlaybookBySlug, PLAYBOOK_PRICE_DISPLAY } from "@/lib/playbookMarketing";
 import { getResults } from "@/lib/snapshot/data";
 import { resultLabel } from "@/lib/snapshot/resultTitle";
 import SectionLabel from "@/components/site/SectionLabel";
 import PlaybookEmbeddedCheckout from "@/components/site/PlaybookEmbeddedCheckout";
+import PlaybookPreviewMock from "@/components/site/PlaybookPreviewMock";
 import { PlaybookMark, playbookHue } from "@/components/site/PlaybookMark";
 import { IconTile } from "@/components/site/IconTile";
 import type { CSSProperties } from "react";
@@ -115,6 +117,10 @@ export default async function PlaybookDetailPage(
             </li>
           ))}
         </ul>
+
+        {/* Proof of the claim above — a real exercise, drawn in code. */}
+        <PlaybookPreviewMock hue={hue} className="mt-10" />
+        <p className="mt-3 text-center font-body text-sm text-charcoal/45">An example of one exercise inside.</p>
       </section>
 
       {/* Honest outcomes — three lines, no promises */}
@@ -144,8 +150,27 @@ export default async function PlaybookDetailPage(
         </section>
       )}
 
+      {/* Who wrote it — trust, right before the ask */}
+      <section className="mt-24 flex items-center gap-5 rounded-2xl border border-light-gray bg-white/60 p-5 sm:gap-6 sm:p-6">
+        <Image
+          src="/janelle-about.jpg"
+          alt="Janelle Dawsey, LMFT, creator of the Relationship Life Cycle™ Framework"
+          width={112}
+          height={112}
+          sizes="112px"
+          className="h-20 w-20 shrink-0 rounded-full object-cover object-top sm:h-24 sm:w-24"
+        />
+        <div>
+          <p className="font-display text-lg font-semibold text-midnight-navy">Written by Janelle Dawsey, LMFT</p>
+          <p className="mt-1.5 font-body text-base leading-relaxed text-charcoal/70">
+            Licensed marriage and family therapist, and the creator of the Relationship Life Cycle&trade;
+            framework your Snapshot is built on.
+          </p>
+        </div>
+      </section>
+
       {/* Price + CTA */}
-      <section className="mt-24 text-center">
+      <section className="mt-14 text-center">
         <h2 className="font-display text-3xl font-semibold text-midnight-navy">{PLAYBOOK_PRICE_DISPLAY}</h2>
         <p className="mt-3 font-body text-charcoal/65">One-time. Instant access. Yours to keep.</p>
         <div id="checkout" className="mt-8 scroll-mt-24">
