@@ -95,6 +95,27 @@ export async function ownsAnyPlaybook(userId: string): Promise<boolean> {
   return (await getOwnedPlaybookClusterIds(userId)).length > 0;
 }
 
+/**
+ * How many grants for this Stripe ref are still active. Used to CONFIRM a
+ * revocation actually landed — revokePlaybookByStripeRef swallows its errors, and
+ * a refunded buyer who still holds access must not pass silently.
+ * Returns -1 if the check itself fails (unknown, not "clean").
+ */
+export async function countActiveGrantsByStripeRef(ref: string): Promise<number> {
+  const s = getSupabaseAdminClient();
+  try {
+    const { count, error } = await s
+      .from("playbook_entitlements")
+      .select("id", { count: "exact", head: true })
+      .eq("stripe_ref", ref)
+      .eq("status", "active");
+    if (error) return -1;
+    return count ?? 0;
+  } catch {
+    return -1;
+  }
+}
+
 /** Revoke (refund/chargeback) — mark grants for a Stripe ref canceled. */
 export async function revokePlaybookByStripeRef(ref: string): Promise<void> {
   const s = getSupabaseAdminClient();
