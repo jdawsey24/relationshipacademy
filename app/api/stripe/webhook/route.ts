@@ -3,6 +3,7 @@ import type Stripe from "stripe";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getStripe, stripeConfigured, stripeIsLive } from "@/lib/stripe";
 import { livemodeMatches, shouldRetry, type GrantResult } from "@/lib/companion/entitlementReliability";
+import { CHECKOUT_GRANT_EVENTS, isPaidSession } from "@/lib/stripeCheckoutEvents";
 import {
   claimEvent, markEventProcessed, markEventFailed,
   recordCharge, recordRefund, upsertSubscription, upsertPayout, upsertDispute,
@@ -71,11 +72,16 @@ async function applyTierFlip(event: Stripe.Event) {
 // Returns a GrantResult; "failed" tells the webhook to signal Stripe to retry.
 // "not_applicable" = not a Companion purchase (or paid Stripe not confirmed).
 async function applyCompanionGrant(event: Stripe.Event): Promise<GrantResult> {
-  if (event.type !== "checkout.session.completed") return "not_applicable";
+  if (!CHECKOUT_GRANT_EVENTS.has(event.type)) return "not_applicable";
   const s = event.data.object as Stripe.Checkout.Session;
   if (s.metadata?.product_key !== "companion") return "not_applicable";
-  // Stripe stays authoritative for payment: only grant on a PAID session.
-  if (s.payment_status && s.payment_status !== "paid" && s.payment_status !== "no_payment_required") return "not_applicable";
+  // Stripe stays authoritative for payment: only grant on a PAID session. A
+  // delayed method lands here twice — "unpaid" on completed (skip), then "paid"
+  // on async_payment_succeeded (grant).
+  if (!isPaidSession(s)) {
+    console.log(`[stripe/webhook] companion grant deferred: session ${s.id} is ${s.payment_status} (awaiting settlement)`);
+    return "not_applicable";
+  }
   const userId = s.metadata?.user_id;
   if (!userId) return "not_applicable";
   // Environment separation: a test-mode event must never grant in a live env.
@@ -146,11 +152,18 @@ async function applyCompanionDispute(event: Stripe.Event): Promise<boolean> {
 // One-time playbook purchase completes -> write a playbook_entitlements row.
 // Keyed by metadata.product_key === "playbook"; cluster_id says which playbook.
 async function applyPlaybookGrant(event: Stripe.Event) {
-  if (event.type !== "checkout.session.completed") return;
+  if (!CHECKOUT_GRANT_EVENTS.has(event.type)) return;
   const s = event.data.object as Stripe.Checkout.Session;
   if (s.metadata?.product_key !== "playbook") return;
   const clusterId = Number(s.metadata?.cluster_id);
   if (!Number.isInteger(clusterId)) return;
+  // Stripe stays authoritative for payment. Without this a delayed-notification
+  // method (Klarna, bank debit) would hand over the Playbook on the "unpaid"
+  // completed event, before the money settled.
+  if (!isPaidSession(s)) {
+    console.log(`[stripe/webhook] playbook grant deferred: session ${s.id} is ${s.payment_status} (awaiting settlement)`);
+    return;
+  }
   const buyerEmail = s.customer_details?.email ?? null;
 
   // Who owns this purchase?
@@ -334,6 +347,17 @@ export async function POST(request: Request) {
     await applyPlaybookGrant(event);
   } catch (e) {
     console.error("[stripe/webhook] playbook grant error:", e instanceof Error ? e.message : e);
+  }
+
+  // 1d) A delayed payment (Klarna / bank debit) that never settled. Nothing was
+  // granted — the "completed" event was skipped as unpaid — but the buyer thinks
+  // they bought something, so make it visible rather than silently dropping it.
+  if (event.type === "checkout.session.async_payment_failed") {
+    const s = event.data.object as Stripe.Checkout.Session;
+    console.warn(
+      `[stripe/webhook] ASYNC PAYMENT FAILED for session ${s.id} ` +
+        `(${s.customer_details?.email ?? "no email"}, product=${s.metadata?.product_key ?? "-"}) — no access granted`
+    );
   }
 
   // 2) Finance sync (status machine). No-ops safely if the finance tables are absent.
