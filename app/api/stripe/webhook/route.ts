@@ -181,6 +181,10 @@ async function applyPlaybookGrant(event: Stripe.Event) {
   const { grantPlaybookFromStripeSession } = await import("@/lib/snapshot/playbookGrants");
   await grantPlaybookFromStripeSession({ userId, clusterId, customerId, ref: s.id });
 
+  // The buyer may have added the Companion as an upsell in the same checkout.
+  const { applyCompanionCrossSell } = await import("@/lib/companion/crossSell");
+  await applyCompanionCrossSell(s, userId, event.livemode);
+
   // Post-purchase side effects (resilient — must never fail the grant):
   // 1) exit the Snapshot nurture immediately (spec: purchasers leave the sequence
   //    the moment they buy) — by the exact quiz session that started checkout
