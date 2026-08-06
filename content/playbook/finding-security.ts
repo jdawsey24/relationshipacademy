@@ -337,7 +337,7 @@ export const FINDING_SECURITY: PlaybookContent = {
           id: "signpost-c6-worth-contingent",
           heading: "If it isn't only about them",
           body:
-            `Some of what people write here is less about the relationship and more about whether they're worth anything at all — where being wanted is the only thing that settles it. If that's closer to it for you, it can help to take it to someone who can stay with it — a therapist, a GP, or another professional. It's a bigger question than a dating tool can hold. ${CRISIS_ESCALATION}`,
+            `Some of what people write here is less about the relationship and more about whether they're worth anything at all — where being wanted is the only thing that settles it. If that's closer to it for you, it can help to take it to someone who can stay with it — a therapist, a GP, or another professional. It's a bigger question than a dating tool can hold.\n\n${CRISIS_ESCALATION}`,
         },
       ],
     },

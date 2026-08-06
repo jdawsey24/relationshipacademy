@@ -59,10 +59,10 @@ test("Layer B: the Play support signpost is content-driven — it does NOT emit 
   mount();
   toWMOwnTurn();
   const screenCallsBefore = net.calls.filter((c) => c.url.includes("/screen")).length;
-  fireEvent.click(byName(/if this feels bigger than a dating moment/i));
+  // Always visible now (owner decision 2026-08-05) — no click to open it.
   assert.ok(screen.getByText(/if this is bigger than a dating moment/i), "Layer B signpost rendered");
   const screenCallsAfter = net.calls.filter((c) => c.url.includes("/screen")).length;
-  assert.equal(screenCallsAfter, screenCallsBefore, "opening a Play signpost is not a crisis event");
+  assert.equal(screenCallsAfter, screenCallsBefore, "showing a Play signpost is not a crisis event");
 });
 
 test("persistence sends only functional keys — no raw free-text journaling channel", async () => {

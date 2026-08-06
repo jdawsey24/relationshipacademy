@@ -563,7 +563,7 @@ export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
           id: "signpost-c8-self-disconnection",
           heading: "If it isn't only about them",
           body:
-            `Some of what people write here isn't really about the relationship — feeling disconnected from yourself, not remembering the last time anything felt exciting, not feeling like yourself anymore. If that's closer to the mark, it can help to mention it to a GP or another professional. Alongside this, not instead of it — because that part isn't a relationship problem, and a relationship won't fix it. ${CRISIS_ESCALATION}`,
+            `Some of what people write here isn't really about the relationship — feeling disconnected from yourself, not remembering the last time anything felt exciting, not feeling like yourself anymore. If that's closer to the mark, it can help to mention it to a GP or another professional. Alongside this, not instead of it — because that part isn't a relationship problem, and a relationship won't fix it.\n\n${CRISIS_ESCALATION}`,
         },
       ],
     },

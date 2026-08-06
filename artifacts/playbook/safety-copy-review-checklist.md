@@ -17,18 +17,18 @@ single sign-off covers every Playbook that pulls it in.
 
 ### 1. `CRISIS_ESCALATION` (shared constant)  ·  P1
 
-- [ ] Final sign-off
+- [x] **Signed off** — Janelle Dawsey, LMFT, 2026-08-05
 - *Type:* shared crisis-escalation block
 - *Source:* `content/playbook/shared/safety-not-safe.ts`
 - *Interpolated into 6 signpost(s)/entries across the corpus* — reviewing this once covers all of them.
 
 > If you're thinking about suicide, harming yourself, or you don't feel able to stay safe, please seek immediate support now. Contact your local crisis service or emergency services, or go to the nearest emergency department. In the United States, you can call or text 988. If you're elsewhere, use the crisis service for your country. If you can, tell someone you trust and stay with them while you connect with support.
 
-**Decision:** 
+**Decision:** Approved as written. Wording unchanged. Presentation changed instead: the block is no longer collapsed behind a link, it renders as a standing help box on the play screen.
 
 ### 2. `lit-shared-if-you-dont-feel-safe`  ·  P1
 
-- [ ] Final sign-off
+- [x] **Signed off** — Janelle Dawsey, LMFT, 2026-08-05
 - *Type:* safety literature (scope=cluster)
 - *Used in 3 Playbooks:* `breaking-the-cycle`, `finding-your-way-back`, `staying-connected`
 
@@ -53,10 +53,11 @@ single sign-off covers every Playbook that pulls it in.
 > **Where to find the right support**
 > A domestic-abuse service, or a professional trained specifically in relationship abuse, can help you understand what's happening and think it through — privately, at your own pace. A general couples counsellor isn't the right place for this, and joint counselling can be unsafe when one person is frightened of the other. You don't have to be certain, or have a word for it, before reaching out.
 > They can also help you make a safety plan that fits your circumstances — what you'd do, where you'd go, who you'd tell — whether or not you're thinking about any change right now.
+> In the United States, the National Domestic Violence Hotline is free, confidential, and open 24 hours: call 1-800-799-7233, or text START to 88788. If you're elsewhere, look for your country's domestic-abuse helpline.
 > One practical note: phone and internet activity can sometimes be seen by someone else. If that's a worry, you might reach out from a device they don't have access to, or from a public computer.
 > If none of that fits, and it's genuinely two people who find this hard — the rest of this is for you.
 
-**Decision:** 
+**Decision:** Approved with one addition: the National Domestic Violence Hotline is now named directly (1-800-799-7233, text START to 88788) alongside the existing 'find a domestic-abuse service' guidance, plus a non-US fallback. Deliberately NOT monetised — no affiliate or referral arrangement sits between someone in danger and help.
 
 ### 3. `rec-shared-not-safe`  ·  P4
 
@@ -302,7 +303,8 @@ single sign-off covers every Playbook that pulls it in.
 
 > **If it isn't only this**
 >
-> If the flatness has spread past the relationship — if most things feel this way, or you've stopped expecting anything to get better anywhere — it can help to talk it through with a GP or another professional. It's separate from this decision, and it can make the decision harder to make well. «CRISIS_ESCALATION — reviewed once in §1»
+> If the flatness has spread past the relationship — if most things feel this way, or you've stopped expecting anything to get better anywhere — it can help to talk it through with a GP or another professional. It's separate from this decision, and it can make the decision harder to make well.
+> «CRISIS_ESCALATION — reviewed once in §1»
 
 **Decision:** 
 
@@ -315,7 +317,8 @@ single sign-off covers every Playbook that pulls it in.
 
 > **If it's more than grief**
 >
-> Losing a relationship this way can tip into something that needs more than time. If most things feel like this — not just the relationship — or if it's affecting your sleep, your eating, or your ability to get through a day, or it's been like this for a long stretch without lifting, it may help to talk to a GP or another healthcare professional. That isn't a comment on how you're grieving. It's a different thing that can show up alongside it, and it can respond to different kinds of help. «CRISIS_ESCALATION — reviewed once in §1»
+> Losing a relationship this way can tip into something that needs more than time. If most things feel like this — not just the relationship — or if it's affecting your sleep, your eating, or your ability to get through a day, or it's been like this for a long stretch without lifting, it may help to talk to a GP or another healthcare professional. That isn't a comment on how you're grieving. It's a different thing that can show up alongside it, and it can respond to different kinds of help.
+> «CRISIS_ESCALATION — reviewed once in §1»
 
 **Decision:** 
 
@@ -328,7 +331,8 @@ single sign-off covers every Playbook that pulls it in.
 
 > **If the flatness has spread**
 >
-> If it isn't only this relationship — if most things feel flat, or you've stopped expecting anything to get better anywhere — it can help to talk to a GP or another professional, alongside this rather than instead of it. And if you've had thoughts of suicide, or of hurting yourself, please treat that as urgent. «CRISIS_ESCALATION — reviewed once in §1»
+> If it isn't only this relationship — if most things feel flat, or you've stopped expecting anything to get better anywhere — it can help to talk to a GP or another professional, alongside this rather than instead of it. And if you've had thoughts of suicide, or of hurting yourself, please treat that as urgent.
+> «CRISIS_ESCALATION — reviewed once in §1»
 
 **Decision:** 
 
@@ -437,7 +441,8 @@ single sign-off covers every Playbook that pulls it in.
 
 > **If it isn't only about them**
 >
-> Some of what people write here is less about the relationship and more about whether they're worth anything at all — where being wanted is the only thing that settles it. If that's closer to it for you, it can help to take it to someone who can stay with it — a therapist, a GP, or another professional. It's a bigger question than a dating tool can hold. «CRISIS_ESCALATION — reviewed once in §1»
+> Some of what people write here is less about the relationship and more about whether they're worth anything at all — where being wanted is the only thing that settles it. If that's closer to it for you, it can help to take it to someone who can stay with it — a therapist, a GP, or another professional. It's a bigger question than a dating tool can hold.
+> «CRISIS_ESCALATION — reviewed once in §1»
 
 **Decision:** 
 
@@ -462,7 +467,8 @@ single sign-off covers every Playbook that pulls it in.
 
 > **If it isn't only about them**
 >
-> Some of what people write here isn't really about the relationship — feeling disconnected from yourself, not remembering the last time anything felt exciting, not feeling like yourself anymore. If that's closer to the mark, it can help to mention it to a GP or another professional. Alongside this, not instead of it — because that part isn't a relationship problem, and a relationship won't fix it. «CRISIS_ESCALATION — reviewed once in §1»
+> Some of what people write here isn't really about the relationship — feeling disconnected from yourself, not remembering the last time anything felt exciting, not feeling like yourself anymore. If that's closer to the mark, it can help to mention it to a GP or another professional. Alongside this, not instead of it — because that part isn't a relationship problem, and a relationship won't fix it.
+> «CRISIS_ESCALATION — reviewed once in §1»
 
 **Decision:** 
 
@@ -487,7 +493,8 @@ single sign-off covers every Playbook that pulls it in.
 
 > **This sounds bigger than one person**
 >
-> Some of what you've written sounds bigger than one person or one app. When the feeling stops being about dating and starts being about you — whether you're worth it, whether anything will work — it can help to say it out loud to someone. A therapist, a GP, a friend who'll actually sit with it. Not because something's wrong with you — because that's heavier than a tool like this is built for. «CRISIS_ESCALATION — reviewed once in §1»
+> Some of what you've written sounds bigger than one person or one app. When the feeling stops being about dating and starts being about you — whether you're worth it, whether anything will work — it can help to say it out loud to someone. A therapist, a GP, a friend who'll actually sit with it. Not because something's wrong with you — because that's heavier than a tool like this is built for.
+> «CRISIS_ESCALATION — reviewed once in §1»
 
 **Decision:** 
 

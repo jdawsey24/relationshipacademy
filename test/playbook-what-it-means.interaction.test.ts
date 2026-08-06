@@ -78,9 +78,17 @@ test("full walkthrough builds a bounded conclusion; emotion beat + pattern route
   assert.equal(out.narrowest_true_thing, "This person didn't want to keep dating me.");
 });
 
-test("the support signpost (Layer B) renders on demand and is content-driven", () => {
+test("the support signpost (Layer B) is ALWAYS VISIBLE and content-driven", () => {
   mount();
-  fireEvent.click(screen.getByRole("button", { name: /if this feels bigger than a dating moment/i }));
-  assert.ok(screen.getByText(/if this is bigger than a dating moment/i), "signpost heading rendered");
+  // Owner decision 2026-08-05: this used to sit behind a link reading "If this
+  // feels bigger than a dating moment". Crisis copy must not be closed by
+  // default, and that label was hardcoded across every Playbook — including the
+  // one for a partner who died. No click should be required to see it.
+  assert.ok(screen.getByText(/if this is bigger than a dating moment/i), "signpost heading rendered without any interaction");
   assert.ok(screen.getByText(/mental health professional/i), "signpost points to professional support (no diagnosis)");
+  assert.equal(
+    screen.queryByRole("button", { name: /bigger than a dating moment/i }),
+    null,
+    "the old dating-specific disclosure toggle is gone",
+  );
 });

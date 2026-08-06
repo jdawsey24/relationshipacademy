@@ -1,0 +1,23 @@
+{
+  "_README": [
+    "Clinical review decisions for the playbook safety copy, keyed by item id.",
+    "This file is HAND-MAINTAINED and is the record of sign-off. The checklist",
+    "markdown is GENERATED and merges these decisions in, so re-running the",
+    "generator never loses a decision that has already been made.",
+    "",
+    "status: approved | changes_requested | pending",
+    "Only the owner (LMFT) can set 'approved' — this is a clinical judgement."
+  ],
+  "CRISIS_ESCALATION": {
+    "status": "approved",
+    "by": "Janelle Dawsey, LMFT",
+    "date": "2026-08-05",
+    "note": "Approved as written. Wording unchanged. Presentation changed instead: the block is no longer collapsed behind a link, it renders as a standing help box on the play screen."
+  },
+  "lit-shared-if-you-dont-feel-safe": {
+    "status": "approved",
+    "by": "Janelle Dawsey, LMFT",
+    "date": "2026-08-05",
+    "note": "Approved with one addition: the National Domestic Violence Hotline is now named directly (1-800-799-7233, text START to 88788) alongside the existing 'find a domestic-abuse service' guidance, plus a non-US fallback. Deliberately NOT monetised — no affiliate or referral arrangement sits between someone in danger and help."
+  }
+}

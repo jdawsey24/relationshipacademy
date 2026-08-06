@@ -19,12 +19,13 @@
  * («CRISIS_ESCALATION — reviewed once in §1») rather than repeating ~90 words
  * twenty times, so the reviewer sees what is actually unique to each item.
  */
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from "node:fs";
 import { listPlaybookKeys, getPlaybookContent } from "../content/playbook";
 import { CRISIS_ESCALATION } from "../content/playbook/shared/safety-not-safe";
 import type { LiteratureEntry, PlaybookContent } from "../lib/playbook/contentSchema";
 
 const OUT = "artifacts/playbook/safety-copy-review-checklist.md";
+const DECISIONS = "artifacts/playbook/safety-copy-decisions.json";
 const CRISIS_MARKER = "«CRISIS_ESCALATION — reviewed once in §1»";
 
 type Tier = "P1" | "P2" | "P3" | "P4" | "P5";
@@ -151,6 +152,37 @@ function collect(): { shared: Item[]; perItem: Item[] } {
   return { shared: shared.sort(sort), perItem: perItem.sort(sort) };
 }
 
+interface Decision { status?: string; by?: string; date?: string; note?: string }
+
+/**
+ * Sign-off lives in its own hand-maintained file, NOT in the generated markdown —
+ * otherwise regenerating the checklist would silently erase decisions the owner
+ * has already made. Merged in here so the checklist always shows current state.
+ */
+function loadDecisions(): Record<string, Decision> {
+  if (!existsSync(DECISIONS)) return {};
+  try {
+    const raw = JSON.parse(readFileSync(DECISIONS, "utf8")) as Record<string, unknown>;
+    delete raw._README;
+    return raw as Record<string, Decision>;
+  } catch {
+    return {};
+  }
+}
+
+let DECIDED: Record<string, Decision> = {};
+
+function decisionLines(id: string): string[] {
+  const d = DECIDED[id];
+  if (d?.status === "approved") {
+    return [`- [x] **Signed off** — ${d.by ?? "owner"}, ${d.date ?? "date not recorded"}`];
+  }
+  if (d?.status === "changes_requested") {
+    return [`- [ ] **Changes requested** — ${d.by ?? "owner"}, ${d.date ?? "date not recorded"}`];
+  }
+  return ["- [ ] Final sign-off"];
+}
+
 function renderItem(n: number, item: Item): string {
   const where = item.locations.length > 1
     ? `*Used in ${item.locations.length} Playbooks:* ${item.locations.map((l) => `\`${l}\``).join(", ")}`
@@ -158,7 +190,7 @@ function renderItem(n: number, item: Item): string {
   return [
     `### ${n}. \`${item.id}\`  ·  ${item.tier}`,
     ``,
-    `- [ ] Final sign-off`,
+    ...decisionLines(item.id),
     `- *Type:* ${item.type}`,
     `- ${where}`,
     item.embedsCrisis ? `- *Embeds the shared crisis block* (see §1)` : null,
@@ -167,12 +199,13 @@ function renderItem(n: number, item: Item): string {
     `>`,
     ...item.copy.split("\n").filter(Boolean).map((line) => `> ${line}`),
     ``,
-    `**Decision:** `,
+    `**Decision:** ${DECIDED[item.id]?.note ?? ""}`,
     ``,
   ].filter((x) => x !== null).join("\n");
 }
 
 function main() {
+  DECIDED = loadDecisions();
   const { shared, perItem } = collect();
   const crisisUsers = [...shared, ...perItem].filter((i) => i.embedsCrisis).length;
   const total = shared.length + perItem.length + 1; // +1 for the crisis block itself
@@ -200,14 +233,14 @@ function main() {
   // the corpus and it is interpolated into every crisis signpost.
   out.push(`### 1. \`CRISIS_ESCALATION\` (shared constant)  ·  P1`);
   out.push(``);
-  out.push(`- [ ] Final sign-off`);
+  out.push(...decisionLines("CRISIS_ESCALATION"));
   out.push(`- *Type:* shared crisis-escalation block`);
   out.push(`- *Source:* \`content/playbook/shared/safety-not-safe.ts\``);
   out.push(`- *Interpolated into ${crisisUsers} signpost(s)/entries across the corpus* — reviewing this once covers all of them.`);
   out.push(``);
   out.push(...CRISIS_ESCALATION.trim().split("\n").filter(Boolean).map((l) => `> ${l}`));
   out.push(``);
-  out.push(`**Decision:** `);
+  out.push(`**Decision:** ${DECIDED["CRISIS_ESCALATION"]?.note ?? ""}`);
   out.push(``);
 
   let n = 2;
@@ -234,7 +267,9 @@ function main() {
   console.log(`Wrote ${OUT}`);
   console.log(`  ${total} items — ${shared.length} shared, ${perItem.length} per-Playbook, +1 crisis constant`);
   console.log(`  crisis block is interpolated into ${crisisUsers} item(s)`);
+  const signed = Object.values(DECIDED).filter((d) => d.status === "approved").length;
   console.log(`  by tier: ${JSON.stringify(tiers)}`);
+  console.log(`  signed off: ${signed}/${total}`);
 }
 
 main();

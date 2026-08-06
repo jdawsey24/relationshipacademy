@@ -295,7 +295,7 @@ export const DATING_WITHOUT_LOSING_HOPE: PlaybookContent = {
           id: "signpost-generalised-hopelessness",
           heading: "This sounds bigger than one person",
           body:
-            `Some of what you've written sounds bigger than one person or one app. When the feeling stops being about dating and starts being about you — whether you're worth it, whether anything will work — it can help to say it out loud to someone. A therapist, a GP, a friend who'll actually sit with it. Not because something's wrong with you — because that's heavier than a tool like this is built for. ${CRISIS_ESCALATION}`,
+            `Some of what you've written sounds bigger than one person or one app. When the feeling stops being about dating and starts being about you — whether you're worth it, whether anything will work — it can help to say it out loud to someone. A therapist, a GP, a friend who'll actually sit with it. Not because something's wrong with you — because that's heavier than a tool like this is built for.\n\n${CRISIS_ESCALATION}`,
         },
       ],
     },

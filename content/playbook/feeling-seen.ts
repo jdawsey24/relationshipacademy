@@ -506,7 +506,7 @@ export const FEELING_SEEN: PlaybookContent = {
           id: "signpost-c15-numbness",
           heading: "If the flatness has spread",
           body:
-            `If it isn't only this relationship — if most things feel flat, or you've stopped expecting anything to get better anywhere — it can help to talk to a GP or another professional, alongside this rather than instead of it. And if you've had thoughts of suicide, or of hurting yourself, please treat that as urgent. ${CRISIS_ESCALATION}`,
+            `If it isn't only this relationship — if most things feel flat, or you've stopped expecting anything to get better anywhere — it can help to talk to a GP or another professional, alongside this rather than instead of it. And if you've had thoughts of suicide, or of hurting yourself, please treat that as urgent.\n\n${CRISIS_ESCALATION}`,
         },
       ],
     },

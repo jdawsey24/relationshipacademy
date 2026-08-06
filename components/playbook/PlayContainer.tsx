@@ -236,7 +236,6 @@ function renderScreen(s: Screen, ctx: ScreenCtx): ReactNode {
 export default function PlayContainer({ play, onSaveOutput, onExit, onRoute, onScreenText }: PlayContainerProps) {
   const [i, setI] = useState(0);
   const [draft, setDraft] = useState<Draft>({});
-  const [showSignpost, setShowSignpost] = useState(false);
   const screen = play.screens[i] as Screen | undefined;
   const advance = () => setI((n) => Math.min(n + 1, play.screens.length));
   const setField = (key: string, v: unknown) => setDraft((d) => ({ ...d, [key]: v }));
@@ -264,18 +263,32 @@ export default function PlayContainer({ play, onSaveOutput, onExit, onRoute, onS
         <button type="button" onClick={onExit} className="font-ui text-sm text-charcoal/55 hover:text-charcoal">
           ← Back to board
         </button>
-        {play.supportSignposts && play.supportSignposts.length > 0 && (
-          <button type="button" onClick={() => setShowSignpost((s) => !s)} className="font-ui text-xs text-slate-blue underline">
-            If this feels bigger than a dating moment
-          </button>
-        )}
       </div>
 
-      {showSignpost && play.supportSignposts?.[0] && (
-        <div className="mb-6 rounded-2xl border border-slate-blue/30 bg-slate-blue/10 p-5" role="note">
-          <h3 className="font-display text-lg text-midnight-navy">{play.supportSignposts[0].heading}</h3>
-          <p className="mt-2 font-body text-body text-charcoal/85">{play.supportSignposts[0].body}</p>
-        </div>
+      {/* Support signpost — ALWAYS VISIBLE (owner decision 2026-08-05).
+        *
+        * This was previously collapsed behind a link reading "If this feels
+        * bigger than a dating moment". Two problems: the crisis wording — the
+        * most important copy in the product — was closed by default, and the
+        * label was hardcoded, so it appeared on every Playbook including the
+        * one for a partner who died. Someone grieving was asked whether things
+        * felt bigger than a dating moment to reach the suicide copy.
+        *
+        * Now it renders as a standing help box, styled like one and marked up
+        * as a complementary landmark so screen readers can jump to it. Only
+        * [0] is used, which is safe: no play authors more than one (verified). */}
+      {play.supportSignposts?.[0] && (
+        <aside
+          className="mb-6 rounded-2xl border border-slate-blue/40 bg-slate-blue/10 p-5"
+          role="complementary"
+          aria-label="Support"
+        >
+          <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-blue">Support</p>
+          <h3 className="mt-1.5 font-display text-lg text-midnight-navy">{play.supportSignposts[0].heading}</h3>
+          <p className="mt-2 whitespace-pre-line font-body text-body text-charcoal/85">
+            {play.supportSignposts[0].body}
+          </p>
+        </aside>
       )}
 
       <div className="rounded-3xl bg-white/60 p-6 sm:p-8">

@@ -126,6 +126,10 @@ export const SAFETY_GUIDE: LiteratureEntry = {
       body: [
         "A domestic-abuse service, or a professional trained specifically in relationship abuse, can help you understand what's happening and think it through — privately, at your own pace. A general couples counsellor isn't the right place for this, and joint counselling can be unsafe when one person is frightened of the other. You don't have to be certain, or have a word for it, before reaching out.",
         "They can also help you make a safety plan that fits your circumstances — what you'd do, where you'd go, who you'd tell — whether or not you're thinking about any change right now.",
+        // Owner decision 2026-08-05: name a concrete service rather than only the
+        // abstract category. Deliberately NOT monetised — no affiliate or referral
+        // arrangement sits between someone in danger and help.
+        "In the United States, the National Domestic Violence Hotline is free, confidential, and open 24 hours: call 1-800-799-7233, or text START to 88788. If you're elsewhere, look for your country's domestic-abuse helpline.",
       ],
     },
     {

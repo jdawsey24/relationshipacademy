@@ -634,7 +634,7 @@ export const LETTING_GO: PlaybookContent = {
           id: "signpost-c12-not-coping",
           heading: "If it's more than grief",
           body:
-            `Losing a relationship this way can tip into something that needs more than time. If most things feel like this — not just the relationship — or if it's affecting your sleep, your eating, or your ability to get through a day, or it's been like this for a long stretch without lifting, it may help to talk to a GP or another healthcare professional. That isn't a comment on how you're grieving. It's a different thing that can show up alongside it, and it can respond to different kinds of help. ${CRISIS_ESCALATION}`,
+            `Losing a relationship this way can tip into something that needs more than time. If most things feel like this — not just the relationship — or if it's affecting your sleep, your eating, or your ability to get through a day, or it's been like this for a long stretch without lifting, it may help to talk to a GP or another healthcare professional. That isn't a comment on how you're grieving. It's a different thing that can show up alongside it, and it can respond to different kinds of help.\n\n${CRISIS_ESCALATION}`,
         },
       ],
     },
