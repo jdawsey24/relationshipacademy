@@ -25,6 +25,13 @@ const NAV_GROUPS: NavItem[][] = [
     { label: "Website Content", href: "/admin/framework" },
     { label: "Assessment", href: "/admin/assessment", match: ["/admin/questions", "/admin/copy", "/admin/assessment"] },
     { label: "Knowledge Center", href: "/admin/knowledge-center" },
+    // Owner-only: every Content Engine route is behind requireAiOwner (owner + MFA).
+    {
+      label: "Content Engine",
+      href: "/admin/content-engine/script-builder",
+      match: ["/admin/content-engine"],
+      ownerOnly: true,
+    },
     { label: "Academy", href: "/admin/academy" },
     { label: "Institute", href: "/admin/institute" },
     { label: "Companion", href: "/admin/companion" },

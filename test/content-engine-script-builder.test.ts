@@ -1,0 +1,380 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+import {
+  checkRuntime, estimateRuntimeSeconds, wordCount, DEFAULT_WPM,
+  lexicalSimilarity, evaluateComparison, SIMILARITY_THRESHOLD,
+  gradeFindings, severityAtLeast, detectOntologyLeakage, scanCultureTerms,
+  type BlockingRule, type GradableFinding,
+} from "@/lib/contentEngine/scriptBuilder/analysis";
+import { audienceForPlatform } from "@/lib/contentEngine/scriptBuilder/governance";
+import {
+  ANGLES_SCHEMA, SCRIPT_SCHEMA, PACKAGING_SCHEMA, EQUIVALENCE_SCHEMA, STAGE_TEMPLATES,
+} from "@/lib/contentEngine/scriptBuilder/generate";
+
+const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
+
+// ---------------------------------------------------------------------------
+// Runtime (owner ruling 12: 150 wpm default, configurable profiles)
+// ---------------------------------------------------------------------------
+
+test("runtime uses 150 words per minute by default", () => {
+  assert.equal(DEFAULT_WPM, 150);
+  assert.equal(estimateRuntimeSeconds(150), 60);
+  assert.equal(estimateRuntimeSeconds(75), 30);
+});
+
+test("a configured delivery profile changes the estimate", () => {
+  assert.equal(estimateRuntimeSeconds(150, 130), 69); // measured
+  assert.equal(estimateRuntimeSeconds(150, 170), 53); // brisk
+});
+
+test("word count ignores whitespace noise", () => {
+  assert.equal(wordCount("  one   two\n\nthree  "), 3);
+  assert.equal(wordCount(""), 0);
+  assert.equal(wordCount("   "), 0);
+});
+
+test("runtime check reports how many words to add or cut", () => {
+  const short = checkRuntime(Array(100).fill("word").join(" "), 60);
+  assert.equal(short.seconds, 40);
+  assert.equal(short.withinTarget, false);
+  assert.ok(short.adjustWords > 0, "a short script should ask for more words");
+
+  const long = checkRuntime(Array(300).fill("word").join(" "), 60);
+  assert.ok(long.adjustWords < 0, "a long script should ask for cuts");
+
+  const onTarget = checkRuntime(Array(150).fill("word").join(" "), 60);
+  assert.equal(onTarget.withinTarget, true);
+});
+
+test("a zero or negative speaking rate is refused rather than dividing by zero", () => {
+  assert.throws(() => estimateRuntimeSeconds(100, 0), /positive/);
+});
+
+// ---------------------------------------------------------------------------
+// Script comparison (owner ruling 9)
+// ---------------------------------------------------------------------------
+
+const LESSON_OK = { lessonMatch: true, rewardMatch: true, hookMatch: true, ctaMatch: true };
+
+test("the similarity threshold is 0.80", () => {
+  assert.equal(SIMILARITY_THRESHOLD, 0.8);
+});
+
+test("near-identical scripts exceed the threshold", () => {
+  const a = "When someone leaves you keep replaying the ending to find the moment it broke.";
+  const b = "When someone leaves you keep replaying the ending to find the moment it broke down.";
+  const r = evaluateComparison(a, b, LESSON_OK);
+  assert.ok(r.lexicalSimilarity > 0.8, `expected high similarity, got ${r.lexicalSimilarity}`);
+  assert.equal(r.similarityExceeded, true);
+  assert.equal(r.acceptable, false);
+});
+
+test("genuinely different wording passes", () => {
+  const a = "You keep replaying the ending, hunting for the exact moment it broke.";
+  const b = "Recovery asks something harder than an explanation: carrying what happened without organising your life around it.";
+  const r = evaluateComparison(a, b, LESSON_OK);
+  assert.equal(r.similarityExceeded, false);
+  assert.equal(r.acceptable, true);
+});
+
+test("an owner override clears a similarity warning", () => {
+  const a = "When someone leaves you keep replaying the ending to find the moment it broke.";
+  const b = "When someone leaves you keep replaying the ending to find the moment it broke down.";
+  assert.equal(evaluateComparison(a, b, LESSON_OK, { ownerOverride: true }).acceptable, true);
+});
+
+test("an override can never clear a conceptual divergence", () => {
+  // The dangerous case: two scripts that look different AND teach different things.
+  const r = evaluateComparison(
+    "Notice the pattern before you decide anything.",
+    "The healthiest thing you can do is end it today and never look back.",
+    { lessonMatch: false, rewardMatch: false, hookMatch: true, ctaMatch: false },
+    { ownerOverride: true },
+  );
+  assert.equal(r.similarityExceeded, false, "these are not lexically similar");
+  assert.equal(r.equivalenceOk, false);
+  assert.equal(r.acceptable, false, "an override permits sameness, not divergence");
+  assert.deepEqual(r.divergences, ["lesson", "reward", "cta"]);
+});
+
+test("similarity is symmetric and self-comparison is total", () => {
+  const a = "carrying what happened without being consumed by it";
+  const b = "trusting your own judgement again after a loss";
+  assert.equal(lexicalSimilarity(a, b), lexicalSimilarity(b, a));
+  assert.equal(lexicalSimilarity(a, a), 1);
+});
+
+// ---------------------------------------------------------------------------
+// Category-sensitive blocking (owner ruling 10)
+// ---------------------------------------------------------------------------
+
+const RULES: BlockingRule[] = [
+  { risk_category: "physical_safety", min_severity: "high", blocks_publication: true },
+  { risk_category: "abuse", min_severity: "high", blocks_publication: true },
+  { risk_category: "clinical", min_severity: "high", blocks_publication: true },
+  { risk_category: "framework", min_severity: "critical", blocks_publication: true },
+  { risk_category: "voice", min_severity: "critical", blocks_publication: false },
+  { risk_category: "seo", min_severity: "critical", blocks_publication: false },
+];
+
+const f = (category: string, severity: GradableFinding["severity"]): GradableFinding =>
+  ({ category, severity, message: `${category}/${severity}` });
+
+test("a HIGH safety finding blocks even though it is not critical", () => {
+  const r = gradeFindings([f("physical_safety", "high")], RULES);
+  assert.equal(r.blocked, true);
+  assert.equal(r.blocking.length, 1);
+});
+
+test("a HIGH framework finding does not block — framework blocks at critical", () => {
+  assert.equal(gradeFindings([f("framework", "high")], RULES).blocked, false);
+  assert.equal(gradeFindings([f("framework", "critical")], RULES).blocked, true);
+});
+
+test("a CRITICAL voice finding never blocks", () => {
+  const r = gradeFindings([f("voice", "critical")], RULES);
+  assert.equal(r.blocked, false);
+  assert.equal(r.warnings.length, 1);
+});
+
+test("medium safety findings warn rather than block", () => {
+  assert.equal(gradeFindings([f("abuse", "medium")], RULES).blocked, false);
+});
+
+test("an ungoverned category is reported, never silently dropped", () => {
+  const r = gradeFindings([f("something_new", "high")], RULES);
+  assert.deepEqual(r.ungoverned, ["something_new"]);
+  assert.equal(r.warnings.length, 1, "the finding still surfaces");
+  assert.equal(r.blocked, false);
+
+  const critical = gradeFindings([f("something_new", "critical")], RULES);
+  assert.equal(critical.blocked, true, "an unknown category still blocks at critical");
+});
+
+test("severity ordering is total", () => {
+  assert.equal(severityAtLeast("critical", "high"), true);
+  assert.equal(severityAtLeast("high", "high"), true);
+  assert.equal(severityAtLeast("medium", "high"), false);
+  assert.equal(severityAtLeast("info", "low"), false);
+});
+
+// ---------------------------------------------------------------------------
+// Ontology leakage and culture terms (owner revisions)
+// ---------------------------------------------------------------------------
+
+test("internal framework vocabulary in consumer copy is flagged", () => {
+  const hits = detectOntologyLeakage(
+    "This is about the developmental task of the phase and the competency underneath it.",
+  );
+  const terms = hits.map((h) => h.term);
+  assert.ok(terms.includes("developmental task"));
+  assert.ok(terms.includes("competency"));
+});
+
+test("ordinary consumer language is not flagged", () => {
+  assert.deepEqual(
+    detectOntologyLeakage("You keep replaying the ending, looking for the moment it broke."),
+    [],
+  );
+});
+
+test("culture terms are blocked by default and allowed only by explicit approval", () => {
+  const terms = [
+    { term: "situationship", disposition: "allowed_public" as const },
+    { term: "delulu", disposition: "blocked" as const },
+    { term: "trauma bond", disposition: "internal_only" as const },
+  ];
+  const hits = scanCultureTerms("She was delulu about the situationship and the trauma bond.", terms);
+  const found = hits.map((h) => h.term);
+  assert.ok(found.includes("delulu"), "blocked terms are flagged");
+  assert.ok(found.includes("trauma bond"), "internal-only terms are flagged in consumer copy");
+  assert.ok(!found.includes("situationship"), "explicitly allowed terms pass");
+});
+
+// ---------------------------------------------------------------------------
+// Governance (owner rulings 2, 3, 4)
+// ---------------------------------------------------------------------------
+
+test("public platforms map to a consumer audience", () => {
+  assert.equal(audienceForPlatform("instagram"), "consumer");
+  assert.equal(audienceForPlatform("tiktok"), "consumer");
+  assert.equal(audienceForPlatform("academy"), "academy");
+  assert.equal(audienceForPlatform("institute"), "institute");
+});
+
+test("missing approval is treated as refusal, in the code that decides it", () => {
+  const src = read("lib/contentEngine/scriptBuilder/governance.ts");
+  assert.match(src, /Absence of an approval is not an approval/);
+  // A failed lookup must also fail closed.
+  assert.match(src, /Treating as not approved/);
+});
+
+// ---------------------------------------------------------------------------
+// Staged generation (owner ruling 8 / plan §2)
+// ---------------------------------------------------------------------------
+
+test("generation is staged — four distinct templates, not one call", () => {
+  assert.deepEqual(Object.keys(STAGE_TEMPLATES).sort(), ["angles", "equivalence", "packaging", "script"]);
+  const values = Object.values(STAGE_TEMPLATES);
+  assert.equal(new Set(values).size, values.length, "each stage needs its own template");
+});
+
+test("every generation schema carries a conflict channel", () => {
+  for (const [name, schema] of Object.entries({
+    ANGLES_SCHEMA, SCRIPT_SCHEMA, PACKAGING_SCHEMA,
+  })) {
+    const props = (schema as unknown as { properties: Record<string, unknown> }).properties;
+    assert.ok("conflict" in props, `${name} must let the model flag a conflict`);
+  }
+});
+
+test("the equivalence check judges the four dimensions separately", () => {
+  const required = (EQUIVALENCE_SCHEMA as unknown as { required: readonly string[] }).required;
+  for (const k of ["lesson_match", "reward_match", "hook_match", "cta_match"]) {
+    assert.ok(required.includes(k), `${k} must be judged`);
+  }
+});
+
+test("angles are bounded at 3 to 5", () => {
+  const angles = (ANGLES_SCHEMA as unknown as {
+    properties: { angles: { minItems: number; maxItems: number } };
+  }).properties.angles;
+  assert.equal(angles.minItems, 3);
+  assert.equal(angles.maxItems, 5);
+});
+
+test("a model conflict halts generation instead of being self-corrected", () => {
+  const src = read("lib/contentEngine/scriptBuilder/generate.ts");
+  assert.match(src, /flag, never self-correct/i);
+  assert.match(src, /throw new ScriptBuilderError/);
+  assert.match(src, /ce_generation_conflicts/);
+});
+
+test("stages resolve an APPROVED template or refuse to run", () => {
+  const src = read("lib/contentEngine/scriptBuilder/generate.ts");
+  assert.match(src, /No APPROVED "\$\{generationType\}" prompt template exists/);
+  const tpl = read("lib/ai/templates.ts");
+  assert.match(tpl, /\.eq\("status", "approved"\)/, "getActiveTemplate must only resolve approved templates");
+});
+
+test("the seeded v3 templates are drafts, so nothing can generate unreviewed", () => {
+  const src = read("scripts/seedScriptBuilderPrompts.ts");
+  assert.match(src, /status: "draft"/);
+  assert.ok(!/status: "approved"/.test(src), "the seeder must never approve a template");
+});
+
+// ---------------------------------------------------------------------------
+// Workflow gates
+// ---------------------------------------------------------------------------
+
+test("a brief re-validates the mapping instead of trusting the stored flag", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /Re-validate rather than trusting the stored flag/);
+  assert.match(src, /await validateMapping\(/);
+});
+
+test("only eligible bridges can become briefs", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /if \(!bridge\.eligible_for_generation\)/);
+  assert.match(src, /Only strong or moderate bridges/);
+});
+
+test("clinical material cannot reach a brief", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /pickConsumerSafeDetail/);
+  assert.match(src, /Clinical Applications and Facilitation Notes/);
+});
+
+test("the two scripts are drafted without seeing each other", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /never see each other/);
+  // Each level is its own runStage call.
+  assert.match(src, /levels\.map\(\(level\) =>/);
+});
+
+test("a similarity override requires a reason", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /An override needs a reason/);
+});
+
+test("drafts are versioned rather than overwritten", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /version: \(previous\?\.version \?\? 0\) \+ 1/);
+  assert.match(src, /parent_draft_id: previous\?\.id/);
+});
+
+test("nothing in the workflow publishes", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.ok(!/status: ["']published["']/.test(src), "the Script Builder must never publish");
+  assert.match(src, /status: "draft"/);
+});
+
+// ---------------------------------------------------------------------------
+// Schema and route surface
+// ---------------------------------------------------------------------------
+
+test("the brief carries a DB-level gate that code cannot bypass", () => {
+  const sql = read("supabase/migrations/0059_content_engine_script_builder.sql");
+  assert.match(sql, /ce_briefs_mapping_gate/);
+  assert.match(sql, /mapping_validated = true/);
+});
+
+test("only one angle can be selected per brief", () => {
+  const sql = read("supabase/migrations/0059_content_engine_script_builder.sql");
+  assert.match(sql, /idx_ce_angles_one_selected[\s\S]*where is_selected/);
+});
+
+test("a similarity override cannot be recorded without a reason and an author", () => {
+  const sql = read("supabase/migrations/0059_content_engine_script_builder.sql");
+  assert.match(sql, /owner_override = false or \(override_reason is not null and override_by is not null\)/);
+});
+
+test("every script-builder table has RLS enabled", () => {
+  const sql = read("supabase/migrations/0059_content_engine_script_builder.sql");
+  for (const t of ["ce_campaigns", "ce_content_briefs", "ce_angles", "ce_scripts",
+                   "ce_script_comparisons", "ce_script_packages"]) {
+    assert.match(sql, new RegExp(`alter table public\\.${t}\\s+enable row level security`),
+      `${t} must have RLS enabled`);
+  }
+});
+
+test("campaign defaults live in a row, not in code", () => {
+  const sql = read("supabase/migrations/0059_content_engine_script_builder.sql");
+  assert.match(sql, /insert into public\.ce_campaigns/);
+  const lib = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.ok(!/Black women/.test(lib), "campaign audience must not be hardcoded in the library");
+});
+
+test("every script-builder route is behind the owner + MFA gate", () => {
+  for (const r of [
+    "app/api/admin/content-engine/script-builder/briefs/route.ts",
+    "app/api/admin/content-engine/script-builder/briefs/[id]/route.ts",
+    "app/api/admin/content-engine/script-builder/briefs/[id]/stage/route.ts",
+  ]) {
+    assert.match(read(r), /requireAiOwner/, `${r} must require the owner guard`);
+  }
+});
+
+test("generative stages run the cost and kill-switch preflight", () => {
+  const src = read("app/api/admin/content-engine/script-builder/briefs/[id]/stage/route.ts");
+  assert.match(src, /preflightGeneration/);
+  assert.match(src, /const generationType = GENERATIVE\[stage\]/);
+});
+
+test("the framework mapping is not editable through the config endpoint", () => {
+  const src = read("app/api/admin/content-engine/script-builder/briefs/[id]/route.ts");
+  for (const field of ["competency_id", "phase_id", "domain_id", "mapping_validated", "publication_eligible"]) {
+    assert.ok(!new RegExp(`"${field}"`).test(src.split("const CONFIGURABLE")[1].split(")")[0]),
+      `${field} must not be configurable`);
+  }
+});
+
+test("the interface is four screens over twelve stages", () => {
+  const src = read("app/admin/content-engine/script-builder/page.tsx");
+  const screens = src.match(/key: "(topic|brief|scripts|review)"/g) ?? [];
+  assert.equal(screens.length, 4);
+});
