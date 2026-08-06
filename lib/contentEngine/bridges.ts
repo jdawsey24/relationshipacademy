@@ -1,6 +1,6 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getAiSettings } from "@/lib/ai/settings";
-import { getActiveTemplate, renderTemplate } from "@/lib/ai/templates";
+import { getActiveTemplate, renderPrompt, unresolvedPlaceholders } from "@/lib/ai/templates";
 import { computeEligibility, validateMapping } from "@/lib/contentEngine/mappingValidation";
 import { getProvider } from "@/lib/ai/provider";
 import { loadCompetencyChoices, untrustedTrendBlock } from "@/lib/contentEngine/retrieval";
@@ -108,7 +108,9 @@ export async function generateBridges(input: GenerateBridgesInput): Promise<Gene
     .map((x) => `${x.competency_id} | ${x.name} | ${x.phase} | ${x.domain}`)
     .join("\n");
 
-  const user = renderTemplate(tpl.user_template, {
+  // BOTH halves are rendered. The system instruction used to go to the provider
+  // raw, so any placeholder in it reached the model literally.
+  const prompt = renderPrompt(tpl, {
     trend_block: trend.text,
     community_seen: c.community_seen ?? "(none given)",
     competency_choices: choiceLines,
@@ -116,6 +118,19 @@ export async function generateBridges(input: GenerateBridgesInput): Promise<Gene
     bridge_max: String(BRIDGE_MAX),
     bridge_types: BRIDGE_TYPES.join(", "),
   });
+
+  // An unfilled {{placeholder}} would reach the model as literal braces and
+  // silently drop whatever it was carrying. Refuse before spending a call.
+  const unresolved = [
+    ...unresolvedPlaceholders(prompt.system),
+    ...unresolvedPlaceholders(prompt.user),
+  ];
+  if (unresolved.length) {
+    throw new BridgeError(
+      `The ce_bridges template references ${[...new Set(unresolved)].join(", ")}, which this stage does not supply.`,
+      500,
+    );
+  }
 
   const { data: req } = await s
     .from("ai_generation_requests")
@@ -138,8 +153,8 @@ export async function generateBridges(input: GenerateBridgesInput): Promise<Gene
   let output: unknown;
   try {
     const res = await provider.generate({
-      system: tpl.system_instruction,
-      user,
+      system: prompt.system,
+      user: prompt.user,
       schema: BRIDGE_SCHEMA as unknown as object,
       model: settings.model,
       maxTokens: settings.output_limit,

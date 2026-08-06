@@ -1,6 +1,6 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getAiSettings } from "@/lib/ai/settings";
-import { getActiveTemplate, renderTemplate } from "@/lib/ai/templates";
+import { getActiveTemplate, renderPrompt } from "@/lib/ai/templates";
 import { getProvider } from "@/lib/ai/provider";
 import { assembleContentContext } from "@/lib/ai/context";
 import { persistChecks, runDeterministicContentChecks } from "@/lib/ai/quality";
@@ -52,11 +52,11 @@ export async function generateContentDraft(input: GenerateContentInput): Promise
   const requestId = (reqRow as { id: string }).id;
   if (sources.length) await s.from("ai_generation_sources").insert(sources.map((src) => ({ generation_request_id: requestId, ...src })));
 
-  const user = renderTemplate(tpl.user_template, { parameters: JSON.stringify(input.parameters), context: contextText });
+  const prompt = renderPrompt(tpl, { parameters: JSON.stringify(input.parameters), context: contextText });
   let output: Record<string, unknown>;
   let inTok = 0, outTok = 0;
   try {
-    const res = await provider.generate({ system: tpl.system_instruction, user, schema: tpl.output_schema as object, model: settings.model, maxTokens: settings.output_limit, timeoutSeconds: settings.timeout_seconds });
+    const res = await provider.generate({ system: prompt.system, user: prompt.user, schema: tpl.output_schema as object, model: settings.model, maxTokens: settings.output_limit, timeoutSeconds: settings.timeout_seconds });
     output = res.output as Record<string, unknown>; inTok = res.inputTokens; outTok = res.outputTokens;
   } catch (e) {
     await s.from("ai_generation_requests").update({ status: "failed", completed_at: new Date().toISOString(), error_message: e instanceof Error ? e.message.slice(0, 500) : "provider error" }).eq("id", requestId);

@@ -1,6 +1,6 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getAiSettings } from "@/lib/ai/settings";
-import { getActiveTemplate, renderTemplate } from "@/lib/ai/templates";
+import { getActiveTemplate, renderPrompt, unresolvedPlaceholders } from "@/lib/ai/templates";
 import { getProvider } from "@/lib/ai/provider";
 import { estimateCost } from "@/lib/ai/types";
 import { checkRuntime, DEFAULT_WPM } from "@/lib/contentEngine/scriptBuilder/analysis";
@@ -153,7 +153,7 @@ export async function runStage<T>(opts: RunStageOpts): Promise<StageResult<T>> {
   const tpl = await getActiveTemplate(generationType);
   if (!tpl) {
     throw new ScriptBuilderError(
-      `No APPROVED "${generationType}" prompt template exists. Seed and approve the v3 templates before generating.`,
+      `No APPROVED "${generationType}" prompt template exists. Seed and approve the templates before generating.`,
       412,
     );
   }
@@ -161,6 +161,26 @@ export async function runStage<T>(opts: RunStageOpts): Promise<StageResult<T>> {
   const provider = getProvider(settings.provider);
   if (!provider.configured()) {
     throw new ScriptBuilderError("The AI provider is not configured (missing API key).", 503);
+  }
+
+  // BOTH halves are rendered — ce_script_draft carries its word and runtime
+  // targets in the SYSTEM instruction, and an unrendered one silently drops them.
+  const prompt = renderPrompt(tpl, opts.vars);
+
+  // A leftover {{placeholder}} means the template asked for a variable this stage
+  // does not supply. It would not throw — the model would read literal braces and
+  // quietly lose whatever the instruction was worth. Fail before logging a
+  // request, so this never reports as a provider failure it is not.
+  const unresolved = [
+    ...unresolvedPlaceholders(prompt.system),
+    ...unresolvedPlaceholders(prompt.user),
+  ];
+  if (unresolved.length) {
+    throw new ScriptBuilderError(
+      `The "${generationType}" template references ${[...new Set(unresolved)].join(", ")}, ` +
+      `which the ${opts.stage} stage does not supply. Fix the template or the stage before generating.`,
+      500,
+    );
   }
 
   const { data: reqRow } = await s.from("ai_generation_requests").insert({
@@ -183,8 +203,8 @@ export async function runStage<T>(opts: RunStageOpts): Promise<StageResult<T>> {
   let inTok = 0, outTok = 0;
   try {
     const res = await provider.generate({
-      system: tpl.system_instruction,
-      user: renderTemplate(tpl.user_template, opts.vars),
+      system: prompt.system,
+      user: prompt.user,
       schema: opts.schema,
       model: settings.model,
       maxTokens: settings.output_limit,
@@ -194,6 +214,7 @@ export async function runStage<T>(opts: RunStageOpts): Promise<StageResult<T>> {
     inTok = res.inputTokens;
     outTok = res.outputTokens;
   } catch (e) {
+    if (e instanceof ScriptBuilderError) throw e;
     await s.from("ai_generation_requests").update({
       status: "failed",
       completed_at: new Date().toISOString(),

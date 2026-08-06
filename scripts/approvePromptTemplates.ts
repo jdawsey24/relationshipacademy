@@ -42,7 +42,7 @@ const TYPES = [
   "ce_script_packaging",
 ] as const;
 
-const TARGET_VERSION = 3;
+const TARGET_VERSION = 4;
 
 interface Tpl {
   id: string; generation_type: string; name: string; version: number;
@@ -91,13 +91,16 @@ async function main() {
     console.log(`  ${t.generation_type.padEnd(24)} v${t.version}  ${action}`);
   }
 
-  // Older versions of the same type must not outrank the new one. They cannot —
-  // getActiveTemplate takes the HIGHEST approved version — but say so plainly
-  // rather than leaving it to be inferred.
+  // Older approved versions are RETIRED, not just outranked.
+  //
+  // getActiveTemplate takes the highest approved version, so v4 wins while it is
+  // approved. But leaving a superseded version approved means reverting v4 would
+  // silently promote it — and a version is usually superseded because something
+  // was wrong with it. Retiring makes the revert stop generation, which is what
+  // a revert is for.
   const olderApproved = all.filter((t) => t.version < TARGET_VERSION && t.status === "approved");
-  if (olderApproved.length) {
-    console.log(`\n  note: ${olderApproved.length} older approved version(s) exist. ` +
-                `getActiveTemplate() resolves the highest version, so v${TARGET_VERSION} wins.`);
+  for (const t of olderApproved) {
+    console.log(`  ${t.generation_type.padEnd(24)} v${t.version}  approved → retired (superseded)`);
   }
 
   if (!APPLY) {
@@ -130,11 +133,27 @@ async function main() {
     });
   }
 
+  // Retire superseded versions only when approving; a revert must not touch them.
+  if (!REVERT) {
+    for (const t of olderApproved) {
+      await s.from("prompt_templates")
+        .update({ status: "retired", updated_at: new Date().toISOString() }).eq("id", t.id);
+      await s.from("ai_approval_events").insert({
+        draft_type: "prompt_template", draft_id: t.id, action: "retire", actor_id: BY,
+        prior_status: t.status, new_status: "retired",
+        notes: `Superseded by ${t.generation_type} v${TARGET_VERSION}.`,
+      });
+    }
+  }
+
   console.log(
     changing.length
       ? `\n✅ ${changing.length} template(s) now ${wanted}.`
       : `\n   templates: all already ${wanted}.`,
   );
+  if (!REVERT && olderApproved.length) {
+    console.log(`   ${olderApproved.length} superseded version(s) retired.`);
+  }
 
   // SECOND GATE. An approved template is not enough: preflightGeneration()
   // rejects any generation type absent from ai_settings.enabled_generation_types,
