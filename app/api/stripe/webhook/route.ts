@@ -234,33 +234,33 @@ async function applyPlaybookGrant(event: Stripe.Event) {
   }
 }
 
-// ---- 1c-iii) Playbook refund revocation ----
-// Owner policy 2026-08-05: a buyer may request a refund within 14 days, and a
-// refunded Playbook loses access. Until now nothing ever revoked a Playbook —
-// `revokePlaybookByStripeRef` existed but was never called — so a refunded buyer
-// kept the product.
+// ---- 1c-iii) Playbook refund + chargeback revocation ----
+// Until this existed nothing ever revoked a Playbook — `revokePlaybookByStripeRef`
+// was defined but never called — so a refunded or charged-back buyer kept the
+// product.
 //
-// The 14 days govern whether a refund is GRANTED (a human decision, made in
-// Stripe). This code deliberately revokes on ANY full refund regardless of age:
-// if the money went back, access goes with it. A refund outside the window is
-// still honoured, just logged so unusual ones are visible.
+// Owner policy 2026-08-05: Playbooks are NON-REFUNDABLE. Refunds are therefore
+// discretionary exceptions (goodwill, duplicate charge, a chargeback settled
+// outside Stripe) rather than a routine window — but when one is issued, access
+// goes with the money. Every refund is logged, since each one is an exception.
 //
-// Matching: `charge.refunded` carries a payment_intent, but entitlements are
-// keyed by the checkout session id, so we look the session up by payment_intent
-// — which works for guest and signed-in purchases alike.
-const PLAYBOOK_REFUND_WINDOW_DAYS = 14;
+// Matching: refund and dispute events carry a payment_intent, but entitlements
+// are keyed by the checkout session id, so we look the session up by
+// payment_intent — which works for guest and signed-in purchases alike.
+async function playbookSessionForPaymentIntent(pi: string | null): Promise<Stripe.Checkout.Session | null> {
+  if (!pi) return null;
+  const found = await getStripe().checkout.sessions.list({ payment_intent: pi, limit: 1 });
+  const session = found.data[0];
+  return session && session.metadata?.product_key === "playbook" ? session : null;
+}
 
 async function applyPlaybookRefund(event: Stripe.Event): Promise<void> {
   if (event.type !== "charge.refunded") return;
   if (!livemodeMatches(stripeIsLive(), event.livemode)) return;
   const charge = event.data.object as Stripe.Charge;
   const pi = typeof charge.payment_intent === "string" ? charge.payment_intent : charge.payment_intent?.id ?? null;
-  if (!pi) return;
-
-  const stripe = getStripe();
-  const found = await stripe.checkout.sessions.list({ payment_intent: pi, limit: 1 });
-  const session = found.data[0];
-  if (!session || session.metadata?.product_key !== "playbook") return; // not a Playbook purchase
+  const session = await playbookSessionForPaymentIntent(pi);
+  if (!session) return; // not a Playbook purchase
 
   // A PARTIAL refund keeps access (mirrors the Companion's behaviour) — it's
   // usually a goodwill adjustment, not an unwind of the sale.
@@ -270,13 +270,9 @@ async function applyPlaybookRefund(event: Stripe.Event): Promise<void> {
     return;
   }
 
-  const ageDays = (Date.now() - (session.created ?? charge.created) * 1000) / 86_400_000;
-  if (ageDays > PLAYBOOK_REFUND_WINDOW_DAYS) {
-    console.warn(`[stripe/webhook] playbook refund OUTSIDE the ${PLAYBOOK_REFUND_WINDOW_DAYS}-day window (${ageDays.toFixed(1)} days) for session ${session.id} — revoking anyway`);
-  }
-
+  console.log(`[stripe/webhook] discretionary playbook refund (product is non-refundable) on session ${session.id} — revoking access`);
   const { revokePlaybookByStripeRef, countActiveGrantsByStripeRef } = await import("@/lib/snapshot/playbookGrants");
-  await revokePlaybookByStripeRef(session.id);
+  await revokePlaybookByStripeRef(session.id, "refunded");
 
   // revokePlaybookByStripeRef is resilient and swallows its errors, so confirm
   // the revocation actually took. A refunded buyer still holding access is the
@@ -286,6 +282,46 @@ async function applyPlaybookRefund(event: Stripe.Event): Promise<void> {
     console.error(`[stripe/webhook] PLAYBOOK REVOCATION FAILED — ${stillActive} grant(s) still active for refunded session ${session.id} (${session.customer_details?.email ?? "no email"})`);
   } else {
     console.log(`[stripe/webhook] playbook revoked after full refund: session ${session.id}`);
+  }
+}
+
+// Chargebacks. A dispute pulls the money immediately, before anyone decides who
+// was right, so access is pulled at the same moment and restored only if we win
+// — the same posture the Companion already takes.
+//
+//   dispute created        -> revoke, marked as a dispute HOLD
+//   closed won / warning   -> restore, but ONLY rows carrying that hold marker
+//   closed lost            -> stays revoked, re-marked as lost
+async function applyPlaybookDispute(event: Stripe.Event): Promise<void> {
+  if (event.type !== "charge.dispute.created" && event.type !== "charge.dispute.closed") return;
+  if (!livemodeMatches(stripeIsLive(), event.livemode)) return;
+  const d = event.data.object as Stripe.Dispute;
+  const pi = typeof d.payment_intent === "string" ? d.payment_intent : d.payment_intent?.id ?? null;
+  const session = await playbookSessionForPaymentIntent(pi);
+  if (!session) return; // not a Playbook purchase
+
+  const { disputeClosedAction } = await import("@/lib/companion/entitlementReliability");
+  const action = event.type === "charge.dispute.created" ? "dispute_open" : disputeClosedAction(d.status);
+  if (!action) return; // a non-terminal dispute update — leave things as they are
+
+  const {
+    revokePlaybookByStripeRef, restoreDisputedPlaybookByStripeRef,
+    countActiveGrantsByStripeRef, PLAYBOOK_DISPUTE_HOLD,
+  } = await import("@/lib/snapshot/playbookGrants");
+
+  if (action === "dispute_won") {
+    const restored = await restoreDisputedPlaybookByStripeRef(session.id);
+    console.log(`[stripe/webhook] playbook dispute WON on session ${session.id} (${d.status}) — restored ${restored} grant(s)`);
+    return;
+  }
+
+  // dispute_open or dispute_lost — the money is gone either way for now.
+  await revokePlaybookByStripeRef(session.id, action === "dispute_open" ? PLAYBOOK_DISPUTE_HOLD : "dispute_lost");
+  const stillActive = await countActiveGrantsByStripeRef(session.id);
+  if (stillActive > 0) {
+    console.error(`[stripe/webhook] PLAYBOOK REVOCATION FAILED after ${event.type} (${d.status}) — ${stillActive} grant(s) still active for session ${session.id}`);
+  } else {
+    console.log(`[stripe/webhook] playbook access pulled by ${event.type} (${d.status}) on session ${session.id}`);
   }
 }
 
@@ -404,11 +440,13 @@ export async function POST(request: Request) {
     console.error("[stripe/webhook] playbook grant error:", e instanceof Error ? e.message : e);
   }
 
-  // 1c-iii) Playbook refund -> revoke access. Never blocks the grants above.
+  // 1c-iii) Playbook refund / chargeback -> pull access. Never blocks the grants
+  // above; a failure here is logged rather than allowed to break a purchase.
   try {
     await applyPlaybookRefund(event);
+    await applyPlaybookDispute(event);
   } catch (e) {
-    console.error("[stripe/webhook] playbook refund error:", e instanceof Error ? e.message : e);
+    console.error("[stripe/webhook] playbook refund/dispute error:", e instanceof Error ? e.message : e);
   }
 
   // 1d) A delayed payment (Klarna / bank debit) that never settled. Nothing was

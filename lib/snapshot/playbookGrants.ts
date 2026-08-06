@@ -116,14 +116,44 @@ export async function countActiveGrantsByStripeRef(ref: string): Promise<number>
   }
 }
 
+/**
+ * Written to `notes` when access is pulled because a chargeback is OPEN (money
+ * held, outcome unknown). It marks exactly the rows a later "dispute won" may
+ * restore — without it, a restore could resurrect a grant that was canceled for
+ * an unrelated reason, e.g. a refund or a manual admin action.
+ */
+export const PLAYBOOK_DISPUTE_HOLD = "dispute_hold";
+
 /** Revoke (refund/chargeback) — mark grants for a Stripe ref canceled. */
-export async function revokePlaybookByStripeRef(ref: string): Promise<void> {
+export async function revokePlaybookByStripeRef(ref: string, note?: string): Promise<void> {
   const s = getSupabaseAdminClient();
   try {
-    await s.from("playbook_entitlements")
-      .update({ status: "canceled", updated_at: new Date().toISOString() })
-      .eq("stripe_ref", ref);
+    const patch: Record<string, unknown> = { status: "canceled", updated_at: new Date().toISOString() };
+    if (note) patch.notes = note;
+    await s.from("playbook_entitlements").update(patch).eq("stripe_ref", ref);
   } catch {
     /* resilient */
+  }
+}
+
+/**
+ * Restore access after a chargeback is decided in our favour. Deliberately
+ * narrow: only rows this system put on a dispute hold are revived, so a grant
+ * canceled for any other reason stays canceled. Returns how many were restored.
+ */
+export async function restoreDisputedPlaybookByStripeRef(ref: string): Promise<number> {
+  const s = getSupabaseAdminClient();
+  try {
+    const { data, error } = await s
+      .from("playbook_entitlements")
+      .update({ status: "active", notes: null, updated_at: new Date().toISOString() })
+      .eq("stripe_ref", ref)
+      .eq("status", "canceled")
+      .eq("notes", PLAYBOOK_DISPUTE_HOLD)
+      .select("id");
+    if (error) return 0;
+    return (data ?? []).length;
+  } catch {
+    return 0;
   }
 }
