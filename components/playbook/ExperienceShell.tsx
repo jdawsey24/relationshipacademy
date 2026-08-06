@@ -333,8 +333,29 @@ export default function ExperienceShell({ content, playbookKey, initialProgress,
                       </span>
                     )}
                   </button>
-                  {selected && card.role === "validate" && card.validationCopy && (
-                    <p className="mt-2 rounded-xl bg-sage-green/15 px-4 py-3 font-body text-[14px] text-charcoal/80">{card.validationCopy}</p>
+                  {/* `validationCopy` belongs to BOTH roles per the schema, but this
+                    * only ever rendered it for "validate" — so 18 signpost cards
+                    * carried copy no reader could see, including the shared
+                    * not-safe card telling people that raising things with a
+                    * partner they're frightened of is the wrong advice, and the
+                    * bereavement and addiction redirects.
+                    *
+                    * Signposts get their own treatment rather than the sage
+                    * "you're not alone" validation styling: this copy exists to
+                    * say the tools here may be wrong for you, which is a
+                    * different message and shouldn't read as reassurance. */}
+                  {selected && card.validationCopy && (
+                    <p
+                      className={
+                        "mt-2 rounded-xl px-4 py-3 font-body text-[14px] " +
+                        (card.role === "signpost"
+                          ? "border border-slate-blue/40 bg-slate-blue/10 text-charcoal/85"
+                          : "bg-sage-green/15 text-charcoal/80")
+                      }
+                      role={card.role === "signpost" ? "note" : undefined}
+                    >
+                      {card.validationCopy}
+                    </p>
                   )}
                 </li>
               );
