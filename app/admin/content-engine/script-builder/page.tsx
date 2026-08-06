@@ -143,7 +143,9 @@ export default function ScriptBuilderPage() {
           ))}
         </select>
         <span className="text-xs text-slate-500">
-          Briefs are created from an approved bridge. A bridge must be strong or moderate with a validated mapping.
+          Briefs are created from an approved bridge — start one in{" "}
+          <a href="/admin/content-engine/intake" className="font-medium text-slate-700 underline">Topic intake</a>.
+          A bridge must be strong or moderate with a validated mapping.
         </span>
       </div>
 

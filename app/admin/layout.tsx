@@ -28,7 +28,7 @@ const NAV_GROUPS: NavItem[][] = [
     // Owner-only: every Content Engine route is behind requireAiOwner (owner + MFA).
     {
       label: "Content Engine",
-      href: "/admin/content-engine/script-builder",
+      href: "/admin/content-engine/intake",
       match: ["/admin/content-engine"],
       ownerOnly: true,
     },

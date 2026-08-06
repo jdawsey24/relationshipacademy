@@ -378,3 +378,70 @@ test("the interface is four screens over twelve stages", () => {
   const screens = src.match(/key: "(topic|brief|scripts|review)"/g) ?? [];
   assert.equal(screens.length, 4);
 });
+
+// ---------------------------------------------------------------------------
+// Manual intake (stages 1-5) — the half that feeds the Script Builder
+// ---------------------------------------------------------------------------
+
+test("bridge generation grades every proposal", () => {
+  const src = read("lib/contentEngine/bridges.ts");
+  assert.match(src, /enum: \["strong", "moderate", "weak", "forced", "rejected"\]/);
+  assert.match(src, /"status",/, "status must be a required field of the schema");
+});
+
+test("bridges are validated and graded before they are written", () => {
+  const src = read("lib/contentEngine/bridges.ts");
+  assert.match(src, /await validateMapping\(/);
+  assert.match(src, /computeEligibility\(status, mapping\.valid\)/);
+  assert.match(src, /mapping_valid: mapping\.valid/);
+  assert.match(src, /eligible_for_generation: eligible/);
+});
+
+test("a model-graded 'forced' bridge is forced regardless of the boolean", () => {
+  const src = read("lib/contentEngine/bridges.ts");
+  assert.match(src, /is_forced: !!b\.is_forced \|\| status === "forced"/);
+});
+
+test("bridges are proposed, never auto-accepted", () => {
+  const src = read("lib/contentEngine/bridges.ts");
+  assert.match(src, /decision: "proposed"/);
+  assert.ok(!/decision: "accepted"/.test(src), "generation must never accept its own bridge");
+});
+
+test("an out-of-canon competency is recorded as a rejection, not dropped", () => {
+  const src = read("lib/contentEngine/bridges.ts");
+  assert.match(src, /is not in the canonical set/);
+  assert.match(src, /Recorded, not silently dropped/);
+});
+
+test("the bridge prompt grades honestly rather than helpfully", () => {
+  const src = read("scripts/seedScriptBuilderPrompts.ts");
+  assert.match(src, /generation_type: "ce_bridges"/);
+  assert.match(src, /Grading something\n"strong" to be helpful is worse than returning nothing/);
+  assert.match(src, /CHOOSE FROM THE SUPPLIED LIST ONLY/);
+  assert.match(src, /UNTRUSTED DATA/);
+});
+
+test("intake routes are owner-gated", () => {
+  for (const r of [
+    "app/api/admin/content-engine/trends/route.ts",
+    "app/api/admin/content-engine/trends/[id]/route.ts",
+    "app/api/admin/content-engine/trends/[id]/bridges/route.ts",
+    "app/api/admin/content-engine/bridges/[id]/route.ts",
+  ]) {
+    assert.match(read(r), /requireAiOwner/, `${r} must require the owner guard`);
+  }
+});
+
+test("only an eligible bridge can start a brief in the interface", () => {
+  const src = read("app/admin/content-engine/intake/page.tsx");
+  assert.match(src, /disabled=\{busy !== null \|\| !b\.eligible_for_generation\}/);
+  assert.match(src, /visible for review only/);
+});
+
+test("the two halves of the pipeline are linked in both directions", () => {
+  assert.match(read("app/admin/content-engine/intake/page.tsx"),
+    /router\.push\("\/admin\/content-engine\/script-builder"\)/);
+  assert.match(read("app/admin/content-engine/script-builder/page.tsx"),
+    /\/admin\/content-engine\/intake/);
+});
