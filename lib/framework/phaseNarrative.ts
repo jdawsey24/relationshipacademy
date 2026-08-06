@@ -329,12 +329,21 @@ export async function getPhaseNarrative(
   const s = getSupabaseAdminClient();
   const wanted = phaseOrSlug.trim().toLowerCase().replace(/-/g, " ");
 
-  const { data: phases } = await s.from("kb_phase_narratives").select(PHASE_COLS);
+  const { data: phases, error: phaseErr } = await s
+    .from("kb_phase_narratives").select(PHASE_COLS);
+
+  // A failed query and an absent record are completely different problems, and
+  // conflating them turns "the database rejected this" into the far more
+  // alarming "this phase has no narrative". Surface the real cause.
+  if (phaseErr) {
+    throw new Error(`kb_phase_narratives query failed: ${phaseErr.message}`);
+  }
+
   const phase = ((phases ?? []) as unknown as PhaseNarrativeRecord[])
     .find((p) => p.phase.toLowerCase() === wanted);
   if (!phase) return null;
 
-  const { data: domains } = await s
+  const { data: domains, error: domainErr } = await s
     .from("kb_phase_domain_narratives")
     .select(
       "phase, domain, domain_storyline, consumer_problem_language, internal_questions, " +
@@ -343,6 +352,10 @@ export async function getPhaseNarrative(
         "content_themes, next_step_language, safety_rules, suppression_rules, record_status, updated_at",
     )
     .eq("phase", phase.phase);
+
+  if (domainErr) {
+    throw new Error(`kb_phase_domain_narratives query failed: ${domainErr.message}`);
+  }
 
   return projectPhaseNarrative(phase, (domains ?? []) as unknown as DomainNarrativeRecord[]);
 }
