@@ -3,7 +3,7 @@ import { validateMapping } from "@/lib/contentEngine/mappingValidation";
 import { pickConsumerSafeDetail } from "@/lib/contentEngine/retrieval";
 import { audienceForPlatform, checkPublicUse } from "@/lib/contentEngine/scriptBuilder/governance";
 import {
-  ANGLES_SCHEMA, EQUIVALENCE_SCHEMA, PACKAGING_SCHEMA, SCRIPT_SCHEMA,
+  ANGLE_MAX, ANGLE_MIN, ANGLES_SCHEMA, EQUIVALENCE_SCHEMA, PACKAGING_SCHEMA, SCRIPT_SCHEMA,
   ScriptBuilderError, haltOnConflict, measureScript, runStage,
 } from "@/lib/contentEngine/scriptBuilder/generate";
 import { evaluateComparison, DEFAULT_WPM } from "@/lib/contentEngine/scriptBuilder/analysis";
@@ -237,7 +237,18 @@ export async function generateAngles(briefId: string, actor: string | null) {
   await s.from("ce_content_briefs")
     .update({ status: "angles_generated", updated_at: new Date().toISOString() }).eq("id", briefId);
 
-  return { angles: rows ?? [], costUsd: res.costUsd };
+  // The 3-5 range cannot be a schema constraint (provider structured output
+  // accepts minItems 0 or 1 only), so it is checked here. Reported rather than
+  // thrown: the angles are already generated and paid for, and fewer than three
+  // is a weak result, not an invalid one.
+  const warnings: string[] = [];
+  const count = res.output.angles.length;
+  if (count < ANGLE_MIN || count > ANGLE_MAX) {
+    warnings.push(`The model returned ${count} angles; ${ANGLE_MIN}-${ANGLE_MAX} were requested. ` +
+      `${count < ANGLE_MIN ? "That is not much of a choice — consider regenerating." : ""}`.trim());
+  }
+
+  return { angles: rows ?? [], costUsd: res.costUsd, warnings };
 }
 
 export async function selectAngle(briefId: string, angleId: string, edits?: Record<string, string>) {

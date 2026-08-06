@@ -19,7 +19,7 @@ import {
 } from "@/lib/contentEngine/scriptBuilder/generate";
 
 const APPLY = process.argv.includes("--apply");
-const VERSION = 4;
+const VERSION = 6;
 
 // Governance is split by what the stage actually has in front of it.
 //
@@ -78,7 +78,7 @@ CONFLICT — you must flag, never self-correct:
 const TEMPLATES = [
   {
     generation_type: "ce_bridges",
-    name: "Content Engine — relational bridge proposal (v4)",
+    name: "Content Engine — relational bridge proposal (v6)",
     system_instruction: `${BASE_GOVERNANCE}
 
 TASK: propose {{bridge_min}} to {{bridge_max}} relational bridges from a topic to
@@ -129,7 +129,7 @@ Propose {{bridge_min}}-{{bridge_max}} bridges, each graded honestly.`,
       required: ["bridges"],
       properties: {
         bridges: {
-          type: "array", minItems: 3, maxItems: 5,
+          type: "array",
           items: {
             type: "object",
             additionalProperties: false,
@@ -152,7 +152,7 @@ Propose {{bridge_min}}-{{bridge_max}} bridges, each graded honestly.`,
   },
   {
     generation_type: "ce_script_angles",
-    name: "Script Builder — angle generation (v4)",
+    name: "Script Builder — angle generation (v6)",
     system_instruction: `${BRIEF_GOVERNANCE}
 
 TASK: propose 3 to 5 genuinely different angles on one approved brief.
@@ -174,7 +174,7 @@ Propose 3-5 meaningfully different angles.`,
   },
   {
     generation_type: "ce_script_draft",
-    name: "Script Builder — single script draft (v4)",
+    name: "Script Builder — single script draft (v6)",
     system_instruction: `${BRIEF_GOVERNANCE}
 
 TASK: write ONE short-form video script at the requested reading level.
@@ -214,7 +214,7 @@ Write the script.`,
   },
   {
     generation_type: "ce_script_equivalence",
-    name: "Script Builder — conceptual equivalence check (v4)",
+    name: "Script Builder — conceptual equivalence check (v6)",
     system_instruction: `${BRIEF_GOVERNANCE}
 
 TASK: decide whether two independently written scripts still teach the same thing.
@@ -243,7 +243,7 @@ Do these still teach the same thing?`,
   },
   {
     generation_type: "ce_script_packaging",
-    name: "Script Builder — packaging (v4)",
+    name: "Script Builder — packaging (v6)",
     system_instruction: `${BRIEF_GOVERNANCE}
 
 TASK: package an already-approved script for publication.

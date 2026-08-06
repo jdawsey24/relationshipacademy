@@ -1,4 +1,21 @@
-import { tokenOverlap } from "@/lib/contentEngine/normalize";
+// Deliberately NOT lib/contentEngine/normalize's tokenOverlap.
+//
+// That helper runs its input through dedupeKey → canonicalName, which keeps only
+// the FIRST CLAUSE and caps at 120 characters — correct for naming a trend,
+// useless for comparing two scripts. Using it here meant similarity was computed
+// from the opening sentence of each script (2 tokens against 7 in the first live
+// run, scoring 0.000), so the 0.80 threshold could never fire and two
+// near-identical scripts would have sailed through. Similarity needs the whole
+// text, so it gets its own tokenizer.
+
+/** Words too common to carry a signal about whether two scripts are the same. */
+const NOISE = new Set([
+  "the", "and", "but", "for", "not", "you", "your", "yours", "that", "this", "with",
+  "was", "were", "are", "have", "has", "had", "what", "when", "then", "they", "them",
+  "their", "there", "here", "from", "about", "into", "out", "just", "like", "than",
+  "his", "her", "him", "she", "its", "it's", "can", "could", "would", "should",
+  "one", "all", "any", "how", "why", "who", "get", "got", "does", "did", "done",
+]);
 
 // Pure analysis for the Script Builder: runtime, similarity, equivalence and
 // severity grading. No I/O, so every rule here is testable without a database
@@ -62,8 +79,33 @@ export function checkRuntime(text: string, targetSeconds: number, wpm = DEFAULT_
  */
 export const SIMILARITY_THRESHOLD = 0.8;
 
+/** Content words across the WHOLE text — no truncation, no first-clause shortcut. */
+export function contentTokens(text: string): Set<string> {
+  return new Set(
+    (text ?? "")
+      .toLowerCase()
+      .replace(/[^\p{L}\p{N}\s]/gu, " ")
+      .split(/\s+/)
+      .filter((t) => t.length > 2 && !NOISE.has(t)),
+  );
+}
+
+/**
+ * Jaccard similarity over content words: shared / total distinct.
+ *
+ * Jaccard rather than an overlap coefficient, because overlap divides by the
+ * SMALLER set and so scores a short script fully contained in a longer one as a
+ * perfect match. Two reading levels legitimately differ in length, and treating
+ * "the short one is a subset" as "these are the same script" is precisely the
+ * false positive that would make the check untrustworthy.
+ */
 export function lexicalSimilarity(a: string, b: string): number {
-  return Number(tokenOverlap(a ?? "", b ?? "").toFixed(3));
+  const A = contentTokens(a), B = contentTokens(b);
+  if (!A.size || !B.size) return 0;
+  let shared = 0;
+  for (const t of A) if (B.has(t)) shared++;
+  const union = A.size + B.size - shared;
+  return Number((shared / union).toFixed(3));
 }
 
 export interface EquivalenceInput {

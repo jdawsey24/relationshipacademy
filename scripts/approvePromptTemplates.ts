@@ -42,7 +42,7 @@ const TYPES = [
   "ce_script_packaging",
 ] as const;
 
-const TARGET_VERSION = 4;
+const TARGET_VERSION = 6;
 
 interface Tpl {
   id: string; generation_type: string; name: string; version: number;

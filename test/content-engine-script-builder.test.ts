@@ -239,12 +239,18 @@ test("the equivalence check judges the four dimensions separately", () => {
   }
 });
 
-test("angles are bounded at 3 to 5", () => {
+test("angles are bounded at 3 to 5 — by the prompt and code, not the schema", async () => {
+  const { ANGLE_MIN, ANGLE_MAX } = await import("@/lib/contentEngine/scriptBuilder/generate");
+  assert.equal(ANGLE_MIN, 3);
+  assert.equal(ANGLE_MAX, 5);
   const angles = (ANGLES_SCHEMA as unknown as {
-    properties: { angles: { minItems: number; maxItems: number } };
+    properties: { angles: Record<string, unknown> };
   }).properties.angles;
-  assert.equal(angles.minItems, 3);
-  assert.equal(angles.maxItems, 5);
+  // Neither bound can live in the schema: the provider rejects minItems above 1
+  // and rejects maxItems outright. The range is a prompt instruction plus a
+  // post-call check, and the schema guarantees shape only.
+  assert.equal(angles.minItems, undefined);
+  assert.equal(angles.maxItems, undefined);
 });
 
 test("a model conflict halts generation instead of being self-corrected", () => {
@@ -527,4 +533,87 @@ test("the brief-driven stages keep the conflict rule, and have the channel for i
     const props = (schema as unknown as { properties: Record<string, unknown> }).properties;
     assert.ok("conflict" in props, `${name} is told to flag conflicts and must be able to`);
   }
+});
+
+// ---------------------------------------------------------------------------
+// Provider schema constraints
+// ---------------------------------------------------------------------------
+
+test("no schema carries an array constraint the provider rejects", () => {
+  // Learned from live 400s: Anthropic structured output rejects minItems above
+  // 1 and rejects maxItems entirely. A schema that violates either fails the
+  // whole call, so this is checked across every file that declares one.
+  for (const f of [
+    "lib/contentEngine/bridges.ts",
+    "lib/contentEngine/scriptBuilder/generate.ts",
+    "scripts/seedScriptBuilderPrompts.ts",
+  ]) {
+    const src = read(f);
+    const decls = [...src.matchAll(/^\s*(minItems|maxItems):\s*(\S+?),/gm)]
+      .map((m) => `${m[1]}: ${m[2]}`)
+      .filter((d) => d !== "minItems: 0" && d !== "minItems: 1");
+    assert.deepEqual(decls, [], `${f} declares ${decls.join(", ")}, which the provider rejects`);
+  }
+});
+
+test("the requested count is checked after the call, since the schema cannot", () => {
+  assert.match(read("lib/contentEngine/bridges.ts"), /expected \$\{BRIDGE_MIN\}-\$\{BRIDGE_MAX\}/);
+  assert.match(read("lib/contentEngine/scriptBuilder/workflow.ts"), /ANGLE_MIN \|\| count > ANGLE_MAX/);
+});
+
+test("every provider call records cost_usd — the ceiling sums that column", () => {
+  for (const f of ["lib/contentEngine/bridges.ts", "lib/contentEngine/scriptBuilder/generate.ts"]) {
+    const src = read(f);
+    assert.match(src, /cost_usd/, `${f} must record cost, or its calls never count against the daily limit`);
+    assert.match(src, /estimateCost\(/, `${f} must compute the cost it records`);
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Similarity must read the WHOLE script (regression from the first live run)
+// ---------------------------------------------------------------------------
+
+test("similarity reads the whole text, not just the opening clause", async () => {
+  const { contentTokens } = await import("@/lib/contentEngine/scriptBuilder/analysis");
+  // Two paragraphs whose FIRST sentences share nothing but whose bodies are the
+  // same. The old implementation ran through canonicalName, which keeps only the
+  // first clause, and scored this 0.
+  const a = "He drops his fork. Something in you closes before you have thought anything. " +
+            "The reaction is real but it is not a verdict about him.";
+  const b = "She mispronounces a word. Something in you closes before you have thought anything. " +
+            "The reaction is real but it is not a verdict about him.";
+  assert.ok(contentTokens(a).size > 8, "the tokenizer must see the whole text");
+  const sim = lexicalSimilarity(a, b);
+  assert.ok(sim > 0.6, `near-identical bodies scored ${sim} — the opening clause is being read alone`);
+});
+
+test("a cosmetic rewrite is caught; a genuine second draft is not", () => {
+  // Script-length on purpose. Jaccard is noisy over a handful of tokens, and the
+  // check only ever runs against real scripts of roughly this size — a 30-word
+  // fixture would be testing the metric's noise floor rather than its behaviour.
+  const original =
+    "He mispronounces a word. He drops his fork. And something in you closes. " +
+    "You do not have to talk yourself out of it. Just ask one question afterwards: " +
+    "what was I bracing for? What had I already decided that small moment meant about him? " +
+    "Read that way, the ick is not a verdict. It is one more thing you now know about yourself. " +
+    "Your standards are not the problem. The reaction is yours to keep, and yours to read.";
+  const cosmetic = original
+    .replace(/\bHe\b/g, "The guy")
+    .replace(/\bJust ask\b/g, "Simply consider");
+  assert.ok(lexicalSimilarity(original, cosmetic) > SIMILARITY_THRESHOLD,
+    "swapping a couple of words must not pass as a second reading level");
+
+  const genuine =
+    "Two very different feelings both get called the ick. One is about how he chewed. " +
+    "The other is about how he spoke to the waiter. Only the second tells you who he is.";
+  assert.ok(lexicalSimilarity(original, genuine) < SIMILARITY_THRESHOLD,
+    "an independently written draft must not be flagged as duplication");
+});
+
+test("similarity is Jaccard, so containment is not a perfect match", () => {
+  const short = "the ick is information not a verdict";
+  const long = short + " something in you was already braced and the reaction arrived before any thought";
+  const sim = lexicalSimilarity(short, long);
+  assert.ok(sim < 1, `containment scored ${sim}; an overlap coefficient would wrongly call this identical`);
+  assert.ok(sim > 0, "they do share content");
 });

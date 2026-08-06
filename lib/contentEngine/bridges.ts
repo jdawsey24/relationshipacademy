@@ -3,6 +3,7 @@ import { getAiSettings } from "@/lib/ai/settings";
 import { getActiveTemplate, renderPrompt, unresolvedPlaceholders } from "@/lib/ai/templates";
 import { computeEligibility, validateMapping } from "@/lib/contentEngine/mappingValidation";
 import { getProvider } from "@/lib/ai/provider";
+import { estimateCost } from "@/lib/ai/types";
 import { loadCompetencyChoices, untrustedTrendBlock } from "@/lib/contentEngine/retrieval";
 import { BRIDGE_MAX, BRIDGE_MIN, BRIDGE_TYPES, type BridgeCandidate } from "@/lib/contentEngine/types";
 
@@ -30,8 +31,10 @@ const BRIDGE_SCHEMA = {
   properties: {
     bridges: {
       type: "array",
-      minItems: BRIDGE_MIN,
-      maxItems: BRIDGE_MAX,
+      // The provider's structured output supports neither minItems above 1 nor
+      // maxItems at all, so the 3-5 range cannot be a schema constraint. It is
+      // stated in the prompt and checked after the call — the schema guarantees
+      // SHAPE, the prompt and code guarantee COUNT.
       items: {
         type: "object",
         additionalProperties: false,
@@ -161,9 +164,13 @@ export async function generateBridges(input: GenerateBridgesInput): Promise<Gene
       timeoutSeconds: 120,
     });
     output = res.output;
+    // cost_usd must be recorded: preflightGeneration sums THIS column to enforce
+    // the daily ceiling, so a call that leaves it null is a call that never
+    // counts against the limit.
     await s.from("ai_generation_requests").update({
       status: "completed", completed_at: new Date().toISOString(),
       input_tokens: res.inputTokens, output_tokens: res.outputTokens,
+      cost_usd: estimateCost(res.inputTokens, res.outputTokens),
     }).eq("id", requestId);
     await s.from("ai_generation_outputs").insert({
       generation_request_id: requestId,
@@ -242,6 +249,14 @@ export async function generateBridges(input: GenerateBridgesInput): Promise<Gene
       decision: "proposed",
     };
   }));
+
+  if (proposed.length < BRIDGE_MIN || proposed.length > BRIDGE_MAX) {
+    // Not fatal — the output is still worth keeping — but the owner should know
+    // the model did not return the range it was asked for.
+    console.warn(
+      `[ce_bridges] model returned ${proposed.length} bridges, expected ${BRIDGE_MIN}-${BRIDGE_MAX}.`,
+    );
+  }
 
   if (rows.length) {
     const { error } = await s.from("ce_relational_bridges").insert(rows);

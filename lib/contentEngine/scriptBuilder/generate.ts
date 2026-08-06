@@ -33,6 +33,10 @@ export const STAGE_TEMPLATES = {
 
 export type StageName = keyof typeof STAGE_TEMPLATES;
 
+/** Angle count the brief stage asks for. Not schema-enforceable — see ANGLES_SCHEMA. */
+export const ANGLE_MIN = 3;
+export const ANGLE_MAX = 5;
+
 // ---------------------------------------------------------------------------
 // Schemas
 // ---------------------------------------------------------------------------
@@ -56,7 +60,10 @@ export const ANGLES_SCHEMA = {
   additionalProperties: false,
   properties: {
     angles: {
-      type: "array", minItems: 3, maxItems: 5,
+      // Neither minItems above 1 nor maxItems is supported by provider
+      // structured output; the 3-5 range is enforced in the prompt and checked
+      // after the call.
+      type: "array",
       items: {
         type: "object",
         additionalProperties: false,
