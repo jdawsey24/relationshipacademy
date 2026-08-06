@@ -1,8 +1,22 @@
-// Framework content for the public site. Phase-detail prose is verbatim from
-// the Relationship Life Cycle™ Framework Manual (Chapters 1–7); domain
-// descriptions and card copy follow the Phase 4 spec. Exploration and
-// Exclusivity are fully populated; Expansion/Expiration/Recovery/Renewal carry
-// the manual's opening definition with deeper sections marked "coming soon".
+// Presentation metadata for the public site, plus the phase prose that has NOT
+// yet been cut over to the Knowledge Base.
+//
+// THIS FILE IS NO LONGER AN INDEPENDENT AUTHORING SOURCE (owner cutover,
+// 2026-08-06). Phase definitions, developmental explanations, transformations,
+// domain storylines, misconceptions, safety boundaries and public interpretation
+// belong to the Knowledge Base narrative layer — kb_phase_narratives and
+// kb_phase_domain_narratives — read through lib/framework/phaseNarrative.ts.
+//
+// What legitimately remains here: route identity, ordering, colour, and layout.
+//
+// Phases are migrating one at a time, so `narrativeSource` says explicitly where
+// each one's prose comes from. A `knowledge_base` phase carries NO narrative
+// fields here at all — the optional types are what make that a compile error
+// rather than a convention, and what stops a stale paragraph being served if the
+// Knowledge Base record is ever incomplete.
+//
+// Remaining prose is verbatim from the Relationship Life Cycle™ Framework Manual
+// (Chapters 1–7); domain descriptions and card copy follow the Phase 4 spec.
 
 import type { ColorToken } from "@/lib/phases";
 
@@ -12,17 +26,24 @@ export interface PhaseSection {
   comingSoon?: boolean;
 }
 
+/** Where a phase's substantive narrative is authored. */
+export type NarrativeSource = "knowledge_base" | "legacy_manual";
+
 export interface FrameworkPhase {
+  // --- identity and presentation: always present, never narrative ---
   slug: string;
   number: number;
-  name: string;
+  name: string; // canonical phase name — also the route identity
   color: ColorToken;
-  task: string; // developmental task (framework language)
-  primaryFocus: string; // plain-language focus (consumer-facing)
-  cardDescription: string; // one-sentence (consumer-facing)
-  intro: string; // hero paragraph (manual)
-  sections: PhaseSection[];
-  fullyPopulated: boolean;
+  narrativeSource: NarrativeSource;
+
+  // --- substantive narrative: present ONLY for legacy_manual phases ---
+  task?: string; // developmental task (framework language)
+  primaryFocus?: string; // plain-language focus (consumer-facing)
+  cardDescription?: string; // one-sentence (consumer-facing)
+  intro?: string; // hero paragraph (manual)
+  sections?: PhaseSection[];
+  fullyPopulated?: boolean;
 }
 
 export const PHASES: FrameworkPhase[] = [
@@ -31,6 +52,7 @@ export const PHASES: FrameworkPhase[] = [
     number: 1,
     name: "Exploration",
     color: "coral-rose",
+    narrativeSource: "legacy_manual",
     task: "Discernment",
     primaryFocus: "Getting to know each other",
     cardDescription:
@@ -81,6 +103,7 @@ export const PHASES: FrameworkPhase[] = [
     number: 2,
     name: "Exclusivity",
     color: "plum",
+    narrativeSource: "legacy_manual",
     task: "Intentional Investment",
     primaryFocus: "Choosing each other intentionally",
     cardDescription:
@@ -131,6 +154,7 @@ export const PHASES: FrameworkPhase[] = [
     number: 3,
     name: "Expansion",
     color: "sage-green",
+    narrativeSource: "legacy_manual",
     task: "Integration",
     primaryFocus: "Building a shared life",
     cardDescription:
@@ -180,6 +204,7 @@ export const PHASES: FrameworkPhase[] = [
     number: 4,
     name: "Expiration",
     color: "slate-blue",
+    narrativeSource: "legacy_manual",
     task: "Acceptance",
     primaryFocus: "Facing hard truths",
     cardDescription:
@@ -224,60 +249,29 @@ export const PHASES: FrameworkPhase[] = [
       },
     ],
   },
+  // RECOVERY IS CUT OVER. Route, order and colour only.
+  //
+  // Its narrative — consumer title "Getting Back to Yourself", public descriptor
+  // "Healing after relational loss", core question, core tension, transformation,
+  // governing truths and the six domain storylines — lives in
+  // kb_phase_narratives / kb_phase_domain_narratives and is read through
+  // getPhaseNarrative("Recovery").
+  //
+  // Do not restore prose here. Two consumer-facing descriptions of Recovery in
+  // two places, drifting apart, is the exact condition this cutover removed.
   {
     slug: "recovery",
     number: 5,
     name: "Recovery",
     color: "dusty-plum",
-    task: "Healing",
-    primaryFocus: "Healing after loss",
-    cardDescription:
-      "The phase of restoration — processing the end of a relationship and rebuilding emotional wellbeing.",
-    intro:
-      "If Expiration is the phase of accepting that a relationship's current form is ending, Recovery is the phase of healing from that ending. It is the process through which individuals adapt, rebuild, integrate, and move forward following relational loss. Healthy recovery is about learning how to carry the experience without allowing the experience to carry you.",
-    fullyPopulated: true,
-    sections: [
-      {
-        heading: "Purpose of This Phase",
-        body: [
-          `The purpose of Recovery is to help individuals heal, adapt, integrate their experiences, and rebuild life after relational loss. Many people assume recovery is about getting over the relationship and returning to who they were before. Within this framework, Recovery has a deeper purpose: it is not about returning to the person you were before the relationship — it is about becoming the person you are after it.`,
-          `Expiration asks individuals to accept reality. Recovery helps them learn how to live within that reality. Because while endings change our lives, they do not end our lives.`,
-        ],
-      },
-      {
-        heading: "The Developmental Task",
-        body: [
-          `The developmental task of Recovery is Healing — the process of restoring emotional, psychological, relational, and personal well-being following relational loss. Healing is often far more complex than simply feeling better, because relationships do not only leave memories. They leave impact.`,
-          `One of the greatest misconceptions is the belief that healing means no longer hurting. Pain and healing frequently coexist. A person can be healing while still grieving. The question is not, “Does this still hurt?” The question is, “Am I learning how to carry the hurt differently?”`,
-        ],
-      },
-      {
-        heading: "Healthy Development",
-        body: [
-          `Healthy recovery is not defined by the absence of pain. It is defined by the presence of adaptation, growth, integration, and increasing engagement with life. Recovery tends to unfold gradually, often through small shifts rather than dramatic breakthroughs.`,
-          `It is characterized by increasing acceptance, emotional regulation, self-trust, identity clarity, meaning-making, hope, and future orientation. The relationship remains part of the story. The loss remains part of the story. But neither remains the entire story. Healing is not the removal of the wound — it is the restoration of the person carrying it.`,
-        ],
-      },
-      {
-        heading: "Common Challenges",
-        body: [
-          `Recovery is often portrayed as a straightforward journey. In reality, individuals are often rebuilding multiple aspects of their lives simultaneously while grieving what has been lost. Many enter Recovery believing they are grieving a single loss when they are grieving several at once — the relationship, the future, the identity, the attachment, the security. This often explains why recovery feels heavier than expected.`,
-          `Most mistakes stem from one common issue: attempting to escape the work of healing. People try to avoid grief, uncertainty, discomfort, reflection, and vulnerability. Yet healing often requires moving toward difficult experiences rather than away from them. The work cannot be skipped. It can only be postponed.`,
-        ],
-      },
-      {
-        heading: "Readiness for the Next Phase",
-        body: [
-          `One of the most common mistakes is assuming that the end of Recovery automatically means readiness for Renewal. Readiness for Renewal is the point at which healing has progressed enough that a person can engage the future without being primarily driven by unresolved wounds from the past. The question is no longer, “Am I hurting?” but “Am I prepared to move forward in a healthy way?”`,
-        ],
-      },
-    ],
+    narrativeSource: "knowledge_base",
   },
   {
     slug: "renewal",
     number: 6,
     name: "Renewal",
     color: "light-sage",
+    narrativeSource: "legacy_manual",
     task: "Reengagement",
     primaryFocus: "Starting again",
     cardDescription:

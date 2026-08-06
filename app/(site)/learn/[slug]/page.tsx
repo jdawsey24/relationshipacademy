@@ -6,6 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { getPublishedArticleBySlug } from "@/lib/articles";
 import { getPhase } from "@/lib/frameworkContent";
+import { getPhaseNarrative } from "@/lib/framework/phaseNarrative";
 
 export const revalidate = 60;
 
@@ -43,6 +44,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   if (!a) notFound();
 
   const phase = a.related_phase_slug ? getPhase(a.related_phase_slug) : undefined;
+  // Cut-over phases resolve their consumer title through the same Knowledge Base
+  // entry point as /framework and /[phase], so all three share one source version.
+  const phaseNarrative =
+    phase?.narrativeSource === "knowledge_base" ? await getPhaseNarrative(phase.name) : null;
   const date = fmtDate(a.publish_date);
 
   return (
@@ -89,8 +94,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <p className="mt-10 rounded-lg border border-light-gray bg-white p-4 font-body text-sm text-charcoal">
             Related phase:{" "}
             <Link href={`/${phase.slug}`} className="font-semibold text-midnight-navy underline underline-offset-2">
+              {/* Canonical phase name; the consumer title follows as a translation. */}
               {phase.name}
             </Link>
+            {phaseNarrative?.consumerTitle && (
+              <span className="text-charcoal/70"> — {phaseNarrative.consumerTitle}</span>
+            )}
           </p>
         )}
 

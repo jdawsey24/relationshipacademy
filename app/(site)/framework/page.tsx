@@ -5,8 +5,9 @@ import DomainCard from "@/components/site/DomainCard";
 import PhaseCycle from "@/components/site/PhaseCycle";
 import RichText from "@/components/site/RichText";
 import { PRINCIPLES } from "@/lib/frameworkContent";
+import { resolvePhaseCards } from "@/lib/framework/phaseCards";
 import { classesFor } from "@/lib/phases";
-import { getSiteContentMap, get, applyPhaseOverrides, applyDomainOverrides, buildPageMetadata } from "@/lib/siteContent";
+import { getSiteContentMap, get, applyDomainOverrides, buildPageMetadata } from "@/lib/siteContent";
 
 export const revalidate = 60;
 
@@ -16,7 +17,9 @@ export async function generateMetadata() {
 
 export default async function FrameworkPage() {
   const content = await getSiteContentMap();
-  const phases = applyPhaseOverrides(content);
+  // Cut-over phases resolve from the Knowledge Base and ignore site_content
+  // overrides; legacy phases keep their existing override behaviour.
+  const phases = await resolvePhaseCards(content);
   const domains = applyDomainOverrides(content);
   return (
     <main className="bg-warm-ivory">
@@ -108,7 +111,7 @@ export default async function FrameworkPage() {
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {phases.map((p) => (
-              <PhaseCard key={p.slug} number={p.number} name={p.name} primaryFocus={p.primaryFocus} task={p.task} description={p.cardDescription} color={p.color} href={`/${p.slug}`} />
+              <PhaseCard key={p.slug} number={p.number} name={p.name} primaryFocus={p.primaryFocus} task={p.task} description={p.description} color={p.color} href={`/${p.slug}`} />
             ))}
           </div>
         </div>

@@ -2,24 +2,60 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CtaButton from "@/components/site/CtaButton";
 import JsonLd from "@/components/JsonLd";
+import KbPhaseNarrative from "@/components/site/KbPhaseNarrative";
 import { breadcrumbSchema } from "@/lib/schema";
 import { PHASES, getPhase } from "@/lib/frameworkContent";
+import { getPhaseNarrative, type PhaseNarrativeProjection } from "@/lib/framework/phaseNarrative";
 import { classesFor } from "@/lib/phases";
 
 // Top-level, short, keyword-focused phase URLs (e.g. /exploration). Only the six
 // phase slugs are valid — any other single-segment path 404s (dynamicParams=false).
 export const dynamicParams = false;
+export const revalidate = 60;
 
 export function generateStaticParams() {
   return PHASES.map((p) => ({ phase: p.slug }));
+}
+
+/**
+ * Load the Knowledge Base narrative for a cut-over phase, or fail loudly.
+ *
+ * There is deliberately no fallback to lib/frameworkContent.ts. Once a phase is
+ * declared knowledge_base its legacy prose is gone, and serving a stale
+ * paragraph in place of a missing KB field is exactly the failure this cutover
+ * was done to prevent. A missing record breaks the build instead — visibly, and
+ * before anyone reads it.
+ */
+async function requireNarrative(phaseName: string): Promise<PhaseNarrativeProjection> {
+  const n = await getPhaseNarrative(phaseName);
+  if (!n) {
+    throw new Error(
+      `${phaseName} is declared knowledge_base but has no kb_phase_narratives record.`,
+    );
+  }
+  if (!n.renderable) {
+    throw new Error(
+      `${phaseName} narrative is missing required fields: ${n.missingRequiredFields.join(", ")}.`,
+    );
+  }
+  return n;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ phase: string }> }) {
   const { phase: slug } = await params;
   const phase = getPhase(slug);
   if (!phase) return { title: "Phase | Relationship Life Cycle™" };
+
+  let description: string | undefined;
+  if (phase.narrativeSource === "knowledge_base") {
+    const n = await requireNarrative(phase.name);
+    description = n.publicDescriptor ?? n.coreQuestion;
+  } else {
+    description = phase.cardDescription || phase.intro;
+  }
+
+  // Canonical phase name, never the consumer title.
   const title = `${phase.name} | The Relationship Life Cycle™`;
-  const description = phase.cardDescription || phase.intro;
   const url = `/${phase.slug}`;
   return {
     title,
@@ -35,10 +71,15 @@ export default async function PhaseDetailPage({ params }: { params: Promise<{ ph
   const phase = getPhase(slug);
   if (!phase) notFound();
 
+  const kb = phase.narrativeSource === "knowledge_base" ? await requireNarrative(phase.name) : null;
+
   const c = classesFor(phase.color);
   const idx = PHASES.findIndex((p) => p.slug === slug);
   const prev = idx > 0 ? PHASES[idx - 1] : null;
   const next = idx < PHASES.length - 1 ? PHASES[idx + 1] : null;
+
+  const task = kb ? kb.developmentalTask : phase.task;
+  const intro = kb ? kb.coreTension : phase.intro;
 
   return (
     <main className="bg-warm-ivory">
@@ -53,11 +94,18 @@ export default async function PhaseDetailPage({ params }: { params: Promise<{ ph
           <p className="font-ui text-xs font-semibold uppercase tracking-[0.15em] opacity-80">
             Phase {phase.number} of 6
           </p>
+          {/* Canonical phase name. The consumer title is a translation shown
+              beneath it, never a replacement. */}
           <h1 className="mt-3 font-display text-5xl font-semibold sm:text-6xl">{phase.name}</h1>
-          <p className="mt-3 font-ui text-sm uppercase tracking-[0.15em] opacity-80">
-            Developmental Task: {phase.task}
-          </p>
-          <p className="mt-6 max-w-2xl font-body text-lg leading-relaxed opacity-95">{phase.intro}</p>
+          {kb?.consumerTitle && (
+            <p className="mt-2 font-display text-2xl font-medium opacity-90">{kb.consumerTitle}</p>
+          )}
+          {task && (
+            <p className="mt-3 font-ui text-sm uppercase tracking-[0.15em] opacity-80">
+              Developmental Task: {task}
+            </p>
+          )}
+          {intro && <p className="mt-6 max-w-2xl font-body text-lg leading-relaxed opacity-95">{intro}</p>}
         </div>
       </section>
 
@@ -72,31 +120,37 @@ export default async function PhaseDetailPage({ params }: { params: Promise<{ ph
         </nav>
       </div>
 
-      {/* Content sections */}
+      {/* Content */}
       <div className="mx-auto max-w-2xl px-6 py-12">
-        {!phase.fullyPopulated && (
-          <p className={`mb-8 rounded-lg border-l-4 ${c.border} ${c.tintBg} py-3 pl-4 pr-3 font-body text-sm text-charcoal`}>
-            This phase overview is being expanded with full content from the Relationship Life Cycle™ Framework Manual. The essentials are below.
-          </p>
+        {kb ? (
+          <KbPhaseNarrative narrative={kb} color={phase.color} />
+        ) : (
+          <>
+            {!phase.fullyPopulated && (
+              <p className={`mb-8 rounded-lg border-l-4 ${c.border} ${c.tintBg} py-3 pl-4 pr-3 font-body text-sm text-charcoal`}>
+                This phase overview is being expanded with full content from the Relationship Life Cycle™ Framework Manual. The essentials are below.
+              </p>
+            )}
+            <div className="space-y-12">
+              {(phase.sections ?? []).map((s) => (
+                <section key={s.heading}>
+                  <h2 className="font-display text-2xl font-semibold text-midnight-navy">{s.heading}</h2>
+                  <div className="mt-4 space-y-4">
+                    {s.comingSoon ? (
+                      <p className="font-body text-body italic text-charcoal/50">
+                        Full content coming soon.
+                      </p>
+                    ) : (
+                      s.body.map((p, i) => (
+                        <p key={i} className="font-body text-base leading-relaxed text-charcoal">{p}</p>
+                      ))
+                    )}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </>
         )}
-        <div className="space-y-12">
-          {phase.sections.map((s) => (
-            <section key={s.heading}>
-              <h2 className="font-display text-2xl font-semibold text-midnight-navy">{s.heading}</h2>
-              <div className="mt-4 space-y-4">
-                {s.comingSoon ? (
-                  <p className="font-body text-body italic text-charcoal/50">
-                    Full content coming soon.
-                  </p>
-                ) : (
-                  s.body.map((p, i) => (
-                    <p key={i} className="font-body text-base leading-relaxed text-charcoal">{p}</p>
-                  ))
-                )}
-              </div>
-            </section>
-          ))}
-        </div>
 
         {/* Phase navigation */}
         <div className="mt-16 flex items-center justify-between border-t border-light-gray pt-6 font-ui text-sm">

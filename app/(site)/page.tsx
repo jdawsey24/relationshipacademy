@@ -4,7 +4,8 @@ import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import PhaseCard from "@/components/site/PhaseCard";
 import FrameworkCycle from "@/components/site/FrameworkCycle";
-import { getSiteContentMap, get, applyPhaseOverrides, buildPageMetadata } from "@/lib/siteContent";
+import { getSiteContentMap, get, buildPageMetadata } from "@/lib/siteContent";
+import { resolvePhaseCards } from "@/lib/framework/phaseCards";
 
 // ISR: page is cached and regenerated periodically so CMS edits appear within
 // ~a minute without making every request hit the database.
@@ -29,7 +30,7 @@ function FeatureIcon({ kind }: { kind: string }) {
 
 export default async function HomePage() {
   const content = await getSiteContentMap();
-  const phases = applyPhaseOverrides(content);
+  const phases = await resolvePhaseCards(content);
   return (
     <main>
       {/* Hero */}
@@ -122,7 +123,7 @@ export default async function HomePage() {
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {phases.map((p) => (
-              <PhaseCard key={p.slug} number={p.number} name={p.name} primaryFocus={p.primaryFocus} description={p.cardDescription} color={p.color} href={`/${p.slug}`} />
+              <PhaseCard key={p.slug} number={p.number} name={p.name} primaryFocus={p.primaryFocus} description={p.description} color={p.color} href={`/${p.slug}`} />
             ))}
           </div>
           <div className="mt-12 text-center">

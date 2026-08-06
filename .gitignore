@@ -41,3 +41,4 @@ deno.lock
 
 # Local-only intake for source spreadsheets/docs (therapist IP — never committed)
 /_import/
+/import/

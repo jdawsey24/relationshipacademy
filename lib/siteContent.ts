@@ -303,10 +303,16 @@ export function get(map: Map<string, string>, key: string, fallback: string): st
 
 // --- Framework editor: phase card copy + domain descriptions ---------------
 
-export const PHASE_FIELDS: ContentField[] = PHASES.flatMap((p) => [
-  { key: `phase.${p.slug}.primaryFocus`, label: `${p.name} — primary focus`, type: "text", default: p.primaryFocus },
-  { key: `phase.${p.slug}.cardDescription`, label: `${p.name} — one-sentence description`, type: "textarea", default: p.cardDescription },
-]);
+// Only legacy-authored phases are editable here. A phase whose narrative has
+// been cut over to the Knowledge Base is deliberately NOT offered in the site
+// editor: an override field would be an independent authoring source for copy
+// that now has exactly one home, which is what the cutover removed.
+export const PHASE_FIELDS: ContentField[] = PHASES
+  .filter((p) => p.narrativeSource === "legacy_manual")
+  .flatMap((p) => [
+    { key: `phase.${p.slug}.primaryFocus`, label: `${p.name} — primary focus`, type: "text", default: p.primaryFocus ?? "" },
+    { key: `phase.${p.slug}.cardDescription`, label: `${p.name} — one-sentence description`, type: "textarea", default: p.cardDescription ?? "" },
+  ]);
 
 export const DOMAIN_FIELDS: ContentField[] = DOMAINS_CONTENT.map((d) => ({
   key: `domain.${d.slug}.description`,
@@ -315,14 +321,11 @@ export const DOMAIN_FIELDS: ContentField[] = DOMAINS_CONTENT.map((d) => ({
   default: d.description,
 }));
 
-/** PHASES with any DB overrides applied to card copy. */
-export function applyPhaseOverrides(map: Map<string, string>): FrameworkPhase[] {
-  return PHASES.map((p) => ({
-    ...p,
-    primaryFocus: get(map, `phase.${p.slug}.primaryFocus`, p.primaryFocus),
-    cardDescription: get(map, `phase.${p.slug}.cardDescription`, p.cardDescription),
-  }));
-}
+// applyPhaseOverrides() was removed in the Knowledge Base cutover (2026-08-06).
+// It resolved card copy from PHASES only, so it could not see a cut-over phase's
+// narrative and would have rendered Recovery with an empty description. Every
+// surface that shows phase cards now uses resolvePhaseCards() in
+// lib/framework/phaseCards.ts, which routes each phase to its declared source.
 
 /** DOMAINS_CONTENT with any DB overrides applied to descriptions. */
 export function applyDomainOverrides(map: Map<string, string>): FrameworkDomain[] {
