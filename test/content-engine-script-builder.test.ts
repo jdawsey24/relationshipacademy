@@ -694,3 +694,72 @@ test("scripts are editable in the interface", () => {
   assert.match(page, /Revert to generated/);
   assert.match(page, /Saving marks the comparison out of date/);
 });
+
+// ---------------------------------------------------------------------------
+// Public-use approvals — the only thing that permits
+// ---------------------------------------------------------------------------
+
+test("an approval is bound to the version it approved", () => {
+  const src = read("lib/contentEngine/scriptBuilder/governance.ts");
+  assert.match(src, /approved_source_hash/);
+  assert.match(src, /its content has changed/,
+    "a source edited after approval must stop being eligible");
+  assert.match(src, /an approval has to be bound to a version, or it is a\s*\n?\s*\*?\s*blank cheque/,
+    "the reason must be stated where the fingerprint is computed");
+});
+
+test("the fingerprint covers consumer-facing fields only", () => {
+  const src = read("lib/contentEngine/scriptBuilder/governance.ts");
+  assert.match(src, /pickConsumerSafeDetail/,
+    "hashing clinical notes would invalidate approvals on edits that were never approved");
+});
+
+test("an approval cannot be recorded without a reviewer, a use, and an audience", () => {
+  const src = read("lib/contentEngine/scriptBuilder/governance.ts");
+  assert.match(src, /An approval needs a named reviewer/);
+  assert.match(src, /Choose at least one permitted use/);
+  assert.match(src, /Choose at least one audience/);
+});
+
+test("the reviewer comes from the session, never the request body", () => {
+  const src = read("app/api/admin/content-engine/approvals/route.ts");
+  assert.match(src, /const reviewer = user\?\.email \?\? null;/);
+  assert.match(src, /never a value from the request body/);
+  // The body type must not even offer a reviewer field.
+  const bodyType = src.slice(src.indexOf("let body: {"), src.indexOf("try {\n    body = await request.json();"));
+  assert.ok(!/reviewer/.test(bodyType), "the request must not be able to name someone else as reviewer");
+});
+
+test("unknown uses and audiences are rejected rather than stored", () => {
+  const src = read("lib/contentEngine/scriptBuilder/governance.ts");
+  assert.match(src, /Unknown permitted use/);
+  assert.match(src, /Unknown audience/);
+});
+
+test("expiry forces re-review", () => {
+  const src = read("lib/contentEngine/scriptBuilder/governance.ts");
+  assert.match(src, /expired on .* and needs re-review|expires_at/);
+  assert.match(src, /new Date\(match\.expires_at\) < new Date\(\)/);
+});
+
+test("the approvals route is owner-gated and audited", () => {
+  const src = read("app/api/admin/content-engine/approvals/route.ts");
+  assert.match(src, /requireAiOwner/);
+  assert.match(src, /content_engine\.public_use\.approved/);
+  assert.match(src, /content_engine\.public_use\.revoked/);
+});
+
+test("the reviewer can see the content before approving it", () => {
+  const route = read("app/api/admin/content-engine/approvals/route.ts");
+  assert.match(route, /Preview what would be approved/);
+  const page = read("app/admin/content-engine/approvals/page.tsx");
+  assert.match(page, /What you are approving \(consumer-safe fields only\)/);
+  assert.match(page, /disabled=\{busy \|\| !uses\.length \|\| !auds\.length \|\| !preview\}/,
+    "approval must be impossible until the content has loaded");
+});
+
+test("the publication blocker links to where it can be cleared", () => {
+  const page = read("app/admin/content-engine/script-builder/page.tsx");
+  assert.match(page, /\/admin\/content-engine\/approvals/);
+  assert.match(page, /Record an approval/);
+});

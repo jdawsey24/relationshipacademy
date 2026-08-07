@@ -201,7 +201,9 @@ export default function ScriptBuilderPage() {
               label={b.publication_eligible ? "Approved for public use" : "Not approved for public use"}
               detail={b.publication_eligible
                 ? "A recorded approval covers this source, use and audience."
-                : "A draft can still be built for review. It cannot be published."} />
+                : "A draft can still be built for review. It cannot be published."}
+              href={b.publication_eligible ? undefined : "/admin/content-engine/approvals"}
+              hrefLabel="Record an approval" />
           </div>
 
           {screen === "topic" && (
@@ -251,8 +253,9 @@ function Banner({ tone, children }: { tone: "error" | "info"; children: React.Re
   return <div className={`mb-4 rounded-lg border px-4 py-3 text-sm ${c}`}>{children}</div>;
 }
 
-function Status({ ok, label, detail, neutralWhenFalse }: {
+function Status({ ok, label, detail, neutralWhenFalse, href, hrefLabel }: {
   ok: boolean; label: string; detail: string; neutralWhenFalse?: boolean;
+  href?: string; hrefLabel?: string;
 }) {
   const c = ok ? "border-emerald-300 bg-emerald-50"
     : neutralWhenFalse ? "border-amber-300 bg-amber-50" : "border-red-300 bg-red-50";
@@ -260,6 +263,11 @@ function Status({ ok, label, detail, neutralWhenFalse }: {
     <div className={`rounded-lg border px-4 py-3 ${c}`}>
       <p className="text-sm font-semibold text-slate-900">{ok ? "✓ " : "• "}{label}</p>
       <p className="mt-1 text-xs text-slate-600">{detail}</p>
+      {href && (
+        <a href={href} className="mt-1 inline-block text-xs font-medium text-slate-700 underline">
+          {hrefLabel ?? "Fix this"} →
+        </a>
+      )}
     </div>
   );
 }

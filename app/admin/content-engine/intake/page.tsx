@@ -133,6 +133,11 @@ export default function IntakePage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-8">
       <header className="mb-6">
+        <nav className="mb-3 flex gap-3 text-sm">
+          <span className="font-semibold text-slate-900">Topic intake</span>
+          <a href="/admin/content-engine/script-builder" className="text-slate-500 hover:text-slate-800">Script Builder</a>
+          <a href="/admin/content-engine/approvals" className="text-slate-500 hover:text-slate-800">Approvals</a>
+        </nav>
         <h1 className="text-2xl font-semibold text-slate-900">Topic intake</h1>
         <p className="mt-1 text-sm text-slate-600">
           Stages 1–5: what you saw, who it affects, and whether it genuinely belongs to the framework.
