@@ -264,3 +264,65 @@ test("lens suggestion resolves phase and domain from canon, never from the propo
   // Whatever a suggestion claims, the stored phase/domain come from validateMapping.
   assert.match(src, /phase_id: mapping\.resolved\.phase_id, domain_id: mapping\.resolved\.domain_id/);
 });
+
+// ---------------------------------------------------------------------------
+// 10. The turn
+// ---------------------------------------------------------------------------
+
+test("what may be challenged is decided before the model, not by it", () => {
+  const src = read("lib/contentIntelligence/turn.ts");
+  assert.match(src, /const raised = worthRaising\(input\.content\);/);
+  assert.match(src, /Deterministic, before the model/);
+  // Empty means raise nothing — the prompt is told so explicitly.
+  assert.match(src, /do not invent a concern/);
+});
+
+test("the turn prompt protects the audience and the thesis", () => {
+  const src = read("scripts/seedStudioTurnPrompt.ts");
+  assert.match(src, /Naming her audience is NOT a problem/);
+  assert.match(src, /Never ask her to remove the audience/);
+  assert.match(src, /ask what she has SEEN/);
+  assert.match(src, /is NOT "they're postponing a decision"/);
+  assert.match(src, /the second drops the mechanism/);
+});
+
+test("the reply never names a competency, phase or domain code", () => {
+  const src = read("scripts/seedStudioTurnPrompt.ts");
+  assert.match(src, /Never\s*\n?\s*name the competency ID, phase code or domain code/);
+  assert.match(src, /Zero lenses is a legitimate answer/);
+});
+
+test("working-draft material is labelled when offered", () => {
+  const turn = read("lib/contentIntelligence/turn.ts");
+  assert.match(turn, /WORKING DRAFT, not approved/);
+  const prompt = read("scripts/seedStudioTurnPrompt.ts");
+  assert.match(prompt, /say plainly\s*\n\s*that it is a working draft she has not approved/);
+});
+
+test("a model-proposed thesis still goes through the guard", () => {
+  const src = read("lib/contentIntelligence/turn.ts");
+  assert.match(src, /go through the guard, which may refuse or downgrade them/);
+  assert.match(src, /await inferField\(\{/);
+  assert.match(src, /The model's proposal is never authoritative/);
+});
+
+test("a hard cost stop saves the message and withholds only the reply", () => {
+  const src = read("lib/contentIntelligence/turn.ts");
+  const guard = src.slice(src.indexOf("const cost = await checkCost"), src.indexOf("const ownerMessageId"));
+  assert.match(guard, /await addMessage/, "the owner's message is stored even when blocked");
+  assert.match(guard, /return \{ blocked: true/);
+});
+
+test("the turn template is seeded as draft and cannot reply until approved", () => {
+  const src = read("scripts/seedStudioTurnPrompt.ts");
+  assert.match(src, /status: "draft"/);
+  assert.ok(!/status: "approved"/.test(src));
+  const turn = read("lib/contentIntelligence/turn.ts");
+  assert.match(turn, /No approved "\$\{TURN_TEMPLATE\}" prompt template exists/);
+});
+
+test("pasted text reaches the model as data, never as instruction", () => {
+  const src = read("app/api/admin/content-studio/conversations/[id]/messages/route.ts");
+  assert.match(src, /sanitizeUntrusted/);
+  assert.match(src, /data, never instruction/);
+});
