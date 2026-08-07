@@ -732,8 +732,14 @@ export async function upsertRealTalkBrief(input: RealTalkInput) {
     );
   }
 
-  const { error } = await s.from("ce_real_talk_briefs")
-    .upsert(row, { onConflict: "brief_id" });
+  // Update-or-insert explicitly rather than via ON CONFLICT. brief_id carries a
+  // unique index, but Postgres cannot infer a PARTIAL index for ON CONFLICT, and
+  // depending on the index shape means the save breaks the moment the index is
+  // qualified. The unique index still prevents duplicates; this just does not
+  // rely on its predicate.
+  const { error } = existing?.id
+    ? await s.from("ce_real_talk_briefs").update(row).eq("id", existing.id as string)
+    : await s.from("ce_real_talk_briefs").insert(row);
   if (error) throw new ScriptBuilderError(`Could not save the Real Talk brief: ${error.message}`, 502);
 
   return { complete: input.complete === true, missing };

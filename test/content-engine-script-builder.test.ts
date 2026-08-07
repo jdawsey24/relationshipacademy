@@ -830,3 +830,18 @@ test("the series is data, and the intensity setting is no longer the whole featu
   assert.match(page, /function RealTalkPanel/);
   assert.match(page, /function SeriesPicker/);
 });
+
+test("saving a Real Talk brief does not depend on an index predicate", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  const fn = src.slice(src.indexOf("export async function upsertRealTalkBrief"), src.indexOf("async function requireRealTalkReady"));
+  assert.ok(!/onConflict:\s*"brief_id"/.test(fn),
+    "a PARTIAL unique index cannot be an ON CONFLICT target — the first live save failed on exactly this");
+  assert.match(fn, /existing\?\.id\s*\n?\s*\?\s*await s\.from\("ce_real_talk_briefs"\)\.update/);
+});
+
+test("the brief_id index is not partial", () => {
+  const sql = read("supabase/migrations/0063_real_talk_unique_index.sql");
+  assert.match(sql, /drop index if exists public\.idx_ce_real_talk_brief/);
+  const created = sql.slice(sql.indexOf("create unique index"));
+  assert.ok(!/where /i.test(created), "a partial index cannot serve as a conflict target");
+});
