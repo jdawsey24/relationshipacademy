@@ -26,6 +26,23 @@ interface Bridge {
   mapping_valid: boolean; mapping_errors: string[];
   eligible_for_generation: boolean; decision: string; reject_reason: string | null;
 }
+interface Keyword {
+  id: string; platform: string; rank: number; primary_phrase: string;
+  phrase_kind: string; signal_role: string | null; audience_doorway: string | null;
+  rlc_interpretation: string | null; opening_use: string | null;
+  supporting_terms: string[] | null; best_format: string | null; cta_fit: string | null;
+  phase_raw: string | null; domain_raw: string | null;
+  opportunity_score: number; priority_tier: string;
+}
+interface Community {
+  id: string; platform: string; community_keyword: string;
+  verified: boolean; usage_guidance: string | null;
+}
+interface KeywordPayload {
+  keywords: Keyword[]; platforms: Record<string, number>;
+  tiers: Record<string, number>; communities: Community[]; total: number;
+}
+
 interface Detail {
   candidate: Trend & { raw_input: string | null };
   observations: unknown[];
@@ -50,6 +67,10 @@ export default function IntakePage() {
   const [busy, setBusy] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const [kw, setKw] = useState<KeywordPayload | null>(null);
+  const [kwPlatform, setKwPlatform] = useState("tiktok");
+  const [kwTier, setKwTier] = useState("");
+  const [kwQuery, setKwQuery] = useState("");
 
   const loadTrends = useCallback(async () => {
     const r = await fetch("/api/admin/content-engine/trends");
@@ -62,7 +83,17 @@ export default function IntakePage() {
     else setErr((await r.json()).error ?? "Could not load that topic.");
   }, []);
 
+  const loadKeywords = useCallback(async (platform: string, tier: string, q: string) => {
+    const p = new URLSearchParams();
+    if (platform) p.set("platform", platform);
+    if (tier) p.set("tier", tier);
+    if (q) p.set("q", q);
+    const r = await fetch(`/api/admin/content-engine/keywords?${p}`);
+    if (r.ok) setKw(await r.json());
+  }, []);
+
   useEffect(() => { void loadTrends(); }, [loadTrends]);
+  useEffect(() => { void loadKeywords(kwPlatform, kwTier, kwQuery); }, [kwPlatform, kwTier, kwQuery, loadKeywords]);
   useEffect(() => { if (selected) void loadDetail(selected); }, [selected, loadDetail]);
 
   async function addTopic() {
@@ -147,6 +178,25 @@ export default function IntakePage() {
 
       {err && <div className="mb-4 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-900">{err}</div>}
       {notice && <div className="mb-4 rounded-lg border border-sky-300 bg-sky-50 px-4 py-3 text-sm text-sky-900">{notice}</div>}
+
+      {/* What is worth making something about */}
+      <KeywordBrowser
+        kw={kw} platform={kwPlatform} tier={kwTier} query={kwQuery}
+        onPlatform={setKwPlatform} onTier={setKwTier} onQuery={setKwQuery}
+        onUse={(k, community) => {
+          // Seed the intake box with the phrase and the context the corpus
+          // already holds, so the topic arrives with its reasoning attached.
+          setRaw([
+            k.primary_phrase,
+            k.audience_doorway ? `\n\nWhat the audience is actually saying: ${k.audience_doorway}` : "",
+            k.rlc_interpretation ? `\n\nRLC reading: ${k.rlc_interpretation}` : "",
+            k.opening_use ? `\n\nSuggested opening: ${k.opening_use}` : "",
+          ].filter(Boolean).join(""));
+          setCommunity(community || k.platform);
+          setNotice(`Loaded “${k.primary_phrase}” (${k.platform}, ${k.priority_tier}, score ${k.opportunity_score}). Edit it before adding.`);
+          window.scrollTo({ top: document.body.scrollHeight / 3, behavior: "smooth" });
+        }}
+      />
 
       {/* Stage 1 — intake */}
       <section className="mb-8 rounded-lg border border-slate-200 bg-white p-4">
@@ -305,5 +355,131 @@ export default function IntakePage() {
         </section>
       )}
     </div>
+  );
+}
+
+const TIER_STYLE: Record<string, string> = {
+  "Tier 1": "bg-emerald-100 text-emerald-900",
+  "Tier 2": "bg-sky-100 text-sky-900",
+  "Tier 3": "bg-slate-100 text-slate-700",
+};
+
+/**
+ * The keyword corpus, on the screen where a topic is chosen.
+ *
+ * 270 scored phrases across seven platforms were imported and then had nowhere
+ * to appear, so choosing a topic meant guessing — which is the exact thing the
+ * corpus exists to prevent. Sorted by opportunity score, because that is what
+ * the scoring was for.
+ *
+ * Selecting a phrase carries its context into the intake box rather than just
+ * the words: the audience doorway (how people actually say it), the RLC reading,
+ * and the suggested opening. A phrase without its reasoning is a prompt to
+ * invent one.
+ */
+function KeywordBrowser({ kw, platform, tier, query, onPlatform, onTier, onQuery, onUse }: {
+  kw: KeywordPayload | null;
+  platform: string; tier: string; query: string;
+  onPlatform: (v: string) => void; onTier: (v: string) => void; onQuery: (v: string) => void;
+  onUse: (k: Keyword, community: string) => void;
+}) {
+  const [open, setOpen] = useState(true);
+  const [expanded, setExpanded] = useState<string | null>(null);
+
+  const communities = (kw?.communities ?? []).filter((c) => c.platform === platform && c.community_keyword);
+
+  return (
+    <section className="mb-8 rounded-lg border border-slate-200 bg-white">
+      <button onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between px-4 py-3 text-left">
+        <div>
+          <h2 className="text-sm font-semibold text-slate-900">What&rsquo;s worth making something about</h2>
+          <p className="text-xs text-slate-500">
+            {kw ? `${kw.total} scored phrases across ${Object.keys(kw.platforms).length} platforms` : "Loading…"}
+          </p>
+        </div>
+        <span className="text-xs text-slate-500">{open ? "Hide" : "Show"}</span>
+      </button>
+
+      {open && kw && (
+        <div className="border-t border-slate-100 p-4">
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            {Object.entries(kw.platforms).sort((a, b) => b[1] - a[1]).map(([p, n]) => (
+              <button key={p} onClick={() => onPlatform(p)}
+                className={`rounded px-2 py-1 text-xs ${platform === p
+                  ? "bg-slate-900 text-white" : "border border-slate-300 text-slate-600"}`}>
+                {p} <span className="opacity-60">{n}</span>
+              </button>
+            ))}
+            <select value={tier} onChange={(e) => onTier(e.target.value)}
+              className="rounded border border-slate-300 px-2 py-1 text-xs">
+              <option value="">All tiers</option>
+              {Object.keys(kw.tiers).sort().map((t) => (
+                <option key={t} value={t}>{t} ({kw.tiers[t]})</option>
+              ))}
+            </select>
+            <input value={query} onChange={(e) => onQuery(e.target.value)}
+              placeholder="Search phrases…"
+              className="min-w-[160px] flex-1 rounded border border-slate-300 px-2 py-1 text-xs" />
+          </div>
+
+          {communities.length > 0 && (
+            <p className="mb-3 text-xs text-slate-500">
+              Communities on {platform}: {communities.map((c) => c.community_keyword).join(" · ")}
+            </p>
+          )}
+
+          {!kw.keywords.length ? (
+            <p className="py-6 text-center text-sm text-slate-500">No phrases match.</p>
+          ) : (
+            <ul className="max-h-[26rem] divide-y divide-slate-100 overflow-y-auto rounded border border-slate-200">
+              {kw.keywords.map((k) => (
+                <li key={k.id} className="px-3 py-2">
+                  <div className="flex flex-wrap items-start justify-between gap-2">
+                    <button onClick={() => setExpanded(expanded === k.id ? null : k.id)}
+                      className="min-w-0 flex-1 text-left">
+                      <p className="text-sm text-slate-800">{k.primary_phrase}</p>
+                      <p className="mt-0.5 flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
+                        <span className={`rounded px-1.5 py-0.5 ${TIER_STYLE[k.priority_tier] ?? "bg-slate-100 text-slate-700"}`}>
+                          {k.priority_tier}
+                        </span>
+                        <span>score {k.opportunity_score}</span>
+                        <span>· #{k.rank}</span>
+                        <span>· {k.phrase_kind.replace(/_/g, " ")}</span>
+                        {k.phase_raw && <span>· {k.phase_raw}</span>}
+                      </p>
+                    </button>
+                    <button onClick={() => onUse(k, communities[0]?.community_keyword ?? "")}
+                      className="shrink-0 rounded bg-slate-900 px-3 py-1.5 text-xs font-medium text-white">
+                      Use this
+                    </button>
+                  </div>
+
+                  {expanded === k.id && (
+                    <dl className="mt-2 space-y-1 rounded bg-slate-50 p-2 text-xs text-slate-700">
+                      {k.audience_doorway && <p><span className="text-slate-500">They say:</span> &ldquo;{k.audience_doorway}&rdquo;</p>}
+                      {k.rlc_interpretation && <p><span className="text-slate-500">RLC reading:</span> {k.rlc_interpretation}</p>}
+                      {k.opening_use && <p><span className="text-slate-500">Opening:</span> {k.opening_use}</p>}
+                      {k.domain_raw && <p><span className="text-slate-500">Domain:</span> {k.domain_raw}</p>}
+                      {k.best_format && <p><span className="text-slate-500">Format:</span> {k.best_format}</p>}
+                      {k.cta_fit && <p><span className="text-slate-500">CTA fit:</span> {k.cta_fit}</p>}
+                      {k.supporting_terms?.length ? (
+                        <p><span className="text-slate-500">Supporting:</span> {k.supporting_terms.join(", ")}</p>
+                      ) : null}
+                      {k.signal_role && <p><span className="text-slate-500">Signal:</span> {k.signal_role}</p>}
+                    </dl>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="mt-2 text-xs text-slate-500">
+            Sorted by opportunity score. Selecting a phrase carries its audience doorway, RLC reading and
+            suggested opening into the box below — edit before adding, since the score says a phrase is
+            worth attention, not that this framing is right.
+          </p>
+        </div>
+      )}
+    </section>
   );
 }

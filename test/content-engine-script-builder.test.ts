@@ -937,3 +937,42 @@ test("claims are reviewed on the framework screen, before any words exist", () =
     "claims belong with the framework decisions, not next to draft copy");
   assert.match(page, /Scripts cannot be generated until this is recorded/);
 });
+
+// ---------------------------------------------------------------------------
+// The keyword corpus has to be visible where a topic is chosen
+// ---------------------------------------------------------------------------
+
+test("the keyword route exists and is owner-gated", () => {
+  const src = read("app/api/admin/content-engine/keywords/route.ts");
+  assert.match(src, /requireAiOwner/);
+  assert.match(src, /ce_platform_keywords/);
+  assert.match(src, /ce_communities/);
+});
+
+test("keywords are ordered by opportunity score, which is what the scoring is for", () => {
+  const src = read("app/api/admin/content-engine/keywords/route.ts");
+  assert.match(src, /\.order\("opportunity_score", \{ ascending: false \}\)/);
+});
+
+test("facets are computed over the whole corpus, not the filtered slice", () => {
+  const src = read("app/api/admin/content-engine/keywords/route.ts");
+  assert.match(src, /computed over the whole corpus rather than the filtered slice/,
+    "counts that shift as you narrow the view are misleading");
+});
+
+test("selecting a phrase carries its reasoning, not just the words", () => {
+  const page = read("app/admin/content-engine/intake/page.tsx");
+  assert.match(page, /function KeywordBrowser/);
+  for (const field of ["audience_doorway", "rlc_interpretation", "opening_use"]) {
+    assert.match(page, new RegExp(field), `${field} must reach the operator`);
+  }
+  assert.match(page, /A phrase without its reasoning is a prompt to\s*\n?\s*\*?\s*invent one/);
+});
+
+test("the browser sits on the intake screen, where the topic is chosen", () => {
+  const page = read("app/admin/content-engine/intake/page.tsx");
+  const browserAt = page.indexOf("<KeywordBrowser");
+  const intakeAt = page.indexOf("Stage 1 — intake");
+  assert.ok(browserAt > 0 && intakeAt > 0 && browserAt < intakeAt,
+    "choosing what to make something about comes before writing it down");
+});
