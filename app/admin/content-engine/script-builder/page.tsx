@@ -29,7 +29,7 @@ interface Brief {
   mapping_validated: boolean; publication_eligible: boolean;
   target_runtime_seconds: number; script_format: string; tone: string | null;
   content_objective: string | null; cta_destination: string | null;
-  primary_keyword: string | null; expert_positioning_level: string;
+  primary_keyword: string | null; expert_positioning_level: string; campaign_id: string | null;
   real_talk_intensity: string | null; selected_angle_id: string | null;
   target_audience: string | null;
 }
@@ -42,6 +42,7 @@ interface Script {
   id: string; reading_level: "grade5" | "higher"; hook: string | null; body: string;
   cta: string | null; word_count: number; estimated_runtime_seconds: number;
   runtime_within_target: boolean;
+  edited_by_owner: boolean; edited_by: string | null; generated_body: string | null;
 }
 interface Pkg {
   on_screen_caption: string | null; post_caption: string | null;
@@ -51,15 +52,20 @@ interface Comparison {
   lexical_similarity: number; similarity_threshold: number; similarity_exceeded: boolean;
   owner_override: boolean; override_reason: string | null; equivalence_ok: boolean | null;
   equivalence_notes: string | null; lesson_match: boolean | null; reward_match: boolean | null;
-  hook_match: boolean | null; cta_match: boolean | null;
+  hook_match: boolean | null; cta_match: boolean | null; stale: boolean;
 }
 interface Conflict { id: string; conflict_type: string; explanation: string; created_at: string }
 interface Finding { category: string; severity: string; message: string; field?: string }
 interface QcState { blocked: boolean; blocking: Finding[]; warnings: Finding[]; ungoverned: string[] }
 
+interface Campaign {
+  id: string; name: string; target_audience: string | null;
+  cta_destination: string | null; primary_keyword: string | null; transformation: string | null;
+}
 interface Payload {
   brief: Brief; angles: Angle[]; scripts: Script[];
   package: Pkg | null; comparison: Comparison | null; conflicts: Conflict[];
+  campaigns: Campaign[];
 }
 
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
@@ -198,7 +204,10 @@ export default function ScriptBuilderPage() {
                 : "A draft can still be built for review. It cannot be published."} />
           </div>
 
-          {screen === "topic" && <TopicScreen b={b} />}
+          {screen === "topic" && (
+            <TopicScreen b={b} campaigns={data.campaigns}
+              onConfig={saveConfig} busy={busy} />
+          )}
 
           {screen === "brief" && (
             <BriefScreen
@@ -216,6 +225,8 @@ export default function ScriptBuilderPage() {
               onCompare={() => runStage("compare")}
               onOverride={(reason) => runStage("override", { reason })}
               onPackage={() => runStage("package")}
+              onEdit={(level, fields) => runStage("edit_script", { reading_level: level, ...fields })}
+              onRevert={(level) => runStage("revert_script", { reading_level: level })}
             />
           )}
 
@@ -262,7 +273,11 @@ function Field({ label, value }: { label: string; value: string | null | undefin
   );
 }
 
-function TopicScreen({ b }: { b: Brief }) {
+function TopicScreen({ b, campaigns, onConfig, busy }: {
+  b: Brief; campaigns: Campaign[];
+  onConfig: (p: Record<string, unknown>) => void; busy: string | null;
+}) {
+  const active = campaigns.find((c) => c.id === b.campaign_id) ?? null;
   return (
     <section>
       <h2 className="mb-3 text-lg font-semibold text-slate-900">Topic &amp; framework mapping</h2>
@@ -280,6 +295,40 @@ function TopicScreen({ b }: { b: Brief }) {
         <Field label="Observable pattern" value={b.observable_pattern} />
         <Field label="Approved public interpretation" value={b.approved_public_interpretation} />
       </dl>
+      {/* The campaign shapes every angle, script and hashtag downstream. Shown
+          here because it was previously only discoverable by reading the output
+          and noticing who it was addressed to. */}
+      <div className="mt-6 rounded-lg border border-slate-200 bg-white p-4">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h3 className="text-sm font-semibold text-slate-900">Campaign framing</h3>
+          <select
+            value={b.campaign_id ?? ""}
+            disabled={busy !== null}
+            onChange={(e) => onConfig({ campaign_id: e.target.value || null })}
+            className="rounded border border-slate-300 px-2 py-1 text-sm"
+          >
+            <option value="">No campaign (defaults cleared)</option>
+            {campaigns.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
+          </select>
+        </div>
+        {active ? (
+          <dl className="mt-2">
+            <Field label="Target audience" value={active.target_audience} />
+            <Field label="CTA destination" value={active.cta_destination} />
+            <Field label="Primary keyword" value={active.primary_keyword} />
+            <Field label="Transformation" value={active.transformation} />
+          </dl>
+        ) : (
+          <p className="mt-2 text-sm text-slate-500">
+            No campaign attached. Scripts will be written without an audience default.
+          </p>
+        )}
+        <p className="mt-2 text-xs text-slate-500">
+          Every angle, script, caption and hashtag is written for this audience. Change it here, or clear it,
+          if this topic should not carry the campaign framing.
+        </p>
+      </div>
+
       {!b.approved_public_interpretation && (
         <Banner tone="info">
           No Consumer Translation is authored for this competency, so there is no approved public
@@ -347,10 +396,12 @@ function BriefScreen({ b, angles, busy, onGenerate, onSelect }: {
   );
 }
 
-function ScriptsScreen({ b, scripts, pkg, comparison, busy, onConfig, onScripts, onCompare, onOverride, onPackage }: {
+function ScriptsScreen({ b, scripts, pkg, comparison, busy, onConfig, onScripts, onCompare, onOverride, onPackage, onEdit, onRevert }: {
   b: Brief; scripts: Script[]; pkg: Pkg | null; comparison: Comparison | null; busy: string | null;
   onConfig: (p: Record<string, unknown>) => void;
   onScripts: () => void; onCompare: () => void; onOverride: (r: string) => void; onPackage: () => void;
+  onEdit: (level: "grade5" | "higher", fields: { hook?: string; script_body?: string; cta?: string }) => void;
+  onRevert: (level: "grade5" | "higher") => void;
 }) {
   const [reason, setReason] = useState("");
 
@@ -421,20 +472,7 @@ function ScriptsScreen({ b, scripts, pkg, comparison, busy, onConfig, onScripts,
         )}
         <div className="grid gap-4 lg:grid-cols-2">
           {scripts.map((sc) => (
-            <article key={sc.id} className="rounded-lg border border-slate-200 bg-white p-4">
-              <header className="mb-2 flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-slate-900">
-                  {sc.reading_level === "grade5" ? "5th-grade" : "Higher reading level"}
-                </h3>
-                <span className={`text-xs ${sc.runtime_within_target ? "text-emerald-700" : "text-amber-700"}`}>
-                  {sc.word_count}w · {fmt(sc.estimated_runtime_seconds)}
-                  {sc.runtime_within_target ? "" : " (off target)"}
-                </span>
-              </header>
-              {sc.hook && <p className="mb-2 text-sm font-medium text-slate-800">{sc.hook}</p>}
-              <p className="whitespace-pre-wrap text-sm text-slate-700">{sc.body}</p>
-              {sc.cta && <p className="mt-2 text-sm font-medium text-slate-800">{sc.cta}</p>}
-            </article>
+            <ScriptCard key={sc.id} sc={sc} busy={busy} onEdit={onEdit} onRevert={onRevert} />
           ))}
         </div>
       </div>
@@ -442,6 +480,12 @@ function ScriptsScreen({ b, scripts, pkg, comparison, busy, onConfig, onScripts,
       {comparison && (
         <div className="rounded-lg border border-slate-200 bg-white p-4">
           <h2 className="mb-2 text-sm font-semibold text-slate-900">Comparison</h2>
+          {comparison.stale && (
+            <p className="mb-3 rounded bg-amber-50 px-3 py-2 text-xs text-amber-900">
+              <strong>Out of date.</strong> A script was edited after this ran, so the result below describes
+              the previous version. Re-run the comparison before treating the package as checked.
+            </p>
+          )}
           <p className="text-sm text-slate-700">
             Lexical similarity <strong>{comparison.lexical_similarity}</strong> against a threshold of{" "}
             {comparison.similarity_threshold}.{" "}
@@ -575,5 +619,109 @@ function FindingList({ title, tone, findings }: { title: string; tone: "red" | "
         ))}
       </ul>
     </div>
+  );
+}
+
+/**
+ * One script, editable in place.
+ *
+ * The engine's premise is that a person reviews every draft. A reviewer who can
+ * only accept or regenerate is not reviewing — so the text is editable here, and
+ * an edit is recorded as an edit: the model's original is kept, the runtime is
+ * recomputed on save, and the comparison is marked out of date because it was
+ * measured against text that no longer exists.
+ */
+function ScriptCard({ sc, busy, onEdit, onRevert }: {
+  sc: Script; busy: string | null;
+  onEdit: (level: "grade5" | "higher", fields: { hook?: string; script_body?: string; cta?: string }) => void;
+  onRevert: (level: "grade5" | "higher") => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [hook, setHook] = useState(sc.hook ?? "");
+  const [body, setBody] = useState(sc.body);
+  const [cta, setCta] = useState(sc.cta ?? "");
+
+  // Live estimate while typing, at the same 150 wpm the server uses. Seeing the
+  // runtime move as you cut is the whole point of editing here rather than
+  // pasting into a doc and back.
+  const words = body.trim() ? body.trim().split(/\s+/).length : 0;
+  const spoken = [hook, body, cta].filter(Boolean).join(" ");
+  const liveWords = spoken.trim() ? spoken.trim().split(/\s+/).length : 0;
+  const liveSeconds = Math.round((liveWords / 150) * 60);
+  const dirty = hook !== (sc.hook ?? "") || body !== sc.body || cta !== (sc.cta ?? "");
+
+  return (
+    <article className="rounded-lg border border-slate-200 bg-white p-4">
+      <header className="mb-2 flex items-center justify-between gap-2">
+        <h3 className="text-sm font-semibold text-slate-900">
+          {sc.reading_level === "grade5" ? "5th-grade" : "Higher reading level"}
+          {sc.edited_by_owner && (
+            <span className="ml-2 rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-slate-600">
+              edited
+            </span>
+          )}
+        </h3>
+        <span className={`text-xs ${editing
+          ? "text-slate-500"
+          : sc.runtime_within_target ? "text-emerald-700" : "text-amber-700"}`}>
+          {editing
+            ? `${liveWords}w · ${fmt(liveSeconds)} (live)`
+            : `${sc.word_count}w · ${fmt(sc.estimated_runtime_seconds)}${sc.runtime_within_target ? "" : " (off target)"}`}
+        </span>
+      </header>
+
+      {!editing ? (
+        <>
+          {sc.hook && <p className="mb-2 text-sm font-medium text-slate-800">{sc.hook}</p>}
+          <p className="whitespace-pre-wrap text-sm text-slate-700">{sc.body}</p>
+          {sc.cta && <p className="mt-2 text-sm font-medium text-slate-800">{sc.cta}</p>}
+          <div className="mt-3 flex gap-2">
+            <button onClick={() => setEditing(true)} disabled={busy !== null}
+              className="rounded border border-slate-300 px-3 py-1.5 text-xs text-slate-700 disabled:opacity-40">
+              Edit
+            </button>
+            {sc.generated_body && (
+              <button onClick={() => onRevert(sc.reading_level)} disabled={busy !== null}
+                title="Restore exactly what the model produced"
+                className="rounded border border-slate-300 px-3 py-1.5 text-xs text-slate-500 disabled:opacity-40">
+                Revert to generated
+              </button>
+            )}
+          </div>
+        </>
+      ) : (
+        <div className="space-y-2">
+          <label className="block text-xs text-slate-500">
+            Hook
+            <input value={hook} onChange={(e) => setHook(e.target.value)}
+              className="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-sm text-slate-900" />
+          </label>
+          <label className="block text-xs text-slate-500">
+            Body <span className="text-slate-400">({words} words)</span>
+            <textarea value={body} onChange={(e) => setBody(e.target.value)} rows={9}
+              className="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-sm text-slate-900" />
+          </label>
+          <label className="block text-xs text-slate-500">
+            Call to action
+            <input value={cta} onChange={(e) => setCta(e.target.value)}
+              className="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-sm text-slate-900" />
+          </label>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => { onEdit(sc.reading_level, { hook, script_body: body, cta }); setEditing(false); }}
+              disabled={!dirty || !body.trim() || busy !== null}
+              className="rounded bg-slate-900 px-3 py-1.5 text-xs font-medium text-white disabled:opacity-40">
+              Save edit
+            </button>
+            <button
+              onClick={() => { setHook(sc.hook ?? ""); setBody(sc.body); setCta(sc.cta ?? ""); setEditing(false); }}
+              className="rounded border border-slate-300 px-3 py-1.5 text-xs text-slate-600">
+              Cancel
+            </button>
+            <span className="text-xs text-slate-500">Saving marks the comparison out of date.</span>
+          </div>
+        </div>
+      )}
+    </article>
   );
 }

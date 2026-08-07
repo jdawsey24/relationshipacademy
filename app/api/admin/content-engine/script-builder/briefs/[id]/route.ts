@@ -21,7 +21,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   if (!brief) return NextResponse.json({ error: "Not found." }, { status: 404 });
 
-  const [angles, scripts, pkg, comparison, conflicts] = await Promise.all([
+  const [angles, scripts, pkg, comparison, conflicts, campaigns] = await Promise.all([
     s.from("ce_angles").select("*").eq("brief_id", id).order("created_at"),
     s.from("ce_scripts").select("*").eq("brief_id", id).order("reading_level"),
     s.from("ce_script_packages").select("*").eq("brief_id", id).maybeSingle(),
@@ -30,6 +30,8 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
       .select("id, conflict_type, explanation, resolution, created_at")
       .eq("bridge_id", (brief as { bridge_id: string }).bridge_id)
       .eq("resolution", "unresolved"),
+    s.from("ce_campaigns").select("id, name, target_audience, cta_destination, primary_keyword, transformation")
+      .eq("is_active", true).order("name"),
   ]);
 
   return NextResponse.json({
@@ -41,6 +43,10 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
     // Surfaced with the brief: an unresolved conflict means a stage stopped and
     // is waiting on a decision, which the reviewer must see before anything else.
     conflicts: conflicts.data ?? [],
+    // Campaigns travel with the brief so the audience framing is visible where
+    // it takes effect. It reaches every angle, script and hashtag downstream,
+    // and it was previously only discoverable by reading the generated output.
+    campaigns: campaigns.data ?? [],
   });
 }
 

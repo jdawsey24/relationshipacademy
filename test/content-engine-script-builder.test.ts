@@ -617,3 +617,80 @@ test("similarity is Jaccard, so containment is not a perfect match", () => {
   assert.ok(sim < 1, `containment scored ${sim}; an overlap coefficient would wrongly call this identical`);
   assert.ok(sim > 0, "they do share content");
 });
+
+// ---------------------------------------------------------------------------
+// Owner corrections — a reviewer must be able to act on the review
+// ---------------------------------------------------------------------------
+
+test("the model's original text is preserved on first edit only", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /if \(!cur\.generated_body\)/,
+    "the baseline must be the generated text, not the previous edit");
+  assert.match(src, /patch\.generated_body = cur\.body/);
+});
+
+test("an edit recomputes runtime rather than leaving a stale estimate", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  const editAt = src.indexOf("export async function editScript");
+  const slice = src.slice(editAt, editAt + 2400);
+  assert.match(slice, /measureScript\(next/, "an edit must remeasure the script");
+});
+
+test("an edit marks the comparison stale, and QC refuses to trust a stale one", () => {
+  const wf = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(wf, /ce_script_comparisons[\s\S]{0,200}stale: true/);
+  const qc = read("lib/contentEngine/scriptBuilder/qc.ts");
+  assert.match(qc, /comparisonStale/);
+  assert.match(qc, /describes the previous\s*\n?\s*(\/\/\s*)?version|the equivalence result describes the previous/);
+});
+
+test("a script cannot be emptied by an edit", () => {
+  assert.match(read("lib/contentEngine/scriptBuilder/workflow.ts"),
+    /A script cannot be emptied\. Regenerate it instead\./);
+});
+
+test("revert restores the generated text and refuses when there is none", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /has not been edited, so there is nothing to revert to/);
+  assert.match(src, /edited_by_owner: false/);
+});
+
+test("edit and revert are owner-gated and audited like every other stage", () => {
+  const src = read("app/api/admin/content-engine/script-builder/briefs/[id]/stage/route.ts");
+  assert.match(src, /case "edit_script"/);
+  assert.match(src, /case "revert_script"/);
+  assert.match(src, /content_engine\.script\.edited/);
+  assert.match(src, /content_engine\.script\.reverted/);
+  assert.match(src, /requireAiOwner/);
+  // Editing is not a provider call, so it must not consume the generation budget.
+  const generative = src.slice(src.indexOf("const GENERATIVE"), src.indexOf("export async function POST"));
+  assert.ok(!/edit_script|revert_script/.test(generative),
+    "editing must not be treated as a generative stage");
+});
+
+test("every QC category the engine emits has a governing rule", () => {
+  const qc = read("lib/contentEngine/scriptBuilder/qc.ts");
+  const emitted = new Set([...qc.matchAll(/finding\("(\w+)"/g)].map((m) => m[1]));
+  const sql = read("supabase/migrations/0056_content_engine_governance.sql")
+    + read("supabase/migrations/0060_qc_rules_and_script_edits.sql");
+  for (const c of emitted) {
+    assert.ok(new RegExp(`'${c}'`).test(sql), `QC emits "${c}" with no rule in ce_qc_blocking_rules`);
+  }
+});
+
+test("the campaign framing is visible where it takes effect", () => {
+  const page = read("app/admin/content-engine/script-builder/page.tsx");
+  assert.match(page, /Campaign framing/);
+  assert.match(page, /campaign_id: e\.target\.value \|\| null/, "it must be changeable and clearable");
+  assert.match(page, /Every angle, script, caption and hashtag is written for this audience/);
+  const route = read("app/api/admin/content-engine/script-builder/briefs/[id]/route.ts");
+  assert.match(route, /ce_campaigns/, "the brief payload must carry the campaigns");
+});
+
+test("scripts are editable in the interface", () => {
+  const page = read("app/admin/content-engine/script-builder/page.tsx");
+  assert.match(page, /function ScriptCard/);
+  assert.match(page, /Save edit/);
+  assert.match(page, /Revert to generated/);
+  assert.match(page, /Saving marks the comparison out of date/);
+});
