@@ -279,6 +279,9 @@ export async function generateScripts(briefId: string, actor: string | null) {
   const { data: angleRow } = await s.from("ce_angles").select("*").eq("id", brief.selected_angle_id).maybeSingle();
   if (!angleRow) throw new ScriptBuilderError("The selected angle no longer exists.", 409);
   const angle = JSON.stringify(angleRow, null, 2);
+
+  // Real Talk: the seven-part argument must exist and be complete first.
+  const realTalk = await requireRealTalkReady(briefId);
   const wpm = await wpmFor(brief.delivery_profile_id);
   const context = briefContext(brief);
 
@@ -290,7 +293,19 @@ export async function generateScripts(briefId: string, actor: string | null) {
     runStage<{ hook: string; body: string; cta: string }>({
       stage: "script", actor, briefId, competencyId: brief.competency_id,
       vars: {
-        brief: context, angle, reading_level: level,
+        brief: realTalk ? `${context}\n\nREAL TALK BRIEF (the argument this script must make):\n${
+          JSON.stringify({
+            intensity: realTalk.intensity,
+            uncomfortable_truth: realTalk.uncomfortable_truth,
+            audience: realTalk.audience_description,
+            common_misunderstanding: realTalk.common_misunderstanding,
+            necessary_nuance: realTalk.necessary_nuance,
+            relational_mechanism: realTalk.relational_mechanism,
+            consequence: realTalk.consequence,
+            practical_takeaway: realTalk.practical_takeaway,
+            rlc_foundation: realTalk.rlc_foundation,
+          }, null, 2)}` : context,
+        angle, reading_level: level,
         target_runtime: String(brief.target_runtime_seconds),
         words_per_minute: String(wpm),
         target_words: String(Math.round((brief.target_runtime_seconds / 60) * wpm)),
@@ -621,4 +636,133 @@ export async function revertScript(briefId: string, readingLevel: "grade5" | "hi
     .update({ stale: true, updated_at: new Date().toISOString() }).eq("brief_id", briefId);
 
   return measured;
+}
+
+// ---------------------------------------------------------------------------
+// Real Talk — a Content Series, not an intensity setting
+// ---------------------------------------------------------------------------
+
+export const REAL_TALK_SLUG = "real_talk";
+
+/** The seven parts. Ordered as the argument is built, not alphabetically. */
+export const REAL_TALK_PARTS = [
+  "uncomfortable_truth",
+  "audience_description",
+  "common_misunderstanding",
+  "necessary_nuance",
+  "relational_mechanism",
+  "consequence",
+  "practical_takeaway",
+] as const;
+
+export type RealTalkPart = (typeof REAL_TALK_PARTS)[number];
+
+export interface RealTalkInput {
+  briefId: string;
+  intensity?: "light" | "direct" | "unfiltered";
+  parts?: Partial<Record<RealTalkPart, string>>;
+  overgeneralizationRisk?: string | null;
+  reputationalRiskCheck?: string | null;
+  rlcFoundation?: string | null;
+  complete?: boolean;
+  actor: string | null;
+}
+
+/** Is this brief in the Real Talk series? */
+export async function isRealTalk(briefId: string): Promise<boolean> {
+  const s = getSupabaseAdminClient();
+  const { data } = await s.from("ce_content_briefs")
+    .select("content_series_id, ce_content_series(slug)").eq("id", briefId).maybeSingle();
+  const row = data as { content_series_id: string | null; ce_content_series?: { slug?: string } } | null;
+  return row?.ce_content_series?.slug === REAL_TALK_SLUG;
+}
+
+export async function getRealTalkBrief(briefId: string) {
+  const s = getSupabaseAdminClient();
+  const { data } = await s.from("ce_real_talk_briefs").select("*").eq("brief_id", briefId).maybeSingle();
+  return (data as Record<string, unknown> | null) ?? null;
+}
+
+/**
+ * Create or update the seven-part argument.
+ *
+ * `complete` is the owner's assertion that the argument is finished, and the
+ * database refuses it while any part is missing. Unfiltered additionally
+ * requires both risk checks — that constraint predates this code and is the
+ * reason intensity belongs here rather than on the brief: an intensity dial
+ * with no argument and no risk assessment behind it is the thing this series
+ * exists to prevent.
+ */
+export async function upsertRealTalkBrief(input: RealTalkInput) {
+  const s = getSupabaseAdminClient();
+  const brief = await loadBrief(input.briefId);
+  const existing = await getRealTalkBrief(input.briefId);
+
+  const parts = { ...(existing ?? {}), ...(input.parts ?? {}) } as Record<string, unknown>;
+  const intensity = input.intensity ?? (existing?.intensity as string) ?? "direct";
+
+  const row: Record<string, unknown> = {
+    ...(existing?.id ? { id: existing.id } : {}),
+    brief_id: input.briefId,
+    bridge_id: brief.bridge_id,
+    content_series_id: brief.content_series_id ?? null,
+    audience_segment_id: brief.audience_segment_id ?? null,
+    intensity,
+    overgeneralization_risk: input.overgeneralizationRisk ?? existing?.overgeneralization_risk ?? null,
+    reputational_risk_check: input.reputationalRiskCheck ?? existing?.reputational_risk_check ?? null,
+    rlc_foundation: input.rlcFoundation ?? existing?.rlc_foundation ?? null,
+    complete: input.complete ?? false,
+    updated_at: new Date().toISOString(),
+  };
+  for (const p of REAL_TALK_PARTS) row[p] = (parts[p] as string) ?? null;
+
+  const missing = REAL_TALK_PARTS.filter((p) => !String(row[p] ?? "").trim());
+  if (input.complete && missing.length) {
+    throw new ScriptBuilderError(
+      `Cannot mark the Real Talk brief complete: ${missing.join(", ")} ${missing.length === 1 ? "is" : "are"} empty. ` +
+      `All seven parts are what make it an argument rather than an assertion.`,
+      400,
+    );
+  }
+  if (input.complete && intensity === "unfiltered" &&
+      (!row.overgeneralization_risk || !row.reputational_risk_check)) {
+    throw new ScriptBuilderError(
+      "Unfiltered Real Talk requires both the overgeneralisation risk and the reputational risk check to be recorded.",
+      400,
+    );
+  }
+
+  const { error } = await s.from("ce_real_talk_briefs")
+    .upsert(row, { onConflict: "brief_id" });
+  if (error) throw new ScriptBuilderError(`Could not save the Real Talk brief: ${error.message}`, 502);
+
+  return { complete: input.complete === true, missing };
+}
+
+/**
+ * Gate. A Real Talk brief must be complete before any script is written.
+ *
+ * Checked in generateScripts rather than only in the interface, because the
+ * whole point of the series is that the argument precedes the words. A path
+ * that could reach script generation without it would make the series
+ * decorative again.
+ */
+async function requireRealTalkReady(briefId: string): Promise<Record<string, unknown> | null> {
+  if (!(await isRealTalk(briefId))) return null;
+  const rt = await getRealTalkBrief(briefId);
+  if (!rt) {
+    throw new ScriptBuilderError(
+      "This brief is in the Real Talk series, which needs its seven-part brief before a script can be written.",
+      409,
+    );
+  }
+  if (rt.complete !== true) {
+    const missing = REAL_TALK_PARTS.filter((p) => !String(rt[p] ?? "").trim());
+    throw new ScriptBuilderError(
+      `The Real Talk brief is not complete${missing.length ? `: ${missing.join(", ")} still empty` : ""}. ` +
+      `Finish the argument before writing the script.`,
+      409,
+    );
+  }
+  return rt;
 }

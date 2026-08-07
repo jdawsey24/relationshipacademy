@@ -31,6 +31,7 @@ interface Brief {
   content_objective: string | null; cta_destination: string | null;
   primary_keyword: string | null; expert_positioning_level: string; campaign_id: string | null;
   real_talk_intensity: string | null; selected_angle_id: string | null;
+  content_series_id: string | null;
   target_audience: string | null;
 }
 interface Angle {
@@ -62,10 +63,19 @@ interface Campaign {
   id: string; name: string; target_audience: string | null;
   cta_destination: string | null; primary_keyword: string | null; transformation: string | null;
 }
+interface Series { id: string; slug: string; name: string; description: string | null }
+interface RealTalk {
+  intensity: string; complete: boolean;
+  uncomfortable_truth: string | null; audience_description: string | null;
+  common_misunderstanding: string | null; necessary_nuance: string | null;
+  relational_mechanism: string | null; consequence: string | null;
+  practical_takeaway: string | null; rlc_foundation: string | null;
+  overgeneralization_risk: string | null; reputational_risk_check: string | null;
+}
 interface Payload {
   brief: Brief; angles: Angle[]; scripts: Script[];
   package: Pkg | null; comparison: Comparison | null; conflicts: Conflict[];
-  campaigns: Campaign[];
+  campaigns: Campaign[]; series: Series[]; realTalk: RealTalk | null;
 }
 
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
@@ -212,11 +222,20 @@ export default function ScriptBuilderPage() {
           )}
 
           {screen === "brief" && (
-            <BriefScreen
-              b={b} angles={data.angles} busy={busy}
-              onGenerate={() => runStage("angles")}
-              onSelect={(id) => runStage("select_angle", { angle_id: id })}
-            />
+            <>
+              <SeriesPicker b={b} series={data.series} busy={busy} onConfig={saveConfig} />
+              {data.series.find((x) => x.id === b.content_series_id)?.slug === "real_talk" && (
+                <RealTalkPanel
+                  rt={data.realTalk} busy={busy}
+                  onSave={(payload) => runStage("real_talk", payload)}
+                />
+              )}
+              <BriefScreen
+                b={b} angles={data.angles} busy={busy}
+                onGenerate={() => runStage("angles")}
+                onSelect={(id) => runStage("select_angle", { angle_id: id })}
+              />
+            </>
           )}
 
           {screen === "scripts" && (
@@ -731,5 +750,148 @@ function ScriptCard({ sc, busy, onEdit, onRevert }: {
         </div>
       )}
     </article>
+  );
+}
+
+function SeriesPicker({ b, series, busy, onConfig }: {
+  b: Brief; series: Series[]; busy: string | null; onConfig: (p: Record<string, unknown>) => void;
+}) {
+  const active = series.find((x) => x.id === b.content_series_id);
+  return (
+    <div className="mb-6 rounded-lg border border-slate-200 bg-white p-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h3 className="text-sm font-semibold text-slate-900">Content series</h3>
+        <select value={b.content_series_id ?? ""} disabled={busy !== null}
+          onChange={(e) => onConfig({ content_series_id: e.target.value || null })}
+          className="rounded border border-slate-300 px-2 py-1 text-sm">
+          <option value="">No series</option>
+          {series.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
+        </select>
+      </div>
+      <p className="mt-2 text-xs text-slate-500">
+        {active?.description ?? "A series can require its own briefing structure before any script is written."}
+      </p>
+    </div>
+  );
+}
+
+/**
+ * The seven-part Real Talk argument.
+ *
+ * This is what makes Real Talk a series rather than a setting. The parts are the
+ * argument: what is uncomfortable and true, who it is for, what is commonly
+ * misunderstood, the nuance that keeps it honest, the mechanism, the
+ * consequence, and what to actually do. No script in this series is written
+ * until all seven exist — enforced in the workflow and by a database check, not
+ * only here.
+ */
+function RealTalkPanel({ rt, busy, onSave }: {
+  rt: RealTalk | null; busy: string | null;
+  onSave: (payload: Record<string, unknown>) => void;
+}) {
+  const PARTS: [keyof RealTalk, string, string][] = [
+    ["uncomfortable_truth", "The uncomfortable truth", "What is true and hard to hear?"],
+    ["audience_description", "Who this is for", "Who specifically needs to hear it?"],
+    ["common_misunderstanding", "What gets misunderstood", "What do people get wrong about this?"],
+    ["necessary_nuance", "The nuance that keeps it honest", "What would make this unfair if left out?"],
+    ["relational_mechanism", "The relational mechanism", "Why does this actually happen?"],
+    ["consequence", "The consequence", "What does it cost when it goes unaddressed?"],
+    ["practical_takeaway", "The practical takeaway", "What should they do differently?"],
+  ];
+  const [vals, setVals] = useState<Record<string, string>>(
+    Object.fromEntries(PARTS.map(([k]) => [k, (rt?.[k] as string) ?? ""])),
+  );
+  const [intensity, setIntensity] = useState(rt?.intensity ?? "direct");
+  const [over, setOver] = useState(rt?.overgeneralization_risk ?? "");
+  const [rep, setRep] = useState(rt?.reputational_risk_check ?? "");
+  const [foundation, setFoundation] = useState(rt?.rlc_foundation ?? "");
+
+  const missing = PARTS.filter(([k]) => !vals[k]?.trim()).map(([, label]) => label);
+  const unfilteredBlocked = intensity === "unfiltered" && (!over.trim() || !rep.trim());
+  const canComplete = missing.length === 0 && !unfilteredBlocked;
+
+  const save = (complete: boolean) => onSave({
+    intensity, parts: vals, complete,
+    overgeneralization_risk: over || null,
+    reputational_risk_check: rep || null,
+    rlc_foundation: foundation || null,
+  });
+
+  return (
+    <section className="mb-6 rounded-lg border border-slate-900 bg-slate-50 p-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h3 className="text-sm font-semibold text-slate-900">Real Talk brief</h3>
+        <span className={`rounded px-2 py-0.5 text-xs ${rt?.complete
+          ? "bg-emerald-100 text-emerald-900" : "bg-amber-100 text-amber-900"}`}>
+          {rt?.complete ? "complete" : `${7 - missing.length}/7 parts`}
+        </span>
+      </div>
+      <p className="mt-1 text-xs text-slate-600">
+        No script in this series is written until all seven parts exist. An intensity setting with no
+        argument behind it produces something that sounds unflinching and establishes nothing.
+      </p>
+
+      <div className="mt-3 space-y-2">
+        {PARTS.map(([k, label, hint]) => (
+          <label key={String(k)} className="block text-xs text-slate-600">
+            {label} <span className="text-slate-400">— {hint}</span>
+            <textarea rows={2} value={vals[k as string]}
+              onChange={(e) => setVals({ ...vals, [k as string]: e.target.value })}
+              className="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-sm text-slate-900" />
+          </label>
+        ))}
+        <label className="block text-xs text-slate-600">
+          RLC foundation — which part of the framework this rests on
+          <input value={foundation} onChange={(e) => setFoundation(e.target.value)}
+            className="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-sm text-slate-900" />
+        </label>
+      </div>
+
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <span className="text-xs font-medium text-slate-700">Intensity</span>
+        {["light", "direct", "unfiltered"].map((v) => (
+          <button key={v} onClick={() => setIntensity(v)}
+            className={`rounded px-2 py-1 text-xs ${intensity === v
+              ? "bg-slate-900 text-white" : "border border-slate-300 text-slate-600"}`}>
+            {v}
+          </button>
+        ))}
+      </div>
+
+      {intensity === "unfiltered" && (
+        <div className="mt-3 space-y-2 rounded border border-amber-300 bg-amber-50 p-3">
+          <p className="text-xs font-medium text-amber-900">
+            Unfiltered requires both risk checks. The database refuses to mark it complete without them.
+          </p>
+          <label className="block text-xs text-amber-900">
+            Overgeneralisation risk — who would this be unfair to?
+            <textarea rows={2} value={over} onChange={(e) => setOver(e.target.value)}
+              className="mt-1 w-full rounded border border-amber-300 px-2 py-1 text-sm text-slate-900" />
+          </label>
+          <label className="block text-xs text-amber-900">
+            Reputational risk check — how could this be quoted against you?
+            <textarea rows={2} value={rep} onChange={(e) => setRep(e.target.value)}
+              className="mt-1 w-full rounded border border-amber-300 px-2 py-1 text-sm text-slate-900" />
+          </label>
+        </div>
+      )}
+
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <button onClick={() => save(false)} disabled={busy !== null}
+          className="rounded border border-slate-300 px-3 py-1.5 text-xs text-slate-700 disabled:opacity-40">
+          Save progress
+        </button>
+        <button onClick={() => save(true)} disabled={busy !== null || !canComplete}
+          className="rounded bg-slate-900 px-3 py-1.5 text-xs font-medium text-white disabled:opacity-40">
+          Mark complete
+        </button>
+        {missing.length > 0 && (
+          <span className="text-xs text-slate-500">Still needed: {missing.join(", ")}</span>
+        )}
+        {unfilteredBlocked && (
+          <span className="text-xs text-amber-800">Unfiltered needs both risk checks.</span>
+        )}
+      </div>
+    </section>
   );
 }

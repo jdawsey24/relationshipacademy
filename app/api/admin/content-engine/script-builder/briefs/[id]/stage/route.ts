@@ -6,7 +6,8 @@ import { audit } from "@/lib/audit";
 import { ScriptBuilderError, STAGE_TEMPLATES } from "@/lib/contentEngine/scriptBuilder/generate";
 import {
   compareScripts, editScript, generateAngles, generatePackage, generateScripts,
-  overrideSimilarity, revertScript, runQcAndDraft, selectAngle,
+  overrideSimilarity, revertScript, runQcAndDraft, selectAngle, upsertRealTalkBrief,
+  type RealTalkPart,
 } from "@/lib/contentEngine/scriptBuilder/workflow";
 
 export const runtime = "nodejs";
@@ -20,7 +21,7 @@ export const dynamic = "force-dynamic";
 // them would quietly remove them.
 
 type Stage = "angles" | "select_angle" | "scripts" | "edit_script" | "revert_script"
-  | "compare" | "override" | "package" | "qc";
+  | "real_talk" | "compare" | "override" | "package" | "qc";
 
 /** Stages that call the provider, and the settings key that can disable each. */
 const GENERATIVE: Partial<Record<Stage, string>> = {
@@ -38,6 +39,10 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   let body: {
     stage?: Stage; angle_id?: string; edits?: Record<string, string>; reason?: string;
     reading_level?: "grade5" | "higher"; hook?: string; script_body?: string; cta?: string;
+    intensity?: "light" | "direct" | "unfiltered";
+    parts?: Partial<Record<RealTalkPart, string>>;
+    overgeneralization_risk?: string; reputational_risk_check?: string;
+    rlc_foundation?: string; complete?: boolean;
   };
   try {
     body = await request.json();
@@ -94,6 +99,19 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
         }
         const r = await revertScript(id, body.reading_level);
         await audit({ actor, action: "content_engine.script.reverted", metadata: { brief_id: id, reading_level: body.reading_level } });
+        return NextResponse.json(r);
+      }
+      case "real_talk": {
+        const r = await upsertRealTalkBrief({
+          briefId: id, actor,
+          intensity: body.intensity,
+          parts: body.parts,
+          overgeneralizationRisk: body.overgeneralization_risk ?? null,
+          reputationalRiskCheck: body.reputational_risk_check ?? null,
+          rlcFoundation: body.rlc_foundation ?? null,
+          complete: body.complete,
+        });
+        await audit({ actor, action: "content_engine.real_talk.saved", metadata: { brief_id: id, complete: r.complete, missing: r.missing.length } });
         return NextResponse.json(r);
       }
       case "compare": {

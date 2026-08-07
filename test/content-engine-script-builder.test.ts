@@ -763,3 +763,70 @@ test("the publication blocker links to where it can be cleared", () => {
   assert.match(page, /\/admin\/content-engine\/approvals/);
   assert.match(page, /Record an approval/);
 });
+
+// ---------------------------------------------------------------------------
+// Real Talk is a series, not a setting
+// ---------------------------------------------------------------------------
+
+test("the seven parts are what make it Real Talk", async () => {
+  const { REAL_TALK_PARTS } = await import("@/lib/contentEngine/scriptBuilder/workflow");
+  assert.deepEqual([...REAL_TALK_PARTS], [
+    "uncomfortable_truth", "audience_description", "common_misunderstanding",
+    "necessary_nuance", "relational_mechanism", "consequence", "practical_takeaway",
+  ]);
+});
+
+test("a Real Talk brief cannot be completed while a part is missing", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /Cannot mark the Real Talk brief complete/);
+  assert.match(src, /All seven parts are what make it an argument rather than an assertion/);
+});
+
+test("unfiltered requires both risk checks, in code and in the database", () => {
+  assert.match(read("lib/contentEngine/scriptBuilder/workflow.ts"),
+    /Unfiltered Real Talk requires both the overgeneralisation risk and the reputational risk check/);
+  const sql = read("supabase/migrations/0056_content_engine_governance.sql");
+  assert.match(sql, /intensity <> 'unfiltered'\s*\n\s*or \(overgeneralization_risk is not null and reputational_risk_check is not null\)/);
+});
+
+test("script generation is gated on the argument, not only the interface", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /async function requireRealTalkReady/);
+  // The gate must be inside generateScripts, not merely exported for the UI.
+  const gen = src.slice(src.indexOf("export async function generateScripts"), src.indexOf("export async function compareScripts"));
+  assert.match(gen, /requireRealTalkReady\(briefId\)/,
+    "a path to script generation that skips the argument makes the series decorative");
+});
+
+test("the argument reaches the script prompt", () => {
+  const src = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  assert.match(src, /REAL TALK BRIEF \(the argument this script must make\)/);
+  for (const part of ["uncomfortable_truth", "common_misunderstanding", "practical_takeaway"]) {
+    assert.match(src, new RegExp(part), `${part} must be passed to the model`);
+  }
+});
+
+test("the seven parts are enforced by a database check, not only by code", () => {
+  const sql = read("supabase/migrations/0062_real_talk_series.sql");
+  assert.match(sql, /ce_real_talk_seven_parts/);
+  assert.match(sql, /complete = false\s*\n\s*or \(uncomfortable_truth is not null/);
+  // The column must exist before the constraint that reads it.
+  assert.ok(sql.indexOf("add column if not exists complete") < sql.indexOf("ce_real_talk_seven_parts check")
+         || sql.indexOf("add column if not exists complete") < sql.indexOf("add constraint ce_real_talk_seven_parts"),
+    "the constraint cannot be created before its column exists");
+});
+
+test("Real Talk attaches to the brief, not just the bridge", () => {
+  const sql = read("supabase/migrations/0062_real_talk_series.sql");
+  assert.match(sql, /add column if not exists brief_id uuid references public\.ce_content_briefs/);
+  assert.match(sql, /One bridge can produce several briefs/);
+});
+
+test("the series is data, and the intensity setting is no longer the whole feature", () => {
+  const sql = read("supabase/migrations/0062_real_talk_series.sql");
+  assert.match(sql, /insert into public\.ce_content_series/);
+  assert.match(sql, /'real_talk'/);
+  const page = read("app/admin/content-engine/script-builder/page.tsx");
+  assert.match(page, /function RealTalkPanel/);
+  assert.match(page, /function SeriesPicker/);
+});
