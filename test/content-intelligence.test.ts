@@ -224,3 +224,43 @@ test("the studio does not claim a voice it has not been given", () => {
   const src = read("app/admin/content-studio/c/[id]/page.tsx");
   assert.match(src, /No approved voice rules yet/);
 });
+
+// ---------------------------------------------------------------------------
+// 9. A competency cannot be relocated across a phase boundary
+//
+// The error this exists to prevent was mine: I placed Self-Trust in
+// Exploration/Trust because its meaning sounded apt there. It is EXPIRATION.
+// EXPL and EXPR differ by one letter and mean different phases.
+// ---------------------------------------------------------------------------
+
+/** Verified against the live framework, 2026-08-07. Not a guess. */
+const VERIFIED_PLACEMENT = {
+  "TRU-EXPR-003": { name: "Self-Trust", phase: "Expiration", domain: "Trust", task: "Acceptance" },
+  "TRU-RECV-001": { name: "Self-Trust", phase: "Recovery",   domain: "Trust", task: "Healing" },
+  "TRU-EXPL-003": { name: "Congruence", phase: "Exploration", domain: "Trust", task: "Discernment" },
+} as const;
+
+test("Self-Trust belongs to Expiration, not Exploration", () => {
+  assert.equal(VERIFIED_PLACEMENT["TRU-EXPR-003"].phase, "Expiration");
+  assert.equal(VERIFIED_PLACEMENT["TRU-EXPR-003"].task, "Acceptance");
+  // The Exploration/Trust competency that "mixed signals" actually maps to.
+  assert.equal(VERIFIED_PLACEMENT["TRU-EXPL-003"].name, "Congruence");
+  assert.equal(VERIFIED_PLACEMENT["TRU-EXPL-003"].phase, "Exploration");
+  // Two competencies share the name. The name is not the identifier.
+  const selfTrust = Object.entries(VERIFIED_PLACEMENT).filter(([, v]) => v.name === "Self-Trust");
+  assert.equal(selfTrust.length, 2, "a name can belong to more than one phase — only the ID is unique");
+});
+
+test("a competency cannot be reassigned to another phase during validation", () => {
+  const src = read("lib/contentEngine/mappingValidation.ts");
+  // The cross-phase check, which is what refuses TRU-EXPR-003 under Exploration.
+  assert.match(src, /Cross-phase mapping: \$\{c\.competency_id\} belongs to \$\{c\.phase\}/);
+  assert.match(src, /Cross-domain mapping/);
+  assert.match(src, /the phase on that competency's own canonical row/);
+});
+
+test("lens suggestion resolves phase and domain from canon, never from the proposal", () => {
+  const src = read("lib/contentIntelligence/lenses.ts");
+  // Whatever a suggestion claims, the stored phase/domain come from validateMapping.
+  assert.match(src, /phase_id: mapping\.resolved\.phase_id, domain_id: mapping\.resolved\.domain_id/);
+});
