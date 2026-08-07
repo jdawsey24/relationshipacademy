@@ -842,6 +842,13 @@ test("saving a Real Talk brief does not depend on an index predicate", () => {
 test("the brief_id index is not partial", () => {
   const sql = read("supabase/migrations/0063_real_talk_unique_index.sql");
   assert.match(sql, /drop index if exists public\.idx_ce_real_talk_brief/);
-  const created = sql.slice(sql.indexOf("create unique index"));
-  assert.ok(!/where /i.test(created), "a partial index cannot serve as a conflict target");
+  // Strip comments first: the header quotes the OLD partial statement to explain
+  // the bug, and matching against that is matching the explanation, not the SQL.
+  const statements = sql
+    .split("\n")
+    .filter((l) => !l.trim().startsWith("--"))
+    .join("\n");
+  const created = statements.slice(statements.indexOf("create unique index"));
+  assert.ok(created.includes("idx_ce_real_talk_brief"));
+  assert.ok(!/\bwhere\b/i.test(created), "a partial index cannot serve as a conflict target");
 });
