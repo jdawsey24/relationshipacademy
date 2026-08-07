@@ -1,5 +1,5 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { validateMapping } from "@/lib/contentEngine/mappingValidation";
+import { canonicalPlacement, validateMapping } from "@/lib/contentEngine/mappingValidation";
 
 // Lenses — the framework, described in a sentence.
 //
@@ -62,8 +62,17 @@ export async function recordSuggestions(
   const rows = [];
 
   for (const o of options) {
+    // The conversation names a competency and nothing else. Its phase and domain
+    // come from canon, never from the model or the caller — so every proposed
+    // lens is validatable, and none can carry an invented placement. An
+    // explicitly supplied placement still wins, and is still checked.
+    const placement = o.phase_id && o.domain_id
+      ? { phase_id: o.phase_id, domain_id: o.domain_id }
+      : await canonicalPlacement(o.competency_id);
     const mapping = await validateMapping({
-      competency_id: o.competency_id, phase_id: o.phase_id, domain_id: o.domain_id,
+      competency_id: o.competency_id,
+      phase_id: o.phase_id ?? placement.phase_id,
+      domain_id: o.domain_id ?? placement.domain_id,
     });
     const { data: kb } = await s.from("kb_competencies")
       .select("framework_approval_state, source_version_label")
@@ -139,7 +148,10 @@ export async function selectLens(input: {
   }
 
   const { data: bridge, error } = await s.from("ce_relational_bridges").insert({
+    // Exactly one origin (0067). A Studio idea is not a detected trend, and is
+    // never recorded as one to satisfy the foreign key.
     candidate_id: input.candidateId ?? null,
+    conversation_id: input.candidateId ? null : input.conversationId,
     bridge_type: "direct",
     competency_id: lens.competency_id,
     phase_id: lens.phase_id,

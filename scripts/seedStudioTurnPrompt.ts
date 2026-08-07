@@ -12,7 +12,10 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { TURN_SCHEMA, TURN_TEMPLATE } from "@/lib/contentIntelligence/turn";
 
 const APPLY = process.argv.includes("--apply");
-const VERSION = 1;
+
+// The version is DERIVED, never fixed. A constant plus a >= guard silently
+// preserves whatever was seeded first, so an improved prompt looks applied and
+// is not. Each apply supersedes the previous version.
 
 const SYSTEM = `You are a content strategist working with the author of the Relationship Life Cycle
 framework. She is a licensed therapist. You know her framework, her audience, and her business.
@@ -81,7 +84,7 @@ const USER = `Conversation so far:
 What has been decided:
 {{decided}}
 
-Language notes — raise these and only these:
+Formal language or claim concerns — raise only those supplied here:
 {{language_notes}}
 
 Framework concepts you may draw on (choose only from this list):
@@ -93,19 +96,22 @@ async function main() {
     .select("id, version, status").eq("generation_type", TURN_TEMPLATE)
     .order("version", { ascending: false }).limit(1).maybeSingle();
   const prior = existing as { version: number; status: string } | null;
+  const version = (prior?.version ?? 0) + 1;
 
   console.log(`Mode: ${APPLY ? "APPLY" : "DRY RUN (no writes)"}\n`);
-  console.log(`  ${TURN_TEMPLATE}: ${prior ? `v${prior.version} exists (${prior.status})` : `CREATE v${VERSION}`}`);
+  console.log(prior
+    ? `  ${TURN_TEMPLATE}: v${prior.version} exists (${prior.status}) → CREATE v${version}`
+    : `  ${TURN_TEMPLATE}: CREATE v${version}`);
 
-  if (!APPLY || (prior && prior.version >= VERSION)) {
-    console.log(APPLY ? "\nAlready present." : "\nDry run — nothing written. Re-run with --apply.");
+  if (!APPLY) {
+    console.log("\nDry run — nothing written. Re-run with --apply.");
     return;
   }
 
   const { error } = await s.from("prompt_templates").insert({
     generation_type: TURN_TEMPLATE,
-    name: "Content Studio — conversational turn (v1)",
-    version: VERSION,
+    name: `Content Studio — conversational turn (v${version})`,
+    version,
     system_instruction: SYSTEM,
     user_template: USER,
     output_schema: TURN_SCHEMA,
@@ -113,7 +119,7 @@ async function main() {
   });
   if (error) throw new Error(error.message);
 
-  console.log(`\n✅ seeded as 'draft'. The Studio cannot reply until you approve it.`);
+  console.log(`\n✅ v${version} seeded as 'draft'. The Studio cannot reply until you approve it.`);
   console.log(`   read it : npx tsx scripts/approvePromptTemplates.ts --show`);
 }
 main().then(() => process.exit(0)).catch((e) => { console.error("FAILED:", e.message); process.exit(1); });

@@ -29,6 +29,31 @@ export class TurnError extends Error {
 
 export const TURN_TEMPLATE = "ci_studio_turn";
 
+/**
+ * At most two directions reach the conversation.
+ *
+ * Enforced here rather than in the prompt because the prompt does not hold it.
+ * Identical input produced three lenses on one run and two on the next; a limit
+ * that survives only when the model happens to comply is not a limit. The model
+ * still weighs the whole set — it just cannot surface more than two of them.
+ *
+ * Anthropic's structured output rejects maxItems, so the schema cannot say this.
+ */
+export const MAX_LENSES = 2;
+
+/**
+ * The visible reply. The model often ends the reflection with its question and
+ * then repeats it in `question`, which reads as a stutter on screen. One copy.
+ */
+export function composeReply(reflection: string, question?: string): string {
+  const r = (reflection ?? "").trim();
+  const q = (question ?? "").trim();
+  if (!q) return r;
+  const norm = (x: string) => x.toLowerCase().replace(/\s+/g, " ").replace(/[^a-z0-9 ?]/g, "");
+  if (norm(r).includes(norm(q))) return r;
+  return `${r}\n\n${q}`;
+}
+
 export const TURN_SCHEMA = {
   type: "object",
   additionalProperties: false,
@@ -186,8 +211,7 @@ export async function runTurn(input: {
     throw new TurnError("The reply failed. Your message is saved — try again.", 502);
   }
 
-  // The visible reply: reflection, then at most one question.
-  const reply = [out.reflection, out.question].filter(Boolean).join("\n\n");
+  const reply = composeReply(out.reflection, out.question);
   await addMessage({
     conversationId: input.conversationId, role: "assistant", content: reply,
     kind: out.question ? "question" : "reflection",
@@ -212,7 +236,7 @@ export async function runTurn(input: {
   // table until one is selected.
   let lenses: unknown[] = [];
   if (out.lenses?.length) {
-    lenses = await recordSuggestions(input.conversationId, out.lenses.map((l) => ({
+    lenses = await recordSuggestions(input.conversationId, out.lenses.slice(0, MAX_LENSES).map((l) => ({
       competency_id: l.competency_id, phase_id: null, domain_id: null,
       plain_summary: l.plain_summary, why_it_fits: l.why_it_fits,
       what_it_illuminates: l.what_it_illuminates, how_it_changes_the_lesson: l.how_it_changes_the_lesson,

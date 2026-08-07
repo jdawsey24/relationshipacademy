@@ -58,6 +58,44 @@ const empty: MappingValidation["resolved"] = {
 };
 
 /**
+ * The phase and domain a competency canonically belongs to.
+ *
+ * The Content Studio needs this because the model there names a COMPETENCY and
+ * nothing else. Deriving the placement from canon is stronger than asking for it
+ * and checking the answer: a wrong placement stops being detectable and becomes
+ * unrepresentable. Nothing can propose Self-Trust under Exploration, because
+ * nothing gets to propose a phase at all.
+ *
+ * This does not relax validateMapping. Callers that DO assert a phase — the
+ * Content Engine bridge path — keep the cross-phase check as their defence, and
+ * the derived pair is still put through the full validation, which can still
+ * fail on canonical status, developmental task, or the source record.
+ *
+ * Returns nulls when the competency is unknown, so validateMapping reports the
+ * missing competency rather than this returning a confident empty placement.
+ */
+export async function canonicalPlacement(competencyId: string): Promise<{
+  phase_id: string | null;
+  domain_id: string | null;
+}> {
+  const s = getSupabaseAdminClient();
+  const { data: comp } = await s
+    .from("fw_competencies").select("phase, domain")
+    .eq("competency_id", competencyId).maybeSingle();
+  const c = comp as { phase: string; domain: string } | null;
+  if (!c) return { phase_id: null, domain_id: null };
+
+  const [{ data: phase }, { data: domain }] = await Promise.all([
+    s.from("fw_phases").select("phase_id").ilike("name", c.phase).maybeSingle(),
+    s.from("fw_domains").select("domain_id").ilike("name", c.domain).maybeSingle(),
+  ]);
+  return {
+    phase_id: (phase as { phase_id: string } | null)?.phase_id ?? null,
+    domain_id: (domain as { domain_id: string } | null)?.domain_id ?? null,
+  };
+}
+
+/**
  * Validate the whole relationship, not one field at a time. Returns every error
  * found rather than the first, so a reviewer sees the full picture in one pass.
  */

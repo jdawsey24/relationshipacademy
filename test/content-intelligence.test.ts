@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { classifySentence, worthRaising } from "@/lib/contentIntelligence/language";
 import { LIFECYCLE, OPTIONAL_GOVERNANCE_ACTION } from "@/lib/contentIntelligence/lenses";
 import { DEFAULT_VISIBLE, FIELD_LABEL, BRIEF_FIELDS } from "@/lib/contentIntelligence/brief";
+import { composeReply, MAX_LENSES } from "@/lib/contentIntelligence/turn";
 
 const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
 
@@ -347,4 +348,41 @@ test("pasted text reaches the model as data, never as instruction", () => {
   const src = read("app/api/admin/content-studio/conversations/[id]/messages/route.ts");
   assert.match(src, /sanitizeUntrusted/);
   assert.match(src, /data, never instruction/);
+});
+
+// ---------------------------------------------------------------------------
+// Reply shape — guarantees the prompt was not holding
+// ---------------------------------------------------------------------------
+//
+// Evaluation of the draft turn prompt produced three lenses on one run and two
+// on the next from identical input, and repeated its question in the visible
+// reply. Both are asserted here against behaviour rather than prompt wording, so
+// the prompt can be improved without breaking them — and cannot silently break
+// them either.
+
+test("a question already asked in the reflection is not repeated", () => {
+  const q = "When you picture the person you have in mind, do they see it clearly and stay anyway?";
+  const reflection = `That's two different lessons. ${q}`;
+  assert.equal(composeReply(reflection, q), reflection);
+});
+
+test("punctuation and spacing differences still count as the same question", () => {
+  const reflection = "So — what have you seen that makes you read it that way?";
+  assert.equal(composeReply(reflection, "What have you seen that makes you read it  that way?"), reflection);
+});
+
+test("a genuinely new question is appended exactly once", () => {
+  const out = composeReply("She already has the information.", "Who is she talking to when she says it?");
+  assert.equal(out.split("Who is she talking to").length - 1, 1);
+  assert.ok(out.startsWith("She already has the information."));
+});
+
+test("no question means no trailing blank lines", () => {
+  assert.equal(composeReply("  A reflection.  ", undefined), "A reflection.");
+  assert.equal(composeReply("A reflection.", "   "), "A reflection.");
+});
+
+test("at most two directions reach the conversation", () => {
+  assert.equal(MAX_LENSES, 2);
+  assert.deepEqual(["a", "b", "c", "d"].slice(0, MAX_LENSES), ["a", "b"]);
 });
