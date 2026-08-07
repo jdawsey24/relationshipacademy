@@ -32,6 +32,8 @@ export interface ScriptQcInput {
   ownerOverride?: boolean;
   /** True when a script changed after the comparison was computed. */
   comparisonStale?: boolean;
+  /** Claim-verification state for the brief (ruling 7). */
+  claims?: { ready: boolean; reviewed: boolean; reasons: string[]; counts: { total: number } };
 }
 
 export interface ScriptQcResult extends GradeResult {
@@ -95,6 +97,16 @@ export async function runScriptQc(input: ScriptQcInput): Promise<ScriptQcResult>
   const g5 = input.scripts.find((x) => x.reading_level === "grade5");
   const hi = input.scripts.find((x) => x.reading_level === "higher");
   let comparison: ScriptQcResult["comparison"] = null;
+
+  // Claims. A package whose factual assertions were never checked is not a
+  // craft problem, so this is graded as clinical/legal risk rather than voice.
+  if (input.claims && !input.claims.ready) {
+    findings.push(finding("legal", "high",
+      `Claim verification incomplete. ${input.claims.reasons.slice(0, 2).join(" ")}`, "claims"));
+  } else if (input.claims?.reviewed) {
+    findings.push(finding("legal", "info",
+      `Claims reviewed: ${input.claims.counts.total} recorded, all verified or withdrawn.`, "claims"));
+  }
 
   if (input.comparisonStale) {
     // The stored equivalence verdict describes text that no longer exists.

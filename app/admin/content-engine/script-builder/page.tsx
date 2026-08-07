@@ -72,10 +72,20 @@ interface RealTalk {
   practical_takeaway: string | null; rlc_foundation: string | null;
   overgeneralization_risk: string | null; reputational_risk_check: string | null;
 }
+interface Claim {
+  id: string; claim_text: string; claim_type: string; verification_status: string;
+  sources: { title?: string; url?: string }[]; risk_level: string;
+  recheck_at: string | null; verified_by: string | null;
+}
+interface ClaimReadiness {
+  ready: boolean; reviewed: boolean; reasons: string[];
+  counts: { total: number; verified: number; unverified: number; disputed: number; withdrawn: number };
+}
 interface Payload {
   brief: Brief; angles: Angle[]; scripts: Script[];
   package: Pkg | null; comparison: Comparison | null; conflicts: Conflict[];
   campaigns: Campaign[]; series: Series[]; realTalk: RealTalk | null;
+  claims: Claim[]; claimReadiness: ClaimReadiness;
 }
 
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
@@ -201,7 +211,7 @@ export default function ScriptBuilderPage() {
           </nav>
 
           {/* Standing status — the two things that decide what is possible */}
-          <div className="mb-6 grid gap-3 sm:grid-cols-2">
+          <div className="mb-6 grid gap-3 sm:grid-cols-3">
             <Status ok={b.mapping_validated}
               label={b.mapping_validated ? "Framework mapping validated" : "Mapping not validated"}
               detail={b.mapping_validated
@@ -214,11 +224,24 @@ export default function ScriptBuilderPage() {
                 : "A draft can still be built for review. It cannot be published."}
               href={b.publication_eligible ? undefined : "/admin/content-engine/approvals"}
               hrefLabel="Record an approval" />
+            <Status ok={data.claimReadiness.ready}
+              label={data.claimReadiness.ready ? "Claims verified" : "Claim review outstanding"}
+              detail={data.claimReadiness.ready
+                ? `${data.claimReadiness.counts.total} claim(s) recorded and reviewed.`
+                : data.claimReadiness.reasons[0] ?? "Not yet reviewed."} />
           </div>
 
           {screen === "topic" && (
-            <TopicScreen b={b} campaigns={data.campaigns}
-              onConfig={saveConfig} busy={busy} />
+            <>
+              <TopicScreen b={b} campaigns={data.campaigns}
+                onConfig={saveConfig} busy={busy} />
+              <ClaimsPanel
+                claims={data.claims} readiness={data.claimReadiness} busy={busy}
+                onSave={(p) => runStage("save_claim", p)}
+                onDelete={(id) => runStage("delete_claim", { claim_id: id })}
+                onReview={() => runStage("review_claims")}
+              />
+            </>
           )}
 
           {screen === "brief" && (
@@ -891,6 +914,161 @@ function RealTalkPanel({ rt, busy, onSave }: {
         {unfilteredBlocked && (
           <span className="text-xs text-amber-800">Unfiltered needs both risk checks.</span>
         )}
+      </div>
+    </section>
+  );
+}
+
+const CLAIM_TYPES = [
+  "empirical", "statistical", "medical", "legal",
+  "historical", "quoted", "current_event", "interpretation",
+] as const;
+
+/**
+ * Stage 2 — claim verification.
+ *
+ * On screen 1 on purpose: what is factually true has to be settled before any
+ * words exist, for the same reason the framework mapping does. Once you are
+ * reading draft copy it is much harder to notice that a confident sentence
+ * rests on nothing.
+ *
+ * The review is recorded even when there are no claims. "This asserts nothing"
+ * and "nobody checked" are the same row otherwise.
+ */
+function ClaimsPanel({ claims, readiness, busy, onSave, onDelete, onReview }: {
+  claims: Claim[]; readiness: ClaimReadiness; busy: string | null;
+  onSave: (p: Record<string, unknown>) => void;
+  onDelete: (id: string) => void;
+  onReview: () => void;
+}) {
+  const [text, setText] = useState("");
+  const [type, setType] = useState<string>("empirical");
+  const [risk, setRisk] = useState("medium");
+  const [sourceUrl, setSourceUrl] = useState("");
+  const [recheck, setRecheck] = useState("");
+
+  const needsSource = type !== "interpretation";
+  const canVerify = !needsSource || !!sourceUrl.trim();
+
+  return (
+    <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h2 className="text-sm font-semibold text-slate-900">Claim verification</h2>
+        <span className={`rounded px-2 py-0.5 text-xs ${readiness.ready
+          ? "bg-emerald-100 text-emerald-900" : "bg-amber-100 text-amber-900"}`}>
+          {readiness.ready ? "reviewed" : `${readiness.counts.unverified} unverified`}
+        </span>
+      </div>
+      <p className="mt-1 text-xs text-slate-600">
+        Applies to every brief, evergreen included. The rule is that the step is not skipped — a brief that
+        asserts nothing still needs the review recorded, or &ldquo;no claims&rdquo; and &ldquo;nobody
+        checked&rdquo; look identical.
+      </p>
+
+      {claims.length > 0 && (
+        <ul className="mt-3 space-y-2">
+          {claims.map((c) => (
+            <li key={c.id} className="rounded border border-slate-200 px-3 py-2">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <p className="text-sm text-slate-800">{c.claim_text}</p>
+                  <p className="mt-1 text-xs text-slate-500">
+                    {c.claim_type} · {c.risk_level} risk · {c.verification_status}
+                    {c.recheck_at ? ` · recheck ${c.recheck_at}` : ""}
+                    {c.sources?.length ? ` · ${c.sources.length} source(s)` : ""}
+                  </p>
+                  {c.sources?.map((src, i) => src.url && (
+                    <a key={i} href={src.url} target="_blank" rel="noreferrer"
+                      className="mr-2 text-xs text-slate-600 underline">{src.title || src.url}</a>
+                  ))}
+                </div>
+                <div className="flex shrink-0 gap-1">
+                  {c.verification_status !== "verified" && (
+                    <button
+                      onClick={() => onSave({
+                        claim_id: c.id, claim_text: c.claim_text, claim_type: c.claim_type,
+                        claim_status: "verified", sources: c.sources, risk_level: c.risk_level,
+                        recheck_at: c.recheck_at,
+                      })}
+                      disabled={busy !== null || (c.claim_type !== "interpretation" && !c.sources?.length)}
+                      title={c.claim_type !== "interpretation" && !c.sources?.length
+                        ? "A claim about the world cannot be verified with no source"
+                        : "Mark verified"}
+                      className="rounded border border-slate-300 px-2 py-1 text-xs disabled:opacity-40">
+                      Verify
+                    </button>
+                  )}
+                  <button onClick={() => onDelete(c.id)} disabled={busy !== null}
+                    className="rounded border border-slate-300 px-2 py-1 text-xs text-slate-500 disabled:opacity-40">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Add */}
+      <div className="mt-3 space-y-2 rounded border border-dashed border-slate-300 p-3">
+        <textarea value={text} onChange={(e) => setText(e.target.value)} rows={2}
+          placeholder="A factual claim this content will make…"
+          className="w-full rounded border border-slate-300 px-2 py-1 text-sm" />
+        <div className="flex flex-wrap items-center gap-2">
+          <select value={type} onChange={(e) => setType(e.target.value)}
+            className="rounded border border-slate-300 px-2 py-1 text-xs">
+            {CLAIM_TYPES.map((t) => <option key={t}>{t}</option>)}
+          </select>
+          <select value={risk} onChange={(e) => setRisk(e.target.value)}
+            className="rounded border border-slate-300 px-2 py-1 text-xs">
+            {["low", "medium", "high"].map((r) => <option key={r}>{r} risk</option>)}
+          </select>
+          <input value={sourceUrl} onChange={(e) => setSourceUrl(e.target.value)}
+            placeholder={needsSource ? "Source URL (required to verify)" : "Source (optional for interpretation)"}
+            className="min-w-[220px] flex-1 rounded border border-slate-300 px-2 py-1 text-xs" />
+          <input type="date" value={recheck} onChange={(e) => setRecheck(e.target.value)}
+            title="Recheck date" className="rounded border border-slate-300 px-2 py-1 text-xs" />
+          <button
+            onClick={() => {
+              onSave({
+                claim_text: text, claim_type: type, risk_level: risk.split(" ")[0],
+                sources: sourceUrl ? [{ url: sourceUrl }] : [],
+                claim_status: canVerify && sourceUrl ? "verified" : "unverified",
+                recheck_at: recheck || null,
+              });
+              setText(""); setSourceUrl(""); setRecheck("");
+            }}
+            disabled={busy !== null || !text.trim()}
+            className="rounded bg-slate-900 px-3 py-1.5 text-xs font-medium text-white disabled:opacity-40">
+            Add claim
+          </button>
+        </div>
+        {type === "interpretation" && (
+          <p className="text-xs text-slate-500">
+            An interpretation is verified by being labelled as a reading, not by a citation — so no source
+            is required. Recording a framework reading as an empirical claim is the mistake this type prevents.
+          </p>
+        )}
+      </div>
+
+      {!readiness.ready && readiness.reasons.length > 0 && (
+        <ul className="mt-3 space-y-1">
+          {readiness.reasons.map((r, i) => (
+            <li key={i} className="rounded bg-amber-50 px-3 py-1.5 text-xs text-amber-900">{r}</li>
+          ))}
+        </ul>
+      )}
+
+      <div className="mt-3 flex items-center gap-2">
+        <button onClick={onReview}
+          disabled={busy !== null || readiness.reviewed
+            || readiness.reasons.some((r) => !r.startsWith("The claim review has not been recorded"))}
+          className="rounded bg-slate-900 px-3 py-1.5 text-xs font-medium text-white disabled:opacity-40">
+          {readiness.reviewed ? "Review recorded" : "Record claim review"}
+        </button>
+        <span className="text-xs text-slate-500">
+          Scripts cannot be generated until this is recorded.
+        </span>
       </div>
     </section>
   );

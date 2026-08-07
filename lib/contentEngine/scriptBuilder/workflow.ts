@@ -8,6 +8,7 @@ import {
 } from "@/lib/contentEngine/scriptBuilder/generate";
 import { evaluateComparison, DEFAULT_WPM } from "@/lib/contentEngine/scriptBuilder/analysis";
 import { persistScriptQc, runScriptQc } from "@/lib/contentEngine/scriptBuilder/qc";
+import { checkClaimReadiness, requireClaimsVerified } from "@/lib/contentEngine/scriptBuilder/claims";
 
 // The Script Builder workflow, stages 6 through 12.
 //
@@ -280,6 +281,9 @@ export async function generateScripts(briefId: string, actor: string | null) {
   if (!angleRow) throw new ScriptBuilderError("The selected angle no longer exists.", 409);
   const angle = JSON.stringify(angleRow, null, 2);
 
+  // Claim verification (ruling 7) applies to EVERY origin, evergreen included.
+  await requireClaimsVerified(briefId);
+
   // Real Talk: the seven-part argument must exist and be complete first.
   const realTalk = await requireRealTalkReady(briefId);
   const wpm = await wpmFor(brief.delivery_profile_id);
@@ -469,6 +473,7 @@ export async function runQcAndDraft(briefId: string, actor: string | null) {
   ]);
 
   const comparison = cmp as Record<string, boolean | number | null> | null;
+  const claims = await checkClaimReadiness(briefId);
   const qc = await runScriptQc({
     briefId,
     phaseId: brief.phase_id,
@@ -488,6 +493,7 @@ export async function runQcAndDraft(briefId: string, actor: string | null) {
     } : undefined,
     similarityThreshold: comparison ? Number(comparison.similarity_threshold) : undefined,
     comparisonStale: comparison?.stale === true,
+    claims,
     ownerOverride: comparison?.owner_override === true,
   });
 

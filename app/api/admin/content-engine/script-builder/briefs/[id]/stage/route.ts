@@ -9,6 +9,10 @@ import {
   overrideSimilarity, revertScript, runQcAndDraft, selectAngle, upsertRealTalkBrief,
   type RealTalkPart,
 } from "@/lib/contentEngine/scriptBuilder/workflow";
+import {
+  deleteClaim, markClaimsReviewed, upsertClaim,
+  type ClaimSource, type ClaimStatus, type ClaimType, type RiskLevel,
+} from "@/lib/contentEngine/scriptBuilder/claims";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,7 +25,8 @@ export const dynamic = "force-dynamic";
 // them would quietly remove them.
 
 type Stage = "angles" | "select_angle" | "scripts" | "edit_script" | "revert_script"
-  | "real_talk" | "compare" | "override" | "package" | "qc";
+  | "real_talk" | "save_claim" | "delete_claim" | "review_claims"
+  | "compare" | "override" | "package" | "qc";
 
 /** Stages that call the provider, and the settings key that can disable each. */
 const GENERATIVE: Partial<Record<Stage, string>> = {
@@ -43,6 +48,9 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     parts?: Partial<Record<RealTalkPart, string>>;
     overgeneralization_risk?: string; reputational_risk_check?: string;
     rlc_foundation?: string; complete?: boolean;
+    claim_id?: string; claim_text?: string; claim_type?: ClaimType;
+    claim_status?: ClaimStatus; sources?: ClaimSource[]; risk_level?: RiskLevel;
+    event_date?: string; recheck_at?: string; correction_note?: string;
   };
   try {
     body = await request.json();
@@ -112,6 +120,31 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
           complete: body.complete,
         });
         await audit({ actor, action: "content_engine.real_talk.saved", metadata: { brief_id: id, complete: r.complete, missing: r.missing.length } });
+        return NextResponse.json(r);
+      }
+      case "save_claim": {
+        if (!body.claim_text || !body.claim_type) {
+          return NextResponse.json({ error: "claim_text and claim_type are required." }, { status: 400 });
+        }
+        await upsertClaim({
+          briefId: id, claimId: body.claim_id, claimText: body.claim_text,
+          claimType: body.claim_type, status: body.claim_status, sources: body.sources,
+          riskLevel: body.risk_level, eventDate: body.event_date ?? null,
+          recheckAt: body.recheck_at ?? null, correctionNote: body.correction_note ?? null,
+          actor,
+        });
+        await audit({ actor, action: "content_engine.claim.saved", metadata: { brief_id: id, claim_type: body.claim_type, status: body.claim_status } });
+        return NextResponse.json({ ok: true });
+      }
+      case "delete_claim": {
+        if (!body.claim_id) return NextResponse.json({ error: "claim_id is required." }, { status: 400 });
+        await deleteClaim(id, body.claim_id);
+        await audit({ actor, action: "content_engine.claim.deleted", metadata: { brief_id: id, claim_id: body.claim_id } });
+        return NextResponse.json({ ok: true });
+      }
+      case "review_claims": {
+        const r = await markClaimsReviewed(id, actor);
+        await audit({ actor, action: "content_engine.claims.reviewed", metadata: { brief_id: id, claims: r.claims } });
         return NextResponse.json(r);
       }
       case "compare": {

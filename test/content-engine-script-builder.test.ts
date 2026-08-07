@@ -852,3 +852,88 @@ test("the brief_id index is not partial", () => {
   assert.ok(created.includes("idx_ce_real_talk_brief"));
   assert.ok(!/\bwhere\b/i.test(created), "a partial index cannot serve as a conflict target");
 });
+
+// ---------------------------------------------------------------------------
+// Claim verification (ruling 7)
+// ---------------------------------------------------------------------------
+
+test("interpretation is the only claim type that needs no source", async () => {
+  const { SOURCE_REQUIRED, CLAIM_TYPES } = await import("@/lib/contentEngine/scriptBuilder/claims");
+  assert.ok(!SOURCE_REQUIRED.includes("interpretation" as never));
+  for (const t of CLAIM_TYPES) {
+    if (t === "interpretation") continue;
+    assert.ok(SOURCE_REQUIRED.includes(t), `${t} asserts something about the world and needs a source`);
+  }
+});
+
+test("a claim about the world cannot be verified with no source", () => {
+  const src = read("lib/contentEngine/scriptBuilder/claims.ts");
+  assert.match(src, /cannot be marked verified with no source/);
+  assert.match(src, /record it as an interpretation instead/,
+    "the message must name the correct alternative, or authors will mislabel to get past it");
+  // The database enforces it too.
+  const sql = read("supabase/migrations/0064_claim_verification.sql");
+  assert.match(sql, /ce_claims_source_required/);
+  assert.match(sql, /claim_type = 'interpretation'\s*\n\s*or jsonb_array_length\(sources\) > 0/);
+});
+
+test("the review is required even when there are no claims", () => {
+  const src = read("lib/contentEngine/scriptBuilder/claims.ts");
+  assert.match(src, /A brief that asserts nothing is a legitimate outcome of doing the review/);
+  assert.match(src, /"no claims" and "nobody checked" look the same|otherwise \\"no claims\\"/);
+  const sql = read("supabase/migrations/0064_claim_verification.sql");
+  assert.match(sql, /claims_reviewed_at/);
+});
+
+test("readiness is computed live, not read from a stored flag", () => {
+  const src = read("lib/contentEngine/scriptBuilder/claims.ts");
+  assert.match(src, /the claims still hold — computed live/);
+  // A verified claim past its recheck date must stop counting as verified.
+  assert.match(src, /past its recheck date/);
+});
+
+test("the review cannot be recorded over outstanding claims", () => {
+  const src = read("lib/contentEngine/scriptBuilder/claims.ts");
+  assert.match(src, /Cannot record the review while claims are outstanding/);
+  assert.match(src, /is a signature, not a\s*\n?\s*\*?\s*review/);
+});
+
+test("changing a claim invalidates the previous review", () => {
+  const src = read("lib/contentEngine/scriptBuilder/claims.ts");
+  const upsert = src.slice(src.indexOf("export async function upsertClaim"), src.indexOf("export async function deleteClaim"));
+  assert.match(upsert, /claims_reviewed_at: null/,
+    "a review of an older set of claims must not certify the new set");
+});
+
+test("the gate applies to every origin, evergreen included", () => {
+  const claims = read("lib/contentEngine/scriptBuilder/claims.ts");
+  assert.match(claims, /every content origin — ruling 7 is\s*\n?\s*\*?\s*explicit that evergreen does not skip it/);
+  const wf = read("lib/contentEngine/scriptBuilder/workflow.ts");
+  const gen = wf.slice(wf.indexOf("export async function generateScripts"), wf.indexOf("export async function compareScripts"));
+  assert.match(gen, /requireClaimsVerified\(briefId\)/);
+  // No content_origin branch may exempt anything from it.
+  assert.ok(!/content_origin[\s\S]{0,120}requireClaimsVerified/.test(wf),
+    "nothing may exempt an origin from claim verification");
+});
+
+test("unverified claims are graded as legal risk, not voice", () => {
+  const src = read("lib/contentEngine/scriptBuilder/qc.ts");
+  assert.match(src, /finding\("legal", "high",\s*\n?\s*`Claim verification incomplete/);
+});
+
+test("claim stages are owner-gated and audited", () => {
+  const src = read("app/api/admin/content-engine/script-builder/briefs/[id]/stage/route.ts");
+  for (const c of ["save_claim", "delete_claim", "review_claims"]) {
+    assert.match(src, new RegExp(`case "${c}"`), `${c} must exist`);
+  }
+  assert.match(src, /content_engine\.claims\.reviewed/);
+  assert.match(src, /requireAiOwner/);
+});
+
+test("claims are reviewed on the framework screen, before any words exist", () => {
+  const page = read("app/admin/content-engine/script-builder/page.tsx");
+  assert.match(page, /function ClaimsPanel/);
+  assert.match(page, /screen === "topic"[\s\S]{0,400}ClaimsPanel/,
+    "claims belong with the framework decisions, not next to draft copy");
+  assert.match(page, /Scripts cannot be generated until this is recorded/);
+});

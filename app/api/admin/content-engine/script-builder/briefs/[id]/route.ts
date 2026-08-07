@@ -3,6 +3,7 @@ import { requireAiOwner } from "@/lib/ai/guard";
 import { getAdminUser } from "@/lib/supabaseServer";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { audit } from "@/lib/audit";
+import { checkClaimReadiness, listClaims } from "@/lib/contentEngine/scriptBuilder/claims";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,7 +22,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   if (!brief) return NextResponse.json({ error: "Not found." }, { status: 404 });
 
-  const [angles, scripts, pkg, comparison, conflicts, campaigns, series, realTalk] = await Promise.all([
+  const [angles, scripts, pkg, comparison, conflicts, campaigns, series, realTalk, claims, claimReadiness] = await Promise.all([
     s.from("ce_angles").select("*").eq("brief_id", id).order("created_at"),
     s.from("ce_scripts").select("*").eq("brief_id", id).order("reading_level"),
     s.from("ce_script_packages").select("*").eq("brief_id", id).maybeSingle(),
@@ -34,6 +35,8 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
       .eq("is_active", true).order("name"),
     s.from("ce_content_series").select("id, slug, name, description").eq("active", true).order("name"),
     s.from("ce_real_talk_briefs").select("*").eq("brief_id", id).maybeSingle(),
+    listClaims(id),
+    checkClaimReadiness(id),
   ]);
 
   return NextResponse.json({
@@ -53,6 +56,10 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
     // Real Talk is a series: its seven-part argument travels with the brief
     // because a script in that series cannot be written without it.
     realTalk: realTalk.data ?? null,
+    claims,
+    // Ruling 7: the step applies to every origin, so its state travels with
+    // every brief rather than only the ones that happen to have claims.
+    claimReadiness,
   });
 }
 
