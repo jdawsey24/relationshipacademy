@@ -414,3 +414,56 @@ test("a governing truth removed from the canon is caught as a coverage gap", () 
   assert.equal(qc.reductionsCovered.forgiveness, false);
   assert.ok(qc.findings.some((f) => f.category === "coverage" && f.reduction === "forgiveness"));
 });
+
+// ---------------------------------------------------------------------------
+// Reduction rules belong to the phase, not to the checker
+// ---------------------------------------------------------------------------
+
+test("a phase's own prohibited reductions become its rules", async () => {
+  const { reductionsFor, REDUCTIONS } = await import("@/lib/framework/narrativeQc");
+  assert.equal(reductionsFor([]).length, REDUCTIONS.length, "no authored list falls back to the built-ins");
+  assert.equal(reductionsFor(null).length, REDUCTIONS.length);
+
+  const authored = reductionsFor(["Dating readiness", "Productivity or achievement", "Positive thinking"]);
+  assert.equal(authored.length, 3, "an authored list replaces the built-ins entirely");
+  assert.ok(authored.every((r) => r.key.startsWith("authored:")));
+});
+
+test("the subject is derived from the phase, not hardcoded to Recovery", async () => {
+  const { subjectFor } = await import("@/lib/framework/narrativeQc");
+  const recovery = subjectFor("Recovery", "Healing");
+  const renewal = subjectFor("Renewal", "Reengagement");
+
+  assert.ok(recovery.test("Recovery is proven by dating."));
+  assert.ok(recovery.test("Healing means forgiving."));
+  // The bug this prevents: a Renewal sentence matching nothing, so every
+  // reduction check passes on content it never examined.
+  assert.ok(renewal.test("Renewal is proven by productivity."));
+  assert.ok(renewal.test("Reengagement requires dating."));
+  assert.ok(!renewal.test("Healing takes time."), "Renewal's subject must not match Recovery's words");
+});
+
+test("an authored reduction is caught, and its denial is not", async () => {
+  const { checkReductions, reductionsFor, subjectFor } = await import("@/lib/framework/narrativeQc");
+  const rules = reductionsFor(["Productivity or achievement"]);
+  const subject = subjectFor("Renewal", "Reengagement");
+
+  assert.ok(checkReductions("Renewal is proven by constant productivity.", "f", rules, subject).length > 0);
+  assert.deepEqual(checkReductions("Renewal is not proven by productivity.", "f", rules, subject), []);
+});
+
+test("fields that list what a phase is NOT are never read as assertions", () => {
+  const src = readFileSync(join(ROOT, "lib/framework/narrativeQc.ts"), "utf8");
+  // common_misconceptions is a list of rejected beliefs; scanning it flags the
+  // author for documenting what the phase denies.
+  const scanBlock = src.slice(src.indexOf("const scanned"), src.indexOf("for (const [field, text] of scanned)"));
+  assert.ok(!/commonMisconceptions/.test(scanBlock),
+    "common_misconceptions must not be scanned for asserted reductions");
+});
+
+test("listing a reduction as prohibited counts as addressing it", () => {
+  const src = readFileSync(join(ROOT, "lib/framework/narrativeQc.ts"), "utf8");
+  const corpus = src.slice(src.indexOf("const corpus = ["), src.indexOf("const reductionsCovered"));
+  assert.match(corpus, /prohibitedReductions/,
+    "otherwise every authored reduction that is not also a governing truth looks uncovered");
+});

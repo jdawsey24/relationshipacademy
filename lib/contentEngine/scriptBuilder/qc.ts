@@ -1,5 +1,5 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { checkReductions } from "@/lib/framework/narrativeQc";
+import { checkReductions, reductionsFor, subjectFor } from "@/lib/framework/narrativeQc";
 import { getPhaseNarrative } from "@/lib/framework/phaseNarrative";
 import {
   checkRuntime, detectOntologyLeakage, evaluateComparison, gradeFindings,
@@ -150,7 +150,12 @@ export async function runScriptQc(input: ScriptQcInput): Promise<ScriptQcResult>
     try {
       const narrative = await getPhaseNarrative(input.phaseName);
       if (narrative) {
-        for (const f of checkReductions(surface, "consumer_text")) {
+        // The phase's OWN prohibited reductions and its OWN subject words —
+        // otherwise a Renewal script is checked against Recovery's rules, or
+        // against no rules at all because the subject never matches.
+        const rules = reductionsFor(narrative.prohibitedReductions);
+        const subject = subjectFor(narrative.phase, narrative.developmentalTask);
+        for (const f of checkReductions(surface, "consumer_text", rules, subject)) {
           findings.push(finding("clinical", "high",
             `${f.message} (${input.phaseName} governing truth.) …${f.excerpt ?? ""}…`, "consumer_text"));
         }

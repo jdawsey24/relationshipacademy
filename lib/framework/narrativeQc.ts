@@ -29,13 +29,13 @@ import { REQUIRED_DOMAINS } from "@/lib/framework/phaseNarrative";
 // in the sentence — "healing means forgiving" is a finding, "healing is not
 // forgiveness" is the framework working as intended.
 
-export type ReductionKey =
-  | "dating"
-  | "reconciliation"
-  | "forgiveness"
-  | "sexual_readiness"
-  | "total_independence"
-  | "absence_of_grief";
+/** Built-in fallback keys. Authored reductions carry their own phrase as a key. */
+export type BuiltInReductionKey =
+  | "dating" | "reconciliation" | "forgiveness"
+  | "sexual_readiness" | "total_independence" | "absence_of_grief";
+
+/** Open by design: a phase may prohibit anything its author writes down. */
+export type ReductionKey = BuiltInReductionKey | string;
 
 interface Reduction {
   key: ReductionKey;
@@ -48,6 +48,54 @@ interface Reduction {
   governingTruth: string;
 }
 
+/**
+ * Turn an authored `prohibited_reductions` entry into a checkable rule.
+ *
+ * WHY THIS EXISTS. REDUCTIONS below was derived from Recovery's governing
+ * truths and hardcoded. Renewal then authored seventeen prohibited reductions of
+ * its own — productivity, becoming more social, positive thinking, reinventing
+ * oneself to become more desirable — and every one of them would have been
+ * ignored, because the checker only knew Recovery's six. A phase's rules belong
+ * to the phase, so they are read from its record and the built-in list is only a
+ * fallback for a phase that has authored none.
+ *
+ * A phrase like "Dating readiness" becomes a case-insensitive match on its
+ * content words. Deliberately literal: inferring a clever regex from an
+ * author's phrase would silently change what they prohibited.
+ */
+export function reductionFromPhrase(phrase: string): Reduction | null {
+  const words = phrase
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .split(/\s+/)
+    .filter((w) => w.length > 3 && !["being", "over", "the", "into", "with", "your", "that", "than"].includes(w));
+  if (!words.length) return null;
+
+  // Match the first substantive word, stemmed just enough to catch plurals and
+  // common inflections. Anything cleverer risks prohibiting more than was written.
+  const stem = words[0].replace(/(ing|ed|s)$/u, "");
+  const pattern = new RegExp(`\\b${stem.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\w*`, "i");
+
+  return {
+    key: `authored:${phrase.slice(0, 40)}`,
+    label: `Reduced to "${phrase}"`,
+    violation: pattern,
+    coverage: pattern,
+    governingTruth: `The phase record prohibits reducing it to "${phrase}".`,
+  };
+}
+
+/** The reductions a phase actually declares, falling back to the built-ins. */
+export function reductionsFor(prohibited: string[] | null | undefined): Reduction[] {
+  const authored = (prohibited ?? []).map(reductionFromPhrase).filter((r): r is Reduction => !!r);
+  return authored.length ? authored : REDUCTIONS;
+}
+
+/**
+ * Fallback only. Derived from Recovery's governing truths and kept for phases
+ * that have not authored a prohibited_reductions list. A phase that HAS authored
+ * one is checked against its own, never against these.
+ */
 export const REDUCTIONS: Reduction[] = [
   {
     key: "dating",
@@ -98,6 +146,24 @@ export const REDUCTIONS: Reduction[] = [
   },
 ];
 
+/**
+ * The words that mean "this phase" in a sentence.
+ *
+ * Phase-derived, not fixed. A hardcoded /recovery|healing/ would never match a
+ * Renewal sentence, so every reduction check would silently pass for Renewal
+ * while appearing to run — the checker would report zero findings on content it
+ * had not actually examined.
+ */
+export function subjectFor(phase: string, developmentalTask?: string | null): RegExp {
+  const stems = [phase, developmentalTask]
+    .filter((x): x is string => !!x?.trim())
+    .map((x) => x.trim().toLowerCase().replace(/[^\p{L}]/gu, ""))
+    .map((x) => x.replace(/(ing|ment|ance|ence)$/u, ""))
+    .filter(Boolean);
+  // Recovery also speaks of itself as "healing"; the task stem covers that.
+  return new RegExp(`\\b(${[...new Set(stems)].join("|")})\\w*`, "i");
+}
+
 const SUBJECT = /\b(recovery|recovering|healing|heals?|healed)\b/i;
 const PRESCRIPTIVE =
   /\b(is|are|means?|requires?|proven by|demonstrated by|shown by|looks like|equals?|comes when|happens when|begins when|starts when|only when)\b/i;
@@ -127,14 +193,19 @@ const sentences = (text: string): string[] =>
  * healing, use a prescriptive construction, name the reduction, and carry no
  * negation. All four, or it is not a finding.
  */
-export function checkReductions(text: string, field: string): NarrativeFinding[] {
+export function checkReductions(
+  text: string,
+  field: string,
+  rules: Reduction[] = REDUCTIONS,
+  subject: RegExp = SUBJECT,
+): NarrativeFinding[] {
   const out: NarrativeFinding[] = [];
   if (!text?.trim()) return out;
 
   for (const s of sentences(text)) {
-    if (!SUBJECT.test(s) || !PRESCRIPTIVE.test(s)) continue;
+    if (!subject.test(s) || !PRESCRIPTIVE.test(s)) continue;
     if (NEGATION.test(s)) continue; // the framework denying the reduction
-    for (const r of REDUCTIONS) {
+    for (const r of rules) {
       if (r.violation.test(s)) {
         out.push({
           severity: "critical",
@@ -214,8 +285,13 @@ export function runPhaseNarrativeQc(p: PhaseNarrativeProjection): NarrativeQcRes
     ...p.transformationFrom.map((t, i) => [`transformation_from[${i}]`, t] as [string, string]),
     ...p.transformationToward.map((t, i) => [`transformation_toward[${i}]`, t] as [string, string]),
     ...p.governingTruths.map((t, i) => [`governing_narrative_truths[${i}]`, t] as [string, string]),
-    ...p.commonMisconceptions.map((t, i) => [`common_misconceptions[${i}]`, t] as [string, string]),
   ];
+  // NOT scanned, for the same reason distortion corrections are not:
+  //   common_misconceptions — a list of beliefs the phase explicitly rejects.
+  //     "Reengagement requires returning to the life the person had before"
+  //     is the author naming a misconception, and reading it as an assertion
+  //     flags the canon for documenting what it denies.
+  //   signs_constrained — a list of problems, not claims about the phase.
   for (const s of p.storylines) {
     scanned.push([`${s.domain}.domain_storyline`, s.storyline]);
     scanned.push([`${s.domain}.emotional_experience`, s.emotionalExperience ?? ""]);
@@ -223,7 +299,11 @@ export function runPhaseNarrativeQc(p: PhaseNarrativeProjection): NarrativeQcRes
       scanned.push([`${s.domain}.internal_questions[${i}]`, q]));
     // NOT distortionCorrection — checked separately and more strictly below.
   }
-  for (const [field, text] of scanned) findings.push(...checkReductions(text, field));
+  const activeReductions = reductionsFor(p.prohibitedReductions);
+  const subject = subjectFor(p.phase, p.developmentalTask);
+  for (const [field, text] of scanned) {
+    findings.push(...checkReductions(text, field, activeReductions, subject));
+  }
 
   // --- 3. distortion corrections -------------------------------------------
   let corrections = 0;
@@ -238,11 +318,17 @@ export function runPhaseNarrativeQc(p: PhaseNarrativeProjection): NarrativeQcRes
   const corpus = [
     ...p.governingTruths,
     ...p.commonMisconceptions,
+    // Writing a reduction down as prohibited IS addressing it. Excluding this
+    // made every authored reduction that is not also a governing truth look
+    // uncovered — a warning generated by the very list it was checking.
+    ...p.prohibitedReductions,
     ...p.storylines.map((s) => s.distortionCorrection),
   ].join(" \n ");
 
+  // The phase's OWN prohibited reductions, not a list derived from another phase.
+  const reductions = reductionsFor(p.prohibitedReductions);
   const reductionsCovered = {} as Record<ReductionKey, boolean>;
-  for (const r of REDUCTIONS) {
+  for (const r of reductions) {
     const covered = r.coverage.test(corpus);
     reductionsCovered[r.key] = covered;
     if (!covered) {

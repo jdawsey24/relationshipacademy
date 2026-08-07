@@ -137,6 +137,8 @@ export interface PhaseNarrativeProjection {
   transformationToward: string[];
   governingTruths: string[];
   commonMisconceptions: string[];
+  /** What THIS phase prohibits being reduced to. Drives its QC rules. */
+  prohibitedReductions: string[];
   storylines: DomainStorylineProjection[];
 
   // --- governance ---
@@ -287,6 +289,7 @@ export function projectPhaseNarrative(
     transformationToward: phase.transformation_toward ?? [],
     governingTruths: phase.governing_narrative_truths ?? [],
     commonMisconceptions: phase.common_misconceptions ?? [],
+    prohibitedReductions: phase.prohibited_reductions ?? [],
     storylines,
 
     sourceVersion: computeSourceVersion(phase, domains),
