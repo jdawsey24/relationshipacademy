@@ -5,8 +5,8 @@ import { getAiSettings } from "@/lib/ai/settings";
 import { audit } from "@/lib/audit";
 import { ScriptBuilderError, STAGE_TEMPLATES } from "@/lib/contentEngine/scriptBuilder/generate";
 import {
-  compareScripts, generateAngles, generatePackage, generateScripts,
-  overrideSimilarity, runQcAndDraft, selectAngle,
+  compareScripts, editScript, generateAngles, generatePackage, generateScripts,
+  overrideSimilarity, revertScript, runQcAndDraft, selectAngle,
 } from "@/lib/contentEngine/scriptBuilder/workflow";
 
 export const runtime = "nodejs";
@@ -19,7 +19,8 @@ export const dynamic = "force-dynamic";
 // choose the angle — are the point of staging, and an endpoint that ran past
 // them would quietly remove them.
 
-type Stage = "angles" | "select_angle" | "scripts" | "compare" | "override" | "package" | "qc";
+type Stage = "angles" | "select_angle" | "scripts" | "edit_script" | "revert_script"
+  | "compare" | "override" | "package" | "qc";
 
 /** Stages that call the provider, and the settings key that can disable each. */
 const GENERATIVE: Partial<Record<Stage, string>> = {
@@ -34,7 +35,10 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   if (auth instanceof NextResponse) return auth;
   const { id } = await params;
 
-  let body: { stage?: Stage; angle_id?: string; edits?: Record<string, string>; reason?: string };
+  let body: {
+    stage?: Stage; angle_id?: string; edits?: Record<string, string>; reason?: string;
+    reading_level?: "grade5" | "higher"; hook?: string; script_body?: string; cta?: string;
+  };
   try {
     body = await request.json();
   } catch {
@@ -71,6 +75,25 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       case "scripts": {
         const r = await generateScripts(id, actor);
         await audit({ actor, action: "content_engine.script.drafted", metadata: { brief_id: id } });
+        return NextResponse.json(r);
+      }
+      case "edit_script": {
+        if (body.reading_level !== "grade5" && body.reading_level !== "higher") {
+          return NextResponse.json({ error: "reading_level must be grade5 or higher." }, { status: 400 });
+        }
+        const r = await editScript({
+          briefId: id, readingLevel: body.reading_level, actor,
+          hook: body.hook, body: body.script_body, cta: body.cta,
+        });
+        await audit({ actor, action: "content_engine.script.edited", metadata: { brief_id: id, reading_level: body.reading_level, changed: r.changed } });
+        return NextResponse.json(r);
+      }
+      case "revert_script": {
+        if (body.reading_level !== "grade5" && body.reading_level !== "higher") {
+          return NextResponse.json({ error: "reading_level must be grade5 or higher." }, { status: 400 });
+        }
+        const r = await revertScript(id, body.reading_level);
+        await audit({ actor, action: "content_engine.script.reverted", metadata: { brief_id: id, reading_level: body.reading_level } });
         return NextResponse.json(r);
       }
       case "compare": {

@@ -10,7 +10,8 @@
     "test": "node --test --import tsx test/*.test.ts",
     "test:score": "node --env-file=.env.local scripts/test-score.mjs",
     "verify:snapshot": "tsx --tsconfig tsconfig.verify.json scripts/verifySnapshotEmptyState.tsx",
-    "preview:nurture": "tsx scripts/previewNurture.ts"
+    "preview:nurture": "tsx scripts/previewNurture.ts",
+    "deploy": "./scripts/deploy-production.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.111.0",

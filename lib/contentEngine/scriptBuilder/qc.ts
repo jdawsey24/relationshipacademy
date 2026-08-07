@@ -30,6 +30,8 @@ export interface ScriptQcInput {
   equivalence?: { lessonMatch: boolean; rewardMatch: boolean; hookMatch: boolean; ctaMatch: boolean };
   similarityThreshold?: number;
   ownerOverride?: boolean;
+  /** True when a script changed after the comparison was computed. */
+  comparisonStale?: boolean;
 }
 
 export interface ScriptQcResult extends GradeResult {
@@ -93,6 +95,14 @@ export async function runScriptQc(input: ScriptQcInput): Promise<ScriptQcResult>
   const g5 = input.scripts.find((x) => x.reading_level === "grade5");
   const hi = input.scripts.find((x) => x.reading_level === "higher");
   let comparison: ScriptQcResult["comparison"] = null;
+
+  if (input.comparisonStale) {
+    // The stored equivalence verdict describes text that no longer exists.
+    // Reporting it as current would be worse than having no verdict at all.
+    findings.push(finding("completeness", "high",
+      "A script was edited after the last comparison, so the equivalence result describes the previous " +
+      "version. Re-run the comparison before treating this package as checked.", "comparison"));
+  }
 
   if (!g5 || !hi) {
     findings.push(finding("completeness", "critical",

@@ -472,6 +472,7 @@ export async function runQcAndDraft(briefId: string, actor: string | null) {
       ctaMatch: comparison.cta_match !== false,
     } : undefined,
     similarityThreshold: comparison ? Number(comparison.similarity_threshold) : undefined,
+    comparisonStale: comparison?.stale === true,
     ownerOverride: comparison?.owner_override === true,
   });
 
@@ -513,4 +514,111 @@ export async function runQcAndDraft(briefId: string, actor: string | null) {
     .update({ status: "qc_complete", updated_at: new Date().toISOString() }).eq("id", briefId);
 
   return { draftId: created.id, version: created.version, qc };
+}
+
+// ---------------------------------------------------------------------------
+// Owner edits to a generated script
+// ---------------------------------------------------------------------------
+
+export interface EditScriptInput {
+  briefId: string;
+  readingLevel: "grade5" | "higher";
+  hook?: string;
+  body?: string;
+  cta?: string;
+  actor: string | null;
+}
+
+/**
+ * Apply an owner's edit to one generated script.
+ *
+ * Three things happen together, and all three matter:
+ *
+ *   1. The model's original text is captured the FIRST time a script is edited,
+ *      so the thing QC actually assessed is still recoverable. Subsequent edits
+ *      do not overwrite it — the baseline is the generated text, not the
+ *      previous edit.
+ *   2. Word count and runtime are recomputed. An edit that fixes the wording and
+ *      leaves a stale 54-second estimate behind is worse than no estimate.
+ *   3. The comparison is marked stale. It was computed against text that no
+ *      longer exists, and a result that describes the previous draft must never
+ *      be read as describing this one.
+ */
+export async function editScript(input: EditScriptInput) {
+  const s = getSupabaseAdminClient();
+  const brief = await loadBrief(input.briefId);
+
+  const { data: existing } = await s.from("ce_scripts")
+    .select("id, hook, body, cta, generated_body, edited_by_owner")
+    .eq("brief_id", input.briefId).eq("reading_level", input.readingLevel).maybeSingle();
+  if (!existing) throw new ScriptBuilderError(`No ${input.readingLevel} script to edit.`, 404);
+
+  const cur = existing as {
+    id: string; hook: string | null; body: string; cta: string | null;
+    generated_body: string | null; edited_by_owner: boolean;
+  };
+
+  const next = {
+    hook: input.hook ?? cur.hook,
+    body: input.body ?? cur.body,
+    cta: input.cta ?? cur.cta,
+  };
+  if (!next.body?.trim()) {
+    throw new ScriptBuilderError("A script cannot be emptied. Regenerate it instead.", 400);
+  }
+
+  const unchanged = next.hook === cur.hook && next.body === cur.body && next.cta === cur.cta;
+  if (unchanged) return { changed: false };
+
+  const measured = measureScript(next, brief.target_runtime_seconds, await wpmFor(brief.delivery_profile_id));
+
+  const patch: Record<string, unknown> = {
+    ...next, ...measured,
+    edited_by_owner: true,
+    edited_by: input.actor,
+    edited_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+  // Capture the generated original once, on the first edit only.
+  if (!cur.generated_body) {
+    patch.generated_hook = cur.hook;
+    patch.generated_body = cur.body;
+    patch.generated_cta = cur.cta;
+  }
+
+  const { error } = await s.from("ce_scripts").update(patch).eq("id", cur.id);
+  if (error) throw new ScriptBuilderError(`Could not save the edit: ${error.message}`, 502);
+
+  await s.from("ce_script_comparisons")
+    .update({ stale: true, updated_at: new Date().toISOString() })
+    .eq("brief_id", input.briefId);
+
+  return { changed: true, ...measured };
+}
+
+/** Restore a script to exactly what the model produced. */
+export async function revertScript(briefId: string, readingLevel: "grade5" | "higher") {
+  const s = getSupabaseAdminClient();
+  const brief = await loadBrief(briefId);
+  const { data } = await s.from("ce_scripts")
+    .select("id, generated_hook, generated_body, generated_cta")
+    .eq("brief_id", briefId).eq("reading_level", readingLevel).maybeSingle();
+  const g = data as { id: string; generated_hook: string | null; generated_body: string | null; generated_cta: string | null } | null;
+  if (!g?.generated_body) {
+    throw new ScriptBuilderError("This script has not been edited, so there is nothing to revert to.", 409);
+  }
+  const restored = { hook: g.generated_hook, body: g.generated_body, cta: g.generated_cta };
+  const measured = measureScript(restored, brief.target_runtime_seconds, await wpmFor(brief.delivery_profile_id));
+
+  await s.from("ce_scripts").update({
+    ...restored, ...measured,
+    edited_by_owner: false, edited_by: null, edited_at: null,
+    generated_hook: null, generated_body: null, generated_cta: null,
+    updated_at: new Date().toISOString(),
+  }).eq("id", g.id);
+
+  await s.from("ce_script_comparisons")
+    .update({ stale: true, updated_at: new Date().toISOString() }).eq("brief_id", briefId);
+
+  return measured;
 }
