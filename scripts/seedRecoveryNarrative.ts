@@ -87,10 +87,17 @@ async function main() {
 
   console.log(`\n  distortion corrections : ${resolved.length}/${resolved.length} ✅`);
 
-  console.log(`\nFields left EMPTY, awaiting the author (blank ≠ approved):`);
+  console.log(`\nGovernance fields (DERIVED from Recovery's own canon, not transcribed):`);
+  console.log(`  prohibited_reductions      : ${PHASE_NARRATIVE.prohibited_reductions.length}  (from governing truths + distortion corrections)`);
+  console.log(`  approved_language          : ${PHASE_NARRATIVE.approved_language.length}  (from title, descriptor, transformation, storylines)`);
+  console.log(`  safety_boundaries          : ${PHASE_NARRATIVE.safety_boundaries.length}  (from truth 10 + truths 1-6; escalation clause PROPOSED)`);
+  console.log(`  reading_level              : PROPOSED — matches Renewal`);
+  console.log(`  public_or_clinical_boundary: PROPOSED — Renewal's structure, Recovery's material`);
+  console.log(`  ⚠ These need clinical judgement, not just assent. record_status stays 'draft'.`);
+
+  console.log(`\nStill EMPTY, awaiting the author (blank ≠ approved):`);
   console.log(`  phase  : lived_experience_summary, developmental_explanation, common_misconceptions,`);
-  console.log(`           signs_of_movement, signs_constrained, safety_boundaries,`);
-  console.log(`           public_or_clinical_boundary, reading_level, approved_language, prohibited_reductions`);
+  console.log(`           signs_of_movement, signs_constrained`);
   console.log(`  domain : consumer_problem_language, observable_patterns, developmental_interpretation,`);
   console.log(`           healthy_narrative_movement, content_themes, next_step_language,`);
   console.log(`           safety_rules, suppression_rules`);

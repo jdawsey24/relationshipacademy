@@ -68,6 +68,109 @@ export const PHASE_NARRATIVE = {
   source_provenance: PROVENANCE,
   framework_status: "canonical",
   record_status: "draft",
+
+  // -------------------------------------------------------------------------
+  // GOVERNANCE FIELDS — DERIVED, NOT TRANSCRIBED.
+  //
+  // Recovery's source document did not supply these six. They are derived from
+  // Recovery's OWN authored canon (its governing truths, transformation pairs
+  // and six distortion corrections) using the structure the author later
+  // established for Renewal, so that the two phases are governed the same way.
+  //
+  // Provenance is marked per field. Anything not traceable to Recovery's own
+  // text is labelled PROPOSED and needs the author's clinical judgement, not
+  // merely their assent. record_status stays 'draft' and no public-use approval
+  // is recorded, so none of this authorises publication on its own.
+  // -------------------------------------------------------------------------
+
+  // DERIVED from governing truths 1-6, 8 and 10, and from the six distortion
+  // corrections. Each entry restates a prohibition Recovery already makes.
+  prohibited_reductions: [
+    "Forgetting what happened",
+    "Forgiving the former partner",
+    "Reconciliation",
+    "The absence of grief",
+    "Dating again",
+    "Getting closure from the former partner",
+    "Returning to who you were before",
+    "Certainty about your own judgement",
+    "Permanent suspicion of everyone",
+    "Never having conflict again",
+    "Getting the other person to admit what happened",
+    "Complete independence",
+    "Constant productivity",
+    "Becoming an entirely different person",
+    "Sexual or physical availability",
+    "Permanently avoiding affection and touch",
+    "Communicating better with your ex",
+    "No longer caring about the relationship",
+  ],
+
+  // DERIVED from the consumer title, public descriptor, transformation-toward
+  // list, the six storylines and their healthy-movement statements.
+  approved_language: [
+    "Getting back to yourself",
+    "Healing after relational loss",
+    "Carrying what happened without being consumed by it",
+    "Trusting your own perception again",
+    "Functioning without complete certainty",
+    "Responding instead of reacting",
+    "Reconstructing identity and agency",
+    "Reorganising daily life and support",
+    "Restoring ownership of your own body",
+    "Finding words for what happened",
+    "Learning to trust yourself again",
+    "Stopping the relationship from continuing through conflict",
+    "Making room for what you feel",
+    "Building a life that fits who you are now",
+    "Returning to ownership of your body",
+    "Progress and pain can coexist",
+    "Closure does not have to come from the former partner",
+    "Healing restores functioning; it does not return you to who you were before",
+  ],
+
+  // PROPOSED. Recovery's document did not state a reading level. Set to match
+  // Renewal so the two phases read consistently; the distinctions listed are
+  // Recovery's own, taken from its governing truths and storylines.
+  reading_level:
+    "Approximately sixth-grade. Plain, direct, emotionally accurate and nonclinical, while preserving the " +
+    "distinction between: healing and forgetting; healing and forgiveness; healing and reconciliation; " +
+    "grief and dysfunction; self-trust and certainty; caution and permanent suspicion; boundaries and " +
+    "punishment; disengagement and avoidance; affection and sexual readiness.",
+
+  // DERIVED from governing truth 10 ("No competency requires unsafe contact,
+  // disclosure, confrontation, or reconciliation") and from the prohibitions
+  // implied by truths 1-6. The final escalation clause is PROPOSED, mirroring
+  // Renewal's, and is the item most in need of clinical review.
+  safety_boundaries: [
+    "Recovery must never be used to pressure an individual to contact, respond to, or remain reachable by a former partner",
+    "Recovery must never be used to pressure an individual to forgive anyone",
+    "Recovery must never be used to pressure an individual to reconcile",
+    "Recovery must never be used to pressure an individual to seek closure from the person who caused the harm",
+    "Recovery must never be used to pressure an individual to disclose what happened before they choose to",
+    "Recovery must never be used to pressure an individual to confront anyone",
+    "Recovery must never be used to pressure an individual to stop grieving, or to grieve on any schedule",
+    "Recovery must never be used to pressure an individual to date, or to treat dating as evidence of healing",
+    "Recovery must never be used to pressure an individual to resume affection, touch, or sexual activity",
+    "Recovery must never be used to pressure an individual to relinquish a boundary that remains protective",
+    "Recovery must never be used to pressure an individual to interpret ongoing pain as failure to heal",
+    "Recovery must never be used to pressure an individual to manage alone, or to treat needing support as a setback",
+    "Where abuse, coercion, stalking, exploitation, immediate danger, severe impairment, or significant clinical symptoms are present, safety planning, legal support, medical care, or clinical treatment may take priority over ordinary Recovery practices.",
+  ],
+
+  // DERIVED in structure from Renewal's boundary; the permissions and
+  // prohibitions are Recovery's own material. PROPOSED as a whole.
+  public_or_clinical_boundary:
+    "Public-facing Recovery education may explain the developmental movement from Expiration to Healing; help " +
+    "individuals recognise being organised around a loss; teach communication, self-trust, disengagement, " +
+    "emotional processing, identity and bodily-agency concepts; offer guided self-reflection and low-risk " +
+    "practices; normalise nonlinear grief; and reinforce that closure need not come from the former partner. " +
+    "Public-facing content must not diagnose trauma, attachment disorders, personality disorders, complicated " +
+    "grief, or other clinical conditions; assess whether a specific person or relationship was abusive; " +
+    "recommend contact, confrontation, disclosure, reconciliation, or forgiveness; provide safety planning in " +
+    "place of individualised assessment; replace individualised clinical, legal, medical, or safety " +
+    "assessment; present ordinary grief as pathology; treat continued pain as evidence that healing has " +
+    "failed; or treat one behavioural marker as proof that Recovery has or has not occurred.",
 };
 
 export interface DomainSeed {
