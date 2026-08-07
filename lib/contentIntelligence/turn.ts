@@ -13,8 +13,8 @@ import { recordSuggestions } from "@/lib/contentIntelligence/lenses";
 //
 // WHAT THE MODEL DOES AND DOES NOT DECIDE.
 //
-// It reflects the argument back, asks at most one question, and proposes
-// lenses. It does NOT decide what is worth challenging in your language —
+// It reflects the argument back, asks at most one question, and proposes at
+// most two lenses. It does NOT decide what is worth challenging in your language —
 // that is computed deterministically before the call and handed to it, so the
 // rule that "some women" is an audience reference rather than a group claim
 // cannot be lost to prompt drift.
