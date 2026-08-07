@@ -269,3 +269,40 @@ test("allowlist and denylist do not overlap", () => {
     .filter((k) => (CLINICIAN_ONLY_DETAIL_KEYS as readonly string[]).includes(k));
   assert.deepEqual(overlap, [], `keys on both lists: ${overlap.join(", ")}`);
 });
+
+// ---------------------------------------------------------------------------
+// v2.4 narrative import
+// ---------------------------------------------------------------------------
+
+import { readFileSync as _rf } from "node:fs";
+import { join as _join } from "node:path";
+const _read = (p: string) => _rf(_join(process.cwd(), p), "utf8");
+
+test("the narrative import compares content, not key order or empty-value style", () => {
+  const src = _read("scripts/importKbNarrativeV24.ts");
+  // Two distinct false-difference bugs, both of which reported all 111 existing
+  // rows as changed when a field-by-field diff showed zero differences.
+  assert.match(src, /Content hash with a canonical key order/);
+  assert.match(src, /Object\.keys\(v as Record<string, unknown>\)\.sort\(\)/);
+  assert.match(src, /Empty cells are stored as null, matching the existing 111 rows/);
+  assert.match(src, /norm\(row\[i\]\) \|\| null/);
+});
+
+test("the narrative import never deletes and always backs up first", () => {
+  const src = _read("scripts/importKbNarrativeV24.ts");
+  assert.match(src, /ce_import_backups/);
+  assert.match(src, /backup failed, aborting before any write/);
+  assert.match(src, /onConflict: "code"/);
+  assert.ok(!/\.delete\(\)/.test(src), "an import must never delete");
+});
+
+test("narrative without a canonical construct is refused", () => {
+  const src = _read("scripts/importKbNarrativeV24.ts");
+  assert.match(src, /narrative without a canonical construct would be unmappable text/);
+});
+
+test("active status is documented as live, not as approved for public use", () => {
+  const src = _read("scripts/importKbNarrativeV24.ts");
+  assert.match(src, /It does NOT mean approved for public use/);
+  assert.match(src, /ce_source_use_approvals is still the publication gate/);
+});
