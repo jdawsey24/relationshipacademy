@@ -7,6 +7,7 @@ import { classifySentence, worthRaising } from "@/lib/contentIntelligence/langua
 import { LIFECYCLE, OPTIONAL_GOVERNANCE_ACTION } from "@/lib/contentIntelligence/lenses";
 import { DEFAULT_VISIBLE, FIELD_LABEL, BRIEF_FIELDS } from "@/lib/contentIntelligence/brief";
 import { composeReply, MAX_LENSES } from "@/lib/contentIntelligence/turn";
+import { voiceCheck, blocking, estimateSeconds } from "@/lib/contentStudio/voiceCheck";
 import { STAGES, STAGE_LIMITS, STAGE_SCHEMAS, STAGE_TEMPLATES, HOOK_FORMATS,
          isUsable, readSlots, MIN_LENGTH } from "@/lib/contentStudio/stages";
 
@@ -518,4 +519,79 @@ test("counts are slots the response must fill, not a request in the prompt", () 
     assert.ok(schema.required.includes(`resolution_${i}`));
   }
   assert.deepEqual(readSlots({ cta_1: "a", cta_3: "c" }, "cta", 3), ["a", "c"]);
+});
+
+// ---------------------------------------------------------------------------
+// The rules that can be checked without asking anybody
+// ---------------------------------------------------------------------------
+
+test("an em dash never reaches the screen", () => {
+  const f = voiceCheck("body", "He said he'd call — and then he didn't.");
+  assert.ok(blocking(f).some((x) => x.rule === "banned"));
+});
+
+test("the phrases she banned are blocking", () => {
+  for (const phrase of ["Let that sink in.", "Read that again.",
+                        "I don't know who needs to hear this, but he's not busy.",
+                        "We need to normalize walking away."]) {
+    assert.ok(blocking(voiceCheck("body", phrase)).length, `not caught: ${phrase}`);
+  }
+});
+
+test("writing it out longhand is caught", () => {
+  const f = voiceCheck("body",
+    "You do not have to decide today. It is not a test. You are allowed to wait and see what he does.");
+  assert.ok(blocking(f).some((x) => x.rule === "contractions"));
+});
+
+test("a short hook with no contractions is short, not formal", () => {
+  // "Whose job is it to handle your mama?" has no contraction and no expanded
+  // form either. There was no opportunity to use one, so there is nothing wrong.
+  assert.equal(voiceCheck("hook", "Whose job is it to handle your mama?").length, 0);
+  assert.equal(voiceCheck("hook", "Here's what matching his energy has done to us.").length, 0);
+});
+
+test("a stem repeated three times is a template", () => {
+  const f = voiceCheck("body", [
+    "You might be reading more into this if he took a while to text back.",
+    "You might be reading more into this if the story keeps getting bigger.",
+    "You might be reading more into this if nothing could change your mind.",
+  ].join("\n"));
+  assert.ok(blocking(f).some((x) => x.rule === "repeated_stem"));
+});
+
+test("twice is rhythm, not a template", () => {
+  const f = voiceCheck("body",
+    "One late text is a moment.\nOne quiet week is a moment.\nBut if it keeps happening, that's different.");
+  assert.equal(f.filter((x) => x.rule === "repeated_stem").length, 0);
+});
+
+test("Janelle is not put in it as confession", () => {
+  assert.ok(blocking(voiceCheck("body", "Okay but let me be fair. I do this too.")).length);
+  assert.ok(blocking(voiceCheck("body", "So here's how I check myself before I decide.")).length);
+});
+
+test("a framework code would be read out loud", () => {
+  assert.ok(blocking(voiceCheck("script", "That's congruence, TRU-EXPL-003, showing up early.")).length);
+});
+
+test("length is flagged but never blocks", () => {
+  const long = Array.from({ length: 260 }, () => "word").join(" ");
+  const f = voiceCheck("script", long);
+  const len = f.find((x) => x.rule === "length");
+  assert.ok(len, "a two minute script should be flagged");
+  assert.equal(len!.blocking, false, "she may want a longer piece");
+});
+
+test("the finished script's length is measured, not taken on trust", () => {
+  // The model estimated 78 seconds and nothing checked it.
+  assert.ok(estimateSeconds("word ".repeat(130)) > 45);
+  assert.match(read("lib/contentStudio/script.ts"), /seconds_est: Math\.round\(estimateSeconds\(script\)\)/);
+});
+
+test("options that break a rule are dropped before she sees them", () => {
+  const src = read("lib/contentStudio/script.ts");
+  for (const kind of ["hook", "body", "resolution", "cta"]) {
+    assert.match(src, new RegExp(`blocking\\(voiceCheck\\("${kind}"`), `${kind} is not checked`);
+  }
 });

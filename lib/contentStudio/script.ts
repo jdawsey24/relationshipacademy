@@ -6,6 +6,7 @@ import { estimateCost } from "@/lib/ai/types";
 import { loadCompetencyChoices } from "@/lib/contentEngine/retrieval";
 import { checkCost, recordCost } from "@/lib/contentIntelligence/conversation";
 import { isUsable, readSlots, STAGE_LIMITS, type Stage } from "@/lib/contentStudio/stages";
+import { blocking, voiceCheck, estimateSeconds } from "@/lib/contentStudio/voiceCheck";
 
 // Running a stage.
 //
@@ -189,7 +190,7 @@ export async function runStage(input: {
     const rows: Record<string, unknown>[] = [];
     if (input.stage === "hooks") {
       readSlots<Record<string, string>>(out, "hook", STAGE_LIMITS.hooks)
-        .filter((h) => isUsable("hook", h.line))
+        .filter((h) => isUsable("hook", h.line) && !blocking(voiceCheck("hook", h.line)).length)
         .forEach((h, i) => rows.push({
           conversation_id: input.conversationId, stage: "hook", idx: i,
           technique: h.technique ?? null, format: h.format ?? "to_camera",
@@ -199,19 +200,19 @@ export async function runStage(input: {
         }));
     } else if (input.stage === "bodies") {
       readSlots<Record<string, string>>(out, "body", STAGE_LIMITS.bodies)
-        .filter((b) => isUsable("body", b.content))
+        .filter((b) => isUsable("body", b.content) && !blocking(voiceCheck("body", b.content)).length)
         .forEach((b, i) => rows.push({
           conversation_id: input.conversationId, stage: "body", idx: i,
           technique: b.technique ?? null, content: b.content,
         }));
     } else {
       readSlots<string>(out, "resolution", STAGE_LIMITS.close)
-        .filter((r) => isUsable("resolution", r))
+        .filter((r) => isUsable("resolution", r) && !blocking(voiceCheck("resolution", r)).length)
         .forEach((r, i) => rows.push({
           conversation_id: input.conversationId, stage: "resolution", idx: i, content: r,
         }));
       readSlots<Record<string, string>>(out, "cta", STAGE_LIMITS.close)
-        .filter((c2) => isUsable("cta", c2.content))
+        .filter((c2) => isUsable("cta", c2.content) && !blocking(voiceCheck("cta", c2.content)).length)
         .forEach((c2, i) => rows.push({
           conversation_id: input.conversationId, stage: "cta", idx: i,
           technique: c2.family ?? null, content: c2.content,
@@ -224,12 +225,21 @@ export async function runStage(input: {
   const complete = (rows: Record<string, unknown>[]) =>
     PRODUCES[input.stage].every((kind) => rows.some((r) => r.stage === kind));
 
-  let { out, usd } = await attempt();
+  /**
+   * Worth showing her. For a stage of options that means at least one of each
+   * kind survived the voice check; for the script it means the script itself
+   * broke none of her rules.
+   */
+  const acceptable = (o: Record<string, unknown>) =>
+    input.stage === "assemble"
+      ? blocking(voiceCheck("script", String(o.script ?? ""))).length === 0
+      : complete(buildRows(o));
 
-  if (input.stage !== "assemble" && !complete(buildRows(out))) {
+  let { out, usd } = await attempt();
+  if (!acceptable(out)) {
     const retry = await attempt();
     usd += retry.usd;
-    if (complete(buildRows(retry.out))) out = retry.out;
+    if (acceptable(retry.out)) out = retry.out;
   }
   await recordCost(input.conversationId, usd);
 
@@ -240,12 +250,25 @@ export async function runStage(input: {
   }
 
   if (input.stage === "assemble") {
+    const script = String(out.script ?? "");
+    const found = voiceCheck("script", script);
+    const review = (out.review ?? {}) as Record<string, unknown>;
+
+    // Her concerns and the model's, in one list. Anything still blocking after
+    // the retry is said plainly rather than quietly shipped.
+    review.concerns = [
+      ...(Array.isArray(review.concerns) ? review.concerns as string[] : []),
+      ...found.map((f) => f.blocking ? `Still wrong: ${f.detail}` : f.detail),
+    ];
+
     const { data: saved } = await s.from("ci_scripts").insert({
       conversation_id: input.conversationId,
-      script: String(out.script ?? ""),
+      script,
       hook_format: (await selectedOption(input.conversationId, "hook"))?.format ?? null,
-      seconds_est: out.seconds_est ? Math.round(Number(out.seconds_est)) : null,
-      review: out.review ?? {},
+      // Measured from the words, not taken on trust. The model estimated 78s
+      // for a script and nothing checked it.
+      seconds_est: Math.round(estimateSeconds(script)),
+      review,
     }).select("*").maybeSingle();
     return { blocked: false as const, script: saved, costUsd: usd };
   }
