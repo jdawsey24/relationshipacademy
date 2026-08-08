@@ -7,6 +7,7 @@ import { classifySentence, worthRaising } from "@/lib/contentIntelligence/langua
 import { LIFECYCLE, OPTIONAL_GOVERNANCE_ACTION } from "@/lib/contentIntelligence/lenses";
 import { DEFAULT_VISIBLE, FIELD_LABEL, BRIEF_FIELDS } from "@/lib/contentIntelligence/brief";
 import { composeReply, MAX_LENSES } from "@/lib/contentIntelligence/turn";
+import { STAGES, STAGE_LIMITS, STAGE_SCHEMAS, STAGE_TEMPLATES, HOOK_FORMATS } from "@/lib/contentStudio/stages";
 
 const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
 
@@ -211,7 +212,9 @@ test("the workspace shows no technical vocabulary", () => {
     assert.ok(!new RegExp(`>[^<]*\\b${word}\\b`, "i").test(src),
       `"${word}" must not appear in the default view`);
   }
-  assert.match(src, /What we&rsquo;ve decided/);
+  // The screen names the work, not the tables behind it.
+  assert.match(src, /What you saw/);
+  assert.match(src, /The script/);
 });
 
 test("only five things show by default, with plain labels", () => {
@@ -221,9 +224,43 @@ test("only five things show by default, with plain labels", () => {
   assert.ok(BRIEF_FIELDS.length > DEFAULT_VISIBLE.length, "the rest exists but is not shown");
 });
 
-test("the studio does not claim a voice it has not been given", () => {
-  const src = read("app/admin/content-studio/c/[id]/page.tsx");
-  assert.match(src, /No approved voice rules yet/);
+// The voice is the owner's, and it lives in one file she can edit.
+//
+// This replaces an earlier test that checked the workspace admitted to having no
+// approved voice rules. It no longer needs to admit that: the voice instruction
+// is a document she wrote. What matters now is that her craft notes survive,
+// because every one of them was a correction she had to give twice.
+
+test("the voice instruction is a file, not four copies of a string", () => {
+  const seeder = read("scripts/seedScriptPrompts.ts");
+  assert.match(seeder, /content\/contentStudio\/writing-system\.md/);
+  assert.match(seeder, /readFileSync/);
+});
+
+test("the owner's craft corrections are still in the writing system", () => {
+  const voice = read("content/contentStudio/writing-system.md");
+  for (const [rule, pattern] of [
+    ["contractions are required",        /Use contractions\. Always\./],
+    ["no em dashes",                     /No em dashes/i],
+    ["no repeated stem",                 /stem more than twice/i],
+    ["no manufactured aphorism",         /balanced sentences full of abstract nouns/i],
+    ["the culture is the subject",       /Not a specific woman/],
+    ["we, not I",                        /\*\*we\*\* and \*\*us\*\*/],
+    ["Janelle is not in it as confession", /I do this too/],
+    ["the hook withholds the lesson",    /never states the lesson/i],
+    ["hook is line plus format",         /what is on screen, and what she says/i],
+    ["trend beats evergreen",            /Trend beats evergreen/],
+    ["bodies are not all shaped alike",  /Do not set every script up the same way/],
+  ] as [string, RegExp][]) {
+    assert.match(voice, pattern, `lost: ${rule}`);
+  }
+});
+
+test("every stage runs on that same voice", () => {
+  const seeder = read("scripts/seedScriptPrompts.ts");
+  // One SYSTEM built from the file, used for all four stages.
+  assert.match(seeder, /system_instruction: SYSTEM/);
+  assert.equal((seeder.match(/system_instruction:/g) ?? []).length, 1);
 });
 
 // ---------------------------------------------------------------------------
@@ -385,4 +422,44 @@ test("no question means no trailing blank lines", () => {
 test("at most two directions reach the conversation", () => {
   assert.equal(MAX_LENSES, 2);
   assert.deepEqual(["a", "b", "c", "d"].slice(0, MAX_LENSES), ["a", "b"]);
+});
+
+// ---------------------------------------------------------------------------
+// The script pipeline
+// ---------------------------------------------------------------------------
+
+test("the stages run in the order she works in", () => {
+  assert.deepEqual([...STAGES], ["hooks", "bodies", "close", "assemble"]);
+});
+
+test("option counts are enforced in code, not asked for in the prompt", () => {
+  // Anthropic's structured output rejects maxItems, so the array cannot carry
+  // the limit. Nine hooks coming back must still leave eight on screen.
+  assert.equal(STAGE_LIMITS.hooks, 8);
+  assert.equal(Array.from({ length: 12 }, (_, i) => i).slice(0, STAGE_LIMITS.hooks).length, 8);
+});
+
+test("a hook carries how it is shot, not just what she says", () => {
+  assert.ok(HOOK_FORMATS.includes("stitch"));
+  assert.ok(HOOK_FORMATS.includes("cold_open"));
+  assert.ok(HOOK_FORMATS.includes("flash_forward"));
+  const schema = STAGE_SCHEMAS.hooks as { properties: { hooks: { items: { required: string[] } } } };
+  assert.ok(schema.properties.hooks.items.required.includes("format"));
+});
+
+test("later stages are handed the brief rather than deciding it again", () => {
+  assert.match(STAGE_TEMPLATES.bodies, /\{\{brief\}\}/);
+  assert.match(STAGE_TEMPLATES.close, /\{\{brief\}\}/);
+  assert.ok(!/\{\{brief\}\}/.test(STAGE_TEMPLATES.hooks), "the hook stage writes it");
+});
+
+test("assembling keeps her wording and only works the seams", () => {
+  assert.match(STAGE_TEMPLATES.assemble, /Keep her wording/);
+  assert.match(STAGE_TEMPLATES.assemble, /Do not rewrite what she chose/);
+});
+
+test("the trend enters through what she pastes, never invented", () => {
+  const sql = read("supabase/migrations/0068_content_studio_scripts.sql");
+  assert.match(sql, /no live awareness of what is trending/);
+  assert.match(STAGE_TEMPLATES.hooks, /What she saw:/);
 });
