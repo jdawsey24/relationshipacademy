@@ -7,7 +7,8 @@ import { classifySentence, worthRaising } from "@/lib/contentIntelligence/langua
 import { LIFECYCLE, OPTIONAL_GOVERNANCE_ACTION } from "@/lib/contentIntelligence/lenses";
 import { DEFAULT_VISIBLE, FIELD_LABEL, BRIEF_FIELDS } from "@/lib/contentIntelligence/brief";
 import { composeReply, MAX_LENSES } from "@/lib/contentIntelligence/turn";
-import { STAGES, STAGE_LIMITS, STAGE_SCHEMAS, STAGE_TEMPLATES, HOOK_FORMATS } from "@/lib/contentStudio/stages";
+import { STAGES, STAGE_LIMITS, STAGE_SCHEMAS, STAGE_TEMPLATES, HOOK_FORMATS,
+         isUsable, readSlots, MIN_LENGTH } from "@/lib/contentStudio/stages";
 
 const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
 
@@ -443,8 +444,14 @@ test("a hook carries how it is shot, not just what she says", () => {
   assert.ok(HOOK_FORMATS.includes("stitch"));
   assert.ok(HOOK_FORMATS.includes("cold_open"));
   assert.ok(HOOK_FORMATS.includes("flash_forward"));
-  const schema = STAGE_SCHEMAS.hooks as { properties: { hooks: { items: { required: string[] } } } };
-  assert.ok(schema.properties.hooks.items.required.includes("format"));
+  const schema = STAGE_SCHEMAS.hooks as {
+    properties: Record<string, { required?: string[] }>; required: string[];
+  };
+  for (let i = 1; i <= STAGE_LIMITS.hooks; i++) {
+    assert.ok(schema.required.includes(`hook_${i}`), `hook_${i} must be required`);
+    assert.ok(schema.properties[`hook_${i}`].required?.includes("format"),
+      "a hook without a format doesn't say what to shoot");
+  }
 });
 
 test("later stages are handed the brief rather than deciding it again", () => {
@@ -462,4 +469,53 @@ test("the trend enters through what she pastes, never invented", () => {
   const sql = read("supabase/migrations/0068_content_studio_scripts.sql");
   assert.match(sql, /no live awareness of what is trending/);
   assert.match(STAGE_TEMPLATES.hooks, /What she saw:/);
+});
+
+// A required slot guarantees the key exists, not that it says anything. Asked
+// for five CTAs it did not want to write, the model returned "x" five times —
+// schema-valid, worthless, and the assemble stage then wrote its own CTA rather
+// than choking on it.
+
+test("a slot filled to satisfy the validator is not an answer", () => {
+  assert.equal(isUsable("cta", "x"), false);
+  assert.equal(isUsable("cta", "  "), false);
+  assert.equal(isUsable("resolution", "n/a"), false);
+  assert.equal(isUsable("body", "TBD"), false);
+});
+
+test("real options pass", () => {
+  assert.equal(isUsable("hook", "Whose job is it to handle your mama?"), true);
+  assert.equal(isUsable("resolution", "Nobody's asking the man what he believes."), true);
+  assert.equal(isUsable("cta",
+    "Comment EYES OPEN and I'll send you Dating With Your Eyes Open. It's not how to read him better. It's how to ask him."), true);
+});
+
+test("a body has to be longer than a one-liner to count", () => {
+  assert.ok(MIN_LENGTH.body > MIN_LENGTH.hook);
+  assert.equal(isUsable("body", "One late text is a moment."), false);
+});
+
+test("the stage retries rather than saving junk, and refuses if it happens twice", () => {
+  const src = read("lib/contentStudio/script.ts");
+  assert.match(src, /const retry = await attempt\(\)/);
+  assert.match(src, /came back empty twice/);
+});
+
+test("the final review cannot be skipped", () => {
+  // The first assembled script came back with review {} because it was optional.
+  const schema = STAGE_SCHEMAS.assemble as { required: string[]; properties: { review: { required: string[] } } };
+  assert.ok(schema.required.includes("review"));
+  for (const f of ["hook_opens_a_loop", "lesson_arrives_late", "no_diagnosis_of_the_man",
+                   "cta_names_the_transformation", "contractions_throughout", "concerns"]) {
+    assert.ok(schema.properties.review.required.includes(f), `review must answer ${f}`);
+  }
+});
+
+test("counts are slots the response must fill, not a request in the prompt", () => {
+  const schema = STAGE_SCHEMAS.close as { required: string[] };
+  for (let i = 1; i <= STAGE_LIMITS.close; i++) {
+    assert.ok(schema.required.includes(`cta_${i}`));
+    assert.ok(schema.required.includes(`resolution_${i}`));
+  }
+  assert.deepEqual(readSlots({ cta_1: "a", cta_3: "c" }, "cta", 3), ["a", "c"]);
 });

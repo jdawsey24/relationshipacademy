@@ -5,7 +5,7 @@ import { getProvider } from "@/lib/ai/provider";
 import { estimateCost } from "@/lib/ai/types";
 import { loadCompetencyChoices } from "@/lib/contentEngine/retrieval";
 import { checkCost, recordCost } from "@/lib/contentIntelligence/conversation";
-import { STAGE_LIMITS, type Stage } from "@/lib/contentStudio/stages";
+import { isUsable, readSlots, STAGE_LIMITS, type Stage } from "@/lib/contentStudio/stages";
 
 // Running a stage.
 //
@@ -155,31 +155,91 @@ export async function runStage(input: {
   }).select("id").maybeSingle();
   const requestId = (req as { id: string } | null)?.id ?? null;
 
-  let out: Record<string, unknown>;
-  let usd = 0;
-  try {
-    const res = await provider.generate({
-      system: prompt.system, user: prompt.user,
-      schema: tpl.output_schema as object,
-      model: settings.model, maxTokens: settings.output_limit,
-      timeoutSeconds: settings.timeout_seconds,
-    });
-    out = res.output as Record<string, unknown>;
-    usd = estimateCost(res.inputTokens, res.outputTokens);
-    if (requestId) {
-      await s.from("ai_generation_requests").update({
-        status: "completed", completed_at: new Date().toISOString(),
-        input_tokens: res.inputTokens, output_tokens: res.outputTokens, cost_usd: usd,
-      }).eq("id", requestId);
+  // One attempt. Called twice at most: a slot filled with "x" validates fine,
+  // so the only way to catch a non-answer is to look at what came back.
+  async function attempt(): Promise<{ out: Record<string, unknown>; usd: number }> {
+    const { data: req } = await s.from("ai_generation_requests").insert({
+      user_id: input.actor, generation_type: type,
+      target_entity_type: "ci_conversation", target_entity_id: input.conversationId,
+      prompt_template_id: tpl!.id, prompt_template_version: tpl!.version,
+      provider: settings.provider, model: settings.model,
+      conversation_id: input.conversationId, stage_kind: input.stage,
+      parameters: {}, status: "running",
+    }).select("id").maybeSingle();
+    const requestId = (req as { id: string } | null)?.id ?? null;
+
+    try {
+      const res = await provider.generate({
+        system: prompt.system, user: prompt.user,
+        schema: tpl!.output_schema as object,
+        model: settings.model, maxTokens: settings.output_limit,
+        timeoutSeconds: settings.timeout_seconds,
+      });
+      const usd = estimateCost(res.inputTokens, res.outputTokens);
+      if (requestId) {
+        await s.from("ai_generation_requests").update({
+          status: "completed", completed_at: new Date().toISOString(),
+          input_tokens: res.inputTokens, output_tokens: res.outputTokens, cost_usd: usd,
+        }).eq("id", requestId);
+      }
+      return { out: res.output as Record<string, unknown>, usd };
+    } catch (e) {
+      if (requestId) {
+        await s.from("ai_generation_requests").update({
+          status: "failed", completed_at: new Date().toISOString(),
+          error_message: e instanceof Error ? e.message.slice(0, 400) : "provider error",
+        }).eq("id", requestId);
+      }
+      throw new ScriptError("That didn't come back. Nothing was lost — try again.", 502);
     }
-  } catch (e) {
-    if (requestId) {
-      await s.from("ai_generation_requests").update({
-        status: "failed", completed_at: new Date().toISOString(),
-        error_message: e instanceof Error ? e.message.slice(0, 400) : "provider error",
-      }).eq("id", requestId);
+  }
+
+  /** Options worth showing her, junk already dropped. */
+  function buildRows(out: Record<string, unknown>): Record<string, unknown>[] {
+    const rows: Record<string, unknown>[] = [];
+    if (input.stage === "hooks") {
+      readSlots<Record<string, string>>(out, "hook", STAGE_LIMITS.hooks)
+        .filter((h) => isUsable("hook", h.line))
+        .forEach((h, i) => rows.push({
+          conversation_id: input.conversationId, stage: "hook", idx: i,
+          technique: h.technique ?? null, format: h.format ?? "to_camera",
+          content: [h.line, h.on_screen && h.on_screen !== h.line ? `On screen: ${h.on_screen}` : null]
+            .filter(Boolean).join("\n"),
+          why: h.why ?? null,
+        }));
+    } else if (input.stage === "bodies") {
+      readSlots<Record<string, string>>(out, "body", STAGE_LIMITS.bodies)
+        .filter((b) => isUsable("body", b.content))
+        .forEach((b, i) => rows.push({
+          conversation_id: input.conversationId, stage: "body", idx: i,
+          technique: b.technique ?? null, content: b.content,
+        }));
+    } else {
+      readSlots<string>(out, "resolution", STAGE_LIMITS.close)
+        .filter((r) => isUsable("resolution", r))
+        .forEach((r, i) => rows.push({
+          conversation_id: input.conversationId, stage: "resolution", idx: i, content: r,
+        }));
+      readSlots<Record<string, string>>(out, "cta", STAGE_LIMITS.close)
+        .filter((c2) => isUsable("cta", c2.content))
+        .forEach((c2, i) => rows.push({
+          conversation_id: input.conversationId, stage: "cta", idx: i,
+          technique: c2.family ?? null, content: c2.content,
+        }));
     }
-    throw new ScriptError("That didn't come back. Nothing was lost — try again.", 502);
+    return rows;
+  }
+
+  /** Every kind this stage owes must have produced something real. */
+  const complete = (rows: Record<string, unknown>[]) =>
+    PRODUCES[input.stage].every((kind) => rows.some((r) => r.stage === kind));
+
+  let { out, usd } = await attempt();
+
+  if (input.stage !== "assemble" && !complete(buildRows(out))) {
+    const retry = await attempt();
+    usd += retry.usd;
+    if (complete(buildRows(retry.out))) out = retry.out;
   }
   await recordCost(input.conversationId, usd);
 
@@ -208,36 +268,14 @@ export async function runStage(input: {
       .eq("selected", false).eq("edited_by_owner", false);
   }
 
-  const rows: Record<string, unknown>[] = [];
-  if (input.stage === "hooks") {
-    const hooks = (out.hooks as Record<string, string>[] ?? []).slice(0, STAGE_LIMITS.hooks);
-    hooks.forEach((h, i) => rows.push({
-      conversation_id: input.conversationId, stage: "hook", idx: i,
-      technique: h.technique ?? null, format: h.format ?? "to_camera",
-      content: [h.line, h.on_screen && h.on_screen !== h.line ? `On screen: ${h.on_screen}` : null]
-        .filter(Boolean).join("\n"),
-      why: h.why ?? null,
-    }));
-  } else if (input.stage === "bodies") {
-    const bodies = (out.bodies as Record<string, string>[] ?? []).slice(0, STAGE_LIMITS.bodies);
-    bodies.forEach((b, i) => rows.push({
-      conversation_id: input.conversationId, stage: "body", idx: i,
-      technique: b.technique ?? null, content: b.content,
-    }));
-  } else {
-    (out.resolutions as string[] ?? []).slice(0, STAGE_LIMITS.close).forEach((r, i) => rows.push({
-      conversation_id: input.conversationId, stage: "resolution", idx: i, content: r,
-    }));
-    (out.ctas as Record<string, string>[] ?? []).slice(0, STAGE_LIMITS.close).forEach((c2, i) => rows.push({
-      conversation_id: input.conversationId, stage: "cta", idx: i,
-      technique: c2.family ?? null, content: c2.content,
-    }));
+  const rows = buildRows(out);
+  if (!complete(rows)) {
+    throw new ScriptError(
+      "That came back empty twice. Nothing was lost — try again, or change what you pasted.", 502);
   }
 
-  if (rows.length) {
-    const { error } = await s.from("ci_script_options").insert(rows);
-    if (error) throw new ScriptError(`Could not save the options: ${error.message}`, 502);
-  }
+  const { error } = await s.from("ci_script_options").insert(rows);
+  if (error) throw new ScriptError(`Could not save the options: ${error.message}`, 502);
 
   return {
     blocked: false as const,

@@ -8,15 +8,66 @@
 // user template, so improving the voice improves every stage at once.
 //
 // Anthropic's structured output rejects maxItems and rejects minItems above 1,
-// so counts are asked for in the prompt and enforced in code.
+// so an array cannot carry "give me five of these" and asking in the prompt does
+// not hold: the bodies stage returned one body and the close stage returned zero
+// CTAs while using an eighth of its token budget.
+//
+// So the options are NUMBERED SLOTS, every one of them required. The count stops
+// being a request and becomes something the response has to satisfy to validate.
 
 export const STAGES = ["hooks", "bodies", "close", "assemble"] as const;
 export type Stage = (typeof STAGES)[number];
 
-/** How many options survive to the screen. Enforced here, not hoped for. */
+/** How many options each stage produces. A required slot for each one. */
 export const STAGE_LIMITS: Record<Stage, number> = {
   hooks: 8, bodies: 5, close: 5, assemble: 1,
 };
+
+/** `thing_1 … thing_n`, all required. The only way to make a count binding. */
+function slots(prefix: string, n: number, item: object) {
+  const properties: Record<string, object> = {};
+  const required: string[] = [];
+  for (let i = 1; i <= n; i++) {
+    properties[`${prefix}_${i}`] = item;
+    required.push(`${prefix}_${i}`);
+  }
+  return { properties, required };
+}
+
+/**
+ * The shortest a real answer can be, per kind.
+ *
+ * A required slot guarantees the key exists, not that it says anything. Asked
+ * for five CTAs it did not want to write, the model returned {"family":"x",
+ * "content":"x"} five times, which validates perfectly and is worthless. Worse,
+ * the assemble stage then wrote its own CTA rather than choking on "x".
+ *
+ * So substance is checked here. Anything under the bar is dropped before it can
+ * be saved, chosen, or assembled from.
+ */
+export const MIN_LENGTH: Record<string, number> = {
+  hook: 12, body: 80, resolution: 20, cta: 40,
+};
+
+export function isUsable(kind: string, text: string | null | undefined): boolean {
+  const v = (text ?? "").trim();
+  if (v.length < (MIN_LENGTH[kind] ?? 12)) return false;
+  // A slot filled to satisfy the validator rather than to answer.
+  if (/^[a-z0-9\W]{1,3}$/i.test(v)) return false;
+  return true;
+}
+
+/** Read `thing_1 … thing_n` back out in order, skipping anything empty. */
+export function readSlots<T>(out: Record<string, unknown>, prefix: string, n: number): T[] {
+  const rows: T[] = [];
+  for (let i = 1; i <= n; i++) {
+    const v = out[`${prefix}_${i}`];
+    if (v == null) continue;
+    if (typeof v === "string" && !v.trim()) continue;
+    rows.push(v as T);
+  }
+  return rows;
+}
 
 export const HOOK_FORMATS = [
   "to_camera", "stitch", "cold_open", "flash_forward", "anticipation",
@@ -43,71 +94,71 @@ const BRIEF = {
   required: ["audience", "phase", "developmental_task", "core_struggle", "core_lesson"],
 } as const;
 
+const HOOK_ITEM = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    technique: { type: "string", description: "Plain name for the way in. Not from a fixed list." },
+    format: { type: "string", enum: HOOK_FORMATS as unknown as string[] },
+    line: { type: "string", description: "What she says. Spoken, contractions, no em dashes." },
+    on_screen: { type: "string", description: "What is on screen. For a stitch, which clip." },
+    why: { type: "string", description: "What makes somebody stop or argue." },
+  },
+  required: ["technique", "format", "line", "why"],
+} as const;
+
+const BODY_ITEM = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    technique: { type: "string" },
+    content: { type: "string", description: "The body only. Do not repeat the hook." },
+  },
+  required: ["technique", "content"],
+} as const;
+
+const CTA_ITEM = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    family: { type: "string" },
+    content: { type: "string" },
+  },
+  required: ["family", "content"],
+} as const;
+
 export const STAGE_SCHEMAS: Record<Stage, object> = {
   hooks: {
     type: "object",
     additionalProperties: false,
     properties: {
       brief: BRIEF,
-      hooks: {
-        type: "array",
-        items: {
-          type: "object",
-          additionalProperties: false,
-          properties: {
-            technique: { type: "string", description: "Plain name for the way in. Not from a fixed list." },
-            format: { type: "string", enum: HOOK_FORMATS as unknown as string[] },
-            line: { type: "string", description: "What she says. Spoken, contractions, no em dashes." },
-            on_screen: { type: "string", description: "What is on screen. For a stitch, which clip." },
-            why: { type: "string", description: "What makes somebody stop or argue." },
-          },
-          required: ["technique", "format", "line", "why"],
-        },
-      },
+      ...slots("hook", STAGE_LIMITS.hooks, HOOK_ITEM).properties,
     },
-    required: ["brief", "hooks"],
+    required: ["brief", ...slots("hook", STAGE_LIMITS.hooks, HOOK_ITEM).required],
   },
 
   bodies: {
     type: "object",
     additionalProperties: false,
     properties: {
-      bodies: {
-        type: "array",
-        items: {
-          type: "object",
-          additionalProperties: false,
-          properties: {
-            technique: { type: "string" },
-            content: { type: "string", description: "The body only. Do not repeat the hook." },
-          },
-          required: ["technique", "content"],
-        },
-      },
+      ...slots("body", STAGE_LIMITS.bodies, BODY_ITEM).properties,
       strongest_lines: { type: "array", items: { type: "string" } },
     },
-    required: ["bodies"],
+    required: slots("body", STAGE_LIMITS.bodies, BODY_ITEM).required,
   },
 
   close: {
     type: "object",
     additionalProperties: false,
     properties: {
-      resolutions: { type: "array", items: { type: "string" } },
-      ctas: {
-        type: "array",
-        items: {
-          type: "object",
-          additionalProperties: false,
-          properties: {
-            family: { type: "string" },
-            content: { type: "string" },
-          },
-          required: ["family", "content"],
-        },
-      },
+      ...slots("resolution", STAGE_LIMITS.close, { type: "string" }).properties,
+      ...slots("cta", STAGE_LIMITS.close, CTA_ITEM).properties,
     },
-    required: ["resolutions", "ctas"],
+    required: [
+      ...slots("resolution", STAGE_LIMITS.close, { type: "string" }).required,
+      ...slots("cta", STAGE_LIMITS.close, CTA_ITEM).required,
+    ],
   },
 
   assemble: {
@@ -124,12 +175,16 @@ export const STAGE_SCHEMAS: Record<Stage, object> = {
           lesson_arrives_late: { type: "boolean" },
           no_diagnosis_of_the_man: { type: "boolean" },
           cta_names_the_transformation: { type: "boolean" },
-          concerns: { type: "array", items: { type: "string" } },
+          contractions_throughout: { type: "boolean" },
+          concerns: { type: "array", items: { type: "string" }, description: "Empty if there are none. Do not invent one." },
         },
-        required: ["hook_opens_a_loop", "lesson_arrives_late", "no_diagnosis_of_the_man"],
+        required: ["hook_opens_a_loop", "lesson_arrives_late", "no_diagnosis_of_the_man",
+                   "cta_names_the_transformation", "contractions_throughout", "concerns"],
       },
     },
-    required: ["script"],
+    // The review is required. Optional means it does not happen: the first
+    // assembled script came back with review {} and nothing noticed.
+    required: ["script", "review"],
   },
 };
 
@@ -150,7 +205,7 @@ Phases and their developmental tasks (use only these):
 Competencies (use only these codes):
 {{competencies}}
 
-Work out the brief first, privately, then write eight hooks.
+Work out the brief first, privately, then fill hook_1 through hook_8.
 
 Vary the format. At least three should not be to-camera. If a clip was supplied,
 at least two should stitch it. Do not write eight versions of one sentence, and
@@ -165,8 +220,7 @@ The brief:
 The hook she picked, which is now fixed:
 {{hook}}
 
-Write five bodies for that hook. Each one teaches the same lesson a different
-way. Do not repeat the hook at the top of them.
+Fill body_1 through body_5. Each one teaches the same lesson a different way. Do not repeat the hook at the top of them.
 
 Vary the shape, not just the words. Not every one gets a numbered list. At least
 one should have no list at all and get there through the story. Let the lengths
@@ -183,8 +237,9 @@ The hook:
 The body she picked:
 {{body}}
 
-Write five closing lines that finish what the hook opened, and five CTAs for
-Dating With Your Eyes Open from different angles.
+Fill resolution_1 through resolution_5 with closing lines that finish what the
+hook opened, and cta_1 through cta_5 for Dating With Your Eyes Open, each from a
+different angle.
 
 The closes should sound like she arrived there, not like she wrote them first.
 The CTAs should sound like the next sentence out of her mouth.`,
