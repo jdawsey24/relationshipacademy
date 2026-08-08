@@ -145,16 +145,6 @@ export async function runStage(input: {
     throw new ScriptError(`The ${input.stage} prompt wants ${unresolved.join(", ")}, which this stage doesn't supply.`, 500);
   }
 
-  const { data: req } = await s.from("ai_generation_requests").insert({
-    user_id: input.actor, generation_type: type,
-    target_entity_type: "ci_conversation", target_entity_id: input.conversationId,
-    prompt_template_id: tpl.id, prompt_template_version: tpl.version,
-    provider: settings.provider, model: settings.model,
-    conversation_id: input.conversationId, stage_kind: input.stage,
-    parameters: {}, status: "running",
-  }).select("id").maybeSingle();
-  const requestId = (req as { id: string } | null)?.id ?? null;
-
   // One attempt. Called twice at most: a slot filled with "x" validates fine,
   // so the only way to catch a non-answer is to look at what came back.
   async function attempt(): Promise<{ out: Record<string, unknown>; usd: number }> {
