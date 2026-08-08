@@ -216,7 +216,7 @@ test("the workspace shows no technical vocabulary", () => {
   }
   // The screen names the work, not the tables behind it.
   assert.match(src, /What you saw/);
-  assert.match(src, /The script/);
+  assert.match(src, /Ready to shoot/);
 });
 
 test("only five things show by default, with plain labels", () => {
@@ -260,9 +260,8 @@ test("the owner's craft corrections are still in the writing system", () => {
 
 test("every stage runs on that same voice", () => {
   const seeder = read("scripts/seedScriptPrompts.ts");
-  // One SYSTEM built from the file, used for all four stages.
-  assert.match(seeder, /system_instruction: SYSTEM/);
-  assert.equal((seeder.match(/system_instruction:/g) ?? []).length, 1);
+  // One SYSTEM built from the file, written by every stage. Not one per stage.
+  assert.equal((seeder.match(/system_instruction: SYSTEM/g) ?? []).length, 1);
 });
 
 // ---------------------------------------------------------------------------
@@ -431,7 +430,46 @@ test("at most two directions reach the conversation", () => {
 // ---------------------------------------------------------------------------
 
 test("the stages run in the order she works in", () => {
-  assert.deepEqual([...STAGES], ["hooks", "bodies", "close", "assemble"]);
+  // variations is the default path. The staged four are the by-hand path and
+  // are kept, because building a piece a part at a time is still sometimes
+  // what she wants.
+  assert.deepEqual([...STAGES], ["variations", "tighten", "hooks", "bodies", "close", "assemble"]);
+});
+
+test("a variation is a whole script, not a part of one", () => {
+  const schema = STAGE_SCHEMAS.variations as {
+    required: string[]; properties: Record<string, { required?: string[] }>;
+  };
+  for (let i = 1; i <= STAGE_LIMITS.variations; i++) {
+    assert.ok(schema.required.includes(`variation_${i}`));
+    assert.ok(schema.properties[`variation_${i}`].required?.includes("script"));
+    assert.ok(schema.properties[`variation_${i}`].required?.includes("hook_format"),
+      "it still has to say how it is shot");
+  }
+  assert.match(STAGE_TEMPLATES.variations, /Each one stands on its own/);
+  assert.match(STAGE_TEMPLATES.variations, /Same lesson in all three/);
+});
+
+test("tightening cuts rather than rewrites, and says what came out", () => {
+  assert.match(STAGE_TEMPLATES.tighten, /Cut, do not rewrite/);
+  assert.match(STAGE_TEMPLATES.tighten, /Her lines stay her lines/);
+  assert.match(STAGE_TEMPLATES.tighten.replace(/\s+/g, " "), /do not cut the call to action/);
+  const schema = STAGE_SCHEMAS.tighten as { required: string[] };
+  assert.ok(schema.required.includes("cut_notes"));
+});
+
+test("tightening is only offered when it would do something", () => {
+  assert.match(read("lib/contentStudio/script.ts"), /can_tighten:[^\n]*\n?[^\n]*SECONDS_MAX/);
+});
+
+test("an identical prompt does not become a new version", () => {
+  // Six stages share one system instruction, so editing the voice file used to
+  // bump every stage whether or not that stage changed.
+  const seeder = read("scripts/seedScriptPrompts.ts");
+  assert.match(seeder, /is already this — skipping/);
+  // And jsonb does not preserve key order, so the comparison has to be stable.
+  assert.match(seeder, /function canonical/);
+  assert.match(seeder, /canonical\(prior\.output_schema\) === canonical\(/);
 });
 
 test("option counts are enforced in code, not asked for in the prompt", () => {

@@ -6,7 +6,7 @@ import { estimateCost } from "@/lib/ai/types";
 import { loadCompetencyChoices } from "@/lib/contentEngine/retrieval";
 import { checkCost, recordCost } from "@/lib/contentIntelligence/conversation";
 import { isUsable, readSlots, STAGE_LIMITS, type Stage } from "@/lib/contentStudio/stages";
-import { blocking, voiceCheck, estimateSeconds } from "@/lib/contentStudio/voiceCheck";
+import { blocking, voiceCheck, estimateSeconds, SECONDS_MAX } from "@/lib/contentStudio/voiceCheck";
 
 // Running a stage.
 //
@@ -19,9 +19,13 @@ export class ScriptError extends Error {
 }
 
 /** Which option table rows a stage produces. `close` produces two kinds. */
-const PRODUCES: Record<Stage, ("hook" | "body" | "resolution" | "cta")[]> = {
+const PRODUCES: Record<Stage, ("hook" | "body" | "resolution" | "cta" | "variation")[]> = {
+  variations: ["variation"], tighten: [],
   hooks: ["hook"], bodies: ["body"], close: ["resolution", "cta"], assemble: [],
 };
+
+/** Stages that write a ci_scripts row rather than a list of options. */
+const WRITES_SCRIPT: Stage[] = ["assemble", "tighten"];
 
 interface Conversation {
   id: string; source_text: string | null; source_url: string | null;
@@ -42,6 +46,20 @@ async function selectedOption(conversationId: string, stage: string) {
     .select("id, content, format, technique")
     .eq("conversation_id", conversationId).eq("stage", stage).eq("selected", true).maybeSingle();
   return data as { id: string; content: string; format: string | null; technique: string | null } | null;
+}
+
+/**
+ * The script as it stands: the newest tightened or assembled version, or the
+ * variation she chose if neither has happened yet.
+ */
+async function currentScript(conversationId: string): Promise<{ script: string; id: string | null } | null> {
+  const s = getSupabaseAdminClient();
+  const { data } = await s.from("ci_scripts").select("id, script")
+    .eq("conversation_id", conversationId).order("created_at", { ascending: false }).limit(1).maybeSingle();
+  const row = data as { id: string; script: string } | null;
+  if (row) return { script: row.script, id: row.id };
+  const chosen = await selectedOption(conversationId, "variation");
+  return chosen ? { script: chosen.content, id: null } : null;
 }
 
 /** Plain sentences, so the model is never handed a JSON blob to interpret. */
@@ -82,7 +100,18 @@ function sourceBlock(c: Conversation): string {
 }
 
 async function variablesFor(stage: Stage, c: Conversation): Promise<Record<string, string>> {
-  if (stage === "hooks") {
+  if (stage === "tighten") {
+    const current = await currentScript(c.id);
+    if (!current) throw new ScriptError("There's no script to tighten yet.", 409);
+    const seconds = estimateSeconds(current.script);
+    return {
+      script: current.script,
+      seconds: String(Math.round(seconds)),
+      target: seconds > SECONDS_MAX ? `${SECONDS_MAX} seconds or under` : "about 60 seconds",
+    };
+  }
+
+  if (stage === "hooks" || stage === "variations") {
     const fw = await frameworkContext();
     return {
       source: sourceBlock(c),
@@ -188,7 +217,17 @@ export async function runStage(input: {
   /** Options worth showing her, junk already dropped. */
   function buildRows(out: Record<string, unknown>): Record<string, unknown>[] {
     const rows: Record<string, unknown>[] = [];
-    if (input.stage === "hooks") {
+    if (input.stage === "variations") {
+      readSlots<Record<string, string>>(out, "variation", STAGE_LIMITS.variations)
+        .filter((v) => isUsable("body", v.script) && !blocking(voiceCheck("script", v.script)).length)
+        .forEach((v, i) => rows.push({
+          conversation_id: input.conversationId, stage: "variation", idx: i,
+          technique: v.approach ?? null, format: v.hook_format ?? "to_camera",
+          content: v.script,
+          why: v.on_screen ? `On screen: ${v.on_screen}` : null,
+          seconds_est: Math.round(estimateSeconds(v.script)),
+        }));
+    } else if (input.stage === "hooks") {
       readSlots<Record<string, string>>(out, "hook", STAGE_LIMITS.hooks)
         .filter((h) => isUsable("hook", h.line) && !blocking(voiceCheck("hook", h.line)).length)
         .forEach((h, i) => rows.push({
@@ -231,7 +270,7 @@ export async function runStage(input: {
    * broke none of her rules.
    */
   const acceptable = (o: Record<string, unknown>) =>
-    input.stage === "assemble"
+    WRITES_SCRIPT.includes(input.stage)
       ? blocking(voiceCheck("script", String(o.script ?? ""))).length === 0
       : complete(buildRows(o));
 
@@ -245,11 +284,11 @@ export async function runStage(input: {
 
   // The brief is written once, at the hook stage, and carried. Later stages
   // read it and cannot re-decide what the video is about.
-  if (input.stage === "hooks" && out.brief) {
+  if ((input.stage === "hooks" || input.stage === "variations") && out.brief) {
     await s.from("ci_conversations").update({ brief: out.brief }).eq("id", input.conversationId);
   }
 
-  if (input.stage === "assemble") {
+  if (WRITES_SCRIPT.includes(input.stage)) {
     const script = String(out.script ?? "");
     const found = voiceCheck("script", script);
     const review = (out.review ?? {}) as Record<string, unknown>;
@@ -261,10 +300,14 @@ export async function runStage(input: {
       ...found.map((f) => f.blocking ? `Still wrong: ${f.detail}` : f.detail),
     ];
 
+    const prior = input.stage === "tighten" ? await currentScript(input.conversationId) : null;
     const { data: saved } = await s.from("ci_scripts").insert({
       conversation_id: input.conversationId,
       script,
-      hook_format: (await selectedOption(input.conversationId, "hook"))?.format ?? null,
+      tightened_from: prior?.id ?? null,
+      cut_notes: out.cut_notes ? String(out.cut_notes) : null,
+      hook_format: (await selectedOption(input.conversationId, "hook"))?.format
+        ?? (await selectedOption(input.conversationId, "variation"))?.format ?? null,
       // Measured from the words, not taken on trust. The model estimated 78s
       // for a script and nothing checked it.
       seconds_est: Math.round(estimateSeconds(script)),
@@ -333,14 +376,29 @@ export async function readProject(conversationId: string) {
   const all = (options ?? []) as unknown as {
     id: string; stage: string; technique: string | null; format: string | null;
     content: string; why: string | null; selected: boolean; edited_by_owner: boolean;
+    seconds_est: number | null;
   }[];
+
+  // What she is looking at right now: the newest tightened or assembled version
+  // if one exists, otherwise the variation she chose. One answer, not two
+  // places to look.
+  const written = (scripts ?? [])[0] as Record<string, unknown> | undefined;
+  const chosenVariation = all.find((o) => o.stage === "variation" && o.selected);
+  const script = written ?? (chosenVariation ? {
+    id: null, script: chosenVariation.content, hook_format: chosenVariation.format,
+    seconds_est: chosenVariation.seconds_est, review: {}, cut_notes: null, tightened_from: null,
+  } : null);
+
   return {
     conversation: conv,
+    variations: all.filter((o) => o.stage === "variation"),
     hooks: all.filter((o) => o.stage === "hook"),
     bodies: all.filter((o) => o.stage === "body"),
     resolutions: all.filter((o) => o.stage === "resolution"),
     ctas: all.filter((o) => o.stage === "cta"),
-    script: (scripts ?? [])[0] ?? null,
+    script,
+    // Only worth offering when it would actually do something.
+    can_tighten: !!script && Number((script as { seconds_est: number | null }).seconds_est ?? 0) > SECONDS_MAX,
     cost: await checkCost(conversationId),
   };
 }

@@ -5,18 +5,29 @@ import { useParams } from "next/navigation";
 
 // Building a script.
 //
-// Paste what you saw. Pick a hook. Pick a body. Pick how it lands. That's it.
-// Each stage appears when the one before it has a choice in it, so the screen
-// is never showing work that isn't hers to do yet.
+// Paste what you saw. Read three whole scripts. Take one.
+//
+// An earlier version handed over eight opening lines, then five middles, then
+// five endings. That is a good way to explore and a bad way to judge, because a
+// hook is only good relative to where it goes. The staged path still exists
+// behind the API for building a piece by hand; it is not what the screen leads
+// with.
 
 interface Option {
   id: string; stage: string; technique: string | null; format: string | null;
   content: string; why: string | null; selected: boolean; edited_by_owner: boolean;
+  seconds_est: number | null;
+}
+interface Script {
+  id: string | null; script: string; hook_format: string | null;
+  seconds_est: number | null; cut_notes: string | null;
+  review: { concerns?: string[] } & Record<string, unknown>;
 }
 interface Project {
-  conversation: { id: string; source_text: string | null; source_url: string | null; topic: string | null; brief: Record<string, unknown> };
-  hooks: Option[]; bodies: Option[]; resolutions: Option[]; ctas: Option[];
-  script: { script: string; seconds_est: number | null; hook_format: string | null; review: Record<string, unknown> } | null;
+  conversation: { id: string; source_text: string | null; source_url: string | null; topic: string | null };
+  variations: Option[];
+  script: Script | null;
+  can_tighten: boolean;
   cost: { spent: number; notice: string | null; mayProceed: boolean };
 }
 
@@ -63,87 +74,8 @@ export default function ScriptBuilder() {
 
   if (!p) return <div className="mx-auto max-w-3xl px-6 py-16 text-sm text-slate-500">Loading…</div>;
 
-  const chosen = (o: Option[]) => o.find((x) => x.selected) ?? null;
-  const hook = chosen(p.hooks), body = chosen(p.bodies);
-  const resolution = chosen(p.resolutions), cta = chosen(p.ctas);
-
-  function Card({ o, children }: { o: Option; children?: React.ReactNode }) {
-    const on = o.selected;
-    return (
-      <div
-        className={`rounded-lg border p-4 transition ${on
-          ? "border-slate-800 bg-slate-50"
-          : "border-slate-200 hover:border-slate-400 cursor-pointer"}`}
-        onClick={() => { if (!on && editing !== o.id) void post({ action: "choose", option_id: o.id }, o.id); }}
-      >
-        <div className="mb-2 flex items-center gap-2 text-[11px] uppercase tracking-wide text-slate-400">
-          {o.format && <span className="rounded bg-slate-100 px-1.5 py-0.5 text-slate-600">{FORMAT_LABEL[o.format] ?? o.format}</span>}
-          {o.technique && <span>{o.technique}</span>}
-          {o.edited_by_owner && <span className="text-slate-500">your wording</span>}
-          <span className="flex-1" />
-          {on && <span className="text-slate-700">chosen</span>}
-        </div>
-
-        {editing === o.id ? (
-          <div onClick={(e) => e.stopPropagation()}>
-            <textarea
-              value={draft} onChange={(e) => setDraft(e.target.value)} rows={Math.max(3, draft.split("\n").length)}
-              className="w-full rounded border border-slate-300 p-2 text-[15px] leading-relaxed"
-            />
-            <div className="mt-2 flex gap-3 text-sm">
-              <button className="text-slate-800 underline"
-                onClick={async () => { await post({ action: "edit", option_id: o.id, content: draft }, o.id); setEditing(null); }}>
-                Save
-              </button>
-              <button className="text-slate-500" onClick={() => setEditing(null)}>Cancel</button>
-            </div>
-          </div>
-        ) : (
-          <>
-            <p className="whitespace-pre-wrap text-[15px] leading-relaxed text-slate-900">{o.content}</p>
-            {o.why && <p className="mt-2 text-sm text-slate-500">{o.why}</p>}
-            <button
-              className="mt-2 text-xs text-slate-400 hover:text-slate-700"
-              onClick={(e) => { e.stopPropagation(); setEditing(o.id); setDraft(o.content); }}>
-              Rewrite it
-            </button>
-          </>
-        )}
-        {children}
-      </div>
-    );
-  }
-
-  function Stage({ title, hint, options, run, label }: {
-    title: string; hint?: string; options: Option[]; run: string; label: string;
-  }) {
-    return (
-      <section className="mt-12">
-        <div className="mb-4 flex items-baseline gap-3">
-          <h2 className="text-lg font-medium text-slate-900">{title}</h2>
-          <span className="flex-1" />
-          {options.length > 0 && (
-            <button className="text-sm text-slate-500 underline hover:text-slate-800"
-              disabled={busy !== null}
-              onClick={() => void post({ action: "run", stage: run }, run)}>
-              {busy === run ? "Working…" : "Try again"}
-            </button>
-          )}
-        </div>
-        {hint && <p className="mb-4 text-sm text-slate-500">{hint}</p>}
-        {options.length === 0 ? (
-          <button
-            className="rounded bg-slate-900 px-4 py-2 text-sm text-white disabled:opacity-40"
-            disabled={busy !== null}
-            onClick={() => void post({ action: "run", stage: run }, run)}>
-            {busy === run ? "Working…" : label}
-          </button>
-        ) : (
-          <div className="space-y-3">{options.map((o) => <Card key={o.id} o={o} />)}</div>
-        )}
-      </section>
-    );
-  }
+  const chosen = p.variations.find((v) => v.selected) ?? null;
+  const concerns = p.script?.review?.concerns ?? [];
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-8">
@@ -159,92 +91,130 @@ export default function ScriptBuilder() {
       <section>
         <h2 className="text-lg font-medium text-slate-900">What you saw</h2>
         <p className="mb-4 mt-1 text-sm text-slate-500">
-          The clip, the comment, the story going around. Paste it here. I can&apos;t see what&apos;s
-          trending on my own, so this is where it comes in.
+          The clip, the comment, the story going around. I can&apos;t see what&apos;s trending on my
+          own, so this is where it comes in.
         </p>
         <textarea
           value={src} onChange={(e) => setSrc(e.target.value)} rows={5}
           placeholder="Paste the comment, the quote, the caption, whatever you saw…"
           className="w-full rounded-lg border border-slate-300 p-3 text-[15px] leading-relaxed"
         />
-        <input
-          value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Link, if you have one"
-          className="mt-2 w-full rounded-lg border border-slate-300 p-2 text-sm"
-        />
-        <input
-          value={note} onChange={(e) => setNote(e.target.value)}
-          placeholder="And your thought about it"
-          className="mt-2 w-full rounded-lg border border-slate-300 p-2 text-sm"
-        />
-        <button
-          className="mt-3 rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:border-slate-500"
-          disabled={busy !== null}
-          onClick={() => void post({ action: "source", source_text: src, source_url: url, topic: note }, "source")}>
-          {busy === "source" ? "Saving…" : "Save"}
-        </button>
+        <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Link, if you have one"
+          className="mt-2 w-full rounded-lg border border-slate-300 p-2 text-sm" />
+        <input value={note} onChange={(e) => setNote(e.target.value)} placeholder="And your thought about it"
+          className="mt-2 w-full rounded-lg border border-slate-300 p-2 text-sm" />
+        <div className="mt-3 flex items-center gap-3">
+          <button
+            className="rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:border-slate-500"
+            disabled={busy !== null}
+            onClick={() => void post({ action: "source", source_text: src, source_url: url, topic: note }, "source")}>
+            {busy === "source" ? "Saving…" : "Save"}
+          </button>
+          <button
+            className="rounded bg-slate-900 px-4 py-1.5 text-sm text-white disabled:opacity-40"
+            disabled={busy !== null}
+            onClick={() => void post({ action: "run", stage: "variations" }, "variations")}>
+            {busy === "variations" ? "Writing…" : p.variations.length ? "Three more" : "Write it three ways"}
+          </button>
+        </div>
       </section>
 
-      <Stage title="Hooks" run="hooks" label="Give me hooks" options={p.hooks}
-        hint="Pick the one you'd actually say. Rewrite it if it's close but not right." />
+      {p.variations.length > 0 && (
+        <section className="mt-12">
+          <h2 className="mb-1 text-lg font-medium text-slate-900">Three ways in</h2>
+          <p className="mb-5 text-sm text-slate-500">Same point in all three. Take the one you&apos;d actually say.</p>
 
-      {hook && (
-        <Stage title="The body" run="bodies" label="Build the body" options={p.bodies}
-          hint="Same lesson, different ways in. Take one whole, or take one and rewrite it." />
+          <div className="space-y-4">
+            {p.variations.map((v) => {
+              const on = v.selected;
+              return (
+                <div key={v.id}
+                  className={`rounded-lg border p-5 transition ${on
+                    ? "border-slate-800 bg-slate-50"
+                    : "border-slate-200 hover:border-slate-400 cursor-pointer"}`}
+                  onClick={() => { if (!on && editing !== v.id) void post({ action: "choose", option_id: v.id }, v.id); }}>
+
+                  <div className="mb-3 flex items-center gap-2 text-[11px] uppercase tracking-wide text-slate-400">
+                    {v.technique && <span className="text-slate-600">{v.technique}</span>}
+                    {v.format && <span className="rounded bg-slate-100 px-1.5 py-0.5 text-slate-600">
+                      {FORMAT_LABEL[v.format] ?? v.format}</span>}
+                    {v.seconds_est && <span>{v.seconds_est}s</span>}
+                    {v.edited_by_owner && <span className="text-slate-500">your wording</span>}
+                    <span className="flex-1" />
+                    {on && <span className="text-slate-700">chosen</span>}
+                  </div>
+
+                  {editing === v.id ? (
+                    <div onClick={(e) => e.stopPropagation()}>
+                      <textarea value={draft} onChange={(e) => setDraft(e.target.value)} rows={16}
+                        className="w-full rounded border border-slate-300 p-3 text-[15px] leading-relaxed" />
+                      <div className="mt-2 flex gap-3 text-sm">
+                        <button className="text-slate-800 underline"
+                          onClick={async () => { await post({ action: "edit", option_id: v.id, content: draft }, v.id); setEditing(null); }}>
+                          Save
+                        </button>
+                        <button className="text-slate-500" onClick={() => setEditing(null)}>Cancel</button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      {v.why && <p className="mb-3 text-sm text-slate-500">{v.why}</p>}
+                      <p className="whitespace-pre-wrap text-[15px] leading-[1.75] text-slate-900">{v.content}</p>
+                      <div className="mt-3 flex gap-4 text-xs text-slate-400">
+                        <button className="hover:text-slate-700"
+                          onClick={(e) => { e.stopPropagation(); setEditing(v.id); setDraft(v.content); }}>
+                          Rewrite it
+                        </button>
+                        <button className="hover:text-slate-700"
+                          onClick={(e) => { e.stopPropagation(); void navigator.clipboard.writeText(v.content); }}>
+                          Copy
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </section>
       )}
 
-      {hook && body && (
-        <>
-          <Stage title="How it lands" run="close" label="Give me closes" options={p.resolutions} />
-          {p.ctas.length > 0 && (
-            <section className="mt-8">
-              <h3 className="mb-4 text-sm uppercase tracking-wide text-slate-400">And the CTA</h3>
-              <div className="space-y-3">{p.ctas.map((o) => <Card key={o.id} o={o} />)}</div>
-            </section>
-          )}
-        </>
-      )}
-
-      {hook && body && resolution && cta && (
+      {chosen && p.script && (
         <section className="mt-12 border-t border-slate-200 pt-8">
           <div className="mb-4 flex items-baseline gap-3">
-            <h2 className="text-lg font-medium text-slate-900">The script</h2>
+            <h2 className="text-lg font-medium text-slate-900">Ready to shoot</h2>
             <span className="flex-1" />
-            {p.script && (
-              <button className="text-sm text-slate-500 underline hover:text-slate-800"
-                onClick={() => void navigator.clipboard.writeText(p.script!.script)}>
-                Copy
+            <button className="text-sm text-slate-500 underline hover:text-slate-800"
+              onClick={() => void navigator.clipboard.writeText(p.script!.script)}>Copy</button>
+          </div>
+
+          <div className="whitespace-pre-wrap rounded-lg border border-slate-200 bg-white p-5 text-[16px] leading-[1.8] text-slate-900">
+            {p.script.script}
+          </div>
+
+          <div className="mt-3 flex items-center gap-4 text-sm text-slate-500">
+            {p.script.hook_format && p.script.hook_format !== "to_camera" && (
+              <span>Shoot as a {FORMAT_LABEL[p.script.hook_format] ?? p.script.hook_format}</span>
+            )}
+            {p.script.seconds_est && <span>about {p.script.seconds_est}s</span>}
+            <span className="flex-1" />
+            {p.can_tighten && (
+              <button className="rounded border border-slate-300 px-3 py-1 text-slate-700 hover:border-slate-500 disabled:opacity-40"
+                disabled={busy !== null}
+                onClick={() => void post({ action: "run", stage: "tighten" }, "tighten")}>
+                {busy === "tighten" ? "Cutting…" : "Tighten it"}
               </button>
             )}
           </div>
 
-          {!p.script ? (
-            <button className="rounded bg-slate-900 px-4 py-2 text-sm text-white disabled:opacity-40"
-              disabled={busy !== null}
-              onClick={() => void post({ action: "run", stage: "assemble" }, "assemble")}>
-              {busy === "assemble" ? "Working…" : "Put it together"}
-            </button>
-          ) : (
-            <>
-              <div className="whitespace-pre-wrap rounded-lg border border-slate-200 bg-white p-5 text-[16px] leading-[1.8] text-slate-900">
-                {p.script.script}
-              </div>
-              <div className="mt-3 flex items-center gap-4 text-sm text-slate-500">
-                {p.script.hook_format && p.script.hook_format !== "to_camera" && (
-                  <span>Shoot as a {FORMAT_LABEL[p.script.hook_format] ?? p.script.hook_format}</span>
-                )}
-                {p.script.seconds_est && <span>about {p.script.seconds_est}s</span>}
-                <span className="flex-1" />
-                <button className="underline hover:text-slate-800" disabled={busy !== null}
-                  onClick={() => void post({ action: "run", stage: "assemble" }, "assemble")}>
-                  {busy === "assemble" ? "Working…" : "Put it together again"}
-                </button>
-              </div>
-              {Array.isArray(p.script.review?.concerns) && (p.script.review.concerns as string[]).length > 0 && (
-                <ul className="mt-4 space-y-1 text-sm text-slate-500">
-                  {(p.script.review.concerns as string[]).map((c) => <li key={c}>• {c}</li>)}
-                </ul>
-              )}
-            </>
+          {p.script.cut_notes && (
+            <p className="mt-3 text-sm text-slate-500">Cut: {p.script.cut_notes}</p>
+          )}
+
+          {concerns.length > 0 && (
+            <ul className="mt-4 space-y-1 text-sm text-slate-500">
+              {concerns.map((c) => <li key={c}>• {c}</li>)}
+            </ul>
           )}
         </section>
       )}

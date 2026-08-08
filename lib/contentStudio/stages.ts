@@ -15,12 +15,15 @@
 // So the options are NUMBERED SLOTS, every one of them required. The count stops
 // being a request and becomes something the response has to satisfy to validate.
 
-export const STAGES = ["hooks", "bodies", "close", "assemble"] as const;
+// "variations" is the default path: whole scripts that differ from each other.
+// The rest are the by-hand path, kept because building a piece a part at a time
+// is still sometimes what she wants.
+export const STAGES = ["variations", "tighten", "hooks", "bodies", "close", "assemble"] as const;
 export type Stage = (typeof STAGES)[number];
 
 /** How many options each stage produces. A required slot for each one. */
 export const STAGE_LIMITS: Record<Stage, number> = {
-  hooks: 8, bodies: 5, close: 5, assemble: 1,
+  variations: 3, tighten: 1, hooks: 8, bodies: 5, close: 5, assemble: 1,
 };
 
 /** `thing_1 … thing_n`, all required. The only way to make a count binding. */
@@ -127,7 +130,39 @@ const CTA_ITEM = {
   required: ["family", "content"],
 } as const;
 
+const VARIATION_ITEM = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    approach: { type: "string", description: "Plain name for what makes this one different. Two or three words." },
+    hook_format: { type: "string", enum: HOOK_FORMATS as unknown as string[] },
+    on_screen: { type: "string", description: "What is on screen at the top. For a stitch, which clip." },
+    script: { type: "string", description: "The whole thing: opening through call to action, as one spoken piece." },
+  },
+  required: ["approach", "hook_format", "script"],
+} as const;
+
 export const STAGE_SCHEMAS: Record<Stage, object> = {
+  variations: {
+    type: "object",
+    additionalProperties: false,
+    properties: {
+      brief: BRIEF,
+      ...slots("variation", STAGE_LIMITS.variations, VARIATION_ITEM).properties,
+    },
+    required: ["brief", ...slots("variation", STAGE_LIMITS.variations, VARIATION_ITEM).required],
+  },
+
+  tighten: {
+    type: "object",
+    additionalProperties: false,
+    properties: {
+      script: { type: "string" },
+      cut_notes: { type: "string", description: "What came out and why, in one or two sentences." },
+    },
+    required: ["script", "cut_notes"],
+  },
+
   hooks: {
     type: "object",
     additionalProperties: false,
@@ -193,6 +228,47 @@ export const STAGE_SCHEMAS: Record<Stage, object> = {
 // ---------------------------------------------------------------------------
 
 export const STAGE_TEMPLATES: Record<Stage, string> = {
+  variations: `What she saw:
+{{source}}
+
+Her note on it:
+{{topic}}
+
+Phases and their developmental tasks (use only these):
+{{phases}}
+
+Competencies (use only these codes):
+{{competencies}}
+
+Work out the brief first, privately. Then write three complete scripts of it:
+variation_1, variation_2, variation_3.
+
+Each one stands on its own. Opening through call to action, one continuous
+spoken piece, no headings and no labels inside it. Somebody should be able to
+read any one of them start to finish and shoot it.
+
+Same lesson in all three. What changes is the way in and the shape: a different
+opening, a different route through the middle, a different place it lands. One
+of them should have no list in it at all and get there through the story.
+
+Forty-five to seventy-five seconds each, which is about one hundred and twenty
+to one hundred and ninety words. Count as you go. Do not run long.`,
+
+  tighten: `The script:
+{{script}}
+
+It runs about {{seconds}} seconds. Bring it to {{target}}.
+
+Cut, do not rewrite. Her lines stay her lines. Take out the sentence that
+repeats a point already made, the second example where one was enough, and the
+throat-clearing between the opening and the first real question.
+
+Do not cut the specific detail that makes a line land, and do not cut the call
+to action. If the only way to hit the target is to lose something that matters,
+get as close as you can and say what you would have had to lose.
+
+Then say plainly what came out.`,
+
   hooks: `What she saw:
 {{source}}
 

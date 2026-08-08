@@ -18,6 +18,19 @@ import { STAGE_SCHEMAS, STAGE_TEMPLATES, STAGES, type Stage } from "@/lib/conten
 
 const APPLY = process.argv.includes("--apply");
 
+/**
+ * Key order is not meaning. Postgres jsonb does not preserve it, so a plain
+ * JSON.stringify comparison always reports a difference and every run creates
+ * an identical new version. Same trap the corpus importer hit when it reported
+ * a hundred and eleven false updates.
+ */
+function canonical(value: unknown): string {
+  if (value === null || typeof value !== "object") return JSON.stringify(value) ?? "null";
+  if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
+  const entries = Object.entries(value as Record<string, unknown>).sort(([a], [b]) => a.localeCompare(b));
+  return `{${entries.map(([k, v]) => `${JSON.stringify(k)}:${canonical(v)}`).join(",")}}`;
+}
+
 const VOICE = readFileSync(
   join(process.cwd(), "content/contentStudio/writing-system.md"), "utf8",
 );
@@ -43,10 +56,28 @@ async function main() {
   for (const stage of STAGES) {
     const type = `cs_${stage}`;
     const { data } = await s.from("prompt_templates")
-      .select("version, status").eq("generation_type", type)
+      .select("version, status, system_instruction, user_template, output_schema")
+      .eq("generation_type", type)
       .order("version", { ascending: false }).limit(1).maybeSingle();
-    const prior = data as { version: number; status: string } | null;
+    const prior = data as {
+      version: number; status: string; system_instruction: string;
+      user_template: string; output_schema: unknown;
+    } | null;
     const version = (prior?.version ?? 0) + 1;
+
+    // An identical version is worse than none. All six stages share one system
+    // instruction, so touching the voice file used to bump every stage whether
+    // or not anything about it changed, and the version history stopped meaning
+    // "this is different from the last one".
+    const unchanged = prior
+      && prior.system_instruction === SYSTEM
+      && prior.user_template === STAGE_TEMPLATES[stage as Stage]
+      && canonical(prior.output_schema) === canonical(STAGE_SCHEMAS[stage as Stage]);
+
+    if (unchanged) {
+      console.log(`  ${type}: v${prior.version} (${prior.status}) is already this — skipping`);
+      continue;
+    }
 
     console.log(prior
       ? `  ${type}: v${prior.version} exists (${prior.status}) → CREATE v${version}`
