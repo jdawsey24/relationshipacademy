@@ -26,7 +26,9 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 const APPLY = process.argv.includes("--apply");
 const NAMES = JSON.parse(
   readFileSync("scripts/data/clusterNames.json", "utf8"),
-) as Record<string, { playbook_title: string; family_line: string; result_title: string }>;
+) as Record<string, {
+  playbook_title: string; family_line: string; result_title: string; call_to_action: string;
+}>;
 
 /** Cluster names carry annotations like "[BACKEND ONLY — not a quiz]". Not part of the name. */
 const norm = (s: string) =>
@@ -34,7 +36,8 @@ const norm = (s: string) =>
 
 interface Row {
   id: number; name: string;
-  playbook_title: string | null; playbook_subtitle: string | null; result_title: string | null;
+  playbook_title: string | null; playbook_subtitle: string | null;
+  result_title: string | null; call_to_action: string | null;
 }
 
 async function main() {
@@ -42,7 +45,7 @@ async function main() {
   console.log(`Mode: ${APPLY ? "APPLY" : "DRY RUN"}\n`);
 
   const { data, error } = await s.from("snapshot_clusters")
-    .select("id, name, playbook_title, playbook_subtitle, result_title").order("id");
+    .select("id, name, playbook_title, playbook_subtitle, result_title, call_to_action").order("id");
   if (error) throw new Error(error.message);
   const rows = (data ?? []) as unknown as Row[];
 
@@ -57,6 +60,9 @@ async function main() {
     // playbook_title is deliberately absent. See the header.
     if (row.playbook_subtitle !== wanted.playbook_title) patch.playbook_subtitle = wanted.playbook_title;
     if (row.result_title !== wanted.result_title) patch.result_title = wanted.result_title;
+    // The call to action names the playbook inside the sentence, so it went
+    // stale the moment the name changed. Same sentence, corrected name.
+    if (row.call_to_action !== wanted.call_to_action) patch.call_to_action = wanted.call_to_action;
     if (Object.keys(patch).length) changes.push({ id: row.id, patch, before: row });
   }
 
