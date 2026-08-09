@@ -644,3 +644,60 @@ test("a short line is not a missing paragraph", () => {
   assert.equal(voiceCheck("hook", "Whose job is it to handle your mama?").length, 0);
   assert.equal(voiceCheck("script", "word ".repeat(40)).filter((x) => x.rule === "no_breath").length, 0);
 });
+
+// Her satire runs one construction ten times, and the repetition is the joke.
+// An earlier version of the stem rule would have blocked her own writing.
+
+const SATIRE = `Want a peaceful marriage?
+
+Easy.
+
+Just don't give your spouse reasons to lose their peace.
+
+#1 Don't cheat on your spouse... unless you want them wondering where you are every time you leave the house.
+
+#2 Don't lie to your spouse... unless you want them questioning everything you say.
+
+#3 Don't keep secrets... unless you want them wondering what else you're hiding.
+
+#4 Don't break your promises... unless you want your words to stop meaning anything.
+
+Now. If you don't want peace in your relationship, go ahead.
+
+Cheat.
+
+Lie.
+
+Hide things.
+
+Then act surprised when they don't trust you.
+
+The truth is, most relationship problems don't come out of nowhere. They're the
+result of habits we've repeated so long we don't notice them anymore.`;
+
+test("the owner's own satire passes every check", () => {
+  const found = voiceCheck("script", SATIRE);
+  assert.deepEqual(blocking(found).map((f) => f.detail), [],
+    "her writing must not be rejected by rules derived from her writing");
+});
+
+test("repetition inside a list is read as deliberate", () => {
+  const stem = voiceCheck("script", SATIRE).find((f) => f.rule === "repeated_stem");
+  if (stem) assert.equal(stem.blocking, false, "a bit is not a template");
+});
+
+test("the same repetition in running prose still blocks", () => {
+  const prose = [
+    "You might be reading more into this if he took a while to text back.",
+    "You might be reading more into this if the story keeps getting bigger.",
+    "You might be reading more into this if nothing could change your mind.",
+  ].join("\n");
+  assert.ok(blocking(voiceCheck("body", prose)).some((f) => f.rule === "repeated_stem"));
+});
+
+test("satire has to break frame before the end", () => {
+  const voice = read("content/contentStudio/writing-system.md");
+  assert.match(voice, /Then break frame/);
+  assert.match(voice, /the frame has to break\s*\n?inside the video, not in the caption/);
+  assert.match(voice, /targets the behaviour, never the person/);
+});

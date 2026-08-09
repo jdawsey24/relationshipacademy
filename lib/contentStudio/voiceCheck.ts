@@ -41,16 +41,40 @@ const BANNED: [RegExp, string][] = [
   [/here'?s how I check myself/i, "Janelle put in it as confession"],
 ];
 
-/** A four-word opening repeated three times is a template, not speech. */
-function repeatedStem(text: string): string | null {
-  const counts = new Map<string, number>();
-  for (const line of text.split(/[\n.!?]+/)) {
-    const words = line.trim().toLowerCase().split(/\s+/).filter(Boolean);
-    if (words.length < 5) continue;
-    const stem = words.slice(0, 4).join(" ");
-    counts.set(stem, (counts.get(stem) ?? 0) + 1);
+/** Numbered or bulleted. A line that announces itself as part of a list. */
+const LISTED = /^\s*(#?\d+[.)]?\s|[-•*]\s)/;
+
+/**
+ * A four-word opening repeated three times.
+ *
+ * Whether that is wrong depends entirely on whether it is doing something. Her
+ * satire runs "Don't cheat on your spouse… unless you want" ten times and the
+ * repetition IS the joke; my "You might be reading more into this if…" ran four
+ * times and was a template with nothing behind it.
+ *
+ * The one thing separating them that code can see is that a device announces
+ * itself as a list. So repetition inside a numbered or bulleted run is allowed,
+ * and repetition in running prose is not. That is a rough line, and it is drawn
+ * where her own writing falls on the right side of it.
+ */
+function repeatedStem(text: string): { detail: string; device: boolean } | null {
+  const counts = new Map<string, { n: number; listed: number }>();
+  for (const raw of text.split("\n")) {
+    for (const clause of raw.split(/[.!?]+/)) {
+      const words = clause.trim().toLowerCase().replace(LISTED, "").split(/\s+/).filter(Boolean);
+      if (words.length < 5) continue;
+      const stem = words.slice(0, 4).join(" ");
+      const prev = counts.get(stem) ?? { n: 0, listed: 0 };
+      counts.set(stem, { n: prev.n + 1, listed: prev.listed + (LISTED.test(raw.trim()) ? 1 : 0) });
+    }
   }
-  for (const [stem, n] of counts) if (n >= 3) return `"${stem}…" opens ${n} times`;
+  for (const [stem, { n, listed }] of counts) {
+    if (n < 3) continue;
+    return {
+      detail: `"${stem}…" opens ${n} times`,
+      device: listed >= n - 1,
+    };
+  }
   return null;
 }
 
@@ -94,7 +118,13 @@ export function voiceCheck(kind: string, text: string): VoiceFinding[] {
 
   if (kind === "body" || kind === "script") {
     const stem = repeatedStem(t);
-    if (stem) out.push({ rule: "repeated_stem", detail: stem, blocking: true });
+    if (stem) {
+      out.push({
+        rule: "repeated_stem",
+        detail: stem.device ? `${stem.detail}, as a list. Reading it as deliberate.` : stem.detail,
+        blocking: !stem.device,
+      });
+    }
 
     // Line breaks are breathing points. A script delivered as one solid block
     // cannot be read off a phone, and it is the first thing that goes when the

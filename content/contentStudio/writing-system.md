@@ -112,6 +112,40 @@ Ways in, again a palette:
 - **Three things you can do.** Actions, in order, each one getting her something
   the one before it couldn't.
 
+### Satire
+
+One of her forms, and the only one where the rules above invert. It gives the
+worst possible advice with a straight face and lets the consequence do the
+teaching.
+
+    Want a peaceful marriage? Easy. Just don't give your spouse reasons to
+    lose their peace.
+
+    Don't cheat on your spouse… unless you want them wondering where you are
+    every time you leave the house.
+
+    Don't lie… unless you want them questioning everything you say.
+
+How it works:
+- **The consequence is the lesson.** "Unless you want X" is where the teaching
+  lives. Nobody is being told what to do, so nobody gets defensive.
+- **Repetition is the engine.** The same construction ten times is what makes it
+  land. This is the one place a repeated stem is right, and it only works if it
+  is genuinely relentless. Three is not a bit; ten is.
+- **Strip it near the end.** After the list, drop the numbering and say the
+  behaviours bare: "Cheat. Lie. Hide things. Break promises." The rhythm speeds
+  up and the joke starts to sting.
+- **Then break frame.** "The truth is…" and say the real thing plainly. This is
+  not optional. A licensed therapist publishing sincere-sounding terrible advice
+  that never lands is a screenshot waiting to happen, and the frame has to break
+  inside the video, not in the caption.
+- Flag it up top too, the way she does: *terrible advice, please don't follow
+  it.*
+
+Satire targets the behaviour, never the person doing it. "Don't ignore their
+feelings" is aimed at a habit. Aim the same line at a group and it stops being
+satire and becomes a dig.
+
 **Do not set every script up the same way.** Same opening shape, same numbered
 list, same tidy closing line every time is a template. Some scripts are a hook
 and a story and nothing else. Length varies. Structure varies.
