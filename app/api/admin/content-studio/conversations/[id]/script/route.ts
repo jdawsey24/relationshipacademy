@@ -34,7 +34,8 @@ export async function POST(request: Request, { params }: Params) {
   const { id } = await params;
 
   let body: {
-    action?: "source" | "run" | "choose" | "edit";
+    action?: "source" | "run" | "choose" | "edit" | "rehearsal";
+    on?: boolean;
     stage?: string; option_id?: string; content?: string;
     source_text?: string; source_url?: string; topic?: string; offer?: string;
   };
@@ -91,6 +92,13 @@ export async function POST(request: Request, { params }: Params) {
           metadata: { conversation_id: id, stage: body.stage },
         });
         if (result.blocked) return NextResponse.json({ blocked: true, notice: result.notice });
+        break;
+      }
+
+      case "rehearsal": {
+        await s.from("ci_conversations")
+          .update({ rehearsal: body.on === true, updated_at: new Date().toISOString() })
+          .eq("id", id);
         break;
       }
 

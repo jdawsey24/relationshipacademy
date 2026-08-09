@@ -6,7 +6,7 @@ import { estimateCost } from "@/lib/ai/types";
 import { loadCompetencyChoices } from "@/lib/contentEngine/retrieval";
 import { checkCost, recordCost } from "@/lib/contentIntelligence/conversation";
 import { CONTENT_STUDIO_SURFACE, isUsable, readSlots, STAGE_LIMITS, STAGE_MAX_TOKENS, type Stage } from "@/lib/contentStudio/stages";
-import { blocking, voiceCheck, estimateSeconds, SECONDS_MAX } from "@/lib/contentStudio/voiceCheck";
+import { blocking, voiceCheck, estimateSeconds, worthTightening } from "@/lib/contentStudio/voiceCheck";
 
 // Running a stage.
 //
@@ -29,13 +29,13 @@ const WRITES_SCRIPT: Stage[] = ["assemble", "tighten"];
 
 interface Conversation {
   id: string; source_text: string | null; source_url: string | null;
-  topic: string | null; brief: Record<string, unknown>;
+  topic: string | null; brief: Record<string, unknown>; rehearsal: boolean;
 }
 
 async function loadConversation(id: string): Promise<Conversation> {
   const s = getSupabaseAdminClient();
   const { data } = await s.from("ci_conversations")
-    .select("id, source_text, source_url, topic, brief").eq("id", id).maybeSingle();
+    .select("id, source_text, source_url, topic, brief, rehearsal").eq("id", id).maybeSingle();
   if (!data) throw new ScriptError("That project no longer exists.", 404);
   return data as unknown as Conversation;
 }
@@ -115,11 +115,13 @@ async function variablesFor(stage: Stage, c: Conversation): Promise<Record<strin
   if (stage === "tighten") {
     const current = await currentScript(c.id);
     if (!current) throw new ScriptError("There's no script to tighten yet.", 409);
-    const seconds = estimateSeconds(current.script);
+    if (!worthTightening(current.script)) {
+      throw new ScriptError("That one's already the length it should be.", 409);
+    }
     return {
       script: current.script,
-      seconds: String(Math.round(seconds)),
-      target: seconds > SECONDS_MAX ? `${SECONDS_MAX} seconds or under` : "about 60 seconds",
+      seconds: String(Math.round(estimateSeconds(current.script))),
+      target: "75 seconds or under",
     };
   }
 
@@ -179,7 +181,10 @@ export async function runStage(input: {
   if (!tpl) throw new ScriptError(`The "${input.stage}" prompt hasn't been approved yet.`, 412);
 
   const settings = await getAiSettings(CONTENT_STUDIO_SURFACE);
-  const provider = getProvider(settings.provider);
+
+  // Rehearsal is a property of this project, not a global switch, so a real
+  // script can never come back as a replay of somebody else's.
+  const provider = getProvider(c.rehearsal ? "rehearsal" : settings.provider);
   if (!provider.configured()) throw new ScriptError("The AI provider is not configured.", 503);
 
   const prompt = renderPrompt(tpl, await variablesFor(input.stage, c));
@@ -195,7 +200,7 @@ export async function runStage(input: {
       user_id: input.actor, generation_type: type,
       target_entity_type: "ci_conversation", target_entity_id: input.conversationId,
       prompt_template_id: tpl!.id, prompt_template_version: tpl!.version,
-      provider: settings.provider, model: settings.model,
+      provider: c.rehearsal ? "rehearsal" : settings.provider, model: settings.model,
       conversation_id: input.conversationId, stage_kind: input.stage,
       parameters: {}, status: "running",
     }).select("id").maybeSingle();
@@ -205,6 +210,7 @@ export async function runStage(input: {
       const res = await provider.generate({
         system: prompt.system, user: prompt.user,
         schema: tpl!.output_schema as object,
+        generationType: type,
         model: settings.model,
         maxTokens: STAGE_MAX_TOKENS[input.stage] ?? settings.output_limit,
         timeoutSeconds: settings.timeout_seconds,
@@ -405,14 +411,16 @@ export async function readProject(conversationId: string) {
 
   return {
     conversation: conv,
+    rehearsal: conv.rehearsal,
     variations: all.filter((o) => o.stage === "variation"),
     hooks: all.filter((o) => o.stage === "hook"),
     bodies: all.filter((o) => o.stage === "body"),
     resolutions: all.filter((o) => o.stage === "resolution"),
     ctas: all.filter((o) => o.stage === "cta"),
     script,
-    // Only worth offering when it would actually do something.
-    can_tighten: !!script && Number((script as { seconds_est: number | null }).seconds_est ?? 0) > SECONDS_MAX,
+    // Only worth offering when it would actually do something, which excludes
+    // satire — that form is meant to run long.
+    can_tighten: worthTightening((script as { script?: string } | null)?.script ?? ""),
     cost: await checkCost(conversationId),
   };
 }

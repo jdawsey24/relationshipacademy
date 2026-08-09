@@ -85,7 +85,7 @@ function repeatedStem(text: string): { detail: string; device: boolean } | null 
  * Detected rather than declared, because the model does not tell us which form
  * it picked and she should not have to.
  */
-function satireItems(text: string): { items: string[]; isSatire: boolean } {
+export function satireItems(text: string): { items: string[]; isSatire: boolean } {
   const items = text.split("\n").map((l) => l.trim()).filter((l) => /^#?\d+[.)]?\s/.test(l));
   const withUnless = items.filter((l) => /\bunless\b/i.test(l)).length;
   return { items, isSatire: items.length >= 6 && withUnless >= items.length / 2 };
@@ -190,6 +190,21 @@ export function voiceCheck(kind: string, text: string): VoiceFinding[] {
   }
 
   return out;
+}
+
+/**
+ * Should we offer to cut this down?
+ *
+ * Only when it is over AND it is not the satire form. Ten items do not fit in
+ * seventy-five seconds and are not supposed to, so a Tighten button on a satire
+ * script is the interface arguing with a decision she already made. The length
+ * note is suppressed for satire; this has to agree with it or the two disagree
+ * on screen.
+ */
+export function worthTightening(text: string): boolean {
+  if (!text?.trim()) return false;
+  if (satireItems(text).isSatire) return false;
+  return estimateSeconds(text) > SECONDS_MAX;
 }
 
 export const blocking = (f: VoiceFinding[]) => f.filter((x) => x.blocking);

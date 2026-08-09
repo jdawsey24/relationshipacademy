@@ -25,6 +25,7 @@ interface Script {
 }
 interface Project {
   conversation: { id: string; source_text: string | null; source_url: string | null; topic: string | null; brief: { offer?: string } };
+  rehearsal: boolean;
   variations: Option[];
   script: Script | null;
   can_tighten: boolean;
@@ -87,6 +88,18 @@ export default function ScriptBuilder() {
         <span className="text-slate-400">${p.cost.spent.toFixed(2)}</span>
       </header>
 
+      {p.rehearsal && (
+        <div className="mb-6 flex items-center gap-3 rounded border border-sky-300 bg-sky-50 p-3 text-sm text-sky-900">
+          <span className="flex-1">
+            Rehearsal. Nothing here is being written now, it&apos;s replaying earlier runs, and it costs nothing.
+          </span>
+          <button className="underline" disabled={busy !== null}
+            onClick={() => void post({ action: "rehearsal", on: false }, "rehearsal")}>
+            Write for real
+          </button>
+        </div>
+      )}
+
       {err && <div className="mb-6 rounded border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">{err}</div>}
       {p.cost.notice && <div className="mb-6 text-sm text-slate-500">{p.cost.notice}</div>}
 
@@ -121,6 +134,13 @@ export default function ScriptBuilder() {
             onClick={() => void post({ action: "run", stage: "variations" }, "variations")}>
             {busy === "variations" ? "Writing…" : p.variations.length ? "Three more" : "Write it three ways"}
           </button>
+          {!p.rehearsal && (
+            <button className="text-sm text-slate-400 underline hover:text-slate-700"
+              disabled={busy !== null}
+              onClick={() => void post({ action: "rehearsal", on: true }, "rehearsal")}>
+              Just testing the buttons
+            </button>
+          )}
         </div>
       </section>
 

@@ -7,7 +7,7 @@ import { classifySentence, worthRaising } from "@/lib/contentIntelligence/langua
 import { LIFECYCLE, OPTIONAL_GOVERNANCE_ACTION } from "@/lib/contentIntelligence/lenses";
 import { DEFAULT_VISIBLE, FIELD_LABEL, BRIEF_FIELDS } from "@/lib/contentIntelligence/brief";
 import { composeReply, MAX_LENSES } from "@/lib/contentIntelligence/turn";
-import { voiceCheck, blocking, estimateSeconds } from "@/lib/contentStudio/voiceCheck";
+import { voiceCheck, blocking, estimateSeconds, worthTightening } from "@/lib/contentStudio/voiceCheck";
 import { STAGES, STAGE_LIMITS, STAGE_SCHEMAS, STAGE_TEMPLATES, HOOK_FORMATS,
          isUsable, readSlots, MIN_LENGTH } from "@/lib/contentStudio/stages";
 
@@ -459,7 +459,9 @@ test("tightening cuts rather than rewrites, and says what came out", () => {
 });
 
 test("tightening is only offered when it would do something", () => {
-  assert.match(read("lib/contentStudio/script.ts"), /can_tighten:[^\n]*\n?[^\n]*SECONDS_MAX/);
+  // One rule, used by the screen and by the stage, so they cannot disagree.
+  assert.match(read("lib/contentStudio/script.ts"), /can_tighten: worthTightening\(/);
+  assert.match(read("lib/contentStudio/script.ts"), /if \(!worthTightening\(current\.script\)\)/);
 });
 
 test("an identical prompt does not become a new version", () => {
@@ -786,4 +788,35 @@ test("the Studio's own limits fit a build, not a chat", () => {
   assert.match(sql, /'content_studio'/);
   assert.match(sql, /array\['cs_', 'ci_'\]/);
   assert.match(sql, /8, 15/);
+});
+
+test("the tighten button and the length note agree with each other", () => {
+  // The note exempts satire because ten items are supposed to run long. If the
+  // button did not, the screen would offer to cut a decision she already made.
+  const long = SATIRE_ITEMS(8) + "\n" + "word ".repeat(300);
+  assert.equal(worthTightening(long), false, "satire is not offered a trim");
+  assert.equal(voiceCheck("script", long).filter((f) => f.rule === "length").length, 0);
+
+  const overrun = "word ".repeat(300);
+  assert.equal(worthTightening(overrun), true);
+  assert.ok(voiceCheck("script", overrun).some((f) => f.rule === "length"));
+});
+
+test("nothing to tighten is not an error state", () => {
+  assert.equal(worthTightening(""), false);
+  assert.equal(worthTightening("word ".repeat(140)), false, "already in range");
+});
+
+test("rehearsal refuses to invent a response it does not have", () => {
+  // A rehearsal that quietly produced something plausible would be
+  // indistinguishable from the real thing.
+  const src = read("lib/ai/rehearsal.ts");
+  assert.match(src, /Rehearsal has nothing saved for/);
+  assert.match(src, /inputTokens: 0/);
+  assert.match(src, /outputTokens: 0/);
+});
+
+test("rehearsal is per project, so it cannot be left on globally", () => {
+  assert.match(read("supabase/migrations/0071_rehearsal_mode.sql"), /add column if not exists rehearsal boolean/);
+  assert.match(read("lib/contentStudio/script.ts"), /getProvider\(c\.rehearsal \? "rehearsal" : settings\.provider\)/);
 });

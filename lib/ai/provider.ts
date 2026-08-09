@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { RehearsalProvider } from "@/lib/ai/rehearsal";
 
 // Provider abstraction (server-only). All provider calls happen here; API keys
 // are read from server env and never exposed to the browser. Anthropic is wired;
@@ -12,6 +13,8 @@ export interface GenerateOpts {
   model: string;
   maxTokens: number;
   timeoutSeconds: number;
+  /** Which stage is asking. Only rehearsal needs it, to find a sample. */
+  generationType?: string;
 }
 
 export interface GenerateResult {
@@ -85,6 +88,8 @@ class UnavailableProvider implements AiProvider {
 export function getProvider(name: string): AiProvider {
   switch (name) {
     case "anthropic": return new AnthropicProvider();
+    // Replays a saved response. Never reaches a network or a bill.
+    case "rehearsal": return new RehearsalProvider();
     default: return new UnavailableProvider(name);
   }
 }
