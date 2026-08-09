@@ -231,6 +231,10 @@ export async function runStage(input: {
       if (requestId) {
         await s.from("ai_generation_requests").update({
           status: "completed", completed_at: new Date().toISOString(),
+          // What actually produced it. The row is opened before the call, and
+          // leaving the configured model on a replayed response makes the
+          // ledger claim Opus wrote something nothing wrote.
+          model: res.model,
           input_tokens: res.inputTokens, output_tokens: res.outputTokens, cost_usd: usd,
         }).eq("id", requestId);
       }
@@ -241,6 +245,12 @@ export async function runStage(input: {
           status: "failed", completed_at: new Date().toISOString(),
           error_message: e instanceof Error ? e.message.slice(0, 400) : "provider error",
         }).eq("id", requestId);
+      }
+      // In rehearsal, "try again" is wrong advice: a missing sample is not a
+      // transient and retrying will fail identically. Say the real reason.
+      if (c.rehearsal) {
+        throw new ScriptError(
+          e instanceof Error ? e.message : "Rehearsal couldn't replay that stage.", 409);
       }
       throw new ScriptError("That didn't come back. Nothing was lost — try again.", 502);
     }

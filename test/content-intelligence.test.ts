@@ -834,3 +834,13 @@ test("a thought typed on the home screen reaches the stages", () => {
   assert.match(read("app/api/admin/content-studio/conversations/route.ts"), /topic: fromKeyword \? seedText :/);
   assert.match(read("lib/contentStudio/script.ts"), /if \(!c\.topic\?\.trim\(\)\)/);
 });
+
+test("rehearsal says why it can't replay, instead of 'try again'", () => {
+  // A missing sample is not transient. Retrying fails identically.
+  const src = read("lib/contentStudio/script.ts");
+  assert.match(src, /if \(c\.rehearsal\) \{[\s\S]{0,200}e instanceof Error \? e\.message/);
+});
+
+test("the ledger records what produced the output, not what was configured", () => {
+  assert.match(read("lib/contentStudio/script.ts"), /model: res\.model,/);
+});
