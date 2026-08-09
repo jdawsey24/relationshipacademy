@@ -132,6 +132,10 @@ export interface AiSettings {
   daily_cost_limit_usd: number;
   monthly_cost_limit_usd: number;
   kill_switch_active: boolean;
+  /** Set when the settings were read for a surface. Scopes its daily spend. */
+  surface_prefixes?: string[];
+  conversation_soft_limit_usd?: number;
+  conversation_hard_limit_usd?: number;
   updated_by: string | null;
   updated_at: string;
 }

@@ -749,3 +749,41 @@ test("satire is allowed to run long", () => {
   assert.ok(voiceCheck("script", "word ".repeat(300)).some((x) => x.rule === "length"),
     "a non-satire script that long is still flagged");
 });
+
+// ---------------------------------------------------------------------------
+// One set of AI rules was governing six products
+// ---------------------------------------------------------------------------
+
+test("the script route runs the preflight it was skipping", () => {
+  // It had the owner gate but not the generation gate, so the Content Studio
+  // was the only generator in the system with no kill switch, no rate limit
+  // and no daily spend ceiling above it.
+  const route = read("app/api/admin/content-studio/conversations/[id]/script/route.ts");
+  assert.match(route, /preflightGeneration\(request, settings, `cs_\$\{body\.stage\}`\)/);
+  assert.match(route, /getAiSettings\(CONTENT_STUDIO_SURFACE\)/);
+});
+
+test("a surface cannot start itself past the global stop", () => {
+  const src = read("lib/ai/settings.ts");
+  assert.match(src, /kill_switch_active: base\.kill_switch_active \|\| o\.kill_switch_active === true/);
+});
+
+test("null means inherit, so a surface with no row changes nothing", () => {
+  const src = read("lib/ai/settings.ts");
+  assert.match(src, /if \(!o\) return base;/);
+  assert.match(src, /if \(v !== null && v !== undefined\)/);
+});
+
+test("a surface's daily ceiling is measured against its own spend", () => {
+  const guard = read("lib/ai/guard.ts");
+  assert.match(guard, /surface_prefixes/);
+  assert.match(guard, /prefixes\.some\(\(p\) => String\(/);
+});
+
+test("the Studio's own limits fit a build, not a chat", () => {
+  const sql = read("supabase/migrations/0070_ai_surface_settings.sql");
+  // A script is about fifty cents and regenerating a stage is normal.
+  assert.match(sql, /'content_studio'/);
+  assert.match(sql, /array\['cs_', 'ci_'\]/);
+  assert.match(sql, /8, 15/);
+});

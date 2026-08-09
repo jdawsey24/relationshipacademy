@@ -21,7 +21,9 @@ export interface CostState {
 
 export async function checkCost(conversationId: string): Promise<CostState> {
   const s = getSupabaseAdminClient();
-  const settings = await getAiSettings() as unknown as {
+  // The Studio's own limits. A script costs about fifty cents and a few
+  // regenerations are normal, so the shared four-dollar warning fired mid-build.
+  const settings = await getAiSettings("content_studio") as unknown as {
     conversation_soft_limit_usd?: number; conversation_hard_limit_usd?: number;
   };
   const soft = Number(settings.conversation_soft_limit_usd ?? 4);

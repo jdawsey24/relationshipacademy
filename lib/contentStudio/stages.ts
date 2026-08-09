@@ -18,6 +18,9 @@
 // "variations" is the default path: whole scripts that differ from each other.
 // The rest are the by-hand path, kept because building a piece a part at a time
 // is still sometimes what she wants.
+/** Its own budget, its own pause, its own conversation limits. See 0070. */
+export const CONTENT_STUDIO_SURFACE = "content_studio";
+
 export const STAGES = ["variations", "tighten", "hooks", "bodies", "close", "assemble"] as const;
 export type Stage = (typeof STAGES)[number];
 

@@ -36,14 +36,22 @@ export async function preflightGeneration(request: Request, settings: AiSettings
   const ok = await rateLimit(request, { bucket: "ai-generate", limit: 20, windowSeconds: 60 });
   if (!ok) return tooManyRequests();
 
-  // Daily cost ceiling (sum today's request costs).
+  // Daily cost ceiling. When the settings were read for a surface, this is that
+  // surface's own spend — otherwise a busy day in one product spends the ceiling
+  // that a different product runs on.
   try {
     const s = getSupabaseAdminClient();
     const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-    const { data } = await s.from("ai_generation_requests").select("cost_usd").gte("created_at", since);
-    const spent = (data ?? []).reduce((a, r) => a + (Number((r as { cost_usd: number | null }).cost_usd) || 0), 0);
+    const { data } = await s.from("ai_generation_requests")
+      .select("cost_usd, generation_type").gte("created_at", since);
+    const prefixes = settings.surface_prefixes ?? [];
+    const rows = (data ?? []).filter((r) => !prefixes.length
+      || prefixes.some((p) => String((r as { generation_type: string }).generation_type ?? "").startsWith(p)));
+    const spent = rows.reduce((a, r) => a + (Number((r as { cost_usd: number | null }).cost_usd) || 0), 0);
     if (spent >= settings.daily_cost_limit_usd) {
-      return NextResponse.json({ error: `Daily AI cost limit ($${settings.daily_cost_limit_usd}) reached.` }, { status: 429 });
+      return NextResponse.json({
+        error: `Daily AI cost limit ($${settings.daily_cost_limit_usd}) reached.`,
+      }, { status: 429 });
     }
   } catch {
     // cost table absent → allow (resilient)

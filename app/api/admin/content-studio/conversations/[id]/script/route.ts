@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { requireAiOwner } from "@/lib/ai/guard";
+import { preflightGeneration, requireAiOwner } from "@/lib/ai/guard";
+import { getAiSettings } from "@/lib/ai/settings";
+import { CONTENT_STUDIO_SURFACE } from "@/lib/contentStudio/stages";
 import { getAdminUser } from "@/lib/supabaseServer";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { audit } from "@/lib/audit";
@@ -75,6 +77,14 @@ export async function POST(request: Request, { params }: Params) {
         if (!STAGES.includes(body.stage as Stage)) {
           return NextResponse.json({ error: "Unknown stage." }, { status: 400 });
         }
+
+        // The kill switch, the type allowlist, the rate limit and the daily
+        // ceiling. This route was skipping all four: the Studio was the only
+        // generator in the system with no spend ceiling above it.
+        const settings = await getAiSettings(CONTENT_STUDIO_SURFACE);
+        const stop = await preflightGeneration(request, settings, `cs_${body.stage}`);
+        if (stop) return stop;
+
         const result = await runStage({ conversationId: id, stage: body.stage as Stage, actor });
         await audit({
           actor, action: "content_studio.stage.run",

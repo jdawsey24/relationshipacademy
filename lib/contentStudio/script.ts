@@ -5,7 +5,7 @@ import { getProvider } from "@/lib/ai/provider";
 import { estimateCost } from "@/lib/ai/types";
 import { loadCompetencyChoices } from "@/lib/contentEngine/retrieval";
 import { checkCost, recordCost } from "@/lib/contentIntelligence/conversation";
-import { isUsable, readSlots, STAGE_LIMITS, STAGE_MAX_TOKENS, type Stage } from "@/lib/contentStudio/stages";
+import { CONTENT_STUDIO_SURFACE, isUsable, readSlots, STAGE_LIMITS, STAGE_MAX_TOKENS, type Stage } from "@/lib/contentStudio/stages";
 import { blocking, voiceCheck, estimateSeconds, SECONDS_MAX } from "@/lib/contentStudio/voiceCheck";
 
 // Running a stage.
@@ -178,7 +178,7 @@ export async function runStage(input: {
   const tpl = await getActiveTemplate(type);
   if (!tpl) throw new ScriptError(`The "${input.stage}" prompt hasn't been approved yet.`, 412);
 
-  const settings = await getAiSettings();
+  const settings = await getAiSettings(CONTENT_STUDIO_SURFACE);
   const provider = getProvider(settings.provider);
   if (!provider.configured()) throw new ScriptError("The AI provider is not configured.", 503);
 
