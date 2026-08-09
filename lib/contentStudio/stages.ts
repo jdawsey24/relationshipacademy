@@ -21,12 +21,12 @@
 /** Its own budget, its own pause, its own conversation limits. See 0070. */
 export const CONTENT_STUDIO_SURFACE = "content_studio";
 
-export const STAGES = ["variations", "tighten", "hooks", "bodies", "close", "assemble"] as const;
+export const STAGES = ["read", "variations", "tighten", "hooks", "bodies", "close", "assemble"] as const;
 export type Stage = (typeof STAGES)[number];
 
 /** How many options each stage produces. A required slot for each one. */
 export const STAGE_LIMITS: Record<Stage, number> = {
-  variations: 3, tighten: 1, hooks: 8, bodies: 5, close: 5, assemble: 1,
+  read: 3, variations: 3, tighten: 1, hooks: 8, bodies: 5, close: 5, assemble: 1,
 };
 
 /**
@@ -145,6 +145,17 @@ const CTA_ITEM = {
   required: ["family", "content"],
 } as const;
 
+const DIRECTION_ITEM = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    label: { type: "string", description: "Three or four words. What this take is." },
+    angle: { type: "string", description: "Two or three sentences in her voice: what this one argues and where it lands." },
+    why_different: { type: "string", description: "One sentence on what this one does that the others do not." },
+  },
+  required: ["label", "angle", "why_different"],
+} as const;
+
 const VARIATION_ITEM = {
   type: "object",
   additionalProperties: false,
@@ -158,6 +169,19 @@ const VARIATION_ITEM = {
 } as const;
 
 export const STAGE_SCHEMAS: Record<Stage, object> = {
+  read: {
+    type: "object",
+    additionalProperties: false,
+    properties: {
+      readback: {
+        type: "string",
+        description: "Two or three sentences. What she seems to be saying, in plain language, no jargon.",
+      },
+      ...slots("direction", STAGE_LIMITS.read, DIRECTION_ITEM).properties,
+    },
+    required: ["readback", ...slots("direction", STAGE_LIMITS.read, DIRECTION_ITEM).required],
+  },
+
   variations: {
     type: "object",
     additionalProperties: false,
@@ -243,6 +267,34 @@ export const STAGE_SCHEMAS: Record<Stage, object> = {
 // ---------------------------------------------------------------------------
 
 export const STAGE_TEMPLATES: Record<Stage, string> = {
+  read: `What she wrote:
+{{topic}}
+
+What she saw, if she pasted anything:
+{{source}}
+
+Phases and their developmental tasks (use only these):
+{{phases}}
+
+Competencies (use only these codes):
+{{competencies}}
+
+Two jobs, and no writing yet.
+
+First, say back what you think she's getting at. Two or three sentences, plain,
+in the way she'd say it. Reflect the argument rather than tidying it into
+something more general. If the mechanism she named is what makes it interesting,
+keep the mechanism. If you're inferring rather than repeating, say so.
+
+Then give her three ways this could go: direction_1, direction_2, direction_3.
+
+They have to be genuinely different pieces, not three phrasings of one. Different
+target, different argument, or a different thing being separated out. If two of
+them would produce the same script, replace one.
+
+No hooks, no scripts, no format talk, and don't mention a phase or a competency
+by name. She's deciding what the piece is about, not how it's built.`,
+
   variations: `What she saw:
 {{source}}
 
@@ -251,6 +303,12 @@ Her note on it:
 
 What this one points people to:
 {{offer}}
+
+The direction she chose:
+{{chosen_direction}}
+
+Where it's going:
+{{platform}}
 
 What she's asked for:
 {{direction}}
@@ -307,6 +365,12 @@ Her note on it:
 
 What this one points people to:
 {{offer}}
+
+The direction she chose:
+{{chosen_direction}}
+
+Where it's going:
+{{platform}}
 
 What she's asked for:
 {{direction}}

@@ -9,6 +9,7 @@ import { sanitizeUntrusted } from "@/lib/contentEngine/normalize";
 import { chooseOption, editOption, readProject, runStage, ScriptError } from "@/lib/contentStudio/script";
 import { STAGES, type Stage } from "@/lib/contentStudio/stages";
 import { isValidChoice } from "@/lib/contentStudio/directions";
+import { isValidPlatform, matchKeywords, platformFor } from "@/lib/contentStudio/platforms";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,12 +18,25 @@ export const dynamic = "force-dynamic";
 
 type Params = { params: Promise<{ id: string }> };
 
+/**
+ * Phrases worth landing, for the platform she chose. Empty until she chooses
+ * one, because a keyword list for no particular platform is just noise.
+ */
+async function keywordsFor(project: Awaited<ReturnType<typeof readProject>>) {
+  const brief = (project.conversation.brief ?? {}) as { platform?: string };
+  if (!brief.platform || !platformFor(brief.platform)) return [];
+  const idea = [project.readback, project.conversation.topic, project.conversation.source_text]
+    .filter(Boolean).join(" ");
+  return matchKeywords(brief.platform, idea, 5);
+}
+
 export async function GET(_r: Request, { params }: Params) {
   const auth = await requireAiOwner();
   if (auth instanceof NextResponse) return auth;
   const { id } = await params;
   try {
-    return NextResponse.json(await readProject(id));
+    const project = await readProject(id);
+    return NextResponse.json({ ...project, keywords: await keywordsFor(project) });
   } catch (e) {
     const status = e instanceof ScriptError ? e.status : 500;
     return NextResponse.json({ error: (e as Error).message }, { status });
@@ -40,6 +54,7 @@ export async function POST(request: Request, { params }: Params) {
     stage?: string; option_id?: string; content?: string;
     source_text?: string; source_url?: string; topic?: string; offer?: string;
     form?: string; tone?: string; opening?: string;
+    platform?: string; keyword?: string; readback?: string;
   };
   try { body = await request.json(); }
   catch { return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 }); }
@@ -79,6 +94,24 @@ export async function POST(request: Request, { params }: Params) {
           if (body.offer.trim()) brief.offer = body.offer.trim();
           else delete brief.offer;
         }
+        if (body.platform !== undefined) {
+          if (!isValidPlatform(body.platform)) {
+            return NextResponse.json({ error: "Unknown platform." }, { status: 400 });
+          }
+          if (body.platform) brief.platform = body.platform;
+          else { delete brief.platform; delete brief.keyword; }
+        }
+        // The chosen phrase is free text from her own sheet, so it is stored as
+        // given but never treated as an instruction.
+        if (body.keyword !== undefined) {
+          if (body.keyword.trim()) brief.keyword = sanitizeUntrusted(body.keyword).text.slice(0, 200);
+          else delete brief.keyword;
+        }
+        if (body.readback !== undefined) {
+          // Hers now. The Studio does not write over it on a re-read.
+          patch.readback = body.readback.trim() || null;
+        }
+
         for (const axis of ["form", "tone", "opening"] as const) {
           const v = body[axis];
           if (v === undefined) continue;
@@ -143,7 +176,8 @@ export async function POST(request: Request, { params }: Params) {
         return NextResponse.json({ error: "Unknown action." }, { status: 400 });
     }
 
-    return NextResponse.json(await readProject(id));
+    const project = await readProject(id);
+    return NextResponse.json({ ...project, keywords: await keywordsFor(project) });
   } catch (e) {
     const status = e instanceof ScriptError ? e.status : 500;
     return NextResponse.json({ error: (e as Error).message }, { status });

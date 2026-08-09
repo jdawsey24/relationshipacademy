@@ -7,6 +7,7 @@ import { loadCompetencyChoices } from "@/lib/contentEngine/retrieval";
 import { checkCost, recordCost } from "@/lib/contentIntelligence/conversation";
 import { CONTENT_STUDIO_SURFACE, isUsable, readSlots, STAGE_LIMITS, STAGE_MAX_TOKENS, type Stage } from "@/lib/contentStudio/stages";
 import { directionText } from "@/lib/contentStudio/directions";
+import { matchKeywords, platformBrief, platformFor } from "@/lib/contentStudio/platforms";
 import { blocking, voiceCheck, estimateSeconds, worthTightening } from "@/lib/contentStudio/voiceCheck";
 
 // Running a stage.
@@ -20,8 +21,8 @@ export class ScriptError extends Error {
 }
 
 /** Which option table rows a stage produces. `close` produces two kinds. */
-const PRODUCES: Record<Stage, ("hook" | "body" | "resolution" | "cta" | "variation")[]> = {
-  variations: ["variation"], tighten: [],
+const PRODUCES: Record<Stage, ("hook" | "body" | "resolution" | "cta" | "variation" | "direction")[]> = {
+  read: ["direction"], variations: ["variation"], tighten: [],
   hooks: ["hook"], bodies: ["body"], close: ["resolution", "cta"], assemble: [],
 };
 
@@ -31,12 +32,18 @@ const WRITES_SCRIPT: Stage[] = ["assemble", "tighten"];
 interface Conversation {
   id: string; source_text: string | null; source_url: string | null;
   topic: string | null; brief: Record<string, unknown>; rehearsal: boolean;
+  readback: string | null;
 }
 
 async function loadConversation(id: string): Promise<Conversation> {
   const s = getSupabaseAdminClient();
-  const { data } = await s.from("ci_conversations")
-    .select("id, source_text, source_url, topic, brief, rehearsal").eq("id", id).maybeSingle();
+  const { data, error } = await s.from("ci_conversations")
+    .select("id, source_text, source_url, topic, brief, rehearsal, readback").eq("id", id).maybeSingle();
+
+  // A failed query is not a missing row. Reading a column that does not exist
+  // yet reported "That project no longer exists", which sends you looking for a
+  // deleted record instead of an unrun migration.
+  if (error) throw new ScriptError(`Couldn't load the project: ${error.message}`, 500);
   if (!data) throw new ScriptError("That project no longer exists.", 404);
   const c = data as unknown as Conversation;
 
@@ -85,6 +92,29 @@ async function currentScript(conversationId: string): Promise<{ script: string; 
 function offerText(c: Conversation): string {
   const offer = (c.brief as { offer?: string })?.offer?.trim();
   return offer || "Nothing. End on the insight and don't sell anything.";
+}
+
+/**
+ * The direction she picked, with the readback above it.
+ *
+ * Both, because the direction is a take ON something and reads as unmoored
+ * without the thing it is a take on.
+ */
+async function chosenDirectionText(conversationId: string, readback: string | null): Promise<string> {
+  const chosen = await selectedOption(conversationId, "direction");
+  const parts = [readback?.trim() ? `What she's saying: ${readback.trim()}` : null,
+                 chosen ? chosen.content : null].filter(Boolean);
+  return parts.length ? parts.join("\n\n") : "(not chosen — work from what she wrote)";
+}
+
+/** Where it is going, and the phrase worth landing there. */
+async function platformBriefFor(c: Conversation): Promise<string> {
+  const brief = (c.brief ?? {}) as { platform?: string; keyword?: string };
+  const platform = platformFor(brief.platform);
+  if (!platform) return platformBrief(null, [], null);
+  const idea = [c.readback, c.topic, c.source_text].filter(Boolean).join(" ");
+  const keywords = await matchKeywords(platform.value, idea, 5);
+  return platformBrief(platform, keywords, brief.keyword);
 }
 
 /** Plain sentences, so the model is never handed a JSON blob to interpret. */
@@ -141,12 +171,29 @@ async function variablesFor(stage: Stage, c: Conversation): Promise<Record<strin
     };
   }
 
+  if (stage === "read") {
+    const fw = await frameworkContext();
+    return {
+      topic: c.topic?.trim() || "(she hasn't written one — work from what she pasted)",
+      source: sourceBlock(c),
+      phases: fw.phases,
+      competencies: fw.competencies,
+    };
+  }
+
   if (stage === "hooks" || stage === "variations") {
+    // Writing follows a direction. Without one the piece has no argument, and
+    // the shape and tone controls are modifying nothing.
+    if (stage === "variations" && !(await selectedOption(c.id, "direction"))) {
+      throw new ScriptError("Pick a direction first.", 409);
+    }
     const fw = await frameworkContext();
     return {
       source: sourceBlock(c),
       topic: c.topic?.trim() || "(none)",
       offer: offerText(c),
+      chosen_direction: await chosenDirectionText(c.id, c.readback),
+      platform: await platformBriefFor(c),
       direction: directionText(c.brief ?? {}),
       phases: fw.phases,
       competencies: fw.competencies,
@@ -267,7 +314,16 @@ export async function runStage(input: {
   /** Options worth showing her, junk already dropped. */
   function buildRows(out: Record<string, unknown>): Record<string, unknown>[] {
     const rows: Record<string, unknown>[] = [];
-    if (input.stage === "variations") {
+    if (input.stage === "read") {
+      readSlots<Record<string, string>>(out, "direction", STAGE_LIMITS.read)
+        .filter((d) => isUsable("resolution", d.angle))
+        .forEach((d, i) => rows.push({
+          conversation_id: input.conversationId, stage: "direction", idx: i,
+          technique: d.label ?? null,
+          content: d.angle,
+          why: d.why_different ?? null,
+        }));
+    } else if (input.stage === "variations") {
       readSlots<Record<string, string>>(out, "variation", STAGE_LIMITS.variations)
         .filter((v) => isUsable("body", v.script) && !blocking(voiceCheck("script", v.script)).length)
         .forEach((v, i) => rows.push({
@@ -334,6 +390,11 @@ export async function runStage(input: {
 
   // The brief is written once, at the hook stage, and carried. Later stages
   // read it and cannot re-decide what the video is about.
+  if (input.stage === "read" && typeof out.readback === "string") {
+    await s.from("ci_conversations")
+      .update({ readback: out.readback }).eq("id", input.conversationId);
+  }
+
   if ((input.stage === "hooks" || input.stage === "variations") && out.brief) {
     // MERGE. Replacing the brief wholesale threw away what she put there — the
     // offer lives on this object, and running the stage silently deleted it, so
@@ -445,9 +506,15 @@ export async function readProject(conversationId: string) {
     seconds_est: chosenVariation.seconds_est, review: {}, cut_notes: null, tightened_from: null,
   } : null);
 
+  const chosenDirection = all.find((o) => o.stage === "direction" && o.selected) ?? null;
+
   return {
     conversation: conv,
     rehearsal: conv.rehearsal,
+    readback: conv.readback,
+    directions: all.filter((o) => o.stage === "direction"),
+    // The controls exist only once there is something for them to modify.
+    controls_open: !!chosenDirection,
     variations: all.filter((o) => o.stage === "variation"),
     hooks: all.filter((o) => o.stage === "hook"),
     bodies: all.filter((o) => o.stage === "body"),

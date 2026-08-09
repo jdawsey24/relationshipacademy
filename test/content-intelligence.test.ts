@@ -9,6 +9,7 @@ import { DEFAULT_VISIBLE, FIELD_LABEL, BRIEF_FIELDS } from "@/lib/contentIntelli
 import { composeReply, MAX_LENSES } from "@/lib/contentIntelligence/turn";
 import { voiceCheck, blocking, estimateSeconds, worthTightening } from "@/lib/contentStudio/voiceCheck";
 import { AXES, FORMS, directionText, isValidChoice } from "@/lib/contentStudio/directions";
+import { PLATFORMS, platformBrief, scoreKeyword } from "@/lib/contentStudio/platforms";
 import { STAGES, STAGE_LIMITS, STAGE_SCHEMAS, STAGE_TEMPLATES, HOOK_FORMATS,
          isUsable, readSlots, MIN_LENGTH } from "@/lib/contentStudio/stages";
 
@@ -216,7 +217,8 @@ test("the workspace shows no technical vocabulary", () => {
       `"${word}" must not appear in the default view`);
   }
   // The screen names the work, not the tables behind it.
-  assert.match(src, /What you saw/);
+  assert.match(src, /What you&apos;re thinking about/);
+  assert.match(src, /Here&apos;s what I think you&apos;re saying/);
   assert.match(src, /Ready to shoot/);
 });
 
@@ -434,7 +436,7 @@ test("the stages run in the order she works in", () => {
   // variations is the default path. The staged four are the by-hand path and
   // are kept, because building a piece a part at a time is still sometimes
   // what she wants.
-  assert.deepEqual([...STAGES], ["variations", "tighten", "hooks", "bodies", "close", "assemble"]);
+  assert.deepEqual([...STAGES], ["read", "variations", "tighten", "hooks", "bodies", "close", "assemble"]);
 });
 
 test("a variation is a whole script, not a part of one", () => {
@@ -895,4 +897,78 @@ test("choosing a tone does not wipe what she pasted", () => {
 test("the chips are not read back to the model as brief prose", () => {
   const src = read("lib/contentStudio/script.ts");
   assert.match(src, /NOT_BRIEF = new Set\(\["offer", "form", "tone", "opening"\]\)/);
+});
+
+// ---------------------------------------------------------------------------
+// Understand the idea before offering controls
+// ---------------------------------------------------------------------------
+
+test("the read step writes nothing and decides nothing about format", () => {
+  const tpl = STAGE_TEMPLATES.read;
+  assert.match(tpl, /no writing yet/i);
+  assert.match(tpl, /No hooks, no scripts, no format talk/);
+  // She is deciding what the piece is about, not how it is built.
+  assert.ok(!/\{\{platform\}\}/.test(tpl));
+  assert.ok(!/\{\{direction\}\}/.test(tpl));
+});
+
+test("three directions, and they have to be different pieces", () => {
+  const schema = STAGE_SCHEMAS.read as { required: string[]; properties: Record<string, { required?: string[] }> };
+  assert.ok(schema.required.includes("readback"));
+  for (let i = 1; i <= 3; i++) {
+    assert.ok(schema.required.includes(`direction_${i}`));
+    assert.ok(schema.properties[`direction_${i}`].required?.includes("why_different"));
+  }
+  assert.match(STAGE_TEMPLATES.read, /If two of\s*\n?them would produce the same script, replace one/);
+});
+
+test("nothing can be written until a direction is chosen", () => {
+  const src = read("lib/contentStudio/script.ts");
+  assert.match(src, /stage === "variations" && !\(await selectedOption\(c\.id, "direction"\)\)/);
+  assert.match(src, /Pick a direction first/);
+  // And the controls are not on screen before then.
+  assert.match(src, /controls_open: !!chosenDirection/);
+  assert.match(read("app/admin/content-studio/c/[id]/page.tsx"), /\{p\.controls_open && \(/);
+});
+
+test("four of the seven platforms are not spoken video", () => {
+  // Writing a script to camera for Threads is writing the wrong artefact.
+  const written = PLATFORMS.filter((p) => p.delivery === "written").map((p) => p.value);
+  assert.deepEqual(written.sort(), ["linkedin", "pinterest", "threads", "x"]);
+  const brief = platformBrief(PLATFORMS.find((p) => p.value === "threads")!, [], null);
+  assert.match(brief, /READ, not spoken/);
+  assert.match(brief, /no stage directions/i);
+});
+
+test("a spoken platform keeps the breathing-point rule", () => {
+  const brief = platformBrief(PLATFORMS.find((p) => p.value === "tiktok")!, [], null);
+  assert.match(brief, /Line breaks are breathing points/);
+});
+
+test("the phrase is offered as language, not as a keyword to stuff", () => {
+  const brief = platformBrief(
+    PLATFORMS.find((p) => p.value === "tiktok")!,
+    [{ primary_phrase: "mixed signals", audience_doorway: "Their words and actions do not match.",
+       rlc_interpretation: null, opening_use: "Use it in the first sentence.", supporting_terms: ["inconsistency"],
+       best_format: "Reaction / stitch", cta_fit: "Snapshot", priority_tier: "Tier 1", opportunity_score: 100, rank: 1 }],
+    null,
+  );
+  assert.match(brief, /because it is how people describe this, not because it is a keyword/);
+  assert.match(brief, /If it will not sit naturally in her voice, leave it out/);
+});
+
+test("matching prefers the phrase over the supporting terms", () => {
+  const base = { rlc_interpretation: null, opening_use: null, best_format: null,
+                 cta_fit: null, priority_tier: null, opportunity_score: 0, rank: 1 };
+  const inPhrase = scoreKeyword("why do i keep getting mixed signals", {
+    ...base, primary_phrase: "mixed signals", audience_doorway: null, supporting_terms: [] });
+  const inSupporting = scoreKeyword("why do i keep getting mixed signals", {
+    ...base, primary_phrase: "situationship", audience_doorway: null, supporting_terms: ["mixed", "signals"] });
+  assert.ok(inPhrase > inSupporting, "the phrase people type matters most");
+});
+
+test("a query failure is not a missing row", () => {
+  // Reading a column that did not exist yet reported "That project no longer
+  // exists", which sends you looking for a deleted record.
+  assert.match(read("lib/contentStudio/script.ts"), /if \(error\) throw new ScriptError\(`Couldn't load the project/);
 });
