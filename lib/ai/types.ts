@@ -140,7 +140,31 @@ export interface AiSettings {
   updated_at: string;
 }
 
-// Rough USD/token cost estimate (Opus-class) for the usage dashboard. Approximate.
-export function estimateCost(inputTokens: number, outputTokens: number): number {
-  return (inputTokens / 1_000_000) * 15 + (outputTokens / 1_000_000) * 75;
+/**
+ * USD per million tokens, Claude Opus 5.
+ *
+ * These were $15 and $75 — three times the real rate. Every cost this system
+ * has reported, every ceiling measured against those costs, and every figure
+ * in the dashboard was inflated 3x. Rows written before this fix are still
+ * wrong in the database; only new ones are right.
+ */
+export const INPUT_USD_PER_MTOK = 5;
+export const OUTPUT_USD_PER_MTOK = 25;
+
+/** Cached input is a tenth of the price. Writing the cache costs 1.25x. */
+export const CACHE_READ_USD_PER_MTOK = 0.5;
+export const CACHE_WRITE_USD_PER_MTOK = 6.25;
+
+export function estimateCost(
+  inputTokens: number,
+  outputTokens: number,
+  cacheReadTokens = 0,
+  cacheWriteTokens = 0,
+): number {
+  return (
+    (inputTokens / 1_000_000) * INPUT_USD_PER_MTOK +
+    (outputTokens / 1_000_000) * OUTPUT_USD_PER_MTOK +
+    (cacheReadTokens / 1_000_000) * CACHE_READ_USD_PER_MTOK +
+    (cacheWriteTokens / 1_000_000) * CACHE_WRITE_USD_PER_MTOK
+  );
 }

@@ -7,6 +7,8 @@ import { classifySentence, worthRaising } from "@/lib/contentIntelligence/langua
 import { LIFECYCLE, OPTIONAL_GOVERNANCE_ACTION } from "@/lib/contentIntelligence/lenses";
 import { DEFAULT_VISIBLE, FIELD_LABEL, BRIEF_FIELDS } from "@/lib/contentIntelligence/brief";
 import { composeReply, MAX_LENSES } from "@/lib/contentIntelligence/turn";
+import { estimateCost, INPUT_USD_PER_MTOK, OUTPUT_USD_PER_MTOK,
+         CACHE_READ_USD_PER_MTOK, CACHE_WRITE_USD_PER_MTOK } from "@/lib/ai/types";
 import { voiceCheck, blocking, estimateSeconds, worthTightening } from "@/lib/contentStudio/voiceCheck";
 import { AXES, FORMS, directionText, isValidChoice } from "@/lib/contentStudio/directions";
 import { PLATFORMS, platformBrief, scoreKeyword } from "@/lib/contentStudio/platforms";
@@ -1005,4 +1007,43 @@ test("the screen says when nothing fits rather than implying it does", () => {
   const page = read("app/admin/content-studio/c/[id]/page.tsx");
   assert.match(page, /Nothing here fits this idea/);
   assert.match(page, /Close by, but not a match/);
+});
+
+// ---------------------------------------------------------------------------
+// What things cost
+// ---------------------------------------------------------------------------
+
+test("Opus 5 pricing, not three times it", () => {
+  // These were $15 and $75 — the previous generation's rates. Every cost this
+  // system reported, and every ceiling measured against those costs, was
+  // inflated 3x for as long as that stood.
+  assert.equal(INPUT_USD_PER_MTOK, 5);
+  assert.equal(OUTPUT_USD_PER_MTOK, 25);
+  assert.equal(Number(estimateCost(1_000_000, 0).toFixed(4)), 5);
+  assert.equal(Number(estimateCost(0, 1_000_000).toFixed(4)), 25);
+});
+
+test("cached input is a tenth, writing it is a quarter more", () => {
+  assert.equal(CACHE_READ_USD_PER_MTOK, INPUT_USD_PER_MTOK / 10);
+  assert.equal(CACHE_WRITE_USD_PER_MTOK, INPUT_USD_PER_MTOK * 1.25);
+  // Two calls over a cached prefix beat two uncached ones.
+  const uncached = estimateCost(4000, 0) * 2;
+  const cached = estimateCost(0, 0, 0, 4000) + estimateCost(0, 0, 4000, 0);
+  assert.ok(cached < uncached, "caching has to pay for itself by the second call");
+});
+
+test("the stable prefix is cached, and nothing volatile sits in front of it", () => {
+  const src = read("lib/ai/provider.ts");
+  assert.match(src, /cache_control: \{ type: "ephemeral" \}/);
+  // Render order is tools, then system, then messages. Everything that changes
+  // per call has to live behind the breakpoint or the prefix never matches.
+  assert.match(src, /Caching is a PREFIX match/);
+  assert.match(src, /cache_read_input_tokens/);
+});
+
+test("the read step is not handed 155 competencies it may not name", () => {
+  assert.ok(!/\{\{competencies\}\}/.test(STAGE_TEMPLATES.read));
+  assert.match(STAGE_TEMPLATES.read, /don't mention a phase or a competency/);
+  // The writing stages still get them — they choose the lens.
+  assert.match(STAGE_TEMPLATES.variations, /\{\{competencies\}\}/);
 });

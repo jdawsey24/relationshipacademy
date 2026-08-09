@@ -276,9 +276,6 @@ What she saw, if she pasted anything:
 Phases and their developmental tasks (use only these):
 {{phases}}
 
-Competencies (use only these codes):
-{{competencies}}
-
 Two jobs, and no writing yet.
 
 First, say back what you think she's getting at. Two or three sentences, plain,

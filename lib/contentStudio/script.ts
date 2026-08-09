@@ -172,12 +172,14 @@ async function variablesFor(stage: Stage, c: Conversation): Promise<Record<strin
   }
 
   if (stage === "read") {
+    // No competency list. This stage is told not to name a phase or competency,
+    // and it was being handed all 155 of them — a quarter of its input, spent
+    // on something it is forbidden to use.
     const fw = await frameworkContext();
     return {
       topic: c.topic?.trim() || "(she hasn't written one — work from what she pasted)",
       source: sourceBlock(c),
       phases: fw.phases,
-      competencies: fw.competencies,
     };
   }
 
@@ -282,7 +284,7 @@ export async function runStage(input: {
         maxTokens: STAGE_MAX_TOKENS[input.stage] ?? settings.output_limit,
         timeoutSeconds: settings.timeout_seconds,
       });
-      const usd = estimateCost(res.inputTokens, res.outputTokens);
+      const usd = estimateCost(res.inputTokens, res.outputTokens, res.cacheReadTokens, res.cacheWriteTokens);
       if (requestId) {
         await s.from("ai_generation_requests").update({
           status: "completed", completed_at: new Date().toISOString(),

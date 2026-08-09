@@ -48,6 +48,8 @@ export class RehearsalProvider implements AiProvider {
       model: `rehearsal:${pick.label}`,
       inputTokens: 0,
       outputTokens: 0,
+      cacheReadTokens: 0,
+      cacheWriteTokens: 0,
     };
   }
 }
