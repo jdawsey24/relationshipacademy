@@ -633,3 +633,14 @@ test("options that break a rule are dropped before she sees them", () => {
     assert.match(src, new RegExp(`blocking\\(voiceCheck\\("${kind}"`), `${kind} is not checked`);
   }
 });
+
+test("a script delivered as one block has nowhere to breathe", () => {
+  const oneBlock = "word ".repeat(120);
+  assert.ok(blocking(voiceCheck("script", oneBlock)).some((x) => x.rule === "no_breath"));
+});
+
+test("a short line is not a missing paragraph", () => {
+  // A hook is one line by nature, and a forty-word answer is not a wall.
+  assert.equal(voiceCheck("hook", "Whose job is it to handle your mama?").length, 0);
+  assert.equal(voiceCheck("script", "word ".repeat(40)).filter((x) => x.rule === "no_breath").length, 0);
+});

@@ -26,6 +26,18 @@ export const STAGE_LIMITS: Record<Stage, number> = {
   variations: 3, tighten: 1, hooks: 8, bodies: 5, close: 5, assemble: 1,
 };
 
+/**
+ * Room to answer, per stage.
+ *
+ * The shared setting is 8,000, which is right for a single draft and not for
+ * three complete scripts with endings on them: that run was cut off mid-JSON at
+ * the ceiling. Raising the global would change every other generator in the
+ * system, so the stages that need more say so here.
+ */
+export const STAGE_MAX_TOKENS: Partial<Record<Stage, number>> = {
+  variations: 20000, bodies: 14000,
+};
+
 /** `thing_1 … thing_n`, all required. The only way to make a count binding. */
 function slots(prefix: string, n: number, item: object) {
   const properties: Record<string, object> = {};
@@ -234,6 +246,9 @@ export const STAGE_TEMPLATES: Record<Stage, string> = {
 Her note on it:
 {{topic}}
 
+What this one points people to:
+{{offer}}
+
 Phases and their developmental tasks (use only these):
 {{phases}}
 
@@ -243,9 +258,15 @@ Competencies (use only these codes):
 Work out the brief first, privately. Then write three complete scripts of it:
 variation_1, variation_2, variation_3.
 
-Each one stands on its own. Opening through call to action, one continuous
-spoken piece, no headings and no labels inside it. Somebody should be able to
-read any one of them start to finish and shoot it.
+Each one stands on its own, and reads start to finish as something to shoot. No
+headings, no labels, no stage directions inside it.
+
+Break the lines where she'd breathe. Short beats on their own line, a blank line
+between thoughts. Never one solid paragraph, however short the piece is.
+
+End the way the ending rule says. If nothing was supplied above, land the
+insight and stop. Do not invent an offer and do not add "follow me for more" to
+have something there.
 
 Same lesson in all three. What changes is the way in and the shape: a different
 opening, a different route through the middle, a different place it lands. One
@@ -274,6 +295,9 @@ Then say plainly what came out.`,
 
 Her note on it:
 {{topic}}
+
+What this one points people to:
+{{offer}}
 
 Phases and their developmental tasks (use only these):
 {{phases}}
@@ -313,12 +337,18 @@ The hook:
 The body she picked:
 {{body}}
 
-Fill resolution_1 through resolution_5 with closing lines that finish what the
-hook opened, and cta_1 through cta_5 for Dating With Your Eyes Open, each from a
-different angle.
+What this one points people to:
+{{offer}}
 
-The closes should sound like she arrived there, not like she wrote them first.
-The CTAs should sound like the next sentence out of her mouth.`,
+Fill resolution_1 through resolution_5 with closing lines that finish what the
+hook opened.
+
+Then cta_1 through cta_5, each from a different angle, pointing at what was
+supplied above. If nothing was supplied, or what was supplied does not fit who
+is watching, write five different ways to land the piece and stop instead. Do
+not invent something to sell.
+
+The closes should sound like she arrived there, not like she wrote them first.`,
 
   assemble: `The hook:
 {{hook}}

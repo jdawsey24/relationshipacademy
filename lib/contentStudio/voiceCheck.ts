@@ -95,6 +95,20 @@ export function voiceCheck(kind: string, text: string): VoiceFinding[] {
   if (kind === "body" || kind === "script") {
     const stem = repeatedStem(t);
     if (stem) out.push({ rule: "repeated_stem", detail: stem, blocking: true });
+
+    // Line breaks are breathing points. A script delivered as one solid block
+    // cannot be read off a phone, and it is the first thing that goes when the
+    // prompt gets crowded: adding the offer instruction produced three scripts
+    // in a row with no breaks in them at all.
+    const words = t.split(/\s+/).filter(Boolean).length;
+    const lines = t.split("\n").filter((l) => l.trim()).length;
+    if (words > 60 && lines < 4) {
+      out.push({
+        rule: "no_breath",
+        detail: `${words} words in ${lines} paragraph${lines === 1 ? "" : "s"}, nowhere to breathe`,
+        blocking: true,
+      });
+    }
   }
 
   if (kind === "script") {

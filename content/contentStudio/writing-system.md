@@ -140,15 +140,21 @@ For Exploration content, hold these:
 Never turn it into hypervigilance, red-flag hunting, diagnosing partners, "never
 trust anybody," or watching someone forever instead of deciding.
 
-## The CTA
+## The ending
 
-Answers "if this is the problem, what becomes possible?" It should sound like
-the next sentence, not a different voice arriving. One action. Name the
-transformation. Say why this is not another pile of dating tips. Roughly ten to
-twenty percent of the script.
+**There is not always something to sell.** What a piece points to is supplied
+per script, and often nothing is. When nothing is supplied, end on the insight
+and stop. A script that lands and stops is finished, not missing a piece, and
+bolting on "follow me for more" to fill the slot is worse than ending clean.
 
-Not: "level up your love life," promises of certainty, fear, feature lists, or
-anything that could be pasted onto a different video.
+When something is supplied, it answers "if this is the problem, what becomes
+possible?" It sounds like the next sentence, not a different voice arriving.
+One action. Name what changes for her. Roughly ten to twenty percent.
+
+Never: "level up your love life," promises of certainty, fear, feature lists,
+or anything that could be pasted onto a different video. And never point a woman
+at something built for a different part of her life. If what was supplied does
+not fit who is watching, say so and end on the insight instead.
 
 ## Reject and rewrite
 

@@ -34,7 +34,7 @@ export async function POST(request: Request, { params }: Params) {
   let body: {
     action?: "source" | "run" | "choose" | "edit";
     stage?: string; option_id?: string; content?: string;
-    source_text?: string; source_url?: string; topic?: string;
+    source_text?: string; source_url?: string; topic?: string; offer?: string;
   };
   try { body = await request.json(); }
   catch { return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 }); }
@@ -48,7 +48,20 @@ export async function POST(request: Request, { params }: Params) {
         // What she pasted is untrusted. Sanitised before it is ever stored, and
         // delimited again when it reaches the model.
         const clean = body.source_text ? sanitizeUntrusted(body.source_text).text : null;
+
+        // The offer rides on the brief rather than its own column. It is not a
+        // catalogue entry, it is a note about this one script, and most scripts
+        // do not have one.
+        const { data: existing } = await s.from("ci_conversations")
+          .select("brief").eq("id", id).maybeSingle();
+        const brief = { ...((existing as { brief?: Record<string, unknown> } | null)?.brief ?? {}) };
+        if (body.offer !== undefined) {
+          if (body.offer.trim()) brief.offer = body.offer.trim();
+          else delete brief.offer;
+        }
+
         await s.from("ci_conversations").update({
+          brief,
           source_text: clean,
           source_url: body.source_url?.trim() || null,
           topic: body.topic?.trim() || null,

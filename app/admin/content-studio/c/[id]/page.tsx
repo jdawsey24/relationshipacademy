@@ -24,7 +24,7 @@ interface Script {
   review: { concerns?: string[] } & Record<string, unknown>;
 }
 interface Project {
-  conversation: { id: string; source_text: string | null; source_url: string | null; topic: string | null };
+  conversation: { id: string; source_text: string | null; source_url: string | null; topic: string | null; brief: { offer?: string } };
   variations: Option[];
   script: Script | null;
   can_tighten: boolean;
@@ -44,6 +44,7 @@ export default function ScriptBuilder() {
   const [src, setSrc] = useState("");
   const [url, setUrl] = useState("");
   const [note, setNote] = useState("");
+  const [offer, setOffer] = useState("");
   const [editing, setEditing] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
 
@@ -55,6 +56,7 @@ export default function ScriptBuilder() {
     setSrc(d.conversation.source_text ?? "");
     setUrl(d.conversation.source_url ?? "");
     setNote(d.conversation.topic ?? "");
+    setOffer(d.conversation.brief?.offer ?? "");
   }, [id]);
   useEffect(() => { void load(); }, [load]);
 
@@ -103,11 +105,14 @@ export default function ScriptBuilder() {
           className="mt-2 w-full rounded-lg border border-slate-300 p-2 text-sm" />
         <input value={note} onChange={(e) => setNote(e.target.value)} placeholder="And your thought about it"
           className="mt-2 w-full rounded-lg border border-slate-300 p-2 text-sm" />
+        <input value={offer} onChange={(e) => setOffer(e.target.value)}
+          placeholder="Pointing them anywhere? Leave it empty and it just ends."
+          className="mt-2 w-full rounded-lg border border-slate-300 p-2 text-sm" />
         <div className="mt-3 flex items-center gap-3">
           <button
             className="rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:border-slate-500"
             disabled={busy !== null}
-            onClick={() => void post({ action: "source", source_text: src, source_url: url, topic: note }, "source")}>
+            onClick={() => void post({ action: "source", source_text: src, source_url: url, topic: note, offer }, "source")}>
             {busy === "source" ? "Saving…" : "Save"}
           </button>
           <button

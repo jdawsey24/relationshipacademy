@@ -42,8 +42,29 @@ class AnthropicProvider implements AiProvider {
     } as Anthropic.MessageCreateParamsNonStreaming);
     const text = res.content.find((b): b is Anthropic.TextBlock => b.type === "text")?.text;
     if (!text) throw new Error("Empty model response");
+
+    // Say what happened. A response cut off at the token ceiling is not valid
+    // JSON, and JSON.parse reports it as "Unterminated string at position
+    // 12142", which sends you looking for a bug in the schema.
+    if (res.stop_reason === "max_tokens") {
+      throw new Error(
+        `Response hit the ${opts.maxTokens} token ceiling and was cut off mid-JSON. ` +
+        `Raise the output limit or ask for less in one call.`,
+      );
+    }
+
+    let output: unknown;
+    try {
+      output = JSON.parse(text);
+    } catch (e) {
+      throw new Error(
+        `Model returned unparseable JSON (stop_reason ${res.stop_reason ?? "unknown"}, ` +
+        `${res.usage?.output_tokens ?? "?"} output tokens): ${(e as Error).message}`,
+      );
+    }
+
     return {
-      output: JSON.parse(text),
+      output,
       provider: this.name,
       model: opts.model,
       inputTokens: res.usage?.input_tokens ?? 0,

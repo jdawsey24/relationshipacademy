@@ -5,7 +5,7 @@ import { getProvider } from "@/lib/ai/provider";
 import { estimateCost } from "@/lib/ai/types";
 import { loadCompetencyChoices } from "@/lib/contentEngine/retrieval";
 import { checkCost, recordCost } from "@/lib/contentIntelligence/conversation";
-import { isUsable, readSlots, STAGE_LIMITS, type Stage } from "@/lib/contentStudio/stages";
+import { isUsable, readSlots, STAGE_LIMITS, STAGE_MAX_TOKENS, type Stage } from "@/lib/contentStudio/stages";
 import { blocking, voiceCheck, estimateSeconds, SECONDS_MAX } from "@/lib/contentStudio/voiceCheck";
 
 // Running a stage.
@@ -62,6 +62,18 @@ async function currentScript(conversationId: string): Promise<{ script: string; 
   return chosen ? { script: chosen.content, id: null } : null;
 }
 
+/**
+ * What this piece points people to, if anything.
+ *
+ * Not a catalogue and not a setting. Most scripts sell nothing, and the offer
+ * changes with who is watching — pointing married women at a dating course
+ * because it is the one on file would be worse than ending clean.
+ */
+function offerText(c: Conversation): string {
+  const offer = (c.brief as { offer?: string })?.offer?.trim();
+  return offer || "Nothing. End on the insight and don't sell anything.";
+}
+
 /** Plain sentences, so the model is never handed a JSON blob to interpret. */
 function briefText(brief: Record<string, unknown>): string {
   const entries = Object.entries(brief).filter(([, v]) => v != null && v !== "");
@@ -116,6 +128,7 @@ async function variablesFor(stage: Stage, c: Conversation): Promise<Record<strin
     return {
       source: sourceBlock(c),
       topic: c.topic?.trim() || "(none)",
+      offer: offerText(c),
       phases: fw.phases,
       competencies: fw.competencies,
     };
@@ -135,7 +148,7 @@ async function variablesFor(stage: Stage, c: Conversation): Promise<Record<strin
   if (!body) throw new ScriptError("Pick a body first.", 409);
 
   if (stage === "close") {
-    return { brief: briefText(c.brief), hook: hookText, body: body.content };
+    return { brief: briefText(c.brief), hook: hookText, body: body.content, offer: offerText(c) };
   }
 
   const [resolution, cta] = await Promise.all([
@@ -192,7 +205,8 @@ export async function runStage(input: {
       const res = await provider.generate({
         system: prompt.system, user: prompt.user,
         schema: tpl!.output_schema as object,
-        model: settings.model, maxTokens: settings.output_limit,
+        model: settings.model,
+        maxTokens: STAGE_MAX_TOKENS[input.stage] ?? settings.output_limit,
         timeoutSeconds: settings.timeout_seconds,
       });
       const usd = estimateCost(res.inputTokens, res.outputTokens);
