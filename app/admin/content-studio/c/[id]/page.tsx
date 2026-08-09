@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { AXES } from "@/lib/contentStudio/directions";
 
 // Building a script.
 //
@@ -24,7 +25,7 @@ interface Script {
   review: { concerns?: string[] } & Record<string, unknown>;
 }
 interface Project {
-  conversation: { id: string; source_text: string | null; source_url: string | null; topic: string | null; brief: { offer?: string } };
+  conversation: { id: string; source_text: string | null; source_url: string | null; topic: string | null; brief: Record<string, string | undefined> };
   rehearsal: boolean;
   variations: Option[];
   script: Script | null;
@@ -121,6 +122,29 @@ export default function ScriptBuilder() {
         <input value={offer} onChange={(e) => setOffer(e.target.value)}
           placeholder="Pointing them anywhere? Leave it empty and it just ends."
           className="mt-2 w-full rounded-lg border border-slate-300 p-2 text-sm" />
+
+        <div className="mt-5 space-y-3">
+          {AXES.map((axis) => {
+            const current = p!.conversation.brief?.[axis.key] ?? "";
+            return (
+              <div key={axis.key} className="flex flex-wrap items-baseline gap-2">
+                <span className="w-24 shrink-0 text-xs uppercase tracking-wide text-slate-400">{axis.label}</span>
+                {axis.options.map((o) => {
+                  const on = current === o.value;
+                  return (
+                    <button key={o.value || "any"} disabled={busy !== null}
+                      className={`rounded-full border px-3 py-1 text-sm transition disabled:opacity-40 ${on
+                        ? "border-slate-800 bg-slate-800 text-white"
+                        : "border-slate-300 text-slate-600 hover:border-slate-500"}`}
+                      onClick={() => void post({ action: "source", [axis.key]: o.value }, axis.key)}>
+                      {o.label}
+                    </button>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
         <div className="mt-3 flex items-center gap-3">
           <button
             className="rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:border-slate-500"

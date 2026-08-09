@@ -6,6 +6,7 @@ import { estimateCost } from "@/lib/ai/types";
 import { loadCompetencyChoices } from "@/lib/contentEngine/retrieval";
 import { checkCost, recordCost } from "@/lib/contentIntelligence/conversation";
 import { CONTENT_STUDIO_SURFACE, isUsable, readSlots, STAGE_LIMITS, STAGE_MAX_TOKENS, type Stage } from "@/lib/contentStudio/stages";
+import { directionText } from "@/lib/contentStudio/directions";
 import { blocking, voiceCheck, estimateSeconds, worthTightening } from "@/lib/contentStudio/voiceCheck";
 
 // Running a stage.
@@ -87,8 +88,11 @@ function offerText(c: Conversation): string {
 }
 
 /** Plain sentences, so the model is never handed a JSON blob to interpret. */
+const NOT_BRIEF = new Set(["offer", "form", "tone", "opening"]);
+
 function briefText(brief: Record<string, unknown>): string {
-  const entries = Object.entries(brief).filter(([, v]) => v != null && v !== "");
+  const entries = Object.entries(brief)
+    .filter(([k, v]) => !NOT_BRIEF.has(k) && v != null && v !== "");
   if (!entries.length) return "(not established yet)";
   return entries
     .map(([k, v]) => `${k.replace(/_/g, " ")}: ${Array.isArray(v) ? v.join(", ") : String(v)}`)
@@ -143,6 +147,7 @@ async function variablesFor(stage: Stage, c: Conversation): Promise<Record<strin
       source: sourceBlock(c),
       topic: c.topic?.trim() || "(none)",
       offer: offerText(c),
+      direction: directionText(c.brief ?? {}),
       phases: fw.phases,
       competencies: fw.competencies,
     };
@@ -155,7 +160,10 @@ async function variablesFor(stage: Stage, c: Conversation): Promise<Record<strin
     : hook.content;
 
   if (stage === "bodies") {
-    return { source: sourceBlock(c), brief: briefText(c.brief), hook: hookText };
+    return {
+      source: sourceBlock(c), brief: briefText(c.brief), hook: hookText,
+      direction: directionText(c.brief ?? {}),
+    };
   }
 
   const body = await selectedOption(c.id, "body");

@@ -252,6 +252,9 @@ Her note on it:
 What this one points people to:
 {{offer}}
 
+What she's asked for:
+{{direction}}
+
 Phases and their developmental tasks (use only these):
 {{phases}}
 
@@ -305,6 +308,9 @@ Her note on it:
 What this one points people to:
 {{offer}}
 
+What she's asked for:
+{{direction}}
+
 Phases and their developmental tasks (use only these):
 {{phases}}
 
@@ -325,6 +331,9 @@ The brief:
 
 The hook she picked, which is now fixed:
 {{hook}}
+
+What she's asked for:
+{{direction}}
 
 Fill body_1 through body_5. Each one teaches the same lesson a different way. Do not repeat the hook at the top of them.
 

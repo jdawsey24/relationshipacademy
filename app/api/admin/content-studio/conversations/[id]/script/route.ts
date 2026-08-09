@@ -8,6 +8,7 @@ import { audit } from "@/lib/audit";
 import { sanitizeUntrusted } from "@/lib/contentEngine/normalize";
 import { chooseOption, editOption, readProject, runStage, ScriptError } from "@/lib/contentStudio/script";
 import { STAGES, type Stage } from "@/lib/contentStudio/stages";
+import { isValidChoice } from "@/lib/contentStudio/directions";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -38,6 +39,7 @@ export async function POST(request: Request, { params }: Params) {
     on?: boolean;
     stage?: string; option_id?: string; content?: string;
     source_text?: string; source_url?: string; topic?: string; offer?: string;
+    form?: string; tone?: string; opening?: string;
   };
   try { body = await request.json(); }
   catch { return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 }); }
@@ -48,29 +50,50 @@ export async function POST(request: Request, { params }: Params) {
   try {
     switch (body.action) {
       case "source": {
-        // What she pasted is untrusted. Sanitised before it is ever stored, and
-        // delimited again when it reaches the model.
-        const clean = body.source_text ? sanitizeUntrusted(body.source_text).text : null;
+        // PARTIAL. A field that was not sent is left alone.
+        //
+        // This handler also takes the shape and tone chips, and it used to write
+        // every column on every call, so choosing a tone would have wiped the
+        // pasted clip, the link and the note along with it.
+        const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
 
-        // The offer rides on the brief rather than its own column. It is not a
-        // catalogue entry, it is a note about this one script, and most scripts
-        // do not have one.
+        if (body.source_text !== undefined) {
+          // Pasted text is untrusted. Sanitised before storage, delimited again
+          // when it reaches the model.
+          patch.source_text = body.source_text.trim() ? sanitizeUntrusted(body.source_text).text : null;
+        }
+        if (body.source_url !== undefined) patch.source_url = body.source_url.trim() || null;
+        if (body.topic !== undefined) patch.topic = body.topic.trim() || null;
+
         const { data: existing } = await s.from("ci_conversations")
-          .select("brief").eq("id", id).maybeSingle();
-        const brief = { ...((existing as { brief?: Record<string, unknown> } | null)?.brief ?? {}) };
+          .select("brief, title, topic, source_text").eq("id", id).maybeSingle();
+        const row = existing as {
+          brief?: Record<string, unknown>; title: string | null;
+          topic: string | null; source_text: string | null;
+        } | null;
+
+        // The offer and the chips ride on the brief. Not a catalogue, not
+        // settings — notes about this one script.
+        const brief = { ...(row?.brief ?? {}) };
         if (body.offer !== undefined) {
           if (body.offer.trim()) brief.offer = body.offer.trim();
           else delete brief.offer;
         }
+        for (const axis of ["form", "tone", "opening"] as const) {
+          const v = body[axis];
+          if (v === undefined) continue;
+          if (!isValidChoice(axis, v)) {
+            return NextResponse.json({ error: `Unknown ${axis}.` }, { status: 400 });
+          }
+          if (v) brief[axis] = v; else delete brief[axis];
+        }
+        patch.brief = brief;
 
-        await s.from("ci_conversations").update({
-          brief,
-          source_text: clean,
-          source_url: body.source_url?.trim() || null,
-          topic: body.topic?.trim() || null,
-          title: (body.topic?.trim() || clean || "").slice(0, 80) || null,
-          updated_at: new Date().toISOString(),
-        }).eq("id", id);
+        // Only name it from what it is now, and never blank an existing name.
+        const name = (patch.topic ?? row?.topic ?? patch.source_text ?? row?.source_text ?? "") as string;
+        if (name.trim()) patch.title = name.trim().slice(0, 80);
+
+        await s.from("ci_conversations").update(patch).eq("id", id);
         break;
       }
 
