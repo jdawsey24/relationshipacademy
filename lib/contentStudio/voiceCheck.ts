@@ -78,6 +78,19 @@ function repeatedStem(text: string): { detail: string; device: boolean } | null 
   return null;
 }
 
+/**
+ * Is this the satire form?
+ *
+ * A run of numbered items where most carry the "unless you want" construction.
+ * Detected rather than declared, because the model does not tell us which form
+ * it picked and she should not have to.
+ */
+function satireItems(text: string): { items: string[]; isSatire: boolean } {
+  const items = text.split("\n").map((l) => l.trim()).filter((l) => /^#?\d+[.)]?\s/.test(l));
+  const withUnless = items.filter((l) => /\bunless\b/i.test(l)).length;
+  return { items, isSatire: items.length >= 6 && withUnless >= items.length / 2 };
+}
+
 /** Spoken delivery, roughly. Used only for the finished script. */
 export function estimateSeconds(text: string): number {
   const words = text.trim().split(/\s+/).filter(Boolean).length;
@@ -141,7 +154,23 @@ export function voiceCheck(kind: string, text: string): VoiceFinding[] {
     }
   }
 
-  if (kind === "script") {
+  const satire = satireItems(t);
+
+  // In the satire form the sameness is the joke, and she was explicit: not
+  // nine, not one that drops the "unless". One item out of shape reads as a
+  // mistake rather than a bit.
+  if (satire.isSatire) {
+    const broken = satire.items.filter((l) => !/\bunless\b/i.test(l));
+    if (broken.length) {
+      out.push({
+        rule: "satire_shape",
+        detail: `${broken.length} of ${satire.items.length} items drop the "unless": ${broken[0].slice(0, 60)}…`,
+        blocking: true,
+      });
+    }
+  }
+
+  if (kind === "script" && !satire.isSatire) {
     const seconds = estimateSeconds(t);
     if (seconds < SECONDS_MIN || seconds > SECONDS_MAX) {
       // Not blocking. She may want a longer piece, and regenerating a good

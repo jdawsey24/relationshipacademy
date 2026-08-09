@@ -114,33 +114,106 @@ Ways in, again a palette:
 
 ### Satire
 
-One of her forms, and the only one where the rules above invert. It gives the
-worst possible advice with a straight face and lets the consequence do the
-teaching.
+One of her forms, and the only one with a fixed layout. Follow the skeleton
+exactly. Do not improve it, compress it, or make the construction "vary for
+interest" — the sameness is what makes it work.
 
-    Want a peaceful marriage? Easy. Just don't give your spouse reasons to
-    lose their peace.
+It gives the worst possible advice with a straight face and lets the
+consequence do the teaching.
 
-    Don't cheat on your spouse… unless you want them wondering where you are
-    every time you leave the house.
+**The skeleton, in order:**
 
-    Don't lie… unless you want them questioning everything you say.
+1. A title, phrased as real advice, then the disclaimer in parentheses.
+   `How to Have a Stress-Free Marriage`
+   `(Terrible advice... please don't follow it.)`
+2. The question. `Want a peaceful marriage?`
+3. `Easy.`
+4. The premise in one line. `Just don't give your spouse reasons to lose their peace.`
+5. `For example...`
+6. **Ten numbered items. Every single one in this exact construction:**
+   `#1 Don't [behaviour]... unless you want [the consequence].`
+   Not nine, not a mix of shapes, not one that drops the "unless." Three
+   ellipsis dots, never a dash. The behaviour is short. The consequence is
+   specific and lands as something she has actually watched happen.
+7. `And whatever you do...` immediately before the tenth.
+8. `Now...` then `If you don't want [the thing]...` then `Go ahead.`
+9. The behaviours again, stripped bare, one per line, no numbers, no
+   consequences. `Cheat.` `Lie.` `Hide things.` `Break promises.` The rhythm
+   speeds up here and the joke starts to sting.
+10. `Then act surprised when [the consequence].`
+11. `The truth is...` and two plain sentences naming the real pattern. This is
+    where the frame breaks and it is not optional.
+12. A direct question to the viewer, on its own line.
+13. One line on why this is hard.
+14. The offer, if one was supplied.
 
-How it works:
-- **The consequence is the lesson.** "Unless you want X" is where the teaching
-  lives. Nobody is being told what to do, so nobody gets defensive.
-- **Repetition is the engine.** The same construction ten times is what makes it
-  land. This is the one place a repeated stem is right, and it only works if it
-  is genuinely relentless. Three is not a bit; ten is.
-- **Strip it near the end.** After the list, drop the numbering and say the
-  behaviours bare: "Cheat. Lie. Hide things. Break promises." The rhythm speeds
-  up and the joke starts to sting.
-- **Then break frame.** "The truth is…" and say the real thing plainly. This is
-  not optional. A licensed therapist publishing sincere-sounding terrible advice
-  that never lands is a screenshot waiting to happen, and the frame has to break
-  inside the video, not in the caption.
-- Flag it up top too, the way she does: *terrible advice, please don't follow
-  it.*
+**Her example, which is the reference:**
+
+    How to Have a Stress-Free Marriage
+    (Terrible advice... please don't follow it.)
+
+    Want a peaceful marriage?
+
+    Easy.
+
+    Just don't give your spouse reasons to lose their peace.
+
+    For example...
+
+    #1 Don't cheat on your spouse... unless you want them wondering where you
+    are every time you leave the house.
+
+    #2 Don't lie to your spouse... unless you want them questioning everything
+    you say.
+
+    #3 Don't keep secrets... unless you want them wondering what else you're
+    hiding.
+
+    ...
+
+    And whatever you do...
+
+    #10 Don't take your spouse for granted... unless you're okay realizing what
+    you had after it's gone.
+
+    Now...
+
+    If you don't want peace in your relationship...
+
+    Go ahead.
+
+    Cheat.
+
+    Lie.
+
+    Hide things.
+
+    Break promises.
+
+    Ignore your spouse.
+
+    Take them for granted.
+
+    Then act surprised when they don't trust you.
+
+    The truth is...
+
+    Most relationship problems don't come out of nowhere.
+
+    They're often the result of habits we've repeated for so long that we don't
+    even notice them anymore.
+
+    Which of these habits could be getting in the way of the relationship you
+    want?
+
+    The hardest habits to change are usually the ones we don't realize we have.
+
+    Take the free Relationship Snapshot and uncover your relationship blind
+    spots.
+
+**This one runs long, and that is correct.** Ten items will not fit in
+forty-five to seventy-five seconds. Do not cut items to hit the clock and do not
+shorten the consequences. The length rule does not apply to this form.
 
 Satire targets the behaviour, never the person doing it. "Don't ignore their
 feelings" is aimed at a habit. Aim the same line at a group and it stops being

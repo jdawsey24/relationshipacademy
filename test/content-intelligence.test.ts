@@ -695,9 +695,57 @@ test("the same repetition in running prose still blocks", () => {
   assert.ok(blocking(voiceCheck("body", prose)).some((f) => f.rule === "repeated_stem"));
 });
 
-test("satire has to break frame before the end", () => {
-  const voice = read("content/contentStudio/writing-system.md");
-  assert.match(voice, /Then break frame/);
-  assert.match(voice, /the frame has to break\s*\n?inside the video, not in the caption/);
-  assert.match(voice, /targets the behaviour, never the person/);
+test("the satire layout is given exactly, not described", () => {
+  const voice = read("content/contentStudio/writing-system.md").replace(/\s+/g, " ");
+  // She asked for her layout, not an interpretation of it. Every beat is named.
+  for (const beat of [
+    "Terrible advice... please don't follow it.",
+    "For example...",
+    "unless you want [the consequence]",
+    "And whatever you do...",
+    "Go ahead.",
+    "Then act surprised when",
+    "The truth is...",
+  ]) {
+    assert.ok(voice.includes(beat.replace(/\s+/g, " ")), `missing beat: ${beat}`);
+  }
+  assert.match(voice, /Ten numbered items/);
+  assert.match(voice, /Not nine, not a mix of shapes/);
+});
+
+test("the frame breaks inside the video, and satire aims at behaviour", () => {
+  const voice = read("content/contentStudio/writing-system.md").replace(/\s+/g, " ");
+  assert.ok(voice.includes("where the frame breaks and it is not optional"));
+  assert.ok(voice.includes("targets the behaviour, never the person"));
+});
+
+test("satire is not cut to fit the clock", () => {
+  const voice = read("content/contentStudio/writing-system.md").replace(/\s+/g, " ");
+  assert.ok(voice.includes("The length rule does not apply to this form"));
+});
+
+const SATIRE_ITEMS = (unless: number) =>
+  ["How to Have a Stress-Free Marriage", "(Terrible advice... please don't follow it.)", ""]
+    .concat(Array.from({ length: 8 }, (_, i) =>
+      i < unless
+        ? `#${i + 1} Don't do the thing... unless you want the consequence to follow you around.`
+        : `#${i + 1} Don't do the thing, it's just bad for everybody involved here.`))
+    .concat(["", "The truth is...", "Habits we've repeated so long we don't notice them."])
+    .join("\n");
+
+test("in satire, one item out of shape reads as a mistake", () => {
+  const f = voiceCheck("script", SATIRE_ITEMS(7));
+  assert.ok(blocking(f).some((x) => x.rule === "satire_shape"), "seven of eight is not the bit");
+});
+
+test("all of them in shape passes", () => {
+  assert.equal(blocking(voiceCheck("script", SATIRE_ITEMS(8))).length, 0);
+});
+
+test("satire is allowed to run long", () => {
+  // Ten items will not fit in seventy-five seconds and should not be cut to.
+  const long = SATIRE_ITEMS(8) + "\n" + "word ".repeat(300);
+  assert.equal(voiceCheck("script", long).filter((x) => x.rule === "length").length, 0);
+  assert.ok(voiceCheck("script", "word ".repeat(300)).some((x) => x.rule === "length"),
+    "a non-satire script that long is still flagged");
 });

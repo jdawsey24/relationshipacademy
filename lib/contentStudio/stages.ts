@@ -273,7 +273,10 @@ opening, a different route through the middle, a different place it lands. One
 of them should have no list in it at all and get there through the story.
 
 Forty-five to seventy-five seconds each, which is about one hundred and twenty
-to one hundred and ninety words. Count as you go. Do not run long.`,
+to one hundred and ninety words. Count as you go. Do not run long.
+
+The exception is satire. If she asked for satire, follow that skeleton exactly,
+all ten items, and let it run as long as it runs.`,
 
   tighten: `The script:
 {{script}}
