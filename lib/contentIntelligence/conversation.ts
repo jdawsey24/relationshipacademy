@@ -89,12 +89,15 @@ export async function createConversation(input: {
   entryPath?: "idea" | "opportunity";
   keywordId?: string | null;
   title?: string | null;
+  /** What she typed, kept where the script stages actually read it. */
+  topic?: string | null;
 }) {
   const s = getSupabaseAdminClient();
   const { data, error } = await s.from("ci_conversations").insert({
     entry_path: input.entryPath ?? "idea",
     keyword_id: input.keywordId ?? null,
     title: input.title ?? null,
+    topic: input.topic ?? null,
     created_by: input.actor,
   }).select("id").maybeSingle();
   if (error) throw new Error(error.message);

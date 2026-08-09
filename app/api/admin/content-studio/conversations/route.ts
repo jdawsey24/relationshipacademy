@@ -49,9 +49,13 @@ export async function POST(request: Request) {
     seedText = k.primary_phrase;
   }
 
+  // The thought goes where the script stages read it, not only into the title.
+  // Typed on the home screen and then invisible in the workspace, it reads as
+  // the Studio having forgotten what she just said.
   const conversationId = await createConversation({
     actor, entryPath: fromKeyword ? "opportunity" : "idea",
     keywordId: body.keyword_id ?? null, title,
+    topic: fromKeyword ? seedText : sanitizeUntrusted(seedText).text,
   });
 
   // Pasted text is untrusted. Sanitised before storage, never treated as an

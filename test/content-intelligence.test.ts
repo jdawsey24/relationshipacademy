@@ -820,3 +820,17 @@ test("rehearsal is per project, so it cannot be left on globally", () => {
   assert.match(read("supabase/migrations/0071_rehearsal_mode.sql"), /add column if not exists rehearsal boolean/);
   assert.match(read("lib/contentStudio/script.ts"), /getProvider\(c\.rehearsal \? "rehearsal" : settings\.provider\)/);
 });
+
+test("running a stage does not delete what she put in the brief", () => {
+  // The offer lives on the brief. Replacing it wholesale with the model's brief
+  // deleted it, so the next run of the same project sold nothing.
+  const src = read("lib/contentStudio/script.ts");
+  assert.match(src, /brief: \{ \.\.\.\(c\.brief \?\? \{\}\), \.\.\.\(out\.brief as Record<string, unknown>\) \}/);
+});
+
+test("a thought typed on the home screen reaches the stages", () => {
+  // It became the title and a message row, and the workspace read neither, so
+  // her own words vanished between one screen and the next.
+  assert.match(read("app/api/admin/content-studio/conversations/route.ts"), /topic: fromKeyword \? seedText :/);
+  assert.match(read("lib/contentStudio/script.ts"), /if \(!c\.topic\?\.trim\(\)\)/);
+});

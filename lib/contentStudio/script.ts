@@ -37,7 +37,19 @@ async function loadConversation(id: string): Promise<Conversation> {
   const { data } = await s.from("ci_conversations")
     .select("id, source_text, source_url, topic, brief, rehearsal").eq("id", id).maybeSingle();
   if (!data) throw new ScriptError("That project no longer exists.", 404);
-  return data as unknown as Conversation;
+  const c = data as unknown as Conversation;
+
+  // Projects started before the thought was stored on the row still have it in
+  // their first message. Recover it rather than showing her an empty box where
+  // her own words used to be.
+  if (!c.topic?.trim()) {
+    const { data: first } = await s.from("ci_messages")
+      .select("content").eq("conversation_id", id).eq("role", "owner")
+      .order("seq").limit(1).maybeSingle();
+    const said = (first as { content: string } | null)?.content?.trim();
+    if (said) c.topic = said;
+  }
+  return c;
 }
 
 async function selectedOption(conversationId: string, stage: string) {
@@ -305,7 +317,13 @@ export async function runStage(input: {
   // The brief is written once, at the hook stage, and carried. Later stages
   // read it and cannot re-decide what the video is about.
   if ((input.stage === "hooks" || input.stage === "variations") && out.brief) {
-    await s.from("ci_conversations").update({ brief: out.brief }).eq("id", input.conversationId);
+    // MERGE. Replacing the brief wholesale threw away what she put there — the
+    // offer lives on this object, and running the stage silently deleted it, so
+    // the next run of the same project sold nothing and the field looked empty
+    // on a project she had filled in.
+    await s.from("ci_conversations").update({
+      brief: { ...(c.brief ?? {}), ...(out.brief as Record<string, unknown>) },
+    }).eq("id", input.conversationId);
   }
 
   if (WRITES_SCRIPT.includes(input.stage)) {
