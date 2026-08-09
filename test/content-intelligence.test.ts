@@ -950,7 +950,8 @@ test("the phrase is offered as language, not as a keyword to stuff", () => {
     PLATFORMS.find((p) => p.value === "tiktok")!,
     [{ primary_phrase: "mixed signals", audience_doorway: "Their words and actions do not match.",
        rlc_interpretation: null, opening_use: "Use it in the first sentence.", supporting_terms: ["inconsistency"],
-       best_format: "Reaction / stitch", cta_fit: "Snapshot", priority_tier: "Tier 1", opportunity_score: 100, rank: 1 }],
+       best_format: "Reaction / stitch", cta_fit: "Snapshot", priority_tier: "Tier 1",
+       opportunity_score: 100, rank: 1, fits: true }],
     null,
   );
   assert.match(brief, /because it is how people describe this, not because it is a keyword/);
@@ -971,4 +972,37 @@ test("a query failure is not a missing row", () => {
   // Reading a column that did not exist yet reported "That project no longer
   // exists", which sends you looking for a deleted record.
   assert.match(read("lib/contentStudio/script.ts"), /if \(error\) throw new ScriptError\(`Couldn't load the project/);
+});
+
+test("a top phrase is not a match, and the difference is shown", () => {
+  const base = { rlc_interpretation: null, opening_use: null, best_format: null,
+                 cta_fit: null, priority_tier: null, opportunity_score: 100, rank: 1,
+                 audience_doorway: null, supporting_terms: [] };
+  // LinkedIn's sheet is workplace content. A dating idea has nothing there, and
+  // sorting alone would present the top three as recommendations.
+  const brief = platformBrief(
+    PLATFORMS.find((p) => p.value === "linkedin")!,
+    [{ ...base, primary_phrase: "employee retention", fits: false }],
+    null,
+  );
+  assert.match(brief, /Nothing in the phrase list for this platform lines up/);
+  assert.ok(!brief.includes("Phrase to land"), "a non-match must not be handed over as the phrase");
+});
+
+test("her own choice beats the matcher", () => {
+  const base = { rlc_interpretation: null, opening_use: null, best_format: null,
+                 cta_fit: null, priority_tier: null, opportunity_score: 100, rank: 1,
+                 audience_doorway: null, supporting_terms: [] };
+  const brief = platformBrief(
+    PLATFORMS.find((p) => p.value === "threads")!,
+    [{ ...base, primary_phrase: "self-trust", fits: false }],
+    "self-trust",
+  );
+  assert.match(brief, /Phrase to land: "self-trust"/);
+});
+
+test("the screen says when nothing fits rather than implying it does", () => {
+  const page = read("app/admin/content-studio/c/[id]/page.tsx");
+  assert.match(page, /Nothing here fits this idea/);
+  assert.match(page, /Close by, but not a match/);
 });

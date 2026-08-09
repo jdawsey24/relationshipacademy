@@ -25,6 +25,8 @@ interface Option {
 interface Keyword {
   primary_phrase: string; audience_doorway: string | null;
   best_format: string | null; cta_fit: string | null;
+  /** False when it's a top phrase there rather than a fit for this idea. */
+  fits: boolean;
 }
 interface Script {
   id: string | null; script: string; hook_format: string | null;
@@ -235,30 +237,46 @@ export default function ScriptBuilder() {
           {platform && (
             <p className="mt-2 text-sm text-slate-500">
               {PLATFORMS.find((x) => x.value === platform)?.note}
-              {!spoken && ". Written, so no shoot instructions."}
+              {!spoken && ". No shoot instructions, no second count."}
             </p>
           )}
 
-          {p.keywords.length > 0 && (
-            <>
-              <h3 className="mb-2 mt-6 text-sm uppercase tracking-wide text-slate-400">Phrases that work there</h3>
-              <div className="space-y-2">
-                {p.keywords.map((k) => {
-                  const on = keyword === k.primary_phrase;
-                  return (
-                    <button key={k.primary_phrase} disabled={busy !== null}
-                      className={`block w-full rounded-lg border p-3 text-left transition disabled:opacity-40 ${on
-                        ? "border-slate-800 bg-slate-50"
-                        : "border-slate-200 hover:border-slate-400"}`}
-                      onClick={() => void post({ action: "source", keyword: on ? "" : k.primary_phrase }, k.primary_phrase)}>
-                      <span className="text-[15px] text-slate-900">{k.primary_phrase}</span>
-                      {k.audience_doorway && <span className="block text-sm text-slate-500">{k.audience_doorway}</span>}
-                    </button>
-                  );
-                })}
-              </div>
-            </>
-          )}
+          {p.keywords.length > 0 && (() => {
+            const fitting = p.keywords.filter((k) => k.fits);
+            const rest = p.keywords.filter((k) => !k.fits);
+            const row = (k: Keyword, faded: boolean) => {
+              const on = keyword === k.primary_phrase;
+              return (
+                <button key={k.primary_phrase} disabled={busy !== null}
+                  className={`block w-full rounded-lg border p-3 text-left transition disabled:opacity-40 ${on
+                    ? "border-slate-800 bg-slate-50"
+                    : `border-slate-200 hover:border-slate-400 ${faded ? "opacity-60" : ""}`}`}
+                  onClick={() => void post({ action: "source", keyword: on ? "" : k.primary_phrase }, k.primary_phrase)}>
+                  <span className="text-[15px] text-slate-900">{k.primary_phrase}</span>
+                  {k.audience_doorway && <span className="block text-sm text-slate-500">{k.audience_doorway}</span>}
+                </button>
+              );
+            };
+            return (
+              <>
+                <h3 className="mb-2 mt-6 text-sm uppercase tracking-wide text-slate-400">
+                  {fitting.length ? "Phrases that fit this" : "Nothing here fits this idea"}
+                </h3>
+                <p className="mb-3 text-sm text-slate-500">
+                  {fitting.length
+                    ? "Matched on wording, so read them yourself. Pick one and I'll build around it."
+                    : "These are the strongest phrases on that platform, but none of them line up with what you're saying. Worth a look before you commit to posting it there."}
+                </p>
+                <div className="space-y-2">
+                  {fitting.map((k) => row(k, false))}
+                  {fitting.length > 0 && rest.length > 0 && (
+                    <p className="pt-2 text-xs uppercase tracking-wide text-slate-400">Close by, but not a match</p>
+                  )}
+                  {rest.map((k) => row(k, true))}
+                </div>
+              </>
+            );
+          })()}
 
           <h2 className="mt-10 text-lg font-medium text-slate-900">How you want it</h2>
           <div className="mt-3 space-y-3">

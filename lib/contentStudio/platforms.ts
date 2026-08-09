@@ -88,8 +88,48 @@ export function scoreKeyword(idea: string, k: Keyword): number {
   return score + (k.opportunity_score ?? 0) / 1000;
 }
 
-/** The phrases worth showing her for this platform, best fit first. */
-export async function matchKeywords(platform: string, idea: string, limit = 5): Promise<Keyword[]> {
+/**
+ * Does this phrase actually have anything to do with the idea?
+ *
+ * A score threshold alone was not enough. One shared word was carrying it:
+ * "should I stay or leave" came back as a fit for a stay-single satire because
+ * both contain "stay", and a LinkedIn phrase matched on "self" appearing inside
+ * "self-awareness". So a fit needs a word in the PHRASE itself, or at least two
+ * words across everything, rather than one incidental collision.
+ *
+ * This is lexical and it always will be. It cannot tell "stay single" from
+ * "should I stay", which is exactly why the list is a shortlist for her to
+ * choose from rather than a recommendation, and why her choice always wins.
+ */
+function fitsIdea(idea: string, k: Keyword): boolean {
+  const want = new Set(words(idea));
+  if (!want.size) return false;
+  const shared = (text: string) => words(text).filter((w) => want.has(w));
+
+  const inPhrase = new Set(shared(k.primary_phrase)).size;
+  const across = new Set([
+    ...shared(k.primary_phrase),
+    ...shared(k.audience_doorway ?? ""),
+    ...shared((k.supporting_terms ?? []).join(" ")),
+  ]).size;
+
+  return inPhrase >= 1 || across >= 2;
+}
+
+export interface Match extends Keyword {
+  /** False when this is a top-performing phrase there, not a fit for this idea. */
+  fits: boolean;
+}
+
+/**
+ * Phrases for this platform, best first, each honest about whether it fits.
+ *
+ * A dating idea scored against LinkedIn returns team resilience and employee
+ * retention, because that sheet is workplace content. Sorted by score alone
+ * those arrive looking like recommendations. They are labelled instead, and only
+ * a real fit is handed to the writer.
+ */
+export async function matchKeywords(platform: string, idea: string, limit = 5): Promise<Match[]> {
   const s = getSupabaseAdminClient();
   const { data } = await s.from("ce_platform_keywords")
     .select("primary_phrase, audience_doorway, rlc_interpretation, opening_use, supporting_terms, best_format, cta_fit, priority_tier, opportunity_score, rank")
@@ -99,7 +139,7 @@ export async function matchKeywords(platform: string, idea: string, limit = 5): 
     .map((k) => ({ k, score: scoreKeyword(idea, k) }))
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
-    .map((x) => x.k);
+    .map((x) => ({ ...x.k, fits: fitsIdea(idea, x.k) }));
 }
 
 /**
@@ -108,7 +148,7 @@ export async function matchKeywords(platform: string, idea: string, limit = 5): 
  * Includes the chosen phrase's own opening guidance when there is one, because
  * "use this in the first sentence" is the whole point of having the sheet.
  */
-export function platformBrief(platform: Platform | null, keywords: Keyword[], chosen?: string | null): string {
+export function platformBrief(platform: Platform | null, keywords: Match[], chosen?: string | null): string {
   if (!platform) {
     return "Not decided. Write it as a spoken script to camera, which is the safe default.";
   }
@@ -121,7 +161,20 @@ export function platformBrief(platform: Platform | null, keywords: Keyword[], ch
         "\"stitch this clip\". It is a written post, and it has to work in silence on a screen.",
   ];
 
-  const pick = keywords.find((k) => k.primary_phrase === chosen) ?? keywords[0];
+  // Her explicit choice wins even if the matcher rated it weak — she knows the
+  // sheet. Otherwise only a real fit is offered, because handing over a phrase
+  // that has nothing to do with the idea invites it to be worked in anyway.
+  const pick = keywords.find((k) => k.primary_phrase === chosen)
+    ?? keywords.find((k) => k.fits)
+    ?? null;
+
+  if (!pick) {
+    lines.push("");
+    lines.push(
+      "Nothing in the phrase list for this platform lines up with this idea, so there is no " +
+      "phrase to land. Write it in her words.",
+    );
+  }
   if (pick) {
     lines.push("");
     lines.push(`Phrase to land: "${pick.primary_phrase}"`);
