@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SectionLabel from "@/components/site/SectionLabel";
-import { EYES_OPEN } from "@/lib/eyesOpen";
+import { CLARITY } from "@/lib/datingWithClarity";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
 // Where Stripe returns after payment.
@@ -15,7 +15,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "You're enrolled — Dating With Your Eyes Open",
+  title: "You're enrolled — Dating With Clarity",
   robots: { index: false },
 };
 
@@ -57,17 +57,17 @@ export default async function EnrolledPage({
       )}
 
       <div className="mx-auto mt-10 max-w-md divide-y divide-midnight-navy/10 rounded-2xl border border-midnight-navy/10 bg-white text-left">
-        {EYES_OPEN.weeks.map((w, i) => (
+        {CLARITY.weeks.map((w, i) => (
           <div key={w.title} className="px-6 py-4">
             <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/50">Week {i + 1}</p>
             <p className="mt-1 font-display text-lg font-semibold text-midnight-navy">{w.title}</p>
-            <p className="font-body text-sm text-charcoal/60">{w.date} &middot; {EYES_OPEN.time} ET</p>
+            <p className="font-body text-sm text-charcoal/60">{w.date} &middot; {CLARITY.time} ET</p>
           </div>
         ))}
       </div>
 
       <p className="mt-10 font-body text-body text-charcoal/70">
-        Worth putting in your calendar now — all four run {EYES_OPEN.time} ET.
+        Worth putting in your calendar now — all four run {CLARITY.time} ET.
       </p>
       <Link
         href="/"

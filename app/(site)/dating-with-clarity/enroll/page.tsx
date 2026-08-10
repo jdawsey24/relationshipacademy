@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import SectionLabel from "@/components/site/SectionLabel";
-import EyesOpenCheckout from "@/components/site/EyesOpenCheckout";
-import { EYES_OPEN, seatsRemaining, enrolmentState } from "@/lib/eyesOpen";
+import ClarityCheckout from "@/components/site/ClarityCheckout";
+import { CLARITY, seatsRemaining, enrolmentState } from "@/lib/datingWithClarity";
 
 // The enrolment step. Deliberately thin: she has already read the sales page,
 // so this confirms what she is buying and takes the payment.
@@ -15,8 +15,8 @@ import { EYES_OPEN, seatsRemaining, enrolmentState } from "@/lib/eyesOpen";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Enroll — Dating With Your Eyes Open | Relationship Life Cycle™",
-  description: "Reserve your seat in the founding cohort of Dating With Your Eyes Open.",
+  title: "Enroll — Dating With Clarity | Relationship Life Cycle™",
+  description: "Reserve your seat in the founding cohort of Dating With Clarity.",
   robots: { index: false },   // a checkout step, not a landing page
 };
 
@@ -32,14 +32,14 @@ export default async function EnrollPage() {
           {state === "full" ? "All fifteen seats are taken" : "The September cohort has begun"}
         </h1>
         <p className="mx-auto mt-5 max-w-lg font-body text-lg leading-relaxed text-charcoal/75">
-          The series runs again on Thursday evenings in October. {EYES_OPEN.nextCohort.note} Leave
+          The series runs again on Thursday evenings in October. {CLARITY.nextCohort.note} Leave
           your email and you&apos;ll hear the dates first.
         </p>
         <Link
-          href="/dating-with-your-eyes-open#october"
+          href="/dating-with-clarity#october"
           className="mt-8 inline-flex min-h-[52px] items-center justify-center rounded-full bg-midnight-navy px-8 font-ui text-base font-medium text-white hover:bg-midnight-navy/90"
         >
-          Join the {EYES_OPEN.nextCohort.label} list
+          Join the {CLARITY.nextCohort.label} list
         </Link>
       </div>
     );
@@ -48,7 +48,7 @@ export default async function EnrollPage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-16 sm:py-24">
       <Link
-        href="/dating-with-your-eyes-open"
+        href="/dating-with-clarity"
         className="font-ui text-sm text-charcoal/50 hover:text-midnight-navy"
       >
         ← Back to the details
@@ -61,11 +61,11 @@ export default async function EnrollPage() {
 
       <dl className="mt-8 divide-y divide-midnight-navy/10 rounded-2xl border border-midnight-navy/10 bg-white">
         {[
-          ["Series", "Dating With Your Eyes Open"],
-          ["Dates", `${EYES_OPEN.datesLine} — four Thursdays`],
-          ["Time", `${EYES_OPEN.time} ET`],
+          ["Series", "Dating With Clarity"],
+          ["Dates", `${CLARITY.datesLine} — four Thursdays`],
+          ["Time", `${CLARITY.time} ET`],
           ["Replays", "Included"],
-          ["Tuition", EYES_OPEN.priceDisplay],
+          ["Tuition", CLARITY.priceDisplay],
         ].map(([k, v]) => (
           <div key={k} className="flex justify-between gap-6 px-6 py-4">
             <dt className="font-ui text-sm font-medium text-charcoal/60">{k}</dt>
@@ -75,16 +75,16 @@ export default async function EnrollPage() {
       </dl>
 
       <p className="mt-4 font-body text-sm text-charcoal/60">
-        {seats === 1 ? "One seat left." : `${seats} of ${EYES_OPEN.seats} seats left.`}
+        {seats === 1 ? "One seat left." : `${seats} of ${CLARITY.seats} seats left.`}
       </p>
 
-      <EyesOpenCheckout priceDisplay={EYES_OPEN.priceDisplay} />
+      <ClarityCheckout priceDisplay={CLARITY.priceDisplay} />
 
       <p className="mt-8 font-body text-xs leading-relaxed text-charcoal/50">
         By enrolling you agree to the{" "}
         <Link href="/terms" className="underline underline-offset-2 hover:text-midnight-navy">Terms</Link> and{" "}
         <Link href="/refund" className="underline underline-offset-2 hover:text-midnight-navy">Refund Policy</Link>.
-        Dating With Your Eyes Open is an educational program and is not therapy, coaching,
+        Dating With Clarity is an educational program and is not therapy, coaching,
         mental-health treatment, or a substitute for professional mental-health care.
       </p>
     </div>

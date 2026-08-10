@@ -10,7 +10,7 @@ import { composeReply, MAX_LENSES } from "@/lib/contentIntelligence/turn";
 import { estimateCost, INPUT_USD_PER_MTOK, OUTPUT_USD_PER_MTOK,
          CACHE_READ_USD_PER_MTOK, CACHE_WRITE_USD_PER_MTOK } from "@/lib/ai/types";
 import { voiceCheck, blocking, estimateSeconds, worthTightening } from "@/lib/contentStudio/voiceCheck";
-import { EYES_OPEN, enrolmentState } from "@/lib/eyesOpen";
+import { CLARITY, enrolmentState } from "@/lib/datingWithClarity";
 import { AXES, FORMS, directionText, isValidChoice } from "@/lib/contentStudio/directions";
 import { PLATFORMS, platformBrief, scoreKeyword } from "@/lib/contentStudio/platforms";
 import { STAGES, STAGE_LIMITS, STAGE_SCHEMAS, STAGE_TEMPLATES, HOOK_FORMATS,
@@ -534,7 +534,7 @@ test("real options pass", () => {
   assert.equal(isUsable("hook", "Whose job is it to handle your mama?"), true);
   assert.equal(isUsable("resolution", "Nobody's asking the man what he believes."), true);
   assert.equal(isUsable("cta",
-    "Comment EYES OPEN and I'll send you Dating With Your Eyes Open. It's not how to read him better. It's how to ask him."), true);
+    "Comment EYES OPEN and I'll send you Dating With Clarity. It's not how to read him better. It's how to ask him."), true);
 });
 
 test("a body has to be longer than a one-liner to count", () => {
@@ -1050,16 +1050,16 @@ test("the read step is not handed 155 competencies it may not name", () => {
 });
 
 // ---------------------------------------------------------------------------
-// Dating With Your Eyes Open — a live cohort has a cap and a date
+// Dating With Clarity — a live cohort has a cap and a date
 // ---------------------------------------------------------------------------
 
 test("the class dates really are Thursdays", () => {
   // Cheap to check, embarrassing to get wrong on a live sales page.
-  for (const w of EYES_OPEN.weeks) {
+  for (const w of CLARITY.weeks) {
     const d = new Date(`${w.date.replace(/^Thursday, /, "")}, 2026 12:00`);
     assert.equal(d.getDay(), 4, `${w.date} is not a Thursday`);
   }
-  assert.equal(EYES_OPEN.weeks.length, 4);
+  assert.equal(CLARITY.weeks.length, 4);
 });
 
 test("enrollment closes on the start date even with seats left", () => {
@@ -1074,7 +1074,7 @@ test("enrollment closes on the start date even with seats left", () => {
 });
 
 test("a held seat counts against the cap, an expired hold does not", () => {
-  const src = read("lib/eyesOpen.ts");
+  const src = read("lib/datingWithClarity.ts");
   // Both halves of the count, and the expiry applied in the query.
   assert.match(src, /\.eq\("status", "paid"\)/);
   assert.match(src, /\.eq\("status", "pending"\)[\s\S]{0,80}\.gt\("held_until"/);
@@ -1082,29 +1082,29 @@ test("a held seat counts against the cap, an expired hold does not", () => {
 });
 
 test("a full cohort offers October rather than a dead end", () => {
-  const page = read("app/(site)/dating-with-your-eyes-open/page.tsx");
-  assert.match(page, /Join the \{EYES_OPEN\.nextCohort\.label\} list/);
+  const page = read("app/(site)/dating-with-clarity/page.tsx");
+  assert.match(page, /Join the \{CLARITY\.nextCohort\.label\} list/);
   assert.match(page, /id="october"/);
   // And it collects an email rather than taking money for an undated class.
   assert.match(page, /LeadForm/);
   // The list collects an email; it never routes to checkout for an undated class.
-  assert.match(page, /source=\{EYES_OPEN\.nextCohort\.leadSource\}/);
+  assert.match(page, /source=\{CLARITY\.nextCohort\.leadSource\}/);
   assert.match(page, /href="#october"/);
 });
 
 test("nothing about seats or dates is baked into the page copy", () => {
   // Comments explain the rule and may quote it; the rule is about rendered copy.
-  const page = read("app/(site)/dating-with-your-eyes-open/page.tsx")
+  const page = read("app/(site)/dating-with-clarity/page.tsx")
     .split("\n").filter((l) => !/^\s*(\/\/|\*|\/\*)/.test(l)).join("\n");
-  assert.ok(!/\b15 (seats|women|participants)\b/.test(page), "seat count must come from EYES_OPEN");
-  assert.ok(!/September 3\b/.test(page.replace(/EYES_OPEN\.\w+/g, "")), "dates must come from EYES_OPEN");
+  assert.ok(!/\b15 (seats|women|participants)\b/.test(page), "seat count must come from CLARITY");
+  assert.ok(!/September 3\b/.test(page.replace(/CLARITY\.\w+/g, "")), "dates must come from CLARITY");
   assert.match(page, /export const dynamic = "force-dynamic"/);
 });
 
 test("the seat is held before Stripe, not after payment", () => {
   // Otherwise fifteen simultaneous buyers all see a seat and all pay for it.
-  const route = read("app/api/eyes-open/checkout/route.ts");
-  const holdAt = route.indexOf('.insert({ cohort: EYES_OPEN.cohort');
+  const route = read("app/api/dating-with-clarity/checkout/route.ts");
+  const holdAt = route.indexOf('.insert({ cohort: CLARITY.cohort');
   const stripeAt = route.indexOf("stripe.checkout.sessions.create");
   assert.ok(holdAt > 0 && stripeAt > holdAt, "the hold must be written before the session exists");
   // And re-checked afterwards, because two requests can pass the first check together.
@@ -1113,7 +1113,7 @@ test("the seat is held before Stripe, not after payment", () => {
 });
 
 test("a failed checkout gives the seat back instead of stranding it", () => {
-  const route = read("app/api/eyes-open/checkout/route.ts");
+  const route = read("app/api/dating-with-clarity/checkout/route.ts");
   for (const reason of ["no active price", "over capacity at hold time"]) {
     assert.ok(route.includes(reason), `no release path for: ${reason}`);
   }
@@ -1132,15 +1132,129 @@ test("only a settled payment takes a seat", () => {
 });
 
 test("the confirmation page waits for the webhook rather than assuming", () => {
-  const page = read("app/(site)/dating-with-your-eyes-open/enrolled/page.tsx");
+  const page = read("app/(site)/dating-with-clarity/enrolled/page.tsx");
   assert.match(page, /We're confirming your payment/);
   assert.match(page, /status === "paid"/);
 });
 
 test("the welcome email carries the dates and admits what it lacks", () => {
-  const mail = read("lib/email/eyesOpenWelcome.ts");
+  const mail = read("lib/email/clarityWelcome.ts");
   // Dates come from one place, so moving a class moves the email too.
-  assert.match(mail, /EYES_OPEN\.weeks\.map/);
+  assert.match(mail, /CLARITY\.weeks\.map/);
   // It must not promise a link it does not contain.
   assert.match(mail, /joining link will arrive/);
+});
+
+// ---------------------------------------------------------------------------
+// Dating With Clarity — two pages, two sequences, and nothing undecided in print
+// ---------------------------------------------------------------------------
+
+test("the waitlist page cannot take money and the sales page cannot collect a waitlist", () => {
+  // The whole reason they are separate pages. A waitlist that also sells is a
+  // sales page with a worse conversion rate; a sales page with a waitlist form
+  // on it gives an undecided buyer a free way out.
+  const waitlist = read("app/(site)/dating-with-clarity/waitlist/page.tsx");
+  for (const forbidden of ["ClarityCheckout", "priceDisplay", "priceUsd", "/enroll", "Reserve My Seat"]) {
+    assert.ok(!waitlist.includes(forbidden), `the waitlist page must not reference ${forbidden}`);
+  }
+  assert.match(waitlist, /No payment is required to join/);
+
+  // The sales page's only email capture is the October rollover, which exists
+  // solely for a cohort that is already full.
+  const sales = read("app/(site)/dating-with-clarity/page.tsx");
+  assert.ok(!sales.includes("ClarityWaitlistForm"), "the sales page must not host the priority waitlist");
+  const leadFormAt = sales.indexOf("<LeadForm");
+  const octoberAt = sales.indexOf('id="october"');
+  assert.ok(octoberAt > 0 && leadFormAt > octoberAt, "the only lead form on the sales page belongs to October");
+});
+
+test("exactly one of the two pages is the place to land, on any day of the launch", () => {
+  const { launchPhase, enrollmentIsPublic, CLARITY: C } = require("@/lib/datingWithClarity");
+  const day = (iso: string) => new Date(iso);
+  assert.equal(launchPhase(day("2026-08-12T12:00:00Z")), "waitlist");
+  assert.equal(launchPhase(day("2026-08-18T12:00:00Z")), "priority");
+  assert.equal(launchPhase(day("2026-08-25T12:00:00Z")), "public");
+  assert.equal(enrollmentIsPublic(day("2026-08-18T12:00:00Z")), false);
+  assert.ok(C.priorityOpensAt < C.publicOpensAt && C.publicOpensAt < C.startsAt);
+
+  // And each page actually forwards, rather than the dates being decorative.
+  assert.match(read("app/(site)/dating-with-clarity/page.tsx"),
+    /launchPhase\(\) === "waitlist"[\s\S]{0,60}redirect\("\/dating-with-clarity\/waitlist"\)/);
+  assert.match(read("app/(site)/dating-with-clarity/waitlist/page.tsx"),
+    /launchPhase\(\) === "public"\) redirect\("\/dating-with-clarity"\)/);
+});
+
+test("an undecided deadline cannot reach an inbox", () => {
+  const { ALL_STEPS, renderStep, varsFor, UnresolvedDecision } = require("@/lib/email/claritySequence");
+  const bare = varsFor({ firstName: "Sam", unsubscribeUrl: "https://x/u", priority: null, enrollment: null });
+
+  for (const step of ALL_STEPS) {
+    const declaresANeed = (step.needs ?? []).length > 0;
+    let threw: unknown = null;
+    let out: { subject: string; html: string; text: string } | null = null;
+    try { out = renderStep(step, bare); } catch (e) { threw = e; }
+
+    if (declaresANeed) {
+      // It quotes a date nobody has set, so it must refuse rather than render.
+      assert.ok(threw instanceof UnresolvedDecision, `${step.key} declares a need but renders anyway`);
+    } else {
+      // And a step with no declared need must not secretly reach for one.
+      assert.equal(threw, null, `${step.key} reaches for a deadline it never declared`);
+      assert.ok(out, `${step.key} produced nothing`);
+    }
+  }
+});
+
+test("no launch email ships with a bracketed placeholder in it", () => {
+  const { ALL_STEPS, renderStep, varsFor } = require("@/lib/email/claritySequence");
+  // Rendered as they would be once both decisions are made.
+  const v = varsFor({
+    firstName: null, unsubscribeUrl: "https://x/u",
+    priority: "Wednesday, August 19 at 9 p.m. ET",
+    enrollment: "Friday, August 28 at 9 p.m. ET",
+  });
+  for (const step of ALL_STEPS) {
+    const { subject, text, html } = renderStep(step, v);
+    for (const [what, body] of [["subject", subject], ["text", text], ["html", html]] as const) {
+      assert.ok(!/\[[A-Z][A-Z /_]+\]/.test(body), `${step.key} ${what} still carries a placeholder`);
+    }
+    // The package bans em dashes in this voice, and it is the one voice rule a
+    // machine can actually check.
+    assert.ok(!text.includes("—"), `${step.key} uses an em dash`);
+    assert.ok(text.includes("Unsubscribe:"), `${step.key} has no way out`);
+  }
+});
+
+test("the calendar sends in order and drops a deadline email that missed its day", () => {
+  const { WAITLIST_SEQUENCE, ENROLLMENT_SEQUENCE } = require("@/lib/email/claritySequence");
+  const dated = [...WAITLIST_SEQUENCE, ...ENROLLMENT_SEQUENCE].filter((s: { sendOn?: Date }) => s.sendOn);
+  for (let i = 1; i < dated.length; i++) {
+    assert.ok(dated[i].sendOn >= dated[i - 1].sendOn,
+      `${dated[i].key} is dated before ${dated[i - 1].key}`);
+  }
+  // Only the confirmation fires on signup; everything else is a calendar date.
+  const onSignup = [...WAITLIST_SEQUENCE, ...ENROLLMENT_SEQUENCE].filter((s: { onSignup?: true }) => s.onSignup);
+  assert.equal(onSignup.length, 1);
+  assert.equal(onSignup[0].key, "w1");
+  // "Closes tonight" arriving on Sunday is a mistake, not a reminder.
+  assert.match(read("lib/clarity/sequences.ts"), /STALE_AFTER_HOURS/);
+  assert.match(read("lib/clarity/sequences.ts"), /hoursLate > STALE_AFTER_HOURS/);
+});
+
+test("a buyer stops receiving sales email the minute she pays", () => {
+  const hook = read("app/api/stripe/webhook/route.ts");
+  const suppressAt = hook.indexOf("exitOnEnrolment");
+  const welcomeAt = hook.indexOf("sendClarityWelcome");
+  assert.ok(suppressAt > 0 && welcomeAt > suppressAt, "suppression must not wait behind the welcome email");
+  // And the send path re-checks, because she can buy between the scan and the send.
+  const sender = read("lib/clarity/sequences.ts");
+  assert.match(sender, /Re-read rather than trust the scan/);
+  assert.match(sender, /current\.status !== "active"/);
+});
+
+test("the October rollover form posts to a source the endpoint actually accepts", () => {
+  // It did not, before the rename: the form named a source the API rejected, so
+  // the only reachable action on a sold-out page returned 400 in silence.
+  const route = read("app/api/site-leads/route.ts");
+  assert.match(route, /CLARITY\.nextCohort\.leadSource/);
 });

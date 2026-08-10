@@ -3,6 +3,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { readJsonBody } from "@/lib/apiSecurity";
 import { rateLimit, tooManyRequests, clientIp } from "@/lib/rateLimit";
 import { verifyTurnstile } from "@/lib/turnstile";
+import { CLARITY } from "@/lib/datingWithClarity";
 
 // Public endpoint (no auth) for site lead-capture forms. Writes to site_leads
 // via the service role. RLS on the table allows public insert; reads are
@@ -16,12 +17,17 @@ const MAX_LEN: Record<string, number> = {
   message: 5000, organization: 200, event_type: 80,
 };
 
+// An unlisted source is rejected, so every form that posts here has to appear
+// below. CLARITY.nextCohort.leadSource is imported rather than typed: it names
+// the October rollover list, and a form silently 400-ing is indistinguishable
+// from a form nobody filled in.
 const VALID_SOURCES = new Set([
   "contact_form",
   "speaking_inquiry",
   "learn_waitlist",
   "professional_interest",
   "newsletter",
+  CLARITY.nextCohort.leadSource,
 ]);
 
 const FIELDS = [

@@ -72,6 +72,14 @@ const nextConfig: NextConfig = {
     return [
       // Phase pages moved from /framework/phases/:slug to top-level /:slug.
       { source: "/framework/phases/:slug", destination: "/:slug", permanent: true },
+
+      // Cohort rename (2026-08-10): "Dating With Your Eyes Open" became
+      // "Dating With Clarity" before launch. The old address was never
+      // advertised, but it was committed and could be sitting in a preview link
+      // or a browser history, and a 404 on the one page the launch depends on
+      // is not a risk worth taking.
+      { source: "/dating-with-your-eyes-open", destination: "/dating-with-clarity", permanent: true },
+      { source: "/dating-with-your-eyes-open/:path*", destination: "/dating-with-clarity/:path*", permanent: true },
       // RLC Studio refactor: the flat "Knowledge Base" is now the Framework
       // hierarchy. Admin-internal, so not a permanent (301) redirect.
       { source: "/admin/studio/kb", destination: "/admin/studio/framework", permanent: false },

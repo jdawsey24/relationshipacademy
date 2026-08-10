@@ -28,7 +28,7 @@ function getStripeJs(): Promise<Stripe | null> {
   return stripeJs;
 }
 
-export default function EyesOpenCheckout({ priceDisplay }: { priceDisplay: string }) {
+export default function ClarityCheckout({ priceDisplay }: { priceDisplay: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [clientSecret, setClientSecret] = useState<string | null>(null);
@@ -38,7 +38,7 @@ export default function EyesOpenCheckout({ priceDisplay }: { priceDisplay: strin
   const start = useCallback(async () => {
     setBusy(true); setError(null);
     try {
-      const res = await fetch("/api/eyes-open/checkout", {
+      const res = await fetch("/api/dating-with-clarity/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email }),
@@ -81,7 +81,7 @@ export default function EyesOpenCheckout({ priceDisplay }: { priceDisplay: strin
           {/All \d+ seats|last seat/.test(error) && (
             <>
               {" "}
-              <Link href="/dating-with-your-eyes-open#october" className="underline underline-offset-2">
+              <Link href="/dating-with-clarity#october" className="underline underline-offset-2">
                 Join the October list
               </Link>
               .

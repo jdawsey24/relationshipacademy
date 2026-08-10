@@ -3,9 +3,10 @@ import Link from "next/link";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import LeadForm from "@/components/site/LeadForm";
-import { EYES_OPEN, seatsRemaining, enrolmentState, datesFull } from "@/lib/eyesOpen";
+import { redirect } from "next/navigation";
+import { CLARITY, seatsRemaining, enrolmentState, datesFull, launchPhase } from "@/lib/datingWithClarity";
 
-// Dating With Your Eyes Open — the founding-cohort sales page.
+// Dating With Clarity — the founding-cohort sales page.
 //
 // The spine of this page is four words: Notice. Interpret. Evaluate. Decide.
 // The copy opens on the gap between noticing and understanding, names those
@@ -14,13 +15,13 @@ import { EYES_OPEN, seatsRemaining, enrolmentState, datesFull } from "@/lib/eyes
 //
 // The other thing this page has that nothing else on the site does is a
 // DEADLINE and a SEAT COUNT, both of which change while it is up. Neither is
-// written into the copy: the dates come from lib/eyesOpen and the seat count is
-// read at request time.
+// written into the copy: the dates come from lib/datingWithClarity and the seat
+// count is read at request time.
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Dating With Your Eyes Open | Relationship Life Cycle™",
+  title: "Dating With Clarity | Relationship Life Cycle™",
   description:
     "A four-week live educational series for women who want to understand what is developing, recognize the patterns that truly matter, and make clearer decisions about where a connection is going. Taught by Janelle Dawsey, LMFT.",
 };
@@ -94,14 +95,14 @@ const INCLUDED = [
   "General question-and-answer time",
   "Access to class replays",
   "Teaching grounded in the Relationship Life Cycle™ Framework",
-  `A small founding cohort limited to ${EYES_OPEN.seats} women`,
+  `A small founding cohort limited to ${CLARITY.seats} women`,
 ];
 
 const FAQ: { q: string; a: string[] }[] = [
   {
     q: "Is this therapy or coaching?",
     a: [
-      "No. Dating With Your Eyes Open is a live educational series. Participation does not create a therapist-client or coaching relationship with Janelle Dawsey or Symmetricly.",
+      "No. Dating With Clarity is a live educational series. Participation does not create a therapist-client or coaching relationship with Janelle Dawsey or Symmetricly.",
       "The series provides relationship education, guided reflection, and general application of the concepts being taught. It does not include mental-health treatment, clinical assessment, or individualized relationship advice.",
     ],
   },
@@ -150,7 +151,16 @@ const FAQ: { q: string; a: string[] }[] = [
   },
 ];
 
-export default async function DatingWithYourEyesOpenPage() {
+export default async function DatingWithClarityPage({
+  searchParams,
+}: { searchParams: Promise<{ preview?: string }> }) {
+  // Before priority enrollment opens there is nothing here to buy yet, and the
+  // waitlist is the page she should be on. From August 17 this page stands on
+  // its own: the list has the link, and by the 20th the waitlist hands over.
+  // ?preview=1 is the author's way in before then.
+  const { preview } = await searchParams;
+  if (launchPhase() === "waitlist" && preview !== "1") redirect("/dating-with-clarity/waitlist");
+
   const seats = await seatsRemaining();
   const state = enrolmentState(seats);
 
@@ -162,7 +172,7 @@ export default async function DatingWithYourEyesOpenPage() {
           Dating gives you information. The hard part is knowing what it means.
         </p>
         <h1 className="mt-5 text-balance font-display text-4xl font-semibold leading-tight text-midnight-navy sm:text-5xl">
-          Dating With Your Eyes Open
+          Dating With Clarity
         </h1>
         <p className="mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-charcoal/75">
           A four-week live educational series for women who want to understand what is developing,
@@ -201,7 +211,7 @@ export default async function DatingWithYourEyesOpenPage() {
           within the relationship that is taking shape.
         </p>
         <p className="mt-4 font-display text-xl font-medium text-midnight-navy">
-          Dating With Your Eyes Open will teach you how.
+          Dating With Clarity will teach you how.
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
           <EnrolCta state={state} label="Reserve My Seat" />
@@ -257,7 +267,7 @@ export default async function DatingWithYourEyesOpenPage() {
       {/* What it does and does not mean */}
       <section className="mt-20 rounded-3xl bg-white/70 p-8 sm:p-12">
         <h2 className="font-display text-2xl font-medium leading-relaxed text-midnight-navy sm:text-[28px]">
-          Dating with your eyes open does not mean dating suspiciously.
+          Dating With Clarity does not mean dating suspiciously.
         </h2>
         <ul className="mt-4 space-y-2 font-body text-body text-charcoal/65">
           {NOT_SUSPICION.map((n) => <li key={n}>{n}</li>)}
@@ -300,11 +310,11 @@ export default async function DatingWithYourEyesOpenPage() {
           <h2 className="mt-3 font-display text-3xl font-semibold text-midnight-navy">Four Thursday evenings</h2>
         </div>
         <div className="mt-10 space-y-6">
-          {EYES_OPEN.weeks.map((w, i) => (
+          {CLARITY.weeks.map((w, i) => (
             <article key={w.title} className="rounded-2xl border border-midnight-navy/10 bg-white p-8">
               <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                 <span className="font-ui text-eyebrow font-semibold uppercase text-charcoal/50">Week {i + 1}</span>
-                <span className="font-ui text-sm text-charcoal/50">{w.date} &middot; {EYES_OPEN.time} ET</span>
+                <span className="font-ui text-sm text-charcoal/50">{w.date} &middot; {CLARITY.time} ET</span>
               </div>
               <h3 className="mt-2 font-display text-2xl font-semibold text-midnight-navy">{w.title}</h3>
               {w.body.map((para) => (
@@ -389,7 +399,7 @@ export default async function DatingWithYourEyesOpenPage() {
         </div>
 
         <div className="mt-10 flex flex-col items-center gap-3">
-          <EnrolCta state={state} label="I’m Ready to Date With My Eyes Open" />
+          <EnrolCta state={state} label="I’m Ready to Date With Clarity" />
           <SeatLine seats={seats} state={state} />
         </div>
       </section>
@@ -421,7 +431,7 @@ export default async function DatingWithYourEyesOpenPage() {
         </h2>
         <div className="mt-5 space-y-4 font-body text-lg leading-relaxed text-charcoal/75">
           <p>
-            Dating With Your Eyes Open is grounded in the{" "}
+            Dating With Clarity is grounded in the{" "}
             <Link href="/exploration" className="underline underline-offset-2 hover:text-midnight-navy">
               Exploration phase
             </Link>{" "}
@@ -471,7 +481,7 @@ export default async function DatingWithYourEyesOpenPage() {
             pressure, or potential.
           </p>
           <p>
-            Dating With Your Eyes Open brings that developmental understanding into the dating
+            Dating With Clarity brings that developmental understanding into the dating
             process so women can make sense of what they are experiencing without being taught to
             fear connection or ignore important information.
           </p>
@@ -487,11 +497,11 @@ export default async function DatingWithYourEyesOpenPage() {
         <dl className="mx-auto mt-8 max-w-lg divide-y divide-midnight-navy/10 rounded-2xl border border-midnight-navy/10 bg-white">
           {[
             ["Dates", datesFull()],
-            ["Time", `${EYES_OPEN.time} ET`],
+            ["Time", `${CLARITY.time} ET`],
             ["Format", "Live online educational series"],
             ["Replays", "Included"],
-            ["Founding cohort tuition", EYES_OPEN.priceDisplay],
-            ["Availability", `Limited to ${EYES_OPEN.seats} participants`],
+            ["Founding cohort tuition", CLARITY.priceDisplay],
+            ["Availability", `Limited to ${CLARITY.seats} participants`],
           ].map(([k, v]) => (
             <div key={k} className="flex justify-between gap-6 px-6 py-4">
               <dt className="font-ui text-sm font-medium text-charcoal/60">{k}</dt>
@@ -500,7 +510,7 @@ export default async function DatingWithYourEyesOpenPage() {
           ))}
         </dl>
         <p className="mt-5 text-center font-body text-body text-charcoal/70">
-          Your {EYES_OPEN.priceDisplay} payment reserves your place for the complete four-week series.
+          Your {CLARITY.priceDisplay} payment reserves your place for the complete four-week series.
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
           <EnrolCta state={state} label="Enroll in the Founding Cohort" />
@@ -520,15 +530,15 @@ export default async function DatingWithYourEyesOpenPage() {
         <section id="october" className="mt-20 scroll-mt-24 rounded-3xl border border-midnight-navy/10 bg-white p-8 sm:p-12">
           <SectionLabel>What&apos;s next</SectionLabel>
           <h2 className="mt-3 font-display text-3xl font-semibold text-midnight-navy">
-            The {EYES_OPEN.nextCohort.label}
+            The {CLARITY.nextCohort.label}
           </h2>
           <div className="mt-5 max-w-2xl space-y-4 font-body text-body leading-relaxed text-charcoal/75">
             <p>
               {state === "full"
-                ? `All ${EYES_OPEN.seats} founding seats are taken. The series runs again on Thursday evenings in October.`
+                ? `All ${CLARITY.seats} founding seats are taken. The series runs again on Thursday evenings in October.`
                 : "The founding cohort has already begun. The series runs again on Thursday evenings in October."}
             </p>
-            <p>{EYES_OPEN.nextCohort.note}</p>
+            <p>{CLARITY.nextCohort.note}</p>
             <p className="text-charcoal/60">
               Leave your email and you&apos;ll hear the dates first — before the page goes up.
               Nothing is charged now, and there&apos;s nothing to hold you to.
@@ -536,7 +546,7 @@ export default async function DatingWithYourEyesOpenPage() {
           </div>
           <div className="mt-8 max-w-lg">
             <LeadForm
-              source={EYES_OPEN.nextCohort.leadSource}
+              source={CLARITY.nextCohort.leadSource}
               fields={["name", "email"]}
               submitLabel="Tell me when October opens"
               successMessage="You're on the list. You'll get the October dates before they're announced anywhere else."
@@ -578,18 +588,18 @@ export default async function DatingWithYourEyesOpenPage() {
           <p>You can remain hopeful while still making decisions based on what is real.</p>
         </div>
         <p className="mx-auto mt-8 max-w-xl font-body text-body text-white/70">
-          Dating With Your Eyes Open will teach you how to move from noticing individual signs to
+          Dating With Clarity will teach you how to move from noticing individual signs to
           understanding the full relationship.
         </p>
         <p className="mt-8 font-display text-3xl font-semibold tracking-tight text-white">
           Notice. Interpret. Evaluate. Decide.
         </p>
         <p className="mt-8 font-body text-body text-white/70">
-          Four Thursdays. Eight hours of live education. {EYES_OPEN.seats} founding-cohort seats.
+          Four Thursdays. Eight hours of live education. {CLARITY.seats} founding-cohort seats.
           <br />
-          Join us {EYES_OPEN.datesLine} from {EYES_OPEN.time} ET.
+          Join us {CLARITY.datesLine} from {CLARITY.time} ET.
           <br />
-          Founding cohort tuition: {EYES_OPEN.priceDisplay}
+          Founding cohort tuition: {CLARITY.priceDisplay}
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
           <EnrolCta state={state} label="Reserve My Seat" onDark />
@@ -598,7 +608,7 @@ export default async function DatingWithYourEyesOpenPage() {
       </section>
 
       <p className="mt-12 font-body text-xs leading-relaxed text-charcoal/50">
-        Dating With Your Eyes Open is an educational program. It is not therapy, coaching,
+        Dating With Clarity is an educational program. It is not therapy, coaching,
         mental-health treatment, or a substitute for professional mental-health care. Participation
         does not create a therapist-client or coaching relationship.
       </p>
@@ -617,14 +627,14 @@ function EnrolCta({ state, label, onDark = false }: {
 }) {
   if (state === "open") {
     return (
-      <CtaButton href="/dating-with-your-eyes-open/enroll" variant={onDark ? "accent" : "primary"}>
+      <CtaButton href="/dating-with-clarity/enroll" variant={onDark ? "accent" : "primary"}>
         {label}
       </CtaButton>
     );
   }
   return (
     <CtaButton href="#october" variant={onDark ? "accent" : "secondary"}>
-      Join the {EYES_OPEN.nextCohort.label} list
+      Join the {CLARITY.nextCohort.label} list
     </CtaButton>
   );
 }
@@ -640,14 +650,14 @@ function SeatLine({ seats, state, onDark = false }: {
   if (state === "full") {
     return (
       <p className={`font-body text-sm ${muted}`}>
-        All {EYES_OPEN.seats} September seats are taken — the next cohort runs in October.
+        All {CLARITY.seats} September seats are taken — the next cohort runs in October.
       </p>
     );
   }
   return (
     <p className={`font-body text-sm ${muted}`}>
-      {EYES_OPEN.priceDisplay} &middot;{" "}
-      {seats === 1 ? "1 seat left" : `${seats} of ${EYES_OPEN.seats} seats left`}
+      {CLARITY.priceDisplay} &middot;{" "}
+      {seats === 1 ? "1 seat left" : `${seats} of ${CLARITY.seats} seats left`}
     </p>
   );
 }

@@ -3,7 +3,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getStripe, stripeConfigured } from "@/lib/stripe";
 import { readJsonBody } from "@/lib/apiSecurity";
 import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
-import { EYES_OPEN, enrolmentState, seatsRemaining } from "@/lib/eyesOpen";
+import { CLARITY, enrolmentState, seatsRemaining } from "@/lib/datingWithClarity";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -25,7 +25,7 @@ export const dynamic = "force-dynamic";
  * address is how she gets the class link.
  */
 export async function POST(request: Request) {
-  if (!(await rateLimit(request, { bucket: "eyes-open-checkout", limit: 8, windowSeconds: 60 }))) {
+  if (!(await rateLimit(request, { bucket: "clarity-checkout", limit: 8, windowSeconds: 60 }))) {
     return tooManyRequests();
   }
   if (!stripeConfigured()) {
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
   }
   if (state === "full") {
     return NextResponse.json({
-      error: `All ${EYES_OPEN.seats} seats are taken. Join the October list and you'll hear the dates first.`,
+      error: `All ${CLARITY.seats} seats are taken. Join the October list and you'll hear the dates first.`,
     }, { status: 409 });
   }
 
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
 
   // Already in? Say so rather than selling her a second seat.
   const { data: existing } = await admin.from("eyes_open_enrolments")
-    .select("id").eq("cohort", EYES_OPEN.cohort).eq("status", "paid")
+    .select("id").eq("cohort", CLARITY.cohort).eq("status", "paid")
     .ilike("email", email).maybeSingle();
   if (existing) {
     return NextResponse.json({
@@ -67,10 +67,10 @@ export async function POST(request: Request) {
 
   // Hold the seat first. If Stripe then fails, the hold lapses on its own.
   const { data: held, error: holdError } = await admin.from("eyes_open_enrolments")
-    .insert({ cohort: EYES_OPEN.cohort, email, name, status: "pending" })
+    .insert({ cohort: CLARITY.cohort, email, name, status: "pending" })
     .select("id").maybeSingle();
   if (holdError || !held) {
-    console.error("[eyes-open/checkout] hold failed:", holdError?.message);
+    console.error("[clarity/checkout] hold failed:", holdError?.message);
     return NextResponse.json({ error: "Could not hold a seat. Try again." }, { status: 502 });
   }
   const enrolmentId = (held as { id: string }).id;
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
 
   try {
     const prices = await stripe.prices.list({
-      lookup_keys: [EYES_OPEN.priceLookupKey], active: true, limit: 1,
+      lookup_keys: [CLARITY.priceLookupKey], active: true, limit: 1,
     });
     const price = prices.data[0];
     if (!price) {
@@ -95,9 +95,9 @@ export async function POST(request: Request) {
     }
 
     const meta = {
-      product_key: EYES_OPEN.productKey,
+      product_key: CLARITY.productKey,
       billing_type: "one_time",
-      cohort: EYES_OPEN.cohort,
+      cohort: CLARITY.cohort,
       enrolment_id: enrolmentId,
     };
 
@@ -106,7 +106,7 @@ export async function POST(request: Request) {
       mode: "payment",
       line_items: [{ price: price.id, quantity: 1 }],
       customer_email: email,
-      return_url: `${origin}/dating-with-your-eyes-open/enrolled?session_id={CHECKOUT_SESSION_ID}`,
+      return_url: `${origin}/dating-with-clarity/enrolled?session_id={CHECKOUT_SESSION_ID}`,
       metadata: meta,
       payment_intent_data: { metadata: meta },
       allow_promotion_codes: true,
@@ -121,7 +121,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ client_secret: session.client_secret });
   } catch (e) {
     await releaseHold(enrolmentId, e instanceof Error ? e.message : "stripe error");
-    console.error("[eyes-open/checkout]", e instanceof Error ? e.message : e);
+    console.error("[clarity/checkout]", e instanceof Error ? e.message : e);
     return NextResponse.json({ error: "Could not start checkout." }, { status: 502 });
   }
 }
@@ -131,12 +131,12 @@ async function overCapacity(): Promise<boolean> {
   const admin = getSupabaseAdminClient();
   const [{ count: paid }, { count: pending }] = await Promise.all([
     admin.from("eyes_open_enrolments").select("id", { count: "exact", head: true })
-      .eq("cohort", EYES_OPEN.cohort).eq("status", "paid"),
+      .eq("cohort", CLARITY.cohort).eq("status", "paid"),
     admin.from("eyes_open_enrolments").select("id", { count: "exact", head: true })
-      .eq("cohort", EYES_OPEN.cohort).eq("status", "pending")
+      .eq("cohort", CLARITY.cohort).eq("status", "pending")
       .gt("held_until", new Date().toISOString()),
   ]);
-  return (paid ?? 0) + (pending ?? 0) > EYES_OPEN.seats;
+  return (paid ?? 0) + (pending ?? 0) > CLARITY.seats;
 }
 
 /** Give the seat back immediately rather than waiting for the hold to lapse. */
@@ -144,5 +144,5 @@ async function releaseHold(id: string, reason: string) {
   await getSupabaseAdminClient().from("eyes_open_enrolments")
     .update({ status: "released", released_at: new Date().toISOString() })
     .eq("id", id).eq("status", "pending");
-  console.warn(`[eyes-open/checkout] released ${id}: ${reason}`);
+  console.warn(`[clarity/checkout] released ${id}: ${reason}`);
 }

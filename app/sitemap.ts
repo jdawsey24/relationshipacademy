@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { PHASES } from "@/lib/frameworkContent";
 import { getPublishedArticles } from "@/lib/articles";
+import { enrollmentIsPublic } from "@/lib/datingWithClarity";
 
 export const revalidate = 3600; // refresh hourly so new articles appear automatically
 
@@ -19,6 +20,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/speaking`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/about`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/contact`, changeFrequency: "yearly", priority: 0.5 },
+    // Dating With Clarity: whichever of the two cohort pages is the public entry
+    // today. Listing both would put a redirect in the sitemap, because before
+    // enrollment opens the sales page forwards to the waitlist and afterwards
+    // the waitlist forwards back. This file revalidates hourly, so the switch
+    // follows the launch on its own.
+    {
+      url: enrollmentIsPublic()
+        ? `${BASE}/dating-with-clarity`
+        : `${BASE}/dating-with-clarity/waitlist`,
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
   ];
 
   // The six framework phase pages (top-level, SSG).

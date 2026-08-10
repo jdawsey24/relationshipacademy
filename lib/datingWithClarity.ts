@@ -1,16 +1,29 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
-// Dating With Your Eyes Open — the founding cohort.
+// Dating With Clarity — the founding cohort.
 //
 // A live cohort is different from every other product on this site: it has a
 // fixed number of seats and a date it starts. Both are facts that change while
 // the page is up, so neither is written into the copy. The page reads them from
 // here, and the seat count from the database at request time.
+//
+// THE LAUNCH HAS PHASES, AND THE PHASE IS A DATE, NOT A DEPLOY. There is a
+// waitlist page and a sales page, and which one a woman should be looking at
+// depends on the day. Encoding that as dates means the site turns over on the
+// morning of the 17th whether or not anybody is at a keyboard, and it means the
+// two pages can never both be the primary action at once.
+//
+// UNRESOLVED DECISIONS ARE null, NEVER A PLACEHOLDER. The launch package leaves
+// several business facts open, and half the email sequence quotes a deadline.
+// A null here is load-bearing: renderers take these as required arguments, so a
+// decision that has not been made cannot be shipped as "[DEADLINE]" — the email
+// is held instead. See lib/clarity/sequences.ts.
 
-export const EYES_OPEN = {
+export const CLARITY = {
+  name: "Dating With Clarity",
   /** Stripe lookup_key. The Price is the owner's to create; checkout is inert until it exists. */
-  priceLookupKey: "eyes_open_founding",
-  productKey: "eyes_open",
+  priceLookupKey: "clarity_founding",
+  productKey: "dating_with_clarity",
   priceUsd: 297,
   priceDisplay: "$297",
   seats: 15,
@@ -21,6 +34,27 @@ export const EYES_OPEN = {
   cohort: "founding-2026-09",
 
   /**
+   * The launch calendar (launch package, Section 11).
+   *
+   * `priorityOpensAt` is when the waitlist gets its link and `publicOpensAt` is
+   * when the sales page becomes the page anyone can reach. Before that, the
+   * sales page sends her to the waitlist; after it, the waitlist sends her to
+   * the sales page. One primary action per page, on every day of the launch.
+   */
+  priorityOpensAt: new Date("2026-08-17T09:00:00-04:00"),
+  publicOpensAt: new Date("2026-08-20T09:00:00-04:00"),
+
+  /**
+   * OWNER DECISIONS, UNRESOLVED (launch package, Section 13).
+   *
+   * Eight of the fourteen launch emails quote one of these. Until they are set,
+   * those eight are held rather than sent with a bracket in them. Setting a date
+   * here is the only action needed to release them.
+   */
+  priorityClosesAt: null as Date | null,
+  enrollmentClosesAt: null as Date | null,
+
+  /**
    * What happens when the fifteen are gone.
    *
    * Not a dead end and not a second product to buy: October's dates, size and
@@ -29,7 +63,7 @@ export const EYES_OPEN = {
    * collects an email and says plainly that details are coming.
    */
   nextCohort: {
-    leadSource: "eyes_open_october",
+    leadSource: "clarity_october",
     label: "October cohort",
     note: "October dates and details are still being set — there may be more than one cohort running.",
   },
@@ -122,7 +156,7 @@ export type EnrolmentState = "open" | "full" | "closed";
  * either one is how a page ends up advertising a date the class is not on.
  */
 export function datesFull(): string {
-  const days = EYES_OPEN.weeks.map((w) => w.date.replace(/^\w+, /, ""));   // "September 3, 2026"
+  const days = CLARITY.weeks.map((w) => w.date.replace(/^\w+, /, ""));   // "September 3, 2026"
   const nums = days.map((d) => d.replace(/^\w+ /, "").replace(/, \d{4}$/, ""));
   const month = days[0].split(" ")[0];
   const year = days[0].slice(-4);
@@ -138,7 +172,7 @@ export function datesFull(): string {
  * than one that is briefly optimistic about a class nobody has bought yet.
  */
 export async function seatsRemaining(): Promise<number> {
-  return Math.max(0, EYES_OPEN.seats - (await seatsTaken()));
+  return Math.max(0, CLARITY.seats - (await seatsTaken()));
 }
 
 /**
@@ -154,9 +188,9 @@ export async function seatsTaken(): Promise<number> {
     const s = getSupabaseAdminClient();
     const [{ count: paid }, { count: held }] = await Promise.all([
       s.from("eyes_open_enrolments").select("id", { count: "exact", head: true })
-        .eq("cohort", EYES_OPEN.cohort).eq("status", "paid"),
+        .eq("cohort", CLARITY.cohort).eq("status", "paid"),
       s.from("eyes_open_enrolments").select("id", { count: "exact", head: true })
-        .eq("cohort", EYES_OPEN.cohort).eq("status", "pending")
+        .eq("cohort", CLARITY.cohort).eq("status", "pending")
         .gt("held_until", new Date().toISOString()),
     ]);
     return (paid ?? 0) + (held ?? 0);
@@ -174,7 +208,46 @@ export async function seatsTaken(): Promise<number> {
  * selling one, so the date closes enrollment even when seats remain.
  */
 export function enrolmentState(seats: number, now: Date = new Date()): EnrolmentState {
-  if (now >= EYES_OPEN.startsAt) return "closed";
+  if (now >= CLARITY.startsAt) return "closed";
   if (seats <= 0) return "full";
   return "open";
+}
+
+/** Which of the two pages is the one a woman should be on today. */
+export type LaunchPhase = "waitlist" | "priority" | "public";
+
+export function launchPhase(now: Date = new Date()): LaunchPhase {
+  if (now >= CLARITY.publicOpensAt) return "public";
+  if (now >= CLARITY.priorityOpensAt) return "priority";
+  return "waitlist";
+}
+
+/**
+ * Can anyone reach the sales page under their own steam?
+ *
+ * During the priority window the sales page is live and the waitlist has the
+ * link, but the waitlist page is still what the site points at — so the sales
+ * page is reachable, not advertised. Only in the public phase does the waitlist
+ * page hand over.
+ */
+export function enrollmentIsPublic(now: Date = new Date()): boolean {
+  return launchPhase(now) === "public";
+}
+
+/**
+ * "Thursday, August 27 at 9:00 p.m. ET" for a deadline that has been decided.
+ *
+ * Returns null when the decision has not been made, and every caller has to
+ * deal with the null. That is the whole mechanism preventing "[DEADLINE]" from
+ * reaching an inbox.
+ */
+export function deadlineLine(at: Date | null): string | null {
+  if (!at) return null;
+  const d = new Intl.DateTimeFormat("en-US", {
+    weekday: "long", month: "long", day: "numeric", timeZone: "America/New_York",
+  }).format(at);
+  const t = new Intl.DateTimeFormat("en-US", {
+    hour: "numeric", minute: "2-digit", timeZone: "America/New_York",
+  }).format(at).replace("AM", "a.m.").replace("PM", "p.m.").replace(":00", "");
+  return `${d} at ${t} ET`;
 }
