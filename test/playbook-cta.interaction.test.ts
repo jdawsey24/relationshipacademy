@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { render, screen, h, net } from "./helpers/pbTestSetup";
 import PlaybookCta, { showsOpen } from "../components/site/PlaybookCta";
 
-const props = { clusterId: 1, slug: "moving-beyond-rejection", buyLabel: "Get this Playbook — $29" };
+const props = { clusterId: 1, slug: "finding-love-that-feels-mutual", buyLabel: "Get this Playbook — $29" };
 
 test("showsOpen only when the viewer owns an interactive playbook", () => {
   assert.equal(showsOpen(undefined), false);
@@ -17,7 +17,7 @@ test("an owner sees 'Open your Playbook' → the interactive route, plus the PDF
   net.access = { signedIn: true, interactive: true, owned: true };
   render(h(PlaybookCta, props));
   const open = await screen.findByRole("link", { name: /open your playbook/i });
-  assert.equal(open.getAttribute("href"), "/playbook/moving-beyond-rejection");
+  assert.equal(open.getAttribute("href"), "/playbook/finding-love-that-feels-mutual");
   const pdf = screen.getByRole("link", { name: /prefer the pdf/i });
   assert.equal(pdf.getAttribute("href"), "/api/playbooks/1/download");
   assert.equal(screen.queryByRole("button", { name: /get this playbook/i }), null, "no buy button for an owner");

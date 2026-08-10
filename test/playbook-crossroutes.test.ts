@@ -29,15 +29,15 @@ test("the caregiving ⇄ living-with-illness pair is symmetric", () => {
   assert.ok(relatedPlaybookKeys("addon-living-with-illness").includes("addon-caregiving"));
 });
 
-test("moving-forward ↔ letting-go is bidirectional", () => {
-  assert.ok(relatedPlaybookKeys("moving-forward").includes("letting-go"));
-  assert.ok(relatedPlaybookKeys("letting-go").includes("moving-forward"));
+test("moving-forward ↔ letting-go-without-losing-what-it-meant is bidirectional", () => {
+  assert.ok(relatedPlaybookKeys("moving-forward").includes("letting-go-without-losing-what-it-meant"));
+  assert.ok(relatedPlaybookKeys("letting-go-without-losing-what-it-meant").includes("moving-forward"));
 });
 
 test("routesFrom returns declared routes; relatedPlaybookKeys dedupes", () => {
-  // moving-forward routes to letting-go + opening-your-heart-again + trusting-what-you-see
+  // moving-forward routes to letting-go-without-losing-what-it-meant + starting-again-without-starting-from-scratch + trust-yourself-to-choose-better
   const targets = relatedPlaybookKeys("moving-forward");
-  assert.deepEqual([...targets].sort(), ["letting-go", "opening-your-heart-again", "trusting-what-you-see"]);
+  assert.deepEqual([...targets].sort(), ["letting-go-without-losing-what-it-meant", "starting-again-without-starting-from-scratch", "trust-yourself-to-choose-better"]);
   assert.equal(routesFrom("a-key-with-no-routes").length, 0);
 });
 

@@ -14,7 +14,7 @@
  * ⚠ TEN STATEMENTS ROUTED OUT. The Expectations block ("I thought chemistry was
  *   enough", "I didn't realize love required so much intentionality") is
  *   substantially identical to Cluster 25's central argument. It routes to
- *   `from-the-ground-up` via `rec-c23-expectations` rather than being rebuilt.
+ *   `what-nobody-taught-you-about-healthy-relationships` via `rec-c23-expectations` rather than being rebuilt.
  *
  * ⚠ SUBTITLE UNDERSELLS IT. "Making Confident Relationship Decisions" fits the
  *   perfectionism half and says nothing about the shame half, which is the

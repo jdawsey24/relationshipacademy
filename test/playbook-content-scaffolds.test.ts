@@ -8,7 +8,7 @@ import { validatePlaybookContent } from "../lib/playbook/contentValidate";
 import { getPlaybookContent, listPlaybookKeys } from "../content/playbook";
 import { clusterIdForKey, hasInteractivePlaybook } from "../lib/playbook/keys";
 
-const FLAGSHIP = "moving-beyond-rejection";
+const FLAGSHIP = "finding-love-that-feels-mutual";
 
 test("registry has the flagship + the full corpus", () => {
   const keys = listPlaybookKeys();

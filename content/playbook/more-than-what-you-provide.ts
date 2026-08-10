@@ -28,11 +28,11 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C27_LITERATURE } from "./letting-go-of-the-armor-literature";
+import { C27_LITERATURE } from "./more-than-what-you-provide-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const LETTING_GO_OF_THE_ARMOR: PlaybookContent = {
-  playbookKey: "letting-go-of-the-armor",
+  playbookKey: "more-than-what-you-provide",
   playbookVersion: 1,
   displayName: "Letting Go of the Armor",
 

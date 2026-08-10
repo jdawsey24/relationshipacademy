@@ -28,11 +28,11 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C9_LITERATURE } from "./rebuilding-physical-connection-literature";
+import { C9_LITERATURE } from "./the-intimacy-reset-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const REBUILDING_PHYSICAL_CONNECTION: PlaybookContent = {
-  playbookKey: "rebuilding-physical-connection", // ⚠ CONFIRM canonical slug
+  playbookKey: "the-intimacy-reset", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
   displayName: "Rebuilding Physical Connection",
 

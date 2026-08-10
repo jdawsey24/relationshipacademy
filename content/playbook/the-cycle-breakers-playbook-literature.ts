@@ -7,8 +7,8 @@
  * Core Need: TO BECOME MY BEST RELATIONAL SELF.
  *
  * ⚠ SLUG COLLISION. The canonical subtitle is "Breaking the Cycle", which is
- *   already Cluster 7's Playbook (`breaking-the-cycle`, about arguing). Using
- *   `a-different-legacy` here. Owner decision needed on display names — two
+ *   already Cluster 7's Playbook (`how-to-stop-having-the-same-fight`, about arguing). Using
+ *   `the-cycle-breakers-playbook` here. Owner decision needed on display names — two
  *   Playbooks called the same thing would be confusing in a catalogue.
  *
  * ⚠ SMALLEST CLUSTER IN THE CORPUS. Ten statements, eight of them Needs, zero

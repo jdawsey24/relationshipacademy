@@ -60,7 +60,7 @@ test("the communicationRehearsal simulation is a valid graph handing off to its 
 test("the communicationRehearsal completion payload passes the event registry", () => {
   const f = aggregateFidelity(STT_SIMULATION, { "stt-d1": "clear", "stt-d2": "clear", "stt-d3": "clear" });
   const r = validateEvent({
-    action_id: "a-1", playbook_key: "moving-beyond-rejection", playbook_version: 1,
+    action_id: "a-1", playbook_key: "finding-love-that-feels-mutual", playbook_version: 1,
     object_type: "simulation", object_id: STT_SIMULATION.id, object_version: 1,
     event_type: "simulation_completed", payload: f,
   });

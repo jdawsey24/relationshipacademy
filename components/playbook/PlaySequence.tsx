@@ -15,7 +15,7 @@ import type { PlaybookContent, Play, FidelityOutcome } from "@/lib/playbook/cont
 import SimulationPlayer from "@/components/playbook/SimulationPlayer";
 import PlayContainer from "@/components/playbook/PlayContainer";
 import { simulationForPlay } from "@/lib/playbook/rev3Flow";
-import { rev3Play } from "@/content/playbook/moving-beyond-rejection-rev3-copy";
+import { rev3Play } from "@/content/playbook/finding-love-that-feels-mutual-rev3-copy";
 
 export interface PlaySequenceProps {
   content: PlaybookContent;

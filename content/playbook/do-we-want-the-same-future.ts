@@ -31,10 +31,10 @@
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C21_LITERATURE } from "./building-a-shared-future-literature";
+import { C21_LITERATURE } from "./do-we-want-the-same-future-literature";
 
 export const BUILDING_A_SHARED_FUTURE: PlaybookContent = {
-  playbookKey: "building-a-shared-future",
+  playbookKey: "do-we-want-the-same-future",
   playbookVersion: 1,
   displayName: "Building a Shared Future",
 

@@ -9,14 +9,14 @@
  *   (STM-0245 / STM-0634 are verbatim duplicates; five more are near-dupes).
  *   Of those, the "doing it differently" material already exists elsewhere and
  *   routes out via `rec-c12b-differently`:
- *     • not repeating the past → `opening-your-heart-again` (C13)
- *     • what healthy looks like → `opening-your-heart-again` (C13)
- *     • trusting my judgment → `trusting-what-you-see` (C5)
+ *     • not repeating the past → `starting-again-without-starting-from-scratch` (C13)
+ *     • what healthy looks like → `starting-again-without-starting-from-scratch` (C13)
+ *     • trusting my judgment → `trust-yourself-to-choose-better` (C5)
  *
  *   THIS PLAYBOOK IS THE UNCOVERED PART: disclosure, guilt about dating at all,
  *   and comparing everyone to the former partner.
  *
- * ⚠ VOLUME I is `letting-go`. Readers still in it route back via
+ * ⚠ VOLUME I is `letting-go-without-losing-what-it-meant`. Readers still in it route back via
  *   `rec-c12b-still-in-it`.
  *
  * ⚠ NOT BEREAVEMENT. The guilt here concerns someone alive.

@@ -29,10 +29,10 @@
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { SAFETY_RECOGNITION_CARD } from "./shared/safety-not-safe";
-import { C7_LITERATURE } from "./breaking-the-cycle-literature";
+import { C7_LITERATURE } from "./how-to-stop-having-the-same-fight-literature";
 
 export const BREAKING_THE_CYCLE: PlaybookContent = {
-  playbookKey: "breaking-the-cycle", // ⚠ CONFIRM canonical slug
+  playbookKey: "how-to-stop-having-the-same-fight", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
   displayName: "Breaking the Cycle of the Same Arguments",
 

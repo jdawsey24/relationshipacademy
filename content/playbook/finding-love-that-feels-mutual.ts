@@ -6,10 +6,10 @@
 // lives in its own file and is spread in below; all behind PLAYBOOK_REV3_ENABLED.
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { MBR_LITERATURE, MBR_STATEMENT_MAP } from "@/content/playbook/moving-beyond-rejection-literature";
-import { MBR_SIMULATIONS } from "@/content/playbook/moving-beyond-rejection-simulations";
-import { MBR_MISSIONS } from "@/content/playbook/moving-beyond-rejection-missions";
-import { MBR_USE_REVIEWS } from "@/content/playbook/moving-beyond-rejection-usereviews";
+import { MBR_LITERATURE, MBR_STATEMENT_MAP } from "@/content/playbook/finding-love-that-feels-mutual-literature";
+import { MBR_SIMULATIONS } from "@/content/playbook/finding-love-that-feels-mutual-simulations";
+import { MBR_MISSIONS } from "@/content/playbook/finding-love-that-feels-mutual-missions";
+import { MBR_USE_REVIEWS } from "@/content/playbook/finding-love-that-feels-mutual-usereviews";
 import { ITR_PLAY, ITR_SIMULATION, ITR_JIT } from "@/content/playbook/is-this-right-for-you";
 import { RGU_PLAY, RGU_SIMULATION, RGU_JIT } from "@/content/playbook/rest-or-giving-up";
 import { HMP_PLAY, HMP_SIMULATION, HMP_JIT } from "@/content/playbook/how-much-to-put-in";
@@ -32,11 +32,11 @@ const RD_CONTROL_CHECK =
   "This is about what you choose to do, based on what you see. It's not a way to make them chase you. And it's not a deadline.";
 
 export const MOVING_BEYOND_REJECTION: PlaybookContent = {
-  playbookKey: "moving-beyond-rejection",
+  playbookKey: "finding-love-that-feels-mutual",
   playbookVersion: 1,
   // The consumer name comes from the Experience Clusters workbook and must match
   // snapshot_clusters.playbook_subtitle, which is what the results page shows
-  // when it recommends this playbook. The KEY stays "moving-beyond-rejection":
+  // when it recommends this playbook. The KEY stays "finding-love-that-feels-mutual":
   // it is the stable identifier in URLs, purchases and progress records, and
   // renaming it would strand everything already pointing at it.
   displayName: "Finding Love That Feels Mutual",

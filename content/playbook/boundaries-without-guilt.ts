@@ -25,12 +25,12 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C14_LITERATURE } from "./learning-to-say-no-literature";
+import { C14_LITERATURE } from "./boundaries-without-guilt-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 
 export const LEARNING_TO_SAY_NO: PlaybookContent = {
-  playbookKey: "learning-to-say-no", // ⚠ CONFIRM canonical slug
+  playbookKey: "boundaries-without-guilt", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
   displayName: "Learning to Say No Without Guilt",
 

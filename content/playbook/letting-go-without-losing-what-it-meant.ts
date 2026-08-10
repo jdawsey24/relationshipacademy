@@ -38,13 +38,13 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C12_LITERATURE } from "./letting-go-literature";
+import { C12_LITERATURE } from "./letting-go-without-losing-what-it-meant-literature";
 import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 
 export const LETTING_GO: PlaybookContent = {
-  playbookKey: "letting-go",
+  playbookKey: "letting-go-without-losing-what-it-meant",
   playbookVersion: 1,
   displayName: "Letting Go",
 

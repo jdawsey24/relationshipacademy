@@ -68,7 +68,7 @@ test("the dualAttention simulation is a valid graph handing off to its Play", ()
 test("the signature-tagged dualAttention completion payload passes the event registry", () => {
   const f = aggregateFidelity(ITR_SIMULATION, { "itr-d1": "fit", "itr-r1": "both" });
   const r = validateEvent({
-    action_id: "a-1", playbook_key: "moving-beyond-rejection", playbook_version: 1,
+    action_id: "a-1", playbook_key: "finding-love-that-feels-mutual", playbook_version: 1,
     object_type: "simulation", object_id: ITR_SIMULATION.id, object_version: 1,
     event_type: "simulation_completed", payload: f,
   });

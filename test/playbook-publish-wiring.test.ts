@@ -19,13 +19,13 @@ import {
 } from "../lib/playbook/keys";
 import { listPlaybookKeys, getPlaybookContent } from "../content/playbook";
 
-const FLAGSHIP = "moving-beyond-rejection";
+const FLAGSHIP = "finding-love-that-feels-mutual";
 
 test("GATE OFF: only the flagship is wired/served (production behaviour)", () => {
   assert.deepEqual(Object.keys(PLAYBOOK_KEY_TO_CLUSTER), [FLAGSHIP]);
   assert.deepEqual([...INTERACTIVE_PLAYBOOK_KEYS], [FLAGSHIP]);
-  assert.equal(hasInteractivePlaybook("letting-someone-in"), false);
-  assert.equal(clusterIdForKey("letting-someone-in"), null);
+  assert.equal(hasInteractivePlaybook("how-to-let-someone-in"), false);
+  assert.equal(clusterIdForKey("how-to-let-someone-in"), null);
   assert.equal(hasInteractivePlaybook("addon-caregiving"), false);
   // flagship still works
   assert.equal(clusterIdForKey(FLAGSHIP), 1);

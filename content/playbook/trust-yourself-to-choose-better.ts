@@ -27,11 +27,11 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C5_LITERATURE } from "./trusting-what-you-see-literature";
+import { C5_LITERATURE } from "./trust-yourself-to-choose-better-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const TRUSTING_WHAT_YOU_SEE: PlaybookContent = {
-  playbookKey: "trusting-what-you-see", // ⚠ CONFIRM canonical slug
+  playbookKey: "trust-yourself-to-choose-better", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
   displayName: "Trusting What You See",
 

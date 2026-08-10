@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { render, screen, fireEvent, h } from "./helpers/pbTestSetup";
 import MissionCard from "../components/playbook/MissionCard";
-import { MBR_MISSIONS } from "../content/playbook/moving-beyond-rejection-missions";
+import { MBR_MISSIONS } from "../content/playbook/finding-love-that-feels-mutual-missions";
 import type { MissionReport } from "../lib/playbook/contentSchema";
 
 const RD = MBR_MISSIONS.find((m) => m.playId === "read-and-decide")!;

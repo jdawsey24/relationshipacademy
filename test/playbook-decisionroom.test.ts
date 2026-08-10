@@ -69,7 +69,7 @@ test("the decisionRoom simulation is a valid graph handing off to its Play", () 
 test("the decisionRoom completion payload (incl. chosen_stance) passes the event registry", () => {
   const f = aggregateFidelity(RGU_SIMULATION, { "rgu-c1": "forever", "rgu-r1": "decide-now", "rgu-c2": "rest" });
   const r = validateEvent({
-    action_id: "a-1", playbook_key: "moving-beyond-rejection", playbook_version: 1,
+    action_id: "a-1", playbook_key: "finding-love-that-feels-mutual", playbook_version: 1,
     object_type: "simulation", object_id: RGU_SIMULATION.id, object_version: 1,
     event_type: "simulation_completed", payload: f,
   });

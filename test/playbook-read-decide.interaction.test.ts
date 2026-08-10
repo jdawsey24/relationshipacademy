@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { render, screen, fireEvent, h } from "./helpers/pbTestSetup";
 import PlayContainer from "../components/playbook/PlayContainer";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
 
 const RD = C.plays.find((p) => p.playId === "read-and-decide")!;
 

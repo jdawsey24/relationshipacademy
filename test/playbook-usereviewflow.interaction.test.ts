@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { render, screen, fireEvent, h } from "./helpers/pbTestSetup";
 import UseReviewFlow from "../components/playbook/UseReviewFlow";
-import { MBR_USE_REVIEWS } from "../content/playbook/moving-beyond-rejection-usereviews";
+import { MBR_USE_REVIEWS } from "../content/playbook/finding-love-that-feels-mutual-usereviews";
 import type { UseReviewSignals } from "../lib/playbook/contentSchema";
 
 const RD = MBR_USE_REVIEWS.find((r) => r.playId === "read-and-decide")!;

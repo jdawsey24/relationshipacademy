@@ -3,10 +3,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { render, screen, fireEvent, within, h } from "./helpers/pbTestSetup";
 import ExperienceShell from "../components/playbook/ExperienceShell";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
 import { emptyProgress, type PlaybookProgress } from "../lib/playbook/contentSchema";
 
-const KEY = "moving-beyond-rejection";
+const KEY = "finding-love-that-feels-mutual";
 const RD = "read-and-decide";
 
 function mount(rev3: boolean, progress: PlaybookProgress = emptyProgress(KEY, 1)) {

@@ -3,10 +3,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { render, screen, fireEvent, h, net } from "./helpers/pbTestSetup";
 import ExperienceShell from "../components/playbook/ExperienceShell";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
 import { emptyProgress } from "../lib/playbook/contentSchema";
 
-const KEY = "moving-beyond-rejection";
+const KEY = "finding-love-that-feels-mutual";
 const byName = (re: RegExp) => screen.getByRole("button", { name: re });
 const cont = (re: RegExp = /^continue$/i) => fireEvent.click(byName(re));
 function clickText(re: RegExp) {

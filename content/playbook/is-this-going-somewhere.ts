@@ -34,11 +34,11 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C24_LITERATURE } from "./lean-in-or-let-go-literature";
+import { C24_LITERATURE } from "./is-this-going-somewhere-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const LEAN_IN_OR_LET_GO: PlaybookContent = {
-  playbookKey: "lean-in-or-let-go", // ⚠ CONFIRM canonical slug
+  playbookKey: "is-this-going-somewhere", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
   displayName: "Deciding Whether to Lean In or Let Go",
 

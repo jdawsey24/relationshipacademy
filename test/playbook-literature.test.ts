@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
-import { MBR_LITERATURE, MBR_STATEMENT_MAP } from "../content/playbook/moving-beyond-rejection-literature";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
+import { MBR_LITERATURE, MBR_STATEMENT_MAP } from "../content/playbook/finding-love-that-feels-mutual-literature";
 import type { LiteratureBlock, StatementFunction } from "../lib/playbook/contentSchema";
 
 const litIds = new Set(MBR_LITERATURE.map((e) => e.id));

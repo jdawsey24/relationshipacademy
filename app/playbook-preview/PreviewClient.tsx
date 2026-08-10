@@ -14,7 +14,7 @@ import RelatedPlaybooks from "@/components/playbook/RelatedPlaybooks";
 import { getPlaybookContent, listPlaybookKeys } from "@/content/playbook";
 import { emptyProgress, type PlaybookProgress } from "@/lib/playbook/contentSchema";
 
-const C1_KEY = "moving-beyond-rejection";
+const C1_KEY = "finding-love-that-feels-mutual";
 const RD = "read-and-decide";
 const RD_M = "mission-rd-read-before-react";
 const out = { output_schema_version: 1, play_version: 1, payload: { evidence: "shorter texts", rule: { condition: "I see one more short day", action: "I ask directly" } } };

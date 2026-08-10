@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { MBR_SIMULATIONS } from "../content/playbook/moving-beyond-rejection-simulations";
+import { MBR_SIMULATIONS } from "../content/playbook/finding-love-that-feels-mutual-simulations";
 import { aggregateFidelity } from "../lib/playbook/simulation";
 import type { Simulation } from "../lib/playbook/contentSchema";
 

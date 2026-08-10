@@ -34,12 +34,12 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C20_LITERATURE } from "./finding-yourself-again-literature";
+import { C20_LITERATURE } from "./finding-yourself-after-everything-changed-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 
 export const FINDING_YOURSELF_AGAIN: PlaybookContent = {
-  playbookKey: "finding-yourself-again",
+  playbookKey: "finding-yourself-after-everything-changed",
   playbookVersion: 1,
   displayName: "Finding Yourself Again",
 

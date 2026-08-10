@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { validatePlaybookContent } from "../lib/playbook/contentValidate";
-import { MOVING_BEYOND_REJECTION } from "../content/playbook/moving-beyond-rejection";
+import { MOVING_BEYOND_REJECTION } from "../content/playbook/finding-love-that-feels-mutual";
 import { getPlaybookContent } from "../content/playbook";
 import { clusterIdForKey, keyForClusterId, isPlaybookKey, hasInteractivePlaybook } from "../lib/playbook/keys";
 
@@ -50,17 +50,17 @@ test("validator catches malformed content", () => {
 });
 
 test("keys registry decouples playbook_key from cluster_id and round-trips", () => {
-  assert.equal(clusterIdForKey("moving-beyond-rejection"), 1);
-  assert.equal(keyForClusterId(1), "moving-beyond-rejection");
-  assert.ok(isPlaybookKey("moving-beyond-rejection"));
+  assert.equal(clusterIdForKey("finding-love-that-feels-mutual"), 1);
+  assert.equal(keyForClusterId(1), "finding-love-that-feels-mutual");
+  assert.ok(isPlaybookKey("finding-love-that-feels-mutual"));
   assert.ok(!isPlaybookKey("nope"));
-  assert.ok(hasInteractivePlaybook("moving-beyond-rejection"));
+  assert.ok(hasInteractivePlaybook("finding-love-that-feels-mutual"));
   assert.equal(clusterIdForKey("nope"), null);
   assert.equal(keyForClusterId(999), null);
 });
 
 test("content registry resolves the shipped key and rejects unknown", () => {
-  assert.ok(getPlaybookContent("moving-beyond-rejection"));
+  assert.ok(getPlaybookContent("finding-love-that-feels-mutual"));
   assert.equal(getPlaybookContent("nope"), null);
   assert.equal(getPlaybookContent(null), null);
 });

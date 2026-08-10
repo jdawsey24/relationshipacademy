@@ -21,8 +21,8 @@
  * ⚠ NO REASSURANCE ABOUT FINDING SOMEONE. "Will I ever find love again" is not
  *   answered yes. Nobody knows.
  *
- * ⚠ OVERLAPS ACKNOWLEDGED. `staying-yourself` (C22) covers independence and
- *   commitment; `lean-in-or-let-go` (C24) covers whether to invest. This add-on
+ * ⚠ OVERLAPS ACKNOWLEDGED. `how-to-love-without-losing-yourself` (C22) covers independence and
+ *   commitment; `is-this-going-somewhere` (C24) covers whether to invest. This add-on
  *   is the context those sit in when someone is starting again with a life
  *   already built — it should not restate either.
  *

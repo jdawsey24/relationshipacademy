@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
 import { changePath, operationSignals } from "../lib/playbook/changePath";
 import { emptyProgress, type PlaybookProgress } from "../lib/playbook/contentSchema";
 
@@ -8,7 +8,7 @@ const RD = "read-and-decide";
 const WM = "what-it-actually-means";
 const RD_M = "mission-rd-read-before-react";
 const WM_M = "mission-wm-narrowest-true-thing";
-const base = () => emptyProgress("moving-beyond-rejection", 1);
+const base = () => emptyProgress("finding-love-that-feels-mutual", 1);
 const out = { output_schema_version: 1, play_version: 1, payload: {} };
 const TRAIT = /attachment|anxious|avoidant|overthink|personality|diagnos|\btrait\b|fear of|good at|bad at|mastered|\bexpert\b|unlovable|broken|you are (an?|too|very|really)|you're (an?|too|very|really)/i;
 

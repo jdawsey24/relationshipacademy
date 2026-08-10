@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { render, screen, fireEvent, h } from "./helpers/pbTestSetup";
 import FieldGuide from "../components/playbook/FieldGuide";
-import { MBR_LITERATURE } from "../content/playbook/moving-beyond-rejection-literature";
+import { MBR_LITERATURE } from "../content/playbook/finding-love-that-feels-mutual-literature";
 
 function mount() {
   return render(h(FieldGuide, { entries: MBR_LITERATURE }));

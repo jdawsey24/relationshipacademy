@@ -1,7 +1,7 @@
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 
 // Flagship — the only publish-wired playbook (lib/playbook/keys.ts).
-import { MOVING_BEYOND_REJECTION } from "@/content/playbook/moving-beyond-rejection";
+import { MOVING_BEYOND_REJECTION } from "@/content/playbook/finding-love-that-feels-mutual";
 
 // Full content corpus (handoff 2): 25 Plays-only Playbooks + 5 add-ons.
 // Registered here for preview/validation; NONE are in INTERACTIVE_PLAYBOOK_KEYS
@@ -10,36 +10,36 @@ import { MOVING_BEYOND_REJECTION } from "@/content/playbook/moving-beyond-reject
 // slug confirmation, stat citations). Keyed by each module's `playbookKey`.
 
 // Exploration
-import { LETTING_SOMEONE_IN } from "@/content/playbook/letting-someone-in";
+import { LETTING_SOMEONE_IN } from "@/content/playbook/how-to-let-someone-in";
 import { DATING_WITHOUT_LOSING_HOPE } from "@/content/playbook/dating-without-losing-hope";
-import { TRUSTING_WHAT_YOU_SEE } from "@/content/playbook/trusting-what-you-see";
-import { FINDING_SECURITY } from "@/content/playbook/finding-security";
-import { LEAN_IN_OR_LET_GO } from "@/content/playbook/lean-in-or-let-go";
-import { LETTING_GO_OF_THE_ARMOR } from "@/content/playbook/letting-go-of-the-armor";
+import { TRUSTING_WHAT_YOU_SEE } from "@/content/playbook/trust-yourself-to-choose-better";
+import { FINDING_SECURITY } from "@/content/playbook/the-relationship-overthinkers-playbook";
+import { LEAN_IN_OR_LET_GO } from "@/content/playbook/is-this-going-somewhere";
+import { LETTING_GO_OF_THE_ARMOR } from "@/content/playbook/more-than-what-you-provide";
 // Exclusivity
-import { STAYING_YOURSELF } from "@/content/playbook/staying-yourself";
+import { STAYING_YOURSELF } from "@/content/playbook/how-to-love-without-losing-yourself";
 import { ASKING_BETTER_QUESTIONS } from "@/content/playbook/asking-better-questions";
 // Expansion
-import { BREAKING_THE_CYCLE } from "@/content/playbook/breaking-the-cycle";
-import { FINDING_YOUR_WAY_BACK } from "@/content/playbook/finding-your-way-back";
-import { REBUILDING_PHYSICAL_CONNECTION } from "@/content/playbook/rebuilding-physical-connection";
-import { BUILDING_A_TRUE_PARTNERSHIP } from "@/content/playbook/building-a-true-partnership";
-import { LEARNING_TO_SAY_NO } from "@/content/playbook/learning-to-say-no";
-import { FEELING_SEEN } from "@/content/playbook/feeling-seen";
-import { STAYING_CONNECTED } from "@/content/playbook/staying-connected";
+import { BREAKING_THE_CYCLE } from "@/content/playbook/how-to-stop-having-the-same-fight";
+import { FINDING_YOUR_WAY_BACK } from "@/content/playbook/from-roommates-back-to-partners";
+import { REBUILDING_PHYSICAL_CONNECTION } from "@/content/playbook/the-intimacy-reset";
+import { BUILDING_A_TRUE_PARTNERSHIP } from "@/content/playbook/the-partnership-reset";
+import { LEARNING_TO_SAY_NO } from "@/content/playbook/boundaries-without-guilt";
+import { FEELING_SEEN } from "@/content/playbook/loved-not-just-needed";
+import { STAYING_CONNECTED } from "@/content/playbook/money-work-and-us";
 // Expiration
-import { ACCEPTING_WHAT_IS } from "@/content/playbook/accepting-what-is";
-import { REBUILDING_TRUST } from "@/content/playbook/rebuilding-trust";
-import { BUILDING_A_SHARED_FUTURE } from "@/content/playbook/building-a-shared-future";
+import { ACCEPTING_WHAT_IS } from "@/content/playbook/can-we-fix-this";
+import { REBUILDING_TRUST } from "@/content/playbook/can-i-trust-you-again";
+import { BUILDING_A_SHARED_FUTURE } from "@/content/playbook/do-we-want-the-same-future";
 // Recovery
-import { LETTING_GO } from "@/content/playbook/letting-go";
-import { FINDING_YOURSELF_AGAIN } from "@/content/playbook/finding-yourself-again";
-import { MAKING_CONFIDENT_DECISIONS } from "@/content/playbook/making-confident-decisions";
+import { LETTING_GO } from "@/content/playbook/letting-go-without-losing-what-it-meant";
+import { FINDING_YOURSELF_AGAIN } from "@/content/playbook/finding-yourself-after-everything-changed";
+import { MAKING_CONFIDENT_DECISIONS } from "@/content/playbook/how-to-make-a-relationship-decision-you-can-trust";
 // Renewal
-import { OPENING_YOUR_HEART_AGAIN } from "@/content/playbook/opening-your-heart-again";
+import { OPENING_YOUR_HEART_AGAIN } from "@/content/playbook/starting-again-without-starting-from-scratch";
 import { MOVING_FORWARD } from "@/content/playbook/moving-forward";
-import { FROM_THE_GROUND_UP } from "@/content/playbook/from-the-ground-up";
-import { A_DIFFERENT_LEGACY } from "@/content/playbook/a-different-legacy";
+import { FROM_THE_GROUND_UP } from "@/content/playbook/what-nobody-taught-you-about-healthy-relationships";
+import { A_DIFFERENT_LEGACY } from "@/content/playbook/the-cycle-breakers-playbook";
 // Add-ons (reached by signpost / life-situation menu — not quiz-detectable)
 import { ADDON_LOSING_A_PARTNER } from "@/content/playbook/losing-a-partner";
 import { ADDON_CAREGIVING } from "@/content/playbook/caregiving";
@@ -48,39 +48,39 @@ import { ADDON_DATING_LATER } from "@/content/playbook/dating-later";
 import { ADDON_GRIEVING_DIFFERENTLY } from "@/content/playbook/grieving-differently";
 
 const REGISTRY: Record<string, PlaybookContent> = {
-  "moving-beyond-rejection": MOVING_BEYOND_REJECTION,
+  "finding-love-that-feels-mutual": MOVING_BEYOND_REJECTION,
 
   // Exploration
-  "letting-someone-in": LETTING_SOMEONE_IN,
+  "how-to-let-someone-in": LETTING_SOMEONE_IN,
   "dating-without-losing-hope": DATING_WITHOUT_LOSING_HOPE,
-  "trusting-what-you-see": TRUSTING_WHAT_YOU_SEE,
-  "finding-security": FINDING_SECURITY,
-  "lean-in-or-let-go": LEAN_IN_OR_LET_GO,
-  "letting-go-of-the-armor": LETTING_GO_OF_THE_ARMOR,
+  "trust-yourself-to-choose-better": TRUSTING_WHAT_YOU_SEE,
+  "the-relationship-overthinkers-playbook": FINDING_SECURITY,
+  "is-this-going-somewhere": LEAN_IN_OR_LET_GO,
+  "more-than-what-you-provide": LETTING_GO_OF_THE_ARMOR,
   // Exclusivity
-  "staying-yourself": STAYING_YOURSELF,
+  "how-to-love-without-losing-yourself": STAYING_YOURSELF,
   "asking-better-questions": ASKING_BETTER_QUESTIONS,
   // Expansion
-  "breaking-the-cycle": BREAKING_THE_CYCLE,
-  "finding-your-way-back": FINDING_YOUR_WAY_BACK,
-  "rebuilding-physical-connection": REBUILDING_PHYSICAL_CONNECTION,
-  "building-a-true-partnership": BUILDING_A_TRUE_PARTNERSHIP,
-  "learning-to-say-no": LEARNING_TO_SAY_NO,
-  "feeling-seen": FEELING_SEEN,
-  "staying-connected": STAYING_CONNECTED,
+  "how-to-stop-having-the-same-fight": BREAKING_THE_CYCLE,
+  "from-roommates-back-to-partners": FINDING_YOUR_WAY_BACK,
+  "the-intimacy-reset": REBUILDING_PHYSICAL_CONNECTION,
+  "the-partnership-reset": BUILDING_A_TRUE_PARTNERSHIP,
+  "boundaries-without-guilt": LEARNING_TO_SAY_NO,
+  "loved-not-just-needed": FEELING_SEEN,
+  "money-work-and-us": STAYING_CONNECTED,
   // Expiration
-  "accepting-what-is": ACCEPTING_WHAT_IS,
-  "rebuilding-trust": REBUILDING_TRUST,
-  "building-a-shared-future": BUILDING_A_SHARED_FUTURE,
+  "can-we-fix-this": ACCEPTING_WHAT_IS,
+  "can-i-trust-you-again": REBUILDING_TRUST,
+  "do-we-want-the-same-future": BUILDING_A_SHARED_FUTURE,
   // Recovery
-  "letting-go": LETTING_GO,
-  "finding-yourself-again": FINDING_YOURSELF_AGAIN,
-  "making-confident-decisions": MAKING_CONFIDENT_DECISIONS,
+  "letting-go-without-losing-what-it-meant": LETTING_GO,
+  "finding-yourself-after-everything-changed": FINDING_YOURSELF_AGAIN,
+  "how-to-make-a-relationship-decision-you-can-trust": MAKING_CONFIDENT_DECISIONS,
   // Renewal
-  "opening-your-heart-again": OPENING_YOUR_HEART_AGAIN,
+  "starting-again-without-starting-from-scratch": OPENING_YOUR_HEART_AGAIN,
   "moving-forward": MOVING_FORWARD,
-  "from-the-ground-up": FROM_THE_GROUND_UP,
-  "a-different-legacy": A_DIFFERENT_LEGACY,
+  "what-nobody-taught-you-about-healthy-relationships": FROM_THE_GROUND_UP,
+  "the-cycle-breakers-playbook": A_DIFFERENT_LEGACY,
   // Add-ons
   "addon-losing-a-partner": ADDON_LOSING_A_PARTNER,
   "addon-caregiving": ADDON_CAREGIVING,

@@ -34,12 +34,12 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C23_LITERATURE } from "./making-confident-decisions-literature";
+import { C23_LITERATURE } from "./how-to-make-a-relationship-decision-you-can-trust-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 
 export const MAKING_CONFIDENT_DECISIONS: PlaybookContent = {
-  playbookKey: "making-confident-decisions",
+  playbookKey: "how-to-make-a-relationship-decision-you-can-trust",
   playbookVersion: 1,
   displayName: "Making Confident Relationship Decisions",
 

@@ -30,10 +30,10 @@
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { SAFETY_RECOGNITION_CARD } from "./shared/safety-not-safe";
-import { C18_LITERATURE } from "./staying-connected-literature";
+import { C18_LITERATURE } from "./money-work-and-us-literature";
 
 export const STAYING_CONNECTED: PlaybookContent = {
-  playbookKey: "staying-connected",
+  playbookKey: "money-work-and-us",
   playbookVersion: 1,
   displayName: "Staying Connected Through Life's Pressures",
 

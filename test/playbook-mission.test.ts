@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
-import { MBR_MISSIONS } from "../content/playbook/moving-beyond-rejection-missions";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
+import { MBR_MISSIONS } from "../content/playbook/finding-love-that-feels-mutual-missions";
 import { missionForPlay } from "../lib/playbook/rev3Flow";
 import { currentInstruction, nextRung } from "../lib/playbook/mission";
 import { recordMissionSelected, recordMissionReport } from "../lib/playbook/progressActions";
@@ -47,7 +47,7 @@ test("nextRung is content ordering only (answers 'what is the next stretch', not
 });
 
 test("selecting sets ONE current focus (state selected); does not downgrade attempted", () => {
-  const p0 = emptyProgress("moving-beyond-rejection", 1);
+  const p0 = emptyProgress("finding-love-that-feels-mutual", 1);
   const p1 = recordMissionSelected(p0, RD.id);
   assert.equal(p1.practice_state?.currentMissionId, RD.id, "one active focus");
   assert.equal(p1.practice_state?.missions?.[RD.id]?.state, "selected");
@@ -57,7 +57,7 @@ test("selecting sets ONE current focus (state selected); does not downgrade atte
 });
 
 test("attempt advances state + records eligibility; non-attempt reports are factual, not failure", () => {
-  const p0 = recordMissionSelected(emptyProgress("moving-beyond-rejection", 1), RD.id);
+  const p0 = recordMissionSelected(emptyProgress("finding-love-that-feels-mutual", 1), RD.id);
   const attempted = recordMissionReport(p0, RD.id, "attempted", { stretchEligible: true });
   assert.equal(attempted.practice_state?.missions?.[RD.id]?.state, "attempted");
   assert.equal(attempted.practice_state?.missions?.[RD.id]?.lastReport, "attempted");

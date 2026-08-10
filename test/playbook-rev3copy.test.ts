@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
-import { rev3Play } from "../content/playbook/moving-beyond-rejection-rev3-copy";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
+import { rev3Play } from "../content/playbook/finding-love-that-feels-mutual-rev3-copy";
 import type { Screen } from "../lib/playbook/contentSchema";
 
 const RD = C.plays.find((p) => p.playId === "read-and-decide")!;

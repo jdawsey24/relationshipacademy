@@ -33,12 +33,12 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C15_LITERATURE } from "./feeling-seen-literature";
+import { C15_LITERATURE } from "./loved-not-just-needed-literature";
 import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const FEELING_SEEN: PlaybookContent = {
-  playbookKey: "feeling-seen",
+  playbookKey: "loved-not-just-needed",
   playbookVersion: 1,
   displayName: "Feeling Seen and Appreciated",
 

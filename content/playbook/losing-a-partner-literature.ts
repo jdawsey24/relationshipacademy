@@ -12,10 +12,10 @@
  *   prefix per the naming convention.
  *
  * ⚠⚠ DISCOVERABILITY IS THE RISK. A bereaved reader taking the assessment is
- *   likely to land in `letting-go` (Cluster 12) or `finding-yourself-again`
+ *   likely to land in `letting-go-without-losing-what-it-meant` (Cluster 12) or `finding-yourself-after-everything-changed`
  *   (Cluster 20). Both would land badly — Cluster 12's tools assume someone
- *   chose to leave. `finding-yourself-again` already routes out via
- *   `rec-c20-bereaved`. **`letting-go` NEEDS THE SAME ROUTE ADDING.**
+ *   chose to leave. `finding-yourself-after-everything-changed` already routes out via
+ *   `rec-c20-bereaved`. **`letting-go-without-losing-what-it-meant` NEEDS THE SAME ROUTE ADDING.**
  *
  * ⚠ NEVER SUGGEST MOVING ON. The organising idea of this material is that
  *   moving forward feels like betrayal. Content that encourages moving on

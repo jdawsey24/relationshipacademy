@@ -5,7 +5,7 @@ import { validateEvent, EVENT_REGISTRY, isPlaybookEventType, type IncomingEvent 
 function base(over: Partial<IncomingEvent>): IncomingEvent {
   return {
     action_id: "a-1",
-    playbook_key: "moving-beyond-rejection",
+    playbook_key: "finding-love-that-feels-mutual",
     playbook_version: 1,
     object_type: "simulation",
     object_id: "sim-rd",

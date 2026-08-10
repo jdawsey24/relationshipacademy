@@ -29,10 +29,10 @@
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
 import { SAFETY_RECOGNITION_CARD, CRISIS_ESCALATION } from "./shared/safety-not-safe";
-import { C8_LITERATURE } from "./finding-your-way-back-literature";
+import { C8_LITERATURE } from "./from-roommates-back-to-partners-literature";
 
 export const FINDING_YOUR_WAY_BACK: PlaybookContent = {
-  playbookKey: "finding-your-way-back", // ⚠ CONFIRM canonical slug
+  playbookKey: "from-roommates-back-to-partners", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
   displayName: "Finding Your Way Back to Each Other",
 

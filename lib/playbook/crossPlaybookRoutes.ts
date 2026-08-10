@@ -15,17 +15,17 @@ export interface CrossPlaybookRoute {
 }
 
 export const CROSS_PLAYBOOK_ROUTES: CrossPlaybookRoute[] = [
-  { from: "letting-go", to: "addon-losing-a-partner", reason: "If your person died — the tools here assume someone chose to leave." },
-  { from: "finding-yourself-again", to: "addon-losing-a-partner", reason: "If your person died — the tools here assume someone chose to leave." },
-  { from: "letting-go", to: "moving-forward", reason: "If you're ready to think about dating again." },
-  { from: "moving-forward", to: "letting-go", reason: "If you're not there yet — still letting go of the last one." },
-  { from: "moving-forward", to: "opening-your-heart-again", reason: "“Doing it differently this time” is covered more fully there." },
-  { from: "moving-forward", to: "trusting-what-you-see", reason: "“Doing it differently this time” is covered more fully there." },
-  { from: "feeling-seen", to: "lean-in-or-let-go", reason: "If this is early-stage chasing rather than long-term resentment." },
-  { from: "rebuilding-physical-connection", to: "finding-your-way-back", reason: "If the emotional connection has to come first." },
-  { from: "building-a-shared-future", to: "asking-better-questions", reason: "If you're still dating rather than already together." },
-  { from: "asking-better-questions", to: "building-a-shared-future", reason: "If you're already together rather than still dating." },
-  { from: "making-confident-decisions", to: "from-the-ground-up", reason: "If it's disillusionment about what relationships require." },
+  { from: "letting-go-without-losing-what-it-meant", to: "addon-losing-a-partner", reason: "If your person died — the tools here assume someone chose to leave." },
+  { from: "finding-yourself-after-everything-changed", to: "addon-losing-a-partner", reason: "If your person died — the tools here assume someone chose to leave." },
+  { from: "letting-go-without-losing-what-it-meant", to: "moving-forward", reason: "If you're ready to think about dating again." },
+  { from: "moving-forward", to: "letting-go-without-losing-what-it-meant", reason: "If you're not there yet — still letting go of the last one." },
+  { from: "moving-forward", to: "starting-again-without-starting-from-scratch", reason: "“Doing it differently this time” is covered more fully there." },
+  { from: "moving-forward", to: "trust-yourself-to-choose-better", reason: "“Doing it differently this time” is covered more fully there." },
+  { from: "loved-not-just-needed", to: "is-this-going-somewhere", reason: "If this is early-stage chasing rather than long-term resentment." },
+  { from: "the-intimacy-reset", to: "from-roommates-back-to-partners", reason: "If the emotional connection has to come first." },
+  { from: "do-we-want-the-same-future", to: "asking-better-questions", reason: "If you're still dating rather than already together." },
+  { from: "asking-better-questions", to: "do-we-want-the-same-future", reason: "If you're already together rather than still dating." },
+  { from: "how-to-make-a-relationship-decision-you-can-trust", to: "what-nobody-taught-you-about-healthy-relationships", reason: "If it's disillusionment about what relationships require." },
   { from: "addon-caregiving", to: "addon-living-with-illness", reason: "The same situation from the other side." },
   { from: "addon-living-with-illness", to: "addon-caregiving", reason: "The same situation from the other side." },
 ];

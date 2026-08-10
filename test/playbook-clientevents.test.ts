@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { buildPlaybookEvent } from "../lib/playbook/clientEvents";
 
 const base = {
-  playbookKey: "moving-beyond-rejection",
+  playbookKey: "finding-love-that-feels-mutual",
   playbookVersion: 1,
   objectType: "mission" as const,
   objectId: "mission-rd-read-before-react",

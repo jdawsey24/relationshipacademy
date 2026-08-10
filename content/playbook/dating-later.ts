@@ -17,8 +17,8 @@
  *
  * ⚠ NO REASSURANCE ABOUT FINDING SOMEONE.
  *
- * ⚠ OVERLAPS: `staying-yourself` (C22) covers independence and commitment;
- *   `lean-in-or-let-go` (C24) covers whether to invest. This is the context
+ * ⚠ OVERLAPS: `how-to-love-without-losing-yourself` (C22) covers independence and commitment;
+ *   `is-this-going-somewhere` (C24) covers whether to invest. This is the context
  *   those sit in, not a restatement of either.
  *
  * ⚠ IDs ARE DO-NOT-REVERT ONCE SHIPPED.

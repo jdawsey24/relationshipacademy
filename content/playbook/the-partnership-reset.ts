@@ -27,10 +27,10 @@
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C10_LITERATURE } from "./building-a-true-partnership-literature";
+import { C10_LITERATURE } from "./the-partnership-reset-literature";
 
 export const BUILDING_A_TRUE_PARTNERSHIP: PlaybookContent = {
-  playbookKey: "building-a-true-partnership", // ⚠ CONFIRM canonical slug
+  playbookKey: "the-partnership-reset", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
   displayName: "Building a True Partnership",
 

@@ -34,12 +34,12 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C16_LITERATURE } from "./rebuilding-trust-literature";
+import { C16_LITERATURE } from "./can-i-trust-you-again-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 
 export const REBUILDING_TRUST: PlaybookContent = {
-  playbookKey: "rebuilding-trust",
+  playbookKey: "can-i-trust-you-again",
   playbookVersion: 1,
   displayName: "Rebuilding Trust After Betrayal",
 

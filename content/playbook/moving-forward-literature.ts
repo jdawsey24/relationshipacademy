@@ -12,11 +12,11 @@
  *
  *   Of those 12, most of the "doing it differently" material is already covered:
  *     • "I don't want to repeat my past" / "make the same mistakes"
- *       → `opening-your-heart-again` (Cluster 13), Pattern Interruption
+ *       → `starting-again-without-starting-from-scratch` (Cluster 13), Pattern Interruption
  *     • "I don't know what healthy looks like anymore"
- *       → `opening-your-heart-again`, Adaptive Responding
+ *       → `starting-again-without-starting-from-scratch`, Adaptive Responding
  *     • "I don't know how to trust my judgment"
- *       → `trusting-what-you-see` (Cluster 5)
+ *       → `trust-yourself-to-choose-better` (Cluster 5)
  *   Those route out via `rec-c12b-differently`. Rebuilding them here would
  *   produce a fourth Playbook saying the same thing.
  *
@@ -25,7 +25,7 @@
  *     • Guilt about dating at all
  *     • Comparing everyone to the former partner
  *
- * ⚠ VOLUME I is `letting-go` (Recovery, 38). This assumes the letting go is at
+ * ⚠ VOLUME I is `letting-go-without-losing-what-it-meant` (Recovery, 38). This assumes the letting go is at
  *   least underway. Readers still in it route back via `rec-c12b-still-in-it`.
  *
  * ⚠ NOT ABOUT BEREAVEMENT. The guilt here is about a person who is alive and

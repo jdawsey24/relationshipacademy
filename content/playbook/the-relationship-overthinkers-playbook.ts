@@ -30,12 +30,12 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C6_LITERATURE } from "./finding-security-literature";
+import { C6_LITERATURE } from "./the-relationship-overthinkers-playbook-literature";
 import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const FINDING_SECURITY: PlaybookContent = {
-  playbookKey: "finding-security", // ⚠ CONFIRM canonical slug
+  playbookKey: "the-relationship-overthinkers-playbook", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
   displayName: "Finding Security Without Constant Reassurance",
 

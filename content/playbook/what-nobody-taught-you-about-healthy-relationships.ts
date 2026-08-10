@@ -37,12 +37,12 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C25_LITERATURE } from "./from-the-ground-up-literature";
+import { C25_LITERATURE } from "./what-nobody-taught-you-about-healthy-relationships-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 
 export const FROM_THE_GROUND_UP: PlaybookContent = {
-  playbookKey: "from-the-ground-up",
+  playbookKey: "what-nobody-taught-you-about-healthy-relationships",
   playbookVersion: 1,
   displayName: "From the Ground Up",
 

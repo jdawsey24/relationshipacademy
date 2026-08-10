@@ -6,7 +6,7 @@
 -- outputs, and saved "My Plays". No emotional journaling, mood, or partner data.
 --
 -- Rev 2 architecture:
---   R1  keyed by stable `playbook_key` (e.g. 'moving-beyond-rejection'), NOT the
+--   R1  keyed by stable `playbook_key` (e.g. 'finding-love-that-feels-mutual'), NOT the
 --       numeric cluster_id (which stays commerce-only in playbook_entitlements).
 --   R2  version-stamped: playbook_version on the row; every stored output carries
 --       { output_schema_version, play_version, payload }.

@@ -32,11 +32,11 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C13_LITERATURE } from "./opening-your-heart-again-literature";
+import { C13_LITERATURE } from "./starting-again-without-starting-from-scratch-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const OPENING_YOUR_HEART_AGAIN: PlaybookContent = {
-  playbookKey: "opening-your-heart-again",
+  playbookKey: "starting-again-without-starting-from-scratch",
   playbookVersion: 1,
   displayName: "Opening Your Heart Again",
 

@@ -9,8 +9,8 @@
  *   distinction is how it is reached and labelled. `playbookKey` carries the
  *   `addon-` prefix per the naming convention. No schema change required.
  *
- * ⚠⚠ ROUTING DEPENDENCY. `finding-yourself-again` routes bereaved readers here
- *   via `rec-c20-bereaved`. **`letting-go` (Cluster 12) STILL NEEDS THE SAME
+ * ⚠⚠ ROUTING DEPENDENCY. `finding-yourself-after-everything-changed` routes bereaved readers here
+ *   via `rec-c20-bereaved`. **`letting-go-without-losing-what-it-meant` (Cluster 12) STILL NEEDS THE SAME
  *   ROUTE ADDED** — its tools assume someone chose to leave, and a bereaved
  *   reader landing there would be badly served.
  *

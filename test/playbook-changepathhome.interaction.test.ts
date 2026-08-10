@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { render, screen, fireEvent, h } from "./helpers/pbTestSetup";
 import ChangePathHome from "../components/playbook/ChangePathHome";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
 import { emptyProgress, type PlaybookProgress } from "../lib/playbook/contentSchema";
 import type { SurfacedItem } from "../lib/playbook/changePath";
 
@@ -28,7 +28,7 @@ function mount(progress: PlaybookProgress) {
 }
 
 const practiced: PlaybookProgress = {
-  ...emptyProgress("moving-beyond-rejection", 1),
+  ...emptyProgress("finding-love-that-feels-mutual", 1),
   recognized: ["rec-evidence"],
   play_states: { [RD]: "in_my_plays" },
   outputs: { [RD]: { output_schema_version: 1, play_version: 1, payload: {} } },

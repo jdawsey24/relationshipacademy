@@ -1,8 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
-import { MBR_SIMULATIONS } from "../content/playbook/moving-beyond-rejection-simulations";
-import { MBR_LITERATURE } from "../content/playbook/moving-beyond-rejection-literature";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
+import { MBR_SIMULATIONS } from "../content/playbook/finding-love-that-feels-mutual-simulations";
+import { MBR_LITERATURE } from "../content/playbook/finding-love-that-feels-mutual-literature";
 import { validateSimulation, aggregateFidelity, nextNodeId, pathBefore, nodeMap, terminalPlayIds, completionPayload } from "../lib/playbook/simulation";
 import type { Simulation } from "../lib/playbook/contentSchema";
 

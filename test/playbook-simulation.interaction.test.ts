@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { render, screen, fireEvent, h } from "./helpers/pbTestSetup";
 import SimulationPlayer from "../components/playbook/SimulationPlayer";
-import { MBR_SIMULATIONS } from "../content/playbook/moving-beyond-rejection-simulations";
+import { MBR_SIMULATIONS } from "../content/playbook/finding-love-that-feels-mutual-simulations";
 import type { Simulation } from "../lib/playbook/contentSchema";
 
 const RD = MBR_SIMULATIONS.find((s) => s.signature === "evidenceTimeline")!;

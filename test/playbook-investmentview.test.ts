@@ -65,7 +65,7 @@ test("the investmentView simulation is a valid graph handing off to its Play", (
 test("the investmentView completion payload passes the event registry", () => {
   const f = aggregateFidelity(HMP_SIMULATION, { "hmp-d2": "more", "hmp-cap2": "new" });
   const r = validateEvent({
-    action_id: "a-1", playbook_key: "moving-beyond-rejection", playbook_version: 1,
+    action_id: "a-1", playbook_key: "finding-love-that-feels-mutual", playbook_version: 1,
     object_type: "simulation", object_id: HMP_SIMULATION.id, object_version: 1,
     event_type: "simulation_completed", payload: f,
   });

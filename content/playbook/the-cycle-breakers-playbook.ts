@@ -6,8 +6,8 @@
  * Core Need: TO BECOME MY BEST RELATIONAL SELF. Plays-only.
  *
  * ⚠ SLUG COLLISION — OWNER DECISION NEEDED. The canonical subtitle is "Breaking
- *   the Cycle", already used by Cluster 7 (`breaking-the-cycle`, about
- *   arguing). Using `a-different-legacy` here to avoid the clash. The display
+ *   the Cycle", already used by Cluster 7 (`how-to-stop-having-the-same-fight`, about
+ *   arguing). Using `the-cycle-breakers-playbook` here to avoid the clash. The display
  *   names would also read as duplicates in a catalogue.
  *
  * ⚠ SMALLEST CLUSTER IN THE CORPUS. Ten statements, eight Needs, zero
@@ -34,12 +34,12 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C26_LITERATURE } from "./a-different-legacy-literature";
+import { C26_LITERATURE } from "./the-cycle-breakers-playbook-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 
 export const A_DIFFERENT_LEGACY: PlaybookContent = {
-  playbookKey: "a-different-legacy",
+  playbookKey: "the-cycle-breakers-playbook",
   playbookVersion: 1,
   displayName: "A Different Legacy",
 

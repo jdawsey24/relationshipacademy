@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
 import { simulationForPlay, playLiterature, screensWithoutLiterature } from "../lib/playbook/rev3Flow";
 import { recordSimulationComplete } from "../lib/playbook/progressActions";
 import { emptyProgress } from "../lib/playbook/contentSchema";
@@ -29,7 +29,7 @@ test("play-scope literature resolves for each Play (the extracted education)", (
 });
 
 test("recordSimulationComplete writes minimal functional state (additive, version-stamped)", () => {
-  const p0 = emptyProgress("moving-beyond-rejection", 1);
+  const p0 = emptyProgress("finding-love-that-feels-mutual", 1);
   const fid = { signature: "evidenceTimeline", evidence_reconsidered: "demonstrated", interpretation_response_appropriate: "not_demonstrated" } as const;
   const p1 = recordSimulationComplete(p0, "sim-rd-shorter-texts", fid);
   assert.equal(p1.simulation_state?.version, 1);

@@ -4,10 +4,10 @@ import assert from "node:assert/strict";
 import axe from "axe-core";
 import { render, screen, fireEvent, within, h } from "./helpers/pbTestSetup";
 import ExperienceShell from "../components/playbook/ExperienceShell";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
 import { emptyProgress, type PlaybookProgress } from "../lib/playbook/contentSchema";
 
-const KEY = "moving-beyond-rejection";
+const KEY = "finding-love-that-feels-mutual";
 
 function mount(progress: PlaybookProgress = emptyProgress(KEY, 1)) {
   return render(h(ExperienceShell, { content: C, playbookKey: KEY, initialProgress: progress }));

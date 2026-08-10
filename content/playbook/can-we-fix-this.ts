@@ -30,12 +30,12 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C11_LITERATURE } from "./accepting-what-is-literature";
+import { C11_LITERATURE } from "./can-we-fix-this-literature";
 import { CRISIS_ESCALATION } from "./shared/safety-not-safe";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 export const ACCEPTING_WHAT_IS: PlaybookContent = {
-  playbookKey: "accepting-what-is",
+  playbookKey: "can-we-fix-this",
   playbookVersion: 1,
   displayName: "Accepting What Is",
 

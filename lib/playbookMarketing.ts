@@ -19,14 +19,14 @@ export const PLAYBOOK_PRICE_DISPLAY = "$29.99";
 //     they sell from the /playbooks index via AddonsForSale, not a detail page.
 const CORPUS_ENABLED = process.env.NEXT_PUBLIC_PLAYBOOK_CORPUS === "true";
 export const PLAYBOOK_SLUGS: Record<string, number> = CORPUS_ENABLED
-  ? { "moving-beyond-rejection": 1, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER, ...PAIRED_KEY_TO_CLUSTER }
+  ? { "finding-love-that-feels-mutual": 1, ...DRAFT_PLAYBOOK_KEY_TO_CLUSTER, ...PAIRED_KEY_TO_CLUSTER }
   : {
-      "moving-beyond-rejection": 1,
-      "letting-someone-in": 3,
+      "finding-love-that-feels-mutual": 1,
+      "how-to-let-someone-in": 3,
       "dating-without-losing-hope": 4,
-      "trusting-what-you-see": 5,
-      "finding-security": 6,
-      "lean-in-or-let-go": 24,
+      "trust-yourself-to-choose-better": 5,
+      "the-relationship-overthinkers-playbook": 6,
+      "is-this-going-somewhere": 24,
     };
 
 // Reverse map id→slug. Each cluster now maps to a single slug (the C12/C21 paired modules

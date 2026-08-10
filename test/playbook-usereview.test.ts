@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/moving-beyond-rejection";
-import { MBR_USE_REVIEWS } from "../content/playbook/moving-beyond-rejection-usereviews";
+import { MOVING_BEYOND_REJECTION as C } from "../content/playbook/finding-love-that-feels-mutual";
+import { MBR_USE_REVIEWS } from "../content/playbook/finding-love-that-feels-mutual-usereviews";
 import { useReviewForPlay } from "../lib/playbook/rev3Flow";
 import { recordUseReview, reviewEntries, markMissionReviewed, recordMissionSelected } from "../lib/playbook/progressActions";
 import { emptyProgress } from "../lib/playbook/contentSchema";
@@ -37,7 +37,7 @@ test("each built Play has a structured Use Review (bounded selects, no journalin
 });
 
 test("recordUseReview persists structured signals as a logged use (feeds Change Path); additive", () => {
-  const p0 = emptyProgress("moving-beyond-rejection", 1);
+  const p0 = emptyProgress("finding-love-that-feels-mutual", 1);
   const p1 = recordUseReview(p0, "read-and-decide", { performed: "partly", stuck: "Acting on what I already saw", kept: true });
   assert.equal(p1.use_review_state?.version, 1);
   assert.deepEqual(p1.use_review_state?.reviews?.["read-and-decide"], [{ performed: "partly", stuck: "Acting on what I already saw", kept: true }]);
@@ -45,7 +45,7 @@ test("recordUseReview persists structured signals as a logged use (feeds Change 
 });
 
 test("recordUseReview accumulates multiple real-life uses over time (never overwrites), newest last, with timestamps", () => {
-  const p0 = emptyProgress("moving-beyond-rejection", 1);
+  const p0 = emptyProgress("finding-love-that-feels-mutual", 1);
   const p1 = recordUseReview(p0, "read-and-decide", { performed: "yes" }, "2026-07-01T10:00:00.000Z");
   const p2 = recordUseReview(p1, "read-and-decide", { performed: "partly", stuck: "s" }, "2026-07-20T10:00:00.000Z");
   const list = p2.use_review_state?.reviews?.["read-and-decide"];
@@ -55,7 +55,7 @@ test("recordUseReview accumulates multiple real-life uses over time (never overw
 });
 
 test("recordUseReview coerces a legacy single-object review into the list before appending", () => {
-  const p0 = emptyProgress("moving-beyond-rejection", 1);
+  const p0 = emptyProgress("finding-love-that-feels-mutual", 1);
   // Simulate a legacy row where reviews[pid] is a single object, not a list.
   const legacy = { ...p0, use_review_state: { version: 1, reviews: { "read-and-decide": { performed: "no" } } } } as unknown as typeof p0;
   const p1 = recordUseReview(legacy, "read-and-decide", { performed: "yes" });
@@ -63,7 +63,7 @@ test("recordUseReview coerces a legacy single-object review into the list before
 });
 
 test("recordUseReview stores an optional trimmed 'experience' note on the entry (bounded)", () => {
-  const p0 = emptyProgress("moving-beyond-rejection", 1);
+  const p0 = emptyProgress("finding-love-that-feels-mutual", 1);
   const p1 = recordUseReview(p0, "read-and-decide", { performed: "yes" }, "2026-07-28T10:00:00.000Z", "  we made a plan and I said the real thing  ");
   const e = p1.use_review_state?.reviews?.["read-and-decide"]?.[0];
   assert.equal(e?.experience, "we made a plan and I said the real thing", "trimmed, stored on the entry");
@@ -76,7 +76,7 @@ test("recordUseReview stores an optional trimmed 'experience' note on the entry 
 });
 
 test("reviewEntries tolerates absent, legacy-object, and list shapes", () => {
-  const p0 = emptyProgress("moving-beyond-rejection", 1);
+  const p0 = emptyProgress("finding-love-that-feels-mutual", 1);
   assert.deepEqual(reviewEntries(p0, "read-and-decide"), []);
   const legacy = { ...p0, use_review_state: { version: 1, reviews: { x: { performed: "partly" } } } } as unknown as typeof p0;
   assert.deepEqual(reviewEntries(legacy, "x"), [{ performed: "partly" }]);
@@ -85,7 +85,7 @@ test("reviewEntries tolerates absent, legacy-object, and list shapes", () => {
 });
 
 test("markMissionReviewed sets the mission state to reviewed", () => {
-  const p0 = recordMissionSelected(emptyProgress("moving-beyond-rejection", 1), "mission-rd-read-before-react");
+  const p0 = recordMissionSelected(emptyProgress("finding-love-that-feels-mutual", 1), "mission-rd-read-before-react");
   const p1 = markMissionReviewed(p0, "mission-rd-read-before-react");
   assert.equal(p1.practice_state?.missions?.["mission-rd-read-before-react"]?.state, "reviewed");
 });

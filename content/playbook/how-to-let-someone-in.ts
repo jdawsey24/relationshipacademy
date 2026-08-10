@@ -28,13 +28,13 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C3_LITERATURE } from "./letting-someone-in-literature";
+import { C3_LITERATURE } from "./how-to-let-someone-in-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 
 export const LETTING_SOMEONE_IN: PlaybookContent = {
   // ── §1 top level ───────────────────────────────────────────────
-  playbookKey: "letting-someone-in", // ⚠ CONFIRM canonical slug
+  playbookKey: "how-to-let-someone-in", // ⚠ CONFIRM canonical slug
   playbookVersion: 1,
   displayName: "Letting Someone In",
 

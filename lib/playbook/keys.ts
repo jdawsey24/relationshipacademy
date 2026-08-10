@@ -21,10 +21,10 @@
 //      modules sharing one cluster id; the paired modules now entitle via their OWN
 //      reserved ids (PAIRED_KEY_TO_CLUSTER) so buying one module does NOT unlock
 //      the other. Each of the four is bought and owned independently:
-//        • C12: letting-go (12) — paired module moving-forward → 912
-//        • C21: building-a-shared-future (21) — paired module asking-better-questions → 921
+//        • C12: letting-go-without-losing-what-it-meant (12) — paired module moving-forward → 912
+//        • C21: do-we-want-the-same-future (21) — paired module asking-better-questions → 921
 //   2. keyForClusterId (Snapshot result → "open your Playbook") returns the module
-//      for the assessed cluster (letting-go for C12, building-a-shared-future for
+//      for the assessed cluster (letting-go-without-losing-what-it-meant for C12, do-we-want-the-same-future for
 //      C21 — they're the sole DRAFT key for their cluster now). The paired modules are
 //      standalone products, not quiz-detectable, reached via cross-Playbook routing
 //      (lib/playbook/crossPlaybookRoutes) and the /playbooks catalog.
@@ -48,35 +48,35 @@ const CORPUS_ENABLED = process.env.NEXT_PUBLIC_PLAYBOOK_CORPUS === "true";
 
 // Flagship — always wired (the deployed C1 experience).
 const FLAGSHIP_KEY_TO_CLUSTER: Record<string, number> = {
-  "moving-beyond-rejection": 1,
+  "finding-love-that-feels-mutual": 1,
 };
 
 // DRAFT: every corpus Playbook → its Snapshot cluster. Inert until the flag is on.
 // (Add-ons are NOT here — they are the Expansion pack; see below.)
 export const DRAFT_PLAYBOOK_KEY_TO_CLUSTER: Record<string, number> = {
-  "letting-someone-in": 3,
+  "how-to-let-someone-in": 3,
   "dating-without-losing-hope": 4,
-  "trusting-what-you-see": 5,
-  "finding-security": 6,
-  "breaking-the-cycle": 7,
-  "finding-your-way-back": 8,
-  "rebuilding-physical-connection": 9,
-  "building-a-true-partnership": 10,
-  "accepting-what-is": 11,
-  "letting-go": 12, // paired module moving-forward split out → PAIRED_KEY_TO_CLUSTER
-  "opening-your-heart-again": 13,
-  "learning-to-say-no": 14,
-  "feeling-seen": 15,
-  "rebuilding-trust": 16,
-  "staying-connected": 18,
-  "finding-yourself-again": 20,
-  "building-a-shared-future": 21, // paired module asking-better-questions split out → PAIRED_KEY_TO_CLUSTER
-  "staying-yourself": 22,
-  "making-confident-decisions": 23,
-  "lean-in-or-let-go": 24,
-  "from-the-ground-up": 25,
-  "a-different-legacy": 26,
-  "letting-go-of-the-armor": 27,
+  "trust-yourself-to-choose-better": 5,
+  "the-relationship-overthinkers-playbook": 6,
+  "how-to-stop-having-the-same-fight": 7,
+  "from-roommates-back-to-partners": 8,
+  "the-intimacy-reset": 9,
+  "the-partnership-reset": 10,
+  "can-we-fix-this": 11,
+  "letting-go-without-losing-what-it-meant": 12, // paired module moving-forward split out → PAIRED_KEY_TO_CLUSTER
+  "starting-again-without-starting-from-scratch": 13,
+  "boundaries-without-guilt": 14,
+  "loved-not-just-needed": 15,
+  "can-i-trust-you-again": 16,
+  "money-work-and-us": 18,
+  "finding-yourself-after-everything-changed": 20,
+  "do-we-want-the-same-future": 21, // paired module asking-better-questions split out → PAIRED_KEY_TO_CLUSTER
+  "how-to-love-without-losing-yourself": 22,
+  "how-to-make-a-relationship-decision-you-can-trust": 23,
+  "is-this-going-somewhere": 24,
+  "what-nobody-taught-you-about-healthy-relationships": 25,
+  "the-cycle-breakers-playbook": 26,
+  "more-than-what-you-provide": 27,
 };
 
 // ADD-ONS — sold individually (decision #3: no bundle). Each is its own product
@@ -102,8 +102,8 @@ const ADDON_ENTITLEMENT_IDS = new Set<number>(Object.values(ADDON_KEY_TO_CLUSTER
 // Their marketing pages are sourced from the content registry (no snapshot_clusters
 // row) — see lib/playbookMarketing.ts.
 export const PAIRED_KEY_TO_CLUSTER: Record<string, number> = {
-  "moving-forward": 912,          // paired module of C12 (letting-go)
-  "asking-better-questions": 921, // paired module of C21 (building-a-shared-future)
+  "moving-forward": 912,          // paired module of C12 (letting-go-without-losing-what-it-meant)
+  "asking-better-questions": 921, // paired module of C21 (do-we-want-the-same-future)
 };
 export const PAIRED_KEYS = Object.keys(PAIRED_KEY_TO_CLUSTER);
 
@@ -140,7 +140,7 @@ for (const [key, cluster] of Object.entries(PLAYBOOK_KEY_TO_CLUSTER)) {
 
 // DRAFT: every Playbook + add-on the app serves at /playbook/[key] when enabled.
 const ALL_INTERACTIVE_KEYS: string[] = [
-  "moving-beyond-rejection",
+  "finding-love-that-feels-mutual",
   ...Object.keys(DRAFT_PLAYBOOK_KEY_TO_CLUSTER),
   ...PAIRED_KEYS,
   ...ADDON_KEYS,
@@ -148,7 +148,7 @@ const ALL_INTERACTIVE_KEYS: string[] = [
 
 /** Keys with a shipped INTERACTIVE experience. Gated: flagship-only until the corpus flag is on. */
 export const INTERACTIVE_PLAYBOOK_KEYS = new Set<string>(
-  CORPUS_ENABLED ? ALL_INTERACTIVE_KEYS : ["moving-beyond-rejection"],
+  CORPUS_ENABLED ? ALL_INTERACTIVE_KEYS : ["finding-love-that-feels-mutual"],
 );
 
 export function isPlaybookKey(key: string | null | undefined): key is string {

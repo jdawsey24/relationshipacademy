@@ -24,12 +24,12 @@
  */
 
 import type { PlaybookContent } from "@/lib/playbook/contentSchema";
-import { C22_LITERATURE } from "./staying-yourself-literature";
+import { C22_LITERATURE } from "./how-to-love-without-losing-yourself-literature";
 
 // Consumer copy written at ~5th-grade reading level: short sentences, plain words.
 
 export const STAYING_YOURSELF: PlaybookContent = {
-  playbookKey: "staying-yourself",
+  playbookKey: "how-to-love-without-losing-yourself",
   playbookVersion: 1,
   displayName: "Staying Yourself While Growing Together",
 
