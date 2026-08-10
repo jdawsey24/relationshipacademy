@@ -1,6 +1,6 @@
 # Cluster 1 — As-Built Implementation Package (Consolidated)
 
-*Relationship Playbook™ · Cluster 1 · "Believing You're Worth Being Chosen" (`moving-beyond-rejection`)*
+*Relationship Playbook™ · Cluster 1 · "Believing You're Worth Being Chosen" (`moving-beyond-rejection`)* _(superseded 2026-08-09 — see the correction note in `README.md`.)_
 
 This single document is **self-contained**: it explains how Cluster 1 is implemented in the current repository without requiring repository access. Every claim was verified against the working tree of branch `main`; file paths and line ranges are cited. A folder of deeper supporting documents (`01-…` through `14-…` + `implementation-manifest.json`) accompanies it for targeted reference. **Producing this package changed no runtime code, content, migration, feature flag, or deployment.**
 
@@ -35,7 +35,7 @@ Read this before designing any future cluster.
 | **Companion** | Navigation — guided, situation-by-situation processing (separate PWA). |
 | **Academy** | Education — member learning portal. |
 
-**Cluster 1's purpose.** It is the **first and reference** Playbook — the interventions for Snapshot cluster 1 "Difficulty Feeling Chosen." Consumer product name (code `displayName`): **"Believing You're Worth Being Chosen"**; stable key `moving-beyond-rejection`; `cluster_id = 1`.
+**Cluster 1's purpose.** It is the **first and reference** Playbook — the interventions for Snapshot cluster 1 "Difficulty Feeling Chosen." Consumer product name (code `displayName`): **"Believing You're Worth Being Chosen"**; stable key `moving-beyond-rejection`; `cluster_id = 1`. _(superseded 2026-08-09 — see the correction note in `README.md`.)_
 
 **Current status — seven distinct states (do not collapse):**
 

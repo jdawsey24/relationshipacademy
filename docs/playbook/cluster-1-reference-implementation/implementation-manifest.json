@@ -3,8 +3,13 @@
     "clusterKey": "moving-beyond-rejection",
     "clusterId": 1,
     "snapshotClusterName": "Difficulty Feeling Chosen",
-    "consumerProductTitle": "Believing You're Worth Being Chosen",
-    "marketingLegacyName": "Moving Beyond Rejection",
+    "consumerProductTitle": "Finding Love That Feels Mutual",
+    "consumerProductTitleSuperseded": {
+      "was": "Believing You're Worth Being Chosen",
+      "changedOn": "2026-08-09",
+      "reason": "Experience Clusters workbook v2 applied; snapshot_clusters.playbook_subtitle and the corpus file now both read the new name."
+    },
+    "marketingLegacyName": "Moving Beyond Rejection (retired — no surface uses it)",
     "playbookVersion": 1
   },
   "featureFlag": {

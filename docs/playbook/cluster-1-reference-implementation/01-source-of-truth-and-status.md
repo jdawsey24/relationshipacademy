@@ -4,6 +4,32 @@
 
 ---
 
+> ### ⚠ Correction — 2026-08-09
+>
+> **The consumer name is now "Finding Love That Feels Mutual".** This package records it as
+> "Believing You're Worth Being Chosen", which was correct when the package was written and is
+> not any more.
+>
+> The Experience Clusters workbook was revised and applied. `snapshot_clusters`
+> now carries `playbook_subtitle = "Finding Love That Feels Mutual"` for cluster 1, and
+> `content/playbook/moving-beyond-rejection.ts` was updated to match — both its
+> `displayName` and the opening screen's title.
+>
+> This also retires the discrepancy this package documents. The earlier ruling —
+> that the code was renamed **in code only** while the database and marketing
+> were held on "Moving Beyond Rejection" — no longer describes anything: all
+> three surfaces now agree, and none of them says "Moving Beyond Rejection".
+>
+> **The key did not change.** `moving-beyond-rejection` is still the stable
+> identifier in URLs, purchases and saved progress, so every path, filename and
+> key in this package is still accurate.
+>
+> Nothing else in the package was rewritten. It is an as-built record of what
+> was true when it was produced; this note says what changed since.
+
+---
+
+
 ## 1. Executive status — the seven distinct states (do NOT collapse)
 
 | State | Value | Evidence |
@@ -26,10 +52,10 @@
 |---|---|---|
 | Snapshot cluster | "Difficulty Feeling Chosen", `cluster_id = 1` | `lib/playbook/keys.ts:11-13` |
 | Stable playbook key | `moving-beyond-rejection` | `content/playbook/moving-beyond-rejection.ts:34`; `keys.ts` |
-| Consumer product title (code `displayName`) | **"Believing You're Worth Being Chosen"** | `moving-beyond-rejection.ts:36` |
+| Consumer product title (code `displayName`) | **"Believing You're Worth Being Chosen"** | `moving-beyond-rejection.ts:36` | _(superseded 2026-08-09 — see the correction note in `README.md`.)_
 | Marketing / legacy name | "Moving Beyond Rejection" (the key and older marketing copy) | key value; memory note |
 
-> **Documented discrepancy (not repaired):** the consumer title was renamed to "Believing You're Worth Being Chosen" **in code only**. The DB `playbook_subtitle` and marketing page were intentionally held on the older "Moving Beyond Rejection" naming until the Rev 3 launch. The code `displayName` and the marketing surface therefore differ by design. (Owner ruling; see the project memory `cluster1-title-rename`.)
+> **~~Documented discrepancy (not repaired)~~ — RETIRED 2026-08-09, see the correction note at the top of this file:** the consumer title was renamed to "Believing You're Worth Being Chosen" **in code only**. The DB `playbook_subtitle` and marketing page were intentionally held on the older "Moving Beyond Rejection" naming until the Rev 3 launch. The code `displayName` and the marketing surface therefore differ by design. (Owner ruling; see the project memory `cluster1-title-rename`.)
 
 ---
 

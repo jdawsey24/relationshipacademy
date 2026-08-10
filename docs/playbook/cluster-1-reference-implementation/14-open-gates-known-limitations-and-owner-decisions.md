@@ -35,7 +35,7 @@
 | **`playbook_events` producer not wired** | The events table + validators + client writer exist, but no live event-emit route is wired; `progress.ts:89` is a seam only. Longitudinal events are DEFERRED. |
 | **RD Change-Path hardcode** | `changePath.ts:132` special-cases `read-and-decide` on `reviewStuck === "Acting on what I already saw"`. Cluster-1-specific; parameterize before generalizing. |
 | **Naming collision (documentation hazard)** | Code comments use `R1/R2/R3/R4` as release-phase markers, unrelated to the RLC R1/R2/R3 suitability tiers (`08-…` §1). |
-| **Consumer-title split** | `displayName` = "Believing You're Worth Being Chosen" (code) vs DB `playbook_subtitle`/marketing "Moving Beyond Rejection" — intentional hold until launch (`01-…` §2). |
+| **Consumer-title split** | `displayName` = "Believing You're Worth Being Chosen" (code) vs DB `playbook_subtitle`/marketing "Moving Beyond Rejection" — intentional hold until launch (`01-…` §2). | _(superseded 2026-08-09 — see the correction note in `README.md`.)_
 | **Provisional IDs** | None outstanding — the four slice objects finalized their ids during Phase C (sim ids `sim-itr-evaluator-stance`, `sim-rgu-decision-room`, `sim-hmp-investment-view`, `sim-stt-rehearsal`; play ids match the slugs). |
 
 ---

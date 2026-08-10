@@ -84,7 +84,7 @@ The committed history ends at the original two-Experience Rev 3 build. (Everythi
 | Append-only `playbook_events` longitudinal store | 0053, events.ts | table + validators exist; **producer route not wired** | **DEFERRED** | `progress.ts:89` seam only; no live event writes. |
 | Authenticated DB save→reload round-trip | #45, #46 | code path unit-tested; live auth path unrun | **OWNER E2E NOT YET VERIFIED** | Requires owner sign-in. |
 | Linear 21-screen PRESENT→OBSERVE→DECIDE product | #5, #13 | retired | **SUPERSEDED** (#14) | Kept only as source artifacts. |
-| Consumer title "Believing You're Worth Being Chosen" | rename | `displayName` in code only | AS BUILT (code) | DB `playbook_subtitle` / marketing held on "Moving Beyond Rejection" — intentional (see `01-…`). |
+| Consumer title "Believing You're Worth Being Chosen" | rename | `displayName` in code only | AS BUILT (code) | DB `playbook_subtitle` / marketing held on "Moving Beyond Rejection" — intentional (see `01-…`). | _(superseded 2026-08-09 — see the correction note in `README.md`.)_
 | Working-tree commit | — | uncommitted on `main` | **variance** | HEAD is Step 8; Phase A–D uncommitted. |
 
 ### Flagged items (documented, **not repaired** in this task)

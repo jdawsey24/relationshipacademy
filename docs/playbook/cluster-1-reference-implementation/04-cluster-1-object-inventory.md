@@ -4,7 +4,7 @@
 **Registry root:** `content/playbook/moving-beyond-rejection.ts` → `MOVING_BEYOND_REJECTION: PlaybookContent`.
 **Resolved via:** `content/playbook/index.ts` `REGISTRY["moving-beyond-rejection"]` → `getPlaybookContent(key)`.
 
-Cluster identity: `playbookKey = "moving-beyond-rejection"` (`:34`), `playbookVersion = 1` (`:35`), `displayName = "Believing You're Worth Being Chosen"` (`:36`), `cluster_id = 1` (`keys.ts`).
+Cluster identity: `playbookKey = "moving-beyond-rejection"` (`:34`), `playbookVersion = 1` (`:35`), `displayName = "Believing You're Worth Being Chosen"` (`:36`), `cluster_id = 1` (`keys.ts`). _(superseded 2026-08-09 — see the correction note in `README.md`.)_
 
 ---
 
