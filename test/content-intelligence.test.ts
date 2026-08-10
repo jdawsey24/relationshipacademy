@@ -10,6 +10,7 @@ import { composeReply, MAX_LENSES } from "@/lib/contentIntelligence/turn";
 import { estimateCost, INPUT_USD_PER_MTOK, OUTPUT_USD_PER_MTOK,
          CACHE_READ_USD_PER_MTOK, CACHE_WRITE_USD_PER_MTOK } from "@/lib/ai/types";
 import { voiceCheck, blocking, estimateSeconds, worthTightening } from "@/lib/contentStudio/voiceCheck";
+import { EYES_OPEN, enrolmentState } from "@/lib/eyesOpen";
 import { AXES, FORMS, directionText, isValidChoice } from "@/lib/contentStudio/directions";
 import { PLATFORMS, platformBrief, scoreKeyword } from "@/lib/contentStudio/platforms";
 import { STAGES, STAGE_LIMITS, STAGE_SCHEMAS, STAGE_TEMPLATES, HOOK_FORMATS,
@@ -1046,4 +1047,56 @@ test("the read step is not handed 155 competencies it may not name", () => {
   assert.match(STAGE_TEMPLATES.read, /don't mention a phase or a competency/);
   // The writing stages still get them — they choose the lens.
   assert.match(STAGE_TEMPLATES.variations, /\{\{competencies\}\}/);
+});
+
+// ---------------------------------------------------------------------------
+// Dating With Your Eyes Open — a live cohort has a cap and a date
+// ---------------------------------------------------------------------------
+
+test("the class dates really are Thursdays", () => {
+  // Cheap to check, embarrassing to get wrong on a live sales page.
+  for (const w of EYES_OPEN.weeks) {
+    const d = new Date(`${w.date.replace(/^Thursday, /, "")}, 2026 12:00`);
+    assert.equal(d.getDay(), 4, `${w.date} is not a Thursday`);
+  }
+  assert.equal(EYES_OPEN.weeks.length, 4);
+});
+
+test("enrollment closes on the start date even with seats left", () => {
+  // Selling a seat to a class that already began is worse than not selling one.
+  const before = new Date("2026-09-02T12:00:00-04:00");
+  const after = new Date("2026-09-04T12:00:00-04:00");
+  assert.equal(enrolmentState(9, before), "open");
+  assert.equal(enrolmentState(9, after), "closed");
+  assert.equal(enrolmentState(0, before), "full");
+  // Closed beats full — the reason she can't buy is the date, not the count.
+  assert.equal(enrolmentState(0, after), "closed");
+});
+
+test("a held seat counts against the cap, an expired hold does not", () => {
+  const src = read("lib/eyesOpen.ts");
+  // Both halves of the count, and the expiry applied in the query.
+  assert.match(src, /\.eq\("status", "paid"\)/);
+  assert.match(src, /\.eq\("status", "pending"\)[\s\S]{0,80}\.gt\("held_until"/);
+  assert.match(src, /A job that has to fire for the page to be correct/);
+});
+
+test("a full cohort offers October rather than a dead end", () => {
+  const page = read("app/(site)/dating-with-your-eyes-open/page.tsx");
+  assert.match(page, /Join the \{EYES_OPEN\.nextCohort\.label\} list/);
+  assert.match(page, /id="october"/);
+  // And it collects an email rather than taking money for an undated class.
+  assert.match(page, /LeadForm/);
+  // The list collects an email; it never routes to checkout for an undated class.
+  assert.match(page, /source=\{EYES_OPEN\.nextCohort\.leadSource\}/);
+  assert.match(page, /href="#october"/);
+});
+
+test("nothing about seats or dates is baked into the page copy", () => {
+  // Comments explain the rule and may quote it; the rule is about rendered copy.
+  const page = read("app/(site)/dating-with-your-eyes-open/page.tsx")
+    .split("\n").filter((l) => !/^\s*(\/\/|\*|\/\*)/.test(l)).join("\n");
+  assert.ok(!/\b15 (seats|women|participants)\b/.test(page), "seat count must come from EYES_OPEN");
+  assert.ok(!/September 3\b/.test(page.replace(/EYES_OPEN\.\w+/g, "")), "dates must come from EYES_OPEN");
+  assert.match(page, /export const dynamic = "force-dynamic"/);
 });

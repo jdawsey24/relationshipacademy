@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
+import LeadForm from "@/components/site/LeadForm";
 import { EYES_OPEN, seatsRemaining, enrolmentState } from "@/lib/eyesOpen";
 
 // Dating With Your Eyes Open — the founding-cohort sales page.
@@ -368,6 +369,37 @@ export default async function DatingWithYourEyesOpenPage() {
         </div>
       </section>
 
+
+      {/* October — only worth a section once September can't take her */}
+      {state !== "open" && (
+        <section id="october" className="mt-20 scroll-mt-24 rounded-3xl border border-midnight-navy/10 bg-white p-8 sm:p-12">
+          <SectionLabel>What&apos;s next</SectionLabel>
+          <h2 className="mt-3 font-display text-3xl font-semibold text-midnight-navy">
+            The {EYES_OPEN.nextCohort.label}
+          </h2>
+          <div className="mt-5 max-w-2xl space-y-4 font-body text-body leading-relaxed text-charcoal/75">
+            <p>
+              {state === "full"
+                ? `All ${EYES_OPEN.seats} founding seats are taken. The series runs again on Thursday evenings in October.`
+                : "The founding cohort has already begun. The series runs again on Thursday evenings in October."}
+            </p>
+            <p>{EYES_OPEN.nextCohort.note}</p>
+            <p className="text-charcoal/60">
+              Leave your email and you&apos;ll hear the dates first — before the page goes up.
+              Nothing is charged now, and there&apos;s nothing to hold you to.
+            </p>
+          </div>
+          <div className="mt-8 max-w-lg">
+            <LeadForm
+              source={EYES_OPEN.nextCohort.leadSource}
+              fields={["name", "email"]}
+              submitLabel="Tell me when October opens"
+              successMessage="You're on the list. You'll get the October dates before they're announced anywhere else."
+            />
+          </div>
+        </section>
+      )}
+
       {/* FAQ */}
       <section className="mt-20">
         <div className="text-center">
@@ -438,13 +470,11 @@ function EnrolCta({ state, label, onDark = false }: {
       </CtaButton>
     );
   }
-  const text = state === "full" ? "Founding cohort is full" : "Enrollment has closed";
+  // Full is not a dead end. October is coming; the button goes there.
   return (
-    <span className={`inline-flex min-h-[52px] items-center justify-center rounded-full px-8 font-ui text-base font-medium ${
-      onDark ? "border border-white/25 bg-white/10 text-white/70" : "border border-midnight-navy/20 bg-white/60 text-charcoal/60"
-    }`}>
-      {text}
-    </span>
+    <CtaButton href="#october" variant={onDark ? "accent" : "secondary"}>
+      Join the {EYES_OPEN.nextCohort.label} list
+    </CtaButton>
   );
 }
 
@@ -454,10 +484,14 @@ function SeatLine({ seats, state, onDark = false }: {
 }) {
   const muted = onDark ? "text-white/70" : "text-charcoal/50";
   if (state === "closed") {
-    return <p className={`font-body text-sm ${muted}`}>This cohort has already begun.</p>;
+    return <p className={`font-body text-sm ${muted}`}>The September cohort has already begun.</p>;
   }
   if (state === "full") {
-    return <p className={`font-body text-sm ${muted}`}>All {EYES_OPEN.seats} seats are taken.</p>;
+    return (
+      <p className={`font-body text-sm ${muted}`}>
+        All {EYES_OPEN.seats} September seats are taken — the next cohort runs in October.
+      </p>
+    );
   }
   return (
     <p className={`font-body text-sm ${muted}`}>

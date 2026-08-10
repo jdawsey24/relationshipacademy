@@ -18,6 +18,21 @@ export const EYES_OPEN = {
   datesLine: "September 3–24",
   /** First class. After this, enrollment closes — see enrolmentState. */
   startsAt: new Date("2026-09-03T19:00:00-04:00"),
+  cohort: "founding-2026-09",
+
+  /**
+   * What happens when the fifteen are gone.
+   *
+   * Not a dead end and not a second product to buy: October's dates, size and
+   * number of cohorts are not settled, and taking money for a class with no
+   * date is the one thing a page like this must not do. So a full cohort
+   * collects an email and says plainly that details are coming.
+   */
+  nextCohort: {
+    leadSource: "eyes_open_october",
+    label: "October cohort",
+    note: "October dates and details are still being set — there may be more than one cohort running.",
+  },
 
   weeks: [
     {
@@ -102,16 +117,32 @@ export type EnrolmentState = "open" | "full" | "closed";
  * than one that is briefly optimistic about a class nobody has bought yet.
  */
 export async function seatsRemaining(): Promise<number> {
+  return Math.max(0, EYES_OPEN.seats - (await seatsTaken()));
+}
+
+/**
+ * Seats that are gone: paid, plus holds that have not expired.
+ *
+ * The expiry is applied in the query rather than by a cleanup job, so an
+ * abandoned checkout frees its seat the moment its hold lapses whether or not
+ * anything has run. A job that has to fire for the page to be correct is a job
+ * that will one day not fire.
+ */
+export async function seatsTaken(): Promise<number> {
   try {
     const s = getSupabaseAdminClient();
-    const { count, error } = await s
-      .from("eyes_open_enrolments")
-      .select("id", { count: "exact", head: true })
-      .eq("status", "paid");
-    if (error) return EYES_OPEN.seats;
-    return Math.max(0, EYES_OPEN.seats - (count ?? 0));
+    const [{ count: paid }, { count: held }] = await Promise.all([
+      s.from("eyes_open_enrolments").select("id", { count: "exact", head: true })
+        .eq("cohort", EYES_OPEN.cohort).eq("status", "paid"),
+      s.from("eyes_open_enrolments").select("id", { count: "exact", head: true })
+        .eq("cohort", EYES_OPEN.cohort).eq("status", "pending")
+        .gt("held_until", new Date().toISOString()),
+    ]);
+    return (paid ?? 0) + (held ?? 0);
   } catch {
-    return EYES_OPEN.seats;
+    // A sales page that 500s is worse than one briefly optimistic about a
+    // class nobody has bought. The cap still holds at checkout.
+    return 0;
   }
 }
 
