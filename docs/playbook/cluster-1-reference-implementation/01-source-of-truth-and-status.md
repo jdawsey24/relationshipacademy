@@ -12,7 +12,7 @@
 >
 > The Experience Clusters workbook was revised and applied. `snapshot_clusters`
 > now carries `playbook_subtitle = "Finding Love That Feels Mutual"` for cluster 1, and
-> `content/playbook/moving-beyond-rejection.ts` was updated to match — both its
+> `content/playbook/finding-love-that-feels-mutual.ts` was updated to match — both its
 > `displayName` and the opening screen's title.
 >
 > This also retires the discrepancy this package documents. The earlier ruling —
@@ -20,9 +20,16 @@
 > were held on "Moving Beyond Rejection" — no longer describes anything: all
 > three surfaces now agree, and none of them says "Moving Beyond Rejection".
 >
-> **The key did not change.** `moving-beyond-rejection` is still the stable
-> identifier in URLs, purchases and saved progress, so every path, filename and
-> key in this package is still accurate.
+> **The key changed too, later the same day.** When this note was first written
+> the key was still `moving-beyond-rejection` and the note said so. It is now
+> `finding-love-that-feels-mutual`: the slug, the `playbook_key`, and the content
+> filename all match the consumer name.
+>
+> Every path, filename and key citation in this package has been updated to the
+> new value, so the citations are accurate again. Two things that did **not**
+> move: purchases, which key on the numeric `cluster_id` and were never exposed
+> to the rename, and the old public URLs, which are 308 permanent redirects to
+> the new ones rather than dead links.
 >
 > Nothing else in the package was rewritten. It is an as-built record of what
 > was true when it was produced; this note says what changed since.
@@ -51,8 +58,8 @@
 | Layer | Value | Source |
 |---|---|---|
 | Snapshot cluster | "Difficulty Feeling Chosen", `cluster_id = 1` | `lib/playbook/keys.ts:11-13` |
-| Stable playbook key | `moving-beyond-rejection` | `content/playbook/moving-beyond-rejection.ts:34`; `keys.ts` |
-| Consumer product title (code `displayName`) | **"Believing You're Worth Being Chosen"** | `moving-beyond-rejection.ts:36` | _(superseded 2026-08-09 — see the correction note in `README.md`.)_
+| Stable playbook key | `finding-love-that-feels-mutual` | `content/playbook/finding-love-that-feels-mutual.ts:34`; `keys.ts` |
+| Consumer product title (code `displayName`) | **"Believing You're Worth Being Chosen"** | `finding-love-that-feels-mutual.ts:36` | _(superseded 2026-08-09 — see the correction note in `README.md`.)_
 | Marketing / legacy name | "Moving Beyond Rejection" (the key and older marketing copy) | key value; memory note |
 
 > **~~Documented discrepancy (not repaired)~~ — RETIRED 2026-08-09, see the correction note at the top of this file:** the consumer title was renamed to "Believing You're Worth Being Chosen" **in code only**. The DB `playbook_subtitle` and marketing page were intentionally held on the older "Moving Beyond Rejection" naming until the Rev 3 launch. The code `displayName` and the marketing surface therefore differ by design. (Owner ruling; see the project memory `cluster1-title-rename`.)
@@ -74,7 +81,7 @@ When any two disagree, the **higher** wins. **Code never redefines the framework
 
 `HEAD` on `main` is `9429246` ("Step 8 orchestration corrections"), which is the **original two-Experience Rev 3 build** (`evidenceTimeline` + `conclusionNarrowing`). **Everything from Phase A onward is present only in the working tree, uncommitted:**
 
-- **Modified (tracked) files** include: `lib/playbook/{contentSchema,simulation,sanitize,progress,events,changePath,progressActions,types}.ts`, `components/playbook/{ExperienceShell,ChangePathHome,SimulationPlayer,SimulationSignatures,UseReviewFlow}.tsx`, `content/playbook/{moving-beyond-rejection,moving-beyond-rejection-usereviews}.ts`, and ~14 test files.
+- **Modified (tracked) files** include: `lib/playbook/{contentSchema,simulation,sanitize,progress,events,changePath,progressActions,types}.ts`, `components/playbook/{ExperienceShell,ChangePathHome,SimulationPlayer,SimulationSignatures,UseReviewFlow}.tsx`, `content/playbook/{finding-love-that-feels-mutual,finding-love-that-feels-mutual-usereviews}.ts`, and ~14 test files.
 - **Untracked (new) files** include: the four slice content files `content/playbook/{is-this-right-for-you,rest-or-giving-up,how-much-to-put-in,say-the-real-thing}.ts`, four new signature tests, and `app/playbook-preview/`.
 - **Committed** already: migration `0053_playbook_events.sql` (tracked).
 
@@ -99,7 +106,7 @@ When any two disagree, the **higher** wins. **Code never redefines the framework
 ### Implementation (current code) — the working tree
 - **Schema/engine:** `lib/playbook/contentSchema.ts`, `contentValidate.ts`, `simulation.ts`, `processState.ts`, `changePath.ts`, `rev3Flow.ts`, `mission.ts`, `progressActions.ts`, `sanitize.ts`, `progress.ts`, `events.ts`, `clientEvents.ts`, `crisisSafety.ts`, `keys.ts`, `rev3.ts`, `types.ts`, `outputSummary.ts`, `sortLogic.ts`.
 - **Components:** `components/playbook/*` (`ExperienceShell`, `ChangePathHome`, `SimulationPlayer`, `SimulationSignatures`, `PlayContainer`, `PlaySequence`, `OutputEditor`, `MissionCard`, `UseReviewFlow`, `FieldGuide`, `SortEngine`, `useProgress`).
-- **Content:** `content/playbook/moving-beyond-rejection.ts` (registry) + slice files + `-literature.ts`, `-simulations.ts`, `-missions.ts`, `-usereviews.ts`, `-rev3-copy.ts`, `index.ts`.
+- **Content:** `content/playbook/finding-love-that-feels-mutual.ts` (registry) + slice files + `-literature.ts`, `-simulations.ts`, `-missions.ts`, `-usereviews.ts`, `-rev3-copy.ts`, `index.ts`.
 - **API:** `app/api/playbook/[key]/{progress,screen,access}/route.ts`.
 - **Migrations:** `supabase/migrations/0052_playbook_progress.sql`, `0053_playbook_events.sql`.
 

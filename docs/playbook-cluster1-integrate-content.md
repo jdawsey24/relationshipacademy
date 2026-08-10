@@ -1,7 +1,7 @@
 # Cluster 1 — Integrate (Use Review) Content (content gate, revised)
 
 **Status:** FOR REVIEW. Flag-gated; v0 unchanged. No deploy, no migration.
-**Source of truth:** `content/playbook/moving-beyond-rejection-usereviews.ts`.
+**Source of truth:** `content/playbook/finding-love-that-feels-mutual-usereviews.ts`.
 
 The Integrate layer replaces the v0 "Keep/Update" dialog (on the Rev 3 path) with a **structured Use Review** — the functional return after a real-world attempt. Bounded selects only (no journaling, not a checklist score). Signals feed Change Path (Step 8). v0 keeps its original dialog when the flag is off.
 

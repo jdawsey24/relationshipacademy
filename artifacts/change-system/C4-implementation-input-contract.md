@@ -8,7 +8,7 @@ write-up. Every item is keyed to a real schema type in `lib/playbook/contentSche
 
 Deliver as **one authored content module** (`content/playbook/<c4-key>.ts`) shaped like `PlaybookContent`, plus
 its literature/simulations companion files. Format: the same object model as Cluster 1
-(`content/playbook/moving-beyond-rejection*.ts`).
+(`content/playbook/finding-love-that-feels-mutual*.ts`).
 
 ---
 

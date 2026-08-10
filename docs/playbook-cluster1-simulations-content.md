@@ -1,7 +1,7 @@
 # Cluster 1 — Authored Simulation Content (Experience Gate, revised)
 
 **Status:** FOR CONTENT/EXPERIENCE REVIEW. Not wired into the live Playbook. No deploy, no migration.
-**Source of truth:** `content/playbook/moving-beyond-rejection-simulations.ts` (this doc renders it verbatim).
+**Source of truth:** `content/playbook/finding-love-that-feels-mutual-simulations.ts` (this doc renders it verbatim).
 **Engine:** approved Step-4 foundation (deterministic graph, no LLM, non-scoring). Engine unchanged in this revision.
 
 Every string below is the **exact consumer-facing copy** as it will appear. Fidelity states, JIT hooks, teaching branches, routing, and the Play handoff are shown for each node.

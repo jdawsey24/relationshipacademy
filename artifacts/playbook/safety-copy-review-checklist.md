@@ -30,7 +30,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [x] **Signed off** — Janelle Dawsey, LMFT, 2026-08-05
 - *Type:* safety literature (scope=cluster)
-- *Used in 3 Playbooks:* `breaking-the-cycle`, `finding-your-way-back`, `staying-connected`
+- *Used in 3 Playbooks:* `how-to-stop-having-the-same-fight`, `from-roommates-back-to-partners`, `money-work-and-us`
 
 > **If you don't feel safe**
 >
@@ -63,7 +63,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* recognition card (role=signpost)
-- *Used in 3 Playbooks:* `breaking-the-cycle`, `finding-your-way-back`, `staying-connected`
+- *Used in 3 Playbooks:* `how-to-stop-having-the-same-fight`, `from-roommates-back-to-partners`, `money-work-and-us`
 
 > **I don't feel safe enough to be honest with them.**
 >
@@ -82,7 +82,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* accepting-what-is
+- *Location:* can-we-fix-this
 
 > **When you've already gone quiet**
 >
@@ -99,7 +99,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* feeling-seen
+- *Location:* loved-not-just-needed
 
 > **Nothing left to give**
 >
@@ -117,7 +117,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* rebuilding-trust
+- *Location:* can-i-trust-you-again
 
 > **What if it's addiction?**
 >
@@ -135,7 +135,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* rebuilding-trust
+- *Location:* can-i-trust-you-again
 
 > **The images that won't stop**
 >
@@ -150,7 +150,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* from-the-ground-up
+- *Location:* what-nobody-taught-you-about-healthy-relationships
 
 > **“Why do I keep ending up here?”**
 >
@@ -168,7 +168,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* finding-your-way-back
+- *Location:* from-roommates-back-to-partners
 
 > **When you've stopped reaching**
 >
@@ -187,7 +187,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* rebuilding-physical-connection
+- *Location:* the-intimacy-reset
 
 > **Before you work on this — rule out the physical causes**
 >
@@ -226,7 +226,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* moving-beyond-rejection
+- *Location:* finding-love-that-feels-mutual
 
 > **Editing yourself to stay likable**
 >
@@ -247,7 +247,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* recognition card (role=signpost)
-- *Location:* rebuilding-trust
+- *Location:* can-i-trust-you-again
 
 > **I don't know where support ends and enabling begins.**
 >
@@ -260,7 +260,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* recognition card (role=signpost)
-- *Location:* rebuilding-physical-connection
+- *Location:* the-intimacy-reset
 
 > **Something's changed and I don't know why.**
 >
@@ -286,7 +286,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* moving-beyond-rejection · play `what-it-actually-means`
+- *Location:* finding-love-that-feels-mutual · play `what-it-actually-means`
 
 > **If this is bigger than a dating moment**
 >
@@ -298,7 +298,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* accepting-what-is · play `which-way-does-it-lean`
+- *Location:* can-we-fix-this · play `which-way-does-it-lean`
 - *Embeds the shared crisis block* (see §1)
 
 > **If it isn't only this**
@@ -312,7 +312,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* letting-go · play `the-shape-of-a-week`
+- *Location:* letting-go-without-losing-what-it-meant · play `the-shape-of-a-week`
 - *Embeds the shared crisis block* (see §1)
 
 > **If it's more than grief**
@@ -326,7 +326,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* feeling-seen · play `what-i-stopped`
+- *Location:* loved-not-just-needed · play `what-i-stopped`
 - *Embeds the shared crisis block* (see §1)
 
 > **If the flatness has spread**
@@ -340,7 +340,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* rebuilding-trust · play `the-checking`
+- *Location:* can-i-trust-you-again · play `the-checking`
 
 > **If the images are constant**
 >
@@ -352,7 +352,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* rebuilding-trust · play `which-question-am-i-asking`
+- *Location:* can-i-trust-you-again · play `which-question-am-i-asking`
 
 > **If you're frightened, or being pressured about what you decide**
 >
@@ -364,7 +364,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* making-confident-decisions · play `telling-one-person`
+- *Location:* how-to-make-a-relationship-decision-you-can-trust · play `telling-one-person`
 
 > **If there's no one**
 >
@@ -376,7 +376,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* from-the-ground-up · play `the-recurring-move`
+- *Location:* what-nobody-taught-you-about-healthy-relationships · play `the-recurring-move`
 
 > **If you want the why**
 >
@@ -388,7 +388,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* a-different-legacy · play `the-specific-thing`
+- *Location:* the-cycle-breakers-playbook · play `the-specific-thing`
 
 > **If what you inherited was harmful rather than unhelpful**
 >
@@ -400,7 +400,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* letting-someone-in · play `when-closeness-costs`
+- *Location:* how-to-let-someone-in · play `when-closeness-costs`
 
 > **If everything costs this much**
 >
@@ -412,7 +412,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* trusting-what-you-see · play `wise-or-scared`
+- *Location:* trust-yourself-to-choose-better · play `wise-or-scared`
 
 > **If this is bigger than dating**
 >
@@ -424,7 +424,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* finding-security · play `what-this-is-costing`
+- *Location:* the-relationship-overthinkers-playbook · play `what-this-is-costing`
 
 > **If it's most of your life, not most of your head**
 >
@@ -436,7 +436,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* finding-security · play `when-it-doesnt-land`
+- *Location:* the-relationship-overthinkers-playbook · play `when-it-doesnt-land`
 - *Embeds the shared crisis block* (see §1)
 
 > **If it isn't only about them**
@@ -450,7 +450,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* breaking-the-cycle · play `raise-it-anyway`
+- *Location:* how-to-stop-having-the-same-fight · play `raise-it-anyway`
 
 > **If raising things isn't safe**
 >
@@ -462,7 +462,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* finding-your-way-back · play `have-i-stopped-reaching`
+- *Location:* from-roommates-back-to-partners · play `have-i-stopped-reaching`
 - *Embeds the shared crisis block* (see §1)
 
 > **If it isn't only about them**
@@ -476,7 +476,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* rebuilding-physical-connection · play `the-difference-conversation`
+- *Location:* the-intimacy-reset · play `the-difference-conversation`
 
 > **If they've already said no**
 >
@@ -516,7 +516,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* staying-connected
+- *Location:* money-work-and-us
 
 > **You're probably both right**
 >
@@ -535,7 +535,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* staying-yourself
+- *Location:* how-to-love-without-losing-yourself
 
 > **What you're actually afraid of losing**
 >
@@ -553,7 +553,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* lean-in-or-let-go
+- *Location:* is-this-going-somewhere
 
 > **Being afraid of the wrong choice**
 >
@@ -571,7 +571,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* letting-go-of-the-armor
+- *Location:* more-than-what-you-provide
 
 > **“What if I stopped giving so much?”**
 >
@@ -589,7 +589,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* letting-go-of-the-armor
+- *Location:* more-than-what-you-provide
 
 > **What this actually is**
 >
@@ -607,7 +607,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* letting-someone-in
+- *Location:* how-to-let-someone-in
 
 > **Some of this fear is just accurate**
 >
@@ -630,7 +630,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* letting-someone-in
+- *Location:* how-to-let-someone-in
 
 > **When wanting stops the moment it's returned**
 >
@@ -646,7 +646,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* letting-someone-in
+- *Location:* how-to-let-someone-in
 
 > **What being known actually costs**
 >
@@ -664,7 +664,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* staying-connected · play `the-money-conversation`
+- *Location:* money-work-and-us · play `the-money-conversation`
 
 > **If money is being controlled rather than disagreed about**
 >
@@ -676,7 +676,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* letting-someone-in · play `before-you-go`
+- *Location:* how-to-let-someone-in · play `before-you-go`
 
 > **If something has actually happened**
 >
@@ -688,7 +688,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* letting-someone-in · play `is-this-right-for-me`
+- *Location:* how-to-let-someone-in · play `is-this-right-for-me`
 
 > **If something has actually happened**
 >
@@ -700,7 +700,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* trusting-what-you-see · play `check-it-dont-bury-it`
+- *Location:* trust-yourself-to-choose-better · play `check-it-dont-bury-it`
 
 > **If the concern is about safety**
 >
@@ -835,7 +835,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* letting-go
+- *Location:* letting-go-without-losing-what-it-meant
 
 > **Did I waste those years?**
 >
@@ -851,7 +851,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* finding-yourself-again
+- *Location:* finding-yourself-after-everything-changed
 
 > **Grieving a future that never happened**
 >
@@ -1189,7 +1189,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* recognition card (role=signpost)
-- *Location:* letting-go
+- *Location:* letting-go-without-losing-what-it-meant
 
 > **My partner died.**
 >
@@ -1202,7 +1202,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* recognition card (role=signpost)
-- *Location:* finding-yourself-again
+- *Location:* finding-yourself-after-everything-changed
 
 > **My partner died.**
 >
@@ -1217,7 +1217,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* feeling-seen
+- *Location:* loved-not-just-needed
 
 > **What if they finally appreciate me and it doesn't help?**
 >
@@ -1232,7 +1232,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* staying-connected
+- *Location:* money-work-and-us
 
 > **Supporting them without disappearing**
 >
@@ -1266,7 +1266,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* recognition card (role=signpost)
-- *Location:* letting-go
+- *Location:* letting-go-without-losing-what-it-meant
 
 > **I'm thinking about dating again and don't know how.**
 >
@@ -1305,7 +1305,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* recognition card (role=signpost)
-- *Location:* feeling-seen
+- *Location:* loved-not-just-needed
 
 > **I'm always the one texting first. I don't want to convince someone to choose me.**
 >
@@ -1318,7 +1318,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* recognition card (role=signpost)
-- *Location:* building-a-shared-future
+- *Location:* do-we-want-the-same-future
 
 > **I'm still dating and trying to work out what matters.**
 >
@@ -1344,7 +1344,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* recognition card (role=signpost)
-- *Location:* making-confident-decisions
+- *Location:* how-to-make-a-relationship-decision-you-can-trust
 
 > **I thought love would be enough, and it wasn't.**
 >
@@ -1357,7 +1357,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* recognition card (role=signpost)
-- *Location:* lean-in-or-let-go
+- *Location:* is-this-going-somewhere
 
 > **I already said yes, and now I'm not sure.**
 >
@@ -1396,7 +1396,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* finding-yourself-again · play `the-shape-of-a-life`
+- *Location:* finding-yourself-after-everything-changed · play `the-shape-of-a-life`
 
 > **The practical side needs different people**
 >
@@ -1408,7 +1408,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* letting-someone-in · play `one-true-thing`
+- *Location:* how-to-let-someone-in · play `one-true-thing`
 
 > **If the true thing is a heavy one**
 >
@@ -1420,7 +1420,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* in-play support signpost
-- *Location:* breaking-the-cycle · play `going-back-afterwards`
+- *Location:* how-to-stop-having-the-same-fight · play `going-back-afterwards`
 
 > **If you're always the one going back**
 >
@@ -1446,7 +1446,7 @@ single sign-off covers every Playbook that pulls it in.
 
 - [ ] Final sign-off
 - *Type:* safety literature (scope=cluster)
-- *Location:* staying-connected
+- *Location:* money-work-and-us
 
 > **What this actually is**
 >

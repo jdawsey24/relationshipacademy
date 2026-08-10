@@ -1,6 +1,6 @@
 # Cluster 1 — As-Built Reference Implementation Package
 
-**What this is:** a verified, repository-grounded audit of exactly how **Cluster 1** of the Relationship Playbook™ ("Believing You're Worth Being Chosen" / key `moving-beyond-rejection`) is implemented in the current repository. It is a **documentation and audit deliverable** — producing it changed **no** runtime code, content, migration, feature flag, or deployment. _(superseded 2026-08-09 — see the correction note in `README.md`.)_
+**What this is:** a verified, repository-grounded audit of exactly how **Cluster 1** of the Relationship Playbook™ ("Believing You're Worth Being Chosen" / key `finding-love-that-feels-mutual`) is implemented in the current repository. It is a **documentation and audit deliverable** — producing it changed **no** runtime code, content, migration, feature flag, or deployment. _(superseded 2026-08-09 — see the correction note in `README.md`.)_
 
 **How it was produced:** every as-built claim was verified against the working tree of branch `main` (not from memory, not summarized from the decision log alone). File paths, exported types/functions/components, and line ranges are cited throughout.
 
@@ -14,7 +14,7 @@
 >
 > The Experience Clusters workbook was revised and applied. `snapshot_clusters`
 > now carries `playbook_subtitle = "Finding Love That Feels Mutual"` for cluster 1, and
-> `content/playbook/moving-beyond-rejection.ts` was updated to match — both its
+> `content/playbook/finding-love-that-feels-mutual.ts` was updated to match — both its
 > `displayName` and the opening screen's title.
 >
 > This also retires the discrepancy this package documents. The earlier ruling —
@@ -22,9 +22,16 @@
 > were held on "Moving Beyond Rejection" — no longer describes anything: all
 > three surfaces now agree, and none of them says "Moving Beyond Rejection".
 >
-> **The key did not change.** `moving-beyond-rejection` is still the stable
-> identifier in URLs, purchases and saved progress, so every path, filename and
-> key in this package is still accurate.
+> **The key changed too, later the same day.** When this note was first written
+> the key was still `moving-beyond-rejection` and the note said so. It is now
+> `finding-love-that-feels-mutual`: the slug, the `playbook_key`, and the content
+> filename all match the consumer name.
+>
+> Every path, filename and key citation in this package has been updated to the
+> new value, so the citations are accurate again. Two things that did **not**
+> move: purchases, which key on the numeric `cluster_id` and were never exposed
+> to the rename, and the old public URLs, which are 308 permanent redirects to
+> the new ones rather than dead links.
 >
 > Nothing else in the package was rewritten. It is an as-built record of what
 > was true when it was produced; this note says what changed since.

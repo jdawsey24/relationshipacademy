@@ -12,7 +12,7 @@ don't exist and weren't designed. Owner directed: design the 4 Plays first.
 **Source of truth:** each Play is the repeatable, real-world version of the operation its Experience
 rehearses. Operations, fidelity signals, boundaries, and handoff copy are carried from the approved
 Experience graphs + `DECISION-LOG` #17–#27. Structure mirrors the two live Plays (see the worked
-`read-and-decide` Play, `content/playbook/moving-beyond-rejection.ts:120-283`).
+`read-and-decide` Play, `content/playbook/finding-love-that-feels-mutual.ts:120-283`).
 
 **Shared Play anatomy (from `Play` / `Screen` in `lib/playbook/contentSchema.ts`; validated by
 `contentValidate.ts`):** `recognitionGate.prompt` · `screens[]` (from: `shift` · `literature`

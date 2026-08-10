@@ -1,7 +1,7 @@
 # Cluster 1 — Practice (Mission) Content (content gate, revised)
 
 **Status:** FOR REVIEW. Flag-gated; v0 unchanged. No deploy, no migration.
-**Source of truth:** `content/playbook/moving-beyond-rejection-missions.ts`.
+**Source of truth:** `content/playbook/finding-love-that-feels-mutual-missions.ts`.
 
 Revisions in this pass: attempt no longer justifies progression; factual states (`selected / attempted / reviewed`) with the current rung, `stretchEligible`, and `lastReport` stored separately; `nextRung()` is content-ordering only; validated/idempotent events emitted (best-effort until the endpoint is live); attempt kept distinct from fidelity/success; suitability made actionable; one active practice focus at a time; progression **recommendations are NOT wired** (that belongs to Step 7 Use Review + Step 8 Change Path).
 

@@ -34,7 +34,7 @@ The Playbook implements a **two-layer** safety model:
 
 ### Layer B — Play support signposts (content-driven, per Play)
 - `supportSignposts` on a Play (`PlaySupportSignpost { id, heading, body }`) surface **content-authored** guidance for heavier material. They are **not** a crisis screening call.
-- Cluster 1 has one: `severe-self-worth` on `what-it-actually-means` (`moving-beyond-rejection.ts:429-436`; its Rev 3 body swapped by `rev3Play`). It signposts a mental-health professional when a dating letdown is signalling something bigger than one moment.
+- Cluster 1 has one: `severe-self-worth` on `what-it-actually-means` (`finding-love-that-feels-mutual.ts:429-436`; its Rev 3 body swapped by `rev3Play`). It signposts a mental-health professional when a dating letdown is signalling something bigger than one moment.
 - Verified distinct from Layer A: `playbook-safety.interaction.test.ts` — "Layer B: the Play support signpost is content-driven — it does NOT emit a crisis screening call."
 
 ---
@@ -50,7 +50,7 @@ The framework's suitability tiers are expressed through concrete content mechani
 | **R3 (clinician-dependent)** | Surfaced via signpost copy toward a mental-health professional (e.g. `severe-self-worth`), and via the `suitability` boundary on missions (WM: "…mental health professional"). |
 | **Excluded / safety route** | Layer A crisis detection (immediate danger → resources) + authored exclusions in the Experience graphs (e.g. mistreatment/coercion routed out, not treated as an ordinary fit trade-off). |
 
-Mission `suitability` strings are the explicit runtime suitability signals (`moving-beyond-rejection-missions.ts:22, 41`): RD "for ambiguity, not safety…"; WM "bigger than one dating moment… mental health professional."
+Mission `suitability` strings are the explicit runtime suitability signals (`finding-love-that-feels-mutual-missions.ts:22, 41`): RD "for ambiguity, not safety…"; WM "bigger than one dating moment… mental health professional."
 
 ---
 

@@ -16,30 +16,30 @@ Each **cluster** is one product (named by its `playbook_subtitle`). Three cluste
 
 | Cluster | Product | Grants (playbook keys) | Price (flat) | SKU |
 |---|---|---|---|---|
-| C1 | Moving Beyond Rejection *(live)* | moving-beyond-rejection | $29.99 | `playbook_onetime` |
-| C3 | Letting Someone In | letting-someone-in | $29.99 | `playbook_onetime` |
+| C1 | Moving Beyond Rejection *(live)* | finding-love-that-feels-mutual | $29.99 | `playbook_onetime` |
+| C3 | Letting Someone In | how-to-let-someone-in | $29.99 | `playbook_onetime` |
 | C4 | Learning to Date Without Losing Hope | dating-without-losing-hope | $29.99 | `playbook_onetime` |
-| C5 | Trusting Your Judgment | trusting-what-you-see | $29.99 | `playbook_onetime` |
-| C6 | Finding Security Without Constant Reassurance | finding-security | $29.99 | `playbook_onetime` |
-| C7 | Breaking the Cycle of the Same Arguments | breaking-the-cycle | $29.99 | `playbook_onetime` |
-| C8 | Finding Your Way Back to Each Other | finding-your-way-back | $29.99 | `playbook_onetime` |
-| C9 | Rebuilding Physical Connection | rebuilding-physical-connection | $29.99 | `playbook_onetime` |
-| C10 | Building a True Partnership | building-a-true-partnership | $29.99 | `playbook_onetime` |
-| C11 | Accepting What Is | accepting-what-is | $29.99 | `playbook_onetime` |
-| **C12** | Letting Go and Moving Forward | **letting-go + moving-forward** *(2 modules)* | $29.99 | `playbook_onetime` |
-| C13 | Opening Your Heart Again | opening-your-heart-again | $29.99 | `playbook_onetime` |
-| C14 | Learning to Say No Without Guilt | learning-to-say-no | $29.99 | `playbook_onetime` |
-| C15 | Feeling Seen and Appreciated | feeling-seen | $29.99 | `playbook_onetime` |
-| C16 | Rebuilding Trust After Betrayal | rebuilding-trust | $29.99 | `playbook_onetime` |
-| C18 | Staying Connected Through Life's Pressures | staying-connected | $29.99 | `playbook_onetime` |
-| C20 | Finding Yourself Again | finding-yourself-again | $29.99 | `playbook_onetime` |
-| **C21** | Building a Shared Future | **building-a-shared-future + asking-better-questions** *(2 modules)* | $29.99 | `playbook_onetime` |
-| C22 | Staying Yourself While Growing Together | staying-yourself | $29.99 | `playbook_onetime` |
-| C23 | Making Confident Relationship Decisions | making-confident-decisions | $29.99 | `playbook_onetime` |
-| C24 | Deciding Whether to Lean In or Let Go | lean-in-or-let-go | $29.99 | `playbook_onetime` |
-| C25 | Building Healthy Relationships from the Ground Up | from-the-ground-up | $29.99 | `playbook_onetime` |
-| C26 | Breaking the Cycle | a-different-legacy | $29.99 | `playbook_onetime` |
-| C27 | Letting Go of the Armor | letting-go-of-the-armor | $29.99 | `playbook_onetime` |
+| C5 | Trusting Your Judgment | trust-yourself-to-choose-better | $29.99 | `playbook_onetime` |
+| C6 | Finding Security Without Constant Reassurance | the-relationship-overthinkers-playbook | $29.99 | `playbook_onetime` |
+| C7 | Breaking the Cycle of the Same Arguments | how-to-stop-having-the-same-fight | $29.99 | `playbook_onetime` |
+| C8 | Finding Your Way Back to Each Other | from-roommates-back-to-partners | $29.99 | `playbook_onetime` |
+| C9 | Rebuilding Physical Connection | the-intimacy-reset | $29.99 | `playbook_onetime` |
+| C10 | Building a True Partnership | the-partnership-reset | $29.99 | `playbook_onetime` |
+| C11 | Accepting What Is | can-we-fix-this | $29.99 | `playbook_onetime` |
+| **C12** | Letting Go and Moving Forward | **letting-go-without-losing-what-it-meant + moving-forward** *(2 modules)* | $29.99 | `playbook_onetime` |
+| C13 | Opening Your Heart Again | starting-again-without-starting-from-scratch | $29.99 | `playbook_onetime` |
+| C14 | Learning to Say No Without Guilt | boundaries-without-guilt | $29.99 | `playbook_onetime` |
+| C15 | Feeling Seen and Appreciated | loved-not-just-needed | $29.99 | `playbook_onetime` |
+| C16 | Rebuilding Trust After Betrayal | can-i-trust-you-again | $29.99 | `playbook_onetime` |
+| C18 | Staying Connected Through Life's Pressures | money-work-and-us | $29.99 | `playbook_onetime` |
+| C20 | Finding Yourself Again | finding-yourself-after-everything-changed | $29.99 | `playbook_onetime` |
+| **C21** | Building a Shared Future | **do-we-want-the-same-future + asking-better-questions** *(2 modules)* | $29.99 | `playbook_onetime` |
+| C22 | Staying Yourself While Growing Together | how-to-love-without-losing-yourself | $29.99 | `playbook_onetime` |
+| C23 | Making Confident Relationship Decisions | how-to-make-a-relationship-decision-you-can-trust | $29.99 | `playbook_onetime` |
+| C24 | Deciding Whether to Lean In or Let Go | is-this-going-somewhere | $29.99 | `playbook_onetime` |
+| C25 | Building Healthy Relationships from the Ground Up | what-nobody-taught-you-about-healthy-relationships | $29.99 | `playbook_onetime` |
+| C26 | Breaking the Cycle | the-cycle-breakers-playbook | $29.99 | `playbook_onetime` |
+| C27 | Letting Go of the Armor | more-than-what-you-provide | $29.99 | `playbook_onetime` |
 
 **Not sellable via a cluster:** C2, C17 — non-assessable, no playbook by ruling. **C19** ("Staying Connected Through Parenthood") — *assessable but has no playbook*: a C19 Snapshot result would show "Coming soon." (Content gap, not a pricing item.)
 
@@ -83,11 +83,11 @@ Flat pricing (A) needs no catalog — the checkout already lists `playbook_oneti
 ```ts
 export interface PlaybookSku { clusterId: number; product: string; grants: string[]; priceLookupKey: string; }
 export const PLAYBOOK_SKUS: PlaybookSku[] = [
-  { clusterId: 1,  product: "Moving Beyond Rejection", grants: ["moving-beyond-rejection"], priceLookupKey: "playbook_onetime" },
+  { clusterId: 1,  product: "Moving Beyond Rejection", grants: ["finding-love-that-feels-mutual"], priceLookupKey: "playbook_onetime" },
   // …one row per sellable cluster; C12/C21 list both modules…
-  { clusterId: 12, product: "Letting Go and Moving Forward", grants: ["letting-go","moving-forward"], priceLookupKey: "playbook_onetime" },
-  { clusterId: 20, product: "Finding Yourself Again", grants: ["finding-yourself-again"], priceLookupKey: "playbook_onetime" },
-  { clusterId: 21, product: "Building a Shared Future", grants: ["building-a-shared-future","asking-better-questions"], priceLookupKey: "playbook_onetime" },
+  { clusterId: 12, product: "Letting Go and Moving Forward", grants: ["letting-go-without-losing-what-it-meant","moving-forward"], priceLookupKey: "playbook_onetime" },
+  { clusterId: 20, product: "Finding Yourself Again", grants: ["finding-yourself-after-everything-changed"], priceLookupKey: "playbook_onetime" },
+  { clusterId: 21, product: "Building a Shared Future", grants: ["do-we-want-the-same-future","asking-better-questions"], priceLookupKey: "playbook_onetime" },
 ];
 // Add-ons sell individually (ADDON_KEY_TO_CLUSTER in lib/playbook/keys.ts), each
 // entitled via its own reserved 900-block id, at the flat playbook_onetime price

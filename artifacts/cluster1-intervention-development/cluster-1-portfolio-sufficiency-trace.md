@@ -5,8 +5,8 @@ built from the existing coverage analysis + the phase1–4 intervention track + 
 Development Standard v1.1. **It is not a ruling.** The owner assigns the disposition and makes the
 PE-1 reconciliation; assembling this does not change any artifact, and clearing R5 is a separate owner act.
 
-**Cluster:** 1 — "Difficulty Feeling Chosen" / consumer "Believing You're Worth Being Chosen" _(consumer name superseded 2026-08-09 — now "Finding Love That Feels Mutual"; the key `moving-beyond-rejection` is unchanged.)_
-(`moving-beyond-rejection`). **101 statements, 8 Problem Expressions.**
+**Cluster:** 1 — "Difficulty Feeling Chosen" / consumer "Believing You're Worth Being Chosen" _(consumer name superseded 2026-08-09 — now "Finding Love That Feels Mutual"; the key `finding-love-that-feels-mutual` is unchanged.)_
+(`finding-love-that-feels-mutual`). **101 statements, 8 Problem Expressions.**
 **Trace format (Standard v1.1):** `Cluster → PE → Interference pathway → Change Target → Required
 Mechanism → Admitted Intervention → Coverage → Remaining Gap`.
 

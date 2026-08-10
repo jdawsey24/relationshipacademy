@@ -1,14 +1,14 @@
 # 04 — Cluster 1 Object Inventory
 
 **Status:** AS BUILT (working tree). Every ID below was read directly from content files.
-**Registry root:** `content/playbook/moving-beyond-rejection.ts` → `MOVING_BEYOND_REJECTION: PlaybookContent`.
-**Resolved via:** `content/playbook/index.ts` `REGISTRY["moving-beyond-rejection"]` → `getPlaybookContent(key)`.
+**Registry root:** `content/playbook/finding-love-that-feels-mutual.ts` → `MOVING_BEYOND_REJECTION: PlaybookContent`.
+**Resolved via:** `content/playbook/index.ts` `REGISTRY["finding-love-that-feels-mutual"]` → `getPlaybookContent(key)`.
 
-Cluster identity: `playbookKey = "moving-beyond-rejection"` (`:34`), `playbookVersion = 1` (`:35`), `displayName = "Believing You're Worth Being Chosen"` (`:36`), `cluster_id = 1` (`keys.ts`). _(superseded 2026-08-09 — see the correction note in `README.md`.)_
+Cluster identity: `playbookKey = "finding-love-that-feels-mutual"` (`:34`), `playbookVersion = 1` (`:35`), `displayName = "Believing You're Worth Being Chosen"` (`:36`), `cluster_id = 1` (`keys.ts`). _(superseded 2026-08-09 — see the correction note in `README.md`.)_
 
 ---
 
-## 1. Content registry assembly (`moving-beyond-rejection.ts`)
+## 1. Content registry assembly (`finding-love-that-feels-mutual.ts`)
 
 | Content array | How assembled | Line |
 |---|---|---|
@@ -47,8 +47,8 @@ Each pathway = one **RecognitionCard** → one **Play** → one **Simulation (Ex
 
 | # | Consumer Experience | Signature | Play id | Sim id | Use Review id | Mission? | Source file |
 |---|---|---|---|---|---|---|---|
-| 1 | What It Actually Means | `conclusionNarrowing` | `what-it-actually-means` | `sim-wm-not-a-match` | `review-what-it-actually-means` | `mission-wm-narrowest-true-thing` | `moving-beyond-rejection.ts` (+ `-simulations.ts`) |
-| 2 | Read It, Then Decide | `evidenceTimeline` | `read-and-decide` | `sim-rd-shorter-texts` | `review-read-and-decide` | `mission-rd-read-before-react` | `moving-beyond-rejection.ts` (+ `-simulations.ts`) |
+| 1 | What It Actually Means | `conclusionNarrowing` | `what-it-actually-means` | `sim-wm-not-a-match` | `review-what-it-actually-means` | `mission-wm-narrowest-true-thing` | `finding-love-that-feels-mutual.ts` (+ `-simulations.ts`) |
+| 2 | Read It, Then Decide | `evidenceTimeline` | `read-and-decide` | `sim-rd-shorter-texts` | `review-read-and-decide` | `mission-rd-read-before-react` | `finding-love-that-feels-mutual.ts` (+ `-simulations.ts`) |
 | 3 | Is This Right for You? | `dualAttention` | `is-this-right-for-you` | `sim-itr-evaluator-stance` | `review-is-this-right-for-you` | — none — | `is-this-right-for-you.ts` |
 | 4 | Rest, or Giving Up? | `decisionRoom` | `rest-or-giving-up` | `sim-rgu-decision-room` | `review-rest-or-giving-up` | — none — | `rest-or-giving-up.ts` |
 | 5 | How Much to Put In | `investmentView` | `how-much-to-put-in` | `sim-hmp-investment-view` | `review-how-much-to-put-in` | — none — | `how-much-to-put-in.ts` |
@@ -123,7 +123,7 @@ All six Plays carry a 5-field `myPlaysTemplate`, a `portable[]` step list, and a
 
 ## 6. Literature (Field Guide + JIT)
 
-### Core Guides — `scope:"cluster", depth:"core"` (`moving-beyond-rejection-literature.ts`)
+### Core Guides — `scope:"cluster", depth:"core"` (`finding-love-that-feels-mutual-literature.ts`)
 `lit-what-is-dfc`, `lit-being-chosen-weight`, `lit-want-vs-worth`, `lit-wanted-vs-compatible`, `lit-rejection-not-verdict`, `lit-uncertainty`, `lit-kinds-of-signal`, `lit-see-vs-act`, `lit-over-investing`, `lit-self-editing`, `lit-fatigue`, `lit-loneliness`, `lit-healthier` (13).
 
 ### Question Reads — `scope:"cluster", depth:"question"`
@@ -142,7 +142,7 @@ All six Plays carry a 5-field `myPlaysTemplate`, a `portable[]` step list, and a
 
 ---
 
-## 7. Missions — `moving-beyond-rejection-missions.ts` (`MBR_MISSIONS`)
+## 7. Missions — `finding-love-that-feels-mutual-missions.ts` (`MBR_MISSIONS`)
 
 | id | playId | title | rung id | suitability boundary |
 |---|---|---|---|---|
@@ -153,7 +153,7 @@ Two missions total; each has one `progression` rung, `attemptMeaning`, and a `su
 
 ---
 
-## 8. Use Reviews — `moving-beyond-rejection-usereviews.ts` (`MBR_USE_REVIEWS`)
+## 8. Use Reviews — `finding-love-that-feels-mutual-usereviews.ts` (`MBR_USE_REVIEWS`)
 
 Six reviews, one per Play, each with four bounded prompts (`didDifferently` multi, `performedOperation` single→Technique Fidelity, `becameClearer` multi, `stuckWhere` single):
 
@@ -179,4 +179,4 @@ Six reviews, one per Play, each with four bounded prompts (`didDifferently` mult
 
 ## 10. Rev 3 copy transform (not new content)
 
-`moving-beyond-rejection-rev3-copy.ts` — `rev3Play(play)` (`:169-174`) applies **copy-only** tightening on the Rev 3 path: it filters out `literature` screens (`:171`), tightens the RD/WM Shift copy (`tightenRD`/`tightenWM` — only those two playIds; others identity-passed), and swaps the `severe-self-worth` signpost body. It changes **wording only** — ids, structure, `correctBucket`, actions, and fidelity are preserved. Verified by `playbook-rev3copy.test.ts` ("v0 content is untouched"; "structure/logic preserved — only wording changes").
+`finding-love-that-feels-mutual-rev3-copy.ts` — `rev3Play(play)` (`:169-174`) applies **copy-only** tightening on the Rev 3 path: it filters out `literature` screens (`:171`), tightens the RD/WM Shift copy (`tightenRD`/`tightenWM` — only those two playIds; others identity-passed), and swaps the `severe-self-worth` signpost body. It changes **wording only** — ids, structure, `correctBucket`, actions, and fidelity are preserved. Verified by `playbook-rev3copy.test.ts` ("v0 content is untouched"; "structure/logic preserved — only wording changes").
