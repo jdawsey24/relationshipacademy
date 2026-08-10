@@ -325,6 +325,64 @@ async function applyPlaybookDispute(event: Stripe.Event): Promise<void> {
   }
 }
 
+
+// ---- Dating With Your Eyes Open: confirm or release a founding-cohort seat ----
+//
+// Keyed by metadata.product_key === "eyes_open"; metadata.enrolment_id says
+// which held seat. Idempotent: confirming a seat that is already paid is a
+// no-op, so a replayed webhook cannot double-book or double-email.
+//
+// The expiry case matters as much as the payment case. Stripe tells us when a
+// session lapses, and that is the earliest moment the seat can go back on sale
+// — sooner than the hold's own clock.
+async function applyEyesOpenSeat(event: Stripe.Event) {
+  const kinds = ["checkout.session.completed", "checkout.session.expired", "checkout.session.async_payment_failed"];
+  if (!kinds.includes(event.type)) return;
+
+  const s = event.data.object as Stripe.Checkout.Session;
+  if (s.metadata?.product_key !== "eyes_open") return;
+  const enrolmentId = s.metadata?.enrolment_id;
+  if (!enrolmentId) {
+    console.error("[stripe/webhook] eyes_open session with no enrolment_id:", s.id);
+    return;
+  }
+
+  const admin = getSupabaseAdminClient();
+
+  if (event.type !== "checkout.session.completed") {
+    const { data } = await admin.from("eyes_open_enrolments")
+      .update({ status: "released", released_at: new Date().toISOString() })
+      .eq("id", enrolmentId).eq("status", "pending").select("id");
+    if (data?.length) console.log(`[stripe/webhook] eyes_open seat released (${event.type}) ${enrolmentId}`);
+    return;
+  }
+
+  // Only a settled payment takes the seat. An unpaid completed session (delayed
+  // payment methods) keeps its hold and resolves on the async event.
+  if (s.payment_status !== "paid") return;
+
+  const { data: paid } = await admin.from("eyes_open_enrolments").update({
+    status: "paid",
+    paid_at: new Date().toISOString(),
+    email: (s.customer_details?.email ?? "").toLowerCase() || undefined,
+    name: s.customer_details?.name ?? undefined,
+    stripe_customer_id: typeof s.customer === "string" ? s.customer : s.customer?.id ?? null,
+    stripe_payment_intent: typeof s.payment_intent === "string" ? s.payment_intent : null,
+  }).eq("id", enrolmentId).neq("status", "paid").select("id, email, name");
+
+  if (!paid?.length) return;   // already paid — a replayed event, nothing to do
+  const row = paid[0] as { email: string; name: string | null };
+  console.log(`[stripe/webhook] eyes_open seat confirmed ${enrolmentId}`);
+
+  try {
+    const { sendEyesOpenWelcome } = await import("@/lib/email/eyesOpenWelcome");
+    await sendEyesOpenWelcome({ email: row.email, name: row.name });
+  } catch (e) {
+    // The seat is hers whether or not the email sends. Loud, not fatal.
+    console.error("[stripe/webhook] eyes_open welcome email failed:", e instanceof Error ? e.message : e);
+  }
+}
+
 // ---- 2) Finance sync ----
 async function handleFinanceEvent(event: Stripe.Event) {
   switch (event.type) {
@@ -438,6 +496,14 @@ export async function POST(request: Request) {
     await applyPlaybookGrant(event);
   } catch (e) {
     console.error("[stripe/webhook] playbook grant error:", e instanceof Error ? e.message : e);
+  }
+
+  // 1c-ii) Dating With Your Eyes Open — confirm or release a cohort seat.
+  // Independent of everything above; a failure here must not break a grant.
+  try {
+    await applyEyesOpenSeat(event);
+  } catch (e) {
+    console.error("[stripe/webhook] eyes_open seat error:", e instanceof Error ? e.message : e);
   }
 
   // 1c-iii) Playbook refund / chargeback -> pull access. Never blocks the grants

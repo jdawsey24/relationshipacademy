@@ -1100,3 +1100,47 @@ test("nothing about seats or dates is baked into the page copy", () => {
   assert.ok(!/September 3\b/.test(page.replace(/EYES_OPEN\.\w+/g, "")), "dates must come from EYES_OPEN");
   assert.match(page, /export const dynamic = "force-dynamic"/);
 });
+
+test("the seat is held before Stripe, not after payment", () => {
+  // Otherwise fifteen simultaneous buyers all see a seat and all pay for it.
+  const route = read("app/api/eyes-open/checkout/route.ts");
+  const holdAt = route.indexOf('.insert({ cohort: EYES_OPEN.cohort');
+  const stripeAt = route.indexOf("stripe.checkout.sessions.create");
+  assert.ok(holdAt > 0 && stripeAt > holdAt, "the hold must be written before the session exists");
+  // And re-checked afterwards, because two requests can pass the first check together.
+  assert.match(route, /if \(await overCapacity\(\)\)/);
+  assert.match(route, /releaseHold/);
+});
+
+test("a failed checkout gives the seat back instead of stranding it", () => {
+  const route = read("app/api/eyes-open/checkout/route.ts");
+  for (const reason of ["no active price", "over capacity at hold time"]) {
+    assert.ok(route.includes(reason), `no release path for: ${reason}`);
+  }
+  // The Stripe failure path too.
+  assert.match(route, /catch \(e\) \{\s*await releaseHold/);
+});
+
+test("only a settled payment takes a seat", () => {
+  const hook = read("app/api/stripe/webhook/route.ts");
+  assert.match(hook, /if \(s\.payment_status !== "paid"\) return;/);
+  // An expired or failed session releases it.
+  assert.match(hook, /checkout\.session\.expired/);
+  assert.match(hook, /status: "released"/);
+  // Replaying the event must not double-book or double-email.
+  assert.match(hook, /\.neq\("status", "paid"\)/);
+});
+
+test("the confirmation page waits for the webhook rather than assuming", () => {
+  const page = read("app/(site)/dating-with-your-eyes-open/enrolled/page.tsx");
+  assert.match(page, /We're confirming your payment/);
+  assert.match(page, /status === "paid"/);
+});
+
+test("the welcome email carries the dates and admits what it lacks", () => {
+  const mail = read("lib/email/eyesOpenWelcome.ts");
+  // Dates come from one place, so moving a class moves the email too.
+  assert.match(mail, /EYES_OPEN\.weeks\.map/);
+  // It must not promise a link it does not contain.
+  assert.match(mail, /joining link will arrive/);
+});
