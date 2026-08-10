@@ -119,6 +119,35 @@ async function sendStep(row: Row, step: Step): Promise<"sent" | "skipped" | "fai
   return "sent";
 }
 
+export interface WaitlistAnswers {
+  firstName?: string | null;
+  datingStatus?: string | null;
+  hardestPart?: string | null;
+  confidenceGoal?: string | null;
+  canAttend?: string | null;
+}
+
+/**
+ * Only what she actually typed.
+ *
+ * A field she left blank is ABSENT from the patch rather than null in it, so
+ * re-submitting from a second device with just an email adds to what we know
+ * instead of wiping it. The four answers are the reason the form asks, and a
+ * patch of nulls would make the fuller submission the risky one to make.
+ */
+export function answerPatch(input: WaitlistAnswers): Record<string, string> {
+  const patch: Record<string, string> = {};
+  const put = (column: string, value: string | null | undefined) => {
+    if (value) patch[column] = value;
+  };
+  put("first_name", input.firstName);
+  put("dating_status", input.datingStatus);
+  put("hardest_part", input.hardestPart);
+  put("confidence_goal", input.confidenceGoal);
+  put("can_attend", input.canAttend);
+  return patch;
+}
+
 /**
  * Join the priority list.
  *
@@ -140,14 +169,7 @@ export async function joinWaitlist(input: {
   const { data: existing } = await admin.from(TABLE)
     .select("id, status").eq("cohort", CLARITY.cohort).eq("email", email).maybeSingle();
 
-  const answers = {
-    first_name: input.firstName || null,
-    dating_status: input.datingStatus || null,
-    hardest_part: input.hardestPart || null,
-    confidence_goal: input.confidenceGoal || null,
-    can_attend: input.canAttend || null,
-    updated_at: new Date().toISOString(),
-  };
+  const touched = { ...answerPatch(input), updated_at: new Date().toISOString() };
 
   if (existing) {
     const prior = existing as { id: string; status: string };
@@ -155,12 +177,12 @@ export async function joinWaitlist(input: {
     // undoes an earlier unsubscribe. It does NOT touch a buyer: she has her
     // seat, and putting her back on sales email is the wrong kind of eager.
     const revive = prior.status === "unsubscribed" ? { status: "active" } : {};
-    await admin.from(TABLE).update({ ...answers, ...revive }).eq("id", prior.id);
+    await admin.from(TABLE).update({ ...touched, ...revive }).eq("id", prior.id);
     return { ok: true, alreadyOnList: true };
   }
 
   const { data: created, error } = await admin.from(TABLE)
-    .insert({ cohort: CLARITY.cohort, email, ...answers })
+    .insert({ cohort: CLARITY.cohort, email, ...touched })
     .select("id, email, first_name, status, sent_steps").maybeSingle();
   if (error || !created) {
     console.error("[clarity] waitlist insert failed:", error?.message);

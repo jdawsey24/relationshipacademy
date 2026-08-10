@@ -1258,3 +1258,23 @@ test("the October rollover form posts to a source the endpoint actually accepts"
   const route = read("app/api/site-leads/route.ts");
   assert.match(route, /CLARITY\.nextCohort\.leadSource/);
 });
+
+test("re-joining the waitlist adds to her answers instead of erasing them", () => {
+  // Caught live: a second submission with only an email nulled the four answers
+  // the form exists to collect, so the fuller submission was the risky one.
+  const { answerPatch } = require("@/lib/clarity/sequences");
+
+  const full = answerPatch({
+    firstName: "Probe", datingStatus: "Actively dating",
+    hardestPart: "knowing when a moment is a pattern", canAttend: "Yes",
+  });
+  assert.equal(Object.keys(full).length, 4);
+  assert.equal(full.confidence_goal, undefined, "an unanswered field is absent, not null");
+
+  // Email only: nothing to write, so nothing is overwritten.
+  assert.deepEqual(answerPatch({}), {});
+  // Blank strings count as unanswered too.
+  assert.deepEqual(answerPatch({ firstName: "", hardestPart: null }), {});
+  // And a changed field still lands.
+  assert.deepEqual(answerPatch({ firstName: "Janelle" }), { first_name: "Janelle" });
+});
