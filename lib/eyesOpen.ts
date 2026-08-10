@@ -15,7 +15,7 @@ export const EYES_OPEN = {
   priceDisplay: "$297",
   seats: 15,
   time: "7:00–9:00 p.m.",
-  datesLine: "September 3–24",
+  datesLine: "September 3–24, 2026",
   /** First class. After this, enrollment closes — see enrolmentState. */
   startsAt: new Date("2026-09-03T19:00:00-04:00"),
   cohort: "founding-2026-09",
@@ -34,79 +34,100 @@ export const EYES_OPEN = {
     note: "October dates and details are still being set — there may be more than one cohort running.",
   },
 
+  /**
+   * The four classes. Read by the sales page, the enrolment confirmation and
+   * the welcome email, so a date or a title moves in exactly one place.
+   */
   weeks: [
     {
-      date: "Thursday, September 3",
-      title: "What Are You Actually Seeing?",
+      date: "Thursday, September 3, 2026",
+      title: "How Relationships Reveal Themselves",
       body: [
-        "When you are interested in someone, it is easy to fill in what you do not yet know with what you hope is true.",
-        "During this class, you will learn how to distinguish between:",
+        "Every new relationship begins with incomplete information.",
+        "You may know how someone presents themselves, what they have told you, and how you feel around them. But character, compatibility, emotional maturity, and relational capacity are revealed through time and experience.",
+        "In this class, you will learn:",
       ],
       bullets: [
-        "What you have directly observed",
-        "What someone has told you",
-        "What you have assumed",
-        "What you are hoping the relationship will become",
+        "What dating can tell you early and what requires more time",
+        "The difference between an observation, an interpretation, an assumption, and a conclusion",
+        "Why isolated moments can be misleading",
+        "How context and repetition turn behavior into a meaningful pattern",
+        "How to remain curious without ignoring important information",
+        "Why clarity, not commitment, is the first goal of dating",
       ],
-      close:
-        "We will explore how expectations, attraction, fear, and previous experiences can affect the meaning you assign to someone's behavior. The goal is not to become cynical. The goal is to see the person and the relationship more clearly.",
+      close: "You will begin developing a more grounded way to understand what the relationship is actually revealing.",
     },
     {
-      date: "Thursday, September 10",
-      title: "When Chemistry Clouds the Picture",
+      date: "Thursday, September 10, 2026",
+      title: "What Chemistry Makes Us Believe",
       body: [
-        "Chemistry can tell you that you are attracted to someone. It cannot tell you whether that person is consistent, compatible, emotionally available, or prepared for the kind of relationship you want.",
-        "During this class, we will examine how:",
+        "Chemistry is real, but it is not the same thing as compatibility.",
+        "When attraction is strong, ordinary interest can feel like investment. Familiarity can feel like safety. Intensity can feel like intimacy. Potential can begin to feel like a promise.",
+        "That does not mean your feelings are wrong. It means feelings can influence how you interpret the information in front of you. In this class, we will explore:",
       ],
       bullets: [
-        "Attention can feel like investment",
-        "Intensity can feel like intimacy",
-        "Potential can feel like compatibility",
-        "Urgency can create premature attachment",
-        "Being desired can distract you from evaluating the person doing the desiring",
+        "What chemistry can tell you and what it cannot",
+        "How attention, attraction, familiarity, and urgency affect judgment",
+        "Why potential can become more powerful than present reality",
+        "How past relationships can shape the meaning you assign to new experiences",
+        "The difference between feeling connected and building a healthy connection",
+        "How to enjoy what you feel without making it responsible for the decision",
       ],
-      close:
-        "You will learn how to enjoy chemistry without asking it to answer questions that only time and observation can answer.",
+      close: "You will learn how to honor your feelings without asking them to answer questions that only time, behavior, and experience can answer.",
     },
     {
-      date: "Thursday, September 17",
-      title: "Is This Really a Good Fit?",
+      date: "Thursday, September 17, 2026",
+      title: "Can This Connection Become What You Want?",
       body: [
-        "Someone can be attractive, successful, interesting, and genuinely interested in you without being a healthy fit for your life.",
-        "This class will teach you what to consider beyond whether you like each other. We will explore:",
+        "Two people can genuinely like each other and still be unable to build a healthy relationship together.",
+        "A good fit requires more than attraction, shared interests, or someone checking the right boxes on paper. In this class, you will learn how to evaluate:",
       ],
       bullets: [
-        "Consistency between words and behavior",
-        "Reciprocity and mutual effort",
-        "Compatibility in values, expectations, and lifestyle",
-        "Emotional safety and openness",
+        "Compatibility in values, expectations, lifestyle, and long-term direction",
+        "Consistency between words, choices, and behavior",
+        "Reciprocity and whether investment is mutual",
         "Dependability and follow-through",
-        "How someone responds to boundaries, differences, and disappointment",
+        "Emotional safety and openness",
+        "Responses to boundaries, differences, disappointment, and accountability",
+        "Whether someone\u2019s current capacity aligns with the relationship they say they want",
       ],
-      close:
-        "You will learn how to assess the relationship that is actually developing instead of grading the person on who they might eventually become.",
+      close: "The question is not only, \u201cIs this a good person?\u201d The deeper question is, \u201cDo we have what is needed to build the kind of relationship we both say we want?\u201d",
     },
     {
-      date: "Thursday, September 24",
-      title: "Making Clearer Dating Decisions",
+      date: "Thursday, September 24, 2026",
+      title: "Making the Next Clear Decision",
       body: [
-        "Dating decisions are not limited to choosing whether to stay or walk away. You are constantly deciding:",
+        "Dating decisions are not limited to choosing whether to stay or leave. Throughout a developing relationship you are deciding whether to continue learning, ask a more direct question, slow the pace, deepen your investment, or stop dismissing a concern.",
+        "In this final class, you will learn how to bring the information together. We will explore:",
       ],
       bullets: [
-        "How much access to give",
-        "How quickly to invest",
-        "What questions need to be asked",
-        "What needs more time and observation",
-        "What should not be explained away",
-        "Whether the connection has earned its next level",
+        "How to evaluate the full pattern rather than one high or low moment",
+        "How to make decisions without demanding complete certainty",
+        "What it means to pace your investment",
+        "How to respond when the information is mixed",
+        "Why choosing not to continue can be a successful dating outcome",
+        "How to move forward without allowing fear or fantasy to make the decision for you",
       ],
-      close:
-        "In our final class, you will learn a clearer approach to pacing, observing, asking questions, and deciding whether a developing relationship deserves more of you. You will leave with a more grounded way to date without letting fear close your heart or allowing feelings to close your eyes.",
+      close: "You will leave with a clearer process for deciding what comes next.",
     },
   ],
 } as const;
 
 export type EnrolmentState = "open" | "full" | "closed";
+
+/**
+ * "September 3, 10, 17, and 24, 2026" — built from the weeks rather than typed.
+ *
+ * The details table wants the full list and the hero wants the range. Typing
+ * either one is how a page ends up advertising a date the class is not on.
+ */
+export function datesFull(): string {
+  const days = EYES_OPEN.weeks.map((w) => w.date.replace(/^\w+, /, ""));   // "September 3, 2026"
+  const nums = days.map((d) => d.replace(/^\w+ /, "").replace(/, \d{4}$/, ""));
+  const month = days[0].split(" ")[0];
+  const year = days[0].slice(-4);
+  return `${month} ${nums.slice(0, -1).join(", ")}, and ${nums[nums.length - 1]}, ${year}`;
+}
 
 /**
  * Seats still available.
