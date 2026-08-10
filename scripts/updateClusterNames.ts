@@ -4,7 +4,7 @@
  *   (set -a; . ./.env.local; set +a; npx tsx scripts/updateClusterNames.ts)
  *   (set -a; . ./.env.local; set +a; npx tsx scripts/updateClusterNames.ts --apply)
  *
- * Source: import/RLC_Experience_Clusters_consumer_results_and_playbooks_updated.xlsx
+ * Source: import/RLC_Experience_Clusters_consumer_results_and_playbooks_updated_v2.xlsx
  *
  * THE EXISTING COLUMN ROLES STAND (owner, 2026-08-09). `playbook_title` is the
  * brand line — "The Relationship Playbook™" on every row — and
