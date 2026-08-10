@@ -34,7 +34,12 @@ const RD_CONTROL_CHECK =
 export const MOVING_BEYOND_REJECTION: PlaybookContent = {
   playbookKey: "moving-beyond-rejection",
   playbookVersion: 1,
-  displayName: "Believing You're Worth Being Chosen",
+  // The consumer name comes from the Experience Clusters workbook and must match
+  // snapshot_clusters.playbook_subtitle, which is what the results page shows
+  // when it recommends this playbook. The KEY stays "moving-beyond-rejection":
+  // it is the stable identifier in URLs, purchases and progress records, and
+  // renaming it would strand everything already pointing at it.
+  displayName: "Finding Love That Feels Mutual",
   // Rev 3 Understand layer (Step 3) — additive; consumed by the flag-gated field
   // guide, not by the v0 delivery path.
   literature: [...MBR_LITERATURE, ...ITR_JIT, ...RGU_JIT, ...HMP_JIT, ...STT_JIT],
@@ -43,7 +48,7 @@ export const MOVING_BEYOND_REJECTION: PlaybookContent = {
   missions: MBR_MISSIONS,
   useReviews: MBR_USE_REVIEWS,
   opening: {
-    title: "Believing You're Worth Being Chosen",
+    title: "Finding Love That Feels Mutual",
     body: [
       "Wanting to be chosen is human. Everyone wants to feel wanted. That part is fine.",
       "The trouble starts when being chosen takes over. It can shape how you see yourself. It can change how you read a date, how you act, how much you give, and what you do next.",

@@ -15,7 +15,7 @@ function mount(progress: PlaybookProgress) {
     h(ChangePathHome, {
       content: C,
       progress,
-      displayName: "Believing You're Worth Being Chosen",
+      displayName: "Finding Love That Feels Mutual",
       onSurfaced: (i: SurfacedItem) => calls.surfaced.push(i),
       onUnderstand: () => (calls.understand += 1),
       onSeeItPlayOut: () => (calls.seeItPlayOut += 1),
