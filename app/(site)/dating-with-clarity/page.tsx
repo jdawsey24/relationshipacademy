@@ -511,6 +511,7 @@ export default async function DatingWithClarityPage({
         </dl>
         <p className="mt-5 text-center font-body text-body text-charcoal/70">
           Your {CLARITY.priceDisplay} payment reserves your place for the complete four-week series.
+          This is the founding-cohort rate; later cohorts are {CLARITY.fullPriceDisplay}.
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
           <EnrolCta state={state} label="Enroll in the Founding Cohort" />
@@ -601,7 +602,7 @@ export default async function DatingWithClarityPage({
           <br />
           Join us {CLARITY.datesLine} from {CLARITY.time} ET.
           <br />
-          Founding cohort tuition: {CLARITY.priceDisplay}
+          Founding cohort tuition: {CLARITY.priceDisplay}, going to {CLARITY.fullPriceDisplay} afterwards
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
           <EnrolCta state={state} label="Reserve My Seat" onDark />

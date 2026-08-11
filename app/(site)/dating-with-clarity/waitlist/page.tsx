@@ -7,15 +7,20 @@ import { CLARITY, launchPhase } from "@/lib/datingWithClarity";
 // The priority waitlist. The other half of the launch, and deliberately a
 // different page rather than a different section of the sales page.
 //
-// ONE PRIMARY ACTION, AND IT IS NOT A PURCHASE. There is no price on this page,
-// no seat counter and no checkout button anywhere on it. A waitlist that also
-// sells is a sales page with a worse conversion rate, and the launch package is
-// explicit about keeping the two apart.
+// ONE PRIMARY ACTION, AND IT IS NOT A PURCHASE. There is no seat counter and no
+// checkout button anywhere on it. A waitlist that also sells is a sales page
+// with a worse conversion rate, and the launch package is explicit about keeping
+// the two apart.
 //
-// NO PRICE, ON PURPOSE. The founding tuition is set, but whether there is a
-// separate public price it sits below is not, and "founding rate" printed next
-// to a single price implies a discount that may not exist. The page promises
-// first access, which is true today, instead of a saving that might not be.
+// THE PRICE IS HERE BUT THE CHECKOUT IS NOT. The founding rate is a real
+// saving now that the owner has set the later price ($397 after this cohort),
+// so naming it is honest and it is the strongest reason to join the list. It is
+// still not a purchase: the number appears as a fact, with no way to act on it
+// from this page.
+//
+// $397 IS A FUTURE PRICE, NEVER A FORMER ONE. It has not been charged, so the
+// copy says the rate goes up and never shows it struck through beside $297,
+// which would claim a discount off a price nobody ever paid.
 //
 // It hands over by itself. Once public enrollment opens this page stops being
 // the right place to land, so it forwards to the sales page rather than sitting
@@ -48,6 +53,7 @@ const LEARN = [
 
 const BENEFITS = [
   "First access when enrollment opens on August 17",
+  `The founding-cohort rate of ${CLARITY.priceDisplay}, before it goes to ${CLARITY.fullPriceDisplay}`,
   "The complete class dates and program details",
   "Advance notice before enrollment opens publicly",
   `The best chance at one of the ${CLARITY.seats} founding-cohort seats`,

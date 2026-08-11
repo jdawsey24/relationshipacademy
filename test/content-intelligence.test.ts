@@ -1157,8 +1157,11 @@ test("the waitlist page cannot take money and the sales page cannot collect a wa
   // The whole reason they are separate pages. A waitlist that also sells is a
   // sales page with a worse conversion rate; a sales page with a waitlist form
   // on it gives an undecided buyer a free way out.
+  // The page NAMES the price now that the founding rate is a real saving. What
+  // it must not have is a way to act on it: the rule is one primary action, not
+  // silence about money.
   const waitlist = read("app/(site)/dating-with-clarity/waitlist/page.tsx");
-  for (const forbidden of ["ClarityCheckout", "priceDisplay", "priceUsd", "/enroll", "Reserve My Seat"]) {
+  for (const forbidden of ["ClarityCheckout", "/enroll", "Reserve My Seat"]) {
     assert.ok(!waitlist.includes(forbidden), `the waitlist page must not reference ${forbidden}`);
   }
   assert.match(waitlist, /No payment is required to join/);
@@ -1338,4 +1341,40 @@ test("every closing email lands on the day its own copy claims", () => {
   const w6 = WAITLIST_SEQUENCE.find((s: { key: string }) => s.key === "w6");
   assert.equal(dayET(w6.sendOn), dayET(C.priorityClosesAt), "'ends tonight' must be sent on the closing day");
   assert.ok(w6.sendOn < C.priorityClosesAt);
+});
+
+test("the later price is never dressed up as a discount off a former one", () => {
+  // $397 has never been charged. Striking it through beside $297, or calling it
+  // a "regular" or "was" price, claims a saving off a price nobody ever paid.
+  // The honest claim is the true one: the rate goes UP.
+  const { CLARITY: C } = require("@/lib/datingWithClarity");
+  assert.ok(C.fullPriceUsd > C.priceUsd, "the later price must be the higher one");
+
+  const pages = [
+    "app/(site)/dating-with-clarity/waitlist/page.tsx",
+    "app/(site)/dating-with-clarity/page.tsx",
+    "app/(site)/dating-with-clarity/enroll/page.tsx",
+  ];
+  for (const f of pages) {
+    const src = read(f);
+    if (!src.includes("fullPriceDisplay")) continue;
+    // No strikethrough anywhere near the price, and no was/regular/normally framing.
+    assert.ok(!/line-through/.test(src), `${f} strikes through a price that was never charged`);
+    for (const framing of [/\bwas \$/i, /regularly/i, /normally \$/i, /\bsave \$/i, /\d+% off/i]) {
+      assert.ok(!framing.test(src), `${f} frames the founding rate as a discount: ${framing}`);
+    }
+    // And it says which direction it moves. Checked as a window around each
+    // mention rather than an exact regex, because the same claim is written as
+    // JSX in one file and a template literal in another.
+    for (const m of src.matchAll(/fullPriceDisplay/g)) {
+      const lead = src.slice(Math.max(0, m.index! - 60), m.index!);
+      assert.match(lead, /goes to|going to|goes up|later cohorts are/,
+        `${f} names the later price without saying the rate goes up: …${lead.slice(-40)}`);
+    }
+  }
+
+  // The emails are the owner's approved copy and quote no price at all. If one
+  // ever does, it has to come from CLARITY rather than be typed into the prose.
+  const seq = read("lib/email/claritySequence.ts");
+  assert.ok(!/\$\d{3}/.test(seq), "a price was typed into the email copy instead of read from CLARITY");
 });

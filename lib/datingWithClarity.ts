@@ -26,6 +26,18 @@ export const CLARITY = {
   productKey: "dating_with_clarity",
   priceUsd: 297,
   priceDisplay: "$297",
+
+  /**
+   * What it costs after the founding cohort (owner, 2026-08-10).
+   *
+   * A FUTURE price, not a former one. That distinction is the whole reason this
+   * is a separate field with a comment on it: $397 has never been charged, so
+   * showing it struck through next to $297 would claim a discount off a price
+   * that never existed. The page says the rate goes up, which is true, and never
+   * says it came down, which would not be.
+   */
+  fullPriceUsd: 397,
+  fullPriceDisplay: "$397",
   seats: 15,
   time: "7:00–9:00 p.m.",
   datesLine: "September 3–24, 2026",
