@@ -327,7 +327,7 @@ export const ENROLLMENT_SEQUENCE: Step[] = [
   },
   {
     key: "p6",
-    sendOn: on("2026-08-27T13:00:00Z"),
+    sendOn: on("2026-08-30T13:00:00Z"),
     needs: ["enrollment"],
     subject: "Enrollment closes tomorrow",
     preview: "You do not need perfect certainty. You need a process you trust.",
@@ -347,7 +347,7 @@ export const ENROLLMENT_SEQUENCE: Step[] = [
   },
   {
     key: "p7",
-    sendOn: on("2026-08-28T13:00:00Z"),
+    sendOn: on("2026-08-31T13:00:00Z"),
     needs: ["enrollment"],
     subject: "Final day to enroll",
     preview: "Registration closes tonight.",
@@ -366,7 +366,7 @@ export const ENROLLMENT_SEQUENCE: Step[] = [
   },
   {
     key: "p8",
-    sendOn: on("2026-08-28T22:00:00Z"),
+    sendOn: on("2026-08-31T22:00:00Z"),
     needs: ["enrollment"],
     subject: "Enrollment closes tonight",
     preview: "A final reminder before the founding cohort closes.",

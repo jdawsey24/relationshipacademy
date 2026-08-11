@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import SectionLabel from "@/components/site/SectionLabel";
 import ClarityCheckout from "@/components/site/ClarityCheckout";
-import { CLARITY, seatsRemaining, enrolmentState } from "@/lib/datingWithClarity";
+import { CLARITY, seatsRemaining, enrolmentState, closedReason } from "@/lib/datingWithClarity";
 
 // The enrolment step. Deliberately thin: she has already read the sales page,
 // so this confirms what she is buying and takes the payment.
@@ -29,7 +29,11 @@ export default async function EnrollPage() {
       <div className="mx-auto max-w-2xl px-6 py-24 text-center">
         <SectionLabel>Founding cohort</SectionLabel>
         <h1 className="mt-3 font-display text-4xl font-semibold text-midnight-navy">
-          {state === "full" ? "All fifteen seats are taken" : "The September cohort has begun"}
+          {state === "full"
+            ? `All ${CLARITY.seats} seats are taken`
+            : closedReason() === "started"
+              ? "The September cohort has begun"
+              : "Enrollment has closed"}
         </h1>
         <p className="mx-auto mt-5 max-w-lg font-body text-lg leading-relaxed text-charcoal/75">
           The series runs again on Thursday evenings in October. {CLARITY.nextCohort.note} Leave

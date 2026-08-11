@@ -4,7 +4,7 @@ import SectionLabel from "@/components/site/SectionLabel";
 import CtaButton from "@/components/site/CtaButton";
 import LeadForm from "@/components/site/LeadForm";
 import { redirect } from "next/navigation";
-import { CLARITY, seatsRemaining, enrolmentState, datesFull, launchPhase } from "@/lib/datingWithClarity";
+import { CLARITY, seatsRemaining, enrolmentState, closedReason, datesFull, launchPhase } from "@/lib/datingWithClarity";
 
 // Dating With Clarity — the founding-cohort sales page.
 //
@@ -536,7 +536,9 @@ export default async function DatingWithClarityPage({
             <p>
               {state === "full"
                 ? `All ${CLARITY.seats} founding seats are taken. The series runs again on Thursday evenings in October.`
-                : "The founding cohort has already begun. The series runs again on Thursday evenings in October."}
+                : closedReason() === "started"
+                  ? "The founding cohort has already begun. The series runs again on Thursday evenings in October."
+                  : "Enrollment for the founding cohort has closed. The series runs again on Thursday evenings in October."}
             </p>
             <p>{CLARITY.nextCohort.note}</p>
             <p className="text-charcoal/60">
@@ -645,7 +647,15 @@ function SeatLine({ seats, state, onDark = false }: {
 }) {
   const muted = onDark ? "text-white/70" : "text-charcoal/50";
   if (state === "closed") {
-    return <p className={`font-body text-sm ${muted}`}>The September cohort has already begun.</p>;
+    // Between the deadline and the first class the cohort has NOT begun, and
+    // saying it has is a plain untruth on the page where trust is the product.
+    return (
+      <p className={`font-body text-sm ${muted}`}>
+        {closedReason() === "started"
+          ? "The September cohort has already begun."
+          : "Enrollment for the September cohort has closed."}
+      </p>
+    );
   }
   if (state === "full") {
     return (

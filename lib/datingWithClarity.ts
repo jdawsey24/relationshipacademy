@@ -45,14 +45,15 @@ export const CLARITY = {
   publicOpensAt: new Date("2026-08-20T09:00:00-04:00"),
 
   /**
-   * OWNER DECISIONS, UNRESOLVED (launch package, Section 13).
+   * The two deadlines (owner, 2026-08-10). Nine emails quote one of them, and
+   * they were held until these were set. A null here holds them again.
    *
-   * Eight of the fourteen launch emails quote one of these. Until they are set,
-   * those eight are held rather than sent with a bracket in them. Setting a date
-   * here is the only action needed to release them.
+   * enrollmentClosesAt is ENFORCED, not just announced: see enrolmentState. A
+   * page that keeps selling after the email says it closed is worse than no
+   * deadline at all, because the deadline is the reason she hurried.
    */
-  priorityClosesAt: null as Date | null,
-  enrollmentClosesAt: null as Date | null,
+  priorityClosesAt: new Date("2026-08-19T21:00:00-04:00") as Date | null,
+  enrollmentClosesAt: new Date("2026-08-31T21:00:00-04:00") as Date | null,
 
   /**
    * What happens when the fifteen are gone.
@@ -208,9 +209,30 @@ export async function seatsTaken(): Promise<number> {
  * selling one, so the date closes enrollment even when seats remain.
  */
 export function enrolmentState(seats: number, now: Date = new Date()): EnrolmentState {
-  if (now >= CLARITY.startsAt) return "closed";
+  if (now >= closesAt()) return "closed";
   if (seats <= 0) return "full";
   return "open";
+}
+
+/**
+ * The moment selling stops: the announced deadline, or the first class if there
+ * isn't one. Whichever comes first, because both are real.
+ */
+export function closesAt(): Date {
+  const deadline = CLARITY.enrollmentClosesAt;
+  return deadline && deadline < CLARITY.startsAt ? deadline : CLARITY.startsAt;
+}
+
+/**
+ * WHY the cohort is closed, which is not a detail — it changes what is true.
+ *
+ * Between the deadline and the first class the series has NOT begun, and saying
+ * it has is a plain untruth on the one page where trust is the product. The two
+ * reasons also point somewhere different: a passed deadline still has a class
+ * she could ask about, a started cohort points at October.
+ */
+export function closedReason(now: Date = new Date()): "deadline" | "started" {
+  return now >= CLARITY.startsAt ? "started" : "deadline";
 }
 
 /** Which of the two pages is the one a woman should be on today. */

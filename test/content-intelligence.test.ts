@@ -1062,10 +1062,14 @@ test("the class dates really are Thursdays", () => {
   assert.equal(CLARITY.weeks.length, 4);
 });
 
-test("enrollment closes on the start date even with seats left", () => {
-  // Selling a seat to a class that already began is worse than not selling one.
-  const before = new Date("2026-09-02T12:00:00-04:00");
-  const after = new Date("2026-09-04T12:00:00-04:00");
+test("a date closes enrollment even with seats left", () => {
+  // Selling a seat to a class that already began is worse than not selling one,
+  // and the announced deadline binds the same way. This test used to hardcode
+  // September 2 as "still open"; setting a August 31 deadline made that false,
+  // which is the point — the dates come from CLARITY so the test moves with them.
+  const { closesAt } = require("@/lib/datingWithClarity");
+  const before = new Date(closesAt().getTime() - 3600_000);
+  const after = new Date(closesAt().getTime() + 3600_000);
   assert.equal(enrolmentState(9, before), "open");
   assert.equal(enrolmentState(9, after), "closed");
   assert.equal(enrolmentState(0, before), "full");
@@ -1277,4 +1281,61 @@ test("re-joining the waitlist adds to her answers instead of erasing them", () =
   assert.deepEqual(answerPatch({ firstName: "", hardestPart: null }), {});
   // And a changed field still lands.
   assert.deepEqual(answerPatch({ firstName: "Janelle" }), { first_name: "Janelle" });
+});
+
+test("the announced deadline is the one the checkout enforces", () => {
+  // An email that says enrollment closed while the page keeps selling is worse
+  // than no deadline, because the deadline is the reason she hurried.
+  const { CLARITY: C, closesAt, enrolmentState: state, closedReason } = require("@/lib/datingWithClarity");
+  assert.ok(C.enrollmentClosesAt, "the enrollment deadline must be set for this to mean anything");
+  assert.equal(closesAt().getTime(), Math.min(C.enrollmentClosesAt.getTime(), C.startsAt.getTime()));
+
+  const before = new Date(C.enrollmentClosesAt.getTime() - 60_000);
+  const after = new Date(C.enrollmentClosesAt.getTime() + 60_000);
+  assert.equal(state(9, before), "open");
+  assert.equal(state(9, after), "closed", "seats left, but the deadline passed");
+
+  // And the reason is told apart, because between the two the class has not begun.
+  assert.equal(closedReason(after), "deadline");
+  assert.equal(closedReason(new Date(C.startsAt.getTime() + 60_000)), "started");
+  assert.ok(after < C.startsAt, "there is a real window where 'has begun' would be a lie");
+});
+
+test("no page or email claims the cohort has begun before it has", () => {
+  const read2 = (p: string) => read(p);
+  for (const f of [
+    "app/(site)/dating-with-clarity/page.tsx",
+    "app/(site)/dating-with-clarity/enroll/page.tsx",
+    "app/api/dating-with-clarity/checkout/route.ts",
+  ]) {
+    const src = read2(f);
+    if (/has (already )?begun/.test(src)) {
+      assert.match(src, /closedReason\(\)/, `${f} says "has begun" without checking why it closed`);
+    }
+  }
+});
+
+test("every closing email lands on the day its own copy claims", () => {
+  // The three closing emails were written to an August 28 deadline. Moving the
+  // deadline without moving them would have had "closes tomorrow" arriving four
+  // days early, which is the exact failure the held-email guard exists to avoid
+  // and which no amount of holding would have caught.
+  const { CLARITY: C } = require("@/lib/datingWithClarity");
+  const { ENROLLMENT_SEQUENCE } = require("@/lib/email/claritySequence");
+  const step = (k: string) => ENROLLMENT_SEQUENCE.find((s: { key: string }) => s.key === k);
+  const close = C.enrollmentClosesAt as Date;
+  const dayET = (d: Date) => new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(d);
+  const dayBefore = new Date(close.getTime() - 24 * 3600_000);
+
+  assert.equal(dayET(step("p6").sendOn), dayET(dayBefore), "'closes tomorrow' must be sent the day before");
+  assert.equal(dayET(step("p7").sendOn), dayET(close), "'final day' must be sent on the closing day");
+  assert.equal(dayET(step("p8").sendOn), dayET(close), "'closes tonight' must be sent on the closing day");
+  assert.ok(step("p8").sendOn < close, "'closes tonight' must arrive before it closes");
+  assert.ok(step("p7").sendOn < step("p8").sendOn);
+
+  // Same rule for the priority half.
+  const { WAITLIST_SEQUENCE } = require("@/lib/email/claritySequence");
+  const w6 = WAITLIST_SEQUENCE.find((s: { key: string }) => s.key === "w6");
+  assert.equal(dayET(w6.sendOn), dayET(C.priorityClosesAt), "'ends tonight' must be sent on the closing day");
+  assert.ok(w6.sendOn < C.priorityClosesAt);
 });

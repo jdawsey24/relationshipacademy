@@ -3,7 +3,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getStripe, stripeConfigured } from "@/lib/stripe";
 import { readJsonBody } from "@/lib/apiSecurity";
 import { rateLimit, tooManyRequests } from "@/lib/rateLimit";
-import { CLARITY, enrolmentState, seatsRemaining } from "@/lib/datingWithClarity";
+import { CLARITY, enrolmentState, seatsRemaining, closedReason } from "@/lib/datingWithClarity";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,7 +36,11 @@ export async function POST(request: Request) {
   const seats = await seatsRemaining();
   const state = enrolmentState(seats);
   if (state === "closed") {
-    return NextResponse.json({ error: "The September cohort has already begun." }, { status: 409 });
+    return NextResponse.json({
+      error: closedReason() === "started"
+        ? "The September cohort has already begun."
+        : "Enrollment for the September cohort has closed.",
+    }, { status: 409 });
   }
   if (state === "full") {
     return NextResponse.json({
