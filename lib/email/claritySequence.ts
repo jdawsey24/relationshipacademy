@@ -170,11 +170,12 @@ export const WAITLIST_SEQUENCE: Step[] = [
           p(`Priority enrollment for ${esc(CLARITY.name)} is officially open.`) +
           p("If you are tired of understanding everybody else while still second-guessing your own dating decisions, this cohort was built for you.") +
           p("We begin September 3. Over four weeks you will learn how to recognize patterns, separate evidence from assumptions, test words against behavior, and decide whether deeper investment is warranted.") +
+          p(`The founding-cohort rate is ${CLARITY.priceDisplay}. It goes to ${CLARITY.fullPriceDisplay} for the cohorts that follow, so this is the lowest it will be.`) +
           p(`Your priority access ends ${esc(v.deadline("priority"))}.`),
         v,
         { label: "View the details and enroll", url: v.salesUrl },
       ),
-      text: `${hiText(v)}\n\nPriority enrollment for ${CLARITY.name} is officially open.\n\nIf you are tired of understanding everybody else while still second-guessing your own dating decisions, this cohort was built for you.\n\nWe begin September 3. Over four weeks you will learn how to recognize patterns, separate evidence from assumptions, test words against behavior, and decide whether deeper investment is warranted.\n\nYour priority access ends ${v.deadline("priority")}.\n\nView the details and enroll: ${v.salesUrl}${foot(v)}`,
+      text: `${hiText(v)}\n\nPriority enrollment for ${CLARITY.name} is officially open.\n\nIf you are tired of understanding everybody else while still second-guessing your own dating decisions, this cohort was built for you.\n\nWe begin September 3. Over four weeks you will learn how to recognize patterns, separate evidence from assumptions, test words against behavior, and decide whether deeper investment is warranted.\n\nThe founding-cohort rate is ${CLARITY.priceDisplay}. It goes to ${CLARITY.fullPriceDisplay} for the cohorts that follow, so this is the lowest it will be.\n\nYour priority access ends ${v.deadline("priority")}.\n\nView the details and enroll: ${v.salesUrl}${foot(v)}`,
     }),
   },
   {

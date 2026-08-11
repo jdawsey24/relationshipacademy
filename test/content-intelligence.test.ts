@@ -1354,6 +1354,9 @@ test("the later price is never dressed up as a discount off a former one", () =>
     "app/(site)/dating-with-clarity/waitlist/page.tsx",
     "app/(site)/dating-with-clarity/page.tsx",
     "app/(site)/dating-with-clarity/enroll/page.tsx",
+    // The emails are held to the same rule. W4 is the one that sells, so it is
+    // also the one most tempted to overclaim.
+    "lib/email/claritySequence.ts",
   ];
   for (const f of pages) {
     const src = read(f);
