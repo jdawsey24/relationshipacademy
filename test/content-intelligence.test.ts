@@ -1381,3 +1381,27 @@ test("the later price is never dressed up as a discount off a former one", () =>
   const seq = read("lib/email/claritySequence.ts");
   assert.ok(!/\$\d{3}/.test(seq), "a price was typed into the email copy instead of read from CLARITY");
 });
+
+test("every Content Studio stage is allowed to run", () => {
+  // The gate is DB data and the stage list is code, so they drift silently and
+  // the drift only shows up when someone presses the button. `cs_read` was
+  // missing for exactly this reason: it was added to the pipeline after the
+  // migration that seeded the permissions, and the seed ends in
+  // `on conflict do nothing`, so nothing could repair it.
+  //
+  // This checks the migrations rather than the database, because the database
+  // is not available here — what it enforces is that adding a stage without
+  // shipping a migration for it fails at commit time.
+  const sql = read("supabase/migrations/0070_ai_surface_settings.sql")
+    + read("supabase/migrations/0075_content_studio_read_stage.sql");
+  const allowed = new Set(Array.from(sql.matchAll(/'(cs_[a-z]+)'/g), (m) => m[1]));
+
+  for (const stage of STAGES) {
+    assert.ok(allowed.has(`cs_${stage}`),
+      `stage "${stage}" has no cs_${stage} in any migration — it will fail with "disabled in AI Settings"`);
+  }
+  // And the repair has to be additive, or it would switch off anything the
+  // owner turned off on purpose.
+  const repair = read("supabase/migrations/0075_content_studio_read_stage.sql");
+  assert.match(repair, /enabled_generation_types\s*\|\|/, "the repair must union, not replace");
+});
