@@ -7,6 +7,12 @@ const NAV = [
   { label: "Assessment", href: "/assessment" },
   { label: "The Framework", href: "/framework" },
   { label: "Learn", href: "/learn" },
+  // The Academy's only front door. It used to be the header pill, which now
+  // reads "Client Portal" and goes to /account — the right label for the people
+  // who already bought something, and no help at all to somebody who has not
+  // heard of the Academy. Sits after Learn because that is the progression:
+  // read the free material, then join the thing that teaches it.
+  { label: "Academy", href: "/academy" },
   { label: "For Professionals", href: "/professionals" },
   { label: "Speaking", href: "/speaking" },
   { label: "About", href: "/about" },

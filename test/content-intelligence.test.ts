@@ -1447,3 +1447,20 @@ test("only the undated step is allowed to care what day it is", () => {
   const { WAITLIST_SEQUENCE } = require("@/lib/email/claritySequence");
   assert.equal(WAITLIST_SEQUENCE.find((s: { key: string }) => s.key === "w1").onSignup, true);
 });
+
+test("every paid product has a way in from the public site", () => {
+  // The Academy lost its only entry point when the header pill became "Client
+  // Portal": that label is right for someone who already bought something and
+  // no help at all to someone who has not heard of the Academy. Nothing else on
+  // the site linked to it, so it became unreachable without knowing the URL.
+  const chrome = read("components/site/SiteHeader.tsx") + read("components/site/SiteFooter.tsx");
+  for (const [product, href] of [
+    ["Academy", "/academy"],
+    ["Playbooks", "/playbooks"],
+    ["Companion", "/relationship-companion"],
+  ] as const) {
+    assert.ok(chrome.includes(`"${href}"`), `${product} has no link in the header or footer`);
+  }
+  // And the portal pill points at the doorway, not at one product's sales page.
+  assert.match(read("components/site/SiteHeader.tsx"), /href="\/account"/);
+});
