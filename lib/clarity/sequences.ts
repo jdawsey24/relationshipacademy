@@ -1,6 +1,6 @@
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { emailConfigured, sendEmail } from "@/lib/email/client";
-import { CLARITY, deadlineLine } from "@/lib/datingWithClarity";
+import { CLARITY, deadlineLine, launchPhase } from "@/lib/datingWithClarity";
 import {
   ALL_STEPS, WAITLIST_SEQUENCE, UnresolvedDecision, renderStep, varsFor, type Step,
 } from "@/lib/email/claritySequence";
@@ -62,6 +62,9 @@ function varsForRow(row: Row) {
     unsubscribeUrl: `${SITE}/api/dating-with-clarity/unsubscribe?id=${row.id}`,
     priority: at.priority,
     enrollment: at.enrollment,
+    // Read at SEND time, not at signup. W1 is the only step without a date, so
+    // it is the only one that can go out on either side of the 17th.
+    priorityOpen: launchPhase() !== "waitlist",
   });
 }
 

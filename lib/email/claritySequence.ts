@@ -41,6 +41,15 @@ export interface Vars {
   salesUrl: string;
   waitlistUrl: string;
   unsubscribeUrl: string;
+  /**
+   * Whether enrollment is open at the moment this is being SENT.
+   *
+   * W1 is the only step that needs this, and it needs it because it is the only
+   * step with no send date: it goes out whenever she signs up, which may be
+   * before enrollment opens or after. Every other step knows what day it is
+   * from its own place in the calendar.
+   */
+  priorityOpen: boolean;
   /** Throws UnresolvedDecision rather than returning a placeholder. */
   deadline: (which: Deadline) => string;
 }
@@ -101,11 +110,30 @@ const on = (iso: string) => new Date(iso);
 
 export const WAITLIST_SEQUENCE: Step[] = [
   {
+    // THE ONLY STEP THAT HAS TO ASK WHAT DAY IT IS. Everything else is dated, so
+    // its copy can assume where it sits in the launch. This one goes out
+    // whenever she signs up.
+    //
+    // Before August 17 it promises a link that is coming. From the 17th that
+    // promise is false, and worse, W4 — the email actually carrying the link —
+    // has already gone out, so a woman arriving from the video a day late would
+    // be told to wait for something she had already missed. She gets the link.
     key: "w1",
     onSignup: true,
     subject: `You're on the priority list`,
     preview: `${CLARITY.name} begins September 3.`,
-    body: (v) => ({
+    body: (v) => v.priorityOpen ? {
+      html: layout(
+        h1("You're on the priority list") +
+          p(hi(v)) +
+          p(`You're officially on the priority list for ${esc(CLARITY.name)}.`) +
+          p("This cohort is for women who know the dating language but still want a clearer way to understand what a connection is showing them, and to decide what it has actually earned.") +
+          p("The founding cohort begins September 3, and enrollment is open right now. You can see the complete details and take a seat here."),
+        v,
+        { label: "View the details and enroll", url: v.salesUrl },
+      ),
+      text: `${hiText(v)}\n\nYou're officially on the priority list for ${CLARITY.name}.\n\nThis cohort is for women who know the dating language but still want a clearer way to understand what a connection is showing them, and to decide what it has actually earned.\n\nThe founding cohort begins September 3, and enrollment is open right now. You can see the complete details and take a seat here:\n${v.salesUrl}${foot(v)}`,
+    } : {
       html: layout(
         h1("You're on the priority list") +
           p(hi(v)) +
@@ -117,7 +145,7 @@ export const WAITLIST_SEQUENCE: Step[] = [
         v,
       ),
       text: `${hiText(v)}\n\nYou're officially on the priority list for ${CLARITY.name}.\n\nThis cohort is for women who know the dating language but still want a clearer way to understand what a connection is showing them, and to decide what it has actually earned.\n\nThe founding cohort begins September 3, and priority enrollment opens August 17. I'll send you the complete details before registration opens publicly.\n\nUntil then, hit reply and tell me this: what dating decision do you wish you felt more confident making?\n\nI'm reading the replies, because I want this experience grounded in the decisions women are actually trying to make.${foot(v)}`,
-    }),
+    },
   },
   {
     key: "w2",
@@ -400,12 +428,15 @@ export function varsFor(opts: {
   unsubscribeUrl: string;
   priority: string | null;
   enrollment: string | null;
+  /** Required, not defaulted: guessing it wrong sends the wrong email. */
+  priorityOpen: boolean;
 }): Vars {
   return {
     firstName: opts.firstName,
     salesUrl: `${SITE}/dating-with-clarity`,
     waitlistUrl: `${SITE}/dating-with-clarity/waitlist`,
     unsubscribeUrl: opts.unsubscribeUrl,
+    priorityOpen: opts.priorityOpen,
     deadline: (which) => {
       const value = which === "priority" ? opts.priority : opts.enrollment;
       if (!value) throw new UnresolvedDecision(which);

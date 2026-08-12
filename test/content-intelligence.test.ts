@@ -1193,7 +1193,7 @@ test("exactly one of the two pages is the place to land, on any day of the launc
 
 test("an undecided deadline cannot reach an inbox", () => {
   const { ALL_STEPS, renderStep, varsFor, UnresolvedDecision } = require("@/lib/email/claritySequence");
-  const bare = varsFor({ firstName: "Sam", unsubscribeUrl: "https://x/u", priority: null, enrollment: null });
+  const bare = varsFor({ firstName: "Sam", unsubscribeUrl: "https://x/u", priority: null, enrollment: null, priorityOpen: false });
 
   for (const step of ALL_STEPS) {
     const declaresANeed = (step.needs ?? []).length > 0;
@@ -1215,12 +1215,15 @@ test("an undecided deadline cannot reach an inbox", () => {
 test("no launch email ships with a bracketed placeholder in it", () => {
   const { ALL_STEPS, renderStep, varsFor } = require("@/lib/email/claritySequence");
   // Rendered as they would be once both decisions are made.
-  const v = varsFor({
+  // Both sides of August 17, because W1 renders differently on each and a
+  // check that only sees one of them is half a check.
+  const vars = [true, false].map((priorityOpen) => varsFor({
     firstName: null, unsubscribeUrl: "https://x/u",
     priority: "Wednesday, August 19 at 9 p.m. ET",
-    enrollment: "Friday, August 28 at 9 p.m. ET",
-  });
-  for (const step of ALL_STEPS) {
+    enrollment: "Monday, August 31 at 9 p.m. ET",
+    priorityOpen,
+  }));
+  for (const step of ALL_STEPS) for (const v of vars) {
     const { subject, text, html } = renderStep(step, v);
     for (const [what, body] of [["subject", subject], ["text", text], ["html", html]] as const) {
       assert.ok(!/\[[A-Z][A-Z /_]+\]/.test(body), `${step.key} ${what} still carries a placeholder`);
@@ -1404,4 +1407,43 @@ test("every Content Studio stage is allowed to run", () => {
   // owner turned off on purpose.
   const repair = read("supabase/migrations/0075_content_studio_read_stage.sql");
   assert.match(repair, /enabled_generation_types\s*\|\|/, "the repair must union, not replace");
+});
+
+test("the confirmation stops promising a link once the link has already been sent", () => {
+  // W1 is the only step with no send date, so it is the only one that can go
+  // out on either side of August 17. Before, it says the link is coming. After,
+  // that is false AND W4 — the email carrying the link — has already gone, so a
+  // late arrival would be told to wait for something she had already missed.
+  const { WAITLIST_SEQUENCE, renderStep, varsFor } = require("@/lib/email/claritySequence");
+  const w1 = WAITLIST_SEQUENCE.find((s: { key: string }) => s.key === "w1");
+  const make = (priorityOpen: boolean) => renderStep(w1, varsFor({
+    firstName: "Sam", unsubscribeUrl: "https://x/u",
+    priority: "Wednesday, August 19 at 9 p.m. ET",
+    enrollment: "Monday, August 31 at 9 p.m. ET",
+    priorityOpen,
+  }));
+
+  const before = make(false);
+  assert.match(before.text, /priority enrollment opens August 17/);
+  assert.ok(!before.text.includes("/dating-with-clarity\n"), "nothing to enrol in yet, so no link");
+
+  const after = make(true);
+  assert.ok(!/opens August 17/.test(after.text), "still promising a date that has passed");
+  assert.match(after.text, /enrollment is open right now/);
+  assert.match(after.text, /\/dating-with-clarity/, "must carry the link W4 would have carried");
+  assert.match(after.html, /View the details and enroll/);
+
+  // Same subject either way: it is still the signup confirmation.
+  assert.equal(before.subject, after.subject);
+});
+
+test("only the undated step is allowed to care what day it is", () => {
+  // Every other step is dated, so its copy can assume where it sits. If a
+  // second step started branching on priorityOpen it would mean the calendar
+  // had stopped being the thing that decides what is true.
+  const src = read("lib/email/claritySequence.ts");
+  const uses = src.split("v.priorityOpen").length - 1;
+  assert.equal(uses, 1, "exactly one step may branch on whether enrollment is open");
+  const { WAITLIST_SEQUENCE } = require("@/lib/email/claritySequence");
+  assert.equal(WAITLIST_SEQUENCE.find((s: { key: string }) => s.key === "w1").onSignup, true);
 });

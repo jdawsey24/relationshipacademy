@@ -79,15 +79,27 @@ export default function SiteHeader() {
               </Link>
             );
           })}
+          {/*
+            "Client Portal", not "Academy". Most people with an account here
+            bought a Playbook or the Companion and never joined the Academy, so
+            the old label named a product they do not have and the old link took
+            them to its sales page. /account routes each of them to whichever
+            portal is actually theirs.
+
+            The label cannot say "Login" either: this header is a client
+            component with no session, so it renders the same words to a signed-in
+            member, and "Log in" is wrong for someone already logged in.
+            "Client Portal" is true in both states.
+          */}
           <Link
-            href="/academy"
+            href="/account"
             className={`rounded-full border px-4 py-1.5 font-ui text-sm transition-colors ${
               transparent
                 ? "border-midnight-navy/30 text-midnight-navy hover:bg-midnight-navy/5"
                 : "border-white/40 text-white hover:bg-white/10"
             }`}
           >
-            Academy
+            Client Portal
           </Link>
         </nav>
 
@@ -135,8 +147,8 @@ export default function SiteHeader() {
                 </Link>
               );
             })}
-            <Link href="/academy" className="mt-2 inline-block rounded-full border border-coral-rose px-5 py-2 font-display text-2xl text-coral-rose">
-              Academy
+            <Link href="/account" className="mt-2 inline-block rounded-full border border-coral-rose px-5 py-2 font-display text-2xl text-coral-rose">
+              Client Portal
             </Link>
           </nav>
         </div>

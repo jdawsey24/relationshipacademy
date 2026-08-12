@@ -90,7 +90,7 @@ const WHATS_INSIDE = [
 async function Landing() {
   const playbooks = await getPlaybookMarketing();
   return (
-    <main className="mx-auto max-w-4xl px-6 pb-24 pt-14">
+    <main className="mx-auto max-w-4xl px-6 pb-24 pt-24 sm:pt-32">
       {/* Hero */}
       <section className="text-center">
         <SectionLabel>The Relationship Playbook&trade;</SectionLabel>
@@ -199,8 +199,16 @@ async function Library({ userId, purchaseSuccess }: { userId: string; purchaseSu
     const k = keyForClusterId(id);
     return (k ? getPlaybookContent(k)?.displayName : null) ?? "Your Playbook";
   };
+  // The header is `fixed`, so it occupies no layout space and every page has to
+  // clear it on its own. pt-10 was shorter than the header is tall, which put
+  // this heading underneath it.
+  //
+  // Sized against the TALL header, not the short one. Above 1024px the nav
+  // shows and wraps to two lines, so the header is 80px there against 56px on
+  // mobile. The site's usual pt-24 leaves 16px under it at desktop, which
+  // clears the header without ever looking like space.
   return (
-    <main className="mx-auto max-w-2xl px-6 pb-24 pt-10">
+    <main className="mx-auto max-w-2xl px-6 pb-24 pt-24 sm:pt-32">
       <p className="font-ui text-eyebrow font-semibold uppercase text-charcoal/45">The Relationship Playbook&trade;</p>
       <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-midnight-navy sm:text-4xl">Your playbooks</h1>
       <p className="mt-2 font-body text-charcoal/70">Everything you&apos;ve unlocked, ready whenever you need it.</p>
