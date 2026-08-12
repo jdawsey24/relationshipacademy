@@ -39,6 +39,9 @@ const NAV_GROUPS: NavItem[][] = [
   ],
   [
     { label: "CRM", href: "/admin/crm" },
+    // Its own entry rather than a CRM tab: this list is read, not worked. The
+    // value is in two free-text answers a table row would truncate away.
+    { label: "Clarity Waitlist", href: "/admin/clarity" },
     { label: "Analytics", href: "/admin/analytics" },
     { label: "Snapshot", href: "/admin/snapshot" },
     { label: "Media Library", href: "/admin/media" },

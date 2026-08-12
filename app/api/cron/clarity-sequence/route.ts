@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { processDueSteps, heldSteps } from "@/lib/clarity/sequences";
+import { sendWaitlistDigest } from "@/lib/clarity/digest";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,5 +22,11 @@ export async function GET(request: Request) {
   if (res.held.length) {
     console.warn(`[cron/clarity-sequence] held pending an owner decision: ${res.held.join(", ")}`);
   }
-  return NextResponse.json({ ok: true, ...res, unresolved: heldSteps() });
+
+  // The owner's digest rides along. Deliberately after the sequence and unable
+  // to throw into it: a notification failing must never stop the emails that
+  // people are actually waiting for.
+  const digest = await sendWaitlistDigest();
+
+  return NextResponse.json({ ok: true, ...res, unresolved: heldSteps(), digest });
 }

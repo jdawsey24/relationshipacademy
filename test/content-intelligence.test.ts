@@ -1464,3 +1464,39 @@ test("every paid product has a way in from the public site", () => {
   // And the portal pill points at the doorway, not at one product's sales page.
   assert.match(read("components/site/SiteHeader.tsx"), /href="\/account"/);
 });
+
+test("a waitlist signup is reported to the owner exactly once", () => {
+  // The signup used to be silent on the owner's side: a row written, a
+  // confirmation sent to her, and nothing else. The four form answers exist to
+  // shape the first class and nobody was reading them.
+  const digest = read("lib/clarity/digest.ts");
+
+  // Per-row, not a time window. A window either double-reports when the cron
+  // runs twice a day or drops people when a run is retried.
+  assert.match(digest, /\.is\("notified_at", null\)/);
+  assert.ok(!/last 24|interval|getTime\(\) - /.test(digest), "the digest must not reason about time windows");
+
+  // The stamp goes on AFTER the send. The other order loses people silently.
+  const sendAt = digest.indexOf("await sendEmail(");
+  const stampAt = digest.indexOf('update({ notified_at');
+  assert.ok(sendAt > 0 && stampAt > sendAt, "notified_at must be written after the send succeeds");
+  assert.match(digest, /if \(sendError\) return/, "a failed send must leave them unstamped");
+
+  // Silent when nothing happened, or it stops being information.
+  assert.match(digest, /if \(!fresh\.length\) return .*nothing new/);
+
+  // And it can never take down the emails people are actually waiting for.
+  assert.match(read("app/api/cron/clarity-sequence/route.ts"),
+    /const res = await processDueSteps\(\)[\s\S]*const digest = await sendWaitlistDigest\(\)/);
+});
+
+test("the owner can reach the waitlist and read the answers", () => {
+  const page = read("app/admin/clarity/page.tsx");
+  // All four answers, not just the two that fit a table row.
+  for (const field of ["dating_status", "can_attend", "hardest_part", "confidence_goal"]) {
+    assert.ok(page.includes(field), `the admin page omits ${field}`);
+  }
+  // Reachable, and gated like every other admin surface.
+  assert.match(read("app/admin/layout.tsx"), /href: "\/admin\/clarity"/);
+  assert.match(read("app/api/admin/clarity-waitlist/route.ts"), /await requireAdmin\(\)/);
+});
