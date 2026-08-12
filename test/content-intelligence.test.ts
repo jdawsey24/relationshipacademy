@@ -1485,6 +1485,16 @@ test("a waitlist signup is reported to the owner exactly once", () => {
   // Silent when nothing happened, or it stops being information.
   assert.match(digest, /if \(!fresh\.length\) return .*nothing new/);
 
+  // One a day, and the limit is asked of the stamps rather than of the clock —
+  // gating on "only the 9am run" means a missed run forfeits the whole day.
+  assert.match(digest, /already sent today/);
+  assert.match(digest, /easternDay\(new Date\(last\)\) === easternDay\(now\)/);
+  assert.match(digest, /timeZone: "America\/New_York"/);
+  // Skipped rows must keep their null so tomorrow still reports them.
+  const skipAt = digest.indexOf("already sent today");
+  const stampAt2 = digest.indexOf("update({ notified_at");
+  assert.ok(skipAt < stampAt2, "the once-a-day check must come before the stamp");
+
   // And it can never take down the emails people are actually waiting for.
   assert.match(read("app/api/cron/clarity-sequence/route.ts"),
     /const res = await processDueSteps\(\)[\s\S]*const digest = await sendWaitlistDigest\(\)/);

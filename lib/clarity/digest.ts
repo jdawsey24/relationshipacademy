@@ -13,6 +13,13 @@ import { CLARITY } from "@/lib/datingWithClarity";
 // This runs on the cron that already exists and sends one message covering
 // everyone it has not reported yet.
 //
+// ONCE A DAY (owner, 2026-08-12). The cron fires twice, so the limit is enforced
+// here rather than by picking one of the two runs: a run can be missed or
+// retried, and "only the 9am one" then means no digest at all that day. Instead
+// it asks whether anything has already been reported on today's Eastern date,
+// which is the actual rule and needs no new state to answer — the notified_at
+// stamps already say. Skipped rows keep their null and go out tomorrow.
+//
 // SILENT WHEN THERE IS NOTHING. The same rule the Playbook reconciliation
 // follows: a message that arrives whether or not anything happened stops being
 // information. No signups, no email.
@@ -44,6 +51,18 @@ export interface DigestResult {
 }
 
 const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+/**
+ * "2026-08-12" for a moment, on the Eastern calendar.
+ *
+ * The day boundary has to be the owner's, not UTC's: the evening cron fires at
+ * 22:00 UTC, which is still the same afternoon in New York but would already be
+ * tomorrow on a UTC boundary for part of the year, quietly allowing a second
+ * digest.
+ */
+function easternDay(d: Date): string {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(d);
+}
 
 /** "Aug 12, 9:14 a.m." in the timezone the class runs in. */
 function when(iso: string): string {
@@ -89,7 +108,7 @@ function personText(s: Signup): string {
  * for the next run rather than losing them silently. The cost of the other
  * order is that a signup disappears without ever being mentioned.
  */
-export async function sendWaitlistDigest(): Promise<DigestResult> {
+export async function sendWaitlistDigest(now: Date = new Date()): Promise<DigestResult> {
   const result: DigestResult = { reported: 0, total: 0, sent: false };
   try {
     const s = getSupabaseAdminClient();
@@ -103,6 +122,18 @@ export async function sendWaitlistDigest(): Promise<DigestResult> {
     const fresh = (data ?? []) as unknown as Signup[];
     result.reported = fresh.length;
     if (!fresh.length) return { ...result, reason: "nothing new" };
+
+    // One a day. Asked of the stamps rather than of the clock, so a missed or
+    // retried run still gets its digest out instead of forfeiting the day.
+    // These rows keep their null and go out in tomorrow's.
+    const { data: latest } = await s.from(TABLE)
+      .select("notified_at").eq("cohort", CLARITY.cohort)
+      .not("notified_at", "is", null)
+      .order("notified_at", { ascending: false }).limit(1).maybeSingle();
+    const last = (latest as { notified_at?: string } | null)?.notified_at;
+    if (last && easternDay(new Date(last)) === easternDay(now)) {
+      return { ...result, reason: "already sent today" };
+    }
 
     const { count } = await s.from(TABLE).select("id", { count: "exact", head: true })
       .eq("cohort", CLARITY.cohort).neq("status", "unsubscribed");
@@ -141,7 +172,12 @@ export async function sendWaitlistDigest(): Promise<DigestResult> {
     if (sendError) return { ...result, reason: sendError };
 
     // Only now. A stamp written before a failed send loses these people.
-    await s.from(TABLE).update({ notified_at: new Date().toISOString() })
+    //
+    // Stamped with the SAME `now` the once-a-day check reads, not with a fresh
+    // wall clock. Half-honouring an injected clock is worse than not accepting
+    // one: the check and the stamp then disagree, and the disagreement only
+    // shows up under test, which is exactly where it looks like a pass.
+    await s.from(TABLE).update({ notified_at: now.toISOString() })
       .in("id", fresh.map((f) => f.id));
 
     return { ...result, sent: true };
