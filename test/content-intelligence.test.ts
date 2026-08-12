@@ -1510,3 +1510,41 @@ test("the owner can reach the waitlist and read the answers", () => {
   assert.match(read("app/admin/layout.tsx"), /href: "\/admin\/clarity"/);
   assert.match(read("app/api/admin/clarity-waitlist/route.ts"), /await requireAdmin\(\)/);
 });
+
+test("the free guide is delivered on the screen, and the email only backs it up", () => {
+  // The guide is the reason many people will hand over an address, so it is
+  // delivered at the one moment she is definitely still there — the thank-you
+  // screen — rather than made the job of an email that already has one.
+  const { CLARITY: C } = require("@/lib/datingWithClarity");
+  const { existsSync } = require("node:fs");
+  const { join } = require("node:path");
+
+  // The file has to actually be there, or every promise on the page is a 404.
+  assert.ok(existsSync(join(process.cwd(), "public", C.guide.href)),
+    `no file at public${C.guide.href}`);
+
+  const form = read("components/site/ClarityWaitlistForm.tsx");
+  assert.match(form, /guideHref/);
+  assert.match(form, /download/, "the thank-you screen must offer the download");
+
+  // W1 carries it too, because the screen is gone once she closes the tab —
+  // but as a closing line, never as the button.
+  const { WAITLIST_SEQUENCE, renderStep, varsFor } = require("@/lib/email/claritySequence");
+  const w1 = WAITLIST_SEQUENCE.find((s: { key: string }) => s.key === "w1");
+  for (const priorityOpen of [true, false]) {
+    const out = renderStep(w1, varsFor({
+      firstName: "Sam", unsubscribeUrl: "https://x/u",
+      priority: "Wednesday, August 19 at 9 p.m. ET",
+      enrollment: "Monday, August 31 at 9 p.m. ET",
+      priorityOpen,
+    }));
+    assert.match(out.text, new RegExp(C.guide.href.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+      `w1 (priorityOpen=${priorityOpen}) does not carry the guide`);
+    // Never the primary button: that slot belongs to enrolment once it is open.
+    assert.ok(!new RegExp(`>[^<]*${C.guide.title}[^<]*</a>[\\s\\S]{0,40}border-radius:9999px`).test(out.html),
+      "the guide must not become the email's primary button");
+  }
+
+  // And the page promises it, since that is what makes the address worth giving.
+  assert.match(read("app/(site)/dating-with-clarity/waitlist/page.tsx"), /CLARITY\.guide\.title/);
+});

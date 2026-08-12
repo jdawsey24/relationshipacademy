@@ -30,7 +30,9 @@ const input =
   "min-h-[48px] w-full rounded-lg border border-light-gray bg-white px-4 font-ui text-base text-charcoal outline-none focus:border-midnight-navy";
 const label = "block font-ui text-sm font-medium text-charcoal/70";
 
-export default function ClarityWaitlistForm({ classTime }: { classTime: string }) {
+export default function ClarityWaitlistForm({ classTime, guideTitle, guideHref }: {
+  classTime: string; guideTitle: string; guideHref: string;
+}) {
   const [v, setV] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
   const [error, setError] = useState<string | null>(null);
@@ -85,11 +87,28 @@ export default function ClarityWaitlistForm({ classTime }: { classTime: string }
         <p className="font-display text-2xl font-semibold text-midnight-navy">
           You&apos;re on the priority list.
         </p>
+
+        {/*
+          The guide leads, because this screen is the only moment she is
+          definitely still here. Two seconds after submitting, no inbox in the
+          way. The email repeats the link for when she closes the tab.
+        */}
         <p className="mx-auto mt-4 max-w-md font-body text-body leading-relaxed text-charcoal/75">
-          Check your inbox for the confirmation. Priority enrollment opens August 17, and the
-          founding cohort begins September 3.
+          Here&apos;s your free guide to start with.
         </p>
-        <p className="mx-auto mt-4 max-w-md font-body text-sm leading-relaxed text-charcoal/60">
+        <a
+          href={guideHref}
+          download
+          className="mt-4 inline-flex min-h-[52px] items-center justify-center rounded-full bg-midnight-navy px-8 font-ui text-base font-medium text-white transition-colors hover:bg-midnight-navy/90"
+        >
+          Download {guideTitle}
+        </a>
+
+        <p className="mx-auto mt-6 max-w-md font-body text-sm leading-relaxed text-charcoal/60">
+          Your confirmation is on its way too. Priority enrollment opens August 17, and the founding
+          cohort begins September 3.
+        </p>
+        <p className="mx-auto mt-3 max-w-md font-body text-sm leading-relaxed text-charcoal/60">
           Add admin@notify.relationshiplc.com to your contacts so the enrollment email does not get
           lost. And if you have a minute, reply to the confirmation and tell me the dating decision
           you wish you felt more confident making. I read them.

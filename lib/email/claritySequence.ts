@@ -40,6 +40,7 @@ export interface Vars {
   firstName: string | null;
   salesUrl: string;
   waitlistUrl: string;
+  guideUrl: string;
   unsubscribeUrl: string;
   /**
    * Whether enrollment is open at the moment this is being SENT.
@@ -128,11 +129,12 @@ export const WAITLIST_SEQUENCE: Step[] = [
           p(hi(v)) +
           p(`You're officially on the priority list for ${esc(CLARITY.name)}.`) +
           p("This cohort is for women who know the dating language but still want a clearer way to understand what a connection is showing them, and to decide what it has actually earned.") +
-          p("The founding cohort begins September 3, and enrollment is open right now. You can see the complete details and take a seat here."),
+          p("The founding cohort begins September 3, and enrollment is open right now. You can see the complete details and take a seat here.") +
+          p(`Your copy of <a href="${v.guideUrl}" style="color:${NAVY};">${esc(CLARITY.guide.title)}</a> is here whenever you want it again.`),
         v,
         { label: "View the details and enroll", url: v.salesUrl },
       ),
-      text: `${hiText(v)}\n\nYou're officially on the priority list for ${CLARITY.name}.\n\nThis cohort is for women who know the dating language but still want a clearer way to understand what a connection is showing them, and to decide what it has actually earned.\n\nThe founding cohort begins September 3, and enrollment is open right now. You can see the complete details and take a seat here:\n${v.salesUrl}${foot(v)}`,
+      text: `${hiText(v)}\n\nYou're officially on the priority list for ${CLARITY.name}.\n\nThis cohort is for women who know the dating language but still want a clearer way to understand what a connection is showing them, and to decide what it has actually earned.\n\nThe founding cohort begins September 3, and enrollment is open right now. You can see the complete details and take a seat here:\n${v.salesUrl}\n\nYour copy of ${CLARITY.guide.title} is here whenever you want it again:\n${v.guideUrl}${foot(v)}`,
     } : {
       html: layout(
         h1("You're on the priority list") +
@@ -141,10 +143,11 @@ export const WAITLIST_SEQUENCE: Step[] = [
           p("This cohort is for women who know the dating language but still want a clearer way to understand what a connection is showing them, and to decide what it has actually earned.") +
           p("The founding cohort begins September 3, and priority enrollment opens August 17. I'll send you the complete details before registration opens publicly.") +
           p("Until then, hit reply and tell me this: what dating decision do you wish you felt more confident making?") +
-          p("I'm reading the replies, because I want this experience grounded in the decisions women are actually trying to make."),
+          p("I'm reading the replies, because I want this experience grounded in the decisions women are actually trying to make.") +
+          p(`Your copy of <a href="${v.guideUrl}" style="color:${NAVY};">${esc(CLARITY.guide.title)}</a> is here whenever you want it again.`),
         v,
       ),
-      text: `${hiText(v)}\n\nYou're officially on the priority list for ${CLARITY.name}.\n\nThis cohort is for women who know the dating language but still want a clearer way to understand what a connection is showing them, and to decide what it has actually earned.\n\nThe founding cohort begins September 3, and priority enrollment opens August 17. I'll send you the complete details before registration opens publicly.\n\nUntil then, hit reply and tell me this: what dating decision do you wish you felt more confident making?\n\nI'm reading the replies, because I want this experience grounded in the decisions women are actually trying to make.${foot(v)}`,
+      text: `${hiText(v)}\n\nYou're officially on the priority list for ${CLARITY.name}.\n\nThis cohort is for women who know the dating language but still want a clearer way to understand what a connection is showing them, and to decide what it has actually earned.\n\nThe founding cohort begins September 3, and priority enrollment opens August 17. I'll send you the complete details before registration opens publicly.\n\nUntil then, hit reply and tell me this: what dating decision do you wish you felt more confident making?\n\nI'm reading the replies, because I want this experience grounded in the decisions women are actually trying to make.\n\nYour copy of ${CLARITY.guide.title} is here whenever you want it again:\n${v.guideUrl}${foot(v)}`,
     },
   },
   {
@@ -435,6 +438,7 @@ export function varsFor(opts: {
     firstName: opts.firstName,
     salesUrl: `${SITE}/dating-with-clarity`,
     waitlistUrl: `${SITE}/dating-with-clarity/waitlist`,
+    guideUrl: `${SITE}${CLARITY.guide.href}`,
     unsubscribeUrl: opts.unsubscribeUrl,
     priorityOpen: opts.priorityOpen,
     deadline: (which) => {

@@ -52,6 +52,9 @@ const LEARN = [
 ];
 
 const BENEFITS = [
+  // First, because it is the only one she gets immediately. A free guide is a
+  // stronger reason to hand over an address than a place in a queue is.
+  `${CLARITY.guide.title}, a free guide, the moment you join`,
   "First access when enrollment opens on August 17",
   `The founding-cohort rate of ${CLARITY.priceDisplay}, before it goes to ${CLARITY.fullPriceDisplay}`,
   "The complete class dates and program details",
@@ -90,7 +93,7 @@ export default async function ClarityWaitlistPage() {
             Join the priority waitlist
           </a>
           <p className="font-body text-sm text-charcoal/55">
-            Get first access before registration opens publicly. No payment is required to join.
+            Get your free guide straight away, plus first access before registration opens publicly. No payment is required to join.
           </p>
         </div>
       </section>
@@ -190,7 +193,11 @@ export default async function ClarityWaitlistPage() {
         </div>
 
         <div className="mt-8 rounded-3xl border border-midnight-navy/10 bg-white p-8 sm:p-10">
-          <ClarityWaitlistForm classTime={CLARITY.time} />
+          <ClarityWaitlistForm
+            classTime={CLARITY.time}
+            guideTitle={CLARITY.guide.title}
+            guideHref={CLARITY.guide.href}
+          />
         </div>
       </section>
 

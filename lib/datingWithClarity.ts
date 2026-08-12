@@ -46,6 +46,25 @@ export const CLARITY = {
   cohort: "founding-2026-09",
 
   /**
+   * The free guide she gets for joining.
+   *
+   * Delivered on the thank-you screen rather than as the point of the
+   * confirmation email: she has it two seconds after submitting, with no spam
+   * folder in the way and no "where is my guide" to answer. The email carries
+   * the same link quietly at the end, because the screen disappears when she
+   * closes the tab.
+   *
+   * A LINK, NOT AN ATTACHMENT, AND NOT GATED. An attachment pushes the whole
+   * email toward spam and cannot be corrected once it is sitting in fifty
+   * inboxes. Ungated because a woman forwarding this to a friend who then joins
+   * the list is the best thing that can happen to it.
+   */
+  guide: {
+    title: "Stop Trying to Read People",
+    href: "/guides/stop-trying-to-read-people.pdf",
+  },
+
+  /**
    * The launch calendar (launch package, Section 11).
    *
    * `priorityOpensAt` is when the waitlist gets its link and `publicOpensAt` is
