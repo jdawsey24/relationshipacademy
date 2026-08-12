@@ -2,19 +2,23 @@ import "global-jsdom/register";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { render, screen, userEvent, h } from "./helpers/pbTestSetup";
-import ClarityWaitlistForm from "../components/site/ClarityWaitlistForm";
+import ClarityWaitlistForm, { leaveTo } from "../components/site/ClarityWaitlistForm";
 import { CLARITY } from "../lib/datingWithClarity";
 
-// The thank-you screen is where the free guide is actually delivered, so it is
-// worth driving for real rather than reading. The Turnstile widget does not draw
-// in an automated browser, which is why this could not be checked by clicking
-// through the live page.
+// Driving the real form, because clicking through the live page cannot: the
+// Turnstile widget does not draw in an automated browser.
+//
+// What this has to prove is that a successful signup LEAVES. The first version
+// swapped the form for a confirmation box in place, which the owner never saw —
+// the page collapsed under her and left her looking at the footer.
 
-const props = {
-  classTime: CLARITY.time,
-  guideTitle: CLARITY.guide.title,
-  guideHref: CLARITY.guide.href,
-};
+const THANK_YOU = "/dating-with-clarity/waitlist/thank-you";
+const props = { classTime: CLARITY.time, thankYouHref: THANK_YOU };
+
+// jsdom forbids navigating AND forbids replacing window.location, so the
+// component routes its one navigation through `leaveTo` and this watches that.
+const went: string[] = [];
+leaveTo.href = (url: string) => { went.push(url); };
 
 const posted: { url: string; body: unknown }[] = [];
 (globalThis as unknown as { fetch: unknown }).fetch = async (url: string, init?: RequestInit) => {
@@ -22,8 +26,9 @@ const posted: { url: string; body: unknown }[] = [];
   return { ok: true, json: async () => ({ ok: true }) };
 };
 
-test("submitting the form hands over the guide, and sends the answers", async () => {
+test("a successful signup leaves the form and lands on the thank-you page", async () => {
   posted.length = 0;
+  went.length = 0;
   const user = userEvent.setup();
   render(h(ClarityWaitlistForm, props));
 
@@ -39,13 +44,8 @@ test("submitting the form hands over the guide, and sends the answers", async ()
   assert.equal(sent.first_name, "Maya");
   assert.equal(sent.hardest_part, "Telling a moment from a pattern.");
 
-  // And the guide is right there, as a download, not a promise of an email.
-  const download = await screen.findByRole("link", { name: new RegExp(CLARITY.guide.title, "i") });
-  assert.equal(download.getAttribute("href"), CLARITY.guide.href);
-  assert.ok(download.hasAttribute("download"));
-
-  // The form is gone — one thing to do on this screen.
-  assert.equal(screen.queryByRole("button", { name: /join the priority waitlist/i }), null);
+  // And she is taken somewhere she cannot be scrolled past.
+  assert.deepEqual(went, [THANK_YOU]);
 });
 
 test("an address the browser accepts but we do not never reaches the endpoint", async () => {
@@ -55,6 +55,7 @@ test("an address the browser accepts but we do not never reaches the endpoint", 
   // "not-an-address" would just be testing the browser, which stops the submit
   // before any of this code runs.
   posted.length = 0;
+  went.length = 0;
   const user = userEvent.setup();
   render(h(ClarityWaitlistForm, props));
 
@@ -63,6 +64,5 @@ test("an address the browser accepts but we do not never reaches the endpoint", 
 
   assert.equal(posted.length, 0, "nothing should have been posted");
   assert.ok(screen.getByText(/valid email address/i));
-  assert.equal(screen.queryByRole("link", { name: new RegExp(CLARITY.guide.title, "i") }), null,
-    "the guide must not appear to somebody who is not on the list");
+  assert.deepEqual(went, [], "she must not be sent to the thank-you page");
 });

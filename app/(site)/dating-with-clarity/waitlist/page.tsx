@@ -28,6 +28,8 @@ import { CLARITY, launchPhase } from "@/lib/datingWithClarity";
 
 export const dynamic = "force-dynamic";
 
+const THANK_YOU = "/dating-with-clarity/waitlist/thank-you";
+
 export const metadata: Metadata = {
   title: "Join the priority waitlist | Dating With Clarity",
   description:
@@ -193,11 +195,7 @@ export default async function ClarityWaitlistPage() {
         </div>
 
         <div className="mt-8 rounded-3xl border border-midnight-navy/10 bg-white p-8 sm:p-10">
-          <ClarityWaitlistForm
-            classTime={CLARITY.time}
-            guideTitle={CLARITY.guide.title}
-            guideHref={CLARITY.guide.href}
-          />
+          <ClarityWaitlistForm classTime={CLARITY.time} thankYouHref={THANK_YOU} />
         </div>
       </section>
 

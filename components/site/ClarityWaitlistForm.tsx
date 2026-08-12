@@ -11,6 +11,12 @@ import Turnstile, { turnstileEnabled } from "@/components/site/Turnstile";
 // only the email is still on the list.
 //
 // Deliberately NOT a payment step: this page has no checkout on it at all.
+//
+// ON SUCCESS IT NAVIGATES. This used to swap itself for a confirmation box in
+// place, which was invisible in practice: the form is around 860px tall and the
+// box a third of that, so the page collapsed under the reader and left her
+// looking at the footer, with no idea she had joined. A page cannot be scrolled
+// past.
 
 const ATTEND = [
   "Yes, Thursday evenings work",
@@ -26,12 +32,29 @@ const STATUS = [
   "Something else",
 ];
 
+/**
+ * How a successful signup leaves this page.
+ *
+ * A FULL LOAD, not a client-side push. The thank-you URL is what an ad platform
+ * counts as a conversion, and the Meta pixel only fires its PageView on a real
+ * load — a soft route change would record the signup nowhere, which is the one
+ * number that matters the week traffic arrives from a video.
+ *
+ * Behind a named object because jsdom forbids both navigating and replacing
+ * window.location, so this is the only seam a test can watch.
+ */
+export const leaveTo = {
+  href: (url: string) => { window.location.assign(url); },
+};
+
 const input =
   "min-h-[48px] w-full rounded-lg border border-light-gray bg-white px-4 font-ui text-base text-charcoal outline-none focus:border-midnight-navy";
 const label = "block font-ui text-sm font-medium text-charcoal/70";
 
-export default function ClarityWaitlistForm({ classTime, guideTitle, guideHref }: {
-  classTime: string; guideTitle: string; guideHref: string;
+export default function ClarityWaitlistForm({ classTime, thankYouHref }: {
+  classTime: string;
+  /** Where a successful signup lands. See the note on navigating, above. */
+  thankYouHref: string;
 }) {
   const [v, setV] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
@@ -70,6 +93,11 @@ export default function ClarityWaitlistForm({ classTime, guideTitle, guideHref }
       });
       if (!res.ok) throw new Error(String(res.status));
       setStatus("done");
+      // A real navigation, not a client-side push: the thank-you URL is what an
+      // ad platform counts as a conversion, and a hard load makes that pageview
+      // unambiguous. It also means the browser scrolls to the top for us, which
+      // is the whole reason this is a page and not a swap.
+      leaveTo.href(thankYouHref);
     } catch {
       setStatus("idle");
       setError("Something went wrong. Please try again.");
@@ -79,42 +107,6 @@ export default function ClarityWaitlistForm({ classTime, guideTitle, guideHref }
         setToken("");
       }
     }
-  }
-
-  if (status === "done") {
-    return (
-      <div className="rounded-2xl border border-sage-green/40 bg-sage-green/10 p-8 text-center">
-        <p className="font-display text-2xl font-semibold text-midnight-navy">
-          You&apos;re on the priority list.
-        </p>
-
-        {/*
-          The guide leads, because this screen is the only moment she is
-          definitely still here. Two seconds after submitting, no inbox in the
-          way. The email repeats the link for when she closes the tab.
-        */}
-        <p className="mx-auto mt-4 max-w-md font-body text-body leading-relaxed text-charcoal/75">
-          Here&apos;s your free guide to start with.
-        </p>
-        <a
-          href={guideHref}
-          download
-          className="mt-4 inline-flex min-h-[52px] items-center justify-center rounded-full bg-midnight-navy px-8 font-ui text-base font-medium text-white transition-colors hover:bg-midnight-navy/90"
-        >
-          Download {guideTitle}
-        </a>
-
-        <p className="mx-auto mt-6 max-w-md font-body text-sm leading-relaxed text-charcoal/60">
-          Your confirmation is on its way too. Priority enrollment opens August 17, and the founding
-          cohort begins September 3.
-        </p>
-        <p className="mx-auto mt-3 max-w-md font-body text-sm leading-relaxed text-charcoal/60">
-          Add admin@notify.relationshiplc.com to your contacts so the enrollment email does not get
-          lost. And if you have a minute, reply to the confirmation and tell me the dating decision
-          you wish you felt more confident making. I read them.
-        </p>
-      </div>
-    );
   }
 
   return (

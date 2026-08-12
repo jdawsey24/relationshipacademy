@@ -1523,9 +1523,17 @@ test("the free guide is delivered on the screen, and the email only backs it up"
   assert.ok(existsSync(join(process.cwd(), "public", C.guide.href)),
     `no file at public${C.guide.href}`);
 
+  // On its own page, because the inline version was invisible: the form is
+  // ~860px tall and the confirmation a third of that, so the page collapsed
+  // under the reader and left her looking at the footer.
+  const page = read("app/(site)/dating-with-clarity/waitlist/thank-you/page.tsx");
+  assert.match(page, /CLARITY\.guide\.href/);
+  assert.match(page, /download/, "the thank-you page must offer the download");
+  assert.match(page, /robots: \{ index: false \}/, "a step in a flow, not a landing page");
+  // And the form actually goes there rather than swapping itself out.
   const form = read("components/site/ClarityWaitlistForm.tsx");
-  assert.match(form, /guideHref/);
-  assert.match(form, /download/, "the thank-you screen must offer the download");
+  assert.match(form, /leaveTo\.href\(thankYouHref\)/);
+  assert.ok(!/status === "done"[\s\S]{0,200}Download/.test(form), "the confirmation must not be inline again");
 
   // W1 carries it too, because the screen is gone once she closes the tab —
   // but as a closing line, never as the button.
